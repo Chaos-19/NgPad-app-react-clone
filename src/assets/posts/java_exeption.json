@@ -1,0 +1,1202 @@
+[
+  {
+    "id": 138,
+    "date": "2020-06-18T11:39:12",
+    "date_gmt": "2020-06-18T11:39:12",
+    "guid": {
+      "rendered": "http://java.foobrdigital.com/?p=138"
+    },
+    "modified": "2020-07-11T17:30:51",
+    "modified_gmt": "2020-07-11T17:30:51",
+    "slug": "static-binding-and-dynamic-binding",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/static-binding-and-dynamic-binding/",
+    "title": {
+      "rendered": "Static Binding and Dynamic Binding"
+    },
+    "content": {
+      "rendered": "\n<p>Connecting a method call to the method body is known as binding.</p>\n\n\n\n<p>There are two types of binding</p>\n\n\n\n<ol><li>Static Binding (also known as Early Binding).</li><li>Dynamic Binding (also known as Late Binding).</li></ol>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://static.javatpoint.com/images/types-of-binding.jpg\" alt=\"Static vs. Dynamic Binding in java\"/></figure>\n\n\n\n<h3>Understanding Type</h3>\n\n\n\n<p>Let&#8217;s understand the type of instance.</p>\n\n\n\n<h4>1) variables have a type</h4>\n\n\n\n<p>Each variable has a type, it may be primitive and non-primitive.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>int data=30;  </code></pre>\n\n\n\n<p>Here data variable is a type of int.</p>\n\n\n\n<h4>2) References have a type</h4>\n\n\n\n<pre class=\"wp-block-code\"><code>class Dog{  \n public static void main(String args&#91;]){  \n  Dog d1;//Here d1 is a type of Dog  \n }  \n}  </code></pre>\n\n\n\n<h4>3) Objects have a type</h4>\n\n\n\n<figure class=\"wp-block-table\"><table><tbody><tr><td>An object is an instance of particular java class,but it is also an instance of its superclass.</td></tr></tbody></table><figcaption><br></figcaption></figure>\n\n\n\n<pre class=\"wp-block-code\"><code>class Animal{}  \n  \nclass Dog extends Animal{  \n public static void main(String args&#91;]){  \n  Dog d1=new Dog();  \n }  \n}  </code></pre>\n\n\n\n<figure class=\"wp-block-table\"><table><tbody><tr><td>Here d1 is an instance of Dog class, but it is also an instance of Animal.</td></tr></tbody></table></figure>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h3>static binding</h3>\n\n\n\n<p>When type of the object is determined at compiled time(by the compiler), it is known as static binding.</p>\n\n\n\n<p>If there is any private, final or static method in a class, there is static binding.</p>\n\n\n\n<h3>Example of static binding</h3>\n\n\n\n<pre class=\"wp-block-code\"><code>class Dog{  \n private void eat(){System.out.println(\"dog is eating...\");}  \n  \n public static void main(String args&#91;]){  \n  Dog d1=new Dog();  \n  d1.eat();  \n }  \n}  </code></pre>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h3>Dynamic binding</h3>\n\n\n\n<p>When type of the object is determined at run-time, it is known as dynamic binding.</p>\n\n\n\n<h3>Example of dynamic binding</h3>\n\n\n\n<pre class=\"wp-block-code\"><code>class Animal{  \n void eat(){System.out.println(\"animal is eating...\");}  \n}  \n  \nclass Dog extends Animal{  \n void eat(){System.out.println(\"dog is eating...\");}  \n  \n public static void main(String args&#91;]){  \n  Animal a=new Dog();  \n  a.eat();  \n }  \n}</code></pre>\n\n\n\n<pre class=\"wp-block-preformatted\">Output:dog is eating...</pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Connecting a method call to the method body is known as binding. There are two types of binding Static Binding (also known as Early Binding). Dynamic Binding (also known as Late Binding). Understanding Type Let&#8217;s understand the type of instance. 1) variables have a type Each variable has a type, it may be primitive and [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [9],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/138"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=138"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 2,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/138/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 812,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/138/revisions/812"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=138"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=138"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=138"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 225,
+    "date": "2020-06-19T11:50:55",
+    "date_gmt": "2020-06-19T11:50:55",
+    "guid": {
+      "rendered": "http://java.foobrdigital.com/?p=225"
+    },
+    "modified": "2020-07-11T17:32:30",
+    "modified_gmt": "2020-07-11T17:32:30",
+    "slug": "exception-handling",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/exception-handling/",
+    "title": {
+      "rendered": "Exception Handling"
+    },
+    "content": {
+      "rendered": "\n<p>The&nbsp;<strong>Exception Handling in Java</strong>&nbsp;is one of the powerful&nbsp;<em>mechanism to handle the runtime errors</em>&nbsp;so that normal flow of the application can be maintained.</p>\n\n\n\n<p>In this page, we will learn about Java exceptions, its type and the difference between checked and unchecked exceptions.</p>\n\n\n\n<h2>What is Exception in Java</h2>\n\n\n\n<p><strong>Dictionary Meaning:</strong>&nbsp;Exception is an abnormal condition.</p>\n\n\n\n<p>In Java, an exception is an event that disrupts the normal flow of the program. It is an object which is thrown at runtime.</p>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h2>What is Exception Handling</h2>\n\n\n\n<p>Exception Handling is a mechanism to handle runtime errors such as ClassNotFoundException, IOException, SQLException, RemoteException, etc.</p>\n\n\n\n<h3 id=\"exceptionad\">Advantage of Exception Handling</h3>\n\n\n\n<p>The core advantage of exception handling is&nbsp;<strong>to maintain the normal flow of the application</strong>. An exception normally disrupts the normal flow of the application that is why we use exception handling. Let&#8217;s take a scenario:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>statement 1;  \nstatement 2;  \nstatement 3;  \nstatement 4;  \nstatement 5;//exception occurs  \nstatement 6;  \nstatement 7;  \nstatement 8;  \nstatement 9;  \nstatement 10;  </code></pre>\n\n\n\n<p>Suppose there are 10 statements in your program and there occurs an exception at statement 5, the rest of the code will not be executed i.e. statement 6 to 10 will not be executed. If we perform exception handling, the rest of the statement will be executed. That is why we use exception handling in&nbsp;Java.<br>Do You Know?</p>\n\n\n\n<figure class=\"wp-block-table\"><table><tbody><tr><td>What is the difference between checked and unchecked exceptions?What happens behind the code int data=50/0;?Why use multiple catch block?Is there any possibility when finally block is not executed?What is exception propagation?What is the difference between throw and throws keyword?What are the 4 rules for using exception handling with method overriding?</td></tr></tbody></table></figure>\n\n\n\n<h2>Hierarchy of Java Exception classes</h2>\n\n\n\n<p>The java.lang.Throwable class is the root class of Java Exception hierarchy which is inherited by two subclasses: Exception and Error. A hierarchy of Java Exception classes are given below:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://static.javatpoint.com/images/throwable.png\" alt=\"hierarchy of exception handling\"/></figure>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h3>Types of Java Exceptions</h3>\n\n\n\n<p>There are mainly two types of exceptions: checked and unchecked. Here, an error is considered as the unchecked exception. According to Oracle, there are three types of exceptions:</p>\n\n\n\n<ol><li>Checked Exception</li><li>Unchecked Exception</li><li>Error</li></ol>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://static.javatpoint.com/images/types-of-java-exceptions.jpg\" alt=\"Types of Java Exceptions\"/></figure>\n\n\n\n<h2>Difference between Checked and Unchecked Exceptions</h2>\n\n\n\n<h3 id=\"exceptionchecked\">1) Checked Exception</h3>\n\n\n\n<p>The classes which directly inherit Throwable class except RuntimeException and Error are known as checked exceptions e.g. IOException, SQLException etc. Checked exceptions are checked at compile-time.</p>\n\n\n\n<h3 id=\"exceptionunchecked\">2) Unchecked Exception</h3>\n\n\n\n<p>The classes which inherit RuntimeException are known as unchecked exceptions e.g. ArithmeticException, NullPointerException, ArrayIndexOutOfBoundsException etc. Unchecked exceptions are not checked at compile-time, but they are checked at runtime.</p>\n\n\n\n<h3>3) Error</h3>\n\n\n\n<p>Error is irrecoverable e.g. OutOfMemoryError, VirtualMachineError, AssertionError etc.</p>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h2>Java Exception Keywords</h2>\n\n\n\n<p>There are 5 keywords which are used in handling exceptions in Java.</p>\n\n\n\n<figure class=\"wp-block-table\"><table><tbody><tr><th>Keyword</th><th>Description</th></tr><tr><td>try</td><td>The &#8220;try&#8221; keyword is used to specify a block where we should place exception code. The try block must be followed by either catch or finally. It means, we can&#8217;t use try block alone.</td></tr><tr><td>catch</td><td>The &#8220;catch&#8221; block is used to handle the exception. It must be preceded by try block which means we can&#8217;t use catch block alone. It can be followed by finally block later.</td></tr><tr><td>finally</td><td>The &#8220;finally&#8221; block is used to execute the important code of the program. It is executed whether an exception is handled or not.</td></tr><tr><td>throw</td><td>The &#8220;throw&#8221; keyword is used to throw an exception.</td></tr><tr><td>throws</td><td>The &#8220;throws&#8221; keyword is used to declare exceptions. It doesn&#8217;t throw an exception. It specifies that there may occur an exception in the method. It is always used with method signature.</td></tr></tbody></table></figure>\n\n\n\n<h2 id=\"exceptionexample\">Java Exception Handling Example</h2>\n\n\n\n<p>Let&#8217;s see an example of Java Exception Handling where we using a try-catch statement to handle the exception.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>public class JavaExceptionExample{  \n  public static void main(String args&#91;]){  \n   try{  \n      //code that may raise exception  \n      int data=100/0;  \n   }catch(ArithmeticException e){System.out.println(e);}  \n   //rest code of the program   \n   System.out.println(\"rest of the code...\");  \n  }  \n}  </code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-preformatted\">Exception in thread main java.lang.ArithmeticException:/ by zero\nrest of the code...\n</pre>\n\n\n\n<p>In the above example, 100/0 raises an ArithmeticException which is handled by a try-catch block.</p>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h2 id=\"exceptionscenarios\">Common Scenarios of Java Exceptions</h2>\n\n\n\n<p>There are given some scenarios where unchecked exceptions may occur. They are as follows:</p>\n\n\n\n<h3>1) A scenario where ArithmeticException occurs</h3>\n\n\n\n<p>If we divide any number by zero, there occurs an ArithmeticException.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>int a=50/0;//ArithmeticException  </code></pre>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h3>2) A scenario where NullPointerException occurs</h3>\n\n\n\n<p>If we have a null value in any&nbsp;variable, performing any operation on the variable throws a NullPointerException.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>String s=null;  \nSystem.out.println(s.length());//NullPointerException  </code></pre>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h3>3) A scenario where NumberFormatException occurs</h3>\n\n\n\n<p>The wrong formatting of any value may occur NumberFormatException. Suppose I have a\u00a0string\u00a0variable that has characters, converting this variable into digit will occur NumberFormatException.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>String s=\"abc\";  \nint i=Integer.parseInt(s);//NumberFormatException  </code></pre>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h3>4) A scenario where ArrayIndexOutOfBoundsException occurs</h3>\n\n\n\n<p>If you are inserting any value in the wrong index, it would result in Array Index Out Of Bounds Exception as shown below:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>int a&#91;]=new int&#91;5];  \na&#91;10]=50; //ArrayIndexOutOfBoundsException  </code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>The&nbsp;Exception Handling in Java&nbsp;is one of the powerful&nbsp;mechanism to handle the runtime errors&nbsp;so that normal flow of the application can be maintained. In this page, we will learn about Java exceptions, its type and the difference between checked and unchecked exceptions. What is Exception in Java Dictionary Meaning:&nbsp;Exception is an abnormal condition. In Java, an [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [9],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/225"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=225"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 2,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/225/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 813,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/225/revisions/813"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=225"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=225"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=225"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 223,
+    "date": "2020-06-19T11:57:03",
+    "date_gmt": "2020-06-19T11:57:03",
+    "guid": {
+      "rendered": "http://java.foobrdigital.com/?p=223"
+    },
+    "modified": "2020-07-11T17:33:58",
+    "modified_gmt": "2020-07-11T17:33:58",
+    "slug": "try-catch-block",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/try-catch-block/",
+    "title": {
+      "rendered": "try-catch block"
+    },
+    "content": {
+      "rendered": "\n<h2>Java try block</h2>\n\n\n\n<p>Java&nbsp;<strong>try</strong>&nbsp;block is used to enclose the code that might throw an exception. It must be used within the method.</p>\n\n\n\n<p>If an exception occurs at the particular statement of try block, the rest of the block code will not execute. So, it is recommended not to keeping the code in try block that will not throw an exception.</p>\n\n\n\n<p>Java try block must be followed by either catch or finally block.</p>\n\n\n\n<h3>Syntax of Java try-catch</h3>\n\n\n\n<pre class=\"wp-block-code\"><code>try{    \n//code that may throw an exception    \n}catch(Exception_class_Name ref){}</code></pre>\n\n\n\n<h3>Syntax of try-finally block</h3>\n\n\n\n<pre class=\"wp-block-code\"><code>try{    \n//code that may throw an exception    \n}finally{}  </code></pre>\n\n\n\n<h2>Java catch block</h2>\n\n\n\n<p>Java catch block is used to handle the Exception by declaring the type of exception within the parameter. The declared exception must be the parent class exception ( i.e., Exception) or the generated exception type. However, the good approach is to declare the generated type of exception.</p>\n\n\n\n<p>The catch block must be used after the try block only. You can use multiple catch block with a single try block.</p>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h2>Problem without exception handling</h2>\n\n\n\n<p>Let&#8217;s try to understand the problem if we don&#8217;t use a try-catch block.</p>\n\n\n\n<h3>Example 1</h3>\n\n\n\n<pre class=\"wp-block-code\"><code>public class TryCatchExample1 {  \n  \n    public static void main(String&#91;] args) {  \n          \n        int data=50/0; //may throw exception   \n          \n        System.out.println(\"rest of the code\");  \n          \n    }  \n      \n} </code></pre>\n\n\n\n<p><strong>Output:</strong></p>\n\n\n\n<pre class=\"wp-block-code\"><code>Exception in thread \"main\" java.lang.ArithmeticException: / by zero\n</code></pre>\n\n\n\n<p>As displayed in the above example, the&nbsp;<strong>rest of the code</strong>&nbsp;is not executed (in such case, the&nbsp;<strong>rest of the code</strong>&nbsp;statement is not printed).</p>\n\n\n\n<p>There can be 100 lines of code after exception. So all the code after exception will not be executed.</p>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h2>Solution by exception handling</h2>\n\n\n\n<p>Let&#8217;s see the solution of the above problem by a java try-catch block.</p>\n\n\n\n<h3>Example 2</h3>\n\n\n\n<pre class=\"wp-block-code\"><code>public class TryCatchExample2 {  \n  \n    public static void main(String&#91;] args) {  \n        try  \n        {  \n        int data=50/0; //may throw exception   \n        }  \n            //handling the exception  \n        catch(ArithmeticException e)  \n        {  \n            System.out.println(e);  \n        }  \n        System.out.println(\"rest of the code\");  \n    }  \n      \n}  </code></pre>\n\n\n\n<p><strong>Output:</strong></p>\n\n\n\n<pre class=\"wp-block-code\"><code>java.lang.ArithmeticException: / by zero\nrest of the code\n\ufeff</code></pre>\n\n\n\n<p>Now, as displayed in the above example, the&nbsp;<strong>rest of the code</strong>&nbsp;is executed, i.e., the&nbsp;<strong>rest of the code</strong>&nbsp;statement is printed.</p>\n\n\n\n<h3>Example 3</h3>\n\n\n\n<p>In this example, we also kept the code in a try block that will not throw an exception.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>public class TryCatchExample3 {  \n  \n    public static void main(String&#91;] args) {  \n        try  \n        {  \n        int data=50/0; //may throw exception   \n                         // if exception occurs, the remaining statement will not exceute  \n        System.out.println(\"rest of the code\");  \n        }  \n             // handling the exception   \n        catch(ArithmeticException e)  \n        {  \n            System.out.println(e);  \n        }  \n          \n    }  \n      \n}  </code></pre>\n\n\n\n<p><strong>Output:</strong></p>\n\n\n\n<pre class=\"wp-block-code\"><code>java.lang.ArithmeticException: / by zero\n</code></pre>\n\n\n\n<p>Here, we can see that if an exception occurs in the try block, the rest of the block code will not execute.</p>\n\n\n\n<h3>Example 4</h3>\n\n\n\n<p>Here, we handle the exception using the parent class exception.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>public class TryCatchExample4 {  \n  \n    public static void main(String&#91;] args) {  \n        try  \n        {  \n        int data=50/0; //may throw exception   \n        }  \n            // handling the exception by using Exception class      \n        catch(Exception e)  \n        {  \n            System.out.println(e);  \n        }  \n        System.out.println(\"rest of the code\");  \n    }  \n      \n}  </code></pre>\n\n\n\n<p><strong>Output:</strong></p>\n\n\n\n<pre class=\"wp-block-code\"><code>java.lang.ArithmeticException: / by zero\nrest of the code</code></pre>\n\n\n\n<h3>Example 5</h3>\n\n\n\n<p>Let&#8217;s see an example to print a custom message on exception.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>public class TryCatchExample5 {  \n  \n    public static void main(String&#91;] args) {  \n        try  \n        {  \n        int data=50/0; //may throw exception   \n        }  \n             // handling the exception  \n        catch(Exception e)  \n        {  \n                  // displaying the custom message  \n            System.out.println(\"Can't divided by zero\");  \n        }  \n    }  \n      \n}  </code></pre>\n\n\n\n<p><strong>Output:</strong></p>\n\n\n\n<pre class=\"wp-block-code\"><code>Can't divided by zero\n</code></pre>\n\n\n\n<h3>Example 6</h3>\n\n\n\n<p>Let&#8217;s see an example to resolve the exception in a catch block.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>\npublic class TryCatchExample6 {  \n  \n    public static void main(String&#91;] args) {  \n        int i=50;  \n        int j=0;  \n        int data;  \n        try  \n        {  \n        data=i/j; //may throw exception   \n        }  \n            // handling the exception  \n        catch(Exception e)  \n        {  \n             // resolving the exception in catch block  \n            System.out.println(i/(j+2));  \n        }  \n    }  \n}  </code></pre>\n\n\n\n<p><strong>Output:</strong></p>\n\n\n\n<pre class=\"wp-block-code\"><code>25</code></pre>\n\n\n\n<h3>Example 7</h3>\n\n\n\n<p>In this example, along with try block, we also enclose exception code in a catch block.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>public class TryCatchExample7 {  \n  \n    public static void main(String&#91;] args) {  \n          \n        try  \n        {  \n        int data1=50/0; //may throw exception   \n  \n        }  \n             // handling the exception  \n        catch(Exception e)  \n        {  \n            // generating the exception in catch block  \n        int data2=50/0; //may throw exception   \n  \n        }  \n    System.out.println(\"rest of the code\");  \n    }  \n}  </code></pre>\n\n\n\n<p><strong>Output:</strong></p>\n\n\n\n<pre class=\"wp-block-code\"><code>Exception in thread \"main\" java.lang.ArithmeticException: / by zero\n</code></pre>\n\n\n\n<p>Here, we can see that the catch block didn&#8217;t contain the exception code. So, enclose exception code within a try block and use catch block only to handle the exceptions.</p>\n\n\n\n<h3>Example 8</h3>\n\n\n\n<p>In this example, we handle the generated exception (Arithmetic Exception) with a different type of exception class (ArrayIndexOutOfBoundsException).</p>\n\n\n\n<pre class=\"wp-block-code\"><code>public class TryCatchExample8 {  \n  \n    public static void main(String&#91;] args) {  \n        try  \n        {  \n        int data=50/0; //may throw exception   \n  \n        }  \n            // try to handle the ArithmeticException using ArrayIndexOutOfBoundsException  \n        catch(ArrayIndexOutOfBoundsException e)  \n        {  \n            System.out.println(e);  \n        }  \n        System.out.println(\"rest of the code\");  \n    }  \n      \n}  </code></pre>\n\n\n\n<p><strong>Output:</strong></p>\n\n\n\n<pre class=\"wp-block-code\"><code>Exception in thread \"main\" java.lang.ArithmeticException: / by zero\n</code></pre>\n\n\n\n<h3>Example 9</h3>\n\n\n\n<p>Let&#8217;s see an example to handle another unchecked exception.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>public class TryCatchExample9 {  \n  \n    public static void main(String&#91;] args) {  \n        try  \n        {  \n        int arr&#91;]= {1,3,5,7};  \n        System.out.println(arr&#91;10]); //may throw exception   \n        }  \n            // handling the array exception  \n        catch(ArrayIndexOutOfBoundsException e)  \n        {  \n            System.out.println(e);  \n        }  \n        System.out.println(\"rest of the code\");  \n    }  \n      \n}  </code></pre>\n\n\n\n<p><strong>Output:</strong></p>\n\n\n\n<pre class=\"wp-block-code\"><code>java.lang.ArrayIndexOutOfBoundsException: 10\nrest of the code</code></pre>\n\n\n\n<h3>Example 10</h3>\n\n\n\n<p>Let&#8217;s see an example to handle checked exception.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>import java.io.FileNotFoundException;  \nimport java.io.PrintWriter;  \n  \npublic class TryCatchExample10 {  \n  \n    public static void main(String&#91;] args) {  \n          \n          \n        PrintWriter pw;  \n        try {  \n            pw = new PrintWriter(\"jtp.txt\"); //may throw exception   \n            pw.println(\"saved\");  \n        }  \n// providing the checked exception handler  \n catch (FileNotFoundException e) {  \n              \n            System.out.println(e);  \n        }         \n    System.out.println(\"File saved successfully\");  \n    }  \n}  </code></pre>\n\n\n\n<p><strong>Output:</strong></p>\n\n\n\n<pre class=\"wp-block-code\"><code>File saved successfully\n</code></pre>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h2>Internal working of java try-catch block</h2>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://static.javatpoint.com/images/exceptionobject.JPG\" alt=\"internal working of try-catch block\"/></figure>\n\n\n\n<p>The JVM firstly checks whether the exception is handled or not. If exception is not handled, JVM provides a default exception handler that performs the following tasks:</p>\n\n\n\n<ul><li>Prints out exception description.</li><li>Prints the stack trace (Hierarchy of methods where the exception occurred).</li><li>Causes the program to terminate.</li></ul>\n\n\n\n<p>But if exception is handled by the application programmer, normal flow of the application is maintained i.e. rest of the code is executed.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Java try block Java&nbsp;try&nbsp;block is used to enclose the code that might throw an exception. It must be used within the method. If an exception occurs at the particular statement of try block, the rest of the block code will not execute. So, it is recommended not to keeping the code in try block that [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [9],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/223"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=223"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 2,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/223/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 814,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/223/revisions/814"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=223"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=223"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=223"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 221,
+    "date": "2020-06-19T12:19:26",
+    "date_gmt": "2020-06-19T12:19:26",
+    "guid": {
+      "rendered": "http://java.foobrdigital.com/?p=221"
+    },
+    "modified": "2020-06-19T12:19:26",
+    "modified_gmt": "2020-06-19T12:19:26",
+    "slug": "catch-multiple-exceptions",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/catch-multiple-exceptions/",
+    "title": {
+      "rendered": "catch multiple exceptions"
+    },
+    "content": {
+      "rendered": "\n<h2>Java Multi-catch block</h2>\n\n\n\n<p>A try block can be followed by one or more catch blocks. Each catch block must contain a different exception handler. So, if you have to perform different tasks at the occurrence of different exceptions, use java multi-catch block.</p>\n\n\n\n<h2>Points to remember</h2>\n\n\n\n<ul><li>At a time only one exception occurs and at a time only one catch block is executed.</li><li>All catch blocks must be ordered from most specific to most general, i.e. catch for ArithmeticException must come before catch for Exception.</li></ul>\n\n\n\n<h3>Example 1</h3>\n\n\n\n<p>Let&#8217;s see a simple example of java multi-catch block.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>public class MultipleCatchBlock1 {  \n  \n    public static void main(String&#91;] args) {  \n          \n           try{    \n                int a&#91;]=new int&#91;5];    \n                a&#91;5]=30/0;    \n               }    \n               catch(ArithmeticException e)  \n                  {  \n                   System.out.println(\"Arithmetic Exception occurs\");  \n                  }    \n               catch(ArrayIndexOutOfBoundsException e)  \n                  {  \n                   System.out.println(\"ArrayIndexOutOfBounds Exception occurs\");  \n                  }    \n               catch(Exception e)  \n                  {  \n                   System.out.println(\"Parent Exception occurs\");  \n                  }             \n               System.out.println(\"rest of the code\");    \n    }  \n}  </code></pre>\n\n\n\n<p><strong>Output:</strong></p>\n\n\n\n<pre class=\"wp-block-code\"><code>Arithmetic Exception occurs\nrest of the code</code></pre>\n\n\n\n<h3>Example 2</h3>\n\n\n\n<pre class=\"wp-block-code\"><code>public class MultipleCatchBlock2 {  \n  \n    public static void main(String&#91;] args) {  \n          \n           try{    \n                int a&#91;]=new int&#91;5];    \n                \n                System.out.println(a&#91;10]);  \n               }    \n               catch(ArithmeticException e)  \n                  {  \n                   System.out.println(\"Arithmetic Exception occurs\");  \n                  }    \n               catch(ArrayIndexOutOfBoundsException e)  \n                  {  \n                   System.out.println(\"ArrayIndexOutOfBounds Exception occurs\");  \n                  }    \n               catch(Exception e)  \n                  {  \n                   System.out.println(\"Parent Exception occurs\");  \n                  }             \n               System.out.println(\"rest of the code\");    \n    }  \n}  </code></pre>\n\n\n\n<p><strong>Output:</strong></p>\n\n\n\n<pre class=\"wp-block-code\"><code>ArrayIndexOutOfBounds Exception occurs\nrest of the code</code></pre>\n\n\n\n<h3>Example 3</h3>\n\n\n\n<p>In this example, try block contains two exceptions. But at a time only one exception occurs and its corresponding catch block is invoked.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>public class MultipleCatchBlock3 {  \n  \n    public static void main(String&#91;] args) {  \n          \n           try{    \n                int a&#91;]=new int&#91;5];    \n                a&#91;5]=30/0;    \n                System.out.println(a&#91;10]);  \n               }    \n               catch(ArithmeticException e)  \n                  {  \n                   System.out.println(\"Arithmetic Exception occurs\");  \n                  }    \n               catch(ArrayIndexOutOfBoundsException e)  \n                  {  \n                   System.out.println(\"ArrayIndexOutOfBounds Exception occurs\");  \n                  }    \n               catch(Exception e)  \n                  {  \n                   System.out.println(\"Parent Exception occurs\");  \n                  }             \n               System.out.println(\"rest of the code\");    \n    }  \n}  </code></pre>\n\n\n\n<p><strong>Output:</strong></p>\n\n\n\n<pre class=\"wp-block-code\"><code>Arithmetic Exception occurs\nrest of the code</code></pre>\n\n\n\n<h3>Example 4</h3>\n\n\n\n<p>In this example, we generate NullPointerException, but didn&#8217;t provide the corresponding exception type. In such case, the catch block containing the parent exception class\u00a0<strong>Exception</strong>\u00a0will invoked.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>public class MultipleCatchBlock4 {  \n  \n    public static void main(String&#91;] args) {  \n          \n           try{    \n                String s=null;  \n                System.out.println(s.length());  \n               }    \n               catch(ArithmeticException e)  \n                  {  \n                   System.out.println(\"Arithmetic Exception occurs\");  \n                  }    \n               catch(ArrayIndexOutOfBoundsException e)  \n                  {  \n                   System.out.println(\"ArrayIndexOutOfBounds Exception occurs\");  \n                  }    \n               catch(Exception e)  \n                  {  \n                   System.out.println(\"Parent Exception occurs\");  \n                  }             \n               System.out.println(\"rest of the code\");    \n    }  \n}  </code></pre>\n\n\n\n<p><strong>Output:</strong></p>\n\n\n\n<pre class=\"wp-block-code\"><code>Parent Exception occurs\nrest of the code</code></pre>\n\n\n\n<h3>Example 5</h3>\n\n\n\n<p>Let&#8217;s see an example, to handle the exception without maintaining the order of exceptions (i.e. from most specific to most general).</p>\n\n\n\n<pre class=\"wp-block-code\"><code>class MultipleCatchBlock5{    \n  public static void main(String args&#91;]){    \n   try{    \n    int a&#91;]=new int&#91;5];    \n    a&#91;5]=30/0;    \n   }    \n   catch(Exception e){System.out.println(\"common task completed\");}    \n   catch(ArithmeticException e){System.out.println(\"task1 is completed\");}    \n   catch(ArrayIndexOutOfBoundsException e){System.out.println(\"task 2 completed\");}    \n   System.out.println(\"rest of the code...\");    \n }    \n}   </code></pre>\n\n\n\n<p><strong>Output:</strong></p>\n\n\n\n<pre class=\"wp-block-code\"><code>Compile-time error</code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Java Multi-catch block A try block can be followed by one or more catch blocks. Each catch block must contain a different exception handler. So, if you have to perform different tasks at the occurrence of different exceptions, use java multi-catch block. Points to remember At a time only one exception occurs and at a [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [9],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/221"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=221"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/221/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 229,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/221/revisions/229"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=221"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=221"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=221"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 226,
+    "date": "2020-06-19T12:20:12",
+    "date_gmt": "2020-06-19T12:20:12",
+    "guid": {
+      "rendered": "http://java.foobrdigital.com/?p=226"
+    },
+    "modified": "2020-06-19T12:20:12",
+    "modified_gmt": "2020-06-19T12:20:12",
+    "slug": "nested-try-block",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/nested-try-block/",
+    "title": {
+      "rendered": "Nested try block"
+    },
+    "content": {
+      "rendered": "\n<p>The try block within a try block is known as nested try block in java.</p>\n\n\n\n<h3>Why use nested try block</h3>\n\n\n\n<p>Sometimes a situation may arise where a part of a block may cause one error and the entire block itself may cause another error. In such cases, exception handlers have to be nested.</p>\n\n\n\n<h3>Syntax:</h3>\n\n\n\n<pre class=\"wp-block-code\"><code>....  \ntry  \n{  \n    statement 1;  \n    statement 2;  \n    try  \n    {  \n        statement 1;  \n        statement 2;  \n    }  \n    catch(Exception e)  \n    {  \n    }  \n}  \ncatch(Exception e)  \n{  \n}  \n....  </code></pre>\n\n\n\n<h2>Java nested try example</h2>\n\n\n\n<p>Let&#8217;s see a simple example of java nested try block.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>class Excep6{  \n public static void main(String args&#91;]){  \n  try{  \n    try{  \n     System.out.println(\"going to divide\");  \n     int b =39/0;  \n    }catch(ArithmeticException e){System.out.println(e);}  \n   \n    try{  \n    int a&#91;]=new int&#91;5];  \n    a&#91;5]=4;  \n    }catch(ArrayIndexOutOfBoundsException e){System.out.println(e);}  \n     \n    System.out.println(\"other statement);  \n  }catch(Exception e){System.out.println(\"handeled\");}  \n  \n  System.out.println(\"normal flow..\");  \n }  \n}  </code></pre>\n\n\n\n<p></p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>The try block within a try block is known as nested try block in java. Why use nested try block Sometimes a situation may arise where a part of a block may cause one error and the entire block itself may cause another error. In such cases, exception handlers have to be nested. Syntax: Java [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [9],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/226"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=226"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/226/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 230,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/226/revisions/230"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=226"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=226"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=226"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 217,
+    "date": "2020-06-19T12:21:44",
+    "date_gmt": "2020-06-19T12:21:44",
+    "guid": {
+      "rendered": "http://java.foobrdigital.com/?p=217"
+    },
+    "modified": "2020-06-19T12:21:44",
+    "modified_gmt": "2020-06-19T12:21:44",
+    "slug": "finally-block",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/finally-block/",
+    "title": {
+      "rendered": "finally block"
+    },
+    "content": {
+      "rendered": "\n<p><strong>Java finally block</strong>&nbsp;is a block that is used&nbsp;<em>to execute important code</em>&nbsp;such as closing connection, stream etc.</p>\n\n\n\n<p>Java finally block is always executed whether exception is handled or not.</p>\n\n\n\n<p>Java finally block follows try or catch block.</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://static.javatpoint.com/images/finally.JPG\" alt=\"java finally\"/></figure>\n\n\n\n<h4>Note: If you don&#8217;t handle exception, before terminating the program, JVM executes finally block(if any).</h4>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h2>Why use java finally</h2>\n\n\n\n<ul><li>Finally block in java can be used to put &#8220;cleanup&#8221; code such as closing a file, closing connection etc.</li></ul>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h2>Usage of Java finally</h2>\n\n\n\n<p>Let&#8217;s see the different cases where java finally block can be used.</p>\n\n\n\n<h3>Case 1</h3>\n\n\n\n<p>Let&#8217;s see the java finally example where\u00a0<strong>exception doesn&#8217;t occur</strong>.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>class TestFinallyBlock{  \n  public static void main(String args&#91;]){  \n  try{  \n   int data=25/5;  \n   System.out.println(data);  \n  }  \n  catch(NullPointerException e){System.out.println(e);}  \n  finally{System.out.println(\"finally block is always executed\");}  \n  System.out.println(\"rest of the code...\");  \n  }  \n}  </code></pre>\n\n\n\n<pre class=\"wp-block-code\"><code>Output:5\n       finally block is always executed\n       rest of the code...</code></pre>\n\n\n\n<h3>Case 2</h3>\n\n\n\n<p>Let&#8217;s see the java finally example where\u00a0<strong>exception occurs and not handled</strong>.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>class TestFinallyBlock1{  \n  public static void main(String args&#91;]){  \n  try{  \n   int data=25/0;  \n   System.out.println(data);  \n  }  \n  catch(NullPointerException e){System.out.println(e);}  \n  finally{System.out.println(\"finally block is always executed\");}  \n  System.out.println(\"rest of the code...\");  \n  }  \n}  </code></pre>\n\n\n\n<pre class=\"wp-block-code\"><code>Output:finally block is always executed\n       Exception in thread main java.lang.ArithmeticException:/ by zero</code></pre>\n\n\n\n<h3>Case 3</h3>\n\n\n\n<p>Let&#8217;s see the java finally example where\u00a0<strong>exception occurs and handled</strong>.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>public class TestFinallyBlock2{  \n  public static void main(String args&#91;]){  \n  try{  \n   int data=25/0;  \n   System.out.println(data);  \n  }  \n  catch(ArithmeticException e){System.out.println(e);}  \n  finally{System.out.println(\"finally block is always executed\");}  \n  System.out.println(\"rest of the code...\");  \n  }  \n}  </code></pre>\n\n\n\n<pre class=\"wp-block-code\"><code>Output:Exception in thread main java.lang.ArithmeticException:/ by zero\n       finally block is always executed\n       rest of the code...\n\ufeff</code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Java finally block&nbsp;is a block that is used&nbsp;to execute important code&nbsp;such as closing connection, stream etc. Java finally block is always executed whether exception is handled or not. Java finally block follows try or catch block. Note: If you don&#8217;t handle exception, before terminating the program, JVM executes finally block(if any). Why use java finally [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [9],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/217"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=217"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/217/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 231,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/217/revisions/231"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=217"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=217"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=217"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 220,
+    "date": "2020-06-19T12:23:37",
+    "date_gmt": "2020-06-19T12:23:37",
+    "guid": {
+      "rendered": "http://java.foobrdigital.com/?p=220"
+    },
+    "modified": "2020-06-19T12:23:37",
+    "modified_gmt": "2020-06-19T12:23:37",
+    "slug": "throw-exception",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/throw-exception/",
+    "title": {
+      "rendered": "throw exception"
+    },
+    "content": {
+      "rendered": "\n<h2>Java throw keyword</h2>\n\n\n\n<p>The Java throw keyword is used to explicitly throw an exception.</p>\n\n\n\n<p>We can throw either checked or uncheked exception in java by throw keyword. The throw keyword is mainly used to throw custom exception. We will see custom exceptions later.</p>\n\n\n\n<p>The syntax of java throw keyword is given below.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>throw exception;  </code></pre>\n\n\n\n<p>Let&#8217;s see the example of throw IOException.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>throw new IOException(\"sorry device error);  </code></pre>\n\n\n\n<h2>java throw keyword example</h2>\n\n\n\n<p>In this example, we have created the validate method that takes integer value as a parameter. If the age is less than 18, we are throwing the ArithmeticException otherwise print a message welcome to vote.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>public class TestThrow1{  \n   static void validate(int age){  \n     if(age&lt;18)  \n      throw new ArithmeticException(\"not valid\");  \n     else  \n      System.out.println(\"welcome to vote\");  \n   }  \n   public static void main(String args&#91;]){  \n      validate(13);  \n      System.out.println(\"rest of the code...\");  \n  }  \n}</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Exception in thread main java.lang.ArithmeticException:not valid</code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Java throw keyword The Java throw keyword is used to explicitly throw an exception. We can throw either checked or uncheked exception in java by throw keyword. The throw keyword is mainly used to throw custom exception. We will see custom exceptions later. The syntax of java throw keyword is given below. Let&#8217;s see the [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [9],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/220"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=220"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/220/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 232,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/220/revisions/232"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=220"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=220"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=220"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 222,
+    "date": "2020-06-19T12:24:50",
+    "date_gmt": "2020-06-19T12:24:50",
+    "guid": {
+      "rendered": "http://java.foobrdigital.com/?p=222"
+    },
+    "modified": "2020-06-19T12:24:50",
+    "modified_gmt": "2020-06-19T12:24:50",
+    "slug": "exception-propagation",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/exception-propagation/",
+    "title": {
+      "rendered": "Exception propagation"
+    },
+    "content": {
+      "rendered": "\n<figure class=\"wp-block-table\"><table><tbody><tr><td>An exception is first thrown from the top of the stack and if it is not caught, it drops down the call stack to the previous method,If not caught there, the exception again drops down to the previous method, and so on until they are caught or until they reach the very bottom of the call stack.This is called exception propagation.</td></tr></tbody></table></figure>\n\n\n\n<h4>Rule: By default Unchecked Exceptions are forwarded in calling chain (propagated).</h4>\n\n\n\n<p><strong><em>Program of Exception Propagation</em></strong></p>\n\n\n\n<pre class=\"wp-block-code\"><code>class TestExceptionPropagation1{  \n  void m(){  \n    int data=50/0;  \n  }  \n  void n(){  \n    m();  \n  }  \n  void p(){  \n   try{  \n    n();  \n   }catch(Exception e){System.out.println(\"exception handled\");}  \n  }  \n  public static void main(String args&#91;]){  \n   TestExceptionPropagation1 obj=new TestExceptionPropagation1();  \n   obj.p();  \n   System.out.println(\"normal flow...\");  \n  }  \n}  \n\n\n\n</code></pre>\n\n\n\n<pre class=\"wp-block-code\"><code>Output:exception handled\n       normal flow...</code></pre>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://static.javatpoint.com/images/propagation.JPG\" alt=\"exception propagation\"/></figure>\n\n\n\n<p>In the above example exception occurs in m() method where it is not handled,so it is propagated to previous n() method where it is not handled, again it is propagated to p() method where exception is handled.</p>\n\n\n\n<p>Exception can be handled in any method in call stack either in main() method,p() method,n() method or m() method.</p>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h4>Rule: By default, Checked Exceptions are not forwarded in calling chain (propagated).</h4>\n\n\n\n<p><strong><em>Program which describes that checked exceptions are not propagated</em></strong></p>\n\n\n\n<pre class=\"wp-block-code\"><code>class TestExceptionPropagation2{  \n  void m(){  \n    throw new java.io.IOException(\"device error\");//checked exception  \n  }  \n  void n(){  \n    m();  \n  }  \n  void p(){  \n   try{  \n    n();  \n   }catch(Exception e){System.out.println(\"exception handeled\");}  \n  }  \n  public static void main(String args&#91;]){  \n   TestExceptionPropagation2 obj=new TestExceptionPropagation2();  \n   obj.p();  \n   System.out.println(\"normal flow\");  \n  }  \n}  </code></pre>\n\n\n\n<pre class=\"wp-block-code\"><code>Output:Compile Time Error</code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>An exception is first thrown from the top of the stack and if it is not caught, it drops down the call stack to the previous method,If not caught there, the exception again drops down to the previous method, and so on until they are caught or until they reach the very bottom of the [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [9],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/222"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=222"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/222/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 233,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/222/revisions/233"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=222"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=222"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=222"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 218,
+    "date": "2020-06-19T12:27:47",
+    "date_gmt": "2020-06-19T12:27:47",
+    "guid": {
+      "rendered": "http://java.foobrdigital.com/?p=218"
+    },
+    "modified": "2020-07-11T17:37:54",
+    "modified_gmt": "2020-07-11T17:37:54",
+    "slug": "throws-keyword",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/throws-keyword/",
+    "title": {
+      "rendered": "throws keyword"
+    },
+    "content": {
+      "rendered": "\n<p>The&nbsp;<strong>Java throws keyword</strong>&nbsp;is used to declare an exception. It gives an information to the programmer that there may occur an exception so it is better for the programmer to provide the exception handling code so that normal flow can be maintained.</p>\n\n\n\n<p>Exception Handling is mainly used to handle the checked exceptions. If there occurs any unchecked exception such as NullPointerException, it is programmers fault that he is not performing check up before the code being used.</p>\n\n\n\n<h3>Syntax of java throws</h3>\n\n\n\n<pre class=\"wp-block-code\"><code>return_type method_name() throws exception_class_name{  \n//method code  \n}  </code></pre>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h3>Which exception should be declared</h3>\n\n\n\n<p><strong>Ans)</strong>&nbsp;checked exception only, because:</p>\n\n\n\n<ul><li><strong>unchecked Exception:</strong>&nbsp;under your control so correct your code.</li><li><strong>error:</strong>&nbsp;beyond your control e.g. you are unable to do anything if there occurs VirtualMachineError or StackOverflowError.</li></ul>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h3>Advantage of Java throws keyword</h3>\n\n\n\n<p>Now Checked Exception can be propagated (forwarded in call stack).</p>\n\n\n\n<p>It provides information to the caller of the method about the exception.</p>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h2>Java throws example</h2>\n\n\n\n<p>Let&#8217;s see the example of java throws clause which describes that checked exceptions can be propagated by throws keyword.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>import java.io.IOException;  \nclass Testthrows1{  \n  void m()throws IOException{  \n    throw new IOException(\"device error\");//checked exception  \n  }  \n  void n()throws IOException{  \n    m();  \n  }  \n  void p(){  \n   try{  \n    n();  \n   }catch(Exception e){System.out.println(\"exception handled\");}  \n  }  \n  public static void main(String args&#91;]){  \n   Testthrows1 obj=new Testthrows1();  \n   obj.p();  \n   System.out.println(\"normal flow...\");  \n  }  \n}  </code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>exception handled\nnormal flow...\n\ufeff</code></pre>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h3>Rule: If you are calling a method that declares an exception, you must either caught or declare the exception.</h3>\n\n\n\n<figure class=\"wp-block-table\"><table><tbody><tr><td>There are two cases:<strong>Case1:</strong>You caught the exception i.e. handle the exception using try/catch.<strong>Case2:</strong>You declare the exception i.e. specifying throws with the method.</td></tr></tbody></table></figure>\n\n\n\n<h3>Case1: You handle the exception</h3>\n\n\n\n<ul><li>In case you handle the exception, the code will be executed fine whether exception occurs during the program or not.</li></ul>\n\n\n\n<p></p>\n\n\n\n<pre class=\"wp-block-code\"><code>import java.io.*;  \nclass M{  \n void method()throws IOException{  \n  throw new IOException(\"device error\");  \n }  \n}  \npublic class Testthrows2{  \n   public static void main(String args&#91;]){  \n    try{  \n     M m=new M();  \n     m.method();  \n    }catch(Exception e){System.out.println(\"exception handled\");}     \n  \n    System.out.println(\"normal flow...\");  \n  }  \n}  \n\n</code></pre>\n\n\n\n<pre class=\"wp-block-code\"><code>Output:exception handled\n       normal flow...</code></pre>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h3>Case2: You declare the exception</h3>\n\n\n\n<ul><li>A)In case you declare the exception, if exception does not occur, the code will be executed fine.</li><li>B)In case you declare the exception if exception occures, an exception will be thrown at runtime because throws does not handle the exception.</li></ul>\n\n\n\n<p><strong><em>A)Program if exception does not occur</em></strong></p>\n\n\n\n<pre class=\"wp-block-code\"><code>import java.io.*;  \nclass M{  \n void method()throws IOException{  \n  System.out.println(\"device operation performed\");  \n }  \n}  \nclass Testthrows3{  \n   public static void main(String args&#91;])throws IOException{//declare exception  \n     M m=new M();  \n     m.method();  \n  \n    System.out.println(\"normal flow...\");  \n  }  \n}  \n\n</code></pre>\n\n\n\n<pre class=\"wp-block-code\"><code>Output:device operation performed\n       normal flow...</code></pre>\n\n\n\n<p><strong><em>B)Program if exception occurs</em></strong></p>\n\n\n\n<pre class=\"wp-block-code\"><code>import java.io.*;  \nclass M{  \n void method()throws IOException{  \n  throw new IOException(\"device error\");  \n }  \n}  \nclass Testthrows4{  \n   public static void main(String args&#91;])throws IOException{//declare exception  \n     M m=new M();  \n     m.method();  \n  \n    System.out.println(\"normal flow...\");  \n  }  \n}  </code></pre>\n\n\n\n<pre class=\"wp-block-preformatted\"></pre>\n\n\n\n<pre class=\"wp-block-code\"><code>Output:Runtime Exception</code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>The&nbsp;Java throws keyword&nbsp;is used to declare an exception. It gives an information to the programmer that there may occur an exception so it is better for the programmer to provide the exception handling code so that normal flow can be maintained. Exception Handling is mainly used to handle the checked exceptions. If there occurs any [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [9],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/218"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=218"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 3,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/218/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 815,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/218/revisions/815"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=218"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=218"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=218"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 315,
+    "date": "2020-06-20T07:47:37",
+    "date_gmt": "2020-06-20T07:47:37",
+    "guid": {
+      "rendered": "http://java.foobrdigital.com/?p=315"
+    },
+    "modified": "2020-06-20T07:52:29",
+    "modified_gmt": "2020-06-20T07:52:29",
+    "slug": "final-finally-and-finalize",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/final-finally-and-finalize/",
+    "title": {
+      "rendered": "final, finally and finalize"
+    },
+    "content": {
+      "rendered": "\n<p>There are many differences between final, finally and finalize. A list of differences between final, finally and finalize are given below:</p>\n\n\n\n<figure class=\"wp-block-table\"><table><tbody><tr><th>No.</th><th>final</th><th>finally</th><th>finalize</th></tr><tr><td>1)</td><td>Final is used to apply restrictions on class, method and variable. Final class can&#8217;t be inherited, final method can&#8217;t be overridden and final variable value can&#8217;t be changed.</td><td>Finally is used to place important code, it will be executed whether exception is handled or not.</td><td>Finalize is used to perform clean up processing just before object is garbage collected.</td></tr><tr><td>2)</td><td>Final is a keyword.</td><td>Finally is a block.</td><td>Finalize is a method.</td></tr></tbody></table></figure>\n\n\n\n<h2>Java final example</h2>\n\n\n\n<pre class=\"wp-block-code\"><code>class FinalExample{  \npublic static void main(String&#91;] args){  \nfinal int x=100;  \nx=200;//Compile Time Error  \n}}  </code></pre>\n\n\n\n<h2>Java finally example</h2>\n\n\n\n<pre class=\"wp-block-code\"><code>class FinallyExample{  \npublic static void main(String&#91;] args){  \ntry{  \nint x=300;  \n}catch(Exception e){System.out.println(e);}  \nfinally{System.out.println(\"finally block is executed\");}  \n}} </code></pre>\n\n\n\n<h2>Java finalize example</h2>\n\n\n\n<pre class=\"wp-block-code\"><code>class FinalizeExample{  \npublic void finalize(){System.out.println(\"finalize called\");}  \npublic static void main(String&#91;] args){  \nFinalizeExample f1=new FinalizeExample();  \nFinalizeExample f2=new FinalizeExample();  \nf1=null;  \nf2=null;  \nSystem.gc();  \n}}  </code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>There are many differences between final, finally and finalize. A list of differences between final, finally and finalize are given below: No. final finally finalize 1) Final is used to apply restrictions on class, method and variable. Final class can&#8217;t be inherited, final method can&#8217;t be overridden and final variable value can&#8217;t be changed. Finally [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [9],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/315"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=315"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/315/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 319,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/315/revisions/319"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=315"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=315"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=315"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 311,
+    "date": "2020-06-20T07:50:47",
+    "date_gmt": "2020-06-20T07:50:47",
+    "guid": {
+      "rendered": "http://java.foobrdigital.com/?p=311"
+    },
+    "modified": "2020-06-20T07:52:24",
+    "modified_gmt": "2020-06-20T07:52:24",
+    "slug": "exceptionhandling-with-methodoverriding",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/exceptionhandling-with-methodoverriding/",
+    "title": {
+      "rendered": "ExceptionHandling with MethodOverriding"
+    },
+    "content": {
+      "rendered": "\n<figure class=\"wp-block-table\"><table><tbody><tr><td>There are many rules if we talk about methodoverriding with exception handling. The Rules are as follows:<strong>If the superclass method does not declare an exception</strong>If the superclass method does not declare an exception, subclass overridden method cannot declare the checked exception but it can declare unchecked exception.<strong>If the superclass method declares an exception</strong>If the superclass method declares an exception, subclass overridden method can declare same, subclass exception or no exception but cannot declare parent exception.</td></tr></tbody></table></figure>\n\n\n\n<h3>If the superclass method does not declare an exception</h3>\n\n\n\n<h4>1) Rule: If the superclass method does not declare an exception, subclass overridden method cannot declare the checked exception.</h4>\n\n\n\n<pre class=\"wp-block-code\"><code>import java.io.*;  \nclass Parent{  \n  void msg(){System.out.println(\"parent\");}  \n}  \n  \nclass TestExceptionChild extends Parent{  \n  void msg()throws IOException{  \n    System.out.println(\"TestExceptionChild\");  \n  }  \n  public static void main(String args&#91;]){  \n   Parent p=new TestExceptionChild();  \n   p.msg();  \n  }  \n}  </code></pre>\n\n\n\n<pre class=\"wp-block-code\"><code>Output:Compile Time Error\n</code></pre>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h4>2) Rule: If the superclass method does not declare an exception, subclass overridden method cannot declare the checked exception but can declare unchecked exception.</h4>\n\n\n\n<pre class=\"wp-block-code\"><code>import java.io.*;  \nclass Parent{  \n  void msg(){System.out.println(\"parent\");}  \n}  \n  \nclass TestExceptionChild1 extends Parent{  \n  void msg()throws ArithmeticException{  \n    System.out.println(\"child\");  \n  }  \n  public static void main(String args&#91;]){  \n   Parent p=new TestExceptionChild1();  \n   p.msg();  \n  }  \n} </code></pre>\n\n\n\n<pre class=\"wp-block-code\"><code>Output:child\n</code></pre>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h3>If the superclass method declares an exception</h3>\n\n\n\n<h4>1) Rule: If the superclass method declares an exception, subclass overridden method can declare same, subclass exception or no exception but cannot declare parent exception.</h4>\n\n\n\n<h3>Example in case subclass overridden method declares parent exception</h3>\n\n\n\n<pre class=\"wp-block-code\"><code>import java.io.*;  \nclass Parent{  \n  void msg()throws ArithmeticException{System.out.println(\"parent\");}  \n}  \n  \nclass TestExceptionChild2 extends Parent{  \n  void msg()throws Exception{System.out.println(\"child\");}  \n  \n  public static void main(String args&#91;]){  \n   Parent p=new TestExceptionChild2();  \n   try{  \n   p.msg();  \n   }catch(Exception e){}  \n  }  \n}</code></pre>\n\n\n\n<pre class=\"wp-block-code\"><code>Output:Compile Time Error\n</code></pre>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h3>Example in case subclass overridden method declares same exception</h3>\n\n\n\n<pre class=\"wp-block-code\"><code>import java.io.*;  \nclass Parent{  \n  void msg()throws Exception{System.out.println(\"parent\");}  \n}  \n  \nclass TestExceptionChild3 extends Parent{  \n  void msg()throws Exception{System.out.println(\"child\");}  \n  \n  public static void main(String args&#91;]){  \n   Parent p=new TestExceptionChild3();  \n   try{  \n   p.msg();  \n   }catch(Exception e){}  \n  }  \n}  </code></pre>\n\n\n\n<pre class=\"wp-block-code\"><code>Output:child\n</code></pre>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h3>Example in case subclass overridden method declares subclass exception</h3>\n\n\n\n<pre class=\"wp-block-code\"><code>import java.io.*;  \nclass Parent{  \n  void msg()throws Exception{System.out.println(\"parent\");}  \n}  \n  \nclass TestExceptionChild4 extends Parent{  \n  void msg()throws ArithmeticException{System.out.println(\"child\");}  \n  \n  public static void main(String args&#91;]){  \n   Parent p=new TestExceptionChild4();  \n   try{  \n   p.msg();  \n   }catch(Exception e){}  \n  }  \n}  \n\n</code></pre>\n\n\n\n<pre class=\"wp-block-code\"><code>Output:child\n</code></pre>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h3>Example in case subclass overridden method declares no exception</h3>\n\n\n\n<pre class=\"wp-block-code\"><code>import java.io.*;  \nclass Parent{  \n  void msg()throws Exception{System.out.println(\"parent\");}  \n}  \n  \nclass TestExceptionChild5 extends Parent{  \n  void msg(){System.out.println(\"child\");}  \n  \n  public static void main(String args&#91;]){  \n   Parent p=new TestExceptionChild5();  \n   try{  \n   p.msg();  \n   }catch(Exception e){}  \n  }  \n}  </code></pre>\n\n\n\n<pre class=\"wp-block-code\"><code>Output:child</code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>There are many rules if we talk about methodoverriding with exception handling. The Rules are as follows:If the superclass method does not declare an exceptionIf the superclass method does not declare an exception, subclass overridden method cannot declare the checked exception but it can declare unchecked exception.If the superclass method declares an exceptionIf the superclass [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [9],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/311"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=311"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/311/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 320,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/311/revisions/320"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=311"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=311"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=311"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 316,
+    "date": "2020-06-20T07:51:40",
+    "date_gmt": "2020-06-20T07:51:40",
+    "guid": {
+      "rendered": "http://java.foobrdigital.com/?p=316"
+    },
+    "modified": "2020-06-20T07:52:20",
+    "modified_gmt": "2020-06-20T07:52:20",
+    "slug": "custom-exception",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/custom-exception/",
+    "title": {
+      "rendered": "Custom Exception"
+    },
+    "content": {
+      "rendered": "\n<p>If you are creating your own Exception that is known as custom exception or user-defined exception. Java custom exceptions are used to customize the exception according to user need.</p>\n\n\n\n<p>By the help of custom exception, you can have your own exception and message.</p>\n\n\n\n<p>Let&#8217;s see a simple example of java custom exception.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>class InvalidAgeException extends Exception{  \n InvalidAgeException(String s){  \n  super(s);  \n }  \n} </code></pre>\n\n\n\n<pre class=\"wp-block-code\"><code>class TestCustomException1{  \n  \n   static void validate(int age)throws InvalidAgeException{  \n     if(age&lt;18)  \n      throw new InvalidAgeException(\"not valid\");  \n     else  \n      System.out.println(\"welcome to vote\");  \n   }  \n     \n   public static void main(String args&#91;]){  \n      try{  \n      validate(13);  \n      }catch(Exception m){System.out.println(\"Exception occured: \"+m);}  \n  \n      System.out.println(\"rest of the code...\");  \n  }  \n}  </code></pre>\n\n\n\n<pre class=\"wp-block-code\"><code>Output:Exception occured: InvalidAgeException:not valid\n       rest of the code...</code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>If you are creating your own Exception that is known as custom exception or user-defined exception. Java custom exceptions are used to customize the exception according to user need. By the help of custom exception, you can have your own exception and message. Let&#8217;s see a simple example of java custom exception.</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [9],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/316"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=316"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/316/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 321,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/316/revisions/321"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=316"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=316"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=316"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  }
+]

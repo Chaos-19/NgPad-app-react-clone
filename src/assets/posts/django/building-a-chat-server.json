@@ -1,0 +1,1552 @@
+[
+  {
+    "id": 4109,
+    "date": "2022-06-29T08:01:10",
+    "date_gmt": "2022-06-29T08:01:10",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=4109" },
+    "modified": "2022-06-29T08:01:10",
+    "modified_gmt": "2022-06-29T08:01:10",
+    "slug": "creating-a-chat-application",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/creating-a-chat-application/",
+    "title": { "rendered": "Creating a chat application" },
+    "content": {
+      "rendered": "\n<p>You are going to implement a chat server to provide students with a chat room for each course. Students&nbsp;<a></a>enrolled on a course will be able to access the course chat room and exchange messages in real time. You will use Channels to build this functionality. Channels is a Django application that extends Django to handle protocols that require long-running connections, such as WebSockets, chatbots, or MQTT (a lightweight publish/subscribe message transport commonly used in&nbsp;Internet of things projects).</p>\n\n\n\n<p>Using Channels, you can easily implement real-time or asynchronous functionalities into your project in addition to your standard HTTP synchronous views. You will start by adding a new application to your project. The new application will contain the logic for the chat server.</p>\n\n\n\n<p>Run the following command from the project&nbsp;<code>educa</code>&nbsp;directory to create the new application file structure:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>django-admin startapp chat\n</code></pre>\n\n\n\n<p>Edit the&nbsp;<code>settings.py</code>&nbsp;file of the&nbsp;<code>educa</code>&nbsp;project and activate the&nbsp;<code>chat</code>&nbsp;application in your project&nbsp;<a></a>by editing the&nbsp;<code>INSTALLED_APPS</code>&nbsp;setting, as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>INSTALLED_APPS = &#91;\n    <em># ...</em>\n    <strong>'chat',</strong>\n]\n</code></pre>\n\n\n\n<p>The new&nbsp;<code>chat</code>&nbsp;application is now active in your project.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>You are going to implement a chat server to provide students with a chat room for each course. Students&nbsp;enrolled on a course will be able to access the course chat room and exchange messages in real time. You will use Channels to build this functionality. Channels is a Django application that extends Django to handle&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/creating-a-chat-application/\">Continue reading <span class=\"screen-reader-text\">Creating a chat application</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [137],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4109" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=4109"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4109/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4110,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4109/revisions/4110"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=4109"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=4109"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=4109"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 4111,
+    "date": "2022-06-29T08:01:54",
+    "date_gmt": "2022-06-29T08:01:54",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=4111" },
+    "modified": "2022-06-29T08:01:54",
+    "modified_gmt": "2022-06-29T08:01:54",
+    "slug": "implementing-the-chat-room-view",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/implementing-the-chat-room-view/",
+    "title": { "rendered": "Implementing the chat room view" },
+    "content": {
+      "rendered": "\n<p>You will provide students with a different chat room for each course. You need to create a view for&nbsp;<a></a>students to join the chat room of a given course. Only students who&nbsp;are enrolled on a course will be able to access the course chat room.</p>\n\n\n\n<p>Edit the&nbsp;<code>views.py</code>&nbsp;file of the new&nbsp;<code>chat</code>&nbsp;application and add the following code to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>from django.shortcuts import render, get_object_or_404\nfrom django.http import HttpResponseForbidden\nfrom django.contrib.auth.decorators import login_required\n@login_required\ndef course_chat_room(request, course_id):\n    try:\n        <em># retrieve course with given id joined by the current user</em>\n        course = request.user.courses_joined.get(id=course_id)\n    except:\n        <em># user is not a student of the course or course does not exist</em>\n        return HttpResponseForbidden()\n    return render(request, 'chat/room.html', {'course': course})\n</code></pre>\n\n\n\n<p>This is the&nbsp;<code>course_chat_room</code>&nbsp;view. In this view, you use the&nbsp;<code>@login_required</code>&nbsp;decorator to prevent any non-authenticated user from accessing the view. The view&nbsp;receives a required&nbsp;<code>course_id</code>&nbsp;parameter that is used to retrieve the course with the given&nbsp;<code>id</code>.</p>\n\n\n\n<p>You access the courses that the user is enrolled on through the relationship&nbsp;<code>courses_joined</code>&nbsp;and you retrieve the course with the given&nbsp;<code>id</code>&nbsp;from that subset of courses. If the course with the given&nbsp;<code>id</code>&nbsp;does not exist or the user is not enrolled on it, you return an&nbsp;<code>HttpResponseForbidden</code>&nbsp;response, which translates to an HTTP response with status&nbsp;<code>403</code>. If the course with the given&nbsp;<code>id</code>&nbsp;exists and the user is enrolled on it, you render the&nbsp;<code>chat/room.html</code>&nbsp;template, passing the&nbsp;<code>course</code>&nbsp;object to the template&nbsp;context.</p>\n\n\n\n<p>You need to add a URL pattern for this view. Create a new file inside the&nbsp;<code>chat</code>&nbsp;application directory and name it&nbsp;<code>urls.py</code>. Add the following code to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>from django.urls import path\nfrom . import views\napp_name = 'chat'\nurlpatterns = &#91;\n    path('room/&lt;int:course_id&gt;/', views.course_chat_room,\n         name='course_chat_room'),\n]\n</code></pre>\n\n\n\n<p>This is the initial URL patterns file for the&nbsp;<code>chat</code>&nbsp;application. You define the&nbsp;<code>course_chat_room</code>&nbsp;URL pattern, including the&nbsp;<code>course_id</code>&nbsp;parameter with the&nbsp;<code>int</code>&nbsp;prefix, as&nbsp;you&nbsp;<a></a>only expect an integer value here.</p>\n\n\n\n<p>Include the new URL patterns of the&nbsp;<code>chat</code>&nbsp;application in the main URL patterns of the project. Edit the main&nbsp;<code>urls.py</code>&nbsp;file of the&nbsp;<code>educa</code>&nbsp;project and add the following line to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>urlpatterns = &#91;\n    # ...\n<strong>    path('chat/', include('chat.urls', namespace='chat')),</strong>\n]\n</code></pre>\n\n\n\n<p>URL patterns for the&nbsp;<code>chat</code>&nbsp;application are added to the project under the&nbsp;<code>chat/</code>&nbsp;path.</p>\n\n\n\n<p>You need to create a template for the&nbsp;<code>course_chat_room</code>&nbsp;view. This template will contain an area to visualize the messages that are exchanged in the chat and a text input with a submit button to send text messages to the chat.</p>\n\n\n\n<p>Create the following file structure within the&nbsp;<code>chat</code>&nbsp;application directory:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>templates/\n    chat/\n        room.html\n</code></pre>\n\n\n\n<p>Edit the&nbsp;<code>chat/room.html</code>&nbsp;template and add the following code to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{% extends \"base.html\" %}\n{% block title %}Chat room for \"{{ course.title }}\"{% endblock %}\n{% block content %}\n  &lt;div id=\"chat\"&gt;\n  &lt;/div&gt;\n  &lt;div id=\"chat-input\"&gt;\n    &lt;input id=\"chat-message-input\" type=\"text\"&gt;\n    &lt;input id=\"chat-message-submit\" type=\"submit\" value=\"Send\"&gt;\n  &lt;/div&gt;\n{% endblock %}\n{% block domready %}\n{% endblock %}\n</code></pre>\n\n\n\n<p>This is the template for the course chat room. In this template, you extend the&nbsp;<code>base.html</code>&nbsp;template of your project and fill its&nbsp;<code>content</code>&nbsp;block. In the template, you define a&nbsp;<code>&lt;div&gt;</code>&nbsp;HTML element with the&nbsp;<code>chat</code>&nbsp;ID that you will use to display the chat messages sent by the user and by other students. You also define a second&nbsp;<code>&lt;div&gt;</code>&nbsp;element with a&nbsp;<code>text</code>&nbsp;input and a submit button that will allow the user to send messages. You include the&nbsp;<code>domready</code>&nbsp;block defined by the&nbsp;<code>base.html</code>&nbsp;template, which you are&nbsp;<a></a>going to implement later using JavaScript, to establish a connection with a WebSocket and send or receive messages.</p>\n\n\n\n<p>Run the development server and open&nbsp;<code>http://127.0.0.1:8000/chat/room/1/</code>&nbsp;in&nbsp;your browser, replacing&nbsp;<code>1</code>&nbsp;with the&nbsp;<code>id</code>&nbsp;of an existing course in the database. Access&nbsp;the chat room with a logged-in user who is enrolled on the course. You will see&nbsp;the following screen:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/B14981_13_01.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 13.1: The course chat room page</p>\n\n\n\n<p>This is the&nbsp;<a></a>course chat room screen that students will use to discuss topics within a course.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>You will provide students with a different chat room for each course. You need to create a view for&nbsp;students to join the chat room of a given course. Only students who&nbsp;are enrolled on a course will be able to access the course chat room. Edit the&nbsp;views.py&nbsp;file of the new&nbsp;chat&nbsp;application and add the following code to&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/implementing-the-chat-room-view/\">Continue reading <span class=\"screen-reader-text\">Implementing the chat room view</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [137],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4111" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=4111"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4111/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4112,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4111/revisions/4112"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=4111"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=4111"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=4111"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 4113,
+    "date": "2022-06-29T08:02:25",
+    "date_gmt": "2022-06-29T08:02:25",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=4113" },
+    "modified": "2022-06-29T08:02:25",
+    "modified_gmt": "2022-06-29T08:02:25",
+    "slug": "deactivating-the-per-site-cache",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/deactivating-the-per-site-cache/",
+    "title": { "rendered": "Deactivating the per-site cache" },
+    "content": {
+      "rendered": "\n<p><em>Rendering and Caching Content</em>, you added a site-wide cache to your Django project. Now, you will need to follow a more granular approach for caching to prevent the chat room pages from being cached. You will deactivate the per-site cache to avoid site-wide caching and only use caching where needed.</p>\n\n\n\n<p>Edit the&nbsp;<code>settings.py</code>&nbsp;file and comment out the&nbsp;<code>UpdateCacheMiddleware</code>&nbsp;and&nbsp;<code>FetchFromCacheMiddleware</code>&nbsp;classes of the&nbsp;<code>MIDDLEWARE</code>&nbsp;setting, as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>MIDDLEWARE = &#91;\n    'django.middleware.security.SecurityMiddleware',\n    'django.contrib.sessions.middleware.SessionMiddleware',\n    <strong># 'django.middleware.cache.UpdateCacheMiddleware',</strong>\n    'django.middleware.common.CommonMiddleware',\n    <strong># 'django.middleware.cache.FetchFromCacheMiddleware',</strong>\n    # ...\n]\n</code></pre>\n\n\n\n<p>You have deactivated the per-site cache in your project to avoid the new chat room view from being cached. Next, you will learn how to add Channels to your Django project to implement a real-time chat server.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Rendering and Caching Content, you added a site-wide cache to your Django project. Now, you will need to follow a more granular approach for caching to prevent the chat room pages from being cached. You will deactivate the per-site cache to avoid site-wide caching and only use caching where needed. Edit the&nbsp;settings.py&nbsp;file and comment out the&nbsp;UpdateCacheMiddleware&nbsp;and&nbsp;FetchFromCacheMiddleware&nbsp;classes&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/deactivating-the-per-site-cache/\">Continue reading <span class=\"screen-reader-text\">Deactivating the per-site cache</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [137],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4113" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=4113"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4113/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4114,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4113/revisions/4114"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=4113"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=4113"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=4113"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 4115,
+    "date": "2022-06-29T08:03:13",
+    "date_gmt": "2022-06-29T08:03:13",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=4115" },
+    "modified": "2022-06-29T08:03:13",
+    "modified_gmt": "2022-06-29T08:03:13",
+    "slug": "real-time-django-with-channels",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/real-time-django-with-channels/",
+    "title": { "rendered": "Real-time Django with Channels" },
+    "content": {
+      "rendered": "\n<p>You are building a chat server to provide students with a chat room for each course. Students enrolled on a course will be able to access the course chat room and exchange messages. This functionality requires real-time communication between the server and the client. The client should be able to connect to the chat and send or receive data at any time. There are several ways you could implement this feature using AJAX polling or long polling in combination with storing the messages in your database or Redis. However, there is no efficient way to implement a chat server using a standard synchronous web application. You are going to build a chat server using asynchronous communication through ASGI.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>You are building a chat server to provide students with a chat room for each course. Students enrolled on a course will be able to access the course chat room and exchange messages. This functionality requires real-time communication between the server and the client. The client should be able to connect to the chat and send or receive&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/real-time-django-with-channels/\">Continue reading <span class=\"screen-reader-text\">Real-time Django with Channels</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [137],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4115" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=4115"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4115/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4116,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4115/revisions/4116"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=4115"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=4115"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=4115"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 4119,
+    "date": "2022-06-29T08:04:22",
+    "date_gmt": "2022-06-29T08:04:22",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=4119" },
+    "modified": "2022-06-29T08:04:22",
+    "modified_gmt": "2022-06-29T08:04:22",
+    "slug": "asynchronous-applications-using-asgi",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/asynchronous-applications-using-asgi/",
+    "title": { "rendered": "Asynchronous applications using ASGI" },
+    "content": {
+      "rendered": "\n<p>Django is usually deployed using&nbsp;<strong>Web Server Gateway Interface</strong>&nbsp;(<strong>WSGI</strong>), which is&nbsp;the standard&nbsp;<a></a>interface for Python applications to handle HTTP requests. However, to work with asynchronous applications, you need to use&nbsp;<a></a>another interface called ASGI, which can handle WebSocket requests as well. ASGI is the emerging Python standard for asynchronous web servers and applications.</p>\n\n\n\n<p>Django 3 comes with support for running asynchronous Python through ASGI, but it does not yet support asynchronous views or middleware. However, as mentioned, Channels extends Django to handle not only HTTP, but also protocols that require long-running connections, such as WebSockets and chatbots.</p>\n\n\n\n<p>WebSockets provide full-duplex communication by establishing a persistent, open, bidirectional&nbsp;<strong>Transmission Control Protocol</strong>&nbsp;(<strong>TCP</strong>) connection between servers and clients. You are going to use WebSockets to implement your chat server.</p>\n\n\n\n<p>You can find more information about deploying Django with ASGI at https://docs.djangoproject.com/en/3.0/howto/deployment/asgi/.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Django is usually deployed using&nbsp;Web Server Gateway Interface&nbsp;(WSGI), which is&nbsp;the standard&nbsp;interface for Python applications to handle HTTP requests. However, to work with asynchronous applications, you need to use&nbsp;another interface called ASGI, which can handle WebSocket requests as well. ASGI is the emerging Python standard for asynchronous web servers and applications. Django 3 comes with support&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/asynchronous-applications-using-asgi/\">Continue reading <span class=\"screen-reader-text\">Asynchronous applications using ASGI</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [137],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4119" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=4119"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4119/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4120,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4119/revisions/4120"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=4119"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=4119"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=4119"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 4121,
+    "date": "2022-06-29T08:05:04",
+    "date_gmt": "2022-06-29T08:05:04",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=4121" },
+    "modified": "2022-06-29T08:05:04",
+    "modified_gmt": "2022-06-29T08:05:04",
+    "slug": "the-request-response-cycle-using-channels",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/the-request-response-cycle-using-channels/",
+    "title": { "rendered": "The request/response cycle using Channels" },
+    "content": {
+      "rendered": "\n<p>It&#8217;s important&nbsp;<a></a>to understand the differences&nbsp;<a></a>in a request cycle between a standard synchronous&nbsp;<a></a>request cycle and a Channels implementation. The following schema shows the request cycle of a synchronous Django setup:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/B14981_13_02.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 13.2: The Django request/response cycle</p>\n\n\n\n<p>When an HTTP request is sent by the browser to the web server, Django handles the request&nbsp;<a></a>and passes the&nbsp;<code>HttpRequest</code>&nbsp;object to&nbsp;<a></a>the corresponding view. The view processes&nbsp;<a></a>the request and returns an&nbsp;<code>HttpResponse</code>&nbsp;object that is sent back to the browser as an HTTP response. There is no mechanism to maintain an open connection or send data to the browser without an associated HTTP request.</p>\n\n\n\n<p>The following schema shows the request cycle of a Django project using Channels with WebSockets:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/B14981_13_03.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 13.3: The Django Channels request/response cycle</p>\n\n\n\n<p>Channels&nbsp;<a></a>replaces Django&#8217;s request/response cycle with messages that are sent across channels. HTTP requests are still routed&nbsp;<a></a>to view functions using Django, but&nbsp;they get&nbsp;<a></a>routed over channels. This allows for WebSockets message handling as well, where you have producers and consumers that exchange messages across a channel layer. Channels preserves Django&#8217;s synchronous architecture, allowing you to choose between writing synchronous code and asynchronous code, or a combination of both.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>It&#8217;s important&nbsp;to understand the differences&nbsp;in a request cycle between a standard synchronous&nbsp;request cycle and a Channels implementation. The following schema shows the request cycle of a synchronous Django setup: Figure 13.2: The Django request/response cycle When an HTTP request is sent by the browser to the web server, Django handles the request&nbsp;and passes the&nbsp;HttpRequest&nbsp;object to&nbsp;the&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/the-request-response-cycle-using-channels/\">Continue reading <span class=\"screen-reader-text\">The request/response cycle using Channels</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [137],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4121" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=4121"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4121/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4122,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4121/revisions/4122"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=4121"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=4121"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=4121"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 4123,
+    "date": "2022-06-29T08:05:40",
+    "date_gmt": "2022-06-29T08:05:40",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=4123" },
+    "modified": "2022-06-29T08:05:40",
+    "modified_gmt": "2022-06-29T08:05:40",
+    "slug": "installing-channels",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/installing-channels/",
+    "title": { "rendered": "Installing Channels" },
+    "content": {
+      "rendered": "\n<p>You are&nbsp;<a></a>going to add Channels to your project and set up the required basic ASGI application routing for it to manage HTTP requests.</p>\n\n\n\n<p>Install Channels in your virtual environment with the following command:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>pip install channels==2.4.0\n</code></pre>\n\n\n\n<p>Edit the&nbsp;<code>settings.py</code>&nbsp;file of the&nbsp;<code>educa</code>&nbsp;project and add&nbsp;<code>channels</code>&nbsp;to the&nbsp;<code>INSTALLED_APPS</code>&nbsp;setting as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>INSTALLED_APPS = &#91;\n    <em># ...</em>\n    <strong>'channels',</strong>\n]\n</code></pre>\n\n\n\n<p>The&nbsp;<code>channels</code>&nbsp;application is now activated in your project.</p>\n\n\n\n<p>Channels expects you to define a single root application that will be executed for all requests. You can define the root application by adding the&nbsp;<code>ASGI_APPLICATION</code>&nbsp;setting to your project. This is similar to the&nbsp;<code>ROOT_URLCONF</code>&nbsp;setting that points to the base URL patterns of your project. You can place the root application anywhere in your project, but it is&nbsp;<a></a>recommended to put it in a project-level file named&nbsp;<code>routing.py</code>.</p>\n\n\n\n<p>Create a new file inside the&nbsp;<code>educa</code>&nbsp;project directory next to the&nbsp;<code>settings.py</code>&nbsp;file and&nbsp;name it&nbsp;<code>routing.py</code>.</p>\n\n\n\n<p>Add the following code to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>from channels.routing import ProtocolTypeRouter\napplication = ProtocolTypeRouter({\n    <em># empty for now</em>\n})\n</code></pre>\n\n\n\n<p>Then, add the following line to the&nbsp;<code>settings.py</code>&nbsp;file of your project:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>ASGI_APPLICATION = 'educa.routing.application'\n</code></pre>\n\n\n\n<p>In the previous code, you define the main ASGI application that will be executed when serving your Django project through ASGI. You use the&nbsp;<code>ProtocolTypeRouter</code>&nbsp;class provided by Channels as the main entry point of your routing system.&nbsp;<code>ProtocolTypeRouter</code>&nbsp;takes a dictionary that maps communication types like&nbsp;<code>http</code>&nbsp;or&nbsp;<code>websocket</code>&nbsp;to ASGI applications. You instantiate this class with an empty dictionary that later you will fill with a route for your chat application WebSocket consumer.</p>\n\n\n\n<p>When Channels is added to the&nbsp;<code>INSTALLED_APPS</code>&nbsp;setting, it takes control over the&nbsp;<code>runserver</code>&nbsp;command, replacing the standard Django development server. Besides handling URL routing to Django views for synchronous requests, the Channels development server also manages routes to WebSocket consumers.</p>\n\n\n\n<p>Start the development server using the following command:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>python manage.py runserver\n</code></pre>\n\n\n\n<p>You will see output similar to the following:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Watching for file changes with StatReloader\nPerforming system checks...\nSystem check identified no issues (0 silenced).\nFebruary 06, 2020 - 23:12:33\nDjango version 3.0, using settings 'educa.settings'\nStarting ASGI/Channels version 2.4.0 development server at http://127.0.0.1:8000/\nQuit the server with CONTROL-C.\n</code></pre>\n\n\n\n<p>Check that&nbsp;<a></a>the output contains the line&nbsp;<code>Starting ASGI/Channels version 2.4.0 development server</code>. This line confirms that you are using the Channels development server, which is capable of managing synchronous and asynchronous requests, instead of the standard Django development server. HTTP requests continue to behave the same as before, but they get routed over&nbsp;<em>channels</em>.</p>\n\n\n\n<p>Now that Channels is installed in your project, you can build the chat server for courses. In order to&nbsp;<a></a>implement the chat server for your project, you will need to take&nbsp;the following steps:</p>\n\n\n\n<ol><li><strong>Set up a consumer</strong>: Consumers are individual pieces of code that can handle WebSockets in a very similar way to traditional HTTP views. You will build a consumer to read and write messages to a communication channel.</li><li><strong>Configure routing</strong>: Channels provides routing classes that allow you to combine and stack your consumers. You will configure URL routing for your&nbsp;chat consumer.</li><li><strong>Implement a WebSocket client</strong>: When the student accesses the chat room, you will connect to the WebSocket from the browser and send or receive messages using JavaScript.</li><li><strong>Enable a channel layer</strong>: Channel layers allow you to talk between different instances of an application. They&#8217;re a useful part of making a distributed real-time application. You will set up a channel layer using Redis.</li></ol>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>You are&nbsp;going to add Channels to your project and set up the required basic ASGI application routing for it to manage HTTP requests. Install Channels in your virtual environment with the following command: Edit the&nbsp;settings.py&nbsp;file of the&nbsp;educa&nbsp;project and add&nbsp;channels&nbsp;to the&nbsp;INSTALLED_APPS&nbsp;setting as follows: The&nbsp;channels&nbsp;application is now activated in your project. Channels expects you to define a&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/installing-channels/\">Continue reading <span class=\"screen-reader-text\">Installing Channels</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [137],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4123" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=4123"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4123/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4124,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4123/revisions/4124"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=4123"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=4123"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=4123"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 4125,
+    "date": "2022-06-29T08:06:05",
+    "date_gmt": "2022-06-29T08:06:05",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=4125" },
+    "modified": "2022-06-29T08:06:05",
+    "modified_gmt": "2022-06-29T08:06:05",
+    "slug": "writing-a-consumer",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/writing-a-consumer/",
+    "title": { "rendered": "Writing a consumer" },
+    "content": {
+      "rendered": "\n<p>Consumers are&nbsp;<a></a>the equivalent of Django views for asynchronous applications. As mentioned, they handle WebSockets in a very similar way to how traditional views handle HTTP requests. Consumers are ASGI applications that can handle messages, notifications, and other things. Unlike Django views, consumers are built for long-running communication. URLs are mapped to consumers through routing classes that allow you to combine and stack consumers.</p>\n\n\n\n<p>Let&#8217;s implement a basic consumer that is able to accept WebSocket connections and echoes every message it receives from the WebSocket back to it. This initial functionality will allow the student to send messages to the consumer and receive back the messages it sends.</p>\n\n\n\n<p>Create a&nbsp;<a></a>new file inside the&nbsp;<code>chat</code>&nbsp;application directory and name it&nbsp;<code>consumers.py</code>. Add the following code to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>import json\nfrom channels.generic.websocket import WebsocketConsumer\nclass ChatConsumer(WebsocketConsumer):\n    def connect(self):\n        <em># accept connection</em>\n        self.accept()\n    def disconnect(self, close_code):\n        pass\n    <em># receive message from WebSocket</em>\n    def receive(self, text_data):\n        text_data_json = json.loads(text_data)\n        message = text_data_json&#91;'message']\n        <em># send message to WebSocket</em>\n        self.send(text_data=json.dumps({'message': message}))\n</code></pre>\n\n\n\n<p>This is the&nbsp;<code>ChatConsumer</code>&nbsp;consumer. This class inherits from the Channels&nbsp;<code>WebsocketConsumer</code>&nbsp;class to implement a basic WebSocket consumer. In this consumer, you implement the following methods:</p>\n\n\n\n<ul><li><code>connnect()</code>: Called when a new connection is received. You accept any connection with&nbsp;<code>self.accept()</code>. You can also reject a connection by calling&nbsp;<code>self.close()</code>.</li><li><code>disconnect()</code>: Called when the socket closes. You use&nbsp;<code>pass</code>&nbsp;because you don&#8217;t need to implement any action when a client closes the connection.</li><li><code>receive()</code>: Called whenever data is received. You expect text to be received as&nbsp;<code>text_data</code>&nbsp;(this could also be&nbsp;<code>binary_data</code>&nbsp;for binary data). You treat the text data received as JSON. Therefore, you use&nbsp;<code>json.loads()</code>&nbsp;to load the&nbsp;received JSON data into a Python dictionary. You access the&nbsp;<code>message</code>&nbsp;key, which you expect to be present in the JSON structure received. To echo the message, you send the message back to the WebSocket with&nbsp;<code>self.send()</code>, transforming it in JSON format again through&nbsp;<code>json.dumps()</code>.</li></ul>\n\n\n\n<p>The initial version of your&nbsp;<code>ChatConsumer</code>&nbsp;consumer accepts any WebSocket connection and echoes&nbsp;<a></a>to the WebSocket client every message it receives. Note that the consumer does not broadcast messages to other clients yet. You will build this functionality by implementing a channel layer later.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Consumers are&nbsp;the equivalent of Django views for asynchronous applications. As mentioned, they handle WebSockets in a very similar way to how traditional views handle HTTP requests. Consumers are ASGI applications that can handle messages, notifications, and other things. Unlike Django views, consumers are built for long-running communication. URLs are mapped to consumers through routing classes&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/writing-a-consumer/\">Continue reading <span class=\"screen-reader-text\">Writing a consumer</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [137],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4125" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=4125"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4125/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4126,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4125/revisions/4126"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=4125"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=4125"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=4125"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 4127,
+    "date": "2022-06-29T08:06:47",
+    "date_gmt": "2022-06-29T08:06:47",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=4127" },
+    "modified": "2022-06-29T08:06:47",
+    "modified_gmt": "2022-06-29T08:06:47",
+    "slug": "routing",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/routing/",
+    "title": { "rendered": "Routing" },
+    "content": {
+      "rendered": "\n<p>You need to define a URL to route connections to the&nbsp;<code>ChatConsumer</code>&nbsp;consumer you have implemented. Channels provides routing classes that allow you to combine and&nbsp;stack consumers&nbsp;<a></a>to dispatch based on what the connection is. You can think of&nbsp;them as the URL routing system of Django for asynchronous applications.</p>\n\n\n\n<p>Create a new file inside the&nbsp;<code>chat</code>&nbsp;application directory and name it&nbsp;<code>routing.py</code>. Add&nbsp;the following code to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>from django.urls import re_path\nfrom . import consumers\nwebsocket_urlpatterns = &#91;\n    re_path(r'ws/chat/room/(?P&lt;course_id&gt;\\d+)/$', consumers.ChatConsumer),\n]\n</code></pre>\n\n\n\n<p>In this code, you map a URL pattern with the&nbsp;<code>ChatConsumer</code>&nbsp;class that you defined in the&nbsp;<code>chat/consumers.py</code>&nbsp;file. You use Django&#8217;s&nbsp;<code>re_path</code>&nbsp;to define the path with regular expressions. The URL includes an integer parameter called&nbsp;<code>course_id</code>. This parameter will be available in the scope of the consumer and will allow you to identify the course chat room that the user is connecting to.</p>\n\n\n\n<p>It is a good practice to prepend WebSocket URLs with&nbsp;<code>/ws/</code>&nbsp;to differentiate them from URLs used for standard synchronous HTTP requests. This also simplifies the production setup when an HTTP server routes requests based on the path.</p>\n\n\n\n<p>Edit the global&nbsp;<code>routing.py</code>&nbsp;file located next to the&nbsp;<code>settings.py</code>&nbsp;file so that it looks like&nbsp;this:</p>\n\n\n\n<pre class=\"wp-block-code\"><code><strong>from channels.auth import AuthMiddlewareStack</strong>\nfrom channels.routing import ProtocolTypeRouter<strong>, URLRouter</strong>\n<strong>import chat.routing</strong>\napplication = ProtocolTypeRouter({\n    <strong>'websocket': AuthMiddlewareStack(</strong>\n        <strong>URLRouter(</strong>\n            <strong>chat.routing.websocket_urlpatterns</strong>\n        <strong>)</strong>\n    <strong>)</strong>,\n})\n</code></pre>\n\n\n\n<p>In this code, you use&nbsp;<code>URLRouter</code>&nbsp;to map&nbsp;<code>websocket</code>&nbsp;connections to the URL patterns defined in the&nbsp;<code>websocket_urlpatterns</code>&nbsp;list of the&nbsp;<code>chat</code>&nbsp;application&nbsp;<code>routing</code>&nbsp;file. The standard&nbsp;<code>ProtocolTypeRouter</code>&nbsp;router automatically maps HTTP requests to the standard&nbsp;<a></a>Django views if no specific&nbsp;<code>http</code>&nbsp;mapping is provided. You also use&nbsp;<code>AuthMiddlewareStack</code>. The&nbsp;<code>AuthMiddlewareStack</code>&nbsp;class provided by Channels supports standard Django authentication, where the user details are stored in the session. You plan to access the user instance in the scope of the consumer to identify&nbsp;the user who sends a message.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>You need to define a URL to route connections to the&nbsp;ChatConsumer&nbsp;consumer you have implemented. Channels provides routing classes that allow you to combine and&nbsp;stack consumers&nbsp;to dispatch based on what the connection is. You can think of&nbsp;them as the URL routing system of Django for asynchronous applications. Create a new file inside the&nbsp;chat&nbsp;application directory and name&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/routing/\">Continue reading <span class=\"screen-reader-text\">Routing</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [137],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4127" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=4127"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4127/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4128,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4127/revisions/4128"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=4127"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=4127"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=4127"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 4129,
+    "date": "2022-06-29T08:08:36",
+    "date_gmt": "2022-06-29T08:08:36",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=4129" },
+    "modified": "2022-06-29T08:08:36",
+    "modified_gmt": "2022-06-29T08:08:36",
+    "slug": "implementing-the-websocket-client",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/implementing-the-websocket-client/",
+    "title": { "rendered": "Implementing the WebSocket client" },
+    "content": {
+      "rendered": "\n<p>So far, you have created the&nbsp;<code>course_chat_room</code>&nbsp;view and its corresponding template&nbsp;for students to&nbsp;<a></a>access the course chat room. You have implemented a WebSocket consumer for the chat server and tied it with URL routing. Now, you need to build a WebSocket client to establish a connection with the WebSocket in the&nbsp;course chat room template and be able to send/receive messages.</p>\n\n\n\n<p>You are going to implement the WebSocket client with JavaScript to open and maintain a connection in the browser. You will use jQuery for interaction with Document Object&nbsp;Model (DOM) elements, since you already loaded it in the base template of&nbsp;the project.</p>\n\n\n\n<p>Edit the&nbsp;<code>chat/room.html</code>&nbsp;template of the&nbsp;<code>chat</code>&nbsp;application and modify the&nbsp;<code>domready</code>&nbsp;block, as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{% block domready %}\n  <strong>var url = 'ws://' + window.location.host +</strong>\n            <strong>'/ws/chat/room/' + '{{ course.id }}/';</strong>\n  <strong>var chatSocket = new WebSocket(url);</strong>\n{% endblock %}\n</code></pre>\n\n\n\n<p>You define a URL with the WebSocket protocol, which looks like&nbsp;<code>ws://</code>&nbsp;(or&nbsp;<code>wss://</code>&nbsp;for secure WebSockets, just like&nbsp;<code>https://</code>). You build the URL using the current location of the browser, which you obtain from&nbsp;<code>window.location.host</code>. The rest of&nbsp;the URL is built with the path for the chat room URL pattern that you defined in&nbsp;the&nbsp;<code>routing.py</code>&nbsp;file of the&nbsp;<code>chat</code>&nbsp;application.</p>\n\n\n\n<p>You write the whole URL instead of building it via its name because Channels does not provide a way to reverse URLs. You use the current course&nbsp;<code>id</code>&nbsp;to generate the URL for the current course and store the URL in a new variable named&nbsp;<code>url</code>.</p>\n\n\n\n<p>You then open a WebSocket connection to the stored URL using&nbsp;<code>new</code>&nbsp;<code>WebSocket(url)</code>. You assign the instantiated WebSocket client object to the new variable&nbsp;<code>chatSocket</code>.</p>\n\n\n\n<p>You have created a WebSocket consumer, you have included routing for it, and you have implemented a basic WebSocket client. Let&#8217;s try the initial version of your chat.</p>\n\n\n\n<p>Start the&nbsp;<a></a>development server using the following command:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>python manage.py runserver\n</code></pre>\n\n\n\n<p>Open the URL&nbsp;<code>http://127.0.0.1:8000/chat/room/1/</code>&nbsp;in your browser, replacing&nbsp;<code>1</code>&nbsp;with the&nbsp;<code>id</code>&nbsp;of an existing course in the database. Take a look at the console output. Besides the HTTP&nbsp;<code>GET</code>&nbsp;requests for the page and its static files, you should see two lines including&nbsp;<code>WebSocket HANDSHAKING</code>&nbsp;and&nbsp;<code>WebSocket CONNECT</code>, like the&nbsp;following output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>HTTP GET /chat/room/1/ 200 &#91;0.02, 127.0.0.1:57141]\nHTTP GET /static/css/base.css 200 &#91;0.01, 127.0.0.1:57141]\n<strong>WebSocket HANDSHAKING /ws/chat/room/1/ &#91;127.0.0.1:57144]</strong>\n<strong>WebSocket CONNECT /ws/chat/room/1/ &#91;127.0.0.1:57144]</strong>\n</code></pre>\n\n\n\n<p>The Channels development server listens for incoming socket connections using a standard TCP socket. The handshake is the bridge from HTTP to WebSockets. In the handshake, details of the connection are negotiated and either party can close the connection before completion. Remember that you are using&nbsp;<code>self.accept()</code>&nbsp;to accept any connection in the&nbsp;<code>connect()</code>&nbsp;method of the&nbsp;<code>ChatConsumer</code>&nbsp;class implemented in the&nbsp;<code>consumers.py</code>&nbsp;file of the&nbsp;<code>chat</code>&nbsp;application. The connection is accepted and therefore you see the&nbsp;<code>WebSocket CONNECT</code>&nbsp;message in the console.</p>\n\n\n\n<p>If you use the browser developer tools to track network connections, you can also see&nbsp;information for the WebSocket connection that has been established.</p>\n\n\n\n<p>It should look like the following screenshot:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/B14981_13_04.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 13.4: The browser developer tools showing that the WebSocket connection has been established</p>\n\n\n\n<p>Now that you are able to connect to the WebSocket, it&#8217;s time to interact with it. You will implement the methods to handle common events, such as receiving a message and closing the connection. Edit the&nbsp;<code>chat/room.html</code>&nbsp;template of the&nbsp;<code>chat</code>&nbsp;application and modify the&nbsp;<code>domready</code>&nbsp;block, as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{% block domready %}\n  var url = 'ws://' + window.location.host +\n            '/ws/chat/room/' + '{{ course.id }}/';\n  var chatSocket = new WebSocket(url);\n  <strong>chatSocket.onmessage = function(e) {</strong>\n    <strong>var data = JSON.parse(e.data);</strong>\n    <strong>var message = data.message;</strong>\n    <strong>var $chat = $('#chat');</strong>\n    <strong>$chat.append('&lt;div class=\"message\"&gt;' + message + '&lt;/div&gt;');</strong>\n    <strong>$chat.scrollTop($chat&#91;0].scrollHeight);</strong>\n  <strong>};</strong>\n  <strong>chatSocket.onclose = function(e) {</strong>\n    <strong>console.error('Chat socket closed unexpectedly');</strong>\n  <strong>}</strong>;\n{% endblock %}\n</code></pre>\n\n\n\n<p>In this code, you define&nbsp;<a></a>the following events for the WebSocket client:</p>\n\n\n\n<ul><li><code>onmessage</code>: Fired when data is received through the WebSocket. You parse the message, which you expect in JSON format, and access its&nbsp;<code>message</code>&nbsp;attribute. You then append a new&nbsp;<code>&lt;div&gt;</code>&nbsp;element with the message to the HTML element with the&nbsp;<code>chat</code>&nbsp;ID. This will add new messages to the chat log, while keeping all previous messages that have been added to the log. You scroll the chat log&nbsp;<code>&lt;div&gt;</code>&nbsp;to the bottom to ensure that the new message gets visibility. You achieve this by scrolling to the total scrollable height of the chat log, which can be obtained by accessing its&nbsp;<code>srollHeight</code>&nbsp;attribute.</li><li><code>onclose</code>: Fired when the connection with the WebSocket is closed. You don&#8217;t expect to close the connection and therefore you write the error&nbsp;<code>Chat socket closed unexpectedly</code>&nbsp;to the console log if this happens.</li></ul>\n\n\n\n<p>You have implemented the action to display the message when a new message is received. You need to implement the functionality to send messages to the socket as&nbsp;well.</p>\n\n\n\n<p>Edit the&nbsp;<code>chat/room.html</code>&nbsp;template of the&nbsp;<code>chat</code>&nbsp;application and add the following JavaScript code to the bottom of the&nbsp;<code>domready</code>&nbsp;block:</p>\n\n\n\n<pre class=\"wp-block-code\"><code><strong>var $input = $('#chat-message-input');</strong>\n<strong>var $submit = $('#chat-message-submit');</strong>\n<strong>$submit.click(function() {</strong>\n  <strong>var message = $input.val();</strong>\n  <strong>if(message) {</strong>\n    <strong><em>// send message in JSON format</em></strong>\n    <strong>chatSocket.send(JSON.stringify({'message': message}));</strong>\n    <strong><em>// clear input</em></strong>\n    <strong>$input.val('');</strong>\n    <strong><em>// return focus</em></strong>\n    <strong>$input.focus();</strong>\n  <strong>}</strong>\n<strong>});</strong>\n</code></pre>\n\n\n\n<p>In this code, you define&nbsp;<a></a>a function for the&nbsp;<code>click</code>&nbsp;event of the submit button, which you select with the ID&nbsp;<code>chat-message-submit</code>. When the button is clicked, you perform the following actions:</p>\n\n\n\n<ol><li>You read the message entered by the user from the value of the text input element with the ID&nbsp;<code>chat-message-input</code></li><li>You check whether the message has any content with&nbsp;<code>if(message)</code></li><li>If the user has entered a message, you form JSON content such as&nbsp;<code>{'message': 'string entered by the user'}</code>&nbsp;by using&nbsp;<code>JSON.stringify()</code></li><li>You send the JSON content through the WebSocket, calling the&nbsp;<code>send()</code>&nbsp;method of&nbsp;<code>chatSocket</code>&nbsp;client</li><li>You clear the contents of the text input by setting its value to an empty string&nbsp;with&nbsp;<code>$input.val('')</code></li><li>You return the focus to the text input with&nbsp;<code>$input.focus()</code>&nbsp;so that the&nbsp;user can write a new message straightaway</li></ol>\n\n\n\n<p>The user is now able to send messages using the text input and by clicking the submit button.</p>\n\n\n\n<p>In order to improve the user experience, you will give focus to the text input as soon as the page loads so that the user can type directly in it. You will also capture keyboard key pressed events to identify the&nbsp;<kbd>Enter</kbd>/<kbd>Return</kbd>&nbsp;key and fire the&nbsp;<code>click</code>&nbsp;event on the submit button. The user will be able to either click the button or press the&nbsp;<kbd>Enter</kbd>/<kbd>Return</kbd>&nbsp;key to send a message.</p>\n\n\n\n<p>Edit the&nbsp;<code>chat/room.html</code>&nbsp;template of the&nbsp;<code>chat</code>&nbsp;application and add the following JavaScript code to the bottom of the&nbsp;<code>domready</code>&nbsp;block:</p>\n\n\n\n<pre class=\"wp-block-code\"><code><strong>$input.focus();</strong>\n<strong>$input.keyup(function(e) {</strong>\n  <strong>if (e.which === 13) {</strong>\n    <strong><em>// submit with enter / return key</em></strong>\n    <strong>$submit.click();</strong>\n  <strong>}</strong>\n<strong>});</strong>\n</code></pre>\n\n\n\n<p>In this code, you give the focus to the text input. You also define a function for the <code>keyup()</code> event of the input. For any key that the user presses, you check whether its key code is <code>13</code>. This is the key code that corresponds to the <kbd>Enter</kbd>/<kbd>Return</kbd> key. You can use the resource https://keycode.info to identify the key code for any key. If the <kbd>Enter</kbd>/<kbd>Return</kbd> key is pressed, you fire the <code>click</code> event on the submit button to send the message to the WebSocket.</p>\n\n\n\n<p>The complete&nbsp;<code>domready</code>&nbsp;block of the&nbsp;<code>chat/room.html</code>&nbsp;template should now look like&nbsp;this:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{% block domready %}\n  var url = 'ws://' + window.location.host +\n            '/ws/chat/room/' + '{{ course.id }}/';\n  var chatSocket = new WebSocket(url);\n  chatSocket.onmessage = function(e) {\n    var data = JSON.parse(e.data);\n    var message = data.message;\n    var $chat = $('#chat');\n    $chat.append('&lt;div class=\"message\"&gt;' + message + '&lt;/div&gt;');\n    $chat.scrollTop($chat&#91;0].scrollHeight);\n  };\n  chatSocket.onclose = function(e) {\n    console.error('Chat socket closed unexpectedly');\n  };\n  var $input = $('#chat-message-input');\n  var $submit = $('#chat-message-submit');\n  $submit.click(function() {\n    var message = $input.val();\n    if(message) {\n      <em>// send message in JSON format</em>\n      chatSocket.send(JSON.stringify({'message': message}));\n      <em>// clear input</em>\n      $input.val('');\n      <em>// return focus</em>\n      $input.focus();\n    }\n  });\n  $input.focus();\n  $input.keyup(function(e) {\n    if (e.which === 13) {\n      <em>// submit with enter / return key</em>\n      $submit.click();\n    }\n  });\n{% endblock %}\n</code></pre>\n\n\n\n<p>Open the URL&nbsp;<code>http://127.0.0.1:8000/chat/room/1/</code>&nbsp;in your browser, replacing&nbsp;<code>1</code>&nbsp;with the&nbsp;<code>id</code>&nbsp;of an&nbsp;<a></a>existing course in the database. With a logged-in user who is enrolled on the course, write some text in the input field and click the send button or&nbsp;press the&nbsp;<kbd>Enter</kbd>&nbsp;key. You will see that your message appears in the chat log:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/B14981_13_05.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 13.5: The chat room page, including messages sent through the WebSocket</p>\n\n\n\n<p>Great! The message has been sent through the WebSocket and the&nbsp;<code>ChatConsumer</code>&nbsp;consumer has received the message and has sent it back through the WebSocket. The&nbsp;<code>chatSocket</code>&nbsp;client has received a message event and the&nbsp;<code>onmessage</code>&nbsp;function has&nbsp;been fired, adding the message to the chat log.</p>\n\n\n\n<p>You have&nbsp;<a></a>implemented the functionality with a WebSocket consumer and a WebSocket client to establish client/server communication and be able to send or receive events. However, the chat server is not able to broadcast messages to other clients. If you open a second browser tab and enter a message, the message will not appear on the first tab. In order to build communication between consumers, you have to enable a channel layer.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>So far, you have created the&nbsp;course_chat_room&nbsp;view and its corresponding template&nbsp;for students to&nbsp;access the course chat room. You have implemented a WebSocket consumer for the chat server and tied it with URL routing. Now, you need to build a WebSocket client to establish a connection with the WebSocket in the&nbsp;course chat room template and be able&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/implementing-the-websocket-client/\">Continue reading <span class=\"screen-reader-text\">Implementing the WebSocket client</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [137],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4129" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=4129"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4129/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4130,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4129/revisions/4130"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=4129"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=4129"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=4129"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 4131,
+    "date": "2022-06-29T08:08:56",
+    "date_gmt": "2022-06-29T08:08:56",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=4131" },
+    "modified": "2022-06-29T08:08:56",
+    "modified_gmt": "2022-06-29T08:08:56",
+    "slug": "enabling-a-channel-layer",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/enabling-a-channel-layer/",
+    "title": { "rendered": "Enabling a channel layer" },
+    "content": {
+      "rendered": "\n<p>Channel layers allow you to communicate between different instances of an application. A channel layer&nbsp;<a></a>is the transport mechanism that allows multiple consumer instances to communicate with each other and with other parts of Django.</p>\n\n\n\n<p>In your chat server, you plan to have multiple instances of the&nbsp;<code>ChatConsumer</code>&nbsp;consumer for the same course chat room. Each student who joins the chat room will instantiate the WebSocket client in their browser, and that will open a connection with an instance of the WebSocket consumer. You need a common channel layer to&nbsp;distribute messages between consumers.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Channel layers allow you to communicate between different instances of an application. A channel layer&nbsp;is the transport mechanism that allows multiple consumer instances to communicate with each other and with other parts of Django. In your chat server, you plan to have multiple instances of the&nbsp;ChatConsumer&nbsp;consumer for the same course chat room. Each student who&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/enabling-a-channel-layer/\">Continue reading <span class=\"screen-reader-text\">Enabling a channel layer</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [137],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4131" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=4131"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4131/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4133,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4131/revisions/4133"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=4131"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=4131"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=4131"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 4134,
+    "date": "2022-06-29T08:09:20",
+    "date_gmt": "2022-06-29T08:09:20",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=4134" },
+    "modified": "2022-06-29T08:09:20",
+    "modified_gmt": "2022-06-29T08:09:20",
+    "slug": "enabling-a-channel-layer-2",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/enabling-a-channel-layer-2/",
+    "title": { "rendered": "Enabling a channel layer" },
+    "content": {
+      "rendered": "\n<p>Channel layers allow you to communicate between different instances of an application. A channel layer&nbsp;<a></a>is the transport mechanism that allows multiple consumer instances to communicate with each other and with other parts of Django.</p>\n\n\n\n<p>In your chat server, you plan to have multiple instances of the&nbsp;<code>ChatConsumer</code>&nbsp;consumer for the same course chat room. Each student who joins the chat room will instantiate the WebSocket client in their browser, and that will open a connection with an instance of the WebSocket consumer. You need a common channel layer to&nbsp;distribute messages between consumers.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Channel layers allow you to communicate between different instances of an application. A channel layer&nbsp;is the transport mechanism that allows multiple consumer instances to communicate with each other and with other parts of Django. In your chat server, you plan to have multiple instances of the&nbsp;ChatConsumer&nbsp;consumer for the same course chat room. Each student who&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/enabling-a-channel-layer-2/\">Continue reading <span class=\"screen-reader-text\">Enabling a channel layer</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [137],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4134" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=4134"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4134/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4135,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4134/revisions/4135"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=4134"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=4134"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=4134"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 4136,
+    "date": "2022-06-29T08:09:48",
+    "date_gmt": "2022-06-29T08:09:48",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=4136" },
+    "modified": "2022-06-29T08:09:48",
+    "modified_gmt": "2022-06-29T08:09:48",
+    "slug": "channels-and-groups",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/channels-and-groups/",
+    "title": { "rendered": "Channels and groups" },
+    "content": {
+      "rendered": "\n<p>Channel layers provide two abstractions to manage communications: channels and&nbsp;groups:</p>\n\n\n\n<ul><li><strong>Channel</strong>: You can&nbsp;<a></a>think of a channel as an inbox where messages can be sent to or as a task queue. Each channel has a name. Messages are sent to a channel by anyone who knows the channel name and then given to consumers listening on that channel.</li><li><strong>Group</strong>: Multiple&nbsp;<a></a>channels can be grouped into a group. Each group has a name. A channel can be added or removed from a group by anyone who knows the group name. Using the group name, you can also send a&nbsp;message&nbsp;to all channels in the group.</li></ul>\n\n\n\n<p>You will work with channel groups to implement the chat server. By creating a channel group for each course chat room, the&nbsp;<code>ChatConsumer</code>&nbsp;instances will be able&nbsp;to&nbsp;communicate with each other.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Channel layers provide two abstractions to manage communications: channels and&nbsp;groups: Channel: You can&nbsp;think of a channel as an inbox where messages can be sent to or as a task queue. Each channel has a name. Messages are sent to a channel by anyone who knows the channel name and then given to consumers listening on&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/channels-and-groups/\">Continue reading <span class=\"screen-reader-text\">Channels and groups</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [137],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4136" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=4136"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4136/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4137,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4136/revisions/4137"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=4136"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=4136"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=4136"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 4138,
+    "date": "2022-06-29T08:10:52",
+    "date_gmt": "2022-06-29T08:10:52",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=4138" },
+    "modified": "2022-06-29T08:10:52",
+    "modified_gmt": "2022-06-29T08:10:52",
+    "slug": "setting-up-a-channel-layer-with-redis",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/setting-up-a-channel-layer-with-redis/",
+    "title": { "rendered": "Setting up a channel layer with Redis" },
+    "content": {
+      "rendered": "\n<p>Redis is the preferred option for a channel layer, though Channels has support for other types of channel layers. Redis works as the communication store for the channel layer. Remember that you already used Redis, <em>Tracking User Actions</em>, <em>Extending Your Shop</em>.</p>\n\n\n\n<p>If you haven&#8217;t installed Redis yet, you can find installation instructions, <em>Tracking User Actions</em>.</p>\n\n\n\n<p>In order to use Redis as a channel layer, you have to install the channels-redis package. Install channels-redis in your virtual environment with the following command:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>pip install channels-redis==2.4.2\n</code></pre>\n\n\n\n<p>Edit the&nbsp;<code>settings.py</code>&nbsp;file of the&nbsp;<code>educa</code>&nbsp;project and add the following code to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>CHANNEL_LAYERS = {\n    'default': {\n        'BACKEND': 'channels_redis.core.RedisChannelLayer',\n        'CONFIG': {\n            'hosts': &#91;('127.0.0.1', 6379)],\n        },\n    },\n}\n</code></pre>\n\n\n\n<p>The&nbsp;<code>CHANNEL_LAYERS</code>&nbsp;setting defines the configuration for the channel layers available to the project. You define a default channel layer using the&nbsp;<code>RedisChannelLayer</code>&nbsp;backend provided by channels-redis and specify the host&nbsp;<code>127.0.0.1</code>&nbsp;and the port&nbsp;<code>6379</code>&nbsp;on which Redis is running.</p>\n\n\n\n<p>Let&#8217;s try the channel layer. Initialize the Redis server using the following command from the shell in your Redis directory:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>src/redis-server\n</code></pre>\n\n\n\n<p>Open the Django shell using the following command:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>python manage.py shell\n</code></pre>\n\n\n\n<p>To verify that the channel layer can communicate with Redis, write the following code to send a message to a test channel named&nbsp;<code>test_channel</code>&nbsp;and receive it back:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&gt;&gt;&gt; import channels.layers\n&gt;&gt;&gt; from asgiref.sync import async_to_sync\n&gt;&gt;&gt; channel_layer = channels.layers.get_channel_layer()\n&gt;&gt;&gt; async_to_sync(channel_layer.send)('test_channel', {'message': 'hello'})\n&gt;&gt;&gt; async_to_sync(channel_layer.receive)('test_channel')\n</code></pre>\n\n\n\n<p>You should get the following output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{'message': 'hello'}\n</code></pre>\n\n\n\n<p>In the previous code, you send a message to a test channel through the channel layer, and then&nbsp;<a></a>you retrieve it from the channel layer. The channel layer is communicating successfully with Redis.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Redis is the preferred option for a channel layer, though Channels has support for other types of channel layers. Redis works as the communication store for the channel layer. Remember that you already used Redis, Tracking User Actions, Extending Your Shop. If you haven&#8217;t installed Redis yet, you can find installation instructions, Tracking User Actions. In order to use&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/setting-up-a-channel-layer-with-redis/\">Continue reading <span class=\"screen-reader-text\">Setting up a channel layer with Redis</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [137],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4138" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=4138"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4138/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4139,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4138/revisions/4139"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=4138"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=4138"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=4138"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 4140,
+    "date": "2022-06-29T08:11:37",
+    "date_gmt": "2022-06-29T08:11:37",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=4140" },
+    "modified": "2022-06-29T08:11:37",
+    "modified_gmt": "2022-06-29T08:11:37",
+    "slug": "updating-the-consumer-to-broadcast-messages",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/updating-the-consumer-to-broadcast-messages/",
+    "title": { "rendered": "Updating the consumer to broadcast messages" },
+    "content": {
+      "rendered": "\n<p>You will edit the&nbsp;<code>ChatConsumer</code>&nbsp;consumer to use the channel layer. You will use a channel&nbsp;<a></a>group for each course chat room. Therefore, you will use the course&nbsp;<code>id</code>&nbsp;to build the group name.&nbsp;<code>ChatConsumer</code>&nbsp;instances will know the group name and will&nbsp;be able to communicate with each other.</p>\n\n\n\n<p>Edit the&nbsp;<code>consumers.py</code>&nbsp;file of the&nbsp;<code>chat</code>&nbsp;application, import the&nbsp;<code>async_to_sync()</code>&nbsp;function, and modify the&nbsp;<code>connect()</code>&nbsp;method of the&nbsp;<code>ChatConsumer</code>&nbsp;class, as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>import json\nfrom channels.generic.websocket import WebsocketConsumer\n<strong>from asgiref.sync import async_to_sync</strong>\nclass ChatConsumer(WebsocketConsumer):\n    def connect(self):\n        <strong>self.id = self.scope&#91;'url_route']&#91;'kwargs']&#91;'course_id']</strong>\n        <strong>self.room_group_name = 'chat_%s' % self.id</strong>\n        <strong># join room group</strong>\n        <strong>async_to_sync(self.channel_layer.group_add)(</strong>\n            <strong>self.room_group_name,</strong>\n            <strong>self.channel_name</strong>\n        <strong>)</strong>\n        # accept connection\n        self.accept()\n    # ...\n</code></pre>\n\n\n\n<p>In this code, you import the&nbsp;<code>async_to_sync()</code>&nbsp;helper function to wrap calls to asynchronous channel layer methods.&nbsp;<code>ChatConsumer</code>&nbsp;is a synchronous&nbsp;<code>WebsocketConsumer</code>&nbsp;consumer, but it needs to call asynchronous methods of the&nbsp;channel layer.</p>\n\n\n\n<p>In the new&nbsp;<code>connect()</code>&nbsp;method, you perform the following tasks:</p>\n\n\n\n<ol><li>You retrieve the course&nbsp;<code>id</code>&nbsp;from the scope to know the course that the chat room is associated with. You access&nbsp;<code>self.scope['url_route']['kwargs ']['course_id']</code>&nbsp;to retrieve the&nbsp;<code>course_id</code>&nbsp;parameter from the&nbsp;URL. Every&nbsp;consumer has a scope with information about its connection, arguments passed by the URL, and the authenticated user, if any.</li><li>You build the group name with the&nbsp;<code>id</code>&nbsp;of the course that the group corresponds to. Remember that you will have a channel group for each course chat room. You store the group name in the&nbsp;<code>room_group_name</code>&nbsp;attribute of the consumer.</li><li>You join the group by adding the current channel to the group. You obtain the channel name from the&nbsp;<code>channel_name</code>&nbsp;attribute of the consumer. You use the&nbsp;<code>group_add</code>&nbsp;method of the channel layer to add the channel to the group. You use the&nbsp;<code>async_to_sync()</code>&nbsp;wrapper to use the channel layer asynchronous method.</li><li>You keep the&nbsp;<code>self.accept()</code>&nbsp;call to accept the WebSocket connection.</li></ol>\n\n\n\n<p>When the&nbsp;<code>ChatConsumer</code>&nbsp;consumer receives a new WebSocket connection, it adds the&nbsp;channel to&nbsp;<a></a>the group associated with the course in its scope. The consumer is now able to receive any messages sent to the group.</p>\n\n\n\n<p>In the same&nbsp;<code>consumers.py</code>&nbsp;file, modify the&nbsp;<code>disconnect()</code>&nbsp;method of the&nbsp;<code>ChatConsumer</code>&nbsp;class, as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code> class ChatConsumer(WebsocketConsumer):\n    <em># ...</em>\n    def disconnect(self, close_code):\n        <strong><em># leave room group</em></strong>\n        <strong>async_to_sync(self.channel_layer.group_discard)(</strong>\n            <strong>self.room_group_name,</strong>\n            <strong>self.channel_name</strong>\n        <strong>)</strong>\n    <em># ...</em>\n</code></pre>\n\n\n\n<p>When the connection is closed, you call the&nbsp;<code>group_discard()</code>&nbsp;method of the channel layer to leave the group. You use the&nbsp;<code>async_to_sync()</code>&nbsp;wrapper to use the channel layer asynchronous method.</p>\n\n\n\n<p>In the same&nbsp;<code>consumers.py</code>&nbsp;file, modify the&nbsp;<code>receive()</code>&nbsp;method of the&nbsp;<code>ChatConsumer</code>&nbsp;class, as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>class ChatConsumer(WebsocketConsumer):\n    # ...\n    # receive message from WebSocket\n    def receive(self, text_data):\n        text_data_json = json.loads(text_data)\n        message = text_data_json&#91;'message']\n        <strong># send message to room group</strong>\n        <strong>async_to_sync(self.channel_layer.group_send)(</strong>\n            <strong>self.room_group_name,</strong>\n            <strong>{</strong>\n                <strong>'type': 'chat_message',</strong>\n                <strong>'message': message,</strong>\n            <strong>}</strong>\n        <strong>)</strong>\n</code></pre>\n\n\n\n<p>When you receive a message from the WebSocket connection, instead of sending the message&nbsp;<a></a>to the associated channel, you now send the message to the group. You do this by calling the&nbsp;<code>group_send()</code>&nbsp;method of the channel layer. You use the&nbsp;<code>async_to_sync()</code>&nbsp;wrapper to use the channel layer asynchronous method. You pass the following information in the event sent to the group:</p>\n\n\n\n<ul><li><code>type</code>: The event type. This is a special key that corresponds to the name of the method that should be invoked on consumers that receive the event. You can implement a method in the consumer named the same as the message type so that it gets executed every time a message with that specific type is received.</li><li><code>message</code>: The actual message you are sending.</li></ul>\n\n\n\n<p>In the same&nbsp;<code>consumers.py</code>&nbsp;file, add a new&nbsp;<code>chat_message()</code>&nbsp;method in the&nbsp;<code>ChatConsumer</code>&nbsp;class, as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>class ChatConsumer(WebsocketConsumer):\n    # ...\n    <strong># receive message from room group</strong>\n    <strong>def chat_message(self, event):</strong>\n        <strong># Send message to WebSocket</strong>\n        <strong>self.send(text_data=json.dumps(event))</strong>\n</code></pre>\n\n\n\n<p>You name this method&nbsp;<code>chat_message()</code>&nbsp;to match the&nbsp;<code>type</code>&nbsp;key that is sent to the channel group when a message is received from the WebSocket. When a message with type&nbsp;<code>chat_message</code>&nbsp;is sent to the group, all consumers subscribed to the group will receive the message and will execute the&nbsp;<code>chat_message()</code>&nbsp;method. In the&nbsp;<code>chat_message()</code>&nbsp;method, you send the event message received to the WebSocket.</p>\n\n\n\n<p>The complete&nbsp;<code>consumers.py</code>&nbsp;file should now look like this:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>import json\nfrom channels.generic.websocket import WebsocketConsumer\nfrom asgiref.sync import async_to_sync\nclass ChatConsumer(WebsocketConsumer):\n    def connect(self):\n        self.id = self.scope&#91;'url_route']&#91;'kwargs']&#91;'course_id']\n        self.room_group_name = 'chat_%s' % self.id\n        # join room group\n        async_to_sync(self.channel_layer.group_add)(\n            self.room_group_name,\n            self.channel_name\n        )\n        # accept connection\n        self.accept()\n    def disconnect(self, close_code):\n        # leave room group\n        async_to_sync(self.channel_layer.group_discard)(\n            self.room_group_name,\n            self.channel_name\n        )\n    # receive message from WebSocket\n    def receive(self, text_data):\n        text_data_json = json.loads(text_data)\n        message = text_data_json&#91;'message']\n        # send message to room group\n        async_to_sync(self.channel_layer.group_send)(\n            self.room_group_name,\n            {\n                'type': 'chat_message',\n                'message': message,\n            }\n        )\n    # receive message from room group\n    def chat_message(self, event):\n        # send message to WebSocket\n        self.send(text_data=json.dumps(event))\n</code></pre>\n\n\n\n<p>You have&nbsp;<a></a>implemented a channel layer in&nbsp;<code>ChatConsumer</code>, allowing consumers to broadcast messages and communicate with each other.</p>\n\n\n\n<p>Run the development server with the following command:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>python manage.py runserver\n</code></pre>\n\n\n\n<p>Open the URL&nbsp;<code>http://127.0.0.1:8000/chat/room/1/</code>&nbsp;in your browser, replacing&nbsp;<code>1</code>&nbsp;with the&nbsp;<code>id</code>&nbsp;of an existing course in the database. Write a message and send it. Then, open a&nbsp;<a></a>second browser window and access the same URL. Send a message from each browser window.</p>\n\n\n\n<p>The result should look like this:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/B14981_13_06.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 13.6: The chat room page with messages sent from different browser windows</p>\n\n\n\n<p>You will see that the first message is only displayed in the first browser window. When you open a second browser window, messages sent in any of the browser windows are displayed in both of them. When you open a new browser window and access the chat room URL, a new WebSocket connection is established between the JavaScript WebSocket client in the browser and the WebSocket consumer in the server. Each channel gets added to the group associated with the course id passed through the URL to the consumer. Messages are sent to the group and received by all&nbsp;consumers.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>You will edit the&nbsp;ChatConsumer&nbsp;consumer to use the channel layer. You will use a channel&nbsp;group for each course chat room. Therefore, you will use the course&nbsp;id&nbsp;to build the group name.&nbsp;ChatConsumer&nbsp;instances will know the group name and will&nbsp;be able to communicate with each other. Edit the&nbsp;consumers.py&nbsp;file of the&nbsp;chat&nbsp;application, import the&nbsp;async_to_sync()&nbsp;function, and modify the&nbsp;connect()&nbsp;method of the&nbsp;ChatConsumer&nbsp;class, as follows:&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/updating-the-consumer-to-broadcast-messages/\">Continue reading <span class=\"screen-reader-text\">Updating the consumer to broadcast messages</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [137],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4140" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=4140"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4140/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4141,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4140/revisions/4141"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=4140"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=4140"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=4140"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 4144,
+    "date": "2022-06-29T08:12:18",
+    "date_gmt": "2022-06-29T08:12:18",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=4144" },
+    "modified": "2022-06-29T08:12:18",
+    "modified_gmt": "2022-06-29T08:12:18",
+    "slug": "adding-context-to-the-messages",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/adding-context-to-the-messages/",
+    "title": { "rendered": "Adding context to the messages" },
+    "content": {
+      "rendered": "\n<p>Now that messages can be exchanged between all users in a chat room, you probably&nbsp;want to&nbsp;<a></a>display who sent which message and when it was sent. Let&#8217;s add&nbsp;some context to the messages.</p>\n\n\n\n<p>Edit the&nbsp;<code>consumers.py</code>&nbsp;file of the&nbsp;<code>chat</code>&nbsp;application and implement the following changes:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>import json\nfrom channels.generic.websocket import WebsocketConsumer\nfrom asgiref.sync import async_to_sync\n<strong>from django.utils import timezone</strong>\nclass ChatConsumer(WebsocketConsumer):\n    def connect(self):\n        <strong>self.user = self.scope&#91;'user']</strong>\n        self.id = self.scope&#91;'url_route']&#91;'kwargs']&#91;'course_id']\n        self.room_group_name = 'chat_%s' % self.id\n        # join room group\n        async_to_sync(self.channel_layer.group_add)(\n            self.room_group_name,\n            self.channel_name\n        )\n        # accept connection\n        self.accept()\n    def disconnect(self, close_code):\n        # leave room group\n        async_to_sync(self.channel_layer.group_discard)(\n            self.room_group_name,\n            self.channel_name\n        )\n    # receive message from WebSocket\n    def receive(self, text_data):\n        text_data_json = json.loads(text_data)\n        message = text_data_json&#91;'message']\n        <strong>now = timezone.now()</strong>\n        # send message to room group\n        async_to_sync(self.channel_layer.group_send)(\n            self.room_group_name,\n            {\n                'type': 'chat_message',\n                'message': message,\n                <strong>'user': self.user.username,</strong>\n                <strong>'datetime': now.isoformat(),</strong>\n            }\n        )\n    # receive message from room group\n    def chat_message(self, event):\n        # send message to WebSocket\n        self.send(text_data=json.dumps(event))\n</code></pre>\n\n\n\n<p>You now import the&nbsp;<code>timezone</code>&nbsp;module provided by Django. In the&nbsp;<code>connect()</code>&nbsp;method of the consumer, you retrieve the current user from the scope with&nbsp;<code>self.scope['user']</code>&nbsp;and store them in a new&nbsp;<code>user</code>&nbsp;attribute of the consumer. When the consumer&nbsp;<a></a>receives a message through the WebSocket, it gets the current time using&nbsp;<code>timezone.now()</code>&nbsp;and passes the current&nbsp;<code>user</code>&nbsp;and&nbsp;<code>datetime</code>&nbsp;in ISO 8601 format along with the message in the event sent to the channel group.</p>\n\n\n\n<p>Edit the&nbsp;<code>chat/room.html</code>&nbsp;template of the&nbsp;<code>chat</code>&nbsp;application and find the following lines:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>var data = JSON.parse(e.data);\nvar message = data.message;\nvar $chat = $('#chat');\n$chat.append('&lt;div class=\"message\"&gt;' + message + '&lt;/div&gt;');\n</code></pre>\n\n\n\n<p>Replace those lines with the following code:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>var data = JSON.parse(e.data);\nvar message = data.message;\n<strong>var dateOptions = {hour: 'numeric', minute: 'numeric', hour12: true};</strong>\n<strong>var datetime = new Date(data&#91;'datetime']).toLocaleString('en', dateOptions);</strong>\n<strong>var isMe = data.user === '{{ request.user }}';</strong>\n<strong>var source = isMe ? 'me' : 'other';</strong>\n<strong>var name = isMe ? 'Me' : data.user;</strong>\nvar $chat = $('#chat');\n$chat.append('&lt;div class=\"message <strong>' + source + '</strong>\"&gt;' +\n             <strong>'&lt;strong&gt;' + name + '&lt;/strong&gt; ' +</strong>\n<strong>             '&lt;span class=\"date\"&gt;' + datetime + '&lt;/span&gt;&lt;br&gt;' +</strong>\n             message +\n             '&lt;/div&gt;');\n</code></pre>\n\n\n\n<p>In this code, you implement these changes:</p>\n\n\n\n<ol><li>You now convert the datetime received in the message to a JavaScript&nbsp;<code>Date</code>&nbsp;object and format it with a specific locale.</li><li>You retrieve the user received in the message and make a comparison with&nbsp;two different variables as helpers to identify the user.</li><li>The variable&nbsp;<code>source</code>&nbsp;gets the value&nbsp;<code>me</code>&nbsp;if the user sending the message is the&nbsp;current user, or&nbsp;<code>other</code>&nbsp;otherwise. You obtain the username using Django&#8217;s&nbsp;template language with&nbsp;<code>{{ request.user }}</code>&nbsp;to check whether the&nbsp;message originated from the current user or another user. You then use the&nbsp;<code>source</code>&nbsp;value as a&nbsp;<code>class</code>&nbsp;of the main&nbsp;<code>&lt;div&gt;</code>&nbsp;element to differentiate messages sent by the current user from messages sent by others. Different CSS styles are applied based on the&nbsp;<code>class</code>&nbsp;attribute.</li><li>The variable&nbsp;<code>name</code>&nbsp;gets the value&nbsp;<code>Me</code>&nbsp;if the user sending the message is the current user or the name of the user sending the message otherwise. You use&nbsp;it to display the name of the user sending the message.</li><li>You use the username and the datetime in the message that you append to&nbsp;the chat log.</li></ol>\n\n\n\n<p>Open the URL&nbsp;<code>http://127.0.0.1:8000/chat/room/1/</code>&nbsp;in your browser, replacing&nbsp;<code>1</code>&nbsp;with the&nbsp;<code>id</code>&nbsp;of an existing course in the database. With a logged-in user who is enrolled on the course, write a message and send it.</p>\n\n\n\n<p>Then, open a second browser window in incognito&nbsp;<a></a>mode to prevent the use of the same session. Log in with a different user, also enrolled on the same course, and send a message.</p>\n\n\n\n<p>You will be able to exchange messages using the two different users and see the user and time, with a clear distinction between messages sent by the user and messages sent by others. The conversation between two users should look similar to the following one:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/B14981_13_07.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 13.7: The chat room page with messages from two different user sessions</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Now that messages can be exchanged between all users in a chat room, you probably&nbsp;want to&nbsp;display who sent which message and when it was sent. Let&#8217;s add&nbsp;some context to the messages. Edit the&nbsp;consumers.py&nbsp;file of the&nbsp;chat&nbsp;application and implement the following changes: You now import the&nbsp;timezone&nbsp;module provided by Django. In the&nbsp;connect()&nbsp;method of the consumer, you retrieve the&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/adding-context-to-the-messages/\">Continue reading <span class=\"screen-reader-text\">Adding context to the messages</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [137],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4144" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=4144"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4144/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4145,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4144/revisions/4145"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=4144"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=4144"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=4144"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 4146,
+    "date": "2022-06-29T08:13:00",
+    "date_gmt": "2022-06-29T08:13:00",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=4146" },
+    "modified": "2022-06-29T08:13:00",
+    "modified_gmt": "2022-06-29T08:13:00",
+    "slug": "modifying-the-consumer-to-be-fully-asynchronous",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/modifying-the-consumer-to-be-fully-asynchronous/",
+    "title": { "rendered": "Modifying the consumer to be fully asynchronous" },
+    "content": {
+      "rendered": "\n<p>The&nbsp;<code>ChatConsumer</code>&nbsp;you have implemented inherits from the base&nbsp;<code>WebsocketConsumer</code>&nbsp;class, which&nbsp;<a></a>is synchronous. Synchronous consumers are convenient for accessing Django models and calling regular synchronous I/O functions. However, asynchronous consumers present a higher performance, since they don&#8217;t require additional threads when handling requests. Since you are using the asynchronous channel layer functions, you can easily rewrite the&nbsp;<code>ChatConsumer</code>&nbsp;class to be asynchronous.</p>\n\n\n\n<p>Edit the&nbsp;<code>consumers.py</code>&nbsp;file of the&nbsp;<code>chat</code>&nbsp;application and implement the following changes:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>import json\n<strong>from channels.generic.websocket import AsyncWebsocketConsumer</strong>\nfrom asgiref.sync import async_to_sync\nfrom django.utils import timezone\nclass ChatConsumer(<strong>AsyncWebsocketConsumer</strong>):\n    <strong>async</strong> def connect(self):\n        self.user = self.scope&#91;'user']\n        self.id = self.scope&#91;'url_route']&#91;'kwargs']&#91;'course_id']\n        self.room_group_name = 'chat_%s' % self.id\n        # join room group\n        <strong>await self.channel_layer.group_add(</strong>\n            self.room_group_name,\n            self.channel_name\n        )\n        # accept connection\n        <strong>await</strong> self.accept()\n    <strong>async</strong> def disconnect(self, close_code):\n        # leave room group\n        <strong>await self.channel_layer.group_discard(</strong>\n            self.room_group_name,\n            self.channel_name\n        )\n    # receive message from WebSocket\n    <strong>async</strong> def receive(self, text_data):\n        text_data_json = json.loads(text_data)\n        message = text_data_json&#91;'message']\n        now = timezone.now()\n        # send message to room group\n        <strong>await self.channel_layer.group_send(</strong>\n            self.room_group_name,\n            {\n                'type': 'chat_message',\n                'message': message,\n                'user': self.user.username,\n                'datetime': now.isoformat(),\n            }\n        )\n    # receive message from room group\n    <strong>async</strong> def chat_message(self, event):\n        # send message to WebSocket\n        <strong>await</strong> self.send(text_data=json.dumps(event))\n</code></pre>\n\n\n\n<p>You have&nbsp;<a></a>implemented the following changes:</p>\n\n\n\n<ul><li>The&nbsp;<code>ChatConsumer</code>&nbsp;consumer now inherits from the&nbsp;<code>AsyncWebsocketConsumer</code>&nbsp;class to implement asynchronous calls</li><li>You have changed the definition of all methods from&nbsp;<code>def</code>&nbsp;to&nbsp;<code>async def</code></li><li>You use&nbsp;<code>await</code>&nbsp;to call asynchronous functions that perform I/O operations</li><li>You no longer use the&nbsp;<code>async_to_sync()</code>&nbsp;helper function when calling methods on the channel layer</li></ul>\n\n\n\n<p>Open the URL&nbsp;<code>http://127.0.0.1:8000/chat/room/1</code>&nbsp;with two different browser windows&nbsp;<a></a>again and verify that the chat server still works. The chat server is now fully asynchronous!</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>The&nbsp;ChatConsumer&nbsp;you have implemented inherits from the base&nbsp;WebsocketConsumer&nbsp;class, which&nbsp;is synchronous. Synchronous consumers are convenient for accessing Django models and calling regular synchronous I/O functions. However, asynchronous consumers present a higher performance, since they don&#8217;t require additional threads when handling requests. Since you are using the asynchronous channel layer functions, you can easily rewrite the&nbsp;ChatConsumer&nbsp;class to be&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/modifying-the-consumer-to-be-fully-asynchronous/\">Continue reading <span class=\"screen-reader-text\">Modifying the consumer to be fully asynchronous</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [137],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4146" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=4146"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4146/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4147,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4146/revisions/4147"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=4146"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=4146"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=4146"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 4148,
+    "date": "2022-06-29T08:13:39",
+    "date_gmt": "2022-06-29T08:13:39",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=4148" },
+    "modified": "2022-06-29T08:13:39",
+    "modified_gmt": "2022-06-29T08:13:39",
+    "slug": "integrating-the-chat-application-with-existing-views",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/integrating-the-chat-application-with-existing-views/",
+    "title": {
+      "rendered": "Integrating the chat application with existing views"
+    },
+    "content": {
+      "rendered": "\n<p>The chat server&nbsp;<a></a>is now fully implemented and students enrolled on a course are able to communicate with each other. Let&#8217;s add a link for students to join the chat room for each course.</p>\n\n\n\n<p>Edit the&nbsp;<code>students/course/detail.html</code>&nbsp;template of the&nbsp;<code>students</code>&nbsp;application and add the following&nbsp;<code>&lt;h3&gt;</code>&nbsp;HTML element code at the bottom of the&nbsp;<code>&lt;div class=\"contents\"&gt;</code>&nbsp;element:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;div class=\"contents\"&gt;\n  ...\n  <strong>&lt;h3&gt;</strong>\n    <strong>&lt;a href=\"{% url \"chat:course_chat_room\" object.id %}\"&gt;</strong>\n      <strong>Course chat room</strong>\n    <strong>&lt;/a&gt;</strong>\n  <strong>&lt;/h3&gt;</strong>\n&lt;/div&gt;\n</code></pre>\n\n\n\n<p>Open the browser and access any course that the student is enrolled on to view the course contents. The sidebar will now contain a&nbsp;<strong>Course chat room</strong>&nbsp;link that points to&nbsp;the course chat room view. If you click on it, you will enter the chat room.</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/B14981_13_08.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 13.8: The course detail page, including a link to the course chat room</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>The chat server&nbsp;is now fully implemented and students enrolled on a course are able to communicate with each other. Let&#8217;s add a link for students to join the chat room for each course. Edit the&nbsp;students/course/detail.html&nbsp;template of the&nbsp;students&nbsp;application and add the following&nbsp;&lt;h3&gt;&nbsp;HTML element code at the bottom of the&nbsp;&lt;div class=&#8221;contents&#8221;&gt;&nbsp;element: Open the browser and access any&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/integrating-the-chat-application-with-existing-views/\">Continue reading <span class=\"screen-reader-text\">Integrating the chat application with existing views</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [137],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4148" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=4148"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4148/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4149,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4148/revisions/4149"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=4148"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=4148"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=4148"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  }
+]

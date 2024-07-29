@@ -1,0 +1,402 @@
+[
+  {
+    "id": 2001,
+    "date": "2021-04-12T05:49:40",
+    "date_gmt": "2021-04-12T05:49:40",
+    "guid": {
+      "rendered": "https://java.foobrdigital.com/?p=2001"
+    },
+    "modified": "2021-04-12T05:49:40",
+    "modified_gmt": "2021-04-12T05:49:40",
+    "slug": "bigdecimal-class",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/bigdecimal-class/",
+    "title": {
+      "rendered": "BigDecimal Class"
+    },
+    "content": {
+      "rendered": "\n<h2>Introduction</h2>\n\n\n\n<p>The&nbsp;<strong>java.math.BigDecimal</strong>&nbsp;class provides operations for arithmetic, scale manipulation, rounding, comparison, hashing, and format conversion.</p>\n\n\n\n<p>The toString() method provides a canonical representation of a BigDecimal. It gives the user complete control over rounding behavior.</p>\n\n\n\n<p>Two types of operations are provided for manipulating the scale of a BigDecimal \u2212</p>\n\n\n\n<ul><li>scaling/rounding operations</li><li>decimal point motion operations</li></ul>\n\n\n\n<p>This class and its iterator implement all of the optional methods of the&nbsp;<strong>Comparable</strong>&nbsp;interfaces.</p>\n\n\n\n<h2>Class declaration</h2>\n\n\n\n<p>Following is the declaration for&nbsp;<strong>java.math.BigDecimal</strong>&nbsp;class \u2212</p>\n\n\n\n<pre class=\"wp-block-code\"><code>public class BigDecimal\n   extends Number\n      implements Comparable&lt;BigDecimal&gt;\n</code></pre>\n\n\n\n<h2>Field</h2>\n\n\n\n<p>Following are the fields for&nbsp;<strong>java.math.BigDecimal</strong>&nbsp;class \u2212</p>\n\n\n\n<ul><li><strong>static BigDecimal ONE</strong>&nbsp;\u2212 The value 1, with a scale of 0.</li><li><strong>static int ROUND_CEILING</strong>&nbsp;\u2212 Rounding mode to round towards positive infinity.</li><li><strong>static int ROUND_DOWN</strong>&nbsp;\u2212 Rounding mode to round towards zero.</li><li><strong>static int ROUND_FLOOR</strong>&nbsp;\u2212 Rounding mode to round towards negative infinity.</li><li><strong>static int ROUND_HALF_DOWN</strong>&nbsp;\u2212 Rounding mode to round towards &#8220;nearest neighbor&#8221; unless both neighbors are equidistant, in which case round down.</li><li><strong>static int ROUND_HALF_EVEN</strong>&nbsp;\u2212 Rounding mode to round towards the &#8220;nearest neighbor&#8221; unless both neighbors are equidistant, in which case, round towards the even neighbor.</li><li><strong>static int ROUND_HALF_UP</strong>&nbsp;\u2212 Rounding mode to round towards &#8220;nearest neighbor&#8221; unless both neighbors are equidistant, in which case round up.</li><li><strong>static int ROUND_UNNECESSARY</strong>&nbsp;\u2212 Rounding mode to assert that the requested operation has an exact result, hence no rounding is necessary.</li><li><strong>static int ROUND_UP</strong>&nbsp;\u2212 Rounding mode to round away from zero.</li><li><strong>static BigDecimal TEN</strong>&nbsp;\u2212 The value 10, with a scale of 0.</li><li><strong>static BigDecimal ZERO</strong>&nbsp;\u2212 The value 0, with a scale of 0.</li></ul>\n\n\n\n<h2>Class constructors</h2>\n\n\n\n<figure class=\"wp-block-table\"><table><tbody><tr><th>Sr.No.</th><th>Constructor &amp; Description</th></tr><tr><td>1</td><td><strong>BigDecimal(BigInteger val)</strong>This constructor is used to translates a BigInteger into a BigDecimal.</td></tr><tr><td>2</td><td><strong>BigDecimal(BigInteger unscaledVal, int scale)</strong>This constructor is used to translate a BigInteger unscaled value and an int scale into a BigDecimal.</td></tr><tr><td>3</td><td><strong>BigDecimal(BigInteger unscaledVal, int scale, MathContext mc)</strong>This constructor is used to translate a BigInteger unscaled value and an int scale into a BigDecimal, with rounding according to the context settings.</td></tr><tr><td>4</td><td><strong>BigDecimal(BigInteger val, MathContext mc)</strong>This constructor is used to translate a BigInteger into a BigDecimal rounding according to the context settings.</td></tr><tr><td>5</td><td><strong>BigDecimal(char[ ] in)</strong>This constructor is used to translate a character array representation of a BigDecimal into a BigDecimal, accepting the same sequence of characters as the BigDecimal(String) constructor.</td></tr><tr><td>6</td><td><strong>BigDecimal(char[ ] in, int offset, int len)</strong>This constructor is used to translate a character array representation of a BigDecimal into a BigDecimal, accepting the same sequence of characters as the BigDecimal(String) constructor, while allowing a sub-array to be specified.</td></tr><tr><td>7</td><td><strong>BigDecimal(char[ ] in, int offset, int len, MathContext mc)</strong>This constructor is used to translate a character array representation of a BigDecimal into a BigDecimal, accepting the same sequence of characters as the BigDecimal(String) constructor, while allowing a sub-array to be specified and with rounding according to the context settings.</td></tr><tr><td>8</td><td><strong>BigDecimal(char[ ] in, MathContext mc)</strong>This constructor is used to translate a character array representation of a BigDecimal into a BigDecimal, accepting the same sequence of characters as the BigDecimal(String) constructor and with rounding according to the context settings.</td></tr><tr><td>9</td><td><strong>BigDecimal(double val)</strong>This constructor is used to translates a double into a BigDecimal which is the exact decimal representation of the double&#8217;s binary floating-point value.</td></tr><tr><td>10</td><td><strong>BigDecimal(double val, MathContext mc)</strong>This constructor is used to translates a double into a BigDecimal, with rounding according to the context settings.</td></tr><tr><td>11</td><td><strong>BigDecimal(int val)</strong>This constructor is used to translates an int into a BigDecimal.</td></tr><tr><td>12</td><td><strong>BigDecimal(int val, MathContext mc)</strong>This constructor is used to translates an int into a BigDecimal, with rounding according to the context settings.</td></tr><tr><td>13</td><td><strong>BigDecimal(long val)</strong>This constructor is used to translate a long into a BigDecimal.</td></tr><tr><td>14</td><td><strong>BigDecimal(long val, MathContext mc)</strong>This constructor is used to translates a BigInteger into a BigDecimal.</td></tr><tr><td>15</td><td><strong>BigDecimal(String val)</strong>This constructor is used to the string representation of a BigDecimal into a BigDecimal.</td></tr><tr><td>16</td><td><strong>BigDecimal(String val, MathContext mc)</strong>This constructor is used to translates the string representation of a BigDecimal into a BigDecimal, accepting the same strings as the BigDecimal(String) constructor, with rounding according to the context settings.</td></tr></tbody></table></figure>\n\n\n\n<h2>Class methods</h2>\n\n\n\n<figure class=\"wp-block-table\"><table><tbody><tr><th>Sr.No.</th><th>Method &amp; Description</th></tr><tr><td>1</td><td>BigDecimal abs()This method returns a BigDecimal whose value is the absolute value of this BigDecimal, and whose scale is this.scale().</td></tr><tr><td>2</td><td>BigDecimal abs(MathContext mc)This method returns a BigDecimal whose value is the absolute value of this BigDecimal, with rounding according to the context settings.</td></tr><tr><td>3</td><td>BigDecimal add(BigDecimal augend)This method returns a BigDecimal whose value is (this + augend), and whose scale is max(this.scale(), augend.scale()).</td></tr><tr><td>4</td><td>BigDecimal add(BigDecimal augend, MathContext mc)This method returns a BigDecimal whose value is (this + augend), with rounding according to the context settings.</td></tr><tr><td>5</td><td>byte byteValueExact()This method converts the BigDecimal to a byte, checking for lost information.</td></tr><tr><td>6</td><td>int compareTo(BigDecimal val)This method compares the BigDecimal with the specified BigDecimal.</td></tr><tr><td>7</td><td>BigDecimal divide(BigDecimal divisor)This method returns a BigDecimal whose value is (this / divisor), and whose preferred scale is (this.scale() &#8211; divisor.scale()); if the exact quotient cannot be represented (because it has a non-terminating decimal expansion) an ArithmeticException is thrown.</td></tr><tr><td>8</td><td>BigDecimal divide(BigDecimal divisor, int roundingMode)This method returns a BigDecimal whose value is (this / divisor), and whose scale is this.scale().</td></tr><tr><td>9</td><td>BigDecimal divide(BigDecimal divisor, int scale, int roundingMode)This method returns a BigDecimal whose value is (this / divisor), and whose scale is as specified.</td></tr><tr><td>10</td><td>BigDecimal divide(BigDecimal divisor, int scale, RoundingMode roundingMode)This method returns a BigDecimal whose value is (this / divisor), and whose scale is as specified.</td></tr><tr><td>11</td><td>BigDecimal divide(BigDecimal divisor, MathContext mc)This method returns a BigDecimal whose value is (this / divisor), with rounding according to the context settings.</td></tr><tr><td>12</td><td>BigDecimal divide(BigDecimal divisor, RoundingMode roundingMode)This method returns a BigDecimal whose value is (this / divisor), and whose scale is this.scale().</td></tr><tr><td>13</td><td>BigDecimal[ ] divideAndRemainder(BigDecimal divisor)This method returns a two-element BigDecimal array containing the result of divideToIntegralValue followed by the result of remainder on the two operands.</td></tr><tr><td>14</td><td>BigDecimal[ ] divideAndRemainder(BigDecimal divisor, MathContext mc)This method returns a two-element BigDecimal array containing the result of divideToIntegralValue followed by the result of remainder on the two operands calculated with rounding according to the context settings.</td></tr><tr><td>15</td><td>BigDecimal divideToIntegralValue(BigDecimal divisor)This method returns a BigDecimal whose value is the integer part of the quotient (this / divisor) rounded down.</td></tr><tr><td>16</td><td>BigDecimal divideToIntegralValue(BigDecimal divisor, MathContext mc)This method returns a BigDecimal whose value is the integer part of (this / divisor).</td></tr><tr><td>17</td><td>double doubleValue()This method converts the BigDecimal to a double.</td></tr><tr><td>18</td><td>boolean equals(Object x)This method compares the BigDecimal with the specified Object for equality.</td></tr><tr><td>19</td><td>float floatValue()This method converts the BigDecimal to a float.</td></tr><tr><td>20</td><td>int hashCode()This method returns the hash code for this BigDecimal.</td></tr><tr><td>21</td><td>int intValue()This method converts the BigDecimal to an int.</td></tr><tr><td>22</td><td>int intValueExact()This method converts the BigDecimal to an int, checking for lost information.</td></tr><tr><td>23</td><td>long longValue()This method converts the BigDecimal to a long.</td></tr><tr><td>24</td><td>long longValueExact()This method converts the BigDecimal to a long, checking for lost information.</td></tr><tr><td>25</td><td>BigDecimal max(BigDecimal val)This method returns the maximum of this BigDecimal and val.</td></tr><tr><td>26</td><td>BigDecimal min(BigDecimal val)This method returns the minimum of this BigDecimal and val.</td></tr><tr><td>27</td><td>BigDecimal movePointLeft(int n)This method returns a BigDecimal which is equivalent to this one with the decimal point moved n places to the left.</td></tr><tr><td>28</td><td>BigDecimal movePointRight(int n)This method returns a BigDecimal which is equivalent to this one with the decimal point moved n places to the right.</td></tr><tr><td>29</td><td>BigDecimal multiply(BigDecimal multiplicand)This method returns a BigDecimal whose value is (this \u00d7 multiplicand), and whose scale is (this.scale() + multiplicand.scale()).</td></tr><tr><td>30</td><td>BigDecimal multiply(BigDecimal multiplicand, MathContext mc)This method returns a BigDecimal whose value is (this \u00d7 multiplicand), with rounding according to the context settings.</td></tr><tr><td>31</td><td>BigDecimal negate()This method returns a BigDecimal whose value is (+this), and whose scale is this.scale().</td></tr><tr><td>32</td><td>BigDecimal negate(MathContext mc)This method returns a BigDecimal whose value is (-this), with rounding according to the context settings.</td></tr><tr><td>33</td><td>BigDecimal plus()This method returns a BigDecimal whose value is (+this), and whose scale is this.scale().</td></tr><tr><td>34</td><td>BigDecimal plus(MathContext mc)This method returns a BigDecimal whose value is (+this), with rounding according to the context settings.</td></tr><tr><td>35</td><td>BigDecimal pow(int n)This method returns a BigDecimal whose value is (this<sup>n</sup>), The power is computed exactly, to unlimited precision.</td></tr><tr><td>36</td><td>BigDecimal pow(int n, MathContext mc)This method returns a BigDecimal whose value is (this<sup>n</sup>).</td></tr><tr><td>37</td><td>int precision()This method returns the precision of this BigDecimal.</td></tr><tr><td>38</td><td>BigDecimal remainder(BigDecimal divisor)This method converts this BigDecimal to a byte, checking for lost information.</td></tr><tr><td>39</td><td>BigDecimal remainder(BigDecimal divisor, MathContext mc)This method returns a BigDecimal whose value is (this % divisor), with rounding according to the context settings.</td></tr><tr><td>40</td><td>BigDecimal round(MathContext mc)This method returns a BigDecimal rounded according to the MathContext settings.</td></tr><tr><td>41</td><td>int scale()This method returns the scale of this BigDecimal.</td></tr><tr><td>42</td><td>BigDecimal scaleByPowerOfTen(int n)This method returns a BigDecimal whose numerical value is equal to (this * 10<sup>n</sup>).</td></tr><tr><td>43</td><td>BigDecimal setScale(int newScale)This method returns a BigDecimal whose scale is the specified value, and whose value is numerically equal to this BigDecimal&#8217;s.</td></tr><tr><td>44</td><td>BigDecimal setScale(int newScale, int rounding mode)This method returns a BigDecimal whose scale is the specified value, and whose unscaled value is determined by multiplying or dividing this BigDecimal&#8217;s unscaled value by the appropriate power of ten to maintain its overall value.</td></tr><tr><td>45</td><td>BigDecimal setScale(int newScale, RoundingMode rounding mode)This method returns a BigDecimal whose scale is the specified value, and whose unscaled value is determined by multiplying or dividing this BigDecimal&#8217;s unscaled value by the appropriate power of ten to maintain its overall value.</td></tr><tr><td>46</td><td>short shortValueExact()This method converts the BigDecimal to a short, checking for lost information.</td></tr><tr><td>47</td><td>int signum()This method returns the signum function of this BigDecimal.</td></tr><tr><td>48</td><td>BigDecimal strip trailing zeros()This method returns a BigDecimal which is numerically equal to this one but with any trailing zeros removed from the representation.</td></tr><tr><td>49</td><td>BigDecimal subtract(BigDecimal subtrahend)This method returns a BigDecimal whose value is (this &#8211; subtrahend), and whose scale is max(this.scale(), subtrahend.scale()).</td></tr><tr><td>50</td><td>BigDecimal subtracts (BigDecimal subtrahend, MathContext mc)This method returns a BigDecimal whose value is (this &#8211; subtrahend), with rounding according to the context settings.</td></tr><tr><td>51</td><td>BigInteger toBigInteger()This method converts the BigDecimal to a BigInteger.</td></tr><tr><td>52</td><td>BigInteger toBigIntegerExact()This method converts the BigDecimal to a BigInteger, checking for lost information.</td></tr><tr><td>53</td><td>String toEngineeringString()This method returns a string representation of this BigDecimal, using engineering notation if an exponent is needed.</td></tr><tr><td>54</td><td>String to plain string()This method returns a string representation of this BigDecimal without an exponent field.</td></tr><tr><td>55</td><td>String toString()This method returns the string representation of this BigDecimal, using scientific notation if an exponent is needed.</td></tr><tr><td>56</td><td>BigDecimal ulp()This method returns the size of an ulp, a unit in the last place, of this BigDecimal.</td></tr><tr><td>57</td><td>BigInteger unscaled value()This method returns a BigInteger whose value is the unscaled value of this BigDecimal.</td></tr><tr><td>58</td><td>static BigDecimal valueOf(double value)This method translates a double into a BigDecimal, using the double&#8217;s canonical string representation provided by the Double.toString(double) method.</td></tr><tr><td>59</td><td>static BigDecimal valueOf(long value)This method translates a long value into a BigDecimal with a scale of zero.</td></tr><tr><td>60</td><td>static BigDecimal valueOf(long unscaledVal, int scale)This method translates a long unscaled value and an int scale into a BigDecimal.</td></tr></tbody></table></figure>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Introduction The&nbsp;java.math.BigDecimal&nbsp;class provides operations for arithmetic, scale manipulation, rounding, comparison, hashing, and format conversion. The toString() method provides a canonical representation of a BigDecimal. It gives the user complete control over rounding behavior. Two types of operations are provided for manipulating the scale of a BigDecimal \u2212 scaling/rounding operations decimal point motion operations This class [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 3,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [79],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/2001"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/3"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=2001"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/2001/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 2002,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/2001/revisions/2002"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=2001"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=2001"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=2001"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 2003,
+    "date": "2021-04-12T05:53:27",
+    "date_gmt": "2021-04-12T05:53:27",
+    "guid": {
+      "rendered": "https://java.foobrdigital.com/?p=2003"
+    },
+    "modified": "2021-04-12T05:53:27",
+    "modified_gmt": "2021-04-12T05:53:27",
+    "slug": "biginteger-class",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/biginteger-class/",
+    "title": {
+      "rendered": "BigInteger Class"
+    },
+    "content": {
+      "rendered": "\n<h2>Introduction</h2>\n\n\n\n<p>The&nbsp;<strong>java.math.BigInteger</strong>&nbsp;class provides operations analogues to all of Java&#8217;s primitive integer operators and for all relevant methods from java.lang.Math.</p>\n\n\n\n<p>It also provides operations for modular arithmetic, GCD calculation, primality testing, prime generation, bit manipulation, and a few other miscellaneous operations. All operations behave as if BigIntegers were represented in two&#8217;s-complement notation.</p>\n\n\n\n<p>Semantics of arithmetic operations and bitwise logical operations are similar to those of Java&#8217;s integer arithmetic operators and Java&#8217;s bitwise integer operators respectively. Semantics of shift operations extend those of Java&#8217;s shift operators to allow for negative shift distances.</p>\n\n\n\n<p>Comparison operations perform signed integer comparisons. Modular arithmetic operations are provided to compute residues, perform exponentiation, and compute multiplicative inverses. Bit operations operate on a single bit of the two&#8217;s-complement representation of their operand.</p>\n\n\n\n<p>All methods and constructors in this class throw NullPointerException when passed a null object reference for any input parameter.</p>\n\n\n\n<h2>Class declaration</h2>\n\n\n\n<p>Following is the declaration for&nbsp;<strong>java.math.BigInteger</strong>&nbsp;class \u2212</p>\n\n\n\n<pre class=\"wp-block-code\"><code>public class BigInteger\n   extends Number\n      implements Comparable&lt;BigInteger&gt;\n</code></pre>\n\n\n\n<h2>Field</h2>\n\n\n\n<p>Following are the fields for&nbsp;<strong>java.math.BigInteger</strong>&nbsp;class \u2212</p>\n\n\n\n<ul><li><strong>static BigInteger ONE</strong>&nbsp;\u2212 The BigInteger constant one.</li><li><strong>static BigInteger TEN</strong>&nbsp;\u2212 The BigInteger constant ten.</li><li><strong>static BigInteger ZERO</strong>&nbsp;\u2212 The BigInteger constant zero.</li></ul>\n\n\n\n<h2>Class constructors</h2>\n\n\n\n<figure class=\"wp-block-table\"><table><tbody><tr><th>Sr.No.</th><th>Constructor &amp; Description</th></tr><tr><td>1</td><td><strong>BigInteger(byte[] val)</strong>This constructor is used to translate a byte array containing the two&#8217;s-complement binary representation of a BigInteger into a BigInteger.</td></tr><tr><td>2</td><td><strong>BigInteger(int signum, byte[] magnitude)</strong>This constructor is used to translate the sign-magnitude representation of a BigInteger into a BigInteger.</td></tr><tr><td>3</td><td><strong>BigInteger(int bitLength, int certainty, Random rnd)</strong>This constructor is used to construct a randomly generated positive BigInteger that is probably prime, with the specified bitLength.</td></tr><tr><td>4</td><td><strong>BigInteger(int numBits, Random rnd)</strong>This constructor is used to construct a randomly generated BigInteger, uniformly distributed over the range 0 to (2<sup>numBits</sup>&nbsp;&#8211; 1), inclusive.</td></tr><tr><td>5</td><td><strong>BigInteger(String val)</strong>This constructor is used to translate the decimal String representation of a BigInteger into a BigInteger.</td></tr><tr><td>6</td><td><strong>BigInteger(String val, int radix)</strong>This constructor is used to translate the String representation of a BigInteger in the specified radix into a BigInteger.</td></tr></tbody></table></figure>\n\n\n\n<h2>Class methods</h2>\n\n\n\n<figure class=\"wp-block-table\"><table><tbody><tr><th>Sr.No.</th><th>Method &amp; Description</th></tr><tr><td>1</td><td>BigInteger abs()This method returns a BigInteger whose value is the absolute value of this BigInteger.</td></tr><tr><td>2</td><td>BigInteger add(BigInteger val)This method returns a BigInteger whose value is (this + val).</td></tr><tr><td>3</td><td>BigInteger and(BigInteger val)This method returns a BigInteger whose value is (this &amp; val).</td></tr><tr><td>4</td><td>BigInteger andNot(BigInteger val)This method returns a BigInteger whose value is (this &amp; ~val).</td></tr><tr><td>5</td><td>int bitCount()This method returns the number of bits in the two&#8217;s complement representation of this BigInteger that differ from its sign bit.</td></tr><tr><td>6</td><td>int bitLength()This method returns the number of bits in the minimal two&#8217;s-complement representation of this BigInteger, excluding a sign bit.</td></tr><tr><td>7</td><td>BigInteger clearBit(int n)This method returns a BigInteger whose value is equivalent to this BigInteger with the designated bit cleared.</td></tr><tr><td>8</td><td>int compareTo(BigInteger val)This method compares this BigInteger with the specified BigInteger.</td></tr><tr><td>9</td><td>BigInteger divide(BigInteger val)This method returns a BigInteger whose value is (this / val).</td></tr><tr><td>10</td><td>BigInteger[ ] divideAndRemainder(BigInteger val)This method returns an array of two BigIntegers containing (this / val) followed by (this % val).</td></tr><tr><td>11</td><td>double doubleValue()This method converts this BigInteger to a double.</td></tr><tr><td>12</td><td>boolean equals(Object x)This method compares this BigInteger with the specified Object for equality.</td></tr><tr><td>13</td><td>BigInteger flipBit(int n)This method returns a BigInteger whose value is equivalent to this BigInteger with the designated bit flipped.</td></tr><tr><td>14</td><td>float floatValue()This method converts this BigInteger to a float.</td></tr><tr><td>15</td><td>BigInteger gcd(BigInteger val)This method returns a BigInteger whose value is the greatest common divisor of abs(this) and abs(val).</td></tr><tr><td>16</td><td>int getLowestSetBit()This method returns the index of the rightmost (lowest-order) one bit in this BigInteger (the number of zero bits to the right of the rightmost one bit).</td></tr><tr><td>17</td><td>int hashCode()This method returns the hash code for this BigInteger.</td></tr><tr><td>18</td><td>int intValue()This method converts this BigInteger to an int.</td></tr><tr><td>19</td><td>boolean isProbablePrime(int certainty)This method returns true if this BigInteger is probably prime, false if it&#8217;s definitely composite.</td></tr><tr><td>20</td><td>long longValue()This method converts this BigInteger to a long.</td></tr><tr><td>21</td><td>BigInteger max(BigInteger val)This method returns the maximum of this BigInteger and val.</td></tr><tr><td>22</td><td>BigInteger min(BigInteger val)This method returns the minimum of this BigInteger and val.</td></tr><tr><td>23</td><td>BigInteger mod(BigInteger m)This method returns a BigInteger whose value is (this mod m).</td></tr><tr><td>24</td><td>BigInteger modInverse(BigInteger m)This method returns a BigInteger whose value is (this<sup>-1</sup>\u00a0mod m).</td></tr><tr><td>25</td><td>BigInteger modPow(BigInteger exponent, BigInteger m)This method returns a BigInteger whose value is (this<sup>exponent</sup>\u00a0mod m).</td></tr><tr><td>26</td><td>BigInteger multiply(BigInteger val)This method returns a BigInteger whose value is (this * val).</td></tr><tr><td>27</td><td>BigInteger negate()This method returns a BigInteger whose value is (-this).</td></tr><tr><td>28</td><td>BigInteger nextProbablePrime()This method returns the first integer greater than this BigInteger that is probably prime.</td></tr><tr><td>29</td><td>BigInteger not()This method returns a BigInteger whose value is (~this).</td></tr><tr><td>30</td><td>BigInteger or(BigInteger val)This method returns a BigInteger whose value is (this | val).</td></tr><tr><td>31</td><td>BigInteger pow(int exponent)This method returns a BigInteger whose value is (this exponent).</td></tr><tr><td>32</td><td>static BigInteger probable prime(int bitLength, Random and)This method returns a positive BigInteger that is probably prime, with the specified bitLength.</td></tr><tr><td>33</td><td>BigInteger remainder(BigInteger val)This method returns a BigInteger whose value is (this % val).</td></tr><tr><td>34</td><td>BigInteger set it(int n)This method returns a BigInteger whose value is equivalent to this BigInteger with the designated bit set.</td></tr><tr><td>35</td><td>BigInteger shiftLeft(int n)This method returns a BigInteger whose value is (this &lt;&lt; n).</td></tr><tr><td>36</td><td>BigInteger shiftRight(int n)This method returns a BigInteger whose value is (this >> n).</td></tr><tr><td>37</td><td>int signum()This method returns the signum function of this BigInteger.</td></tr><tr><td>38</td><td>BigInteger subtract(BigInteger val)This method returns a BigInteger whose value is (this &#8211; val).</td></tr><tr><td>39</td><td>boolean test it(int n)This method returns true if and only if the designated bit is set.</td></tr><tr><td>40</td><td>byte[ ] toByteArray()This method returns a byte array containing the two&#8217;s-complement representation of this BigInteger.</td></tr><tr><td>41</td><td>String toString()This method returns the decimal String representation of this BigInteger.</td></tr><tr><td>42</td><td>String toString(int radix)This method returns the string representation of this BigInteger in the given radix.</td></tr><tr><td>43</td><td>static BigInteger valueOf(long value)This method returns a BigInteger whose value is equal to that of the specified length.</td></tr><tr><td>44</td><td>BigInteger xor(BigInteger val)This method returns a BigInteger whose value is (this ^ val).</td></tr></tbody></table></figure>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Introduction The&nbsp;java.math.BigInteger&nbsp;class provides operations analogues to all of Java&#8217;s primitive integer operators and for all relevant methods from java.lang.Math. It also provides operations for modular arithmetic, GCD calculation, primality testing, prime generation, bit manipulation, and a few other miscellaneous operations. All operations behave as if BigIntegers were represented in two&#8217;s-complement notation. Semantics of arithmetic operations [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 3,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [79],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/2003"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/3"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=2003"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/2003/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 2004,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/2003/revisions/2004"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=2003"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=2003"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=2003"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 2005,
+    "date": "2021-04-12T05:54:49",
+    "date_gmt": "2021-04-12T05:54:49",
+    "guid": {
+      "rendered": "https://java.foobrdigital.com/?p=2005"
+    },
+    "modified": "2021-04-12T05:54:49",
+    "modified_gmt": "2021-04-12T05:54:49",
+    "slug": "mathcontext-class",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/mathcontext-class/",
+    "title": {
+      "rendered": "MathContext Class"
+    },
+    "content": {
+      "rendered": "\n<h2>Introduction</h2>\n\n\n\n<p>The&nbsp;<strong>java.math.MathContext</strong>&nbsp;class provides immutable objects which encapsulate the context settings and describes certain rules for numerical operators, such as those implemented by the BigDecimal class.</p>\n\n\n\n<p>The base-independent settings are \u2212</p>\n\n\n\n<ul><li><strong>precision</strong>&nbsp;\u2212 the number of digits to be used for an operation; results are rounded to this precision.</li><li><strong>roundingMode</strong>&nbsp;\u2212 a RoundingMode object which specifies the algorithm to be used for rounding.</li></ul>\n\n\n\n<h2>Class declaration</h2>\n\n\n\n<p>Following is the declaration for&nbsp;<strong>java.math.MathContext</strong>&nbsp;class \u2212</p>\n\n\n\n<pre class=\"wp-block-code\"><code>public final class MathContext\n   extends Object\n      implements Serializable\n</code></pre>\n\n\n\n<h2>Field</h2>\n\n\n\n<p>Following are the fields for&nbsp;<strong>java.math.MathContext</strong>&nbsp;class \u2212</p>\n\n\n\n<ul><li><strong>static MathContext DECIMAL128</strong>&nbsp;\u2212 A MathContext object with a precision setting matching the IEEE 754R Decimal128 format, 34 digits, and a rounding mode of HALF_EVEN, the IEEE 754R default.</li><li><strong>static MathContext DECIMAL32</strong>&nbsp;\u2212 A MathContext object with a precision setting matching the IEEE 754R Decimal32 format, 7 digits, and a rounding mode of HALF_EVEN, the IEEE 754R default.</li><li><strong>static MathContext DECIMAL64</strong>&nbsp;\u2212 A MathContext object with a precision setting matching the IEEE 754R Decimal64 format, 16 digits, and a rounding mode of HALF_EVEN, the IEEE 754R default.</li><li><strong>static MathContext UNLIMITED</strong>&nbsp;\u2212 A MathContext object whose settings have the values required for unlimited precision arithmetic.</li></ul>\n\n\n\n<h2>Class constructors</h2>\n\n\n\n<figure class=\"wp-block-table\"><table><tbody><tr><th>Sr.No.</th><th>Constructor &amp; Description</th></tr><tr><td>1</td><td><strong>MathContext(int setPrecision)</strong>This constructor, constructs a new MathContext with the specified precision and the HALF_UP rounding mode.</td></tr><tr><td>2</td><td><strong>MathContext(int setPrecision, RoundingMode setRoundingMode)</strong>This constructor, constructs a new MathContext with a specified precision and rounding mode.</td></tr><tr><td>3</td><td><strong>MathContext(String val)</strong>This constructor, constructs a new MathContext from a string.</td></tr></tbody></table></figure>\n\n\n\n<h2>Class methods</h2>\n\n\n\n<figure class=\"wp-block-table\"><table><tbody><tr><th>Sr.No.</th><th>Method &amp; Description</th></tr><tr><td>1</td><td>boolean equals(Object x)This method compares this MathContext with the specified Object for equality.</td></tr><tr><td>2</td><td>int getPrecision()This method returns the precision setting.</td></tr><tr><td>3</td><td>RoundingMode getRoundingMode()This method returns the roundingMode setting.</td></tr><tr><td>4</td><td>int hashCode()This method returns the hash code for this MathContext.</td></tr><tr><td>5</td><td>String toString()This method returns the string representation of this MathContext.</td></tr></tbody></table></figure>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Introduction The&nbsp;java.math.MathContext&nbsp;class provides immutable objects which encapsulate the context settings and describes certain rules for numerical operators, such as those implemented by the BigDecimal class. The base-independent settings are \u2212 precision&nbsp;\u2212 the number of digits to be used for an operation; results are rounded to this precision. roundingMode&nbsp;\u2212 a RoundingMode object which specifies the algorithm [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 3,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [79],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/2005"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/3"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=2005"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/2005/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 2006,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/2005/revisions/2006"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=2005"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=2005"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=2005"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 2007,
+    "date": "2021-04-12T05:57:16",
+    "date_gmt": "2021-04-12T05:57:16",
+    "guid": {
+      "rendered": "https://java.foobrdigital.com/?p=2007"
+    },
+    "modified": "2021-04-12T05:57:16",
+    "modified_gmt": "2021-04-12T05:57:16",
+    "slug": "roundingmode-enumeration",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/roundingmode-enumeration/",
+    "title": {
+      "rendered": "RoundingMode Enumeration"
+    },
+    "content": {
+      "rendered": "\n<h2>Introduction</h2>\n\n\n\n<p>The&nbsp;<strong>java.math.RoundingMode</strong>&nbsp;enumeration specifies a rounding behavior for numerical operations capable of discarding precision. Each rounding mode indicates how the least significant returned digit of a rounded result is to be calculated.</p>\n\n\n\n<p>If fewer digits are returned than the digits needed to represent the exact numerical result, the discarded digits will be referred to as the discarded fraction regardless of the digits&#8217; contribution to the value of the number. In other words, considered as a numerical value, the discarded fraction could have an absolute value greater than one.</p>\n\n\n\n<p>This enum is intended to replace the integer-based enumeration of rounding mode constants in BigDecimal (BigDecimal.ROUND_UP, BigDecimal.ROUND_DOWN, etc. ).</p>\n\n\n\n<h2>Enum declaration</h2>\n\n\n\n<p>Following is the declaration for&nbsp;<strong>java.math.RoundingMode</strong>&nbsp;enum \u2212</p>\n\n\n\n<pre class=\"wp-block-code\"><code>public enum RoundingMode\n   extends Enum&lt;RoundingMode&gt;\n</code></pre>\n\n\n\n<h2>Constants</h2>\n\n\n\n<p>Following are the constants for&nbsp;<strong>java.math.RoundingMode</strong>&nbsp;enum \u2212</p>\n\n\n\n<ul><li><strong>CEILING</strong>&nbsp;\u2212 Rounding mode to round towards positive infinity.</li><li><strong>DOWN</strong>&nbsp;\u2212 Rounding mode to round towards zero.</li><li><strong>FLOOR</strong>&nbsp;\u2212 Rounding mode to round towards negative infinity.</li><li><strong>HALF_DOWN</strong>&nbsp;\u2212 Rounding mode to round towards &#8220;nearest neighbor&#8221; unless both neighbors are equidistant, in which case round down.</li><li><strong>HALF_EVEN</strong>&nbsp;\u2212 Rounding mode to round towards the &#8220;nearest neighbor&#8221; unless both neighbors are equidistant, in which case, round towards the even neighbor.</li><li><strong>HALF_UP</strong>&nbsp;\u2212 Rounding mode to round towards &#8220;nearest neighbor&#8221; unless both neighbors are equidistant, in which case round up.</li><li><strong>UNNECESSARY</strong>&nbsp;\u2212 Rounding mode to assert that the requested operation has an exact result, hence no rounding is necessary.</li><li><strong>UP</strong>&nbsp;\u2212 Rounding mode to round away from zero.</li></ul>\n\n\n\n<h2>Enum methods</h2>\n\n\n\n<figure class=\"wp-block-table\"><table><tbody><tr><th>Sr.No.</th><th>Method &amp; Description</th></tr><tr><td>1</td><td><strong>static RoundingMode valueOf(int rm)</strong>This method returns the RoundingMode object corresponding to a legacy integer rounding mode constant in BigDecimal.</td></tr><tr><td>2</td><td><strong>static RoundingMode valueOf(String name)</strong>This method returns the enum constant of this type with the specified name.</td></tr><tr><td>3</td><td><strong>static RoundingMode[ ] values()</strong>This method returns an array containing the constants of this enum type, in the order they are declared.</td></tr></tbody></table></figure>\n\n\n\n<h2>Example</h2>\n\n\n\n<p>The following example shows the usage of math.RoundingMode methods.Live Demo</p>\n\n\n\n<pre class=\"wp-block-code\"><code>package com.tutorialspoint;\n\nimport java.math.*;\n\npublic class RoundingModeDemo {\n\n   public static void main(String&#91;] args) {\n\n      // create 2 RoundingMode objects\n      RoundingMode rm1, rm2;\n\n      // create and assign values to rm and name\n      int rm = 5;\n      String name = \"UP\";\n\n      // static methods are called using enum name\n\n      // assign the the enum constant of rm to rm1\n      rm1 = RoundingMode.valueOf(rm);\n\n      // assign the the enum constant of name to rm2\n      rm2 = RoundingMode.valueOf(name);\n\n      String str1 = \"Enum constant for integer \" + rm + \" is \" +rm1;\n      String str2 = \"Enum constant for string \" + name + \" is \" +rm2;\n\n      // print rm1, rm2  values\n      System.out.println( str1 );\n      System.out.println( str2 );\n\n      String str3 = \"Enum constants of RoundingMode in order are :\";\n\n      System.out.println( str3 );\n\n      // print the array of enum constatnts using for loop\n      for (RoundingMode c : RoundingMode.values())\n      System.out.println(c);\n   }\n}</code></pre>\n\n\n\n<p>Let us compile and run the above program, this will produce the following result \u2212</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Enum constant for integer 5 is HALF_DOWN\nEnum constant for string UP is UP\nEnum constants of RoundingMode in order are :\nUP\nDOWN\nCEILING\nFLOOR\nHALF_UP\nHALF_DOWN\nHALF_EVEN\nUNNECESSARY</code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Introduction The&nbsp;java.math.RoundingMode&nbsp;enumeration specifies a rounding behavior for numerical operations capable of discarding precision. Each rounding mode indicates how the least significant returned digit of a rounded result is to be calculated. If fewer digits are returned than the digits needed to represent the exact numerical result, the discarded digits will be referred to as the [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 3,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [79],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/2007"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/3"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=2007"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/2007/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 2008,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/2007/revisions/2008"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=2007"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=2007"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=2007"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  }
+]

@@ -1,0 +1,2156 @@
+[
+  {
+    "id": 3982,
+    "date": "2022-06-29T07:02:27",
+    "date_gmt": "2022-06-29T07:02:27",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3982" },
+    "modified": "2022-06-29T07:02:27",
+    "modified_gmt": "2022-06-29T07:02:27",
+    "slug": "setting-up-the-e-learning-project",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/setting-up-the-e-learning-project/",
+    "title": { "rendered": "Setting up the e-learning project" },
+    "content": {
+      "rendered": "\n<p>Your final practical project will be an e-learning platform. First, create a virtual environment&nbsp;<a></a>for your new project and activate it with the following commands:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>mkdir env\npython3 -m venv env/educa\nsource env/educa/bin/activate\n</code></pre>\n\n\n\n<p>Install Django in your virtual environment with the following command:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>pip install \"Django==3.0.*\"\n</code></pre>\n\n\n\n<p>You are going to manage image uploads in your project, so you also need to install&nbsp;<code>Pillow</code>&nbsp;with the following command:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>pip install Pillow==7.0.0\n</code></pre>\n\n\n\n<p>Create a new project using the following command:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>django-admin startproject educa\n</code></pre>\n\n\n\n<p>Enter&nbsp;<a></a>the new&nbsp;<code>educa</code>&nbsp;directory and create a new application using the following commands:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>cd educa\ndjango-admin startapp courses\n</code></pre>\n\n\n\n<p>Edit the&nbsp;<code>settings.py</code>&nbsp;file of the&nbsp;<code>educa</code>&nbsp;project and add&nbsp;<code>courses</code>&nbsp;to the&nbsp;<code>INSTALLED_APPS</code>&nbsp;setting, as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>INSTALLED_APPS = &#91;\n    <strong>'courses.apps.CoursesConfig',</strong>\n    'django.contrib.admin',\n    'django.contrib.auth',\n    'django.contrib.contenttypes',\n    'django.contrib.sessions',\n    'django.contrib.messages',\n    'django.contrib.staticfiles',\n]\n</code></pre>\n\n\n\n<p>The&nbsp;<code>courses</code>&nbsp;application is now active for the project. Let&#8217;s define the models for courses and course contents.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Your final practical project will be an e-learning platform. First, create a virtual environment&nbsp;for your new project and activate it with the following commands: Install Django in your virtual environment with the following command: You are going to manage image uploads in your project, so you also need to install&nbsp;Pillow&nbsp;with the following command: Create a&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/setting-up-the-e-learning-project/\">Continue reading <span class=\"screen-reader-text\">Setting up the e-learning project</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [134],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3982" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3982"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3982/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3983,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3982/revisions/3983"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3982"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3982"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3982"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3986,
+    "date": "2022-06-29T07:03:01",
+    "date_gmt": "2022-06-29T07:03:01",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3986" },
+    "modified": "2022-06-29T07:03:01",
+    "modified_gmt": "2022-06-29T07:03:01",
+    "slug": "building-the-course-models",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/building-the-course-models/",
+    "title": { "rendered": "Building the course models" },
+    "content": {
+      "rendered": "\n<p>Your e-learning platform will offer courses on various subjects. Each course will be divided into&nbsp;<a></a>a configurable number of modules, and each module will contain a configurable number of contents. The contents will be of various types: text, file, image, or video. The following example shows what the data structure of your course catalog will look like:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Subject 1\n  Course 1\n    Module 1\n      Content 1 (image)\n      Content 2 (text)\n    Module 2\n      Content 3 (text)\n      Content 4 (file)\n      Content 5 (video)\n      ...\n</code></pre>\n\n\n\n<p>Let&#8217;s build the course models. Edit the&nbsp;<code>models.py</code>&nbsp;file of the&nbsp;<code>courses</code>&nbsp;application and add the&nbsp;<a></a>following code to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>from django.db import models\nfrom django.contrib.auth.models import User\nclass Subject(models.Model):\n    title = models.CharField(max_length=200)\n    slug = models.SlugField(max_length=200, unique=True)\n    class Meta:\n        ordering = &#91;'title']\n    def __str__(self):\n        return self.title\nclass Course(models.Model):\n    owner = models.ForeignKey(User,\n                              related_name='courses_created',\n                              on_delete=models.CASCADE)\n    subject = models.ForeignKey(Subject,\n                                related_name='courses',\n                                on_delete=models.CASCADE)\n    title = models.CharField(max_length=200)\n    slug = models.SlugField(max_length=200, unique=True)\n    overview = models.TextField()\n    created = models.DateTimeField(auto_now_add=True)\n    class Meta:\n        ordering = &#91;'-created']\n    def __str__(self):\n        return self.title\nclass Module(models.Model):\n    course = models.ForeignKey(Course,\n                               related_name='modules',\n                               on_delete=models.CASCADE)\n    title = models.CharField(max_length=200)\n    description = models.TextField(blank=True)\n    def __str__(self):\n        return self.title\n</code></pre>\n\n\n\n<p>These are the initial&nbsp;<code>Subject</code>,&nbsp;<code>Course</code>, and&nbsp;<code>Module</code>&nbsp;models. The&nbsp;<code>Course</code>&nbsp;model fields are as follows:</p>\n\n\n\n<ul><li><code>owner</code>: The instructor who created this course.</li><li><code>subject</code>: The subject that this course belongs to. It is a&nbsp;<code>ForeignKey</code>&nbsp;field that points to the&nbsp;<code>Subject</code>&nbsp;model.</li><li><code>title</code>: The title of the course.</li><li><code>slug</code>: The slug of the course. This will be used in URLs later.</li><li><code>overview</code>: A&nbsp;<code>TextField</code>&nbsp;column to store an overview of the course.</li><li><code>created</code>: The date and time when the course was created. It will be automatically set by Django when creating new objects because of&nbsp;<code>auto_now_add=True</code>.</li></ul>\n\n\n\n<p>Each course&nbsp;<a></a>is divided into several modules. Therefore, the&nbsp;<code>Module</code>&nbsp;model contains a&nbsp;<code>ForeignKey</code>&nbsp;field that points to the&nbsp;<code>Course</code>&nbsp;model.</p>\n\n\n\n<p>Open the shell and run the following command to create the initial migration for this application:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>python manage.py makemigrations\n</code></pre>\n\n\n\n<p>You will see the following output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Migrations for 'courses':\n  courses/migrations/0001_initial.py:\n    - Create model Course\n    - Create model Module\n    - Create model Subject\n    - Add field subject to course\n</code></pre>\n\n\n\n<p>Then, run the following command to apply all migrations to the database:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>python manage.py migrate\n</code></pre>\n\n\n\n<p>You should see output that includes all applied migrations, including those of&nbsp;Django. The output will contain the following line:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Applying courses.0001_initial... OK\n</code></pre>\n\n\n\n<p>The models of your&nbsp;<code>courses</code>&nbsp;application have been synced with the database.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Your e-learning platform will offer courses on various subjects. Each course will be divided into&nbsp;a configurable number of modules, and each module will contain a configurable number of contents. The contents will be of various types: text, file, image, or video. The following example shows what the data structure of your course catalog will look&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/building-the-course-models/\">Continue reading <span class=\"screen-reader-text\">Building the course models</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [134],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3986" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3986"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3986/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3987,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3986/revisions/3987"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3986"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3986"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3986"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3988,
+    "date": "2022-06-29T07:03:24",
+    "date_gmt": "2022-06-29T07:03:24",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3988" },
+    "modified": "2022-06-29T07:03:24",
+    "modified_gmt": "2022-06-29T07:03:24",
+    "slug": "registering-the-models-in-the-administration-site",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/registering-the-models-in-the-administration-site/",
+    "title": {
+      "rendered": "Registering the models in the administration site"
+    },
+    "content": {
+      "rendered": "\n<p>Let&#8217;s add&nbsp;<a></a>the course models to the administration site. Edit the&nbsp;<code>admin.py</code>&nbsp;file inside the&nbsp;<code>courses</code>&nbsp;application directory and add the following code to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>from django.contrib import admin\nfrom .models import Subject, Course, Module\n@admin.register(Subject)\nclass SubjectAdmin(admin.ModelAdmin):\n    list_display = &#91;'title', 'slug']\n    prepopulated_fields = {'slug': ('title',)}\nclass ModuleInline(admin.StackedInline):\n    model = Module\n@admin.register(Course)\nclass CourseAdmin(admin.ModelAdmin):\n    list_display = &#91;'title', 'subject', 'created']\n    list_filter = &#91;'created', 'subject']\n    search_fields = &#91;'title', 'overview']\n    prepopulated_fields = {'slug': ('title',)}\n    inlines = &#91;ModuleInline]\n</code></pre>\n\n\n\n<p>The models for the course application are now registered in the administration site. Remember that you use the&nbsp;<code>@admin.register()</code>&nbsp;decorator to register models in the administration site.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Let&#8217;s add&nbsp;the course models to the administration site. Edit the&nbsp;admin.py&nbsp;file inside the&nbsp;courses&nbsp;application directory and add the following code to it: The models for the course application are now registered in the administration site. Remember that you use the&nbsp;@admin.register()&nbsp;decorator to register models in the administration site.</p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [134],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3988" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3988"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3988/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3989,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3988/revisions/3989"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3988"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3988"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3988"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3990,
+    "date": "2022-06-29T07:04:03",
+    "date_gmt": "2022-06-29T07:04:03",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3990" },
+    "modified": "2022-06-29T07:04:03",
+    "modified_gmt": "2022-06-29T07:04:03",
+    "slug": "using-fixtures-to-provide-initial-data-for-models",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/using-fixtures-to-provide-initial-data-for-models/",
+    "title": {
+      "rendered": "Using fixtures to provide initial data for models"
+    },
+    "content": {
+      "rendered": "\n<p>Sometimes, you might want to prepopulate your database with hardcoded data. This is useful for&nbsp;<a></a>automatically including initial data in the project setup, instead of having to add it manually. Django comes&nbsp;<a></a>with a simple way to load and dump data from the database into files that are called&nbsp;<strong>fixtures</strong>. Django supports fixtures in JSON, XML, or YAML formats. You are going to create a fixture to include several initial&nbsp;<code>Subject</code>&nbsp;objects for your project.</p>\n\n\n\n<p>First, create a superuser using the following command:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>python manage.py createsuperuser\n</code></pre>\n\n\n\n<p>Then, run the development server using the following command:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>python manage.py runserver\n</code></pre>\n\n\n\n<p>Open&nbsp;<code>http://127.0.0.1:8000/admin/courses/subject/</code>&nbsp;in your browser. Create&nbsp;several subjects using the administration site. The list display page should look as follows:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/B14981_10_01.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 10.1: The subject change list view</p>\n\n\n\n<p>Run the&nbsp;<a></a>following command from the shell:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>python manage.py dumpdata courses --indent=2\n</code></pre>\n\n\n\n<p>You will see output similar to the following:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&#91;\n{\n  \"model\": \"courses.subject\",\n  \"pk\": 1,\n  \"fields\": {\n    \"title\": \"Mathematics\",\n    \"slug\": \"mathematics\"\n  }\n},\n{\n  \"model\": \"courses.subject\",\n  \"pk\": 2,\n  \"fields\": {\n    \"title\": \"Music\",\n    \"slug\": \"music\"\n  }\n},\n{\n  \"model\": \"courses.subject\",\n  \"pk\": 3,\n  \"fields\": {\n    \"title\": \"Physics\",\n    \"slug\": \"physics\"\n  }\n},\n{\n  \"model\": \"courses.subject\",\n  \"pk\": 4,\n  \"fields\": {\n    \"title\": \"Programming\",\n    \"slug\": \"programming\"\n  }\n}\n]\n</code></pre>\n\n\n\n<p>The&nbsp;<code>dumpdata</code>&nbsp;command dumps data from the database into the standard output,&nbsp;serialized in JSON format by default. The resulting data structure includes&nbsp;information about the model and its fields for Django to be able to&nbsp;load&nbsp;it&nbsp;into the database.</p>\n\n\n\n<p>You can&nbsp;<a></a>limit the output to the models of an application by providing the application names to the command, or specifying single models for outputting data using the&nbsp;<code>app.Model</code>&nbsp;format. You can also specify the format using the&nbsp;<code>--format</code>&nbsp;flag. By default,&nbsp;<code>dumpdata</code>&nbsp;outputs the serialized data to the standard output. However, you can indicate an output file using the&nbsp;<code>--output</code>&nbsp;flag. The&nbsp;<code>--indent</code>&nbsp;flag allows you to specify indentation. For more information on&nbsp;<code>dumpdata</code>&nbsp;parameters, run&nbsp;<code>python manage.py dumpdata --help</code>.</p>\n\n\n\n<p>Save this dump to a fixtures file in a new&nbsp;<code>fixtures/</code>&nbsp;directory in the&nbsp;<code>courses</code>&nbsp;application using the following commands:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>mkdir courses/fixtures\npython manage.py dumpdata courses --indent=2 --output=courses/fixtures/subjects.json\n</code></pre>\n\n\n\n<p>Run the development server and use the administration site to remove the subjects you created. Then, load the fixture into the database using the following command:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>python manage.py loaddata subjects.json\n</code></pre>\n\n\n\n<p>All&nbsp;<code>Subject</code>&nbsp;objects included in the fixture are loaded into the database.</p>\n\n\n\n<p>By default, Django looks for files in the&nbsp;<code>fixtures/</code>&nbsp;directory of each application, but you can specify the complete path to the fixture file for the&nbsp;<code>loaddata</code>&nbsp;command. You can also use the&nbsp;<code>FIXTURE_DIRS</code>&nbsp;setting to tell Django additional directories to look in for fixtures.</p>\n\n\n\n<p>Fixtures&nbsp;<a></a>are not only useful for setting up initial data, but also for providing sample data for your application or data required for your tests.</p>\n\n\n\n<p>You can read about how to use fixtures for testing at https://docs.djangoproject.com/en/3.0/topics/testing/tools/#fixture-loading.</p>\n\n\n\n<p>If you want to load fixtures in model migrations, take a look at Django&#8217;s documentation about data migrations. You can find the documentation for migrating data at https://docs.djangoproject.com/en/3.0/topics/migrations/#data-migrations.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Sometimes, you might want to prepopulate your database with hardcoded data. This is useful for&nbsp;automatically including initial data in the project setup, instead of having to add it manually. Django comes&nbsp;with a simple way to load and dump data from the database into files that are called&nbsp;fixtures. Django supports fixtures in JSON, XML, or YAML&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/using-fixtures-to-provide-initial-data-for-models/\">Continue reading <span class=\"screen-reader-text\">Using fixtures to provide initial data for models</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [134],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3990" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3990"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3990/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3991,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3990/revisions/3991"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3990"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3990"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3990"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3992,
+    "date": "2022-06-29T07:05:01",
+    "date_gmt": "2022-06-29T07:05:01",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3992" },
+    "modified": "2022-06-29T07:05:01",
+    "modified_gmt": "2022-06-29T07:05:01",
+    "slug": "creating-models-for-diverse-content",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/creating-models-for-diverse-content/",
+    "title": { "rendered": "Creating models for diverse content" },
+    "content": {
+      "rendered": "\n<p>You plan to add different types of content to the course modules, such as text, images, files, and videos. Therefore, you need a versatile data model that allows you to store diverse content. <em>Tracking User Actions</em>, you learned the convenience of using generic relations to create foreign keys that can point to the objects of any model. You are going to create a <code>Content</code> model that represents the modules&#8217; contents, and define a generic relation to associate any kind of content.</p>\n\n\n\n<p>Edit the&nbsp;<code>models.py</code>&nbsp;file of the&nbsp;<code>courses</code>&nbsp;application and add the following imports:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>from django.contrib.contenttypes.models import ContentType\nfrom django.contrib.contenttypes.fields import GenericForeignKey\n</code></pre>\n\n\n\n<p>Then, add the following code to the end of the file:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>class Content(models.Model):\n    module = models.ForeignKey(Module,\n                               related_name='contents',\n                               on_delete=models.CASCADE)\n    content_type = models.ForeignKey(ContentType,\n                                     on_delete=models.CASCADE)\n    object_id = models.PositiveIntegerField()\n    item = GenericForeignKey('content_type', 'object_id')\n</code></pre>\n\n\n\n<p>This is the&nbsp;<code>Content</code>&nbsp;model. A module contains multiple contents, so you define a&nbsp;<code>ForeignKey</code>&nbsp;field that points to the&nbsp;<code>Module</code>&nbsp;model. You also set up a generic relation to associate objects from different models that represent different types of content. Remember that you need three different fields to set up a generic relation. In your&nbsp;<code>Content</code>&nbsp;model, these are:</p>\n\n\n\n<ul><li><code>content_type</code>: A&nbsp;<code>ForeignKey</code>&nbsp;field to the&nbsp;<code>ContentType</code>&nbsp;model</li><li><code>object_id</code>: A&nbsp;<code>PositiveIntegerField</code>&nbsp;to store the primary key of the related object</li><li><code>item</code>: A&nbsp;<code>GenericForeignKey</code>&nbsp;field to the related object combining the two previous fields</li></ul>\n\n\n\n<p>Only the&nbsp;<code>content_type&nbsp;</code>and&nbsp;<code>object_id</code>&nbsp;fields have a corresponding column in the database&nbsp;<a></a>table of this model. The&nbsp;<code>item</code>&nbsp;field allows you to retrieve or set the related object directly, and its functionality is built on top of the other two fields.</p>\n\n\n\n<p>You are going to use a different model for each type of content. Your content models will have some common fields, but they will differ in the actual data they can store.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>You plan to add different types of content to the course modules, such as text, images, files, and videos. Therefore, you need a versatile data model that allows you to store diverse content. Tracking User Actions, you learned the convenience of using generic relations to create foreign keys that can point to the objects of any model.&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/creating-models-for-diverse-content/\">Continue reading <span class=\"screen-reader-text\">Creating models for diverse content</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [134],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3992" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3992"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3992/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3993,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3992/revisions/3993"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3992"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3992"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3992"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3994,
+    "date": "2022-06-29T07:05:23",
+    "date_gmt": "2022-06-29T07:05:23",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3994" },
+    "modified": "2022-06-29T07:05:23",
+    "modified_gmt": "2022-06-29T07:05:23",
+    "slug": "using-model-inheritance",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/using-model-inheritance/",
+    "title": { "rendered": "Using model inheritance" },
+    "content": {
+      "rendered": "\n<p>Django supports&nbsp;<a></a>model inheritance. It works in&nbsp;<a></a>a similar way to standard class inheritance in Python. Django offers the following three options to use model inheritance:</p>\n\n\n\n<ul><li><strong>Abstract models</strong>: Useful when&nbsp;<a></a>you want to put some common information into several models.</li><li><strong>Multi-table model inheritance</strong>: Applicable when each model in the hierarchy is&nbsp;<a></a>considered a complete model by itself.</li><li><strong>Proxy models</strong>: Useful when&nbsp;<a></a>you need to change the behavior of a model, for&nbsp;example, by including additional methods, changing the default manager, or using different meta options.</li></ul>\n\n\n\n<p>Let&#8217;s take a closer look at each of them.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Django supports&nbsp;model inheritance. It works in&nbsp;a similar way to standard class inheritance in Python. Django offers the following three options to use model inheritance: Abstract models: Useful when&nbsp;you want to put some common information into several models. Multi-table model inheritance: Applicable when each model in the hierarchy is&nbsp;considered a complete model by itself. Proxy models:&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/using-model-inheritance/\">Continue reading <span class=\"screen-reader-text\">Using model inheritance</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [134],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3994" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3994"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3994/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3995,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3994/revisions/3995"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3994"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3994"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3994"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3996,
+    "date": "2022-06-29T07:05:44",
+    "date_gmt": "2022-06-29T07:05:44",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3996" },
+    "modified": "2022-06-29T07:05:44",
+    "modified_gmt": "2022-06-29T07:05:44",
+    "slug": "abstract-models",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/abstract-models/",
+    "title": { "rendered": "Abstract models" },
+    "content": {
+      "rendered": "\n<p>An abstract model is&nbsp;<a></a>a base class in which you define fields you want to include in&nbsp;all child models. Django doesn&#8217;t create any database tables for abstract models. A&nbsp;database table is created for each child model, including the fields inherited from the abstract class and the ones defined in the child model.</p>\n\n\n\n<p>To mark a model as abstract, you need to include&nbsp;<code>abstract=True</code>&nbsp;in its&nbsp;<code>Meta</code>&nbsp;class. Django will recognize that it is an abstract model and will not create a database table for it. To create child models, you just need to subclass the abstract model.</p>\n\n\n\n<p>The following&nbsp;<a></a>example shows an abstract&nbsp;<code>Content</code>&nbsp;model and a child&nbsp;<code>Text</code>&nbsp;model:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>from django.db import models\nclass BaseContent(models.Model):\n    title = models.CharField(max_length=100)\n    created = models.DateTimeField(auto_now_add=True)\n    class Meta:\n        abstract = True\nclass Text(BaseContent):\n    body = models.TextField()\n</code></pre>\n\n\n\n<p>In this case, Django would create a table for the&nbsp;<code>Text</code>&nbsp;model only, including the&nbsp;<code>title</code>,&nbsp;<code>created</code>, and&nbsp;<code>body</code>&nbsp;fields.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>An abstract model is&nbsp;a base class in which you define fields you want to include in&nbsp;all child models. Django doesn&#8217;t create any database tables for abstract models. A&nbsp;database table is created for each child model, including the fields inherited from the abstract class and the ones defined in the child model. To mark a model&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/abstract-models/\">Continue reading <span class=\"screen-reader-text\">Abstract models</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [134],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3996" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3996"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3996/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3997,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3996/revisions/3997"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3996"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3996"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3996"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3998,
+    "date": "2022-06-29T07:06:08",
+    "date_gmt": "2022-06-29T07:06:08",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3998" },
+    "modified": "2022-06-29T07:06:08",
+    "modified_gmt": "2022-06-29T07:06:08",
+    "slug": "multi-table-model-inheritance",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/multi-table-model-inheritance/",
+    "title": { "rendered": "Multi-table model inheritance" },
+    "content": {
+      "rendered": "\n<p>In multi-table&nbsp;<a></a>inheritance, each model corresponds to a database table. Django creates a&nbsp;<code>OneToOneField</code>&nbsp;field for the relationship between the child model and its parent model. To use multi-table inheritance, you have to subclass an existing model. Django will create a database table for both the original model and the sub-model. The following example shows multi-table inheritance:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>from django.db import models\nclass BaseContent(models.Model):\n    title = models.CharField(max_length=100)\n    created = models.DateTimeField(auto_now_add=True)\nclass Text(BaseContent):\n    body = models.TextField()\n</code></pre>\n\n\n\n<p>Django would include an automatically generated&nbsp;<code>OneToOneField</code>&nbsp;field in the&nbsp;<code>Text</code>&nbsp;model and create a database table for each model.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>In multi-table&nbsp;inheritance, each model corresponds to a database table. Django creates a&nbsp;OneToOneField&nbsp;field for the relationship between the child model and its parent model. To use multi-table inheritance, you have to subclass an existing model. Django will create a database table for both the original model and the sub-model. The following example shows multi-table inheritance: Django&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/multi-table-model-inheritance/\">Continue reading <span class=\"screen-reader-text\">Multi-table model inheritance</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [134],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3998" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3998"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3998/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3999,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3998/revisions/3999"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3998"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3998"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3998"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 4000,
+    "date": "2022-06-29T07:06:28",
+    "date_gmt": "2022-06-29T07:06:28",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=4000" },
+    "modified": "2022-06-29T07:06:28",
+    "modified_gmt": "2022-06-29T07:06:28",
+    "slug": "proxy-models",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/proxy-models/",
+    "title": { "rendered": "Proxy models" },
+    "content": {
+      "rendered": "\n<p>A proxy model&nbsp;<a></a>changes the behavior of a model. Both models operate on the database table of the original model. To create a proxy model, add&nbsp;<code>proxy=True</code>&nbsp;to the&nbsp;<code>Meta</code>&nbsp;class of the model. The following example illustrates how to create a proxy model:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>from django.db import models\nfrom django.utils import timezone\nclass BaseContent(models.Model):\n    title = models.CharField(max_length=100)\n    created = models.DateTimeField(auto_now_add=True)\nclass OrderedContent(BaseContent):\n    class Meta:\n        proxy = True\n        ordering = &#91;'created']\n    def created_delta(self):\n        return timezone.now() - self.created\n</code></pre>\n\n\n\n<p>Here, you define an&nbsp;<code>OrderedContent</code>&nbsp;model that is a proxy model for the&nbsp;<code>Content</code>&nbsp;model. This model provides a default ordering for QuerySets and an additional&nbsp;<code>created_delta()</code>&nbsp;method. Both models,&nbsp;<code>Content</code>&nbsp;and&nbsp;<code>OrderedContent</code>, operate on the same database table, and objects are accessible via the ORM through either&nbsp;model.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>A proxy model&nbsp;changes the behavior of a model. Both models operate on the database table of the original model. To create a proxy model, add&nbsp;proxy=True&nbsp;to the&nbsp;Meta&nbsp;class of the model. The following example illustrates how to create a proxy model: Here, you define an&nbsp;OrderedContent&nbsp;model that is a proxy model for the&nbsp;Content&nbsp;model. This model provides a default&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/proxy-models/\">Continue reading <span class=\"screen-reader-text\">Proxy models</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [134],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4000" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=4000"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4000/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4001,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4000/revisions/4001"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=4000"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=4000"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=4000"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 4002,
+    "date": "2022-06-29T07:07:01",
+    "date_gmt": "2022-06-29T07:07:01",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=4002" },
+    "modified": "2022-06-29T07:07:01",
+    "modified_gmt": "2022-06-29T07:07:01",
+    "slug": "creating-the-content-models",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/creating-the-content-models/",
+    "title": { "rendered": "Creating the content models" },
+    "content": {
+      "rendered": "\n<p>The&nbsp;<code>Content</code>&nbsp;model of your&nbsp;<code>courses</code>&nbsp;application contains a generic relation to associate different types&nbsp;<a></a>of content with it. You will create a different model for each type of content. All content models will have some fields in common and additional fields to store custom data. You are going to create an abstract model that provides the common fields for all content models.</p>\n\n\n\n<p>Edit the&nbsp;<code>models.py</code>&nbsp;file of the&nbsp;<code>courses</code>&nbsp;application and add the following code to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>class ItemBase(models.Model):\n    owner = models.ForeignKey(User,\n                              related_name='%(class)s_related',\n                              on_delete=models.CASCADE)\n    title = models.CharField(max_length=250)\n    created = models.DateTimeField(auto_now_add=True)\n    updated = models.DateTimeField(auto_now=True)\n    class Meta:\n        abstract = True\n    def __str__(self):\n        return self.title\nclass Text(ItemBase):\n    content = models.TextField()\nclass File(ItemBase):\n    file = models.FileField(upload_to='files')\nclass Image(ItemBase):\n       file = models.FileField(upload_to='images')\nclass Video(ItemBase):\n    url = models.URLField()\n</code></pre>\n\n\n\n<p>In this code, you define an abstract model named&nbsp;<code>ItemBase</code>. Therefore, you set&nbsp;<code>abstract=True</code>&nbsp;in its&nbsp;<code>Meta</code>&nbsp;class.</p>\n\n\n\n<p>In this model, you define the&nbsp;<code>owner</code>,&nbsp;<code>title</code>,&nbsp;<code>created</code>, and&nbsp;<code>updated</code>&nbsp;fields. These common fields will be used for all types of content.</p>\n\n\n\n<p>The&nbsp;<code>owner</code>&nbsp;field allows you to store which user created the content. Since this field is defined in an abstract class, you need a different&nbsp;<code>related_name</code>&nbsp;for each sub-model. Django allows&nbsp;<a></a>you to specify a placeholder for the model class name in the&nbsp;<code>related_name</code>&nbsp;attribute as&nbsp;<code>%(class)s</code>. By doing so,&nbsp;<code>related_name</code>&nbsp;for each child model will be generated automatically. Since you use&nbsp;<code>'%(class)s_related'</code>&nbsp;as the&nbsp;<code>related_name</code>, the reverse relationship for child models will be&nbsp;<code>text_related</code>,&nbsp;<code>file_related</code>,&nbsp;<code>image_related</code>, and&nbsp;<code>video_related</code>, respectively.</p>\n\n\n\n<p>You have defined four different content models that inherit from the&nbsp;<code>ItemBase</code>&nbsp;abstract model. These are as follows:</p>\n\n\n\n<ul><li><code>Text</code>: To store text content</li><li><code>File</code>: To store files, such as PDFs</li><li><code>Image</code>: To store image files</li><li><code>Video</code>: To store videos; you use an&nbsp;<code>URLField</code>&nbsp;field to provide a video URL in&nbsp;order to embed it</li></ul>\n\n\n\n<p>Each child model contains the fields defined in the&nbsp;<code>ItemBase</code>&nbsp;class in addition to its own fields. A database table will be created for the&nbsp;<code>Text</code>,&nbsp;<code>File</code>,&nbsp;<code>Image</code>, and&nbsp;<code>Video</code>&nbsp;models, respectively. There will be no database table associated with the&nbsp;<code>ItemBase</code>&nbsp;model, since it is an abstract model.</p>\n\n\n\n<p>Edit the&nbsp;<code>Content</code>&nbsp;model you created previously and modify its&nbsp;<code>content_type</code>&nbsp;field, as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>content_type = models.ForeignKey(ContentType,\n                   on_delete=models.CASCADE<strong>,</strong>\n                   <strong>limit_choices_to={'model__in':(</strong>\n                                     <strong>'text',</strong>\n                                     <strong>'video',</strong>\n                                     <strong>'image',</strong>\n                                     <strong>'file')}</strong>)\n</code></pre>\n\n\n\n<p>You add a&nbsp;<code>limit_choices_to</code>&nbsp;argument to limit the&nbsp;<code>ContentType</code>&nbsp;objects that can be used for the generic relation. You use the&nbsp;<code>model__in</code>&nbsp;field lookup to filter the query to the&nbsp;<code>ContentType</code>&nbsp;objects with a&nbsp;<code>model</code>&nbsp;attribute that is&nbsp;<code>'text'</code>,&nbsp;<code>'video'</code>,&nbsp;<code>'image'</code>, or&nbsp;<code>'file'</code>.</p>\n\n\n\n<p>Let&#8217;s create&nbsp;<a></a>a migration to include the new models you have added. Run the following command from the command line:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>python manage.py makemigrations\n</code></pre>\n\n\n\n<p>You will see the following output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Migrations for 'courses':\n  courses/migrations/0002_content_file_image_text_video.py\n    - Create model Video\n    - Create model Text\n    - Create model Image\n    - Create model File\n    - Create model Content\n</code></pre>\n\n\n\n<p>Then, run the following command to apply the new migration:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>python manage.py migrate\n</code></pre>\n\n\n\n<p>The output you see should end with the following line:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Applying courses.0002_content_file_image_text_video... OK\n</code></pre>\n\n\n\n<p>You have created models that are suitable for adding diverse content to the course modules. However, there is still something missing in your models: the course modules and contents should follow a particular order. You need a field that allows&nbsp;you to order them easily.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>The&nbsp;Content&nbsp;model of your&nbsp;courses&nbsp;application contains a generic relation to associate different types&nbsp;of content with it. You will create a different model for each type of content. All content models will have some fields in common and additional fields to store custom data. You are going to create an abstract model that provides the common fields for&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/creating-the-content-models/\">Continue reading <span class=\"screen-reader-text\">Creating the content models</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [134],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4002" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=4002"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4002/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4003,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4002/revisions/4003"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=4002"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=4002"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=4002"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 4004,
+    "date": "2022-06-29T07:07:31",
+    "date_gmt": "2022-06-29T07:07:31",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=4004" },
+    "modified": "2022-06-29T07:07:31",
+    "modified_gmt": "2022-06-29T07:07:31",
+    "slug": "creating-custom-model-fields",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/creating-custom-model-fields/",
+    "title": { "rendered": "Creating custom model fields" },
+    "content": {
+      "rendered": "\n<p>Django comes&nbsp;<a></a>with a complete collection of model fields that you can use to build your models. However, you can also create your own model fields to store custom data or alter the behavior of existing fields.</p>\n\n\n\n<p>You need a field that allows you to define an order for objects. An easy way to specify an order for objects using existing Django fields is by adding a&nbsp;<code>PositiveIntegerField</code>&nbsp;to your models. Using integers, you can easily specify the order of objects. You can create a&nbsp;<a></a>custom order field that inherits from&nbsp;<code>PositiveIntegerField</code>&nbsp;and provides additional behavior.</p>\n\n\n\n<p>There are two relevant functionalities that you will build into your order field:</p>\n\n\n\n<ul><li><strong>Automatically assign an order value when no specific order is provided</strong>: When saving a new object with no specific order, your field should automatically assign the number that comes after the last existing ordered object. If there are two objects with order&nbsp;<code>1</code>&nbsp;and&nbsp;<code>2</code>&nbsp;respectively, when saving a third object, you should automatically assign the order&nbsp;<code>3</code>&nbsp;to it if no specific order has been provided.</li><li><strong>Order objects with respect to other fields</strong>: Course modules will be ordered with respect to the course they belong to and module contents with respect to&nbsp;the module they belong to.</li></ul>\n\n\n\n<p>Create a new&nbsp;<code>fields.py</code>&nbsp;file inside the&nbsp;<code>courses</code>&nbsp;application directory and add the following code to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>from django.db import models\nfrom django.core.exceptions import ObjectDoesNotExist\nclass OrderField(models.PositiveIntegerField):\n    def __init__(self, for_fields=None, *args, **kwargs):\n        self.for_fields = for_fields\n        super().__init__(*args, **kwargs)\n    def pre_save(self, model_instance, add):\n        if getattr(model_instance, self.attname) is None:\n            <em># no current value</em>\n            try:\n                qs = self.model.objects.all()\n                if self.for_fields:\n                    <em># filter by objects with the same field values</em>\n                    <em># for the fields in \"for_fields\"</em>\n                    query = {field: getattr(model_instance, field)\\\n                    for field in self.for_fields}\n                    qs = qs.filter(**query)\n                <em># get the order of the last item</em>\n                last_item = qs.latest(self.attname)\n                value = last_item.order + 1\n            except ObjectDoesNotExist:\n                value = 0\n            setattr(model_instance, self.attname, value)\n            return value\n        else:\n            return super().pre_save(model_instance, add)\n</code></pre>\n\n\n\n<p>This is your custom&nbsp;<code>OrderField</code>. It inherits from the&nbsp;<code>PositiveIntegerField</code>&nbsp;field provided by Django. Your&nbsp;<code>OrderField</code>&nbsp;field takes an optional&nbsp;<code>for_fields</code>&nbsp;parameter that allows you to indicate the fields that the order has to be calculated with respect to.</p>\n\n\n\n<p>Your field overrides the&nbsp;<code>pre_save()</code>&nbsp;method of the&nbsp;<code>PositiveIntegerField</code>&nbsp;field, which is&nbsp;<a></a>executed before saving the field into the database. In this method, you perform the following actions:</p>\n\n\n\n<ol><li>You check whether a value already exists for this field in the model instance. You use&nbsp;<code>self.attname</code>, which is the attribute name given to the field in the model. If the attribute&#8217;s value is different to&nbsp;<code>None</code>, you calculate the order you should give it as follows:<ol><li>You build a QuerySet to retrieve all objects for the field&#8217;s model. You retrieve the model class the field belongs to by accessing&nbsp;<code>self.model</code>.</li><li>If there are any field names in the&nbsp;<code>for_fields</code>&nbsp;attribute of the field, you filter the QuerySet by the current value of the model fields in&nbsp;<code>for_fields</code>. By doing so, you calculate the order with respect to the&nbsp;given fields.</li><li>You retrieve the object with the highest order with&nbsp;<code>last_item = qs.latest(self.attname)</code>&nbsp;from the database. If no object is found, you assume this object is the first one and assign the order&nbsp;<code>0</code>&nbsp;to it.</li><li>If an object is found, you add&nbsp;<code>1</code>&nbsp;to the highest order found.</li><li>You assign the calculated order to the field&#8217;s value in the model instance using&nbsp;<code>setattr()</code>&nbsp;and return it.</li></ol></li><li>If the model instance has a value for the current field, you use it instead of&nbsp;calculating it.</li></ol>\n\n\n\n<p>When you create custom model fields, make them generic. Avoid hardcoding data that depends on a specific model or field. Your field should work in any model.</p>\n\n\n\n<p>You can find more information about writing custom model fields at https://docs.djangoproject.com/en/3.0/howto/custom-model-fields/.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Django comes&nbsp;with a complete collection of model fields that you can use to build your models. However, you can also create your own model fields to store custom data or alter the behavior of existing fields. You need a field that allows you to define an order for objects. An easy way to specify an&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/creating-custom-model-fields/\">Continue reading <span class=\"screen-reader-text\">Creating custom model fields</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [134],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4004" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=4004"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4004/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4005,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4004/revisions/4005"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=4004"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=4004"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=4004"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 4006,
+    "date": "2022-06-29T07:08:15",
+    "date_gmt": "2022-06-29T07:08:15",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=4006" },
+    "modified": "2022-06-29T07:08:15",
+    "modified_gmt": "2022-06-29T07:08:15",
+    "slug": "adding-ordering-to-module-and-content-objects",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/adding-ordering-to-module-and-content-objects/",
+    "title": { "rendered": "Adding ordering to module and content objects" },
+    "content": {
+      "rendered": "\n<p>Let&#8217;s add&nbsp;<a></a>the new field to your models. Edit the&nbsp;<code>models.py</code>&nbsp;file of the&nbsp;<code>courses</code>&nbsp;application, and import the&nbsp;<code>OrderField</code>&nbsp;class and a field to the&nbsp;<code>Module</code>&nbsp;model, as&nbsp;follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code><strong>from .fields import OrderField</strong>\nclass Module(models.Model):\n    <em># ...</em>\n    <strong>order = OrderField(blank=True, for_fields=&#91;'course'])</strong>\n</code></pre>\n\n\n\n<p>You&nbsp;<a></a>name the new field&nbsp;<code>order</code>, and specify that the ordering is calculated with respect to the course by setting&nbsp;<code>for_fields=['course']</code>. This means that the order for a new module will be assigned by adding&nbsp;<code>1</code>&nbsp;to the last module of the same&nbsp;<code>Course</code>&nbsp;object.</p>\n\n\n\n<p>Now, you can, edit the&nbsp;<code>__str__()</code>&nbsp;method of the&nbsp;<code>Module</code>&nbsp;model to include its order, as&nbsp;follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>class Module(models.Model):\n    <em># ...</em>\n    def __str__(self):\n        <strong>return f'{self.order}. {self.title}'</strong>\n</code></pre>\n\n\n\n<p>Module contents also need to follow a particular order. Add an&nbsp;<code>OrderField</code>&nbsp;field to&nbsp;the&nbsp;<code>Content</code>&nbsp;model, as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>class Content(models.Model):\n    # ...\n    <strong>order = OrderField(blank=True, for_fields=&#91;'module'])</strong>\n</code></pre>\n\n\n\n<p>This time, you specify that the order is calculated with respect to the&nbsp;<code>module</code>&nbsp;field.</p>\n\n\n\n<p>Finally, let&#8217;s add a default ordering for both models. Add the following&nbsp;<code>Meta</code>&nbsp;class to&nbsp;the&nbsp;<code>Module</code>&nbsp;and&nbsp;<code>Content</code>&nbsp;models:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>class Module(models.Model):\n    <em># ...</em>\n    <strong>class Meta:</strong>\n        <strong>ordering = &#91;'order']</strong>\nclass Content(models.Model):\n    <em># ...</em>\n    <strong>class Meta:</strong>\n        <strong>ordering = &#91;'order']</strong>\n</code></pre>\n\n\n\n<p>The&nbsp;<code>Module</code>&nbsp;and&nbsp;<code>Content</code>&nbsp;models should now look as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>class Module(models.Model):\n    course = models.ForeignKey(Course,\n                               related_name='modules',\n                               on_delete=models.CASCADE)\n    title = models.CharField(max_length=200)\n    description = models.TextField(blank=True)\n    order = OrderField(blank=True, for_fields=&#91;'course'])\n    class Meta:\n        ordering = &#91;'order']\n    def __str__(self):\n        return f'{self.order}. {self.title}'\nclass Content(models.Model):\n    module = models.ForeignKey(Module,\n                               related_name='contents',\n                               on_delete=models.CASCADE)\n    content_type = models.ForeignKey(ContentType,\n                                   on_delete=models.CASCADE,\n                                   limit_choices_to={'model__in':(\n                                                     'text',\n                                                     'video',\n                                                     'image',\n                                                     'file')})\n    object_id = models.PositiveIntegerField()\n    item = GenericForeignKey('content_type', 'object_id')\n    order = OrderField(blank=True, for_fields=&#91;'module'])\n    class Meta:\n            ordering = &#91;'order']\n</code></pre>\n\n\n\n<p>Let&#8217;s&nbsp;<a></a>create a new model migration&nbsp;<a></a>that reflects the new order fields. Open the shell and run the following command:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>python manage.py makemigrations courses\n</code></pre>\n\n\n\n<p>You will see the following output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>You are trying to add a non-nullable field 'order' to content without a default; we can't do that (the database needs something to populate existing rows).\nPlease select a fix:\n 1) Provide a one-off default now (will be set on all existing rows with a null value for this column)\n 2) Quit, and let me add a default in models.py\nSelect an option:\n</code></pre>\n\n\n\n<p>Django is telling you that you have to provide a default value for the new&nbsp;<code>order</code>&nbsp;field for existing&nbsp;<a></a>rows in the database. If the field had&nbsp;<code>null=True</code>, it would accept null values and Django would create the migration&nbsp;<a></a>automatically instead of asking for a default value. You can specify a default value, or cancel the migration and add a&nbsp;<code>default</code>&nbsp;attribute to the&nbsp;<code>order</code>&nbsp;field in the&nbsp;<code>models.py</code>&nbsp;file before creating the&nbsp;migration.</p>\n\n\n\n<p>Enter&nbsp;<code>1</code>&nbsp;and press&nbsp;<kbd>Enter</kbd>&nbsp;to provide a default value for existing records. You will see the following output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Please enter the default value now, as valid Python\nThe datetime and django.utils.timezone modules are available, so you can do e.g. timezone.now\nType 'exit' to exit this prompt\n&gt;&gt;&gt;\n</code></pre>\n\n\n\n<p>Enter&nbsp;<code>0</code>&nbsp;so that this is the default value for existing records and press&nbsp;<kbd>Enter</kbd>. Django will ask you for a default value for the&nbsp;<code>Module</code>&nbsp;model too. Choose the first option and enter&nbsp;<code>0</code>&nbsp;as the default value again. Finally, you will see an output similar to the&nbsp;following one:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Migrations for 'courses':\n  courses/migrations/0003_auto_20191214_1253.py\n    - Change Meta options on content\n    - Change Meta options on module\n    - Add field order to content\n    - Add field order to module\n</code></pre>\n\n\n\n<p>Then, apply the new migrations with the following command:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>python manage.py migrate\n</code></pre>\n\n\n\n<p>The output of the command will inform you that the migration was successfully applied, as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Applying courses.0003_auto_20191214_1253... OK\n</code></pre>\n\n\n\n<p>Let&#8217;s test your new field. Open the shell with the following command:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>python manage.py shell\n</code></pre>\n\n\n\n<p>Create a new course, as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&gt;&gt;&gt; from django.contrib.auth.models import User\n&gt;&gt;&gt; from courses.models import Subject, Course, Module\n&gt;&gt;&gt; user = User.objects.last()\n&gt;&gt;&gt; subject = Subject.objects.last()\n&gt;&gt;&gt; c1 = Course.objects.create(subject=subject, owner=user, title='Course 1', slug='course1')\n</code></pre>\n\n\n\n<p>You have&nbsp;<a></a>created a course in the&nbsp;<a></a>database. Now, you will add modules to the course and see how their order is automatically calculated. You create an initial module and check its order:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&gt;&gt;&gt; m1 = Module.objects.create(course=c1, title='Module 1')\n&gt;&gt;&gt; m1.order\n0\n</code></pre>\n\n\n\n<p><code>OrderField</code>&nbsp;sets its value to&nbsp;<code>0</code>, since this is the first&nbsp;<code>Module</code>&nbsp;object created for the given course. You, create a second module for the same course:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&gt;&gt;&gt; m2 = Module.objects.create(course=c1, title='Module 2')\n&gt;&gt;&gt; m2.order\n1\n</code></pre>\n\n\n\n<p><code>OrderField</code>&nbsp;calculates the next order value, adding&nbsp;<code>1</code>&nbsp;to the highest order for existing objects. Let&#8217;s create a third module, forcing a specific order:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&gt;&gt;&gt; m3 = Module.objects.create(course=c1, title='Module 3', order=5)\n&gt;&gt;&gt; m3.order\n5\n</code></pre>\n\n\n\n<p>If you specify a custom order, the&nbsp;<code>OrderField</code>&nbsp;field does not interfere and the value given to&nbsp;<code>order</code>&nbsp;is used.</p>\n\n\n\n<p>Let&#8217;s add a fourth module:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&gt;&gt;&gt; m4 = Module.objects.create(course=c1, title='Module 4')\n&gt;&gt;&gt; m4.order\n6\n</code></pre>\n\n\n\n<p>The order for this module has been automatically set. Your&nbsp;<code>OrderField</code>&nbsp;field does not guarantee that all order values are consecutive. However, it respects existing order values and always assigns the next order based on the highest existing order.</p>\n\n\n\n<p>Let&#8217;s create a second course and add a module to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&gt;&gt;&gt; c2 = Course.objects.create(subject=subject, title='Course 2', slug='course2', owner=user)\n&gt;&gt;&gt; m5 = Module.objects.create(course=c2, title='Module 1')\n&gt;&gt;&gt; m5.order\n0\n</code></pre>\n\n\n\n<p>To calculate the new module&#8217;s order, the field only takes into consideration existing modules&nbsp;<a></a>that belong to the same&nbsp;<a></a>course. Since this is the first module of the second course, the resulting order is&nbsp;<code>0</code>. This is because you specified&nbsp;<code>for_fields=['course']</code>&nbsp;in the&nbsp;<code>order</code>&nbsp;field of the&nbsp;<code>Module</code>&nbsp;model.</p>\n\n\n\n<p>Congratulations! You have successfully created your first custom model field.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Let&#8217;s add&nbsp;the new field to your models. Edit the&nbsp;models.py&nbsp;file of the&nbsp;courses&nbsp;application, and import the&nbsp;OrderField&nbsp;class and a field to the&nbsp;Module&nbsp;model, as&nbsp;follows: You&nbsp;name the new field&nbsp;order, and specify that the ordering is calculated with respect to the course by setting&nbsp;for_fields=[&#8216;course&#8217;]. This means that the order for a new module will be assigned by adding&nbsp;1&nbsp;to the last module&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/adding-ordering-to-module-and-content-objects/\">Continue reading <span class=\"screen-reader-text\">Adding ordering to module and content objects</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [134],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4006" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=4006"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4006/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4007,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4006/revisions/4007"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=4006"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=4006"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=4006"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 4008,
+    "date": "2022-06-29T07:08:37",
+    "date_gmt": "2022-06-29T07:08:37",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=4008" },
+    "modified": "2022-06-29T07:08:37",
+    "modified_gmt": "2022-06-29T07:08:37",
+    "slug": "creating-a-cms",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/creating-a-cms/",
+    "title": { "rendered": "Creating a CMS" },
+    "content": {
+      "rendered": "\n<p>Now that&nbsp;<a></a>you have created a versatile data model, you are going to build the CMS. The CMS will allow instructors to create courses and manage their contents. You need to provide the following functionality:</p>\n\n\n\n<ul><li>Log in to the CMS</li><li>List the courses created by the instructor</li><li>Create, edit, and delete courses</li><li>Add modules to a course and reorder them</li><li>Add different types of content to each module and reorder them</li></ul>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Now that&nbsp;you have created a versatile data model, you are going to build the CMS. The CMS will allow instructors to create courses and manage their contents. You need to provide the following functionality: Log in to the CMS List the courses created by the instructor Create, edit, and delete courses Add modules to a&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/creating-a-cms/\">Continue reading <span class=\"screen-reader-text\">Creating a CMS</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [134],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4008" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=4008"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4008/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4009,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4008/revisions/4009"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=4008"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=4008"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=4008"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 4010,
+    "date": "2022-06-29T07:09:15",
+    "date_gmt": "2022-06-29T07:09:15",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=4010" },
+    "modified": "2022-06-29T07:09:15",
+    "modified_gmt": "2022-06-29T07:09:15",
+    "slug": "adding-an-authentication-system",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/adding-an-authentication-system/",
+    "title": { "rendered": "Adding an authentication system" },
+    "content": {
+      "rendered": "\n<p>You are going to use Django&#8217;s authentication framework in your platform. Both instructors&nbsp;<a></a>and students will be instances of Django&#8217;s&nbsp;<code>User</code>&nbsp;model, so they will be able to log in to the site using the authentication views of&nbsp;<code>django.contrib.auth</code>.</p>\n\n\n\n<p>Edit the main&nbsp;<code>urls.py</code>&nbsp;file of the&nbsp;<code>educa</code>&nbsp;project and include the&nbsp;<code>login</code>&nbsp;and&nbsp;<code>logout</code>&nbsp;views of Django&#8217;s authentication framework:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>from django.contrib import admin\nfrom django.urls import path\n<strong>from django.contrib.auth import views as auth_views</strong>\nurlpatterns = &#91;\n    <strong>path('accounts/login/', auth_views.LoginView.as_view(), </strong>\n<strong>          name='login'),</strong>\n    <strong>path('accounts/logout/', auth_views.LogoutView.as_view(), </strong>\n<strong>          name='logout'),</strong>\n    path('admin/', admin.site.urls),\n]\n</code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>You are going to use Django&#8217;s authentication framework in your platform. Both instructors&nbsp;and students will be instances of Django&#8217;s&nbsp;User&nbsp;model, so they will be able to log in to the site using the authentication views of&nbsp;django.contrib.auth. Edit the main&nbsp;urls.py&nbsp;file of the&nbsp;educa&nbsp;project and include the&nbsp;login&nbsp;and&nbsp;logout&nbsp;views of Django&#8217;s authentication framework:</p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [134],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4010" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=4010"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4010/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4011,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4010/revisions/4011"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=4010"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=4010"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=4010"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 4012,
+    "date": "2022-06-29T07:10:16",
+    "date_gmt": "2022-06-29T07:10:16",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=4012" },
+    "modified": "2022-06-29T07:10:16",
+    "modified_gmt": "2022-06-29T07:10:16",
+    "slug": "creating-the-authentication-templates",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/creating-the-authentication-templates/",
+    "title": { "rendered": "Creating the authentication templates" },
+    "content": {
+      "rendered": "\n<p>Create the&nbsp;<a></a>following file structure inside the&nbsp;<code>courses</code>&nbsp;application directory:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>templates/\n    base.html\n    registration/\n        login.html\n        logged_out.html\n</code></pre>\n\n\n\n<p>Before building the authentication templates, you need to prepare the base template for your project. Edit the&nbsp;<code>base.html</code>&nbsp;template file and add the following content to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{% load static %}\n&lt;!DOCTYPE html&gt;\n&lt;html&gt;\n&lt;head&gt;\n  &lt;meta charset=\"utf-8\" /&gt;\n  &lt;title&gt;{% block title %}Educa{% endblock %}&lt;/title&gt;\n  &lt;link href=\"{% static \"css/base.css\" %}\" rel=\"stylesheet\"&gt;\n&lt;/head&gt;\n&lt;body&gt;\n  &lt;div id=\"header\"&gt;\n    &lt;a href=\"/\" class=\"logo\"&gt;Educa&lt;/a&gt;\n    &lt;ul class=\"menu\"&gt;\n      {% if request.user.is_authenticated %}\n        &lt;li&gt;&lt;a href=\"{% url \"logout\" %}\"&gt;Sign out&lt;/a&gt;&lt;/li&gt;\n      {% else %}\n        &lt;li&gt;&lt;a href=\"{% url \"login\" %}\"&gt;Sign in&lt;/a&gt;&lt;/li&gt;\n      {% endif %}\n    &lt;/ul&gt;\n  &lt;/div&gt;\n  &lt;div id=\"content\"&gt;\n    {% block content %}\n    {% endblock %}\n  &lt;/div&gt;\n  &lt;script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js\"&gt;\n  &lt;/script&gt;\n  &lt;script&gt;\n    $(document).ready(function() {\n      {% block domready %}\n      {% endblock %}\n    });\n  &lt;/script&gt;\n&lt;/body&gt;\n&lt;/html&gt;\n</code></pre>\n\n\n\n<p>This is the base template that will be extended by the rest of the templates. In this template, you define the following blocks:</p>\n\n\n\n<ul><li><code>title</code>: The block for other templates to add a custom title for each page.</li><li><code>content</code>: The main block for content. All templates that extend the base template should add content to this block.</li><li><code>domready</code>: Located inside the&nbsp;<code>$(document).ready()</code>&nbsp;function of jQuery. It allows you to execute code when the&nbsp;<strong>Document Object Model</strong>&nbsp;(<strong>DOM</strong>) has finished loading.</li></ul>\n\n\n\n<p>The CSS styles used in this template are located in the <code>static/</code> directory of the <code>courses</code> application in the code that comes along. Copy the <code>static/</code> directory into the same directory of your project to use them. You can find the contents of the directory at https://github.com/PacktPublishing/Django-3-by-Example/tree/master/educa/courses/static.</p>\n\n\n\n<p>Edit the&nbsp;<code>registration/login.html</code>&nbsp;template and add the following code to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{% extends \"base.html\" %}\n{% block title %}Log-in{% endblock %}\n{% block content %}\n  &lt;h1&gt;Log-in&lt;/h1&gt;\n  &lt;div class=\"module\"&gt;\n    {% if form.errors %}\n      &lt;p&gt;Your username and password didn't match. Please try again.&lt;/p&gt;\n    {% else %}\n      &lt;p&gt;Please, use the following form to log-in:&lt;/p&gt;\n    {% endif %}\n    &lt;div class=\"login-form\"&gt;\n      &lt;form action=\"{% url 'login' %}\" method=\"post\"&gt;\n        {{ form.as_p }}\n        {% csrf_token %}\n        &lt;input type=\"hidden\" name=\"next\" value=\"{{ next }}\" /&gt;\n        &lt;p&gt;&lt;input type=\"submit\" value=\"Log-in\"&gt;&lt;/p&gt;\n      &lt;/form&gt;\n    &lt;/div&gt;\n  &lt;/div&gt;\n{% endblock %}\n</code></pre>\n\n\n\n<p>This is a standard login template for Django&#8217;s&nbsp;<code>login</code>&nbsp;view.</p>\n\n\n\n<p>Edit the&nbsp;<code>registration/logged_out.html</code>&nbsp;template and add the following code to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{% extends \"base.html\" %}\n{% block title %}Logged out{% endblock %}\n{% block content %}\n  &lt;h1&gt;Logged out&lt;/h1&gt;\n  &lt;div class=\"module\"&gt;\n    &lt;p&gt;You have been successfully logged out.\n       You can &lt;a href=\"{% url \"login\" %}\"&gt;log-in again&lt;/a&gt;.&lt;/p&gt;\n  &lt;/div&gt;\n{% endblock %}\n</code></pre>\n\n\n\n<p>This is&nbsp;<a></a>the template that will be displayed to the user after logout. Run the development server with the following command:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>python manage.py runserver\n</code></pre>\n\n\n\n<p>Open&nbsp;<code>http://127.0.0.1:8000/accounts/login/</code>&nbsp;in your browser. You should see&nbsp;the login page:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/B14981_10_02.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 10.2: The account login page</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Create the&nbsp;following file structure inside the&nbsp;courses&nbsp;application directory: Before building the authentication templates, you need to prepare the base template for your project. Edit the&nbsp;base.html&nbsp;template file and add the following content to it: This is the base template that will be extended by the rest of the templates. In this template, you define the following blocks:&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/creating-the-authentication-templates/\">Continue reading <span class=\"screen-reader-text\">Creating the authentication templates</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [134],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4012" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=4012"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4012/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4013,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4012/revisions/4013"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=4012"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=4012"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=4012"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 4014,
+    "date": "2022-06-29T07:12:35",
+    "date_gmt": "2022-06-29T07:12:35",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=4014" },
+    "modified": "2022-06-29T07:12:35",
+    "modified_gmt": "2022-06-29T07:12:35",
+    "slug": "creating-class-based-views",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/creating-class-based-views/",
+    "title": { "rendered": "Creating class-based views" },
+    "content": {
+      "rendered": "\n<p>You are&nbsp;<a></a>going to build views to create, edit, and delete courses. You will use class-based views for this. Edit the&nbsp;<code>views.py</code>&nbsp;file of the&nbsp;<code>courses</code>&nbsp;application and add the following code to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>from django.views.generic.list import ListView\nfrom .models import Course\nclass ManageCourseListView(ListView):\n    model = Course\n    template_name = 'courses/manage/course/list.html'\n    def get_queryset(self):\n        qs = super().get_queryset()\n        return qs.filter(owner=self.request.user)\n</code></pre>\n\n\n\n<p>This is the&nbsp;<code>ManageCourseListView</code>&nbsp;view. It inherits from Django&#8217;s generic&nbsp;<code>ListView</code>. You override the&nbsp;<code>get_queryset()</code>&nbsp;method of the view to retrieve only courses created by the current user. To prevent users from editing, updating, or deleting courses they didn&#8217;t create, you will also need to override the&nbsp;<code>get_queryset()</code>&nbsp;method in the create, update, and delete views. When you need to provide a specific behavior for several class-based views, it is recommended that you use&nbsp;<em>mixins</em>.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>You are&nbsp;going to build views to create, edit, and delete courses. You will use class-based views for this. Edit the&nbsp;views.py&nbsp;file of the&nbsp;courses&nbsp;application and add the following code to it: This is the&nbsp;ManageCourseListView&nbsp;view. It inherits from Django&#8217;s generic&nbsp;ListView. You override the&nbsp;get_queryset()&nbsp;method of the view to retrieve only courses created by the current user. To prevent users&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/creating-class-based-views/\">Continue reading <span class=\"screen-reader-text\">Creating class-based views</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [134],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4014" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=4014"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4014/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4015,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4014/revisions/4015"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=4014"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=4014"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=4014"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 4016,
+    "date": "2022-06-29T07:13:22",
+    "date_gmt": "2022-06-29T07:13:22",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=4016" },
+    "modified": "2022-06-29T07:13:22",
+    "modified_gmt": "2022-06-29T07:13:22",
+    "slug": "using-mixins-for-class-based-views",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/using-mixins-for-class-based-views/",
+    "title": { "rendered": "Using mixins for class-based views" },
+    "content": {
+      "rendered": "\n<p>Mixins are&nbsp;<a></a>a special kind of multiple inheritance for a class. You can use them to&nbsp;provide common discrete functionality that, when added to other mixins, allows you to define the behavior of a class. There are two main situations to use mixins:</p>\n\n\n\n<ul><li>You want to provide multiple optional features for a class</li><li>You want to use a particular feature in several classes</li></ul>\n\n\n\n<p>Django comes with several mixins that provide additional functionality to your class-based views. You can learn more about mixins at https://docs.djangoproject.com/en/3.0/topics/class-based-views/mixins/.</p>\n\n\n\n<p>You are going to create a mixin class that includes a common behavior, and use it for&nbsp;the course views. Edit the&nbsp;<code>views.py</code>&nbsp;file of the&nbsp;<code>courses</code>&nbsp;application and modify it&nbsp;as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>from django.urls import reverse_lazy\nfrom django.views.generic.list import ListView\nfrom django.views.generic.edit import CreateView, UpdateView, \\\n                                      DeleteView\nfrom .models import Course\nclass OwnerMixin(object):\n    def get_queryset(self):\n        qs = super().get_queryset()\n        return qs.filter(owner=self.request.user)\nclass OwnerEditMixin(object):\n    def form_valid(self, form):\n        form.instance.owner = self.request.user\n        return super().form_valid(form)\nclass OwnerCourseMixin(OwnerMixin):\n    model = Course\n    fields = &#91;'subject', 'title', 'slug', 'overview']\n    success_url = reverse_lazy('manage_course_list')\nclass OwnerCourseEditMixin(OwnerCourseMixin, OwnerEditMixin):\n    template_name = 'courses/manage/course/form.html'\nclass ManageCourseListView(OwnerCourseMixin, ListView):\n    template_name = 'courses/manage/course/list.html'\nclass CourseCreateView(OwnerCourseEditMixin, CreateView):\n    pass\nclass CourseUpdateView(OwnerCourseEditMixin, UpdateView):\n    pass\nclass CourseDeleteView(OwnerCourseMixin, DeleteView):\n    template_name = 'courses/manage/course/delete.html'\n    \n</code></pre>\n\n\n\n<p>In this code, you create the&nbsp;<code>OwnerMixin</code>&nbsp;and&nbsp;<code>OwnerEditMixin</code>&nbsp;mixins. You will use these&nbsp;<a></a>mixins together with the&nbsp;<code>ListView</code>,&nbsp;<code>CreateView</code>,&nbsp;<code>UpdateView</code>, and&nbsp;<code>DeleteView</code>&nbsp;views provided by Django.&nbsp;<code>OwnerMixin</code>&nbsp;implements the&nbsp;<code>get_queryset()</code>&nbsp;method, which is used by the views to get the base QuerySet. Your mixin will override this method to filter objects by the&nbsp;<code>owner</code>&nbsp;attribute to retrieve objects that belong to the current user (<code>request.user</code>).</p>\n\n\n\n<p><code>OwnerEditMixin</code>&nbsp;implements the&nbsp;<code>form_valid()</code>&nbsp;method, which is used by views that use Django&#8217;s&nbsp;<code>ModelFormMixin</code>&nbsp;mixin, that is, views with forms or model forms such as&nbsp;<code>CreateView</code>&nbsp;and&nbsp;<code>UpdateView</code>.&nbsp;<code>form_valid()</code>&nbsp;is executed when the&nbsp;submitted form is valid.</p>\n\n\n\n<p>The default behavior for this method is saving the instance (for model forms) and redirecting the user to&nbsp;<code>success_url</code>. You override this method to automatically set&nbsp;the current user in the&nbsp;<code>owner</code>&nbsp;attribute of the object being saved. By doing so, you&nbsp;set the owner for an object automatically when it is saved.</p>\n\n\n\n<p>Your&nbsp;<code>OwnerMixin</code>&nbsp;class can be used for views that interact with any model that contains an&nbsp;<code>owner</code>&nbsp;attribute.</p>\n\n\n\n<p>You also define an&nbsp;<code>OwnerCourseMixin</code>&nbsp;class that inherits&nbsp;<code>OwnerMixin</code>&nbsp;and provides the following attributes for child views:</p>\n\n\n\n<ul><li><code>model</code>: The model used for QuerySets; it is used by all views.</li><li><code>fields</code>: The fields of the model to build the model form of the&nbsp;<code>CreateView</code>&nbsp;and&nbsp;<code>UpdateView</code>&nbsp;views.</li><li><code>success_url</code>: Used by&nbsp;<code>CreateView</code>,&nbsp;<code>UpdateView</code>, and&nbsp;<code>DeleteView</code>&nbsp;to redirect the user after the form is successfully submitted or the object is deleted. You use a URL with the name&nbsp;<code>manage_course_list</code>, which you are&nbsp;going to create later.</li></ul>\n\n\n\n<p>You&nbsp;<a></a>define an&nbsp;<code>OwnerCourseEditMixin</code>&nbsp;mixin with the following attribute:</p>\n\n\n\n<ul><li><code>template_name</code>: The template you will use for the&nbsp;<code>CreateView</code>&nbsp;and&nbsp;<code>UpdateView</code>&nbsp;views</li></ul>\n\n\n\n<p>Finally, you create the following views that subclass&nbsp;<code>OwnerCourseMixin</code>:</p>\n\n\n\n<ul><li><code>ManageCourseListView</code>: Lists the courses created by the user. It inherits from&nbsp;<code>OwnerCourseMixin</code>&nbsp;and&nbsp;<code>ListView</code>. It defines a specific&nbsp;<code>template_name</code>&nbsp;attribute for a template to list courses.</li><li><code>CourseCreateView</code>: Uses a model form to create a new&nbsp;<code>Course</code>&nbsp;object. It uses the fields defined in&nbsp;<code>OwnerCourseMixin</code>&nbsp;to build a model form and also subclasses&nbsp;<code>CreateView</code>. It uses the template defined in&nbsp;<code>OwnerCourseEditMixin</code>.</li><li><code>CourseUpdateView</code>: Allows the editing of an existing&nbsp;<code>Course</code>&nbsp;object. It uses the fields defined in&nbsp;<code>OwnerCourseMixin</code>&nbsp;to build a model form and also subclasses&nbsp;<code>UpdateView</code>. It uses the template defined in&nbsp;<code>OwnerCourseEditMixin</code>.</li><li><code>CourseDeleteView</code>: Inherits from&nbsp;<code>OwnerCourseMixin</code>&nbsp;and the generic&nbsp;<code>DeleteView</code>. It defines a specific&nbsp;<code>template_name</code>&nbsp;attribute for a template to&nbsp;confirm the course deletion.</li></ul>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Mixins are&nbsp;a special kind of multiple inheritance for a class. You can use them to&nbsp;provide common discrete functionality that, when added to other mixins, allows you to define the behavior of a class. There are two main situations to use mixins: You want to provide multiple optional features for a class You want to use&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/using-mixins-for-class-based-views/\">Continue reading <span class=\"screen-reader-text\">Using mixins for class-based views</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [134],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4016" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=4016"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4016/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4017,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4016/revisions/4017"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=4016"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=4016"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=4016"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 4018,
+    "date": "2022-06-29T07:14:10",
+    "date_gmt": "2022-06-29T07:14:10",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=4018" },
+    "modified": "2022-06-29T07:14:10",
+    "modified_gmt": "2022-06-29T07:14:10",
+    "slug": "working-with-groups-and-permissions",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/working-with-groups-and-permissions/",
+    "title": { "rendered": "Working with groups and permissions" },
+    "content": {
+      "rendered": "\n<p>You have created the basic views to manage courses. Currently, any user could access these views. You want to restrict these views so that only instructors have the permission&nbsp;<a></a>to create and manage courses.</p>\n\n\n\n<p>Django&#8217;s authentication framework includes a permission system that allows&nbsp;<a></a>you to assign permissions to users and groups. You are going to create a group for instructor users and assign permissions to create, update, and delete courses.</p>\n\n\n\n<p>Run the development server using the command&nbsp;<code>python manage.py runserver</code>&nbsp;and open&nbsp;<code>http://127.0.0.1:8000/admin/auth/group/add/</code>&nbsp;in your browser to create a new&nbsp;<code>Group</code>&nbsp;object. Add the name&nbsp;<code>Instructors</code>&nbsp;and choose all permissions of&nbsp;the&nbsp;<code>courses</code>&nbsp;application, except those of the&nbsp;<code>Subject</code>&nbsp;model, as follows:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/B14981_10_03.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 10.3: The Instructors group permissions</p>\n\n\n\n<p>As you can see, there are four different permissions for each model:&nbsp;<em>can view</em>,&nbsp;<em>can add</em>,&nbsp;<em>can change</em>, and&nbsp;<em>can delete</em>. After choosing permissions for this group, click on the&nbsp;<strong>SAVE</strong>&nbsp;button.</p>\n\n\n\n<p>Django creates permissions for models automatically, but you can also create custom permissions. You will learn to create custom permissions, <em>Building an API</em>. You can read more about adding custom permissions at https://docs.djangoproject.com/en/3.0/topics/auth/customizing/#custom-permissions.</p>\n\n\n\n<p>Open&nbsp;<code>http://127.0.0.1:8000/admin/auth/user/add/</code>&nbsp;and create a new user. Edit&nbsp;the user&nbsp;<a></a>and add it to the&nbsp;<strong>Instructors</strong>&nbsp;group, as follows:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/B14981_10_04.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 10.4: User group selection</p>\n\n\n\n<p>Users inherit&nbsp;<a></a>the permissions of the groups they belong to, but you can also add individual permissions to a single user using the administration site. Users that have&nbsp;<code>is_superuser</code>&nbsp;set to&nbsp;<code>True</code>&nbsp;have all permissions automatically.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>You have created the basic views to manage courses. Currently, any user could access these views. You want to restrict these views so that only instructors have the permission&nbsp;to create and manage courses. Django&#8217;s authentication framework includes a permission system that allows&nbsp;you to assign permissions to users and groups. You are going to create a&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/working-with-groups-and-permissions/\">Continue reading <span class=\"screen-reader-text\">Working with groups and permissions</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [134],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4018" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=4018"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4018/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4019,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4018/revisions/4019"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=4018"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=4018"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=4018"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 4020,
+    "date": "2022-06-29T07:15:12",
+    "date_gmt": "2022-06-29T07:15:12",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=4020" },
+    "modified": "2022-06-29T07:15:12",
+    "modified_gmt": "2022-06-29T07:15:12",
+    "slug": "restricting-access-to-class-based-views",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/restricting-access-to-class-based-views/",
+    "title": { "rendered": "Restricting access to class-based views" },
+    "content": {
+      "rendered": "\n<p>You are&nbsp;<a></a>going to restrict access to the views so that only users with the appropriate permissions can add, change, or delete&nbsp;<code>Course</code>&nbsp;objects. You are going to use the following two mixins provided by&nbsp;<code>django.contrib.auth</code>&nbsp;to limit access to views:</p>\n\n\n\n<ul><li><code>LoginRequiredMixin</code>: Replicates the&nbsp;<code>login_required</code>&nbsp;decorator&#8217;s functionality.</li><li><code>PermissionRequiredMixin</code>: Grants access to the view to users with a&nbsp;specific permission. Remember that superusers automatically have all&nbsp;permissions.</li></ul>\n\n\n\n<p>Edit the&nbsp;<code>views.py</code>&nbsp;file of the&nbsp;<code>courses</code>&nbsp;application and add the following import:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>from django.contrib.auth.mixins import LoginRequiredMixin, \\\n                                       PermissionRequiredMixin\n</code></pre>\n\n\n\n<p>Make&nbsp;<code>OwnerCourseMixin</code>&nbsp;inherit&nbsp;<code>LoginRequiredMixin</code>&nbsp;and&nbsp;<code>PermissionRequiredMixin</code>, like this:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>class OwnerCourseMixin(OwnerMixin<strong>,</strong>\n                       <strong>LoginRequiredMixin,</strong>\n                       <strong>PermissionRequiredMixin</strong>):\n    model = Course\n    fields = &#91;'subject', 'title', 'slug', 'overview']\n    success_url = reverse_lazy('manage_course_list')\n</code></pre>\n\n\n\n<p>Then, add a&nbsp;<code>permission_required</code>&nbsp;attribute to the course views, as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>class ManageCourseListView(OwnerCourseMixin, ListView):\n    template_name = 'courses/manage/course/list.html'\n    <strong>permission_required = 'courses.view_course'</strong>\nclass CourseCreateView(OwnerCourseEditMixin, CreateView):\n    <strong>permission_required = 'courses.add_course'</strong>\nclass CourseUpdateView(OwnerCourseEditMixin, UpdateView):\n    <strong>permission_required = 'courses.change_course'</strong>\nclass CourseDeleteView(OwnerCourseMixin, DeleteView):\n    template_name = 'courses/manage/course/delete.html'\n    <strong>permission_required = 'courses.delete_course'</strong>\n</code></pre>\n\n\n\n<p><code>PermissionRequiredMixin</code>&nbsp;checks that the user accessing the view has the permission specified in the&nbsp;<code>permission_required&nbsp;</code>attribute. Your views are now&nbsp;only accessible&nbsp;<a></a>to users with proper permissions.</p>\n\n\n\n<p>Let&#8217;s create URLs for these views. Create a new file inside the&nbsp;<code>courses</code>&nbsp;application directory and name it&nbsp;<code>urls.py</code>. Add the following code to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>from django.urls import path\nfrom . import views\nurlpatterns = &#91;\n    path('mine/',\n         views.ManageCourseListView.as_view(),\n         name='manage_course_list'),\n    path('create/',\n         views.CourseCreateView.as_view(),\n         name='course_create'),\n    path('&lt;pk&gt;/edit/',\n         views.CourseUpdateView.as_view(),\n         name='course_edit'),\n    path('&lt;pk&gt;/delete/',\n         views.CourseDeleteView.as_view(),\n         name='course_delete'),\n]\n</code></pre>\n\n\n\n<p>These are the URL patterns for the list, create, edit, and delete course views. Edit the main&nbsp;<code>urls.py</code>&nbsp;file of the&nbsp;<code>educa</code>&nbsp;project and include the URL patterns of the&nbsp;<code>courses</code>&nbsp;application, as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>from django.urls import path<strong>, include</strong>\nurlpatterns = &#91;\n    path('accounts/login/', auth_views.LoginView.as_view(), \n          name='login'),\n    path('accounts/logout/', auth_views.LogoutView.as_view(), \n          name='logout'),\n    path('admin/', admin.site.urls),\n    <strong>path('course/', include('courses.urls')),</strong>\n]\n</code></pre>\n\n\n\n<p>You need&nbsp;<a></a>to create the templates for these views. Create the following directories and files inside the&nbsp;<code>templates/</code>&nbsp;directory of the&nbsp;<code>courses</code>&nbsp;application:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>courses/\n    manage/\n        course/\n            list.html\n            form.html\n            delete.html\n</code></pre>\n\n\n\n<p>Edit the&nbsp;<code>courses/manage/course/list.html</code>&nbsp;template and add the following code&nbsp;to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{% extends \"base.html\" %}\n{% block title %}My courses{% endblock %}\n{% block content %}\n  &lt;h1&gt;My courses&lt;/h1&gt;\n  &lt;div class=\"module\"&gt;\n    {% for course in object_list %}\n      &lt;div class=\"course-info\"&gt;\n        &lt;h3&gt;{{ course.title }}&lt;/h3&gt;\n        &lt;p&gt;\n          &lt;a href=\"{% url \"course_edit\" course.id %}\"&gt;Edit&lt;/a&gt;\n          &lt;a href=\"{% url \"course_delete\" course.id %}\"&gt;Delete&lt;/a&gt;\n        &lt;/p&gt;\n      &lt;/div&gt;\n    {% empty %}\n      &lt;p&gt;You haven't created any courses yet.&lt;/p&gt;\n    {% endfor %}\n    &lt;p&gt;\n      &lt;a href=\"{% url \"course_create\" %}\" class=\"button\"&gt;Create new course&lt;/a&gt;\n    &lt;/p&gt;\n  &lt;/div&gt;\n{% endblock %}\n</code></pre>\n\n\n\n<p>This is the template for the&nbsp;<code>ManageCourseListView</code>&nbsp;view. In this template, you list the courses created by the current user. You include links to edit or delete each course, and a link to create new courses.</p>\n\n\n\n<p>Run the&nbsp;<a></a>development server using the command&nbsp;<code>python manage.py runserver</code>. Open&nbsp;<code>http://127.0.0.1:8000/accounts/login/?next=/course/mine/</code>&nbsp;in your browser and log in with a user belonging to the&nbsp;<code>Instructors</code>&nbsp;group. After logging in, you will be redirected to the&nbsp;<code>http://127.0.0.1:8000/course/mine/</code>&nbsp;URL and you should see the following page:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/B14981_10_05.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 10.5: The instructor courses page with no courses</p>\n\n\n\n<p>This page will display all courses created by the current user.</p>\n\n\n\n<p>Let&#8217;s create the template that displays the form for the create and update course views. Edit the&nbsp;<code>courses/manage/course/form.html</code>&nbsp;template and write the following code:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{% extends \"base.html\" %}\n{% block title %}\n  {% if object %}\n    Edit course \"{{ object.title }}\"\n  {% else %}\n    Create a new course\n  {% endif %}\n{% endblock %}\n{% block content %}\n  &lt;h1&gt;\n    {% if object %}\n      Edit course \"{{ object.title }}\"\n    {% else %}\n      Create a new course\n    {% endif %}\n  &lt;/h1&gt;\n  &lt;div class=\"module\"&gt;\n    &lt;h2&gt;Course info&lt;/h2&gt;\n    &lt;form method=\"post\"&gt;\n      {{ form.as_p }}\n      {% csrf_token %}\n      &lt;p&gt;&lt;input type=\"submit\" value=\"Save course\"&gt;&lt;/p&gt;\n    &lt;/form&gt;\n  &lt;/div&gt;\n{% endblock %}\n</code></pre>\n\n\n\n<p>The&nbsp;<code>form.html</code>&nbsp;template is used for both the&nbsp;<code>CourseCreateView</code>&nbsp;and&nbsp;<code>CourseUpdateView</code>&nbsp;views. In this template, you check whether an&nbsp;<code>object</code>&nbsp;variable is in the context. If&nbsp;<code>object</code>&nbsp;exists in the context, you know that you are updating an existing course, and you&nbsp;<a></a>use it in the page title. Otherwise, you are creating a new&nbsp;<code>Course</code>&nbsp;object.</p>\n\n\n\n<p>Open&nbsp;<code>http://127.0.0.1:8000/course/mine/</code>&nbsp;in your browser and click the&nbsp;<strong>CREATE NEW COURSE</strong>&nbsp;button. You will see the following page:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/B14981_10_06.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 10.6: The form to create a new course</p>\n\n\n\n<p>Fill in&nbsp;<a></a>the form and click the&nbsp;<strong>SAVE COURSE</strong>&nbsp;button. The course will be saved and&nbsp;you will be redirected to the course list page. It should look as follows:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/B14981_10_07.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 10.7: The instructor courses page with one course</p>\n\n\n\n<p>Then, click the&nbsp;<strong>Edit</strong>&nbsp;link for the course you have just created. You will see the form again, but this time you are editing an existing&nbsp;<code>Course</code>&nbsp;object instead of creating one.</p>\n\n\n\n<p>Finally, edit the&nbsp;<code>courses/manage/course/delete.html</code>&nbsp;template and add the following code:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{% extends \"base.html\" %}\n{% block title %}Delete course{% endblock %}\n{% block content %}\n  &lt;h1&gt;Delete course \"{{ object.title }}\"&lt;/h1&gt;\n  &lt;div class=\"module\"&gt;\n    &lt;form action=\"\" method=\"post\"&gt;\n      {% csrf_token %}\n      &lt;p&gt;Are you sure you want to delete \"{{ object }}\"?&lt;/p&gt;\n      &lt;input type=\"submit\" value=\"Confirm\"&gt;\n    &lt;/form&gt;\n  &lt;/div&gt;\n{% endblock %}\n</code></pre>\n\n\n\n<p>This is the&nbsp;<a></a>template for the&nbsp;<code>CourseDeleteView</code>&nbsp;view. This view inherits from&nbsp;<code>DeleteView</code>, provided by Django, which expects user confirmation to delete an&nbsp;object.</p>\n\n\n\n<p>Open the course list in the browser and click the&nbsp;<strong>Delete</strong>&nbsp;link of your course. You should see the following confirmation page:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/B14981_10_08.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 10.8: The delete course confirmation page</p>\n\n\n\n<p>Click the&nbsp;<strong>CONFIRM</strong>&nbsp;button. The course will be deleted and you will be redirected to&nbsp;the course list page again.</p>\n\n\n\n<p>Instructors&nbsp;<a></a>can now create, edit, and delete courses. Next, you need to provide them with a CMS to add course modules and their contents. You will start by managing course modules.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>You are&nbsp;going to restrict access to the views so that only users with the appropriate permissions can add, change, or delete&nbsp;Course&nbsp;objects. You are going to use the following two mixins provided by&nbsp;django.contrib.auth&nbsp;to limit access to views: LoginRequiredMixin: Replicates the&nbsp;login_required&nbsp;decorator&#8217;s functionality. PermissionRequiredMixin: Grants access to the view to users with a&nbsp;specific permission. Remember that superusers automatically&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/restricting-access-to-class-based-views/\">Continue reading <span class=\"screen-reader-text\">Restricting access to class-based views</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [134],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4020" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=4020"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4020/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4021,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4020/revisions/4021"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=4020"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=4020"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=4020"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 4022,
+    "date": "2022-06-29T07:15:35",
+    "date_gmt": "2022-06-29T07:15:35",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=4022" },
+    "modified": "2022-06-29T07:15:35",
+    "modified_gmt": "2022-06-29T07:15:35",
+    "slug": "managing-course-modules-and-their-contents",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/managing-course-modules-and-their-contents/",
+    "title": { "rendered": "Managing course modules and their contents" },
+    "content": {
+      "rendered": "\n<p>You are going to build a system to manage course modules and their contents. You will need to build forms that can be used for managing multiple modules per course and different types of content for each module. Both modules and their contents will have to follow a specific order and you should be able to reorder them using the CMS.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>You are going to build a system to manage course modules and their contents. You will need to build forms that can be used for managing multiple modules per course and different types of content for each module. Both modules and their contents will have to follow a specific order and you should be able to reorder&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/managing-course-modules-and-their-contents/\">Continue reading <span class=\"screen-reader-text\">Managing course modules and their contents</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [134],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4022" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=4022"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4022/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4023,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4022/revisions/4023"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=4022"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=4022"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=4022"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 4024,
+    "date": "2022-06-29T07:17:31",
+    "date_gmt": "2022-06-29T07:17:31",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=4024" },
+    "modified": "2022-06-29T07:17:31",
+    "modified_gmt": "2022-06-29T07:17:31",
+    "slug": "using-formsets-for-course-modules",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/using-formsets-for-course-modules/",
+    "title": { "rendered": "Using formsets for course modules" },
+    "content": {
+      "rendered": "\n<p>Django comes with an abstraction layer to work with multiple forms on the same page. These groups&nbsp;<a></a>of forms are known as&nbsp;<em>formsets</em>. Formsets manage multiple instances of a certain&nbsp;<code>Form</code>&nbsp;or&nbsp;<code>ModelForm</code>. All forms are submitted at once and the formset takes care of the initial number of forms to display, limiting the maximum number of forms that can be submitted and validating all the forms.</p>\n\n\n\n<p>Formsets include an <code>is_valid()</code> method to validate all forms at once. You can also provide initial data for the forms and specify how many additional empty forms to display. You can learn more about formsets at https://docs.djangoproject.com/en/3.0/topics/forms/formsets/ and about model formsets at https://docs.djangoproject.com/en/3.0/topics/forms/modelforms/#model-formsets.</p>\n\n\n\n<p>Since a course is divided into a variable number of modules, it makes sense to use formsets to manage them. Create a&nbsp;<code>forms.py</code>&nbsp;file in the&nbsp;<code>courses</code>&nbsp;application directory and add the following code to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>from django import forms\nfrom django.forms.models import inlineformset_factory\nfrom .models import Course, Module\nModuleFormSet = inlineformset_factory(Course,\n                                      Module,\n                                      fields=&#91;'title',\n                                              'description'],\n                                      extra=2,\n                                      can_delete=True)\n</code></pre>\n\n\n\n<p>This is the&nbsp;<code>ModuleFormSet</code>&nbsp;formset. You build it using the&nbsp;<code>inlineformset_factory()</code>&nbsp;function provided by Django. Inline formsets are a small abstraction on top of formsets that simplify working with related objects. This function allows you to build a model formset dynamically for the&nbsp;<code>Module</code>&nbsp;objects related to a&nbsp;<code>Course</code>&nbsp;object.</p>\n\n\n\n<p>You&nbsp;<a></a>use the following parameters to build the formset:</p>\n\n\n\n<ul><li><code>fields</code>: The fields that will be included in each form of the formset.</li><li><code>extra</code>: Allows you to set the number of empty extra forms to display in&nbsp;the&nbsp;formset.</li><li><code>can_delete</code>: If you set this to&nbsp;<code>True</code>, Django will include a Boolean field for each form that will be rendered as a checkbox input. It allows you to mark the objects that you want to delete.</li></ul>\n\n\n\n<p>Edit the&nbsp;<code>views.py</code>&nbsp;file of the&nbsp;<code>courses</code>&nbsp;application and add the following code to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>from django.shortcuts import redirect, get_object_or_404\nfrom django.views.generic.base import TemplateResponseMixin, View\nfrom .forms import ModuleFormSet\nclass CourseModuleUpdateView(TemplateResponseMixin, View):\n    template_name = 'courses/manage/module/formset.html'\n    course = None\n    def get_formset(self, data=None):\n        return ModuleFormSet(instance=self.course,\n                             data=data)\n    def dispatch(self, request, pk):\n        self.course = get_object_or_404(Course,\n                                        id=pk,\n                                        owner=request.user)\n        return super().dispatch(request, pk)\n    def get(self, request, *args, **kwargs):\n        formset = self.get_formset()\n        return self.render_to_response({'course': self.course,\n                                        'formset': formset})\n    def post(self, request, *args, **kwargs):\n        formset = self.get_formset(data=request.POST)\n        if formset.is_valid():\n            formset.save()\n            return redirect('manage_course_list')\n        return self.render_to_response({'course': self.course,\n                                        'formset': formset})\n</code></pre>\n\n\n\n<p>The&nbsp;<code>CourseModuleUpdateView</code>&nbsp;view handles the formset to add, update, and delete&nbsp;modules for a specific course. This view inherits from the following mixins and views:</p>\n\n\n\n<ul><li><code>TemplateResponseMixin</code>: This mixin takes charge of rendering templates and returning an HTTP response. It requires a&nbsp;<code>template_name</code>&nbsp;attribute that indicates the template to be rendered and provides the&nbsp;<code>render_to_response()</code>&nbsp;method to pass it a context and render the template.</li><li><code>View</code>: The basic class-based view provided by Django.</li></ul>\n\n\n\n<p>In this&nbsp;<a></a>view, you implement the following methods:</p>\n\n\n\n<ul><li><code>get_formset()</code>: You define this method to avoid repeating the code to build the formset. You create a&nbsp;<code>ModuleFormSet</code>&nbsp;object for the given&nbsp;<code>Course</code>&nbsp;object with optional data.</li><li><code>dispatch()</code>: This method is provided by the&nbsp;<code>View</code>&nbsp;class. It takes an HTTP request and its parameters and attempts to delegate to a lowercase method that matches the HTTP method used. A&nbsp;<code>GET</code>&nbsp;request is delegated to the&nbsp;<code>get()</code>&nbsp;method and a&nbsp;<code>POST</code>&nbsp;request to&nbsp;<code>post()</code>, respectively. In this method, you use the&nbsp;<code>get_object_or_404()</code>&nbsp;shortcut function to get the&nbsp;<code>Course</code>&nbsp;object for the given&nbsp;<code>id</code>&nbsp;parameter that belongs to the current user. You include this code in the&nbsp;<code>dispatch()</code>&nbsp;method because you need to retrieve the course for both&nbsp;<code>GET</code>&nbsp;and&nbsp;<code>POST</code>&nbsp;requests. You save it into the&nbsp;<code>course</code>&nbsp;attribute of the view to make it accessible to other methods.</li><li><code>get()</code>: Executed for&nbsp;<code>GET</code>&nbsp;requests. You build an empty&nbsp;<code>ModuleFormSet</code>&nbsp;formset and render it to the template together with the current&nbsp;<code>Course</code>&nbsp;object using the&nbsp;<code>render_to_response()</code>&nbsp;method provided by&nbsp;<code>TemplateResponseMixin</code>.</li><li><code>post()</code>: Executed for&nbsp;<code>POST</code>&nbsp;requests.In this method, you perform the following actions:<ol><li>You build a&nbsp;<code>ModuleFormSet</code>&nbsp;instance using the submitted data.</li><li>You execute the&nbsp;<code>is_valid()</code>&nbsp;method of the formset to validate all of its forms.</li><li>If the formset is valid, you save it by calling the&nbsp;<code>save()</code>&nbsp;method. At this point, any changes made, such as adding, updating, or marking modules for deletion, are applied to the database. Then, you redirect users to the&nbsp;<code>manage_course_list</code>&nbsp;URL. If the formset is not valid, you render the template to display any errors instead.</li></ol></li></ul>\n\n\n\n<p>Edit the&nbsp;<code>urls.py</code>&nbsp;file of the&nbsp;<code>courses</code>&nbsp;application and add the following URL pattern to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>path('&lt;pk&gt;/module/',\n     views.CourseModuleUpdateView.as_view(),\n     name='course_module_update'),\n</code></pre>\n\n\n\n<p>Create a&nbsp;<a></a>new directory inside the&nbsp;<code>courses/manage/</code>&nbsp;template directory and name it&nbsp;<code>module</code>. Create a&nbsp;<code>courses/manage/module/formset.html</code>&nbsp;template and add the following code to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{% extends \"base.html\" %}\n{% block title %}\n  Edit \"{{ course.title }}\"\n{% endblock %}\n{% block content %}\n  &lt;h1&gt;Edit \"{{ course.title }}\"&lt;/h1&gt;\n  &lt;div class=\"module\"&gt;\n    &lt;h2&gt;Course modules&lt;/h2&gt;\n    &lt;form method=\"post\"&gt;\n      {{ formset }}\n      {{ formset.management_form }}\n      {% csrf_token %}\n      &lt;input type=\"submit\" value=\"Save modules\"&gt;\n    &lt;/form&gt;\n  &lt;/div&gt;\n{% endblock %}\n</code></pre>\n\n\n\n<p>In this template, you create a&nbsp;<code>&lt;form&gt;</code>&nbsp;HTML element in which you include&nbsp;<code>formset</code>. You also include the management form for the formset with the variable&nbsp;<code>{{ formset.management_form }}</code>. The management form includes hidden fields to&nbsp;control the initial, total, minimum, and maximum number of forms. You can see that it&#8217;s very easy to create a formset.</p>\n\n\n\n<p>Edit the&nbsp;<code>courses/manage/course/list.html</code>&nbsp;template and add the following link for the&nbsp;<code>course_module_update</code>&nbsp;URL below the course edit and delete links:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;a href=\"{% url \"course_edit\" course.id %}\"&gt;Edit&lt;/a&gt;\n&lt;a href=\"{% url \"course_delete\" course.id %}\"&gt;Delete&lt;/a&gt;\n<strong>&lt;a href=\"{% url \"course_module_update\" course.id %}\"&gt;Edit modules&lt;/a&gt;</strong>\n</code></pre>\n\n\n\n<p>You have&nbsp;<a></a>included the link to edit the course modules.</p>\n\n\n\n<p>Open&nbsp;<code>http://127.0.0.1:8000/course/mine/</code>&nbsp;in your browser. Create a course and&nbsp;click the&nbsp;<strong>Edit modules</strong>&nbsp;link for it. You should see a formset, as follows:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/B14981_10_09.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 10.9: The course edit page, including the formset for course modules</p>\n\n\n\n<p>The formset includes a form for each&nbsp;<code>Module</code>&nbsp;object contained in the course. After these, two empty extra forms are displayed because you set&nbsp;<code>extra=2</code>&nbsp;for&nbsp;<code>ModuleFormSet</code>. When you save the formset, Django will include another two extra&nbsp;fields to&nbsp;<a></a>add new modules.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Django comes with an abstraction layer to work with multiple forms on the same page. These groups&nbsp;of forms are known as&nbsp;formsets. Formsets manage multiple instances of a certain&nbsp;Form&nbsp;or&nbsp;ModelForm. All forms are submitted at once and the formset takes care of the initial number of forms to display, limiting the maximum number of forms that can&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/using-formsets-for-course-modules/\">Continue reading <span class=\"screen-reader-text\">Using formsets for course modules</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [134],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4024" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=4024"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4024/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4025,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4024/revisions/4025"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=4024"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=4024"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=4024"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 4026,
+    "date": "2022-06-29T07:18:44",
+    "date_gmt": "2022-06-29T07:18:44",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=4026" },
+    "modified": "2022-06-29T07:18:44",
+    "modified_gmt": "2022-06-29T07:18:44",
+    "slug": "adding-content-to-course-modules",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/adding-content-to-course-modules/",
+    "title": { "rendered": "Adding content to course modules" },
+    "content": {
+      "rendered": "\n<p>Now, you need a way to add content to course modules. You have four different types of content: text, video, image, and file. You could consider creating four different views to create content, with one for each model. However, you are going to take a more generic&nbsp;<a></a>approach and create a view that handles creating or updating the objects of any content model.</p>\n\n\n\n<p>Edit the&nbsp;<code>views.py</code>&nbsp;file of the&nbsp;<code>courses</code>&nbsp;application and add the following code to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>from django.forms.models import modelform_factory\nfrom django.apps import apps\nfrom .models import Module, Content\nclass ContentCreateUpdateView(TemplateResponseMixin, View):\n    module = None\n    model = None\n    obj = None\n    template_name = 'courses/manage/content/form.html'\n    def get_model(self, model_name):\n        if model_name in &#91;'text', 'video', 'image', 'file']:\n            return apps.get_model(app_label='courses',\n                                  model_name=model_name)\n        return None\n    def get_form(self, model, *args, **kwargs):\n        Form = modelform_factory(model, exclude=&#91;'owner',\n                                                 'order',\n                                                 'created',\n                                                 'updated'])\n        return Form(*args, **kwargs)\n    def dispatch(self, request, module_id, model_name, id=None):\n        self.module = get_object_or_404(Module,\n                                       id=module_id,\n                                       course__owner=request.user)\n        self.model = self.get_model(model_name)\n        if id:\n            self.obj = get_object_or_404(self.model,\n                                         id=id,\n                                         owner=request.user)\n        return super().dispatch(request, module_id, model_name, id)\n</code></pre>\n\n\n\n<p>This is the first part of&nbsp;<code>ContentCreateUpdateView</code>. It will allow you to create and&nbsp;update different models&#8217; contents. This view defines the following methods:</p>\n\n\n\n<ul><li><code>get_model()</code>: Here, you&nbsp;<a></a>check that the given model name is one of the four content models:&nbsp;<code>Text</code>,&nbsp;<code>Video</code>,&nbsp;<code>Image</code>, or&nbsp;<code>File</code>. Then, you use Django&#8217;s&nbsp;<code>apps</code>&nbsp;module to obtain the actual class for the given model name. If the given model name is not one of the valid ones, you return&nbsp;<code>None</code>.</li><li><code>get_form()</code>: You build a dynamic form using the&nbsp;<code>modelform_factory()</code>&nbsp;function of&nbsp;<a></a>the form&#8217;s framework. Since you are going to build a form for the&nbsp;<code>Text</code>,&nbsp;<code>Video</code>,&nbsp;<code>Image</code>, and&nbsp;<code>File</code>&nbsp;models, you use the&nbsp;<code>exclude</code>&nbsp;parameter to specify the common fields to exclude from the form and let all other attributes be included automatically. By doing so, you don&#8217;t have to know which fields to include depending on the model.</li><li><code>dispatch()</code>: It receives&nbsp;<a></a>the following URL parameters and stores the corresponding module, model, and content object as class attributes:<ul><li><code>module_id</code>: The ID for the module that the content is/will be associated with.</li><li><code>model_name</code>: The model name of the content to create/update.</li><li><code>id</code>: The ID of the object that is being updated. It&#8217;s&nbsp;<code>None</code>&nbsp;to create new objects.</li></ul></li></ul>\n\n\n\n<p>Add&nbsp;<a></a>the following&nbsp;<code>get()</code>&nbsp;and&nbsp;<code>post()</code>&nbsp;methods to&nbsp;<code>ContentCreateUpdateView</code>:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>def get(self, request, module_id, model_name, id=None):\n    form = self.get_form(self.model, instance=self.obj)\n    return self.render_to_response({'form': form,\n                                    'object': self.obj})\ndef post(self, request, module_id, model_name, id=None):\n    form = self.get_form(self.model,\n                         instance=self.obj,\n                         data=request.POST,\n                         files=request.FILES)\n    if form.is_valid():\n        obj = form.save(commit=False)\n        obj.owner = request.user\n        obj.save()\n        if not id:\n            # new content\n            Content.objects.create(module=self.module,\n                                   item=obj)\n        return redirect('module_content_list', self.module.id)\n    return self.render_to_response({'form': form,\n                                    'object': self.obj})\n</code></pre>\n\n\n\n<p>These&nbsp;<a></a>methods are as follows:</p>\n\n\n\n<ul><li><code>get()</code>: Executed&nbsp;<a></a>when a&nbsp;<code>GET</code>&nbsp;request is received. You build the model form for the&nbsp;<code>Text</code>,&nbsp;<code>Video</code>,&nbsp;<code>Image</code>, or&nbsp;<code>File</code>&nbsp;instance that is being updated. Otherwise, you pass no instance to create a new object, since&nbsp;<code>self.obj</code>&nbsp;is&nbsp;<code>None</code>&nbsp;if no ID is provided.</li><li><code>post()</code>: Executed when a&nbsp;<code>POST</code>&nbsp;request is received. You build the model form, passing&nbsp;<a></a>any submitted data and files to it. Then, you validate it. If the form is valid, you create a new object and assign&nbsp;<code>request.user</code>&nbsp;as its owner before saving it to the database. You check for the&nbsp;<code>id</code>&nbsp;parameter. If no ID is provided, you know the user is creating a new object instead of updating an existing one. If this is a new object, you create a&nbsp;<code>Content</code>&nbsp;object for the given module and associate the new content with it.</li></ul>\n\n\n\n<p>Edit the&nbsp;<code>urls.py</code>&nbsp;file of the&nbsp;<code>courses</code>&nbsp;application and add the following URL patterns to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>path('module/&lt;int:module_id&gt;/content/&lt;model_name&gt;/create/',\n     views.ContentCreateUpdateView.as_view(),\n     name='module_content_create'),\npath('module/&lt;int:module_id&gt;/content/&lt;model_name&gt;/&lt;id&gt;/',\n     views.ContentCreateUpdateView.as_view(),\n     name='module_content_update'),\n</code></pre>\n\n\n\n<p>The new URL patterns are as follows:</p>\n\n\n\n<ul><li><code>module_content_create</code>: To create new text, video, image, or file objects and add them to a module. It includes the&nbsp;<code>module_id</code>&nbsp;and&nbsp;<code>model_name</code>&nbsp;parameters. The first one allows linking the new content object to the given module. The latter specifies the content model to build the form for.</li><li><code>module_content_update</code>: To update an existing text, video, image, or file object. It includes the&nbsp;<code>module_id</code>&nbsp;and&nbsp;<code>model_name</code>&nbsp;parameters and an&nbsp;<code>id</code>&nbsp;parameter to identify the content that is being updated.</li></ul>\n\n\n\n<p>Create a new directory inside the&nbsp;<code>courses/manage/</code>&nbsp;template directory and name it&nbsp;<code>content</code>. Create the template&nbsp;<code>courses/manage/content/form.html</code>&nbsp;and add the following code to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{% extends \"base.html\" %}\n{% block title %}\n  {% if object %}\n    Edit content \"{{ object.title }}\"\n  {% else %}\n    Add new content\n  {% endif %}\n{% endblock %}\n{% block content %}\n  &lt;h1&gt;\n    {% if object %}\n      Edit content \"{{ object.title }}\"\n    {% else %}\n      Add new content\n    {% endif %}\n  &lt;/h1&gt;\n  &lt;div class=\"module\"&gt;\n    &lt;h2&gt;Course info&lt;/h2&gt;\n    &lt;form action=\"\" method=\"post\" enctype=\"multipart/form-data\"&gt;\n      {{ form.as_p }}\n      {% csrf_token %}\n      &lt;p&gt;&lt;input type=\"submit\" value=\"Save content\"&gt;&lt;/p&gt;\n    &lt;/form&gt;\n  &lt;/div&gt;\n{% endblock %}\n</code></pre>\n\n\n\n<p>This is the&nbsp;<a></a>template for the&nbsp;<code>ContentCreateUpdateView</code>&nbsp;view. In this template, you check whether an&nbsp;<code>object</code>&nbsp;variable is in the context. If&nbsp;<code>object</code>&nbsp;exists in the context, you are updating an existing object. Otherwise, you are creating a new object.</p>\n\n\n\n<p>You include&nbsp;<code>enctype=\"multipart/form-data\"</code>&nbsp;in the&nbsp;<code>&lt;form&gt;</code>&nbsp;HTML element because the form contains a file upload for the&nbsp;<code>File</code>&nbsp;and&nbsp;<code>Image</code>&nbsp;content models.</p>\n\n\n\n<p>Run the development server, open&nbsp;<code>http://127.0.0.1:8000/course/mine/</code>, click&nbsp;<strong>Edit modules</strong>&nbsp;for an existing course, and create a module. Open the Python shell with the command&nbsp;<code>python manage.py shell</code>&nbsp;and obtain the ID of the most recently created module, as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&gt;&gt;&gt; from courses.models import Module\n&gt;&gt;&gt; Module.objects.latest('id').id\n6\n</code></pre>\n\n\n\n<p>Run the&nbsp;<a></a>development server and open&nbsp;<code>http://127.0.0.1:8000/course/module/6/content/image/create/</code>&nbsp;in your browser, replacing the module ID with the one you obtained before. You will see the form to create an&nbsp;<code>Image</code>&nbsp;object, as&nbsp;follows:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/B14981_10_10.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 10.10: The course add image content form</p>\n\n\n\n<p>Don&#8217;t submit the form yet. If you try to do so, it will fail because you haven&#8217;t defined the&nbsp;<code>module_content_list</code>&nbsp;URL yet. You are going to create it in a bit.</p>\n\n\n\n<p>You also need a view for deleting content. Edit the&nbsp;<code>views.py</code>&nbsp;file of the&nbsp;<code>courses</code>&nbsp;application and add the following code:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>class ContentDeleteView(View):\n    def post(self, request, id):\n        content = get_object_or_404(Content,\n                               id=id,\n                               module__course__owner=request.user)\n        module = content.module\n        content.item.delete()\n        content.delete()\n        return redirect('module_content_list', module.id)\n</code></pre>\n\n\n\n<p>The&nbsp;<code>ContentDeleteView</code>&nbsp;class retrieves the&nbsp;<code>Content</code>&nbsp;object with the given ID. It deletes the related&nbsp;<code>Text</code>,&nbsp;<code>Video</code>,&nbsp;<code>Image</code>, or&nbsp;<code>File</code>&nbsp;object. Finally, it deletes the&nbsp;<code>Content</code>&nbsp;object&nbsp;<a></a>and redirects the user to the&nbsp;<code>module_content_list</code>&nbsp;URL to list the other contents of the module.</p>\n\n\n\n<p>Edit the&nbsp;<code>urls.py</code>&nbsp;file of the&nbsp;<code>courses</code>&nbsp;application and add the following URL pattern to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>path('content/&lt;int:id&gt;/delete/',\n     views.ContentDeleteView.as_view(),\n     name='module_content_delete'),\n</code></pre>\n\n\n\n<p>Now instructors can create, update, and delete content easily.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Now, you need a way to add content to course modules. You have four different types of content: text, video, image, and file. You could consider creating four different views to create content, with one for each model. However, you are going to take a more generic&nbsp;approach and create a view that handles creating or&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/adding-content-to-course-modules/\">Continue reading <span class=\"screen-reader-text\">Adding content to course modules</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [134],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4026" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=4026"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4026/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4027,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4026/revisions/4027"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=4026"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=4026"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=4026"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 4029,
+    "date": "2022-06-29T07:20:35",
+    "date_gmt": "2022-06-29T07:20:35",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=4029" },
+    "modified": "2022-06-29T07:20:35",
+    "modified_gmt": "2022-06-29T07:20:35",
+    "slug": "managing-modules-and-their-contents",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/managing-modules-and-their-contents/",
+    "title": { "rendered": "Managing modules and their contents" },
+    "content": {
+      "rendered": "\n<p>You have&nbsp;<a></a>built views to create, edit, and delete course modules&nbsp;<a></a>and their contents. Next, you need a view to display all modules for a course and list the contents of a&nbsp;specific module.</p>\n\n\n\n<p>Edit the&nbsp;<code>views.py</code>&nbsp;file of the&nbsp;<code>courses</code>&nbsp;application and add the following code to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>class ModuleContentListView(TemplateResponseMixin, View):\n    template_name = 'courses/manage/module/content_list.html'\n    def get(self, request, module_id):\n        module = get_object_or_404(Module,\n                                   id=module_id,\n                                   course__owner=request.user)\n        return self.render_to_response({'module': module})\n</code></pre>\n\n\n\n<p>This is the&nbsp;<code>ModuleContentListView</code>&nbsp;view. This view gets the&nbsp;<code>Module</code>&nbsp;object with the given ID&nbsp;that belongs to the current user and renders a template with the given module.</p>\n\n\n\n<p>Edit the&nbsp;<code>urls.py</code>&nbsp;file of the&nbsp;<code>courses</code>&nbsp;application and add the following URL pattern to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>path('module/&lt;int:module_id&gt;/',\n     views.ModuleContentListView.as_view(),\n     name='module_content_list'),\n</code></pre>\n\n\n\n<p>Create a new template inside the&nbsp;<code>templates/courses/manage/module/</code>&nbsp;directory and name it&nbsp;<code>content_list.html</code>. Add the following code to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{% extends \"base.html\" %}\n{% block title %}\n  Module {{ module.order|add:1 }}: {{ module.title }}\n{% endblock %}\n{% block content %}\n{% with course=module.course %}\n  &lt;h1&gt;Course \"{{ course.title }}\"&lt;/h1&gt;\n  &lt;div class=\"contents\"&gt;\n    &lt;h3&gt;Modules&lt;/h3&gt;\n    &lt;ul id=\"modules\"&gt;\n      {% for m in course.modules.all %}\n        &lt;li data-id=\"{{ m.id }}\" {% if m == module %}\n         class=\"selected\"{% endif %}&gt;\n          &lt;a href=\"{% url \"module_content_list\" m.id %}\"&gt;\n            &lt;span&gt;\n              Module &lt;span class=\"order\"&gt;{{ m.order|add:1 }}&lt;/span&gt;\n            &lt;/span&gt;\n            &lt;br&gt;\n            {{ m.title }}\n          &lt;/a&gt;\n        &lt;/li&gt;\n      {% empty %}\n        &lt;li&gt;No modules yet.&lt;/li&gt;\n      {% endfor %}\n    &lt;/ul&gt;\n    &lt;p&gt;&lt;a href=\"{% url \"course_module_update\" course.id %}\"&gt;\n    Edit modules&lt;/a&gt;&lt;/p&gt;\n  &lt;/div&gt;\n  &lt;div class=\"module\"&gt;\n    &lt;h2&gt;Module {{ module.order|add:1 }}: {{ module.title }}&lt;/h2&gt;\n    &lt;h3&gt;Module contents:&lt;/h3&gt;\n    &lt;div id=\"module-contents\"&gt;\n      {% for content in module.contents.all %}\n        &lt;div data-id=\"{{ content.id }}\"&gt;\n          {% with item=content.item %}\n            &lt;p&gt;{{ item }}&lt;/p&gt;\n            &lt;a href=\"#\"&gt;Edit&lt;/a&gt;\n            &lt;form action=\"{% url \"module_content_delete\" content.id %}\"\n             method=\"post\"&gt;\n              &lt;input type=\"submit\" value=\"Delete\"&gt;\n              {% csrf_token %}\n            &lt;/form&gt;\n          {% endwith %}\n        &lt;/div&gt;\n      {% empty %}\n        &lt;p&gt;This module has no contents yet.&lt;/p&gt;\n      {% endfor %}\n    &lt;/div&gt;\n    &lt;h3&gt;Add new content:&lt;/h3&gt;\n    &lt;ul class=\"content-types\"&gt;\n      &lt;li&gt;&lt;a href=\"{% url \"module_content_create\" module.id \"text\" %}\"&gt;\n      Text&lt;/a&gt;&lt;/li&gt;\n      &lt;li&gt;&lt;a href=\"{% url \"module_content_create\" module.id \"image\" %}\"&gt;\n      Image&lt;/a&gt;&lt;/li&gt;\n      &lt;li&gt;&lt;a href=\"{% url \"module_content_create\" module.id \"video\" %}\"&gt;\n      Video&lt;/a&gt;&lt;/li&gt;\n      &lt;li&gt;&lt;a href=\"{% url \"module_content_create\" module.id \"file\" %}\"&gt;\n      File&lt;/a&gt;&lt;/li&gt;\n    &lt;/ul&gt;\n  &lt;/div&gt;\n{% endwith %}\n{% endblock %}\n</code></pre>\n\n\n\n<p>Make sure that no template tag is split into multiple lines.</p>\n\n\n\n<p>This is the&nbsp;<a></a>template that displays all modules for a course and the contents of the selected module. You iterate over the course modules to display them in a sidebar. You iterate over a module&#8217;s contents and access&nbsp;<code>content.item</code>&nbsp;to get the related&nbsp;<code>Text</code>,&nbsp;<code>Video</code>,&nbsp;<code>Image</code>, or&nbsp;<code>File</code>&nbsp;object. You also include links to create new text, video, image, or file content.</p>\n\n\n\n<p>You want&nbsp;<a></a>to know which type of object each of the&nbsp;<code>item</code>&nbsp;objects is:&nbsp;<code>Text</code>,&nbsp;<code>Video</code>,&nbsp;<code>Image</code>, or&nbsp;<code>File</code>. You need the model name to build the URL to edit the object. Besides this, you could display each item in the template differently based on the type of content it is. You can get the model name for an object from the model&#8217;s&nbsp;<code>Meta</code>&nbsp;class by accessing the object&#8217;s&nbsp;<code>_meta</code>&nbsp;attribute. Nevertheless, Django doesn&#8217;t allow accessing variables or attributes starting with an underscore in templates to prevent retrieving private attributes or calling private methods. You can solve this by writing a custom template filter.</p>\n\n\n\n<p>Create the following file structure inside the&nbsp;<code>courses</code>&nbsp;application directory:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>templatetags/\n    __init__.py\n    course.py\n</code></pre>\n\n\n\n<p>Edit the&nbsp;<code>course.py</code>&nbsp;module and add the following code to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>from django import template\nregister = template.Library()\n@register.filter\ndef model_name(obj):\n    try:\n        return obj._meta.model_name\n    except AttributeError:\n        return None\n</code></pre>\n\n\n\n<p>This is the&nbsp;<code>model_name</code>&nbsp;template filter. You can apply it in templates as&nbsp;<code>object|model_name</code>&nbsp;to get the model name for an object.</p>\n\n\n\n<p>Edit the&nbsp;<code>templates/courses/manage/module/content_list.html</code>&nbsp;template and add the&nbsp;<a></a>following line below the&nbsp;<code>{% extends %}</code>&nbsp;template tag:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{% load course %}\n</code></pre>\n\n\n\n<p>This will&nbsp;<a></a>load the&nbsp;<code>course</code>&nbsp;template tags. Then, find the following lines:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;p&gt;{{ item }}&lt;/p&gt;\n&lt;a href=\"#\"&gt;Edit&lt;/a&gt;\n</code></pre>\n\n\n\n<p>Replace them with the following ones:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;p&gt;{{ item }} <strong>({{ item|model_name }})</strong>&lt;/p&gt;\n&lt;a href=<strong>\"{% url \"module_content_update\" module.id item|model_name item.id %}\"</strong>&gt;\n  Edit\n&lt;/a&gt;\n</code></pre>\n\n\n\n<p>In the preceding code, you display the item model name in the template and also use the model name to build the link to edit the object.</p>\n\n\n\n<p>Edit the&nbsp;<code>courses/manage/course/list.html</code>&nbsp;template and add a link to the&nbsp;<code>module_content_list</code>&nbsp;URL, like&nbsp;this:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;a href=\"{% url \"course_module_update\" course.id %}\"&gt;Edit modules&lt;/a&gt;\n<strong>{% if course.modules.count &gt; 0 %}</strong>\n  <strong>&lt;a href=\"{% url \"module_content_list\" course.modules.first.id %}\"&gt;</strong>\n  <strong>Manage contents&lt;/a&gt;</strong>\n<strong>{% endif %}</strong>\n</code></pre>\n\n\n\n<p>The new link allows users to access the contents of the first module of the course, if&nbsp;there are any.</p>\n\n\n\n<p>Stop the development server and run it again using the command&nbsp;<code>python manage.py runserver</code>. By stopping and running the development server, you make sure that the&nbsp;<code>course</code>&nbsp;template tags file gets loaded.</p>\n\n\n\n<p>Open&nbsp;<code>http://127.0.0.1:8000/course/mine/</code>&nbsp;and click&nbsp;<a></a>the&nbsp;<strong>Manage contents</strong>&nbsp;link for a course&nbsp;<a></a>that contains at&nbsp;least&nbsp;one module. You will see a page like the following one:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/B14981_10_11.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 10.11: The page to manage course module contents</p>\n\n\n\n<p>When you click on a module in the left sidebar, its contents are displayed in the main area. The template also includes links to add new text, video, image, or file content for the module being displayed.</p>\n\n\n\n<p>Add a couple of different types of content to the module and take a look at the result. Module contents will appear below&nbsp;<strong>Module contents</strong>:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/B14981_10_12.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 10.12: Managing different module contents</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>You have&nbsp;built views to create, edit, and delete course modules&nbsp;and their contents. Next, you need a view to display all modules for a course and list the contents of a&nbsp;specific module. Edit the&nbsp;views.py&nbsp;file of the&nbsp;courses&nbsp;application and add the following code to it: This is the&nbsp;ModuleContentListView&nbsp;view. This view gets the&nbsp;Module&nbsp;object with the given ID&nbsp;that belongs to&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/managing-modules-and-their-contents/\">Continue reading <span class=\"screen-reader-text\">Managing modules and their contents</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [134],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4029" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=4029"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4029/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4030,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4029/revisions/4030"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=4029"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=4029"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=4029"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 4032,
+    "date": "2022-06-29T07:21:10",
+    "date_gmt": "2022-06-29T07:21:10",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=4032" },
+    "modified": "2022-06-29T07:21:10",
+    "modified_gmt": "2022-06-29T07:21:10",
+    "slug": "reordering-modules-and-their-contents",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/reordering-modules-and-their-contents/",
+    "title": { "rendered": "Reordering modules and their contents" },
+    "content": {
+      "rendered": "\n<p>You need to provide a simple way to reorder course modules and their contents. You will use a JavaScript drag-and-drop widget to let your users reorder the modules of a course by dragging them. When users finish dragging a module, you will launch an asynchronous request (AJAX) to store the new module order.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>You need to provide a simple way to reorder course modules and their contents. You will use a JavaScript drag-and-drop widget to let your users reorder the modules of a course by dragging them. When users finish dragging a module, you will launch an asynchronous request (AJAX) to store the new module order.</p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [134],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4032" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=4032"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4032/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4033,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4032/revisions/4033"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=4032"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=4032"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=4032"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 4035,
+    "date": "2022-06-29T07:23:14",
+    "date_gmt": "2022-06-29T07:23:14",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=4035" },
+    "modified": "2022-06-29T07:23:14",
+    "modified_gmt": "2022-06-29T07:23:14",
+    "slug": "using-mixins-from-django-braces",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/using-mixins-from-django-braces/",
+    "title": { "rendered": "Using mixins from django-braces" },
+    "content": {
+      "rendered": "\n<p><code>django-braces</code> is a third-party module that contains a collection of generic mixins for Django. These mixins provide additional features for class-based views. You can see a list of all mixins provided by <code>django-braces</code> at https://django-braces.readthedocs.io/.</p>\n\n\n\n<p>You will use the following mixins of&nbsp;<code>django-braces</code>:</p>\n\n\n\n<ul><li><code>CsrfExemptMixin</code>: Used to avoid checking the&nbsp;<strong>cross-site request forgery&nbsp;</strong>(<strong>CSRF</strong>) token in the&nbsp;<code>POST</code>&nbsp;requests. You need this to perform AJAX&nbsp;<code>POST</code>&nbsp;requests without having to generate a&nbsp;<code>csrf_token</code>.</li><li><code>JsonRequestResponseMixin</code>: Parses the request data as JSON and also serializes the response as JSON and returns an HTTP response with the&nbsp;<code>application/json</code>&nbsp;content type.</li></ul>\n\n\n\n<p>Install&nbsp;<code>django-braces</code>&nbsp;via&nbsp;<code>pip</code>&nbsp;using the following command:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>pip install django-braces==1.14.0\n</code></pre>\n\n\n\n<p>You need&nbsp;<a></a>a view that receives the new order of module&nbsp;<a></a>IDs encoded in JSON. Edit&nbsp;the&nbsp;<code>views.py</code>&nbsp;file of the&nbsp;<code>courses</code>&nbsp;application and add the following code to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>from braces.views import CsrfExemptMixin, JsonRequestResponseMixin\nclass ModuleOrderView(CsrfExemptMixin,\n                      JsonRequestResponseMixin,\n                      View):\n    def post(self, request):\n        for id, order in self.request_json.items():\n            Module.objects.filter(id=id,\n                   course__owner=request.user).update(order=order)\n        return self.render_json_response({'saved': 'OK'})\n</code></pre>\n\n\n\n<p>This is the&nbsp;<code>ModuleOrderView</code>&nbsp;view.</p>\n\n\n\n<p>You can build a similar view to order a module&#8217;s contents. Add the following code to&nbsp;the&nbsp;<code>views.py</code>&nbsp;file:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>class ContentOrderView(CsrfExemptMixin,\n                       JsonRequestResponseMixin,\n                       View):\n    def post(self, request):\n        for id, order in self.request_json.items():\n            Content.objects.filter(id=id,\n                       module__course__owner=request.user) \\\n                       .update(order=order)\n        return self.render_json_response({'saved': 'OK'})\n</code></pre>\n\n\n\n<p>Now, edit the&nbsp;<code>urls.py</code>&nbsp;file of the&nbsp;<code>courses</code>&nbsp;application and add the following URL&nbsp;patterns to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>path('module/order/',\n     views.ModuleOrderView.as_view(),\n     name='module_order'),\npath('content/order/',\n     views.ContentOrderView.as_view(),\n     name='content_order'),\n</code></pre>\n\n\n\n<p>Finally, you need to implement the drag-and-drop functionality in the template. You will use the jQuery UI library for this. jQuery UI is built on top of jQuery and&nbsp;it provides a set of interface interactions, effects, and widgets. You will use its&nbsp;<code>sortable</code>&nbsp;element. First, you need&nbsp;<a></a>to load jQuery UI in the base template. Open the&nbsp;<code>base.html</code>&nbsp;file located in the&nbsp;<code>templates/</code>&nbsp;directory of the&nbsp;<code>courses</code>&nbsp;application, and add jQuery UI below the script to load jQuery, as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js\"&gt;&lt;/script&gt;\n<strong>&lt;script src=\"https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js\"&gt;&lt;/script&gt;</strong>\n</code></pre>\n\n\n\n<p>You load the&nbsp;<a></a>jQuery UI library just below the jQuery framework. Next, edit the&nbsp;<code>courses/manage/module/content_list.html</code>&nbsp;template and add the following code to it at the bottom of the template:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{% block domready %}\n  $('#modules').sortable({\n    stop: function(event, ui) {\n      modules_order = {};\n      $('#modules').children().each(function(){\n        <em>// update the order field</em>\n        $(this).find('.order').text($(this).index() + 1);\n        <em>// associate the module's id with its order</em>\n        modules_order&#91;$(this).data('id')] = $(this).index();\n      });\n      $.ajax({\n        type: 'POST',\n        url: '{% url \"module_order\" %}',\n        contentType: 'application/json; charset=utf-8',\n        dataType: 'json',\n        data: JSON.stringify(modules_order)\n      });\n    }\n  });\n\n  $('#module-contents').sortable({\n    stop: function(event, ui) {\n      contents_order = {};\n      $('#module-contents').children().each(function(){\n        <em>// associate the module's id with its order</em>\n        contents_order&#91;$(this).data('id')] = $(this).index();\n      });\n\n      $.ajax({\n        type: 'POST',\n        url: '{% url \"content_order\" %}',\n        contentType: 'application/json; charset=utf-8',\n        dataType: 'json',\n        data: JSON.stringify(contents_order),\n      });\n    }\n  });\n{% endblock %}</code></pre>\n\n\n\n<p>This JavaScript code is in the&nbsp;<code>{% block domready %}</code>&nbsp;block and therefore it will be included in the&nbsp;<code>$(document).ready()</code>&nbsp;event of jQuery that you defined in the&nbsp;<code>base.html</code>&nbsp;template. This guarantees that your JavaScript code will be executed once the page&nbsp;<a></a>has been loaded.</p>\n\n\n\n<p>You define a&nbsp;<code>sortable</code>&nbsp;element for&nbsp;<a></a>the module list in the sidebar and a different one for the module contents list. Both work in a similar manner.</p>\n\n\n\n<p>In this code, you perform the following tasks:</p>\n\n\n\n<ol><li>You define a&nbsp;<code>sortable</code>&nbsp;element for the&nbsp;<code>modules</code>&nbsp;HTML element. Remember that you use&nbsp;<code>#modules</code>, since jQuery uses CSS notation for selectors.</li><li>You specify a function for the&nbsp;<code>stop</code>&nbsp;event. This event is triggered every time the user finishes sorting an element.</li><li>You create an empty&nbsp;<code>modules_order</code>&nbsp;dictionary. The keys for this dictionary will be the module IDs, and the values will be the assigned order for each module.</li><li>You iterate over the&nbsp;<code>#module</code>&nbsp;children elements. You recalculate the displayed order for each module and get its&nbsp;<code>data-id</code>&nbsp;attribute, which contains the module&#8217;s ID. You add the ID as the key of the&nbsp;<code>modules_order</code>&nbsp;dictionary and the new index of the module as the value.</li><li>You launch an AJAX&nbsp;<code>POST</code>&nbsp;request to the&nbsp;<code>content_order</code>&nbsp;URL, including the serialized JSON data of&nbsp;<code>modules_order</code>&nbsp;in the request. The corresponding&nbsp;<code>ModuleOrderView</code>&nbsp;takes care of updating the order of the modules.</li></ol>\n\n\n\n<p>The&nbsp;<code>sortable</code>&nbsp;element to order module contents is quite similar to this one. Go back to your browser and reload the page. Now you will be able to click and drag both modules and their contents to reorder them like the following example:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/B14981_10_13.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 10.13: Reordering modules with the drag-and-drop functionality</p>\n\n\n\n<p>Great! Now&nbsp;<a></a>you can reorder both course modules&nbsp;<a></a>and module contents.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>django-braces is a third-party module that contains a collection of generic mixins for Django. These mixins provide additional features for class-based views. You can see a list of all mixins provided by django-braces at https://django-braces.readthedocs.io/. You will use the following mixins of&nbsp;django-braces: CsrfExemptMixin: Used to avoid checking the&nbsp;cross-site request forgery&nbsp;(CSRF) token in the&nbsp;POST&nbsp;requests. You need this to perform AJAX&nbsp;POST&nbsp;requests without having&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/using-mixins-from-django-braces/\">Continue reading <span class=\"screen-reader-text\">Using mixins from django-braces</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [134],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4035" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=4035"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4035/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4036,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4035/revisions/4036"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=4035"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=4035"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=4035"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  }
+]

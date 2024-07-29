@@ -1,0 +1,754 @@
+[
+  {
+    "id": 3427,
+    "date": "2020-11-30T06:17:32",
+    "date_gmt": "2020-11-30T06:17:32",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3427"
+    },
+    "modified": "2020-11-30T06:17:32",
+    "modified_gmt": "2020-11-30T06:17:32",
+    "slug": "passing-by-value",
+    "status": "publish",
+    "type": "post",
+    "link": "https://computerprogramming.foobrdigital.com/passing-by-value/",
+    "title": {
+      "rendered": "Passing By Value"
+    },
+    "content": {
+      "rendered": "\n<h2>JavaScript pass by value or pass by reference</h2>\n\n\n\n<p>In JavaScript, all function arguments are <em>always</em> passed by value. It means that JavaScript copies the values of the passing variables into arguments inside of the function.</p>\n\n\n\n<p>Any changes that you make to the arguments inside the function does not affect the passing variables outside of the function.&nbsp;In other words, the changes made to the arguments are not reflected outside of the function.</p>\n\n\n\n<p>If function arguments are passed by reference, the changes of variables that you pass into the function will be reflected outside the function. This is not possible in JavaScript.</p>\n\n\n\n<h2>Passing by value of primitives values</h2>\n\n\n\n<p>Let’s take a look at the following example.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function square(x) {\n    x = x * x;\n    return x;\n}\nvar y = 10;\nvar result = square(y);\nconsole.log(y); // 10 -- no change\nconsole.log(result); // 100 </code></pre>\n\n\n\n<p>How the script works.</p>\n\n\n\n<p>First, define a&nbsp;<code>square()</code>&nbsp;function that accepts an argument&nbsp;x&nbsp;. The function changes the value of the&nbsp;<code>x</code>&nbsp;argument.</p>\n\n\n\n<p>Next, declare the variable&nbsp;y&nbsp;and initialize its value to 10:</p>\n\n\n\n<p>Then, pass the&nbsp;<code>y</code>&nbsp;variable&nbsp;into the&nbsp;<code>square()</code>&nbsp;function. When passing the variable&nbsp;<code>y</code>&nbsp;to the&nbsp;<code>square()</code>&nbsp;function, JavaScript copies the value of&nbsp;<code>y</code>&nbsp;to the&nbsp;<code>x</code>&nbsp;variable.</p>\n\n\n\n\n\n\n\n<p>After that, the&nbsp;<code>square()</code>&nbsp;function changes the&nbsp;x&nbsp;variable. However, it does not impact the value of the&nbsp;<code>y</code>&nbsp;variable. This is because&nbsp;<code>x</code>&nbsp;and&nbsp;<code>y</code>&nbsp;are totally different variables. They have no link.</p>\n\n\n\n\n\n\n\n<p>Finally,&nbsp;the value of the&nbsp;<code>y</code>&nbsp;variable does not change after the&nbsp;<code>square()</code>&nbsp;function completes.</p>\n\n\n\n\n\n\n\n<p>If JavaScript uses&nbsp;passing by reference, the value of the variable&nbsp;<code>y</code>&nbsp;would change to&nbsp;<code>100</code>.</p>\n\n\n\n<h2>Passing by value of&nbsp;object</h2>\n\n\n\n<p>It’s obvious to see that primitive variables are passed by values. However, it is not the case for objects.&nbsp;Take this for example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function turnOn(machine) {\n    machine.isOn = true;\n}\n\nvar computer = {\n    isOn: false\n};\n\nturnOn(computer);\nconsole.log(computer.isOn); // true;</code></pre>\n\n\n\n<p>How the script works:</p>\n\n\n\n<p>First, define the&nbsp;<code>turnOn()</code>&nbsp;function that accepts an object&nbsp;<code>machine</code>. The function sets the&nbsp;<code>isOn</code>&nbsp;property of the object to&nbsp;<code>true</code>.</p>\n\n\n\n<p>Next, declare a variable&nbsp;<code>computer</code>&nbsp;and assign it an object whose&nbsp;<code>isOn</code>&nbsp;property is set to&nbsp;<code>false</code>.</p>\n\n\n\n<p>Internally, the&nbsp;<code>computer</code>&nbsp;is a variable that references the actual object:</p>\n\n\n\n\n\n\n\n<p>Then, pass the&nbsp;<code>computer</code>&nbsp;variable into the&nbsp;<code>turnOn()</code>&nbsp;function.</p>\n\n\n\n<p>JavaScript copies the value of the&nbsp;<code>computer</code>&nbsp;variable to&nbsp;<code>machine</code>&nbsp;variable. As a result, both&nbsp;<code>computer</code>&nbsp;and&nbsp;<code>machine</code>&nbsp;variables are referencing the same object in the memory:</p>\n\n\n\n\n\n\n\n<p>After that, inside the&nbsp;<code>turnOn()</code>&nbsp;function, the&nbsp;<code>isOn</code>&nbsp;property of the object is set to&nbsp;<code>true</code>&nbsp;via the&nbsp;<code>machine</code>&nbsp;variable.</p>\n\n\n\n\n\n\n\n<p>Finally, accessing the&nbsp;<code>isOn</code>&nbsp;property of the&nbsp;<code>computer</code>&nbsp;variable returns&nbsp;<code>true</code>.</p>\n\n\n\n\n\n\n\n<p>It seems that JavaScript passes an object by reference because the changes to the object are reflected outside of the function. However,&nbsp;this is not the case.</p>\n\n\n\n<p>In fact, when you pass an object to a function, you are passing the reference of that object, not the actual object (computer). Therefore, the function can modify the properties of the object via its reference.</p>\n\n\n\n<p>In addition, when you pass an object into a function, the function cannot change the reference variable to reference another object.</p>\n\n\n\n<p>Let’s prove it through the following example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function turnOn(machine) {\n    machine = {\n        isOn: true\n    };\n}\n\nvar computer = {\n    isOn: false\n};\n\nturnOn(computer);\n\nconsole.log(computer.isOn); // false;</code></pre>\n\n\n\n<p>This time, the&nbsp;<code>turnOn()</code>&nbsp;function changes the&nbsp;<code>machine</code>&nbsp;argument so that it references another object.</p>\n\n\n\n<p>Before passing the&nbsp;<code>computer</code>&nbsp;object to the&nbsp;<code>turnOn()</code>&nbsp;function, the&nbsp;<code>isOn</code>&nbsp;property of the&nbsp;<code>computer</code>&nbsp;object is&nbsp;<code>false</code>.</p>\n\n\n\n<p>If the&nbsp;<code>computer</code>&nbsp;variable was passed by reference, the&nbsp;<code>computer</code>&nbsp;variable would be changed and referenced the new object whose&nbsp;<code>isOn</code>&nbsp;property is&nbsp;<code>true</code>.</p>\n\n\n\n<p>However, when we access the&nbsp;<code>isOn</code>&nbsp;property outside of the function, the values is&nbsp;<code>false</code>. It indicates that the original reference did not change even though the argument was changed inside of the function.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>JavaScript pass by value or pass by reference In JavaScript, all function arguments are always passed by value. It means that JavaScript copies the values of the passing variables into arguments inside of the function. Any changes that you make to the arguments inside the function does not affect the passing variables outside of the function.&nbsp;In other words, the changes made to [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [40],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3427"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/comments?post=3427"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3427/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/media?parent=3427"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/categories?post=3427"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/tags?post=3427"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 3429,
+    "date": "2020-11-30T06:18:23",
+    "date_gmt": "2020-11-30T06:18:23",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3429"
+    },
+    "modified": "2020-11-30T06:18:23",
+    "modified_gmt": "2020-11-30T06:18:23",
+    "slug": "returning-multiple-values",
+    "status": "publish",
+    "type": "post",
+    "link": "https://computerprogramming.foobrdigital.com/returning-multiple-values/",
+    "title": {
+      "rendered": "Returning multiple values"
+    },
+    "content": {
+      "rendered": "\n<h2>Returning multiple values from a function using an array</h2>\n\n\n\n<p>Suppose that the following&nbsp;<code>getNames()</code>&nbsp;function retrieves the first name and last name from the database or a third-party API and returns them as elements of an array:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function getNames() {\n    // get names from the database or API\n    let firstName = 'John',\n        lastName = 'Doe';\n\n    // return as an array\n    return &#91;firstName, lastName];\n}</code></pre>\n\n\n\n<p>The following shows how to get the return value from the&nbsp;<code>getNames()</code>&nbsp;function:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let names = getNames();</code></pre>\n\n\n\n<p>Because the&nbsp;<code>names</code>&nbsp;variable is an array, you can reference its elements using the square brackets, like this:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>const firstName = names&#91;0],\n    lastName = names&#91;1];\n</code></pre>\n\n\n\n<p>In ES6, you can destructuring assignment syntax to unpack values from an array more intuitively, like this:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>const &#91;firstName, lastName] = getNames();\n</code></pre>\n\n\n\n<p>In this code, the&nbsp;<code>firstName</code>&nbsp;and&nbsp;<code>lastName</code>&nbsp;variables will take the first and second elements of the return array.</p>\n\n\n\n<h2>Returning multiple values from an function using an object</h2>\n\n\n\n<p>If you want to assign a name to each returned value to make it more readable and easier to maintain, you can use an object:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function getNames() {\n    // get names from the database or API\n    let firstName = 'John',\n        lastName = 'Doe';\n\n    // return values\n    return {\n        firstName,\n        lastName\n    };\n}</code></pre>\n\n\n\n<p>And you can get the return value as an object, like this:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let names = getNames();\n\nlet firstName = names.firstName,\n    lastName = names.lastName;</code></pre>\n\n\n\n<p>If you want to unpack properties from an object, you can use the object destructuring syntax as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let { firstName, lastName } = getNames();\n</code></pre>\n\n\n\n<h2>Summary</h2>\n\n\n\n<ul><li>JavaScript doesn’t support functions that return multiple values. However, you can wrap multiple values into an array or an object and return the array or the object.</li><li>Use destructuring assignment syntax to unpack values from the array, or properties from objects.</li></ul>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Returning multiple values from a function using an array Suppose that the following&nbsp;getNames()&nbsp;function retrieves the first name and last name from the database or a third-party API and returns them as elements of an array: The following shows how to get the return value from the&nbsp;getNames()&nbsp;function: Because the&nbsp;names&nbsp;variable is an array, you can reference its [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [40],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3429"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/comments?post=3429"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3429/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/media?parent=3429"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/categories?post=3429"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/tags?post=3429"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 3431,
+    "date": "2020-11-30T06:19:22",
+    "date_gmt": "2020-11-30T06:19:22",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3431"
+    },
+    "modified": "2020-11-30T06:19:22",
+    "modified_gmt": "2020-11-30T06:19:22",
+    "slug": "function-type",
+    "status": "publish",
+    "type": "post",
+    "link": "https://computerprogramming.foobrdigital.com/function-type/",
+    "title": {
+      "rendered": "Function Type"
+    },
+    "content": {
+      "rendered": "\n<h2>Introduction to the JavaScript&nbsp;<code>Function</code>&nbsp;type</h2>\n\n\n\n<p>All functions in JavaScript are objects. They are the instances of the <code>Function</code> type. Since functions are objects, they have properties and methods like other objects.</p>\n\n\n\n<h3>Functions properties</h3>\n\n\n\n<p>Each function has two properties:&nbsp;<code>length</code>&nbsp;and&nbsp;<code>prototype</code>.</p>\n\n\n\n<ul><li>The&nbsp;<code>length</code>&nbsp;property determines the number of named arguments specified in the function declaration.</li><li>The&nbsp;<code>prototype</code>&nbsp;property references the actual function object.</li></ul>\n\n\n\n<p>See the following example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function swap(x, y) {\n    let tmp = x;\n    x = y;\n    y = tmp;\n}\n\nconsole.log(swap.length); // 2\nconsole.log(swap.prototype); // Object{}</code></pre>\n\n\n\n<p>The <code>swap()</code> function accepts two arguments <code>x</code> and <code>y</code>, therefore, the <code>length</code> property returns 2. We will discuss <code>prototype</code> property in more detail in the prototype tutorial.</p>\n\n\n\n<p>Typically, a function is invoked like a callable function. For example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function fn() {\n   // ...\n}\n\nfn();</code></pre>\n\n\n\n<p>And function can be called as a constructor to create a new object:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function fn() {\n   // ...\n}\n\nlet f  = new fn();\n</code></pre>\n\n\n\n<p>ES6 added a new property called target.new that allows you to detect whether a function ( <code>fn</code>) is called as a normal function ( <code>fn()</code>) or as a constructor using the new operator ( <code>new fn()</code>).</p>\n\n\n\n<p>If a function is called normally (&nbsp;<code>f()</code>), the&nbsp;<code>new.target</code>&nbsp;will be&nbsp;<code>undefined</code>.</p>\n\n\n\n<p>On the other hand, if the function is called using the&nbsp;<code>new</code>&nbsp;keyword, the&nbsp;<code>new.target</code>&nbsp;will reference the constructor:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function fn() {\n    console.log(new.target);\n}\n\nfn(); // undefined\nlet f = new fn(); // &#91;Function: fn]</code></pre>\n\n\n\n<h3>Function methods:&nbsp;<code>apply()</code>,&nbsp;<code>call()</code>&nbsp;, and&nbsp;<code>bind()</code></h3>\n\n\n\n<p>A function object has three methods:&nbsp;<code>apply()</code>,&nbsp;<code><a href=\"https://www.javascripttutorial.net/javascript-call/\">call()</a></code>&nbsp;and&nbsp;<code><a href=\"https://www.javascripttutorial.net/javascript-bind/\">bind()</a></code>.</p>\n\n\n\n<h3>The&nbsp;<code>apply()</code>&nbsp;and&nbsp;<code>call()</code>&nbsp;methods</h3>\n\n\n\n<p>The&nbsp;<code>apply()</code>&nbsp;and&nbsp;<code>call()</code>&nbsp;methods call a function with a given&nbsp;<code>this</code>&nbsp;value and arguments.</p>\n\n\n\n<p>The difference between the&nbsp;<code>apply()</code>&nbsp;and&nbsp;<code>call()</code>&nbsp;is that you need to pass the arguments to the&nbsp;<code>apply()</code>&nbsp;method as an array-like object, whereas you pass the arguments to the&nbsp;<code>call()</code>&nbsp;function individually. For example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let cat = {type: 'Cat', sound: 'Meow'};\nlet dog = {type: 'Dog', sound: 'Woof'};\n\nlet say = function (greeting) {\n    console.log(greeting);\n    // access current this\n    console.log(this.type + ' says ' + this.sound);\n};</code></pre>\n\n\n\n<p>First, we declared two objects&nbsp;<code>cat</code>&nbsp;and&nbsp;<code>dog</code>&nbsp;with two properties. Then, we declared the&nbsp;<code>say()</code>&nbsp;function that accepts one argument.</p>\n\n\n\n<p>We can call the&nbsp;<code>say()</code>&nbsp;function through the&nbsp;<code>apply()</code>&nbsp;method as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>say.apply(cat, &#91;'Hi']);\n// Hi\n// Cat says Meow</code></pre>\n\n\n\n<p>The first argument of the &nbsp;<code>apply()</code>&nbsp;method is the&nbsp;<code>cat</code>&nbsp;object, therefore, the&nbsp;<code>this</code>&nbsp;object in the&nbsp;<code>say()</code>&nbsp;function is set to the&nbsp;<code>cat</code>&nbsp;object. The second argument is an array-like argument as indicated by the square brackets&nbsp;<code>[]</code>.</p>\n\n\n\n<p>If we pass the&nbsp;<code>dog</code>&nbsp;object, the&nbsp;<code>this</code>&nbsp;in the&nbsp;<code>say()</code>&nbsp;function will set to&nbsp;<code>dog</code>, like this:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>say.apply(dog,&#91;'Hi']);\n// Hi\n// Dog says Woof</code></pre>\n\n\n\n<p>The output is different because&nbsp;<code>type</code>&nbsp;and&nbsp;<code>sound</code>&nbsp;are the properties of the&nbsp;<code>dog</code>&nbsp;object inside the&nbsp;<code>say()</code>&nbsp;function.</p>\n\n\n\n<p>The&nbsp;<code>call()</code>&nbsp;method is similar to the&nbsp;<code>apply()</code>&nbsp;method except for the way you pass the arguments:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>say.call(cat,'Hi');\n// Hi\n// Cat says Meow\nsay.call(dog,'Hi');\n// Hi\n// Dog says Woof</code></pre>\n\n\n\n<h3>The&nbsp;<code>bind()</code>&nbsp;method</h3>\n\n\n\n<p>The&nbsp;<code>bind()</code>&nbsp;method creates a new function instance whose&nbsp;<code>this</code>&nbsp;value is bound to the object that you provide. Consider the following example:</p>\n\n\n\n<p>First, define an object named&nbsp;<code>car</code>:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let car = {\n    speed: 5,\n    start: function() {\n        console.log('Start with ' + this.speed + ' km/h');\n    }\n};\n</code></pre>\n\n\n\n<p>Then, define another object named&nbsp;<code>aircraft</code>:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let aircraft = {\n    speed: 10,\n    fly: function() {\n        console.log('Flying');\n    }\n};</code></pre>\n\n\n\n<p>The aircraft has no&nbsp;<code>start()</code>&nbsp;method. To start an aircraft, you can use the&nbsp;<code>bind()</code>&nbsp;method of the&nbsp;<code>start()</code>&nbsp;method of the&nbsp;<code>car</code>&nbsp;object:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let taxiing = car.start.bind(aircraft);</code></pre>\n\n\n\n<p>In this statement, we change the&nbsp;<code>this</code>&nbsp;value inside the&nbsp;<code>start()</code>&nbsp;method of the&nbsp;<code>car</code>&nbsp;object to the&nbsp;&nbsp;<code>aircraft</code>&nbsp;object.&nbsp; The&nbsp;<code>bind()</code>&nbsp;method returns a new function that is assigned to the&nbsp;<code>taxiing</code>&nbsp;variable.</p>\n\n\n\n<p>Now, you can call the&nbsp;<code>start()</code>&nbsp;method via the&nbsp;<code>taxiing</code>&nbsp;variable:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>taxiing();</code></pre>\n\n\n\n<p>It will show the following message:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Start with 10 km/h</code></pre>\n\n\n\n<p>The following uses the&nbsp;<code>call()</code>&nbsp;method to call the&nbsp;<code>start()</code>&nbsp;method on the&nbsp;<code>aircraft</code>&nbsp;object:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>car.start.call(aircraft);</code></pre>\n\n\n\n<p>As you can see, the&nbsp;<code>bind()</code>&nbsp;method creates a new function that you can execute later while the&nbsp;<code>call()</code>&nbsp;method executes the function immediately. This is the main difference between the&nbsp;<code>bind()</code>&nbsp;and&nbsp;<code>call()</code>&nbsp;methods.</p>\n\n\n\n<p>Technically, the aircraft object borrows the&nbsp;<code>start()</code>&nbsp;method of the&nbsp;<code>car</code>&nbsp;object via the&nbsp;<code>bind()</code>,&nbsp;<code>call()</code>&nbsp;or&nbsp;<code>apply()</code>&nbsp;method.</p>\n\n\n\n<p>For this reason, the&nbsp;<code>bind()</code>,&nbsp;<code>call()</code>, and&nbsp;<code>apply()</code>&nbsp;methods are also known as borrowing functions.</p>\n\n\n\n<h2>Summary</h2>\n\n\n\n<ul><li>All functions are instances of the&nbsp;<code>Function</code>&nbsp;type, which are the objects. They have properties and methods.</li><li>A function has two important properties:&nbsp;<code>name</code>&nbsp;and&nbsp;<code>prototype</code>.</li><li>A function also has three important methods:&nbsp;<code>call()</code>,&nbsp;<code>apply()</code>, and&nbsp;<code>bind()</code>.</li></ul>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Introduction to the JavaScript&nbsp;Function&nbsp;type All functions in JavaScript are objects. They are the instances of the Function type. Since functions are objects, they have properties and methods like other objects. Functions properties Each function has two properties:&nbsp;length&nbsp;and&nbsp;prototype. The&nbsp;length&nbsp;property determines the number of named arguments specified in the function declaration. The&nbsp;prototype&nbsp;property references the actual function object. See the following example: The swap() function [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [40],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3431"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/comments?post=3431"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3431/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/media?parent=3431"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/categories?post=3431"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/tags?post=3431"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 3433,
+    "date": "2020-11-30T06:22:38",
+    "date_gmt": "2020-11-30T06:22:38",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3433"
+    },
+    "modified": "2020-11-30T06:22:38",
+    "modified_gmt": "2020-11-30T06:22:38",
+    "slug": "the-call-method",
+    "status": "publish",
+    "type": "post",
+    "link": "https://computerprogramming.foobrdigital.com/the-call-method/",
+    "title": {
+      "rendered": "The Call( ) Method"
+    },
+    "content": {
+      "rendered": "\n<h2>Introduction to the JavaScript&nbsp;<code>call()</code>&nbsp;method</h2>\n\n\n\n<p>In JavaScript, a function is an instance of the <code>Function</code> type. For example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function show(){\n    //...\n}\n\nconsole.log(show instanceof Function); // true</code></pre>\n\n\n\n<p>The&nbsp;<code>Function</code>&nbsp;type has a method named&nbsp;<code>call()</code>&nbsp;with the following syntax:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>functionName.call(thisArg, arg1, arg2, ...);</code></pre>\n\n\n\n<p>The&nbsp;<code>call()</code>&nbsp;method calls a function&nbsp;<code>functionName</code>&nbsp;with a given&nbsp;<code>this</code>&nbsp;value and arguments.</p>\n\n\n\n<p>The first argument of the&nbsp;<code>call()</code>&nbsp;method&nbsp;<code>thisArg</code>&nbsp;is the&nbsp;<code>this</code>&nbsp;value. It allows you to set the&nbsp;<code>this</code>&nbsp;value to any given object.</p>\n\n\n\n<p>The remaining arguments of the&nbsp;<code>call()</code>&nbsp;method&nbsp;<code>arg1</code>,&nbsp;<code>arg2</code>,… are the arguments of the function.</p>\n\n\n\n<p>When you invoke a function, the JavaScript engine invokes the&nbsp;<code>call()</code>&nbsp;method of that function object.</p>\n\n\n\n<p>Suppose that you have the&nbsp;<code>show()</code>&nbsp;function as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function show() {\n   console.log('Show function');\n}</code></pre>\n\n\n\n<p>And invoke the&nbsp;<code>show()</code>&nbsp;function:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>show();</code></pre>\n\n\n\n<p>It is equivalent to invoke the&nbsp;<code>call()</code>&nbsp;method on the&nbsp;<code>show</code>&nbsp;function object:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>show.call();</code></pre>\n\n\n\n<p>By default, the <code>this</code>value inside the function is set to the global object i.e., <code>window</code> on web browsers and <code>global</code> on node.js:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function show() {\n    console.log(this);\n}\n\nshow(); </code></pre>\n\n\n\n<p>Note that in the strict mode, the&nbsp;<code>this</code>&nbsp; inside the function is set to&nbsp;<code>undefined</code>&nbsp;instead of the global object.</p>\n\n\n\n<p>See the following example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function add(a, b) { \n    return a + b;\n}\n\nlet result = add.call(this, 10, 20);\nconsole.log(result);\n</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>30</code></pre>\n\n\n\n<p>In this example, instead of calling the&nbsp;<code>add()</code>&nbsp;function directly, we use the&nbsp;<code>call()</code>&nbsp;method to invoke the&nbsp;<code>add()</code>&nbsp;function. The&nbsp;<code>this</code>&nbsp;value is set to the global object.</p>\n\n\n\n<p>See the following code:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>var greeting = 'Hi';\n\nvar messenger = {\n    greeting: 'Hello';\n}\n\nfunction say(name) {\n    console.log(this.greeting + ' ' + name);\n}</code></pre>\n\n\n\n<p>Inside the&nbsp;<code>say()</code>&nbsp;function, we reference the&nbsp;<code>greeting</code>&nbsp;via the&nbsp;<code>this</code>&nbsp;value.</p>\n\n\n\n<p>If you just invoke the&nbsp;<code>say()</code>&nbsp;function via the&nbsp;<code>call()</code>&nbsp;method as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>say.call(this,'John');</code></pre>\n\n\n\n<p>It will show the following result:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>\"Hi John\"</code></pre>\n\n\n\n<p>However, when you invoke the&nbsp;<code>call()</code>&nbsp;method of&nbsp;<code>say()</code>&nbsp;function and pass the&nbsp;<code>messenger</code>&nbsp;object as the&nbsp;<code>this</code>&nbsp;value:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>say.call(messenger,'John');</code></pre>\n\n\n\n<p>The output will be:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>\"Hello John\"</code></pre>\n\n\n\n<p>In this case, the&nbsp;<code>this</code>&nbsp;value inside the&nbsp;<code>say()</code>&nbsp;function references the&nbsp;<code>messenger</code>&nbsp;object, not the global object.</p>\n\n\n\n<h2>Using the JavaScript&nbsp;<code>call()</code>&nbsp;method to chain constructors for an object</h2>\n\n\n\n<p>The&nbsp;<code>call()</code>&nbsp;method can be used for chaining constructors for an object. Consider the following example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function Box(height, width) {\n    this.height = height;\n    this.width  = width;\n}\n\nfunction Widget(height, width, color) {\n    Box.call(this, height, width);\n    this.color = color;\n}\n\nlet widget = new Widget('red',100,200);</code></pre>\n\n\n\n<p>In this example:</p>\n\n\n\n<ul><li>First, initialize the&nbsp;<code>Box</code>&nbsp;object with two properties:&nbsp;<code>height</code>&nbsp;and&nbsp;<code>width</code>.</li><li>Second, invoke the&nbsp;<code>call()</code>&nbsp;method of the&nbsp;<code>Box</code>&nbsp;object inside the&nbsp;<code>Widget</code>&nbsp;object, set the&nbsp;<code>this</code>&nbsp;value to the&nbsp;<code>Widget</code>&nbsp;object.</li></ul>\n\n\n\n<h2>Using the JavaScript&nbsp;<code>call()</code>&nbsp;method for function borrowing</h2>\n\n\n\n<p>The following defines two objects:&nbsp;<code>car</code>&nbsp;and&nbsp;<code>aircraft</code>:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>const car = {\n    name: 'car',\n    start: function() { \n        console.log('Start the ' + this.name);\n    },\n    speedup: function() {\n        console.log('Speed up the ' + this.name)\n    },\n    stop: function() {\n        console.log('Stop the ' + this.name);\n    }\n};\n\nconst aircraft = {\n    name: 'aircraft',\n    fly: function(){\n        console.log('Fly');\n    }\n};\n</code></pre>\n\n\n\n<p>The&nbsp;<code>aircraft</code>&nbsp;object has the&nbsp;<code>fly()</code>&nbsp;method.</p>\n\n\n\n<p>The following code uses the&nbsp;<code>call()</code>&nbsp;method to invoke the&nbsp;<code>start()</code>&nbsp;method of the&nbsp;<code>car</code>&nbsp;object on the&nbsp;<code>aircraft</code>&nbsp;object:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>car.start.call(aircraft);</code></pre>\n\n\n\n<p>Here is the output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Start the aircraft</code></pre>\n\n\n\n<p>Technically, the&nbsp;<code>aircraft</code>&nbsp;object has borrowed the&nbsp;<code>start()</code>&nbsp;method of the&nbsp;<code>car</code>&nbsp;object for the&nbsp;<code>aircraft</code>.</p>\n\n\n\n<p>When an object uses a method of another object is called the function borrowing.</p>\n\n\n\n<p>The typical applications of function borrowing are to use the built-in methods of the Array type.</p>\n\n\n\n<p>For example, the <code>arguments</code> object inside a function is an array-like object, not an array object. To use the <code>slice()</code> method of the Array object, you need to use the <code>call()</code> method:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function getOddNumbers() {\n    const args = Array.prototype.slice.call(arguments);\n    return args.filter(num => num % 2);\n}\n\nlet oddNumbers = getOddNumbers(10, 1, 3, 4, 8, 9);\nconsole.log(oddNumbers);</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&#91; 1, 3, 9 ]</code></pre>\n\n\n\n<p>In this example, we passed any number of numbers into the function. The function returns an array of odd numbers.</p>\n\n\n\n<p>The following statement uses the&nbsp;<code>call()</code>&nbsp;function to set the&nbsp;<code>this</code>&nbsp;inside the&nbsp;<code>slice()</code>&nbsp;method to the&nbsp;<code>arguments</code>&nbsp;object and execute the&nbsp;<code>slice()</code>&nbsp;method:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>const args = Array.prototype.slice.call(arguments);</code></pre>\n\n\n\n<p>In this tutorial, you have learned about the JavaScript&nbsp;<code>call()</code>&nbsp;method and how to use it more effectively.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Introduction to the JavaScript&nbsp;call()&nbsp;method In JavaScript, a function is an instance of the Function type. For example: The&nbsp;Function&nbsp;type has a method named&nbsp;call()&nbsp;with the following syntax: The&nbsp;call()&nbsp;method calls a function&nbsp;functionName&nbsp;with a given&nbsp;this&nbsp;value and arguments. The first argument of the&nbsp;call()&nbsp;method&nbsp;thisArg&nbsp;is the&nbsp;this&nbsp;value. It allows you to set the&nbsp;this&nbsp;value to any given object. The remaining arguments of the&nbsp;call()&nbsp;method&nbsp;arg1,&nbsp;arg2,… are the arguments of the [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [40],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3433"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/comments?post=3433"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3433/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/media?parent=3433"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/categories?post=3433"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/tags?post=3433"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 3435,
+    "date": "2020-11-30T06:24:24",
+    "date_gmt": "2020-11-30T06:24:24",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3435"
+    },
+    "modified": "2020-11-30T06:24:24",
+    "modified_gmt": "2020-11-30T06:24:24",
+    "slug": "apply",
+    "status": "publish",
+    "type": "post",
+    "link": "https://computerprogramming.foobrdigital.com/apply/",
+    "title": {
+      "rendered": "Apply( )"
+    },
+    "content": {
+      "rendered": "\n<h2>Introduction to the JavaScript&nbsp;<code>apply()</code>&nbsp;method</h2>\n\n\n\n<p>The <code>Function.prototype.apply()</code> method allows you to call a function with a given <code>this</code> value and arguments provided as an array. Here is the syntax of the <code>apply()</code> method:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>fn.apply(thisArg, &#91;args]);\n</code></pre>\n\n\n\n<p>The&nbsp;<code>apply()</code>&nbsp;method accepts two arguments:</p>\n\n\n\n<ul><li>The&nbsp;<code>thisArg</code>&nbsp;is the value of this provided for the call to the function&nbsp;<code>fn</code>.</li><li>The&nbsp;<code>args</code>&nbsp;argument is an array that specifies the arguments of the function&nbsp;<code>fn</code>. Since the ES5, the&nbsp;<code>args</code>&nbsp;argument can be an array-like object or array object.</li></ul>\n\n\n\n<p>THe <code>apply()</code> method is similar to the <code>call()</code> method except that it takes the arguments of the function as an array instead of the individual arguments.</p>\n\n\n\n<h2>JavaScript a<code>pply()</code>&nbsp;method examples</h2>\n\n\n\n<p>Let’s take some examples of using the&nbsp;<code>apply()</code>&nbsp;method.</p>\n\n\n\n<h3>1) Simple JavaScript&nbsp;<code>apply()</code>&nbsp;method example</h3>\n\n\n\n<p>Suppose that you have a&nbsp;<code>person</code>&nbsp;object:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>const person = {\n    firstName: 'John',\n    lastName: 'Doe'\n}\n</code></pre>\n\n\n\n<p>…and a function named&nbsp;<code>greet()</code>&nbsp;as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function greet(greeting, message) {\n    return `${greeting} ${this.firstName}. ${message}`;\n}\n</code></pre>\n\n\n\n<p>The&nbsp;<code>greet()</code>&nbsp;function accepts two parameters:&nbsp;<code>greeting</code>&nbsp;and&nbsp;<code>message</code>. Inside the&nbsp;<code>greet()</code>&nbsp;function, we reference an object that has the&nbsp;<code>firstName</code>&nbsp;property.</p>\n\n\n\n<p>The following example shows how to use the&nbsp;<code>apply()</code>&nbsp;method to call the&nbsp;<code>greet()</code>&nbsp;function with the&nbsp;<code>this</code>&nbsp;set to the&nbsp;<code>person</code>&nbsp;object:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let result = greet.apply(person, &#91;'Hello', 'How are you?']);\n\nconsole.log(result);\n</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Hello John. How are you?\n</code></pre>\n\n\n\n<p>In this example, we set the&nbsp;<code>this</code>&nbsp;value inside the function to the&nbsp;<code>person</code>&nbsp;object. The arguments of the&nbsp;<code>greet()</code>&nbsp;function was passed into the&nbsp;<code>apply()</code>&nbsp;method as an array.</p>\n\n\n\n<p>The&nbsp;<code>apply()</code>&nbsp;method invoked the&nbsp;<code>greet()</code>&nbsp;function with the&nbsp;<code>this</code>&nbsp;value set to the&nbsp;<code>person</code>&nbsp;object and arguments as an array&nbsp;<code>['Hello', 'How are you?']</code>.</p>\n\n\n\n<p>If you use the&nbsp;<code>call()</code>&nbsp;method, you need to pass the arguments of the&nbsp;<code>greet()</code>&nbsp;function separately as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let result = greet.call(person, Hello', 'How are you?');\n</code></pre>\n\n\n\n<h3>2) Function borrowing</h3>\n\n\n\n<p>The&nbsp;<code>apply()</code>&nbsp;method allows an object to borrow the method of another object without duplicating the code.</p>\n\n\n\n<p>Suppose that you have the following&nbsp;<code>computer</code>&nbsp;object:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>const computer = {\n    name: 'MacBook',\n    isOn: false,\n    turnOn() {\n        this.isOn = true;\n        return `The ${this.name} is On`;\n    },\n    turnOff() {\n        this.isOn = false;\n        return `The ${this.name} is Off`;\n    }\n};\n</code></pre>\n\n\n\n<p>… and the following&nbsp;<code>server</code>&nbsp;object:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>const server = {\n    name: 'Dell PowerEdge T30',\n    isOn: false\n};\n</code></pre>\n\n\n\n<p>The&nbsp;<code>server</code>&nbsp;object doesn’t have the&nbsp;<code>turnOn()</code>&nbsp;and&nbsp;<code>turnOff()</code>&nbsp;methods.</p>\n\n\n\n<p>To execute the&nbsp;<code>turnOn()</code>&nbsp;method of the&nbsp;<code>computer</code>&nbsp;object on the&nbsp;<code>server</code>&nbsp;object, you can use the&nbsp;<code>apply()</code>&nbsp;method as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let result = computer.turnOn.apply(server);\n\nconsole.log(result);\n</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>The Dell PowerEdge T30 is On\n</code></pre>\n\n\n\n<p>In this example, the&nbsp;<code>server</code>&nbsp;object borrows the&nbsp;<code>turnOn()</code>&nbsp;method of the&nbsp;<code>computer</code>&nbsp;object.</p>\n\n\n\n<p>Similarly, you can call the&nbsp;<code>turnOff()</code>&nbsp;method of the computer object on the server object:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let result = computer.turnOff.apply(server);\nconsole.log(result);</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>The Dell PowerEdge T30 is Off</code></pre>\n\n\n\n<h3>3) Using the&nbsp;<code>apply()</code>&nbsp;method to append an array to another</h3>\n\n\n\n<p>The&nbsp;<code>apply()</code>&nbsp;method allows you to append elements of an array to another:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let arr = &#91;1, 2, 3];\nlet numbers = &#91;4, 5, 6];\n\narr.push.apply(arr, numbers);\n\nconsole.log(arr); \n</code></pre>\n\n\n\n<p>In this example, the <code>apply()</code> method modifies the original array <code>arr</code>. Note that the <code>Array.prototype.concat()</code> method also provides the same result except that it returns the new array instead of modifying the original array.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Introduction to the JavaScript&nbsp;apply()&nbsp;method The Function.prototype.apply() method allows you to call a function with a given this value and arguments provided as an array. Here is the syntax of the apply() method: The&nbsp;apply()&nbsp;method accepts two arguments: The&nbsp;thisArg&nbsp;is the value of this provided for the call to the function&nbsp;fn. The&nbsp;args&nbsp;argument is an array that specifies the arguments of the function&nbsp;fn. Since the ES5, the&nbsp;args&nbsp;argument can [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [40],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3435"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/comments?post=3435"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3435/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/media?parent=3435"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/categories?post=3435"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/tags?post=3435"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 3437,
+    "date": "2020-11-30T06:25:22",
+    "date_gmt": "2020-11-30T06:25:22",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3437"
+    },
+    "modified": "2020-11-30T06:25:22",
+    "modified_gmt": "2020-11-30T06:25:22",
+    "slug": "the-bind-method",
+    "status": "publish",
+    "type": "post",
+    "link": "https://computerprogramming.foobrdigital.com/the-bind-method/",
+    "title": {
+      "rendered": "The Bind( ) Method"
+    },
+    "content": {
+      "rendered": "\n<h2>Introduction to JavaScript&nbsp;<code>bind()</code>&nbsp;method</h2>\n\n\n\n<p>The <code>bind()</code> method returns a new function, when invoked, has its <code>this</code> sets to a specific value.</p>\n\n\n\n<p>The following illustrates the syntax of the&nbsp;<code>bind()</code>&nbsp;method:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>fn.bind(thisArg&#91;, arg1&#91;, arg2&#91;, ...]]])</code></pre>\n\n\n\n<p>In this syntax, the&nbsp;<code>bind()</code>&nbsp;method returns a copy of the function&nbsp;<code>fn</code>&nbsp;with the specific&nbsp;<code>this</code>&nbsp;value (<code>thisArg</code>) and arguments (<code>arg1</code>,&nbsp;<code>arg2</code>, …).</p>\n\n\n\n<p>Unlike the <code>call()</code> and <code>apply()</code> methods, the <code>bind()</code> method doesn’t immediately execute the function. It just returns the function.</p>\n\n\n\n<h2>Using JavaScript&nbsp;<code>bind()</code>&nbsp;for function binding</h2>\n\n\n\n<p>When a method an object is passed to another function as a callback, the <code>this</code> value is lost. For example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let person = {\n    name: 'John Doe',\n    getName: function() {\n        console.log(this.name);\n    }\n};\n\nsetTimeout(person.getName, 1000);</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>undefined</code></pre>\n\n\n\n<p>As you can see clearly form the output, the&nbsp;<code>person.getName()</code>&nbsp;returns&nbsp;<code>undefined</code>&nbsp;instead of&nbsp;<code>'John Doe'</code>.</p>\n\n\n\n<p>That’s because&nbsp;<code>setTimeout()</code>&nbsp;received the function&nbsp;<code>person.getName</code>&nbsp;separately from the&nbsp;<code>person</code>&nbsp;object.</p>\n\n\n\n<p>The statement:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>setTimeout(person.getName, 1000);</code></pre>\n\n\n\n<p>can be rewritten as:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let f = person.getName;\nsetTimeout(f, 1000); // lost person context</code></pre>\n\n\n\n<p>The&nbsp;<code>this</code>&nbsp;inside the&nbsp;<code>setTimeout()</code>&nbsp;function sets to the global object in non-strict mode and&nbsp;<code>undefined</code>&nbsp;in the strict mode.</p>\n\n\n\n<p>Therefore, when the callback&nbsp;<code>person.getName</code>&nbsp;is invoked, the&nbsp;<code>name</code>&nbsp;does not exist in the global object, it is set to&nbsp;<code>undefined</code>.</p>\n\n\n\n<p>To fix the issue, you can wrap the call to the <code>person.getName</code> method in an anonymous function, like this:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>setTimeout(function () {\n    person.getName();\n}, 1000);</code></pre>\n\n\n\n<p>This works because it gets the&nbsp;<code>person</code>&nbsp;from the outer scope and then calls the method&nbsp;<code>getName()</code>.</p>\n\n\n\n<p>Or you can use the&nbsp;<code>bind()</code>&nbsp;method:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let f = person.getName.bind(person);\nsetTimeout(f, 1000);\n</code></pre>\n\n\n\n<p>In this code:</p>\n\n\n\n<ul><li>First, bind the&nbsp;<code>person.getName</code>&nbsp;method to the&nbsp;<code>person</code>&nbsp;object.</li><li>Second, pass the bound function&nbsp;<code>f</code>&nbsp;with&nbsp;<code>this</code>&nbsp;value set to the&nbsp;<code>person</code>&nbsp;object to the&nbsp;<code>setTimeout()</code>&nbsp;function.</li></ul>\n\n\n\n<h2>Using&nbsp;<code>bind()</code>&nbsp;method to borrow methods from a different object</h2>\n\n\n\n<p>Suppose you have a&nbsp;<code>runner</code>&nbsp;object that has the&nbsp;<code>run</code>() method:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let runner = {\n    name: 'Runner',\n    run: function(speed) {\n        console.log(this.name + ' runs at ' + speed + ' mph.');\n    }\n};</code></pre>\n\n\n\n<p>And the&nbsp;<code>flyer</code>&nbsp;object that has the&nbsp;<code>fly()</code>&nbsp;method:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let flyer = {\n    name: 'Flyer',\n    fly: function(speed) {\n        console.log(this.name + ' flies at ' + speed + ' mph.');\n    }\n};</code></pre>\n\n\n\n<p>If you want the&nbsp;<code>flyer</code>&nbsp;object to be able to run, you can use the&nbsp;<code>bind()</code>&nbsp;method to create the&nbsp;<code>run()</code>&nbsp;function with the&nbsp;<code>this</code>&nbsp; sets to the&nbsp;<code>flyer</code>&nbsp;object:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let run = runner.run.bind(flyer, 20);\nrun();</code></pre>\n\n\n\n<p>In this statement:</p>\n\n\n\n<ul><li>Call the&nbsp;<code>bind()</code>&nbsp;method of the&nbsp;<code>runner.run()</code>&nbsp;method and pass in the flyer object as the first argument and 20 as the second argument.</li><li>Invoke the&nbsp;<code>run()</code>&nbsp;function.</li></ul>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Flyer runs at 20 mph.</code></pre>\n\n\n\n<p>The ability to borrow a method of an object without making a copy of that method and maintain it in two separate places is very powerful in JavaScript.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Introduction to JavaScript&nbsp;bind()&nbsp;method The bind() method returns a new function, when invoked, has its this sets to a specific value. The following illustrates the syntax of the&nbsp;bind()&nbsp;method: In this syntax, the&nbsp;bind()&nbsp;method returns a copy of the function&nbsp;fn&nbsp;with the specific&nbsp;this&nbsp;value (thisArg) and arguments (arg1,&nbsp;arg2, …). Unlike the call() and apply() methods, the bind() method doesn’t immediately execute the function. It just returns the function. Using JavaScript&nbsp;bind()&nbsp;for function [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [40],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3437"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/comments?post=3437"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3437/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/media?parent=3437"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/categories?post=3437"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/tags?post=3437"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 3439,
+    "date": "2020-11-30T06:26:37",
+    "date_gmt": "2020-11-30T06:26:37",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3439"
+    },
+    "modified": "2020-11-30T06:26:37",
+    "modified_gmt": "2020-11-30T06:26:37",
+    "slug": "recursive-function",
+    "status": "publish",
+    "type": "post",
+    "link": "https://computerprogramming.foobrdigital.com/recursive-function/",
+    "title": {
+      "rendered": "Recursive Function"
+    },
+    "content": {
+      "rendered": "\n<h2>Introduction to the JavaScript recursive functions</h2>\n\n\n\n<p>A recursive function is a function that calls itself until it doesn’t. And this technique is called recursion.</p>\n\n\n\n<p>Suppose that you have a function called&nbsp;<code>recurse()</code>. The&nbsp;<code>recurse()</code>&nbsp;is a recursive function if it calls itself inside its body, like this:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function recurse() {\n    // ...\n    recurse();\n    // ...\n}\n</code></pre>\n\n\n\n<p>A recursive function always has a condition to stop calling itself, otherwise, it will call itself indefinitely. So a recursive function typically looks like the following:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function recurse() {\n    if(condition) {\n        // stop calling itself\n        //...\n    } else {\n        recurse();\n    }\n}</code></pre>\n\n\n\n<p>Generally, recursive functions are used to break down a big problem into smaller ones. You can find that they are heavily used in the data structures like binary trees and graphs and algorithms such as binary search and quicksort.</p>\n\n\n\n<h2>JavaScript recursive function examples</h2>\n\n\n\n<p>Let’s take some examples of using the recursive functions.</p>\n\n\n\n<h3>1) A simple JavaScript recursive function example</h3>\n\n\n\n<p>Suppose that you need to develop a function that counts down from a specified number to 1. For example, to count down from 10 to 1:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>3\n2\n1</code></pre>\n\n\n\n<p>The following shows the&nbsp;<code>countDown()</code>&nbsp;function:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function countDown(fromNumber) {\n    console.log(fromNumber);\n}\n\ncountDown(3);</code></pre>\n\n\n\n<p>This&nbsp;<code>countDown(3)</code>&nbsp;shows only the number 3.</p>\n\n\n\n<p>To count down from the number 3 to 1, you can:</p>\n\n\n\n<ol><li>show the number 3.</li><li>and call the&nbsp;<code>countDown(2)</code>&nbsp;that shows the number 2.</li><li>and call the&nbsp;<code>countDown(1)</code>&nbsp;that shows the number 1.</li></ol>\n\n\n\n<p>The following changes the&nbsp;<code>countDown()</code>&nbsp;to a recursive function:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function countDown(fromNumber) {\n    console.log(fromNumber);\n    countDown(fromNumber-1);\n}\n\ncountDown(3);</code></pre>\n\n\n\n<p>This&nbsp;<code>countDown(3)</code>&nbsp;will run until the call stack size is exceeded, like this:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Uncaught RangeError: Maximum call stack size exceeded.</code></pre>\n\n\n\n<p>… because it doesn’t have the condition to stop calling itself.</p>\n\n\n\n<p>The count down will stop when the next number is zero, therefore, we add an if condition as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function countDown(fromNumber) {\n    console.log(fromNumber);\n\n    let nextNumber = fromNumber - 1;\n\n    if (nextNumber > 0) {\n        countDown(nextNumber);\n    }\n}\ncountDown(3);</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>3\n2\n1</code></pre>\n\n\n\n<p>The&nbsp;<code>countDown()</code>&nbsp;seems to work as expected.</p>\n\n\n\n<p>However, as mentioned in the Function type tutorial, the name of the function is a reference to the actual function object.</p>\n\n\n\n<p>If somewhere in the code, the function name is set to null, the recursive function will stop working.</p>\n\n\n\n<p>For example, the following code will result in an error:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let newYearCountDown = countDown;\n// somewhere in the code\ncountDown = null;\n// the following function call will cause an error\nnewYearCountDown(10);</code></pre>\n\n\n\n<p>Error:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Uncaught TypeError: countDown is not a function\n</code></pre>\n\n\n\n<p>How the script works:</p>\n\n\n\n<ul><li>First, assign the&nbsp;<code>countDown</code>&nbsp;function name to the variable&nbsp;<code>newYearCountDown</code>.</li><li>Second, set the&nbsp;<code>countDown</code>&nbsp;function reference to&nbsp;<code>null</code>.</li><li>Third, call the&nbsp;<code>newYearCountDown</code>&nbsp;function.</li></ul>\n\n\n\n<p>The code causes an error because the body of the&nbsp;<code>countDown()</code>&nbsp;function references the&nbsp;<code>countDown</code>&nbsp;function name which was set to&nbsp;<code>null</code>&nbsp;at the time of calling the function.</p>\n\n\n\n<p>To fix it, you can use a named function expression as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let countDown = function f(fromNumber) {\n    console.log(fromNumber);\n\n    let nextNumber = fromNumber - 1;\n\n    if (nextNumber > 0) {\n        f(nextNumber);\n    }\n}\n\nlet newYearCountDown = countDown;\ncountDown = null;\nnewYearCountDown(10);</code></pre>\n\n\n\n<h3>2) Calculate the sum of digits of a number example</h3>\n\n\n\n<p>Given a number e.g., 324, calculate the sum of digits 3 + 2 + 4 = 9.</p>\n\n\n\n<p>To apply the recursive technique, you can use the following steps:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>f(324) = 4 + f(32)\nf(32)  = 2 + f(3)\nf(3)   = 3  + 0 (stop here)</code></pre>\n\n\n\n<p>So</p>\n\n\n\n<pre class=\"wp-block-code\"><code>f(324) = 4 + f(32) \nf(324) = 4 + 2 + f(3) \nf(324) = 4 + 2 + 3 </code></pre>\n\n\n\n<p>The following illustrates the&nbsp;<code>sumOfDigits()</code>&nbsp;recursive function:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function sumOfDigits(num) {\n    if (num == 0) {\n        return 0;\n    }\n    return num % 10 + sumOfDigits(Math.floor(num / 10));\n}</code></pre>\n\n\n\n<p>How it works:</p>\n\n\n\n<ul><li>The&nbsp;<code>num%10</code>&nbsp;returns the remainder of the number after divided by 10, e.g.,&nbsp;<code>324 % 10 = 4</code></li><li>The&nbsp;<code>Math.floor(num / 10)</code>&nbsp;returns the whole part of the&nbsp;<code>num / 10</code>&nbsp;e.g.,&nbsp;<code>Math.floor(324 / 10) = 32</code></li><li>The&nbsp;<code>if(num == 0)</code>&nbsp;is a condition that stops calling the function.</li></ul>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Introduction to the JavaScript recursive functions A recursive function is a function that calls itself until it doesn’t. And this technique is called recursion. Suppose that you have a function called&nbsp;recurse(). The&nbsp;recurse()&nbsp;is a recursive function if it calls itself inside its body, like this: A recursive function always has a condition to stop calling itself, otherwise, it [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [40],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3439"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/comments?post=3439"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3439/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/media?parent=3439"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/categories?post=3439"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/tags?post=3439"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 3441,
+    "date": "2020-11-30T06:27:37",
+    "date_gmt": "2020-11-30T06:27:37",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3441"
+    },
+    "modified": "2020-11-30T06:27:37",
+    "modified_gmt": "2020-11-30T06:27:37",
+    "slug": "closures",
+    "status": "publish",
+    "type": "post",
+    "link": "https://computerprogramming.foobrdigital.com/closures/",
+    "title": {
+      "rendered": "Closures"
+    },
+    "content": {
+      "rendered": "\n<h2>Introduction to JavaScript closures</h2>\n\n\n\n<p>In JavaScript, a closure is a function that references variables in the outer scope from its inner scope. The closure preserves the outer scope inside its inner scope.</p>\n\n\n\n<p>To understand the closures, you need to know how the lexical scoping works first.</p>\n\n\n\n<h3>Lexical scoping</h3>\n\n\n\n<p>Lexical scoping defines the scope of a variable by the position of that variable declared in the source code. For example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let name = 'John';\n\nfunction greeting() { \n    let message = 'Hi';\n    console.log(message + ' '+ name);\n}</code></pre>\n\n\n\n<p>In this example:</p>\n\n\n\n<ul><li>The variable&nbsp;<code>name</code>&nbsp;is a global variable. It is accessible from anywhere including within the&nbsp;<code>greeting()</code>&nbsp;function.</li><li>The variable&nbsp;<code>message</code>&nbsp;is a local variable that is accessible only within the&nbsp;<code>greeting()</code>&nbsp;function.</li></ul>\n\n\n\n<p>If you try to access the&nbsp;<code>message</code>&nbsp;variable outside the&nbsp;<code>greeting()</code>&nbsp;function, you will get an error.</p>\n\n\n\n<p>So the JavaScript engine uses the scope to manage the variable accessibility.</p>\n\n\n\n<p>According to lexical scoping, the scopes can be nested and the inner function can access the variables declared in its outer scope. For example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function greeting() {\n    let message = 'Hi';\n\n    function sayHi() {\n        console.log(message);\n    }\n\n    sayHi();\n}\n\ngreeting();</code></pre>\n\n\n\n<p>The&nbsp;<code>greeting()</code>&nbsp;function creates a local variable named&nbsp;<code>message</code>&nbsp;and a function named&nbsp;<code>sayHi()</code>.</p>\n\n\n\n<p>The&nbsp;<code>sayHi()</code>&nbsp;is the inner function that is available only within the body of the&nbsp;<code>greeting()</code>&nbsp;function.</p>\n\n\n\n<p>The&nbsp;<code>sayHi()</code>&nbsp;function can access the variables of the outer function such as the&nbsp;<code>message</code>&nbsp;variable of the&nbsp;<code>greeting()</code>&nbsp;function.</p>\n\n\n\n<p>Inside the&nbsp;<code>greeting()</code>&nbsp;function, we call the&nbsp;<code>sayHi()</code>&nbsp;function to display the message&nbsp;<code>Hi</code>.</p>\n\n\n\n<h3>JavaScript closures</h3>\n\n\n\n<p>Let’s modify the&nbsp;<code>greeting()</code>&nbsp;function:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function greeting() {\n    let message = 'Hi';\n\n    function sayHi() {\n        console.log(message);\n    }\n\n    return sayHi;\n}\nlet hi = greeting();\nhi(); // still can access the message variable</code></pre>\n\n\n\n<p>Now, instead of executing the&nbsp;<code>sayHi()</code>&nbsp;function inside the&nbsp;<code>greeting()</code>&nbsp;function, the&nbsp;<code>greeting()</code>&nbsp;function returns the&nbsp;<code>sayHi()</code>&nbsp;function object.</p>\n\n\n\n<p>Note that functions are the first-class citizens in JavaScript, therefore, you can return a function from another function.</p>\n\n\n\n<p>Outside of the&nbsp;<code>greeting()</code>&nbsp;function, we assigned the&nbsp;<code>hi</code>&nbsp;variable the value returned by the&nbsp;<code>greeting()</code>&nbsp;function, which is a reference of the&nbsp;<code>sayHi()</code>&nbsp;function.</p>\n\n\n\n<p>Then we executed the&nbsp;<code>sayHi()</code>&nbsp;function using the reference of that function:&nbsp;<code>hi()</code>. If you run the code, you will get the same effect as the one above.</p>\n\n\n\n<p>However, the interesting point here is that, normally, a local variable only exists during the execution of the function.</p>\n\n\n\n<p>It means that when the&nbsp;<code>greeting()</code>&nbsp;function has completed executing, the&nbsp;<code>message</code>&nbsp;variable is no longer accessible.</p>\n\n\n\n<p>In this case, we execute the&nbsp;<code>hi()</code>&nbsp;function that references the&nbsp;<code>sayHi()</code>&nbsp;function, the&nbsp;<code>message</code>&nbsp;variable still exists.</p>\n\n\n\n<p>The magic of this is closure. In other words, the&nbsp;<code>sayHi()</code>&nbsp;function is a closure.</p>\n\n\n\n<p>A closure is a function that preserves the outer scope in its inner scope.</p>\n\n\n\n<h3>More JavaScript Closure example</h3>\n\n\n\n<p>The following example illustrates a more practical example of closure.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function greeting(message) {\n   return function(name){\n        return message + ' ' + name;\n   }\n}\nlet sayHi = greeting('Hi');\nlet sayHello = greeting('Hello');\n\nconsole.log(sayHi('John')); // Hi John\nconsole.log(sayHello('John')); // Hello John</code></pre>\n\n\n\n<p>The&nbsp;<code>greeting()</code>&nbsp;function takes one argument named&nbsp;<code>message</code>&nbsp;and returns a function that accepts a single argument called&nbsp;<code>name</code>.</p>\n\n\n\n<p>The return function returns a greeting message that is the combination of the&nbsp;<code>message</code>&nbsp;and&nbsp;<code>name</code>&nbsp;variables.</p>\n\n\n\n<p>The&nbsp;<code>greeting()</code>&nbsp;function behaves like a function factory. It creates&nbsp;<code>sayHi()</code>&nbsp;and&nbsp;<code>sayHello()</code>&nbsp;functions with&nbsp;the respective messages&nbsp;<code>Hi</code>&nbsp;and&nbsp;<code>Hello</code>.</p>\n\n\n\n<p>The&nbsp;<code>sayHi()</code>&nbsp;and&nbsp;<code>sayHello()</code>&nbsp;are closures. They share the same function body but store different scopes.</p>\n\n\n\n<p>In the&nbsp;<code>sayHi()</code>&nbsp;closure, the&nbsp;<code>message</code>&nbsp;is&nbsp;<code>Hi</code>, while in the&nbsp;<code>sayHello()</code>&nbsp;closure the&nbsp;<code>message</code>&nbsp;is&nbsp;<code>Hello</code>.</p>\n\n\n\n<h2>JavaScript closures in a loop</h2>\n\n\n\n<p>Consider the following example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>for (var index = 1; index &lt;= 3; index++) {\n    setTimeout(function () {\n        console.log('after ' + index + ' second(s):' + index);\n    }, index * 1000);\n}</code></pre>\n\n\n\n<p>Output</p>\n\n\n\n<pre class=\"wp-block-code\"><code>after 4 second(s):4\nafter 4 second(s):4\nafter 4 second(s):4</code></pre>\n\n\n\n<p>The code shows the same message.</p>\n\n\n\n<p>What we wanted to do in the loop is to copy the value of &nbsp;<code>i</code>&nbsp;in each iteration at the time of iteration to display a message after 1, 2, and 3 seconds.&nbsp;</p>\n\n\n\n<p>The reason you see the same message after 4 seconds is that the callback passed to the&nbsp;<code>setTimeout()</code>&nbsp;a closure. It remembers the value of&nbsp;<code>i</code>&nbsp;from the last iteration of the loop, which is 4.</p>\n\n\n\n<p>In addition, all three closures created by the for-loop share the same global scope access the same value of <code>i</code>.</p>\n\n\n\n<p>To fix this issue, you need to create a new closure scope in each iteration of the loop.</p>\n\n\n\n<p>There are two popular solutions: IIFE &amp;&nbsp;<code>let</code>&nbsp;keyword.</p>\n\n\n\n<h3>1) Using the IIFE solution</h3>\n\n\n\n<p>In this solution, you use an immediately invoked function expression (a.k.a IIFE) because an IIFE creates a new scope by declaring a function and immediately execute it.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>for (var index = 1; index &lt;= 3; index++) {\n    (function (index) {\n        setTimeout(function () {\n            console.log('after ' + index + ' second(s):' + index);\n        }, index * 1000);\n    })(index);\n}</code></pre>\n\n\n\n<p>Output</p>\n\n\n\n<pre class=\"wp-block-code\"><code>after 1 second(s):1\nafter 2 second(s):2\nafter 3 second(s):3</code></pre>\n\n\n\n<h3>2) Using&nbsp;<code>let</code>&nbsp;keyword in ES6</h3>\n\n\n\n<p>In ES6, you can use the <code>let</code> keyword to declare a variable that is block-scoped.</p>\n\n\n\n<p>If you use the <code>let</code> keyword in the for-loop, it will create a new lexical scope in each iteration. In other words, you will have a new <code>index</code> variable in each iteration.</p>\n\n\n\n<p>In addition, the new lexical scope is chained up to the previous scope so that the previous value of the&nbsp;<code>index</code>&nbsp;is copied from the previous scope to the new one.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>for (let index = 1; index &lt;= 3; index++) {\n    setTimeout(function () {\n        console.log('after ' + index + ' second(s):' + index);\n    }, index * 1000);\n}</code></pre>\n\n\n\n<p>Output</p>\n\n\n\n<pre class=\"wp-block-code\"><code>after 1 second(s):1\nafter 2 second(s):2\nafter 3 second(s):3</code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Introduction to JavaScript closures In JavaScript, a closure is a function that references variables in the outer scope from its inner scope. The closure preserves the outer scope inside its inner scope. To understand the closures, you need to know how the lexical scoping works first. Lexical scoping Lexical scoping defines the scope of a variable by the position [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [40],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3441"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/comments?post=3441"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3441/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/media?parent=3441"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/categories?post=3441"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/tags?post=3441"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  }
+]

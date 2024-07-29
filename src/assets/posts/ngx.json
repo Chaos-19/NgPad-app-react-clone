@@ -1,0 +1,716 @@
+[
+    {
+        "id": 4505,
+        "date": "2021-02-18T05:16:47",
+        "date_gmt": "2021-02-18T05:16:47",
+        "guid": {
+            "rendered": "http:\/\/angular.foobrdigital.com\/?p=4505"
+        },
+        "modified": "2021-02-18T05:17:31",
+        "modified_gmt": "2021-02-18T05:17:31",
+        "slug": "introduction-13",
+        "status": "publish",
+        "type": "post",
+        "link": "https:\/\/angular.foobrdigital.com\/introduction-13\/",
+        "title": {
+            "rendered": "Getting Started"
+        },
+        "content": {
+            "rendered": "\n<h3>Introduction<\/h3>\n\n\n\n<p>At some point, your web application may require serving a multilingual user base. Internationalization, or i18n for short, is the process by which you make your app usable for those with a different native language. While Angular has some built-in i18n functionality,\u00a0<a href=\"http:\/\/www.ngx-translate.com\/\">ngx-translate<\/a>\u00a0is a third-party package which makes the process dead simple.<\/p>\n\n\n\n<h2 id=\"getting-started\">Getting Started<\/h2>\n\n\n\n<p>You know the drill. Fire up your terminal and run the following command to add the package to your application.<\/p>\n\n\n\n<pre class=\"wp-block-code\"><code>$ npm i @ngx-translate\/core --save<\/code><\/pre>\n\n\n\n<p>Now import the&nbsp;<code>TranslateModule<\/code>&nbsp;in your&nbsp;<code>AppModule<\/code>.<\/p>\n\n\n\n<pre class=\"wp-block-code\"><code>...\n@NgModule({\n  imports: &#91;\n    BrowserModule,\n    TranslateModule.forRoot()\n  ],\n  bootstrap: &#91;AppComponent]\n})\n...<\/code><\/pre>\n\n\n\n<p>This is basically all you need to do to have access to the core of the translate service, pipe, and directives. However, unless you plan on adding each and every translation yourself manually via code, you will probably want to add a little bit of configuration at this stage in order to make loading your translations a little easier.<\/p>\n",
+            "protected": false
+        },
+        "excerpt": {
+            "rendered": "<p>Introduction At some point, your web application may require serving a multilingual user base. Internationalization, or i18n for short, is the process by which you make your app usable for those with a different native language. While Angular has some built-in i18n functionality,\u00a0ngx-translate\u00a0is a third-party package which makes the process dead simple. Getting Started You [&hellip;]<\/p>\n",
+            "protected": false
+        },
+        "author": 1,
+        "featured_media": 0,
+        "comment_status": "open",
+        "ping_status": "open",
+        "sticky": false,
+        "template": "",
+        "format": "standard",
+        "meta": [],
+        "categories": [
+            228
+        ],
+        "tags": [],
+        "_links": {
+            "self": [
+                {
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/posts\/4505"
+                }
+            ],
+            "collection": [
+                {
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/posts"
+                }
+            ],
+            "about": [
+                {
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/types\/post"
+                }
+            ],
+            "author": [
+                {
+                    "embeddable": true,
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/users\/1"
+                }
+            ],
+            "replies": [
+                {
+                    "embeddable": true,
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/comments?post=4505"
+                }
+            ],
+            "version-history": [
+                {
+                    "count": 3,
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/posts\/4505\/revisions"
+                }
+            ],
+            "predecessor-version": [
+                {
+                    "id": 4508,
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/posts\/4505\/revisions\/4508"
+                }
+            ],
+            "wp:attachment": [
+                {
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/media?parent=4505"
+                }
+            ],
+            "wp:term": [
+                {
+                    "taxonomy": "category",
+                    "embeddable": true,
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/categories?post=4505"
+                },
+                {
+                    "taxonomy": "post_tag",
+                    "embeddable": true,
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/tags?post=4505"
+                }
+            ],
+            "curies": [
+                {
+                    "name": "wp",
+                    "href": "https:\/\/api.w.org\/{rel}",
+                    "templated": true
+                }
+            ]
+        }
+    },
+    {
+        "id": 4509,
+        "date": "2021-02-18T05:18:16",
+        "date_gmt": "2021-02-18T05:18:16",
+        "guid": {
+            "rendered": "http:\/\/angular.foobrdigital.com\/?p=4509"
+        },
+        "modified": "2021-02-18T05:18:16",
+        "modified_gmt": "2021-02-18T05:18:16",
+        "slug": "loaders",
+        "status": "publish",
+        "type": "post",
+        "link": "https:\/\/angular.foobrdigital.com\/loaders\/",
+        "title": {
+            "rendered": "Loaders"
+        },
+        "content": {
+            "rendered": "\n<p>Probably the most common way to load translations is to include your translation files as assets, and load them via the&nbsp;<code>TranslateHttpLoader<\/code>, which is available in a separate npm package.<\/p>\n\n\n\n<pre class=\"wp-block-code\"><code>$ npm install @ngx-translate\/http-loader --save<\/code><\/pre>\n\n\n\n<pre class=\"wp-block-code\"><code>\/\/ ...\nexport function createTranslateLoader(http: HttpClient) {\n    return new TranslateHttpLoader(http);\n}\n\n@NgModule({\n  imports: &#91;\n    BrowserModule,\n    TranslateModule.forRoot({\n      loader: {\n        provide: TranslateLoader,\n          useFactory: createHttpLoader, \/\/ exported factory function needed for AoT compilation\n          deps: &#91;HttpClient]\n      }\n    })\n  ],\n  bootstrap: &#91;AppComponent]\n})\n\n\/\/ ...<\/code><\/pre>\n\n\n\n<p>You are free to create your own loader &#8211; just implement the&nbsp;<code>TranslateLoader<\/code>&nbsp;interface and provide it in your module like above.<\/p>\n",
+            "protected": false
+        },
+        "excerpt": {
+            "rendered": "<p>Probably the most common way to load translations is to include your translation files as assets, and load them via the&nbsp;TranslateHttpLoader, which is available in a separate npm package. You are free to create your own loader &#8211; just implement the&nbsp;TranslateLoader&nbsp;interface and provide it in your module like above.<\/p>\n",
+            "protected": false
+        },
+        "author": 1,
+        "featured_media": 0,
+        "comment_status": "open",
+        "ping_status": "open",
+        "sticky": false,
+        "template": "",
+        "format": "standard",
+        "meta": [],
+        "categories": [
+            228
+        ],
+        "tags": [],
+        "_links": {
+            "self": [
+                {
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/posts\/4509"
+                }
+            ],
+            "collection": [
+                {
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/posts"
+                }
+            ],
+            "about": [
+                {
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/types\/post"
+                }
+            ],
+            "author": [
+                {
+                    "embeddable": true,
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/users\/1"
+                }
+            ],
+            "replies": [
+                {
+                    "embeddable": true,
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/comments?post=4509"
+                }
+            ],
+            "version-history": [
+                {
+                    "count": 1,
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/posts\/4509\/revisions"
+                }
+            ],
+            "predecessor-version": [
+                {
+                    "id": 4510,
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/posts\/4509\/revisions\/4510"
+                }
+            ],
+            "wp:attachment": [
+                {
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/media?parent=4509"
+                }
+            ],
+            "wp:term": [
+                {
+                    "taxonomy": "category",
+                    "embeddable": true,
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/categories?post=4509"
+                },
+                {
+                    "taxonomy": "post_tag",
+                    "embeddable": true,
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/tags?post=4509"
+                }
+            ],
+            "curies": [
+                {
+                    "name": "wp",
+                    "href": "https:\/\/api.w.org\/{rel}",
+                    "templated": true
+                }
+            ]
+        }
+    },
+    {
+        "id": 4511,
+        "date": "2021-02-18T05:19:14",
+        "date_gmt": "2021-02-18T05:19:14",
+        "guid": {
+            "rendered": "http:\/\/angular.foobrdigital.com\/?p=4511"
+        },
+        "modified": "2021-02-18T05:19:14",
+        "modified_gmt": "2021-02-18T05:19:14",
+        "slug": "translation-files",
+        "status": "publish",
+        "type": "post",
+        "link": "https:\/\/angular.foobrdigital.com\/translation-files\/",
+        "title": {
+            "rendered": "Translation Files"
+        },
+        "content": {
+            "rendered": "\n<p>Creating the translation loader in this way expects you to have a file in your project under an&nbsp;<code>\/assets\/i18n\/<\/code>&nbsp;folder, called&nbsp;<code>{lang}.json<\/code>, where&nbsp;<code>{lang}<\/code>&nbsp;is the language of the file you are using for translations. For English, this file may be&nbsp;<code>en.json<\/code>, for example. You can change the default path and file extension by providing extra parameters to the&nbsp;<code>new TranslateHttpLoader()<\/code>&nbsp;constructor.<\/p>\n\n\n\n<p>The translation file is just a JSON object of key-value pairs, where the key describes the text that is translated, and the value is the actual text in the language specified by the file. The value may also be another object, which allows you to group your translations however you\u2019d like.<\/p>\n\n\n\n<p>In the text of your translation value, you can also include double curly braces around a variable name, which will later allow you to interpolate strings dynamically into your translations.en.json<\/p>\n\n\n\n<pre class=\"wp-block-code\"><code>{\n  \"welcomeMessage\": \"Thanks for joining, {{ firstName }}! It's great to have you!\",\n  \"login\": {\n    \"username\": \"Enter your user name\",\n    \"password\": \"Password here\",\n  }\n}<\/code><\/pre>\n",
+            "protected": false
+        },
+        "excerpt": {
+            "rendered": "<p>Creating the translation loader in this way expects you to have a file in your project under an&nbsp;\/assets\/i18n\/&nbsp;folder, called&nbsp;{lang}.json, where&nbsp;{lang}&nbsp;is the language of the file you are using for translations. For English, this file may be&nbsp;en.json, for example. You can change the default path and file extension by providing extra parameters to the&nbsp;new TranslateHttpLoader()&nbsp;constructor. The [&hellip;]<\/p>\n",
+            "protected": false
+        },
+        "author": 1,
+        "featured_media": 0,
+        "comment_status": "open",
+        "ping_status": "open",
+        "sticky": false,
+        "template": "",
+        "format": "standard",
+        "meta": [],
+        "categories": [
+            228
+        ],
+        "tags": [],
+        "_links": {
+            "self": [
+                {
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/posts\/4511"
+                }
+            ],
+            "collection": [
+                {
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/posts"
+                }
+            ],
+            "about": [
+                {
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/types\/post"
+                }
+            ],
+            "author": [
+                {
+                    "embeddable": true,
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/users\/1"
+                }
+            ],
+            "replies": [
+                {
+                    "embeddable": true,
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/comments?post=4511"
+                }
+            ],
+            "version-history": [
+                {
+                    "count": 1,
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/posts\/4511\/revisions"
+                }
+            ],
+            "predecessor-version": [
+                {
+                    "id": 4512,
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/posts\/4511\/revisions\/4512"
+                }
+            ],
+            "wp:attachment": [
+                {
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/media?parent=4511"
+                }
+            ],
+            "wp:term": [
+                {
+                    "taxonomy": "category",
+                    "embeddable": true,
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/categories?post=4511"
+                },
+                {
+                    "taxonomy": "post_tag",
+                    "embeddable": true,
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/tags?post=4511"
+                }
+            ],
+            "curies": [
+                {
+                    "name": "wp",
+                    "href": "https:\/\/api.w.org\/{rel}",
+                    "templated": true
+                }
+            ]
+        }
+    },
+    {
+        "id": 4513,
+        "date": "2021-02-18T05:19:53",
+        "date_gmt": "2021-02-18T05:19:53",
+        "guid": {
+            "rendered": "http:\/\/angular.foobrdigital.com\/?p=4513"
+        },
+        "modified": "2021-02-18T05:19:53",
+        "modified_gmt": "2021-02-18T05:19:53",
+        "slug": "accessing-translations",
+        "status": "publish",
+        "type": "post",
+        "link": "https:\/\/angular.foobrdigital.com\/accessing-translations\/",
+        "title": {
+            "rendered": "Accessing Translations"
+        },
+        "content": {
+            "rendered": "\n<p>Before you can access these translations in your application, you have to initialize some properties in the&nbsp;<code>TranslateService<\/code>. Probably the best place to do this is in your bootstrapped&nbsp;<code>AppComponent<\/code>.app.component.ts<\/p>\n\n\n\n<pre class=\"wp-block-code\"><code>import {Component} from '@angular\/core';\nimport {TranslateService} from '@ngx-translate\/core';\n\n@Component({\n  selector:  'my-app',\n  templateUrl:  '.\/app.component.html',\n  styleUrls:  &#91;  '.\/app.component.css'  ]\n})\nexport class AppComponent {\n  constructor(translate: TranslateService) {\n    translate.addLangs(&#91;'en', 'klingon'])\n    translate.setDefaultLang('en');\n    translate.use('en');\n  }\n}<\/code><\/pre>\n\n\n\n<p>First of all&nbsp;<code>translate.addLangs([])<\/code>&nbsp;tells the service which languages are available to use for translations. The method&nbsp;<code>translate.setDefaultLang('en')<\/code>&nbsp;allows you to specify a fallback set of translations to use in case there are missing translations for the current language.&nbsp;<code>translate.use('en')<\/code>&nbsp;tells the service which is the current language to use for translations. The parameter for all of these is the language you want to pull translations from &#8211; these should match the names of the JSON files that define the translations for those languages.<\/p>\n\n\n\n<p>With that set up, you have three ways to access the translations. Which one you use at any given time will be up to your needs and preferences.<\/p>\n",
+            "protected": false
+        },
+        "excerpt": {
+            "rendered": "<p>Before you can access these translations in your application, you have to initialize some properties in the&nbsp;TranslateService. Probably the best place to do this is in your bootstrapped&nbsp;AppComponent.app.component.ts First of all&nbsp;translate.addLangs([])&nbsp;tells the service which languages are available to use for translations. The method&nbsp;translate.setDefaultLang(&#8216;en&#8217;)&nbsp;allows you to specify a fallback set of translations to use in case [&hellip;]<\/p>\n",
+            "protected": false
+        },
+        "author": 1,
+        "featured_media": 0,
+        "comment_status": "open",
+        "ping_status": "open",
+        "sticky": false,
+        "template": "",
+        "format": "standard",
+        "meta": [],
+        "categories": [
+            228
+        ],
+        "tags": [],
+        "_links": {
+            "self": [
+                {
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/posts\/4513"
+                }
+            ],
+            "collection": [
+                {
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/posts"
+                }
+            ],
+            "about": [
+                {
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/types\/post"
+                }
+            ],
+            "author": [
+                {
+                    "embeddable": true,
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/users\/1"
+                }
+            ],
+            "replies": [
+                {
+                    "embeddable": true,
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/comments?post=4513"
+                }
+            ],
+            "version-history": [
+                {
+                    "count": 1,
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/posts\/4513\/revisions"
+                }
+            ],
+            "predecessor-version": [
+                {
+                    "id": 4514,
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/posts\/4513\/revisions\/4514"
+                }
+            ],
+            "wp:attachment": [
+                {
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/media?parent=4513"
+                }
+            ],
+            "wp:term": [
+                {
+                    "taxonomy": "category",
+                    "embeddable": true,
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/categories?post=4513"
+                },
+                {
+                    "taxonomy": "post_tag",
+                    "embeddable": true,
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/tags?post=4513"
+                }
+            ],
+            "curies": [
+                {
+                    "name": "wp",
+                    "href": "https:\/\/api.w.org\/{rel}",
+                    "templated": true
+                }
+            ]
+        }
+    },
+    {
+        "id": 4515,
+        "date": "2021-02-18T05:20:25",
+        "date_gmt": "2021-02-18T05:20:25",
+        "guid": {
+            "rendered": "http:\/\/angular.foobrdigital.com\/?p=4515"
+        },
+        "modified": "2021-02-18T05:20:25",
+        "modified_gmt": "2021-02-18T05:20:25",
+        "slug": "translateservice",
+        "status": "publish",
+        "type": "post",
+        "link": "https:\/\/angular.foobrdigital.com\/translateservice\/",
+        "title": {
+            "rendered": "TranslateService"
+        },
+        "content": {
+            "rendered": "\n<p>Using the service, there are two methods to get your translations. The first, and recommended, method is to use&nbsp;<code>get(key: string|Array&lt;string&gt;, interpolateParams?: Object)<\/code>. This returns an Observable, and as such, is&nbsp;<strong>asynchronous<\/strong>, which guarantees that the translation file will be loaded before using the value. This Observable then completes as soon as the value is retrieved. The second method is to use&nbsp;<code>instant(key: string|Array&lt;string&gt;, interpolateParams?: Object)<\/code>, which is&nbsp;<strong>synchronous<\/strong>. If the translation file isn\u2019t finished loading at the time you use this method, you won\u2019t get a translation at all.<\/p>\n\n\n\n<p>Remember, we told the service to use&nbsp;<code>en<\/code>&nbsp;as the current lang, so all translation results will come from&nbsp;<code>en.json<\/code>&nbsp;initially. You can implement your own method in your application to switch between languages &#8211; however you do it, whether through a select box, URL route, or some other method, wherever you are, just call the&nbsp;<code>use(lang: string)<\/code>&nbsp;method on the&nbsp;<code>TranslateService<\/code>&nbsp;to set the current language.<\/p>\n\n\n\n<pre class=\"wp-block-code\"><code>\/\/ ...\nuser: { firstName: string, lastName: string };\nwelcome: string;\nusernameLabel: string;\npasswordLabel: string;\nconstructor(private translate: TranslateService) { }\n\nngOnInit() {\n  \/\/ synchronous. Also interpolate the 'firstName' parameter with a value\n  this.welcome = this.translate.instant('welcomeMessage', { firstName: this.user.firstName });\n  \/\/ asynchronous - gets translations then completes.\n  this.translate.get(&#91;'login.username', 'login.password'])\n    .subscribe(translations =&gt; {\n      this.usernameLabel = translations&#91;'login.username'];\n      this.passwordLabel = translations&#91;'login.password'];\n    });\n}<\/code><\/pre>\n",
+            "protected": false
+        },
+        "excerpt": {
+            "rendered": "<p>Using the service, there are two methods to get your translations. The first, and recommended, method is to use&nbsp;get(key: string|Array&lt;string&gt;, interpolateParams?: Object). This returns an Observable, and as such, is&nbsp;asynchronous, which guarantees that the translation file will be loaded before using the value. This Observable then completes as soon as the value is retrieved. The [&hellip;]<\/p>\n",
+            "protected": false
+        },
+        "author": 1,
+        "featured_media": 0,
+        "comment_status": "open",
+        "ping_status": "open",
+        "sticky": false,
+        "template": "",
+        "format": "standard",
+        "meta": [],
+        "categories": [
+            228
+        ],
+        "tags": [],
+        "_links": {
+            "self": [
+                {
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/posts\/4515"
+                }
+            ],
+            "collection": [
+                {
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/posts"
+                }
+            ],
+            "about": [
+                {
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/types\/post"
+                }
+            ],
+            "author": [
+                {
+                    "embeddable": true,
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/users\/1"
+                }
+            ],
+            "replies": [
+                {
+                    "embeddable": true,
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/comments?post=4515"
+                }
+            ],
+            "version-history": [
+                {
+                    "count": 1,
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/posts\/4515\/revisions"
+                }
+            ],
+            "predecessor-version": [
+                {
+                    "id": 4516,
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/posts\/4515\/revisions\/4516"
+                }
+            ],
+            "wp:attachment": [
+                {
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/media?parent=4515"
+                }
+            ],
+            "wp:term": [
+                {
+                    "taxonomy": "category",
+                    "embeddable": true,
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/categories?post=4515"
+                },
+                {
+                    "taxonomy": "post_tag",
+                    "embeddable": true,
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/tags?post=4515"
+                }
+            ],
+            "curies": [
+                {
+                    "name": "wp",
+                    "href": "https:\/\/api.w.org\/{rel}",
+                    "templated": true
+                }
+            ]
+        }
+    },
+    {
+        "id": 4517,
+        "date": "2021-02-18T05:21:02",
+        "date_gmt": "2021-02-18T05:21:02",
+        "guid": {
+            "rendered": "http:\/\/angular.foobrdigital.com\/?p=4517"
+        },
+        "modified": "2021-02-18T05:21:02",
+        "modified_gmt": "2021-02-18T05:21:02",
+        "slug": "translatepipe",
+        "status": "publish",
+        "type": "post",
+        "link": "https:\/\/angular.foobrdigital.com\/translatepipe\/",
+        "title": {
+            "rendered": "TranslatePipe"
+        },
+        "content": {
+            "rendered": "\n<p>You can use the translate pipe much like you\u2019d use any other pipe in Angular. The input into the pipe is the key of the translation you need. The optional parameter is an object which defines any interpolation strings that the translation is expecting. In the example below, the component has a&nbsp;<code>user<\/code>&nbsp;object, with a property of&nbsp;<code>firstName<\/code>. This matches the interpolation that is expected by the value of&nbsp;<code>welcomeMessage<\/code>.<\/p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;p&gt;{{ 'welcomeMessage' | translate:user }}&lt;\/p&gt;\n&lt;input type=\"password\" placeholder=\"{{ 'login.password' | translate }}\"&gt;<\/code><\/pre>\n",
+            "protected": false
+        },
+        "excerpt": {
+            "rendered": "<p>You can use the translate pipe much like you\u2019d use any other pipe in Angular. The input into the pipe is the key of the translation you need. The optional parameter is an object which defines any interpolation strings that the translation is expecting. In the example below, the component has a&nbsp;user&nbsp;object, with a property [&hellip;]<\/p>\n",
+            "protected": false
+        },
+        "author": 1,
+        "featured_media": 0,
+        "comment_status": "open",
+        "ping_status": "open",
+        "sticky": false,
+        "template": "",
+        "format": "standard",
+        "meta": [],
+        "categories": [
+            228
+        ],
+        "tags": [],
+        "_links": {
+            "self": [
+                {
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/posts\/4517"
+                }
+            ],
+            "collection": [
+                {
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/posts"
+                }
+            ],
+            "about": [
+                {
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/types\/post"
+                }
+            ],
+            "author": [
+                {
+                    "embeddable": true,
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/users\/1"
+                }
+            ],
+            "replies": [
+                {
+                    "embeddable": true,
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/comments?post=4517"
+                }
+            ],
+            "version-history": [
+                {
+                    "count": 1,
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/posts\/4517\/revisions"
+                }
+            ],
+            "predecessor-version": [
+                {
+                    "id": 4518,
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/posts\/4517\/revisions\/4518"
+                }
+            ],
+            "wp:attachment": [
+                {
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/media?parent=4517"
+                }
+            ],
+            "wp:term": [
+                {
+                    "taxonomy": "category",
+                    "embeddable": true,
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/categories?post=4517"
+                },
+                {
+                    "taxonomy": "post_tag",
+                    "embeddable": true,
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/tags?post=4517"
+                }
+            ],
+            "curies": [
+                {
+                    "name": "wp",
+                    "href": "https:\/\/api.w.org\/{rel}",
+                    "templated": true
+                }
+            ]
+        }
+    },
+    {
+        "id": 4519,
+        "date": "2021-02-18T05:21:38",
+        "date_gmt": "2021-02-18T05:21:38",
+        "guid": {
+            "rendered": "http:\/\/angular.foobrdigital.com\/?p=4519"
+        },
+        "modified": "2021-02-18T05:21:38",
+        "modified_gmt": "2021-02-18T05:21:38",
+        "slug": "translate-directive",
+        "status": "publish",
+        "type": "post",
+        "link": "https:\/\/angular.foobrdigital.com\/translate-directive\/",
+        "title": {
+            "rendered": "Translate Directive"
+        },
+        "content": {
+            "rendered": "\n<p>You can also place a directive on any HTML element to get translations. There are a couple of different ways to do this.<\/p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;label translate='login.username'&gt;&lt;\/label&gt;<\/code><\/pre>\n\n\n\n<p>&nbsp;Copy<\/p>\n\n\n\n<p>You can also set the key of the translation as the content of the element.<\/p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;p translate &#91;translateParams]=\"{ firstName: user.firstName }\"&gt;welcomeMessage&lt;\/p&gt;<\/code><\/pre>\n",
+            "protected": false
+        },
+        "excerpt": {
+            "rendered": "<p>You can also place a directive on any HTML element to get translations. There are a couple of different ways to do this. &nbsp;Copy You can also set the key of the translation as the content of the element.<\/p>\n",
+            "protected": false
+        },
+        "author": 1,
+        "featured_media": 0,
+        "comment_status": "open",
+        "ping_status": "open",
+        "sticky": false,
+        "template": "",
+        "format": "standard",
+        "meta": [],
+        "categories": [
+            228
+        ],
+        "tags": [],
+        "_links": {
+            "self": [
+                {
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/posts\/4519"
+                }
+            ],
+            "collection": [
+                {
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/posts"
+                }
+            ],
+            "about": [
+                {
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/types\/post"
+                }
+            ],
+            "author": [
+                {
+                    "embeddable": true,
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/users\/1"
+                }
+            ],
+            "replies": [
+                {
+                    "embeddable": true,
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/comments?post=4519"
+                }
+            ],
+            "version-history": [
+                {
+                    "count": 1,
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/posts\/4519\/revisions"
+                }
+            ],
+            "predecessor-version": [
+                {
+                    "id": 4520,
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/posts\/4519\/revisions\/4520"
+                }
+            ],
+            "wp:attachment": [
+                {
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/media?parent=4519"
+                }
+            ],
+            "wp:term": [
+                {
+                    "taxonomy": "category",
+                    "embeddable": true,
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/categories?post=4519"
+                },
+                {
+                    "taxonomy": "post_tag",
+                    "embeddable": true,
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/tags?post=4519"
+                }
+            ],
+            "curies": [
+                {
+                    "name": "wp",
+                    "href": "https:\/\/api.w.org\/{rel}",
+                    "templated": true
+                }
+            ]
+        }
+    }
+]

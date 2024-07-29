@@ -1,0 +1,202 @@
+[
+  {
+    "id": 3572,
+    "date": "2020-12-03T06:53:35",
+    "date_gmt": "2020-12-03T06:53:35",
+    "guid": {
+      "rendered": "http://angular.foobrdigital.com/?p=3572"
+    },
+    "modified": "2020-12-08T11:58:54",
+    "modified_gmt": "2020-12-08T11:58:54",
+    "slug": "angular-pass-data-to-child-component",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/angular-pass-data-to-child-component/",
+    "title": {
+      "rendered": "Angular Pass data to child component"
+    },
+    "content": {
+      "rendered": "\n<h2>Passing data to a child/nested component</h2>\n\n\n\n<p>In the previous tutorials, we&nbsp;built an Angular Application&nbsp;and then&nbsp;added a child component&nbsp;to it. We also looked at how Angular Component communicates with its View (templates) using the&nbsp;data binding.</p>\n\n\n\n<p>These Components are useless if they are not able to communicate with each other. They need to communicate with each other if they want to serve any useful purpose.</p>\n\n\n\n<h2>How to Pass data to a child component</h2>\n\n\n\n<p>In Angular, the Parent Component can communicate with the child component by setting its Property. To do that the Child component must expose its properties to the parent component. The Child Component does this by using the&nbsp;<strong>@Input decorator</strong></p>\n\n\n\n<p>In the Child Component</p>\n\n\n\n<ol><li>Import the @Input module from @angular/Core Library</li><li>Mark those property, which you need data from parent as input property using @Input decorator</li></ol>\n\n\n\n<p>In the Parent Component</p>\n\n\n\n<ol><li>Bind the Child component property in the Parent Component when instantiating the Child</li></ol>\n\n\n\n<h2>@Input Decorator</h2>\n\n\n\n<p>The @Input Decorator is used to configure the input properties of the component. This decorator as also supports change tracking.</p>\n\n\n\n<p>When you mark a property as input property, then the Angular injects values into the component property using&nbsp;Property Binding. The Property Binding uses the [] brackets. The Binding Target (Property of the child component) is placed inside the square brackets. The Binding source is enclosed in quotes.&nbsp;Property binding&nbsp;is one way from Component to the Target in the template</p>\n\n\n\n<h2>@Input example</h2>\n\n\n\n<p>Now let us build a simple component to demonstrate the use of @Input.</p>\n\n\n\n<p>Our application will have a counter which is incremented by the Parent Component. The Parent Component then passes this counter to the child component for display in its template</p>\n\n\n\n<p>You can download the source of this tutorial from the&nbsp;Github. The initial code is available in GettingStarted Folder and Final Code in&nbsp;InputDecorator folder</p>\n\n\n\n<h3>The Child Component with @Input Decorator</h3>\n\n\n\n<p>Create the ChildComponent.ts under the src folder. And copy the following code</p>\n\n\n\n<pre class=\"wp-block-code\"><code>import { Component, Input  } from '@angular/core';\r\n \r\n@Component({\r\n    selector: 'child-component',\r\n    template: `&lt;h2>Child Component&lt;/h2>\r\n               current count is {{ count }}\r\n    `\r\n})\r\nexport class ChildComponent {\r\n    @Input() count: number;\r\n}</code></pre>\n\n\n\n<p>Now, let us look at the code in detail</p>\n\n\n\n<p>First, we import the @Input decorator from @angular/core</p>\n\n\n\n<pre class=\"wp-block-code\"><code> import { Component, Input  } from '@angular/core';</code></pre>\n\n\n\n<p>We have defined the inline template for the child component, where it displays the current count.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>@Component({\r\n    selector: 'child-component',\r\n    template: `&lt;h2>Child Component&lt;/h2>\r\n               current count is {{ count }}\r\n   `\r\n})\r\n </code></pre>\n\n\n\n<p>The Child Component expects the count to come from the Parent Component. Hence in ChildComponent decorate the count property with @Input decorator</p>\n\n\n\n<pre class=\"wp-block-code\"><code>export class ChildComponent {    @Input() count: number;} </code></pre>\n\n\n\n<h3>Bind to Child Property in Parent Component</h3>\n\n\n\n<p>Now, time to pass the Count values to the Child Component from the Parent</p>\n\n\n\n<p>Open the App.component.ts and copy the following code</p>\n\n\n\n<pre class=\"wp-block-code\"><code> import { Component} from '@angular/core';\r\n \r\n@Component({\r\n  selector: 'app-root',\r\n  template: `\r\n        &lt;h1>Welcome to {{title}}!&lt;/h1>\r\n        &lt;button (click)=\"increment()\">Increment&lt;/button>\r\n        &lt;button (click)=\"decrement()\">decrement&lt;/button>\r\n        &lt;child-component &#91;count]=Counter>&lt;/child-component>` ,\r\n  styleUrls: &#91;'./app.component.css']\r\n})\r\nexport class AppComponent {\r\n  title = 'Component Interaction';\r\n  Counter = 5;\r\n \r\n  increment() {\r\n    this.Counter++;\r\n  }\r\n  decrement() {\r\n    this.Counter--;\r\n  }\r\n}</code></pre>\n\n\n\n<p>The inline template in the Parent Component has two buttons. The Buttons Increments/decrements the counter.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;button (click)=\"increment()\">Increment&lt;/button>\r\n    &lt;button (click)=\"decrement()\">decrement&lt;/button></code></pre>\n\n\n\n<p>In the next line, we are invoking the child component inside</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;child-component &#91;count]=Counter>&lt;/child-component></code></pre>\n\n\n\n<p>Here, we are using count property, which is a property of the child Component inside the square bracket. We bind it to Counter property of the Parent Component.</p>\n\n\n\n<p>Remember square bracket represents the&nbsp;Property Binding in Angular.</p>\n\n\n\n<p>Finally, we will add counter in Parent component and set it to 5 as shown below.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>export class AppComponent {\r\n  title = 'Component Interaction';\r\n  Counter = 5;\r\n \r\n  increment() {\r\n    this.Counter++;\r\n  }\r\n  decrement() {\r\n    this.Counter--;\r\n  }\r\n} </code></pre>\n\n\n\n<p>That’s it.</p>\n\n\n\n<p>Now run the Code and you should see the following displayed in the browser</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://www.tektutorialshub.com/wp-content/uploads/2017/09/Passing-Data-to-Child-Component-in-Angular.png\" alt=\"\" class=\"wp-image-5790\"/></figure>\n\n\n\n<p>Click on Increment &amp; Decrement buttons to see that the changes are propagated to the child component.</p>\n\n\n\n<h2>Various ways to use @Input Decorator</h2>\n\n\n\n<p>We used input @Input annotation to mark the property in child component as input property. There are two ways you can do it Angular.</p>\n\n\n\n<ol><li>Using the @Input decorator to decorate the class property</li><li>Using the input array meta data of the component decorator</li></ol>\n\n\n\n<h3>Using the @Input decorator to decorate the class property</h3>\n\n\n\n<p>We saw this in our above example.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> export class ChildComponent {     @Input() count: number;} </code></pre>\n\n\n\n<p>Using the input array metadata of the component decorator</p>\n\n\n\n<p>The same result can be achieved by using Input array of the @Component decorator as shown below</p>\n\n\n\n<pre class=\"wp-block-code\"><code>@Component({\r\n    selector: 'child-component',\r\n    inputs: &#91;'count'],\r\n    template: `&lt;h2>Child Component&lt;/h2>\r\n    current count is {{ count }}\r\n`\r\n})\r\nexport class ChildComponent {}</code></pre>\n\n\n\n<p>We have moved the count property to inputs array of the component metadata.</p>\n\n\n\n<h3>Aliasing input Property</h3>\n\n\n\n<p>You can Alias the input property and use the aliased name the parent component as shown below</p>\n\n\n\n<pre class=\"wp-block-code\"><code> export class ChildComponent {     @Input('MyCount') count: number;} </code></pre>\n\n\n\n<p>Here, we are aliasing count property with MyCount alias</p>\n\n\n\n<p>In the parent component, we can use the MyCount as shown below</p>\n\n\n\n<pre class=\"wp-block-code\"><code> template: `   &lt;h1>Welcome to {{title}}!&lt;/h1>\n   &lt;child-component &#91;MyCount]=ClickCounter>&lt;/child-component> </code></pre>\n\n\n\n<h2>Detecting the Input changes</h2>\n\n\n\n<p>We looked at how to pass the data from parent to the child using @Input annotation and property binding.</p>\n\n\n\n<p>Passing the data to child component is not sufficient, the child Component needs to know when the input changes so that it can act upon it.</p>\n\n\n\n<p>There are two ways of detecting when input changes in the child component in Angular</p>\n\n\n\n<ol><li>Using OnChanges LifeCycle Hook</li><li>Using Input Setter</li></ol>\n\n\n\n<p>Let us look at both the methods in detail</p>\n\n\n\n<h3>Using OnChanges LifeCycle Hook</h3>\n\n\n\n<p>ngOnChanges is a lifecycle hook, which angular fires when it detects changes to data bound input property. This method receives a SimpeChanges object, which contains the current and previous property values. We can Intercept input property changes in the child component using this hook.</p>\n\n\n\n<h3>How to use ngOnChanges for Change Detection</h3>\n\n\n\n<ol><li>Import the OnChanges interface, SimpleChanges, SimpleChange from @angule/core library.</li><li>Implement the ngOnChanges() method. The method receives the SimpleChanges object containing the changes each input property.</li></ol>\n\n\n\n<p>Let us update our Child component to use the OnChanges hook</p>\n\n\n\n<p>Open the Child Component.ts and make the following changes</p>\n\n\n\n<pre class=\"wp-block-code\"><code>import { Component, Input, OnChanges, SimpleChanges, SimpleChange  } from '@angular/core';\r\n \r\n@Component({\r\n    selector: 'child-component',\r\n    template: `&lt;h2>Child Component&lt;/h2>\r\n               current count is {{ count }}\r\n    `\r\n})\r\nexport class ChildComponent implements OnChanges {\r\n    @Input() count: number;\r\n \r\n    ngOnChanges(changes: SimpleChanges) {\r\n \r\n        for (let property in changes) {\r\n            if (property === 'count') {\r\n              console.log('Previous:', changes&#91;property].previousValue);\r\n              console.log('Current:', changes&#91;property].currentValue);\r\n              console.log('firstChange:', changes&#91;property].firstChange);\r\n            } \r\n        }\r\n    }\r\n}</code></pre>\n\n\n\n<p>First, we are Importing the required libraries</p>\n\n\n\n<pre class=\"wp-block-code\"><code> import { Component, Input, OnChanges, SimpleChanges, SimpleChange  } from '@angular/core'; </code></pre>\n\n\n\n<pre class=\"wp-block-code\"><code> import { Component, Input, OnChanges, SimpleChanges, SimpleChange  } from '@angular/core'; </code></pre>\n\n\n\n<p>Next, Modify the class to implement the&nbsp;<code>Onchanges</code>&nbsp;interface</p>\n\n\n\n<pre class=\"wp-block-code\"><code>export class ChildComponent implements OnChanges { </code></pre>\n\n\n\n<p><code>ngOnChanges</code>&nbsp;method</p>\n\n\n\n<pre class=\"wp-block-code\"><code>   ngOnChanges(changes: SimpleChanges) {\r\n \r\n        for (let property in changes) {\r\n            if (property === 'count') {\r\n              console.log('Previous:', changes&#91;property].previousValue);\r\n              console.log('Current:', changes&#91;property].currentValue);\r\n              console.log('firstChange:', changes&#91;property].firstChange);\r\n            } \r\n        }\r\n    }</code></pre>\n\n\n\n<p>This method receives the all the changes made to the input properties as SimpleChanges object. The SimpleChanges object whose keys are property names and values are instances of SimpleChange.</p>\n\n\n\n<p>SimpleChange class Represents a basic change from a previous to a new value. It has three class members.</p>\n\n\n\n<figure id=\"tablepress-12\" class=\"wp-block-table\"><table><thead><tr><th>Property Name</th><th>Description</th></tr></thead><tbody><tr><td>previousValue:any</td><td>Previous value of the input property.</td></tr><tr><td>currentValue:any</td><td>New or current value of the input property.</td></tr><tr><td>FirstChange():boolean</td><td>Boolean value, which tells us whether it was the first time the change has taken place</td></tr></tbody></table></figure>\n\n\n\n<p>And we loop through the SimpleChanges to get our property count</p>\n\n\n\n<p>Run the code and open the console log to watch the logs as you click on increment and decrement buttons in the parent component.</p>\n\n\n\n<h3>Using Input Setter</h3>\n\n\n\n<p>We can use the property getter and setter to detect the changes made to the input property as shown below</p>\n\n\n\n<p>In the Child Component create a private property called _count</p>\n\n\n\n<pre class=\"wp-block-code\"><code>private _count = 0; </code></pre>\n\n\n\n<p>Create getter &amp; setter on property count and attach @Input annotation.&nbsp;We intercept the input changes from setter function and log it to console</p>\n\n\n\n<pre class=\"wp-block-code\"><code> @Input()set count(count: number) {    this._count = count;    console.log(count);}get count(): number { return this._count; }</code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Passing data to a child/nested component In the previous tutorials, we&nbsp;built an Angular Application&nbsp;and then&nbsp;added a child component&nbsp;to it. We also looked at how Angular Component communicates with its View (templates) using the&nbsp;data binding. These Components are useless if they are not able to communicate with each other. They need to communicate with each other [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [128],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3572"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=3572"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 3,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3572/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3799,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3572/revisions/3799"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=3572"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=3572"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=3572"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 3576,
+    "date": "2020-12-03T07:05:14",
+    "date_gmt": "2020-12-03T07:05:14",
+    "guid": {
+      "rendered": "http://angular.foobrdigital.com/?p=3576"
+    },
+    "modified": "2020-12-08T12:01:25",
+    "modified_gmt": "2020-12-08T12:01:25",
+    "slug": "angular-pass-data-to-parent-component",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/angular-pass-data-to-parent-component/",
+    "title": {
+      "rendered": "Angular Pass data to parent component"
+    },
+    "content": {
+      "rendered": "\n<h2>Pass data to parent component</h2>\n\n\n\n<p>There are three ways in which parent component can interact with the child component</p>\n\n\n\n<ol><li>Parent Listens to Child Event</li><li>Parent uses Local Variable to access the child</li><li>Parent uses a @ViewChild to get reference to the child component</li></ol>\n\n\n\n<p>Let us look at each of those scenarios in detail</p>\n\n\n\n<h3>Parent listens for child event</h3>\n\n\n\n<p>The Child Component exposes an EventEmitter Property. This Property is adorned with the @Output decorator. When Child Component needs to communicate with the parent it raises the event. The Parent Component listens to that event and reacts to it.</p>\n\n\n\n<h4>EventEmitter Property</h4>\n\n\n\n<p>To Raise an event, the component must declare an EventEmmitter Property. The Event can be emitted by calling the .emit() method</p>\n\n\n\n<p>For Example</p>\n\n\n\n<pre class=\"wp-block-code\"><code>countChanged: EventEmitter&lt;number> = new EventEmitter() </code></pre>\n\n\n\n<p>And then call emit method passing the whatever the data you want to send as shown below</p>\n\n\n\n<pre class=\"wp-block-code\"><code> this.countChanged.emit(this.count); </code></pre>\n\n\n\n<h4>@Output Decorator</h4>\n\n\n\n<p>Using the EventEmitter Property gives the components ability to raise an event. But to make that event accessible from parent component, you must decorate the property with @Output decorator</p>\n\n\n\n<h3>How to Pass data to parent component using @Output</h3>\n\n\n\n<p>In the child component</p>\n\n\n\n<ol><li>Declare a property of type EventEmitter and instantiate it</li><li>Mark it with a @Output annotation</li><li>Raise the event passing it with the desired data</li></ol>\n\n\n\n<p>In the Parent Component</p>\n\n\n\n<ol><li>Bind to the Child Component using&nbsp;Event Binding&nbsp;and listen to the child events</li><li>Define the event handler function</li></ol>\n\n\n\n<h4>Passing data to parent component Via Events (Example)</h4>\n\n\n\n<p>Now let us build an application to demonstrate this</p>\n\n\n\n<p>In the last&nbsp;passing data to child component&nbsp;tutorial, we built a counter in the parent component. We assigned the initial value to the counter and added increment/decrement methods. In the child Component, we used the @Input decorator to bind count property to the parent component. Whenever parent count is changed in the parent the child component is updated and displayed the count.</p>\n\n\n\n<p>In this tutorial, we will move the counter to the child component. We will raise an event in the child component whenever the count is increased or decreased. We then bind to that event in the parent component and display the count in the parent component.</p>\n\n\n\n<p>Download the source code for this from the&nbsp;GitHub&nbsp;from the folder inputdecorator. The The final code is available in outputdecorator folder.</p>\n\n\n\n<h4>Child Component</h4>\n\n\n\n<p>Open the child.component.ts and&nbsp;copy the following code</p>\n\n\n\n<pre class=\"wp-block-code\"><code>import { Component, Input, Output, EventEmitter  } from '@angular/core';\r\n \r\n@Component({\r\n    selector: 'child-component',\r\n    template: `&lt;h2>Child Component&lt;/h2>\r\n               &lt;button (click)=\"increment()\">Increment&lt;/button>\r\n               &lt;button (click)=\"decrement()\">decrement&lt;/button>\r\n               current count is {{ count }}\r\n    `\r\n})\r\nexport class ChildComponent {\r\n    @Input() count: number;\r\n \r\n    @Output() countChanged: EventEmitter&lt;number> =   new EventEmitter();\r\n \r\n    increment() {\r\n        this.count++;\r\n        this.countChanged.emit(this.count);\r\n      }\r\n    decrement() {\r\n        this.count--;\r\n        this.countChanged.emit(this.count);\r\n    }\r\n}</code></pre>\n\n\n\n<p>Now, let us look at the code in detail</p>\n\n\n\n<p>First, as usual, we need to import output &amp; EventEmitter from @angular/core</p>\n\n\n\n<pre class=\"wp-block-code\"><code>import { Component, Input, Output, EventEmitter } from '@angular/core'; </code></pre>\n\n\n\n<p>In the inline template, we have two buttons increment and decrement. &nbsp;We also displaying the current count</p>\n\n\n\n<pre class=\"wp-block-code\"><code>@Component({\r\n    selector: 'child-component',\r\n    template: `&lt;h2>Child Component&lt;/h2>\r\n               &lt;button (click)=\"increment()\">Increment&lt;/button>\r\n               &lt;button (click)=\"decrement()\">decrement&lt;/button>\r\n               current count is {{ count }}\r\n    `\r\n})</code></pre>\n\n\n\n<p>In the child component, define the countChanged event of type&nbsp;EventEmiiter. &nbsp;Decorate the property with @Output decorator to make it accessible from the parent component</p>\n\n\n\n<pre class=\"wp-block-code\"><code>@Output() countChanged: EventEmitter&lt;number> = new EventEmitter(); </code></pre>\n\n\n\n<p>Finally, we raise the event in increment &amp; decrement methods using emit</p>\n\n\n\n<pre class=\"wp-block-code\"><code>   increment() {\r\n        this.count++;\r\n        this.countChanged.emit(this.count);\r\n      }\r\n    decrement() {\r\n        this.count--;\r\n        this.countChanged.emit(this.count);\r\n    }</code></pre>\n\n\n\n<h4>Parent Component</h4>\n\n\n\n<p>In the parent component , we need to listen to the “countChanged” event</p>\n\n\n\n<p>The “countChanged” event is enclosed in Parentheses. It is then assigned to the method “countChangedHandler” in the component class. The syntax is similar to&nbsp;Event Binding</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;child-component &#91;count]=ClickCounter (countChanged)=\"countChangedHandler($event)\">&lt;/child-component>` </code></pre>\n\n\n\n<p>The countChangedHandler($event) method accepts the $event argument. The data associated with event is now available to in the $event property</p>\n\n\n\n<p>Our CountChangedHandler is as follows. It just updates the clickCounter and also logs the count to console</p>\n\n\n\n<pre class=\"wp-block-code\"><code>\r\n  countChangedHandler(count: number) {\r\n    this.ClickCounter = count;\r\n    console.log(count);\r\n  }</code></pre>\n\n\n\n<p>The complete code is as follows</p>\n\n\n\n<pre class=\"wp-block-code\"><code>import { Component} from '@angular/core';\r\n \r\n@Component({\r\n  selector: 'app-root',\r\n  template: `\r\n        &lt;h1>Welcome to {{title}}!&lt;/h1>\r\n        &lt;p> current count is {{ClickCounter}} &lt;/p>\r\n        &lt;child-component &#91;count]=Counter (countChanged)=\"countChangedHandler($event)\">&lt;/child-component>` ,\r\n  styleUrls: &#91;'./app.component.css']\r\n})\r\nexport class AppComponent {\r\n  title = 'Component Interaction';\r\n  Counter = 5;\r\n \r\n  countChangedHandler(count: number) {\r\n    this.Counter = count;\r\n    console.log(count);\r\n  }\r\n}</code></pre>\n\n\n\n<p>Run the code. Whenever the increment/decrement buttons clicked, The child raises the event. The Parent component gets notified of the this and updates the counter with the latest value.</p>\n\n\n\n<h3>Parent uses local variable to access the Child in Template</h3>\n\n\n\n<p>Parent Template can access the child component properties and methods by creating the template reference variable</p>\n\n\n\n<h4>Child Component</h4>\n\n\n\n<p>Let us update the child component</p>\n\n\n\n<pre class=\"wp-block-code\"><code> import { Component} from '@angular/core';\r\n \r\n@Component({\r\n    selector: 'child-component',\r\n    template: `&lt;h2>Child Component&lt;/h2>\r\n               current count is {{ count }}\r\n    `\r\n})\r\nexport class ChildComponent {\r\n    count = 0;\r\n \r\n     increment() {\r\n        this.count++;\r\n      }\r\n    decrement() {\r\n        this.count--;\r\n    }\r\n}\r\n </code></pre>\n\n\n\n<p>We have removed the input, output &amp; eventemiitter.</p>\n\n\n\n<p>Our component is now have property count and two methods to increment and decrement it</p>\n\n\n\n<h4>Parent component</h4>\n\n\n\n<pre class=\"wp-block-code\"><code> import { Component} from '@angular/core';\r\n \r\n@Component({\r\n  selector: 'app-root',\r\n  template: `\r\n        &lt;h1>{{title}}!&lt;/h1>\r\n        &lt;p> current count is {{child.count}} &lt;/p>\r\n        &lt;button (click)=\"child.increment()\">Increment&lt;/button>\r\n        &lt;button (click)=\"child.decrement()\">decrement&lt;/button>\r\n        &lt;child-component #child>&lt;/child-component>` ,\r\n  styleUrls: &#91;'./app.component.css']\r\n})\r\nexport class AppComponent {\r\n  title = 'Parent interacts with child via local variable';\r\n}</code></pre>\n\n\n\n<p>We have created a local variable, #child, on the tag &lt;child-component&gt;. The “child” is called template reference variable, which now represents the child component</p>\n\n\n\n<p>The Template Reference variable is created, when you use #&lt;varibaleName&gt; and attach it to a DOM element. You can then, use the variable to reference the DOM element in your Template</p>\n\n\n\n<pre class=\"wp-block-code\"><code>     &lt;child-component #child>&lt;/child-component>` , </code></pre>\n\n\n\n<p>Now you can use the local variable elsewhere in the template to refer to the child component methods and properties as shown below</p>\n\n\n\n<pre class=\"wp-block-code\"><code>   &lt;p> current count is {{child.count}} &lt;/p>\r\n        &lt;button (click)=\"child.increment()\">Increment&lt;/button>\r\n        &lt;button (click)=\"child.decrement()\">decrement&lt;/button></code></pre>\n\n\n\n<p>The code above wires child components increment &amp; decrement methods from the parent component</p>\n\n\n\n<p>The local variable approach is simple and easy. But it is limited because the parent-child wiring must be done entirely within the parent template. The parent component itself has no access to the child.</p>\n\n\n\n<p>You can’t use the local variable technique if an instance of the parent component class must read or write child component values or must call child component methods.</p>\n\n\n\n<h3>Parent uses a @ViewChild() to get reference to the Child Component</h3>\n\n\n\n<p>Injecting an instance of the child component into the parent as a @ViewChild is the another technique used by the parent to access the property and method of the child component</p>\n\n\n\n<p>The @ViewChild decorator takes the name of the component/directive as its input. It is then used to decorate a property. The Angular then injects the reference of the component to the Property</p>\n\n\n\n<p>For Example</p>\n\n\n\n<p>In the Parent component, declare a property child which is of type ChildComponent</p>\n\n\n\n<pre class=\"wp-block-code\"><code>child: ChildComponent; </code></pre>\n\n\n\n<p>Next, decorate it with @ViewChild decorator passing it the name of the component to inject</p>\n\n\n\n<pre class=\"wp-block-code\"><code> @ViewChild(ChildComponent) child: ChildComponent; </code></pre>\n\n\n\n<p>Now, when angular creates the child component, the reference to the child component is assigned to the child property.</p>\n\n\n\n<p>We now update the code from previous section</p>\n\n\n\n<h4>Child Component</h4>\n\n\n\n<p>There is no change in the child component</p>\n\n\n\n<h4>Parent Component</h4>\n\n\n\n<p>In parent component, we need to import the viewChild annotation. We also need to import the child component</p>\n\n\n\n<pre class=\"wp-block-code\"><code> import { Component, ViewChild } from '@angular/core';import { ChildComponent } from './child.component'; </code></pre>\n\n\n\n<p>Next, create a property child which is an instance of type ChildComponent. Apply the viewChild annotation on the child component as shown below</p>\n\n\n\n<pre class=\"wp-block-code\"><code>@ViewChild(ChildComponent) child: ChildComponent; </code></pre>\n\n\n\n<p>Finally, add increment and decrement method, which invokes the methods in the child component</p>\n\n\n\n<pre class=\"wp-block-code\"><code>   increment() {\r\n    this.child.increment();\r\n  }\r\n \r\n  decrement() {\r\n    this.child.decrement();\r\n  }</code></pre>\n\n\n\n<p>Now, the parent can access the properties and methods of child component</p>\n\n\n\n<p>And in the template make necessary changes</p>\n\n\n\n<pre class=\"wp-block-code\"><code>     &lt;h1>{{title}}&lt;/h1>\r\n        &lt;p> current count is {{child.count}} &lt;/p>\r\n        &lt;button (click)=\"increment()\">Increment&lt;/button>\r\n        &lt;button (click)=\"decrement()\">decrement&lt;/button>\r\n        &lt;child-component>&lt;/child-component>`\r\n </code></pre>\n\n\n\n<p>The complete app.component.ts is as follows</p>\n\n\n\n<pre class=\"wp-block-code\"><code>\r\nimport { Component, ViewChild } from '@angular/core';\r\nimport { ChildComponent } from './child.component';\r\n \r\n@Component({\r\n  selector: 'app-root',\r\n  template: `\r\n        &lt;h1>{{title}}&lt;/h1>\r\n        &lt;p> current count is {{child.count}} &lt;/p>\r\n        &lt;button (click)=\"increment()\">Increment&lt;/button>\r\n        &lt;button (click)=\"decrement()\">decrement&lt;/button>\r\n        &lt;child-component>&lt;/child-component>` ,\r\n  styleUrls: &#91;'./app.component.css']\r\n})\r\nexport class AppComponent {\r\n  title = 'Parent calls an @ViewChild()';\r\n \r\n  @ViewChild(ChildComponent) child: ChildComponent;\r\n \r\n  increment() {\r\n    this.child.increment();\r\n  }\r\n \r\n  decrement() {\r\n    this.child.decrement();\r\n  }\r\n}</code></pre>\n\n\n\n<h2>Conclusion</h2>\n\n\n\n<p>In this tutorial, we looked at how the parent can communicate with the child component. The Parent can subscribe to the events of the child component. It can use the Template local variable to access the properties and methods. We can also use @ViewChild decorator to inject the child component instance to the parent</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Pass data to parent component There are three ways in which parent component can interact with the child component Parent Listens to Child Event Parent uses Local Variable to access the child Parent uses a @ViewChild to get reference to the child component Let us look at each of those scenarios in detail Parent listens [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [128],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3576"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=3576"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 2,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3576/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3800,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3576/revisions/3800"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=3576"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=3576"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=3576"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  }
+]

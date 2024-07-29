@@ -1,0 +1,1550 @@
+[
+  {
+    "id": 4037,
+    "date": "2022-06-29T07:34:27",
+    "date_gmt": "2022-06-29T07:34:27",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=4037" },
+    "modified": "2022-06-29T07:34:27",
+    "modified_gmt": "2022-06-29T07:34:27",
+    "slug": "displaying-courses",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/displaying-courses/",
+    "title": { "rendered": "Displaying courses" },
+    "content": {
+      "rendered": "\n<p>For your&nbsp;<a></a>course catalog, you have to build the following functionalities:</p>\n\n\n\n<ul><li>List all available courses, optionally filtered by subject</li><li>Display a single course overview</li></ul>\n\n\n\n<p>Edit the&nbsp;<code>views.py</code>&nbsp;file of the&nbsp;<code>courses</code>&nbsp;application and add the following code:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>from django.db.models import Count\nfrom .models import Subject\nclass CourseListView(TemplateResponseMixin, View):\n    model = Course\n    template_name = 'courses/course/list.html'\n    def get(self, request, subject=None):\n        subjects = Subject.objects.annotate(\n                       total_courses=Count('courses'))\n        courses = Course.objects.annotate(\n                       total_modules=Count('modules'))\n        if subject:\n            subject = get_object_or_404(Subject, slug=subject)\n            courses = courses.filter(subject=subject)\n        return self.render_to_response({'subjects': subjects,\n                                        'subject': subject,\n                                        'courses': courses})\n</code></pre>\n\n\n\n<p>This is&nbsp;<a></a>the&nbsp;<code>CourseListView</code>&nbsp;view. It inherits from&nbsp;<code>TemplateResponseMixin</code>&nbsp;and&nbsp;<code>View</code>. In this view, you perform the following tasks:</p>\n\n\n\n<ol><li>You retrieve all subjects, using the ORM&#8217;s&nbsp;<code>annotate()</code>&nbsp;method with the&nbsp;<code>Count()</code>&nbsp;aggregation function to include the total number of courses for each&nbsp;subject</li><li>You retrieve all available courses, including the total number of modules contained in each course</li><li>If a subject slug URL parameter is given, you retrieve the corresponding subject object and limit the query to the courses that belong to the given subject</li><li>You use the&nbsp;<code>render_to_response()</code>&nbsp;method provided by&nbsp;<code>TemplateResponseMixin</code>&nbsp;to render the objects to a template and return an HTTP response</li></ol>\n\n\n\n<p>Let&#8217;s create a detail view for displaying a single course overview. Add the following code to the&nbsp;<code>views.py</code>&nbsp;file:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>from django.views.generic.detail import DetailView\nclass CourseDetailView(DetailView):\n    model = Course\n    template_name = 'courses/course/detail.html'\n</code></pre>\n\n\n\n<p>This view inherits from the generic&nbsp;<code>DetailView</code>&nbsp;provided by Django. You specify the&nbsp;<code>model</code>&nbsp;and&nbsp;<code>template_name</code>&nbsp;attributes. Django&#8217;s&nbsp;<code>DetailView</code>&nbsp;expects a primary key (<code>pk</code>) or slug URL parameter to retrieve a single object for the given model. The view renders the template specified in&nbsp;<code>template_name</code>, including the&nbsp;<code>Course</code>&nbsp;object in the template context variable&nbsp;<code>object</code>.</p>\n\n\n\n<p>Edit the main&nbsp;<code>urls.py</code>&nbsp;file of the&nbsp;<code>educa</code>&nbsp;project and add the following URL pattern to&nbsp;it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code><strong>from courses.views import CourseListView</strong>\nurlpatterns = &#91;\n    # ...\n    <strong>path('', CourseListView.as_view(), name='course_list'),</strong>\n]\n</code></pre>\n\n\n\n<p>You add the&nbsp;<code>course_list</code>&nbsp;URL pattern to the main&nbsp;<code>urls.py</code>&nbsp;file of the project because you want&nbsp;<a></a>to display the list of courses in the URL&nbsp;<code>http://127.0.0.1:8000/</code>, and all other URLs for the&nbsp;<code>courses</code>&nbsp;application have the&nbsp;<code>/course/</code>&nbsp;prefix.</p>\n\n\n\n<p>Edit the&nbsp;<code>urls.py</code>&nbsp;file of the&nbsp;<code>courses</code>&nbsp;application and add the following URL patterns:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>path('subject/&lt;slug:subject&gt;/',\n     views.CourseListView.as_view(),\n     name='course_list_subject'),\npath('&lt;slug:slug&gt;/',\n     views.CourseDetailView.as_view(),\n     name='course_detail'),\n</code></pre>\n\n\n\n<p>You define the following URL patterns:</p>\n\n\n\n<ul><li><code>course_list_subject</code>: For displaying all courses for a subject</li><li><code>course_detail</code>: For displaying a single course overview</li></ul>\n\n\n\n<p>Let&#8217;s build templates for the&nbsp;<code>CourseListView</code>&nbsp;and&nbsp;<code>CourseDetailView</code>&nbsp;views.</p>\n\n\n\n<p>Create the following file structure inside the&nbsp;<code>templates/courses/</code>&nbsp;directory of the&nbsp;<code>courses</code>&nbsp;application:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>course/\n    list.html\n    detail.html\n</code></pre>\n\n\n\n<p>Edit the&nbsp;<code>courses/course/list.html</code>&nbsp;template of the&nbsp;<code>courses</code>&nbsp;application and write the following code:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{% extends \"base.html\" %}\n{% block title %}\n  {% if subject %}\n    {{ subject.title }} courses\n  {% else %}\n    All courses\n  {% endif %}\n{% endblock %}\n{% block content %}\n  &lt;h1&gt;\n    {% if subject %}\n      {{ subject.title }} courses\n    {% else %}\n      All courses\n    {% endif %}\n  &lt;/h1&gt;\n  &lt;div class=\"contents\"&gt;\n    &lt;h3&gt;Subjects&lt;/h3&gt;\n    &lt;ul id=\"modules\"&gt;\n      &lt;li {% if not subject %}class=\"selected\"{% endif %}&gt;\n        &lt;a href=\"{% url \"course_list\" %}\"&gt;All&lt;/a&gt;\n      &lt;/li&gt;\n      {% for s in subjects %}\n        &lt;li {% if subject == s %}class=\"selected\"{% endif %}&gt;\n          &lt;a href=\"{% url \"course_list_subject\" s.slug %}\"&gt;\n            {{ s.title }}\n            &lt;br&gt;&lt;span&gt;{{ s.total_courses }} courses&lt;/span&gt;\n          &lt;/a&gt;\n        &lt;/li&gt;\n      {% endfor %}\n    &lt;/ul&gt;\n  &lt;/div&gt;\n  &lt;div class=\"module\"&gt;\n    {% for course in courses %}\n      {% with subject=course.subject %}\n        &lt;h3&gt;\n          &lt;a href=\"{% url \"course_detail\" course.slug %}\"&gt;\n            {{ course.title }}\n          &lt;/a&gt;\n        &lt;/h3&gt;\n        &lt;p&gt;\n          &lt;a href=\"{% url \"course_list_subject\" subject.slug %}\"&gt;{{ subject }}&lt;/a&gt;.\n            {{ course.total_modules }} modules.\n            Instructor: {{ course.owner.get_full_name }}\n        &lt;/p&gt;\n      {% endwith %}\n    {% endfor %}\n  &lt;/div&gt;\n{% endblock %}\n</code></pre>\n\n\n\n<p>Make sure that no template tag is split into multiple lines.</p>\n\n\n\n<p>This is the template for listing the available courses. You create an HTML list to display all&nbsp;<code>Subject</code>&nbsp;objects and build a link to the&nbsp;<code>course_list_subject</code>&nbsp;URL for each of them. You add a&nbsp;<code>selected</code>&nbsp;HTML class to highlight the current subject if a subject is selected. You iterate over every&nbsp;<code>Course</code>&nbsp;object, displaying the total number of modules and the instructor&#8217;s name.</p>\n\n\n\n<p>Run the&nbsp;<a></a>development server and open&nbsp;<code>http://127.0.0.1:8000/</code>&nbsp;in your browser. You should see a page similar to the following one:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/B14981_11_01.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 11.1: The course list page</p>\n\n\n\n<p>The left sidebar contains all subjects, including the total number of courses for each of them. You can click any subject to filter the courses displayed.</p>\n\n\n\n<p>Edit the&nbsp;<code>courses/course/detail.html</code>&nbsp;template and add the following code to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{% extends \"base.html\" %}\n{% block title %}\n  {{ object.title }}\n{% endblock %}\n{% block content %}\n  {% with subject=object.subject %}\n    &lt;h1&gt;\n      {{ object.title }}\n    &lt;/h1&gt;\n    &lt;div class=\"module\"&gt;\n      &lt;h2&gt;Overview&lt;/h2&gt;\n      &lt;p&gt;\n        &lt;a href=\"{% url \"course_list_subject\" subject.slug %}\"&gt;\n        {{ subject.title }}&lt;/a&gt;.\n        {{ object.modules.count }} modules.\n        Instructor: {{ object.owner.get_full_name }}\n      &lt;/p&gt;\n      {{ object.overview|linebreaks }}\n    &lt;/div&gt;\n  {% endwith %}\n{% endblock %}\n</code></pre>\n\n\n\n<p>In this&nbsp;<a></a>template, you display the overview and details for a single course. Open&nbsp;<code>http://127.0.0.1:8000/</code>&nbsp;in your browser and click on one of the courses. You should&nbsp;see a page with the following structure:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/B14981_11_02.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 11.2: The course overview page</p>\n\n\n\n<p>You have created a public area for displaying courses. Next, you need to allow users to register&nbsp;<a></a>as students and enroll on courses.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>For your&nbsp;course catalog, you have to build the following functionalities: List all available courses, optionally filtered by subject Display a single course overview Edit the&nbsp;views.py&nbsp;file of the&nbsp;courses&nbsp;application and add the following code: This is&nbsp;the&nbsp;CourseListView&nbsp;view. It inherits from&nbsp;TemplateResponseMixin&nbsp;and&nbsp;View. In this view, you perform the following tasks: You retrieve all subjects, using the ORM&#8217;s&nbsp;annotate()&nbsp;method with the&nbsp;Count()&nbsp;aggregation function&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/displaying-courses/\">Continue reading <span class=\"screen-reader-text\">Displaying courses</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [135],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4037" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=4037"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4037/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4038,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4037/revisions/4038"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=4037"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=4037"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=4037"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 4040,
+    "date": "2022-06-29T07:35:06",
+    "date_gmt": "2022-06-29T07:35:06",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=4040" },
+    "modified": "2022-06-29T07:35:06",
+    "modified_gmt": "2022-06-29T07:35:06",
+    "slug": "adding-student-registration",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/adding-student-registration/",
+    "title": { "rendered": "Adding student registration" },
+    "content": {
+      "rendered": "\n<p>Create a&nbsp;<a></a>new application using the following command:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>python manage.py startapp students\n</code></pre>\n\n\n\n<p>Edit the&nbsp;<code>settings.py</code>&nbsp;file of the&nbsp;<code>educa</code>&nbsp;project and add the new application to the&nbsp;<code>INSTALLED_APPS</code>&nbsp;setting, as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>INSTALLED_APPS = &#91;\n    <em># ...</em>\n    <strong>'students.apps.StudentsConfig',</strong>\n]\n</code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Create a&nbsp;new application using the following command: Edit the&nbsp;settings.py&nbsp;file of the&nbsp;educa&nbsp;project and add the new application to the&nbsp;INSTALLED_APPS&nbsp;setting, as follows:</p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [135],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4040" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=4040"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4040/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4041,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4040/revisions/4041"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=4040"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=4040"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=4040"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 4042,
+    "date": "2022-06-29T07:36:20",
+    "date_gmt": "2022-06-29T07:36:20",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=4042" },
+    "modified": "2022-06-29T07:36:20",
+    "modified_gmt": "2022-06-29T07:36:20",
+    "slug": "creating-a-student-registration-view",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/creating-a-student-registration-view/",
+    "title": { "rendered": "Creating a student registration view" },
+    "content": {
+      "rendered": "\n<p>Edit&nbsp;<a></a>the&nbsp;<code>views.py</code>&nbsp;file of the&nbsp;<code>students</code>&nbsp;application and write the following code:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>from django.urls import reverse_lazy\nfrom django.views.generic.edit import CreateView\nfrom django.contrib.auth.forms import UserCreationForm\nfrom django.contrib.auth import authenticate, login\nclass StudentRegistrationView(CreateView):\n    template_name = 'students/student/registration.html'\n    form_class = UserCreationForm\n    success_url = reverse_lazy('student_course_list')\n    def form_valid(self, form):\n        result = super().form_valid(form)\n        cd = form.cleaned_data\n        user = authenticate(username=cd&#91;'username'],\n                            password=cd&#91;'password1'])\n        login(self.request, user)\n        return result\n</code></pre>\n\n\n\n<p>This is the view that allows students to register on your site. You use the generic&nbsp;<code>CreateView</code>, which provides the functionality for creating model objects. This view requires the following attributes:</p>\n\n\n\n<ul><li><code>template_name</code>: The path of the template to render this view.</li><li><code>form_class</code>: The form for creating objects, which has to be&nbsp;<code>ModelForm</code>. You&nbsp;use Django&#8217;s&nbsp;<code>UserCreationForm</code>&nbsp;as the registration form to create&nbsp;<code>User</code>&nbsp;objects.</li><li><code>success_url</code>: The URL to redirect the user to when the form is successfully submitted. You reverse the URL named&nbsp;<code>student_course_list</code>, which you are going to create in the&nbsp;<em>Accessing the course contents</em>&nbsp;section for listing the courses that students are enrolled on.</li></ul>\n\n\n\n<p>The&nbsp;<code>form_valid()</code>&nbsp;method is executed when valid form data has been posted. It has to return&nbsp;<a></a>an HTTP response. You override this method to log the user in after they have successfully signed up.</p>\n\n\n\n<p>Create a new file inside the&nbsp;<code>students</code>&nbsp;application directory and name it&nbsp;<code>urls.py</code>. Add the following code to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>from django.urls import path\nfrom . import views\nurlpatterns = &#91;\n    path('register/',\n         views.StudentRegistrationView.as_view(),\n         name='student_registration'),\n]\n</code></pre>\n\n\n\n<p>Then, edit the main&nbsp;<code>urls.py</code>&nbsp;of the&nbsp;<code>educa</code>&nbsp;project and include the URLs for the&nbsp;<code>students</code>&nbsp;application by adding the following pattern to your URL configuration:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>urlpatterns = &#91;\n    <em># ...</em>\n    <strong>path('students/', include('students.urls')),</strong>\n<strong>]</strong>\n</code></pre>\n\n\n\n<p>Create the following file structure inside the&nbsp;<code>students</code>&nbsp;application directory:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>templates/\n    students/\n        student/\n            registration.html\n</code></pre>\n\n\n\n<p>Edit the&nbsp;<code>students/student/registration.html</code>&nbsp;template and add the following code to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{% extends \"base.html\" %}\n{% block title %}\n  Sign up\n{% endblock %}\n{% block content %}\n  &lt;h1&gt;\n    Sign up\n  &lt;/h1&gt;\n  &lt;div class=\"module\"&gt;\n    &lt;p&gt;Enter your details to create an account:&lt;/p&gt;\n    &lt;form method=\"post\"&gt;\n      {{ form.as_p }}\n      {% csrf_token %}\n      &lt;p&gt;&lt;input type=\"submit\" value=\"Create my account\"&gt;&lt;/p&gt;\n    &lt;/form&gt;\n  &lt;/div&gt;\n{% endblock %}\n</code></pre>\n\n\n\n<p>Run the&nbsp;<a></a>development server and open&nbsp;<code>http://127.0.0.1:8000/students/register/</code>&nbsp;in your browser. You should see a registration form like this:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/B14981_11_03.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 11.3: The student registration form</p>\n\n\n\n<p>Note that the&nbsp;<code>student_course_list</code>&nbsp;URL specified in the&nbsp;<code>success_url</code>&nbsp;attribute of the&nbsp;<code>StudentRegistrationView</code>&nbsp;view doesn&#8217;t exist yet. If you submit the form, Django won&#8217;t find&nbsp;<a></a>the URL to redirect you to after a successful registration. As mentioned, you will create this URL in the&nbsp;<em>Accessing the course contents</em>&nbsp;section.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Edit&nbsp;the&nbsp;views.py&nbsp;file of the&nbsp;students&nbsp;application and write the following code: This is the view that allows students to register on your site. You use the generic&nbsp;CreateView, which provides the functionality for creating model objects. This view requires the following attributes: template_name: The path of the template to render this view. form_class: The form for creating objects, which&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/creating-a-student-registration-view/\">Continue reading <span class=\"screen-reader-text\">Creating a student registration view</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [135],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4042" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=4042"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4042/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4043,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4042/revisions/4043"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=4042"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=4042"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=4042"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 4046,
+    "date": "2022-06-29T07:37:29",
+    "date_gmt": "2022-06-29T07:37:29",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=4046" },
+    "modified": "2022-06-29T07:37:29",
+    "modified_gmt": "2022-06-29T07:37:29",
+    "slug": "enrolling-on-courses",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/enrolling-on-courses/",
+    "title": { "rendered": "Enrolling on courses" },
+    "content": {
+      "rendered": "\n<p>After users&nbsp;<a></a>create an account, they should be able to enroll on courses. In order to&nbsp;store enrollments, you need to create a many-to-many relationship between the&nbsp;<code>Course</code>&nbsp;and&nbsp;<code>User</code>&nbsp;models.</p>\n\n\n\n<p>Edit the&nbsp;<code>models.py</code>&nbsp;file of the&nbsp;<code>courses</code>&nbsp;application and add the following field to the&nbsp;<code>Course</code>&nbsp;model:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>students = models.ManyToManyField(User,\n                                  related_name='courses_joined',\n                                  blank=True)\n</code></pre>\n\n\n\n<p>From the shell, execute the following command to create a migration for this change:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>python manage.py makemigrations\n</code></pre>\n\n\n\n<p>You will see output similar to this:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Migrations for 'courses':\n  courses/migrations/0004_course_students.py\n    - Add field students to course\n</code></pre>\n\n\n\n<p>Then, execute the next command to apply pending migrations:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>python manage.py migrate\n</code></pre>\n\n\n\n<p>You should see output that ends with the following line:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Applying courses.0004_course_students... OK\n</code></pre>\n\n\n\n<p>You can now associate students with the courses on which they are enrolled. Let&#8217;s create the functionality for students to enroll on courses.</p>\n\n\n\n<p>Create a new file inside the&nbsp;<code>students</code>&nbsp;application directory and name it&nbsp;<code>forms.py</code>. Add the following code to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>from django import forms\nfrom courses.models import Course\nclass CourseEnrollForm(forms.Form):\n    course = forms.ModelChoiceField(queryset=Course.objects.all(),\n                                    widget=forms.HiddenInput)\n</code></pre>\n\n\n\n<p>You are going to use this form for students to enroll on courses. The&nbsp;<code>course</code>&nbsp;field is for the course&nbsp;<a></a>on which the user will be enrolled; therefore, it&#8217;s a&nbsp;<code>ModelChoiceField</code>. You use a&nbsp;<code>HiddenInput</code>&nbsp;widget because you are not going to show this field to the user. You are going to use this form in the&nbsp;<code>CourseDetailView</code>&nbsp;view to display a&nbsp;button to enroll.</p>\n\n\n\n<p>Edit the&nbsp;<code>views.py</code>&nbsp;file of the&nbsp;<code>students</code>&nbsp;application and add the following code:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>from django.views.generic.edit import FormView\nfrom django.contrib.auth.mixins import LoginRequiredMixin\nfrom .forms import CourseEnrollForm\nclass StudentEnrollCourseView(LoginRequiredMixin, FormView):\n    course = None\n    form_class = CourseEnrollForm\n    def form_valid(self, form):\n        self.course = form.cleaned_data&#91;'course']\n        self.course.students.add(self.request.user)\n        return super().form_valid(form)\n    def get_success_url(self):\n        return reverse_lazy('student_course_detail',\n                            args=&#91;self.course.id])\n</code></pre>\n\n\n\n<p>This is the&nbsp;<code>StudentEnrollCourseView</code>&nbsp;view. It handles students enrolling on courses. The view inherits from the&nbsp;<code>LoginRequiredMixin</code>&nbsp;mixin so that only logged-in users can access the view. It also inherits from Django&#8217;s&nbsp;<code>FormView</code>&nbsp;view, since you handle a form submission. You use the&nbsp;<code>CourseEnrollForm</code>&nbsp;form for the&nbsp;<code>form_class</code>&nbsp;attribute and also define a&nbsp;<code>course</code>&nbsp;attribute for storing the given&nbsp;<code>Course</code>&nbsp;object. When the form is valid, you add the current user to the students enrolled on the&nbsp;course.</p>\n\n\n\n<p>The&nbsp;<code>get_success_url()</code>&nbsp;method returns the URL that the user will be redirected to&nbsp;if the form was successfully submitted. This method is equivalent to the&nbsp;<code>success_url</code>&nbsp;attribute. Then, you reverse the URL named&nbsp;<code>student_course_detail</code>.</p>\n\n\n\n<p>Edit the&nbsp;<code>urls.py</code>&nbsp;file of the&nbsp;<code>students</code>&nbsp;application and add the following URL pattern to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>path('enroll-course/',\n     views.StudentEnrollCourseView.as_view(),\n     name='student_enroll_course'),\n</code></pre>\n\n\n\n<p>Let&#8217;s add the enroll button form to the course overview page. Edit the&nbsp;<code>views.py</code>&nbsp;file of the&nbsp;<code>courses</code>&nbsp;application and modify&nbsp;<code>CourseDetailView</code>&nbsp;to make it look as&nbsp;follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code><strong>from students.forms import CourseEnrollForm</strong>\nclass CourseDetailView(DetailView):\n    model = Course\n    template_name = 'courses/course/detail.html'\n    <strong>def get_context_data(self, **kwargs):</strong>\n        <strong>context = super().get_context_data(**kwargs)</strong>\n        <strong>context&#91;'enroll_form'] = CourseEnrollForm(</strong>\n                                   <strong>initial={'course':self.object})</strong>\n        <strong>return context</strong>\n</code></pre>\n\n\n\n<p>You use the&nbsp;<code>get_context_data()</code>&nbsp;method to include the enrollment form in the context for&nbsp;<a></a>rendering the templates. You initialize the hidden course field of the form&nbsp;with the current&nbsp;<code>Course</code>&nbsp;object so that it can be submitted directly.</p>\n\n\n\n<p>Edit the&nbsp;<code>courses/course/detail.html</code>&nbsp;template and locate the following line:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{{ object.overview|linebreaks }}\n</code></pre>\n\n\n\n<p>Replace it with the following code:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{{ object.overview|linebreaks }}\n<strong>{% if request.user.is_authenticated %}</strong>\n<strong>  &lt;form action=\"{% url \"student_enroll_course\" %}\" method=\"post\"&gt;</strong>\n<strong>    {{ enroll_form }}</strong>\n<strong>    {% csrf_token %}</strong>\n<strong>    &lt;input type=\"submit\" value=\"Enroll now\"&gt;</strong>\n<strong>  &lt;/form&gt;</strong>\n<strong>{% else %}</strong>\n<strong>  &lt;a href=\"{% url \"student_registration\" %}\" class=\"button\"&gt;</strong>\n<strong>    Register to enroll</strong>\n<strong>  &lt;/a&gt;</strong>\n<strong>{% endif %}</strong>\n</code></pre>\n\n\n\n<p>This is the button for enrolling on courses. If the user is authenticated, you display the enrollment button, including the hidden form that points to the&nbsp;<code>student_enroll_course</code>&nbsp;URL. If the user is not authenticated, you display a link to register on the platform.</p>\n\n\n\n<p>Make sure that the development server is running, open&nbsp;<code>http://127.0.0.1:8000/</code>&nbsp;in your browser, and click a course. If you are logged in, you should see an&nbsp;<strong>ENROLL NOW</strong>&nbsp;button placed below the course overview, as follows:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/B14981_11_04.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 11.4: The course overview page, including an ENROLL NOW button</p>\n\n\n\n<p>If you&nbsp;<a></a>are not logged in, you will see a&nbsp;<strong>REGISTER TO ENROLL</strong>&nbsp;button instead.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>After users&nbsp;create an account, they should be able to enroll on courses. In order to&nbsp;store enrollments, you need to create a many-to-many relationship between the&nbsp;Course&nbsp;and&nbsp;User&nbsp;models. Edit the&nbsp;models.py&nbsp;file of the&nbsp;courses&nbsp;application and add the following field to the&nbsp;Course&nbsp;model: From the shell, execute the following command to create a migration for this change: You will see output similar&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/enrolling-on-courses/\">Continue reading <span class=\"screen-reader-text\">Enrolling on courses</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [135],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4046" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=4046"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4046/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4047,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4046/revisions/4047"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=4046"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=4046"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=4046"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 4049,
+    "date": "2022-06-29T07:38:17",
+    "date_gmt": "2022-06-29T07:38:17",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=4049" },
+    "modified": "2022-06-29T07:38:17",
+    "modified_gmt": "2022-06-29T07:38:17",
+    "slug": "accessing-the-course-contents",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/accessing-the-course-contents/",
+    "title": { "rendered": "Accessing the course contents" },
+    "content": {
+      "rendered": "\n<p>You need a view for displaying the courses that students are enrolled on, and a view for accessing&nbsp;<a></a>the actual course contents. Edit the&nbsp;<code>views.py</code>&nbsp;file of the&nbsp;<code>students</code>&nbsp;application and add the following code to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>from django.views.generic.list import ListView\nfrom courses.models import Course\nclass StudentCourseListView(LoginRequiredMixin, ListView):\n    model = Course\n    template_name = 'students/course/list.html'\n    def get_queryset(self):\n        qs = super().get_queryset()\n        return qs.filter(students__in=&#91;self.request.user])\n</code></pre>\n\n\n\n<p>This is the view to see courses that students are enrolled on. It inherits from&nbsp;<code>LoginRequiredMixin</code>&nbsp;to make sure that only logged in users can access the view. It also inherits from the generic&nbsp;<code>ListView</code>&nbsp;for displaying a list of&nbsp;<code>Course</code>&nbsp;objects. You override the&nbsp;<code>get_queryset()</code>&nbsp;method to retrieve only the courses that a student is enrolled on; you filter the QuerySet by the student&#8217;s&nbsp;<code>ManyToManyField</code>&nbsp;field to do so.</p>\n\n\n\n<p>Then, add the following code to the&nbsp;<code>views.py</code>&nbsp;file of the&nbsp;<code>students</code>&nbsp;application:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>from django.views.generic.detail import DetailView\nclass StudentCourseDetailView(DetailView):\n    model = Course\n    template_name = 'students/course/detail.html'\n    def get_queryset(self):\n        qs = super().get_queryset()\n        return qs.filter(students__in=&#91;self.request.user])\n    def get_context_data(self, **kwargs):\n        context = super().get_context_data(**kwargs)\n        <em># get course object</em>\n        course = self.get_object()\n        if 'module_id' in self.kwargs:\n            <em># get current module</em>\n            context&#91;'module'] = course.modules.get(\n                                    id=self.kwargs&#91;'module_id'])\n        else:\n            <em># get first module</em>\n            context&#91;'module'] = course.modules.all()&#91;0]\n        return context\n</code></pre>\n\n\n\n<p>This is the&nbsp;<code>StudentCourseDetailView</code>&nbsp;view. You override the&nbsp;<code>get_queryset()</code>&nbsp;method to limit the&nbsp;<a></a>base QuerySet to courses on which the student is enrolled. You also override the&nbsp;<code>get_context_data()</code>&nbsp;method to set a course module in the context if the&nbsp;<code>module_id</code>&nbsp;URL parameter is given. Otherwise, you set the first module of the course. This way, students will be able to navigate through modules inside a course.</p>\n\n\n\n<p>Edit the&nbsp;<code>urls.py</code>&nbsp;file of the&nbsp;<code>students</code>&nbsp;application and add the following URL patterns to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>path('courses/',\n     views.StudentCourseListView.as_view(),\n     name='student_course_list'),\npath('course/&lt;pk&gt;/',\n     views.StudentCourseDetailView.as_view(),\n     name='student_course_detail'),\npath('course/&lt;pk&gt;/&lt;module_id&gt;/',\n     views.StudentCourseDetailView.as_view(),\n     name='student_course_detail_module'),\n</code></pre>\n\n\n\n<p>Create the following file structure inside the&nbsp;<code>templates/students/</code>&nbsp;directory of the&nbsp;<code>students</code>&nbsp;application:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>course/\n    detail.html\n    list.html\n</code></pre>\n\n\n\n<p>Edit the&nbsp;<code>students/course/list.html</code>&nbsp;template and add the following code to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{% extends \"base.html\" %}\n{% block title %}My courses{% endblock %}\n{% block content %}\n  &lt;h1&gt;My courses&lt;/h1&gt;\n  &lt;div class=\"module\"&gt;\n    {% for course in object_list %}\n      &lt;div class=\"course-info\"&gt;\n        &lt;h3&gt;{{ course.title }}&lt;/h3&gt;\n        &lt;p&gt;&lt;a href=\"{% url \"student_course_detail\" course.id %}\"&gt;\n        Access contents&lt;/a&gt;&lt;/p&gt;\n      &lt;/div&gt;\n    {% empty %}\n      &lt;p&gt;\n        You are not enrolled in any courses yet.\n        &lt;a href=\"{% url \"course_list\" %}\"&gt;Browse courses&lt;/a&gt;\n        to enroll in a course.\n      &lt;/p&gt;\n    {% endfor %}\n  &lt;/div&gt;\n{% endblock %}\n</code></pre>\n\n\n\n<p>This template&nbsp;<a></a>displays the courses that the student is enrolled on. Remember that when a new student successfully registers with the platform, they will be redirected to the&nbsp;<code>student_course_list</code>&nbsp;URL. Let&#8217;s also redirect students to this URL when they log in to the platform.</p>\n\n\n\n<p>Edit the&nbsp;<code>settings.py</code>&nbsp;file of the&nbsp;<code>educa</code>&nbsp;project and add the following code to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>from django.urls import reverse_lazy\nLOGIN_REDIRECT_URL = reverse_lazy('student_course_list')\n</code></pre>\n\n\n\n<p>This is the setting used by the&nbsp;<code>auth</code>&nbsp;module to redirect the student after a successful login if no&nbsp;<code>next</code>&nbsp;parameter is present in the request. After a successful login, a&nbsp;student will be redirected to the&nbsp;<code>student_course_list</code>&nbsp;URL to view the courses that they are enrolled on.</p>\n\n\n\n<p>Edit the&nbsp;<code>students/course/detail.html</code>&nbsp;template and add the following code to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{% extends \"base.html\" %}\n{% block title %}\n  {{ object.title }}\n{% endblock %}\n{% block content %}\n  &lt;h1&gt;\n    {{ module.title }}\n  &lt;/h1&gt;\n  &lt;div class=\"contents\"&gt;\n    &lt;h3&gt;Modules&lt;/h3&gt;\n    &lt;ul id=\"modules\"&gt;\n      {% for m in object.modules.all %}\n        &lt;li data-id=\"{{ m.id }}\" {% if m == module %}class=\"selected\"{% endif %}&gt;\n          &lt;a href=\"{% url \"student_course_detail_module\" object.id m.id %}\"&gt;\n            &lt;span&gt;\n              Module &lt;span class=\"order\"&gt;{{ m.order|add:1 }}&lt;/span&gt;\n            &lt;/span&gt;\n            &lt;br&gt;\n            {{ m.title }}\n          &lt;/a&gt;\n        &lt;/li&gt;\n      {% empty %}\n        &lt;li&gt;No modules yet.&lt;/li&gt;\n      {% endfor %}\n    &lt;/ul&gt;\n  &lt;/div&gt;\n  &lt;div class=\"module\"&gt;\n    {% for content in module.contents.all %}\n      {% with item=content.item %}\n        &lt;h2&gt;{{ item.title }}&lt;/h2&gt;\n        {{ item.render }}\n      {% endwith %}\n    {% endfor %}\n  &lt;/div&gt;\n{% endblock %}\n</code></pre>\n\n\n\n<p>This is the&nbsp;<a></a>template for enrolled students to access the contents of a course. First, you build an HTML list including all course modules and highlighting the current module. Then, you iterate over the current module contents and access each content item to display it using&nbsp;<code>{{ item.render }}</code>. You are going to add the&nbsp;<code>render()</code>&nbsp;method to the content models next. This method will take care of rendering the content properly.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>You need a view for displaying the courses that students are enrolled on, and a view for accessing&nbsp;the actual course contents. Edit the&nbsp;views.py&nbsp;file of the&nbsp;students&nbsp;application and add the following code to it: This is the view to see courses that students are enrolled on. It inherits from&nbsp;LoginRequiredMixin&nbsp;to make sure that only logged in users can&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/accessing-the-course-contents/\">Continue reading <span class=\"screen-reader-text\">Accessing the course contents</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [135],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4049" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=4049"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4049/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4050,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4049/revisions/4050"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=4049"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=4049"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=4049"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 4051,
+    "date": "2022-06-29T07:39:18",
+    "date_gmt": "2022-06-29T07:39:18",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=4051" },
+    "modified": "2022-06-29T07:39:18",
+    "modified_gmt": "2022-06-29T07:39:18",
+    "slug": "rendering-different-types-of-content",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/rendering-different-types-of-content/",
+    "title": { "rendered": "Rendering different types of content" },
+    "content": {
+      "rendered": "\n<p>You need to&nbsp;<a></a>provide a way to render each type of content. Edit the&nbsp;<code>models.py</code>&nbsp;file of&nbsp;the&nbsp;<code>courses</code>&nbsp;application and add the following&nbsp;<code>render()</code>&nbsp;method to the&nbsp;<code>ItemBase</code>&nbsp;model:</p>\n\n\n\n<pre class=\"wp-block-code\"><code><strong>from django.template.loader import render_to_string</strong>\nclass ItemBase(models.Model):\n    <em># ...</em>\n    <strong>def render(self):</strong>\n        <strong>return render_to_string(</strong>\n            <strong>f'courses/content/{self._meta.model_name}.html',</strong>\n            <strong>{'item': self})</strong>\n</code></pre>\n\n\n\n<p>This method uses the&nbsp;<code>render_to_string()</code>&nbsp;function for rendering a template and returning the rendered content as a string. Each kind of content is rendered using a template named after the content model. You use&nbsp;<code>self._meta.model_name</code>&nbsp;to generate the appropriate template name for each content model dynamically. The&nbsp;<code>render()</code>&nbsp;method provides a common interface for rendering diverse content.</p>\n\n\n\n<p>Create the following file structure inside the&nbsp;<code>templates/courses/</code>&nbsp;directory of the&nbsp;<code>courses</code>&nbsp;application:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>content/\n    text.html\n    file.html\n    image.html\n    video.html\n</code></pre>\n\n\n\n<p>Edit the&nbsp;<code>courses/content/text.html</code>&nbsp;template and write this code:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{{ item.content|linebreaks }}\n</code></pre>\n\n\n\n<p>This is the template to render text content. The&nbsp;<code>linebreaks</code>&nbsp;template filter replaces line breaks in plain text with HTML line breaks.</p>\n\n\n\n<p>Edit the&nbsp;<code>courses/content/file.html</code>&nbsp;template and add the following:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;p&gt;&lt;a href=\"{{ item.file.url }}\" class=\"button\"&gt;Download file&lt;/a&gt;&lt;/p&gt;\n</code></pre>\n\n\n\n<p>This is the template to render files. You generate a link to download the file.</p>\n\n\n\n<p>Edit the&nbsp;<code>courses/content/image.html</code>&nbsp;template and write:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;p&gt;&lt;img src=\"{{ item.file.url }}\" alt=\"{{ item.title }}\"&gt;&lt;/p&gt;\n</code></pre>\n\n\n\n<p>This is the template to render images. For files uploaded with&nbsp;<code>ImageField</code>&nbsp;and&nbsp;<code>FileField</code>&nbsp;to work, you need to set up your project to serve media files with the development server.</p>\n\n\n\n<p>Edit the&nbsp;<code>settings.py</code>&nbsp;file of your project and add the following code to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>MEDIA_URL = '/media/'\nMEDIA_ROOT = os.path.join(BASE_DIR, 'media/')\n</code></pre>\n\n\n\n<p>Remember that&nbsp;<code>MEDIA_URL</code>&nbsp;is the base URL to serve uploaded media files and&nbsp;<code>MEDIA_ROOT</code>&nbsp;is the local path where the files are located.</p>\n\n\n\n<p>Edit the main&nbsp;<code>urls.py</code>&nbsp;file of your project and add the following imports:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>from django.conf import settings\nfrom django.conf.urls.static import static\n</code></pre>\n\n\n\n<p>Then, write the following lines at the end of the file:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>if settings.DEBUG:\n    urlpatterns += static(settings.MEDIA_URL,\n                          document_root=settings.MEDIA_ROOT)\n</code></pre>\n\n\n\n<p>Your project is now ready to upload and serve media files. The Django development server will be in charge of serving the media files during development (that is, when the <code>DEBUG</code> setting is set to <code>True</code>). Remember that the development server is not suitable for production use. You will learn how to set up a production environment, <em>Going Live</em>.</p>\n\n\n\n<p>You also have to create a template for rendering&nbsp;<code>Video</code>&nbsp;objects. You will use&nbsp;<code>django-embed-video</code>&nbsp;for embedding video content.&nbsp;<code>django-embed-video</code>&nbsp;is a third-party Django application that allows you to embed videos in your templates, from sources such as YouTube or Vimeo, by simply providing their public URL.</p>\n\n\n\n<p>Install the package with the following command:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>pip install django-embed-video==1.3.2\n</code></pre>\n\n\n\n<p>Edit the&nbsp;<code>settings.py</code>&nbsp;file of your project and add the application to the&nbsp;<code>INSTALLED_APPS</code>&nbsp;setting, as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>INSTALLED_APPS = &#91;\n    <em># ...</em>\n    <strong>'embed_video',</strong>\n]\n</code></pre>\n\n\n\n<p>You can find the <code>django-embed-video</code> application&#8217;s documentation at https://django-embed-video.readthedocs.io/en/latest/.</p>\n\n\n\n<p>Edit the&nbsp;<code>courses/content/video.html</code>&nbsp;template and write the following code:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{% load embed_video_tags %}\n{% video item.url \"small\" %}\n</code></pre>\n\n\n\n<p>This is the template to render videos.</p>\n\n\n\n<p>Now run the development server and access&nbsp;<code>http://127.0.0.1:8000/course/mine/</code>&nbsp;in your browser. Access the site with a user belonging to the&nbsp;<code>Instructors</code>&nbsp;group, and add multiple contents to a course. To include video content, you can just copy any YouTube URL, such as&nbsp;<code>https://www.youtube.com/watch?v=bgV39DlmZ2U</code>, and include it in the&nbsp;<code>url</code>&nbsp;field of the form.</p>\n\n\n\n<p>After adding&nbsp;<a></a>contents to the course, open&nbsp;<code>http://127.0.0.1:8000/</code>, click the course, and click on the&nbsp;<strong>ENROLL NOW</strong>&nbsp;button. You should be enrolled on the course and redirected to the&nbsp;<code>student_course_detail</code>&nbsp;URL. The following screenshot shows a sample course contents page:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/B14981_11_05.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 11.5: A course contents page</p>\n\n\n\n<p>Great! You have created a common interface for rendering different types of course contents.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>You need to&nbsp;provide a way to render each type of content. Edit the&nbsp;models.py&nbsp;file of&nbsp;the&nbsp;courses&nbsp;application and add the following&nbsp;render()&nbsp;method to the&nbsp;ItemBase&nbsp;model: This method uses the&nbsp;render_to_string()&nbsp;function for rendering a template and returning the rendered content as a string. Each kind of content is rendered using a template named after the content model. You use&nbsp;self._meta.model_name&nbsp;to generate the appropriate&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/rendering-different-types-of-content/\">Continue reading <span class=\"screen-reader-text\">Rendering different types of content</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [135],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4051" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=4051"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4051/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4052,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4051/revisions/4052"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=4051"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=4051"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=4051"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 4053,
+    "date": "2022-06-29T07:41:54",
+    "date_gmt": "2022-06-29T07:41:54",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=4053" },
+    "modified": "2022-06-29T07:41:55",
+    "modified_gmt": "2022-06-29T07:41:55",
+    "slug": "using-the-cache-framework",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/using-the-cache-framework/",
+    "title": { "rendered": "Using the cache framework" },
+    "content": {
+      "rendered": "\n<p>HTTP requests to your web application usually entail database access, data processing, and template rendering. This is much more expensive in terms of processing than serving a static website. The overhead in some requests can be significant when your site starts&nbsp;<a></a>getting more and more traffic. This is where caching becomes precious. By caching queries, calculation results, or rendered content in an HTTP request, you will avoid expensive operations in the following requests. This translates into shorter response times and less processing on the server side.</p>\n\n\n\n<p>Django includes a robust cache system that allows you to cache data with different levels of granularity. You can cache a single query, the output of a specific view, parts of rendered template content, or your entire site. Items are stored in the cache system for a default time. You can specify the default timeout for cached data.</p>\n\n\n\n<p>This is how you will usually use the cache framework when your application gets an&nbsp;HTTP request:</p>\n\n\n\n<ol><li>Try to find the requested data in the cache</li><li>If found, return the cached data</li><li>If not found, perform the following steps:<ul><li>Perform the query or processing required to obtain the data</li><li>Save the generated data in the cache</li><li>Return the data</li></ul></li></ol>\n\n\n\n<p>You can read detailed information about Django&#8217;s cache system at https://docs.djangoproject.com/en/3.0/topics/cache/.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>HTTP requests to your web application usually entail database access, data processing, and template rendering. This is much more expensive in terms of processing than serving a static website. The overhead in some requests can be significant when your site starts&nbsp;getting more and more traffic. This is where caching becomes precious. By caching queries, calculation&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/using-the-cache-framework/\">Continue reading <span class=\"screen-reader-text\">Using the cache framework</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [135],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4053" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=4053"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4053/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4054,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4053/revisions/4054"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=4053"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=4053"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=4053"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 4055,
+    "date": "2022-06-29T07:42:21",
+    "date_gmt": "2022-06-29T07:42:21",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=4055" },
+    "modified": "2022-06-29T07:42:21",
+    "modified_gmt": "2022-06-29T07:42:21",
+    "slug": "available-cache-backends",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/available-cache-backends/",
+    "title": { "rendered": "Available cache backends" },
+    "content": {
+      "rendered": "\n<p>Django&nbsp;<a></a>comes with several cache backends. These are&nbsp;<a></a>the following:</p>\n\n\n\n<ul><li><code>backends.memcached.MemcachedCache</code>&nbsp;or&nbsp;<code>backends.memcached.PyLibMCCache</code>: A Memcached backend. Memcached is a fast and efficient memory-based cache server. The backend to use depends on the Memcached Python bindings you choose.</li><li><code>backends.db.DatabaseCache</code>: Use the database as a cache system.</li><li><code>backends.filebased.FileBasedCache</code>: Use the file storage system. This serializes and stores each cache value as a separate file.</li><li><code>backends.locmem.LocMemCache</code>: A local memory cache backend. This the default cache backend.</li><li><code>backends.dummy.DummyCache</code>: A dummy cache backend intended only for development. It implements the cache interface without actually caching anything. This cache is per-process and thread-safe.</li></ul>\n\n\n\n<p>For&nbsp;<a></a>optimal performance, use a memory-based cache backend such as the&nbsp;<a></a>Memcached backend.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Django&nbsp;comes with several cache backends. These are&nbsp;the following: backends.memcached.MemcachedCache&nbsp;or&nbsp;backends.memcached.PyLibMCCache: A Memcached backend. Memcached is a fast and efficient memory-based cache server. The backend to use depends on the Memcached Python bindings you choose. backends.db.DatabaseCache: Use the database as a cache system. backends.filebased.FileBasedCache: Use the file storage system. This serializes and stores each cache value as&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/available-cache-backends/\">Continue reading <span class=\"screen-reader-text\">Available cache backends</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [135],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4055" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=4055"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4055/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4056,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4055/revisions/4056"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=4055"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=4055"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=4055"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 4057,
+    "date": "2022-06-29T07:42:54",
+    "date_gmt": "2022-06-29T07:42:54",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=4057" },
+    "modified": "2022-06-29T07:42:54",
+    "modified_gmt": "2022-06-29T07:42:54",
+    "slug": "installing-memcached",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/installing-memcached/",
+    "title": { "rendered": "Installing Memcached" },
+    "content": {
+      "rendered": "\n<p>You are going to use the Memcached backend. Memcached runs in memory and it is allotted&nbsp;<a></a>a specified amount of RAM. When the&nbsp;<a></a>allotted RAM is full, Memcached starts removing the oldest data to store new data.</p>\n\n\n\n<p>Download Memcached from https://memcached.org/downloads. If you are using Linux, you can install Memcached using the following command:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>./configure &amp;&amp; make &amp;&amp; make test &amp;&amp; sudo make install\n</code></pre>\n\n\n\n<p>If you are using macOS, you can install Memcached with the Homebrew package manager using the command <code>brew install memcached</code>. You can download Homebrew from https://brew.sh/.</p>\n\n\n\n<p>After installing Memcached, open a shell and start it using the following command:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>memcached -l 127.0.0.1:11211\n</code></pre>\n\n\n\n<p>Memcached will run on port <code>11211</code> by default. However, you can specify a custom host and port by using the <code>-l</code> option. You can find more information about Memcached at https://memcached.org.</p>\n\n\n\n<p>After installing Memcached, you have to install its Python bindings. You can do this with the following command:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>pip install python-memcached==1.59\n</code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>You are going to use the Memcached backend. Memcached runs in memory and it is allotted&nbsp;a specified amount of RAM. When the&nbsp;allotted RAM is full, Memcached starts removing the oldest data to store new data. Download Memcached from https://memcached.org/downloads. If you are using Linux, you can install Memcached using the following command: If you are using macOS,&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/installing-memcached/\">Continue reading <span class=\"screen-reader-text\">Installing Memcached</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [135],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4057" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=4057"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4057/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4058,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4057/revisions/4058"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=4057"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=4057"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=4057"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 4059,
+    "date": "2022-06-29T07:43:19",
+    "date_gmt": "2022-06-29T07:43:19",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=4059" },
+    "modified": "2022-06-29T07:43:19",
+    "modified_gmt": "2022-06-29T07:43:19",
+    "slug": "cache-settings",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/cache-settings/",
+    "title": { "rendered": "Cache settings" },
+    "content": {
+      "rendered": "\n<p>Django&nbsp;<a></a>provides the following cache settings:</p>\n\n\n\n<ul><li><code>CACHES</code>: A dictionary&nbsp;<a></a>containing all available caches for the project</li><li><code>CACHE_MIDDLEWARE_ALIAS</code>: The cache alias to use for storage</li><li><code>CACHE_MIDDLEWARE_KEY_PREFIX</code>: The prefix to use for cache keys</li><li>Set a prefix to avoid key collisions if you share the same cache between several sites</li><li><code>CACHE_MIDDLEWARE_SECONDS</code>: The default number of seconds to cache pages</li></ul>\n\n\n\n<p>The caching&nbsp;<a></a>system for the project can be configured using the&nbsp;<code>CACHES</code>&nbsp;setting. This setting allows you to specify the configuration for multiple caches. Each cache&nbsp;<a></a>included in the&nbsp;<code>CACHES</code>&nbsp;dictionary can specify the following data:</p>\n\n\n\n<ul><li><code>BACKEND</code>: The cache backend to use.</li><li><code>KEY_FUNCTION</code>: A string containing a dotted path to a callable that takes a&nbsp;prefix, version, and key as arguments and returns a final cache key.</li><li><code>KEY_PREFIX</code>: A string prefix for all cache keys, to avoid collisions.</li><li><code>LOCATION</code>: The location of the cache. Depending on the cache backend, this might be a directory, a host and port, or a name for the in-memory backend.</li><li><code>OPTIONS</code>: Any additional parameters to be passed to the cache backend.</li><li><code>TIMEOUT</code>: The default timeout, in seconds, for storing the cache keys. It is 300&nbsp;seconds by default, which is five minutes. If set to&nbsp;<code>None</code>, cache keys will&nbsp;not expire.</li><li><code>VERSION</code>: The default version number for the cache keys. Useful for cache versioning.</li></ul>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Django&nbsp;provides the following cache settings: CACHES: A dictionary&nbsp;containing all available caches for the project CACHE_MIDDLEWARE_ALIAS: The cache alias to use for storage CACHE_MIDDLEWARE_KEY_PREFIX: The prefix to use for cache keys Set a prefix to avoid key collisions if you share the same cache between several sites CACHE_MIDDLEWARE_SECONDS: The default number of seconds to cache pages&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/cache-settings/\">Continue reading <span class=\"screen-reader-text\">Cache settings</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [135],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4059" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=4059"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4059/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4060,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4059/revisions/4060"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=4059"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=4059"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=4059"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 4061,
+    "date": "2022-06-29T07:43:40",
+    "date_gmt": "2022-06-29T07:43:40",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=4061" },
+    "modified": "2022-06-29T07:43:40",
+    "modified_gmt": "2022-06-29T07:43:40",
+    "slug": "adding-memcached-to-your-project",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/adding-memcached-to-your-project/",
+    "title": { "rendered": "Adding Memcached to your project" },
+    "content": {
+      "rendered": "\n<p>Let&#8217;s configure&nbsp;<a></a>the cache&nbsp;<a></a>for your project. Edit the&nbsp;<code>settings.py</code>&nbsp;file of the&nbsp;<code>educa</code>&nbsp;project and add the following code to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>CACHES = {\n    'default': {\n        'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',\n        'LOCATION': '127.0.0.1:11211',\n    }\n}\n</code></pre>\n\n\n\n<p>You are using the&nbsp;<code>MemcachedCache</code>&nbsp;backend. You specify its location using the&nbsp;<code>address:port</code>&nbsp;notation. If you have multiple Memcached instances, you can use a&nbsp;list for&nbsp;<code>LOCATION</code>.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Let&#8217;s configure&nbsp;the cache&nbsp;for your project. Edit the&nbsp;settings.py&nbsp;file of the&nbsp;educa&nbsp;project and add the following code to it: You are using the&nbsp;MemcachedCache&nbsp;backend. You specify its location using the&nbsp;address:port&nbsp;notation. If you have multiple Memcached instances, you can use a&nbsp;list for&nbsp;LOCATION.</p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [135],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4061" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=4061"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4061/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4062,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4061/revisions/4062"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=4061"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=4061"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=4061"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 4063,
+    "date": "2022-06-29T07:44:03",
+    "date_gmt": "2022-06-29T07:44:03",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=4063" },
+    "modified": "2022-06-29T07:44:03",
+    "modified_gmt": "2022-06-29T07:44:03",
+    "slug": "monitoring-memcached",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/monitoring-memcached/",
+    "title": { "rendered": "Monitoring Memcached" },
+    "content": {
+      "rendered": "\n<p>In order&nbsp;<a></a>to monitor Memcached, you will use a third-party package called django-memcache-status. This application displays statistics for your Memcached instances in the administration site. Install it with the following command:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>pip install django-memcache-status==2.2\n</code></pre>\n\n\n\n<p>Edit the&nbsp;<code>settings.py</code>&nbsp;file and add&nbsp;<code>'memcache_status'</code>&nbsp;to the&nbsp;<code>INSTALLED_APPS</code>&nbsp;setting:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>INSTALLED_APPS = &#91;\n    <em># ...</em>\n    <strong>'memcache_status',</strong>\n]\n</code></pre>\n\n\n\n<p>Edit the&nbsp;<code>admin.py</code>&nbsp;file of the&nbsp;<code>courses</code>&nbsp;application and add the following lines to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code><em># use memcache admin index site</em>\nadmin.site.index_template = 'memcache_status/admin_index.html'\n</code></pre>\n\n\n\n<p>Make sure Memcached is running, start the development server in another shell window and open&nbsp;<code>http://127.0.0.1:8000/admin/</code>&nbsp;in your browser. Log in to the administration site using a superuser. You should see the following block on the index page of the administration site:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/B14981_11_06.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 11.6: The Memcached status block</p>\n\n\n\n<p>The block contains a bar graph that shows the cache load. The green color represents free cache, while red indicates used space. If you click the title of the box, it shows detailed statistics of your Memcached instance.</p>\n\n\n\n<p>You have set up Memcached for your project and are able to monitor it. Let&#8217;s start caching data!</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>In order&nbsp;to monitor Memcached, you will use a third-party package called django-memcache-status. This application displays statistics for your Memcached instances in the administration site. Install it with the following command: Edit the&nbsp;settings.py&nbsp;file and add&nbsp;&#8216;memcache_status&#8217;&nbsp;to the&nbsp;INSTALLED_APPS&nbsp;setting: Edit the&nbsp;admin.py&nbsp;file of the&nbsp;courses&nbsp;application and add the following lines to it: Make sure Memcached is running, start the development server&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/monitoring-memcached/\">Continue reading <span class=\"screen-reader-text\">Monitoring Memcached</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [135],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4063" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=4063"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4063/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4064,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4063/revisions/4064"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=4063"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=4063"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=4063"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 4065,
+    "date": "2022-06-29T07:44:23",
+    "date_gmt": "2022-06-29T07:44:23",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=4065" },
+    "modified": "2022-06-29T07:44:23",
+    "modified_gmt": "2022-06-29T07:44:23",
+    "slug": "cache-levels",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/cache-levels/",
+    "title": { "rendered": "Cache levels" },
+    "content": {
+      "rendered": "\n<p>Django&nbsp;<a></a>provides the following levels of caching, listed here&nbsp;<a></a>by ascending order of granularity:</p>\n\n\n\n<ul><li><strong>Low-level cache API</strong>: Provides&nbsp;<a></a>the highest granularity. Allows you to cache specific queries or calculations.</li><li><strong>Template cache</strong>: Allows&nbsp;<a></a>you to cache template fragments.</li><li><strong>Per-view cache</strong>: Provides&nbsp;<a></a>caching for individual views.</li><li><strong>Per-site cache</strong>: The&nbsp;<a></a>highest-level cache. It caches your entire site.</li></ul>\n\n\n\n<p>Think about your cache strategy before implementing caching. Focus first on expensive queries or calculations that are not calculated on a per-user basis.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Django&nbsp;provides the following levels of caching, listed here&nbsp;by ascending order of granularity: Low-level cache API: Provides&nbsp;the highest granularity. Allows you to cache specific queries or calculations. Template cache: Allows&nbsp;you to cache template fragments. Per-view cache: Provides&nbsp;caching for individual views. Per-site cache: The&nbsp;highest-level cache. It caches your entire site. Think about your cache strategy before implementing&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/cache-levels/\">Continue reading <span class=\"screen-reader-text\">Cache levels</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [135],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4065" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=4065"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4065/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4066,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4065/revisions/4066"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=4065"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=4065"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=4065"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 4068,
+    "date": "2022-06-29T07:44:58",
+    "date_gmt": "2022-06-29T07:44:58",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=4068" },
+    "modified": "2022-06-29T07:44:58",
+    "modified_gmt": "2022-06-29T07:44:58",
+    "slug": "using-the-low-level-cache-api",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/using-the-low-level-cache-api/",
+    "title": { "rendered": "Using the low-level cache API" },
+    "content": {
+      "rendered": "\n<p>The low-level cache API&nbsp;<a></a>allows you to store&nbsp;<a></a>objects in the cache with any granularity. It is located at&nbsp;<code>django.core.cache</code>. You can import it like this:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>from django.core.cache import cache\n</code></pre>\n\n\n\n<p>This uses the default cache. It&#8217;s equivalent to&nbsp;<code>caches['default']</code>. Accessing a&nbsp;specific cache is also possible via its alias:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>from django.core.cache import caches\nmy_cache = caches&#91;'alias']\n</code></pre>\n\n\n\n<p>Let&#8217;s take a look at how the cache API works. Open the shell with the command&nbsp;<code>python manage.py shell</code>&nbsp;and execute the following code:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&gt;&gt;&gt; from django.core.cache import cache\n&gt;&gt;&gt; cache.set('musician', 'Django Reinhardt', 20)\n</code></pre>\n\n\n\n<p>You access the default cache backend and use&nbsp;<code>set(key, value, timeout)</code>&nbsp;to store a key named&nbsp;<code>'musician'</code>&nbsp;with a value that is the string&nbsp;<code>'Django Reinhardt'</code>&nbsp;for 20 seconds. If you don&#8217;t specify a timeout, Django uses the default timeout specified for the cache backend in the&nbsp;<code>CACHES</code>&nbsp;setting. Now, execute the following code:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&gt;&gt;&gt; cache.get('musician')\n'Django Reinhardt'\n</code></pre>\n\n\n\n<p>You retrieve the key from the cache. Wait for 20 seconds and execute the same code:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&gt;&gt;&gt; cache.get('musician')\n</code></pre>\n\n\n\n<p>No value is returned this time. The&nbsp;<code>'musician'</code>&nbsp;cache key has expired and the&nbsp;<code>get()</code>&nbsp;method returns&nbsp;<code>None</code>&nbsp;because the key is not in the cache anymore.</p>\n\n\n\n<p>Always avoid storing a&nbsp;<code>None</code>&nbsp;value in a cache key because you&nbsp;won&#8217;t be able to distinguish between the actual value and a&nbsp;cache miss.</p>\n\n\n\n<p>Let&#8217;s cache a QuerySet with the following code:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&gt;&gt;&gt; from courses.models import Subject\n&gt;&gt;&gt; subjects = Subject.objects.all()\n&gt;&gt;&gt; cache.set('my_subjects', subjects)\n</code></pre>\n\n\n\n<p>You perform&nbsp;<a></a>a QuerySet on the&nbsp;<code>Subject</code>&nbsp;model and store the returned objects in the&nbsp;<code>'my_subjects'</code>&nbsp;key. Let&#8217;s retrieve the cached data:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&gt;&gt;&gt; cache.get('my_subjects')\n&lt;QuerySet &#91;&lt;Subject: Mathematics&gt;, &lt;Subject: Music&gt;, &lt;Subject: Physics&gt;, &lt;Subject: Programming&gt;]&gt;\n</code></pre>\n\n\n\n<p>You are&nbsp;<a></a>going to cache some queries in your views. Edit the&nbsp;<code>views.py</code>&nbsp;file of the&nbsp;<code>courses</code>&nbsp;application and add the following import:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>from django.core.cache import cache\n</code></pre>\n\n\n\n<p>In the&nbsp;<code>get()</code>&nbsp;method of the&nbsp;<code>CourseListView</code>, find the following line:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>subjects = Subject.objects.annotate(\n               total_courses=Count('courses'))\n</code></pre>\n\n\n\n<p>Replace it with the following ones:</p>\n\n\n\n<pre class=\"wp-block-code\"><code><strong>subjects = cache.get('all_subjects')</strong>\n<strong>if not subjects:</strong>\n    subjects = Subject.objects.annotate(\n                   total_courses=Count('courses'))\n    <strong>cache.set('all_subjects', subjects)</strong>\n</code></pre>\n\n\n\n<p>In this code, you try to get the&nbsp;<code>all_students</code>&nbsp;key from the cache using&nbsp;<code>cache.get()</code>. This returns&nbsp;<code>None</code>&nbsp;if the given key is not found. If no key is found (not cached yet or cached but timed out), you perform the query to retrieve all&nbsp;<code>Subject</code>&nbsp;objects and their number of courses, and you cache the result using&nbsp;<code>cache.set()</code>.</p>\n\n\n\n<p>Run the development server and open&nbsp;<code>http://127.0.0.1:8000/</code>&nbsp;in your browser. When the view is executed, the cache key is not found and the QuerySet is executed. Open&nbsp;<code>http://127.0.0.1:8000/admin/</code>&nbsp;in your browser and click on the Memcached section to expand the statistics. You should see usage data for the cache that is similar to the following screen:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/B14981_11_07.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 11.7: The Memcached status and usage details</p>\n\n\n\n<p>Take a&nbsp;<a></a>look at&nbsp;<strong>Curr Items</strong>, which should be&nbsp;<strong>1</strong>. This shows that there is one item currently stored in the cache.&nbsp;<strong>Get Hits</strong>&nbsp;shows how many get commands were successful and&nbsp;<strong>Get Misses</strong>&nbsp;shows the get requests&nbsp;<a></a>for keys that are missing. The&nbsp;<strong>Miss&nbsp;Ratio</strong>&nbsp;is calculated using both of them.</p>\n\n\n\n<p>Next, navigate back to&nbsp;<code>http://127.0.0.1:8000/</code>&nbsp;using your browser and reload the page several times. If you take a look at the cache statistics now, you will see several more reads (<strong>Get Hits</strong>&nbsp;and&nbsp;<strong>Cmd Get</strong>&nbsp;will increase).</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>The low-level cache API&nbsp;allows you to store&nbsp;objects in the cache with any granularity. It is located at&nbsp;django.core.cache. You can import it like this: This uses the default cache. It&#8217;s equivalent to&nbsp;caches[&#8216;default&#8217;]. Accessing a&nbsp;specific cache is also possible via its alias: Let&#8217;s take a look at how the cache API works. Open the shell with the&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/using-the-low-level-cache-api/\">Continue reading <span class=\"screen-reader-text\">Using the low-level cache API</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [135],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4068" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=4068"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4068/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4069,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4068/revisions/4069"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=4068"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=4068"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=4068"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 4070,
+    "date": "2022-06-29T07:45:23",
+    "date_gmt": "2022-06-29T07:45:23",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=4070" },
+    "modified": "2022-06-29T07:45:23",
+    "modified_gmt": "2022-06-29T07:45:23",
+    "slug": "caching-based-on-dynamic-data",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/caching-based-on-dynamic-data/",
+    "title": { "rendered": "Caching based on dynamic data" },
+    "content": {
+      "rendered": "\n<p>Often, you will want to cache something that is based on dynamic data. In these cases, you have&nbsp;<a></a>to build dynamic keys that contain all the information required to uniquely identify the cached data.</p>\n\n\n\n<p>Edit the&nbsp;<code>views.py</code>&nbsp;file of the&nbsp;<code>courses</code>&nbsp;application and modify the&nbsp;<code>CourseListView</code>&nbsp;view to make it look like this:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>class CourseListView(TemplateResponseMixin, View):\n    model = Course\n    template_name = 'courses/course/list.html'\n    def get(self, request, subject=None):\n        subjects = cache.get('all_subjects')\n        if not subjects:\n            subjects = Subject.objects.annotate(\n                           total_courses=Count('courses'))\n            cache.set('all_subjects', subjects)\n        <strong>all_courses = Course.objects.annotate(</strong>\n                           <strong>total_modules=Count('modules'))</strong>\n        if subject:\n            subject = get_object_or_404(Subject, slug=subject)\n            <strong>key = f'subject_{subject.id}_courses'</strong>\n            <strong>courses = cache.get(key)</strong>\n            <strong>if not courses:</strong>\n                <strong>courses = all_courses.filter(subject=subject)</strong>\n                <strong>cache.set(key, courses)</strong>\n        <strong>else:</strong>\n            <strong>courses = cache.get('all_courses')</strong>\n            <strong>if not courses:</strong>\n                <strong>courses = all_courses</strong>\n                <strong>cache.set('all_courses', courses)</strong>\n        return self.render_to_response({'subjects': subjects,\n                                        'subject': subject,\n                                        'courses': courses})\n</code></pre>\n\n\n\n<p>In this case, you also cache both all courses and courses filtered by subject. You use the&nbsp;<code>all_courses</code>&nbsp;cache key for storing all courses if no subject is given. If there is a subject, you build&nbsp;<a></a>the key dynamically with&nbsp;<code>f'subject_{subject.id}_courses'</code>.</p>\n\n\n\n<p>It is important to note that you can&#8217;t use a cached QuerySet to build other QuerySets, since what you cached are actually the results of the QuerySet. So you can&#8217;t do the following:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>courses = cache.get('all_courses')\ncourses.filter(subject=subject)\n</code></pre>\n\n\n\n<p>Instead, you have to create the base QuerySet&nbsp;<code>Course.objects.annotate(total_modules=Count('modules'))</code>, which is not going to be executed until it is forced, and use it to further restrict the QuerySet with&nbsp;<code>all_courses.filter(subject=subject)</code>&nbsp;in case the data was not found in the cache.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Often, you will want to cache something that is based on dynamic data. In these cases, you have&nbsp;to build dynamic keys that contain all the information required to uniquely identify the cached data. Edit the&nbsp;views.py&nbsp;file of the&nbsp;courses&nbsp;application and modify the&nbsp;CourseListView&nbsp;view to make it look like this: In this case, you also cache both all courses&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/caching-based-on-dynamic-data/\">Continue reading <span class=\"screen-reader-text\">Caching based on dynamic data</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [135],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4070" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=4070"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4070/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4071,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4070/revisions/4071"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=4070"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=4070"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=4070"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 4073,
+    "date": "2022-06-29T07:45:53",
+    "date_gmt": "2022-06-29T07:45:53",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=4073" },
+    "modified": "2022-06-29T07:45:53",
+    "modified_gmt": "2022-06-29T07:45:53",
+    "slug": "caching-template-fragments",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/caching-template-fragments/",
+    "title": { "rendered": "Caching template fragments" },
+    "content": {
+      "rendered": "\n<p>Caching template&nbsp;<a></a>fragments is a higher-level approach. You&nbsp;<a></a>need to load the cache template tags in your template using&nbsp;<code>{% load cache %}</code>. Then, you will be able to use the&nbsp;<code>{% cache %}</code>&nbsp;template tag to cache specific template fragments. You will usually use the template tag as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{% cache 300 fragment_name %}\n    ...\n{% endcache %}\n</code></pre>\n\n\n\n<p>The&nbsp;<code>{% cache %}</code>&nbsp;template tag has two required arguments: the timeout in seconds and a name for the fragment. If you need to cache content depending on dynamic data, you can do so by passing additional arguments to the&nbsp;<code>{% cache %}</code>&nbsp;template tag to uniquely identify the fragment.</p>\n\n\n\n<p>Edit the&nbsp;<code>/students/course/detail.html</code>&nbsp;of the&nbsp;<code>students</code>&nbsp;application. Add the following code at the top of it, just after the&nbsp;<code>{% extends %}</code>&nbsp;tag:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{% load cache %}\n</code></pre>\n\n\n\n<p>Then, find the following lines:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{% for content in module.contents.all %}\n  {% with item=content.item %}\n    &lt;h2&gt;{{ item.title }}&lt;/h2&gt;\n    {{ item.render }}\n  {% endwith %}\n{% endfor %}\n</code></pre>\n\n\n\n<p>Replace them with the following ones:</p>\n\n\n\n<pre class=\"wp-block-code\"><code><strong>{% cache 600 module_contents module %}</strong>\n  {% for content in module.contents.all %}\n    {% with item=content.item %}\n      &lt;h2&gt;{{ item.title }}&lt;/h2&gt;\n      {{ item.render }}\n    {% endwith %}\n  {% endfor %}\n<strong>{% endcache %}</strong>\n</code></pre>\n\n\n\n<p>You cache this template fragment using the name&nbsp;<code>module_contents</code>&nbsp;and passing the current&nbsp;<code>Module</code>&nbsp;object to it. Thus, you uniquely identify the fragment. This is important to avoid caching a module&#8217;s contents and serving the wrong content when&nbsp;a different module is requested.</p>\n\n\n\n<p>If the&nbsp;<code>USE_I18N</code>&nbsp;setting is set to&nbsp;<code>True</code>, the per-site middleware cache will respect the active language. If you use the&nbsp;<code>{% cache %}</code>&nbsp;template tag, you have to use one of the translation-specific variables available in templates to achieve the same result, such as&nbsp;<code>{% cache 600 name request.LANGUAGE_CODE %}</code>.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Caching template&nbsp;fragments is a higher-level approach. You&nbsp;need to load the cache template tags in your template using&nbsp;{% load cache %}. Then, you will be able to use the&nbsp;{% cache %}&nbsp;template tag to cache specific template fragments. You will usually use the template tag as follows: The&nbsp;{% cache %}&nbsp;template tag has two required arguments: the timeout&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/caching-template-fragments/\">Continue reading <span class=\"screen-reader-text\">Caching template fragments</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [135],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4073" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=4073"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4073/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4074,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4073/revisions/4074"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=4073"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=4073"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=4073"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 4075,
+    "date": "2022-06-29T07:46:14",
+    "date_gmt": "2022-06-29T07:46:14",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=4075" },
+    "modified": "2022-06-29T07:46:14",
+    "modified_gmt": "2022-06-29T07:46:14",
+    "slug": "caching-views",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/caching-views/",
+    "title": { "rendered": "Caching views" },
+    "content": {
+      "rendered": "\n<p>You can&nbsp;<a></a>cache the output of individual views using the&nbsp;<code>cache_page</code>&nbsp;decorator located at&nbsp;<code>django.views.decorators.cache</code>. The decorator requires a&nbsp;<code>timeout</code>&nbsp;argument (in seconds).</p>\n\n\n\n<p>Let&#8217;s use&nbsp;<a></a>it in your views. Edit the&nbsp;<code>urls.py</code>&nbsp;file of the&nbsp;<code>students</code>&nbsp;application and add the following import:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>from django.views.decorators.cache import cache_page\n</code></pre>\n\n\n\n<p>Then, apply the&nbsp;<code>cache_page</code>&nbsp;decorator to the&nbsp;<code>student_course_detail</code>&nbsp;and&nbsp;<code>student_course_detail_module</code>&nbsp;URL patterns, as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>path('course/&lt;pk&gt;/',\n     <strong>cache_page(60 * 15)(</strong>views.StudentCourseDetailView.as_view()<strong>)</strong>,\n     name='student_course_detail'),\npath('course/&lt;pk&gt;/&lt;module_id&gt;/',\n     <strong>cache_page(60 * 15)(</strong>views.StudentCourseDetailView.as_view()<strong>)</strong>,\n     name='student_course_detail_module'),\n</code></pre>\n\n\n\n<p>Now, the result for the&nbsp;<code>StudentCourseDetailView</code>&nbsp;is cached for 15 minutes.</p>\n\n\n\n<p>The per-view cache uses the URL to build the cache key. Multiple URLs pointing to the same view will be cached separately.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>You can&nbsp;cache the output of individual views using the&nbsp;cache_page&nbsp;decorator located at&nbsp;django.views.decorators.cache. The decorator requires a&nbsp;timeout&nbsp;argument (in seconds). Let&#8217;s use&nbsp;it in your views. Edit the&nbsp;urls.py&nbsp;file of the&nbsp;students&nbsp;application and add the following import: Then, apply the&nbsp;cache_page&nbsp;decorator to the&nbsp;student_course_detail&nbsp;and&nbsp;student_course_detail_module&nbsp;URL patterns, as follows: Now, the result for the&nbsp;StudentCourseDetailView&nbsp;is cached for 15 minutes. The per-view cache uses the URL to&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/caching-views/\">Continue reading <span class=\"screen-reader-text\">Caching views</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [135],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4075" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=4075"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4075/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4076,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4075/revisions/4076"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=4075"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=4075"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=4075"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 4077,
+    "date": "2022-06-29T07:46:36",
+    "date_gmt": "2022-06-29T07:46:36",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=4077" },
+    "modified": "2022-06-29T07:46:36",
+    "modified_gmt": "2022-06-29T07:46:36",
+    "slug": "using-the-per-site-cache",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/using-the-per-site-cache/",
+    "title": { "rendered": "Using the per-site cache" },
+    "content": {
+      "rendered": "\n<p>This is&nbsp;<a></a>the highest-level cache. It allows you to cache your entire site. To allow the per-site cache, edit the&nbsp;<code>settings.py</code>&nbsp;file of your project and add the&nbsp;<code>UpdateCacheMiddleware</code>&nbsp;and&nbsp;<code>FetchFromCacheMiddleware</code>&nbsp;classes to the&nbsp;<code>MIDDLEWARE</code>&nbsp;setting, as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>MIDDLEWARE = &#91;\n    'django.middleware.security.SecurityMiddleware',\n    'django.contrib.sessions.middleware.SessionMiddleware',\n    <strong>'django.middleware.cache.UpdateCacheMiddleware',</strong>\n    'django.middleware.common.CommonMiddleware',\n    <strong>'django.middleware.cache.FetchFromCacheMiddleware',</strong>\n    <em># ...</em>\n]\n</code></pre>\n\n\n\n<p>Remember that middleware are executed in the given order during the request phase, and in reverse order during the response phase.&nbsp;<code>UpdateCacheMiddleware</code>&nbsp;is placed before&nbsp;<code>CommonMiddleware</code>&nbsp;because it runs during response time, when middleware are executed in reverse order.&nbsp;<code>FetchFromCacheMiddleware</code>&nbsp;is placed after&nbsp;<code>CommonMiddleware</code>&nbsp;intentionally because it needs to access request data set by the latter.</p>\n\n\n\n<p>Next, add the following settings to the&nbsp;<code>settings.py</code>&nbsp;file:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>CACHE_MIDDLEWARE_ALIAS = 'default'\nCACHE_MIDDLEWARE_SECONDS = 60 * 15  <em># 15 minutes</em>\nCACHE_MIDDLEWARE_KEY_PREFIX = 'educa'\n</code></pre>\n\n\n\n<p>In these settings, you use the default cache for your cache middleware and set the global cache timeout to&nbsp;<code>15</code>&nbsp;minutes. You also specify a prefix for all cache keys to avoid collisions&nbsp;<a></a>in case you use the same Memcached backend for multiple projects. Your site will now cache and return cached content for all&nbsp;<code>GET</code>&nbsp;requests.</p>\n\n\n\n<p>You have done this to test the per-site cache functionality. However, the per-site cache is not suitable for you, since the course management views need to show updated data to instantly reflect any changes. The best approach to follow in your project is to cache the templates or views that are used to display course contents to students.</p>\n\n\n\n<p>You have seen an overview of the methods provided by Django to cache data. You should define your cache strategy wisely and prioritize the most expensive QuerySets or calculations.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>This is&nbsp;the highest-level cache. It allows you to cache your entire site. To allow the per-site cache, edit the&nbsp;settings.py&nbsp;file of your project and add the&nbsp;UpdateCacheMiddleware&nbsp;and&nbsp;FetchFromCacheMiddleware&nbsp;classes to the&nbsp;MIDDLEWARE&nbsp;setting, as follows: Remember that middleware are executed in the given order during the request phase, and in reverse order during the response phase.&nbsp;UpdateCacheMiddleware&nbsp;is placed before&nbsp;CommonMiddleware&nbsp;because it runs during&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/using-the-per-site-cache/\">Continue reading <span class=\"screen-reader-text\">Using the per-site cache</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [135],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4077" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=4077"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4077/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4078,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4077/revisions/4078"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=4077"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=4077"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=4077"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  }
+]

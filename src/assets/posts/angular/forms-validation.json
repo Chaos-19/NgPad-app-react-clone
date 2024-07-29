@@ -1,0 +1,902 @@
+[
+  {
+    "id": 3627,
+    "date": "2020-12-07T06:02:53",
+    "date_gmt": "2020-12-07T06:02:53",
+    "guid": {
+      "rendered": "http://angular.foobrdigital.com/?p=3627"
+    },
+    "modified": "2020-12-09T06:10:55",
+    "modified_gmt": "2020-12-09T06:10:55",
+    "slug": "angular-reactive-forms-validation",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/angular-reactive-forms-validation/",
+    "title": {
+      "rendered": "Angular Reactive Forms Validation"
+    },
+    "content": {
+      "rendered": "\n<h2>Validators in Reactive Forms</h2>\n\n\n\n<h3>What is a Validator</h3>\n\n\n\n<p>A Validator is a function that checks the instance of&nbsp;<code>FormControl</code>,&nbsp;<code>FormGroup</code>&nbsp;or a&nbsp;<code>FormArray</code>&nbsp;and returns a list of errors. If the Validator returns a null means that validation has passed</p>\n\n\n\n<h3>How to add a Validator to Reactive Forms</h3>\n\n\n\n<p>We configure the validators as the second and third argument to the&nbsp;<code>FormControl</code>,&nbsp;<code>FormGroup</code>&nbsp;or&nbsp;<code>FormArray</code>&nbsp;in the component class. The second argument is a collection of&nbsp;<strong>sync validators</strong>&nbsp;and the third argument is a collection of an&nbsp;<strong>async validators</strong>.</p>\n\n\n\n<p><code>sync validators</code>&nbsp;runs validations and returns immediately. They either return a list of errors or null if no errors found.</p>\n\n\n\n<p><code>async validators:</code>&nbsp;returns a&nbsp;<strong>Promise</strong>&nbsp;or&nbsp;<strong>Observable</strong>. They either return a list of errors or null if no errors are found.</p>\n\n\n\n<h3>Built-in Validators</h3>\n\n\n\n<p>The Angular&nbsp;<code>ReactiveForms</code>&nbsp;Module provides several Built-in validators out of the box. They are&nbsp;<code>required</code>,&nbsp;<code>minlength</code>,&nbsp;<code>maxlength</code>&nbsp;&amp;&nbsp;<code>pattern</code>&nbsp;etc.</p>\n\n\n\n<h2>Reactive Forms Validation Example</h2>\n\n\n\n<p>W learned&nbsp;how to create Angular Reactive Forms&nbsp;in the previous tutorial. We will now add some of the built-in validators to that example.</p>\n\n\n\n<h3>Model</h3>\n\n\n\n<p>Here is the&nbsp;<code>contactForm</code>&nbsp;model from the previous tutorial.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>   contactForm = new FormGroup({\r\n    firstname: new FormControl(''),\r\n    lastname: new FormControl(''),\r\n    email:new FormControl(''),\r\n    gender: new FormControl(''),\r\n    isMarried: new FormControl(''),\r\n    country: new FormControl(''),\r\n    address:new FormGroup({\r\n      city: new FormControl(''),\r\n      street: new FormControl(''),\r\n      pincode:new FormControl('')\r\n    })\r\n  })\r\n </code></pre>\n\n\n\n<h3>Disabling the Browser validation</h3>\n\n\n\n<p>First, we need to disable browser validator by adding the&nbsp;novalidate&nbsp;attribute to the&nbsp;<em><code>&lt;form&gt;</code></em>&nbsp;element as shown below. If this attribute is present then the form is not validated by the built-in HTML5 validation when submitted.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;form &#91;formGroup]=\"contactForm\" (ngSubmit)=\"onSubmit()\" novalidate> </code></pre>\n\n\n\n<h3>Adding in Built-in Validators</h3>\n\n\n\n<p>The mentioned earlier, the Angular has provided several built-in validators out of the box.</p>\n\n\n\n<h4>Required Validator</h4>\n\n\n\n<p>The required validator is a sync validator, which returns true only if the&nbsp;<code>formcontrol</code>&nbsp;has a non-empty value entered. The second argument of the&nbsp;FormControl&nbsp;takes the&nbsp;<em>Sync Validator</em>.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>firstname: new FormControl('',&#91;Validators.required]), </code></pre>\n\n\n\n<h4>Minlength Validator</h4>\n\n\n\n<p>Minlength validator requires the control value must not have less number of characters than the value specified in the validator.</p>\n\n\n\n<p>For Example,&nbsp;<code>minlength</code>&nbsp;validator ensures that the&nbsp;<code>firstname</code>&nbsp;value has at least 10 characters.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>firstname: new FormControl('',&#91;Validators.required,Validators.minLength(10)]), </code></pre>\n\n\n\n<h4>Maxlength Validator</h4>\n\n\n\n<p>This Validator requires that the number of characters must not exceed the value specified in the validator.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> lastname: new FormControl('',&#91;Validators.maxLength(15)]), </code></pre>\n\n\n\n<h4>Pattern Validator</h4>\n\n\n\n<p>This Validator requires that the control value must match the regex pattern provided in the attribute. For example, the pattern&nbsp;<code>^[a-zA-Z]+$</code>&nbsp;ensures that the only letters are allowed (even spaces are not allowed). Let us apply this pattern to the&nbsp;<code>lastName</code></p>\n\n\n\n<pre class=\"wp-block-code\"><code> lastname: new FormControl('',&#91;Validators.maxLength(15), Validators.pattern(\"^&#91;a-zA-Z]+$\")]), </code></pre>\n\n\n\n<h4>Email Validator</h4>\n\n\n\n<p>This Validator requires that the control value must be a valid email address. We apply this to the email field</p>\n\n\n\n<pre class=\"wp-block-code\"><code> email:new FormControl('',&#91;Validators.email,Validators.required]),</code></pre>\n\n\n\n<p>After adding all the validators, our final&nbsp;<code>contactForm</code>&nbsp;will look like this.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>contactForm = new FormGroup({\r\n    firstname: new FormControl('',&#91;Validators.required,Validators.minLength(10)]),\r\n    lastname: new FormControl('',&#91;Validators.required, Validators.maxLength(15), Validators.pattern(\"^&#91;a-zA-Z]+$\")]),\r\n    email:new FormControl('',&#91;Validators.email,Validators.required]),\r\n    gender: new FormControl('',&#91;Validators.required]),\r\n    isMarried: new FormControl('',&#91;Validators.required]),\r\n    country: new FormControl('',&#91;Validators.required]),\r\n    address:new FormGroup({\r\n      city: new FormControl('',&#91;Validators.required]),\r\n      street: new FormControl('',&#91;Validators.required]),\r\n      pincode:new FormControl('',&#91;Validators.required])\r\n    })\r\n  })\r\n </code></pre>\n\n\n\n<h2>Disable Submit button</h2>\n\n\n\n<p>We have successfully added the validators. Now, we need to disable the submit button if our form is not valid.</p>\n\n\n\n<p>The Angular Forms API exposes the state of the forms through the&nbsp;<code>FormGroup</code>,&nbsp;<code>FormControl</code>&nbsp;&amp;&nbsp;<code>FormArray</code>&nbsp;instances. The&nbsp;<code>FormGroup</code>&nbsp;control has a property&nbsp;<code>valid</code>, which is set to&nbsp;<code>true</code>&nbsp;if all of its child controls are&nbsp;<code>valid</code>.</p>\n\n\n\n<p>The&nbsp;<code>contactForm</code>&nbsp;represents the top-level&nbsp;<code>FormGroup</code>. We use it to set the&nbsp;<code>disabled</code>&nbsp;attribute of the submit button.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;button type=\"submit\" &#91;disabled]=\"!contactForm.valid\">Submit&lt;/button> </code></pre>\n\n\n\n<h2>Displaying the Validation/Error messages</h2>\n\n\n\n<p>We need to provide a short and meaningful error message to the user. We do that by using the error object returned by the&nbsp;<code>FormControl</code>&nbsp;instance</p>\n\n\n\n<p>Every form element has a&nbsp;<code>FormControl</code>&nbsp;instance associated with it. It&nbsp;exposes the state of form element like&nbsp;<code>valid</code>,&nbsp;<code>dirty</code>,&nbsp;<code>touched</code>&nbsp;etc.</p>\n\n\n\n<p>There are two ways in which you can get the reference to the&nbsp;<code>FormControl</code>.</p>\n\n\n\n<p>One way is to use the&nbsp;<code>contactForm</code>&nbsp;variable. We can use&nbsp;<code>contactForm.controls.firstname.valid</code>&nbsp;to find out if the&nbsp;<code>firstname</code>&nbsp;is valid.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>   &lt;div\r\n    *ngIf=\"!contactForm.controls.firstname?.valid &amp;&amp; (contactForm.controls.firstname?.dirty\r\n    ||contactForm.controls.firstname?.touched)\">\r\n      First Name is not valid\r\n  &lt;/div></code></pre>\n\n\n\n<p>The other way to is to define getter function for each&nbsp;<code>FormControl</code>&nbsp;instance in the component class.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>get firstname() {   return this.contactForm.get('firstname');} </code></pre>\n\n\n\n<p>and then use it in the template as follows</p>\n\n\n\n<pre class=\"wp-block-code\"><code>   &lt;div *ngIf=\"!firstname.valid &amp;&amp; (firstname.dirty ||firstname.touched)\">      First Name is not valid \n &lt;/div> </code></pre>\n\n\n\n<h3>Dirty &amp; touched</h3>\n\n\n\n<p>Apart from checking&nbsp;<code>valid</code>&nbsp;we are also checking for the&nbsp;<code>dirty</code>&nbsp;&amp;&nbsp;<code>touched</code>. Because we do not want the application to display the error when the form is displayed for the first time. We want to display errors only after the user has attempted to change the value. The&nbsp;<code>dirty</code>&nbsp;&amp;&nbsp;<code>touched</code>&nbsp;properties help us do that.</p>\n\n\n\n<p><code>dirty:</code>&nbsp;A control is&nbsp;<code>dirty</code>&nbsp;if the user has changed the value in the UI.<br><code>touched:</code>&nbsp;A control is touched if the user has triggered a&nbsp;<code>blur</code>&nbsp;event on it.</p>\n\n\n\n<h3>Error message</h3>\n\n\n\n<p>The error message “First Name is not valid ” is not helpful. The firstname has two validators.&nbsp;<code>required</code>&nbsp;and&nbsp;<code>minlength</code></p>\n\n\n\n<p>Any errors generated by the failing validation is updated in the&nbsp;<code>errors</code>&nbsp;object. The&nbsp;<code>errors</code>&nbsp;object returns the error object or&nbsp;<code>null</code>&nbsp;if there are no errors.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;div\r\n    *ngIf=\"!firstname?.valid &amp;&amp; (firstname?.dirty ||firstname?.touched)\">\r\n    &lt;div &#91;hidden]=\"!firstname.errors.required\">\r\n      First Name is required\r\n    &lt;/div>\r\n    &lt;div &#91;hidden]=\"!firstname.errors.minlength\">\r\n      Min Length is 10\r\n    &lt;/div>\r\n  &lt;/div></code></pre>\n\n\n\n<h2>Final Code</h2>\n\n\n\n<p><strong>app.component.ts</strong></p>\n\n\n\n<pre class=\"wp-block-code\"><code> import { Component, ViewChild, ElementRef } from '@angular/core';\r\nimport { FormGroup, FormControl, Validators } from '@angular/forms'\r\n \r\n \r\n@Component({\r\n  selector: 'app-root',\r\n  templateUrl: './app.component.html',\r\n  styleUrls: &#91;'./app.component.css']\r\n})\r\nexport class AppComponent {\r\n  title = 'Angular Reactive forms';\r\n \r\n \r\n  contactForm = new FormGroup({\r\n    firstname: new FormControl('',&#91;Validators.required,Validators.minLength(10)]),\r\n    lastname: new FormControl('',&#91;Validators.required, Validators.maxLength(15), Validators.pattern(\"^&#91;a-zA-Z]+$\")]),\r\n    email:new FormControl('',&#91;Validators.email,Validators.required]),\r\n    gender: new FormControl('',&#91;Validators.required]),\r\n    isMarried: new FormControl('',&#91;Validators.required]),\r\n    country: new FormControl('',&#91;Validators.required]),\r\n    address:new FormGroup({\r\n      city: new FormControl('',&#91;Validators.required]),\r\n      street: new FormControl('',&#91;Validators.required]),\r\n      pincode:new FormControl('',&#91;Validators.required])\r\n    })\r\n  })\r\n \r\n  get firstname() {\r\n    return this.contactForm.get('firstname');\r\n  } \r\n \r\n  get lastname() {\r\n    return this.contactForm.get('lastname');\r\n  } \r\n \r\n  get email() {\r\n    return this.contactForm.get('email');\r\n  } \r\n \r\n  get gender() {\r\n    return this.contactForm.get('gender');\r\n  } \r\n \r\n  get isMarried() {\r\n    return this.contactForm.get('isMarried');\r\n  } \r\n \r\n  get country() {\r\n    return this.contactForm.get('country');\r\n  } \r\n \r\n  get city() {\r\n    return this.contactForm.get(\"address\").get('city');\r\n  } \r\n \r\n  get street() {\r\n    return this.contactForm.get(\"address\").get('street');\r\n  } \r\n \r\n  get pincode() {\r\n    return this.contactForm.get(\"address\").get('pincode');\r\n  } \r\n \r\n \r\n  countryList: country&#91;] = &#91;\r\n    new country(\"1\", \"India\"),\r\n    new country('2', 'USA'),\r\n    new country('3', 'England')\r\n  ];\r\n \r\n \r\n \r\n \r\n  onSubmit() {\r\n    console.log(this.contactForm.value);\r\n  }\r\n \r\n \r\n \r\n}\r\n \r\n \r\nexport class contact {\r\n  firstname:string;\r\n  lastname:string;\r\n  gender:string;\r\n  isMarried:boolean;\r\n  country:string;\r\n  address: {\r\n    city:string;\r\n    street:string;\r\n    pincode:string;\r\n  }\r\n} \r\n \r\n \r\nexport class country {\r\n  id: string;\r\n  name: string;\r\n \r\n  constructor(id: string, name: string) {\r\n    this.id = id;\r\n    this.name = name;\r\n  }\r\n}\r\n \r\n    </code></pre>\n\n\n\n<p><strong>app.component.html</strong></p>\n\n\n\n<pre class=\"wp-block-code\"><code>\r\n&lt;form &#91;formGroup]=\"contactForm\" (ngSubmit)=\"onSubmit()\" novalidate>\r\n \r\n  &lt;p>\r\n    &lt;label for=\"firstname\">First Name &lt;/label>\r\n    &lt;input type=\"text\" id=\"firstname\" name=\"firstname\" formControlName=\"firstname\">\r\n  &lt;/p>\r\n \r\n  &lt;div\r\n    *ngIf=\"!firstname?.valid &amp;&amp; (firstname?.dirty ||firstname?.touched)\">\r\n    &lt;div &#91;hidden]=\"!firstname.errors.required\">\r\n      First Name is required\r\n    &lt;/div>\r\n    &lt;div &#91;hidden]=\"!firstname.errors.minlength\">\r\n      Min Length is 10\r\n    &lt;/div>\r\n  &lt;/div>\r\n \r\n  &lt;p>\r\n    &lt;label for=\"lastname\">Last Name &lt;/label>\r\n    &lt;input type=\"text\" id=\"lastname\" name=\"lastname\" formControlName=\"lastname\">\r\n  &lt;/p>\r\n \r\n  &lt;div *ngIf=\"!lastname.valid &amp;&amp; (lastname.dirty ||lastname.touched)\">\r\n    &lt;div &#91;hidden]=\"!lastname.errors.pattern\">\r\n      Only characters are allowed\r\n    &lt;/div>\r\n    &lt;div &#91;hidden]=\"!lastname.errors.maxLength\">\r\n      Max length allowed is {{lastname.errors.maxlength?.requiredLength}} \r\n    &lt;/div>\r\n    &lt;div &#91;hidden]=\"!lastname.errors.required\">\r\n      Last Name is required\r\n    &lt;/div>\r\n  &lt;/div>\r\n \r\n  &lt;p>\r\n    &lt;label for=\"email\">Email &lt;/label>\r\n    &lt;input type=\"text\" id=\"email\" name=\"email\" formControlName=\"email\">\r\n  &lt;/p>\r\n  &lt;div *ngIf=\"!email.valid &amp;&amp; (email.dirty ||email.touched)\">\r\n    &lt;div &#91;hidden]=\"!email.errors.required\">\r\n      email is required\r\n    &lt;/div>\r\n    &lt;div &#91;hidden]=\"!email.errors.email\">\r\n      invalid email id\r\n    &lt;/div>\r\n  &lt;/div>\r\n \r\n \r\n  &lt;p>\r\n    &lt;label for=\"gender\">Geneder &lt;/label>\r\n    &lt;input type=\"radio\" value=\"male\" id=\"gender\" name=\"gender\" formControlName=\"gender\"> Male\r\n    &lt;input type=\"radio\" value=\"female\" id=\"gender\" name=\"gender\" formControlName=\"gender\"> Female\r\n  &lt;/p>\r\n  &lt;div *ngIf=\"!gender.valid &amp;&amp; (gender.dirty ||gender.touched)\">\r\n    &lt;div &#91;hidden]=\"!gender.errors.required\">\r\n      gender is required\r\n    &lt;/div>\r\n  &lt;/div>\r\n \r\n  &lt;p>\r\n    &lt;label for=\"isMarried\">Married &lt;/label>\r\n    &lt;input type=\"checkbox\" id=\"isMarried\" name=\"isMarried\" formControlName=\"isMarried\">\r\n  &lt;/p>\r\n  &lt;div *ngIf=\"!isMarried.valid &amp;&amp; (isMarried.dirty ||isMarried.touched)\">\r\n    &lt;div &#91;hidden]=\"!isMarried.errors.required\">\r\n      isMarried is required\r\n    &lt;/div>\r\n  &lt;/div>\r\n \r\n \r\n  &lt;p>\r\n    &lt;label for=\"country\">country &lt;/label>\r\n    &lt;select id=\"country\" name=\"country\" formControlName=\"country\">\r\n      &lt;option &#91;ngValue]=\"c.id\" *ngFor=\"let c of countryList\">\r\n        {{c.name}}\r\n      &lt;/option>\r\n    &lt;/select>\r\n  &lt;/p>\r\n  &lt;div *ngIf=\"!country.valid &amp;&amp; (country.dirty ||country.touched)\">\r\n    &lt;div &#91;hidden]=\"!country.errors.required\">\r\n      country is required\r\n    &lt;/div>\r\n  &lt;/div>\r\n \r\n \r\n \r\n  &lt;div formGroupName=\"address\">\r\n \r\n    &lt;div class=\"form-group\">\r\n      &lt;label for=\"city\">City&lt;/label>\r\n      &lt;input type=\"text\" class=\"form-control\" name=\"city\" formControlName=\"city\">\r\n    &lt;/div>\r\n    &lt;div *ngIf=\"!city.valid &amp;&amp; (city.dirty ||city.touched)\">\r\n      &lt;div &#91;hidden]=\"!city.errors.required\">\r\n        city is required\r\n      &lt;/div>\r\n    &lt;/div>\r\n \r\n \r\n    &lt;div class=\"form-group\">\r\n      &lt;label for=\"street\">Street&lt;/label>\r\n      &lt;input type=\"text\" class=\"form-control\" name=\"street\" formControlName=\"street\">\r\n    &lt;/div>\r\n    &lt;div *ngIf=\"!street.valid &amp;&amp; (street.dirty ||street.touched)\">\r\n      &lt;div &#91;hidden]=\"!street.errors.required\">\r\n        street is required\r\n      &lt;/div>\r\n    &lt;/div>\r\n \r\n    &lt;div class=\"form-group\">\r\n      &lt;label for=\"pincode\">Pin Code&lt;/label>\r\n      &lt;input type=\"text\" class=\"form-control\" name=\"pincode\" formControlName=\"pincode\">\r\n    &lt;/div>\r\n    &lt;div *ngIf=\"!pincode.valid &amp;&amp; (pincode.dirty ||pincode.touched)\">\r\n      &lt;div &#91;hidden]=\"!pincode.errors.required\">\r\n        pincode is required\r\n      &lt;/div>\r\n    &lt;/div>\r\n \r\n  &lt;/div>\r\n \r\n  &lt;p>{{contactForm.valid}} &lt;/p>\r\n \r\n  &lt;p>\r\n    &lt;button type=\"submit\" &#91;disabled]=\"!contactForm.valid\">Submit&lt;/button>\r\n  &lt;/p>\r\n \r\n \r\n&lt;/form>\r\n \r\n \r\n \r\n \r\n&lt;!-- &lt;div ngModelGroup=\"address\">\r\n \r\n  &lt;p>\r\n    &lt;label for=\"city\">City&lt;/label>\r\n    &lt;input type=\"text\" id=\"city\" name=\"city\">\r\n  &lt;/p>\r\n \r\n  &lt;p>\r\n    &lt;label for=\"street\">Street&lt;/label>\r\n    &lt;input type=\"text\" id=\"street\" name=\"street\">\r\n  &lt;/p>\r\n  &lt;p>\r\n    &lt;label for=\"pincode\">Pin Code&lt;/label>\r\n    &lt;input type=\"text\" id=\"pincode\" name=\"pincode\">\r\n  &lt;/p>\r\n \r\n&lt;/div> --></code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Validators in Reactive Forms What is a Validator A Validator is a function that checks the instance of&nbsp;FormControl,&nbsp;FormGroup&nbsp;or a&nbsp;FormArray&nbsp;and returns a list of errors. If the Validator returns a null means that validation has passed How to add a Validator to Reactive Forms We configure the validators as the second and third argument to the&nbsp;FormControl,&nbsp;FormGroup&nbsp;or&nbsp;FormArray&nbsp;in [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [132],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3627"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=3627"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 2,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3627/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3832,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3627/revisions/3832"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=3627"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=3627"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=3627"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 3629,
+    "date": "2020-12-07T06:07:12",
+    "date_gmt": "2020-12-07T06:07:12",
+    "guid": {
+      "rendered": "http://angular.foobrdigital.com/?p=3629"
+    },
+    "modified": "2020-12-09T06:12:07",
+    "modified_gmt": "2020-12-09T06:12:07",
+    "slug": "custom-validator-in-angular-reactive-form",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/custom-validator-in-angular-reactive-form/",
+    "title": {
+      "rendered": "Custom Validator in Angular Reactive Form"
+    },
+    "content": {
+      "rendered": "\n<h2>Built-in Validators</h2>\n\n\n\n<p>Validating the Forms is very important, otherwise, we will end up having invalid data in our database. The&nbsp;Angular Forms&nbsp;Module provides a few built-in validators to help us to validate the form. They are listed below.</p>\n\n\n\n<ol><li>Required validator</li><li>Min length Validator</li><li>Max length Validator</li><li>Pattern Validator</li><li>Email Validator</li></ol>\n\n\n\n<p>We covered them in the&nbsp;validation in reactive forms&nbsp;&amp;&nbsp;validation in template-driven forms&nbsp;tutorial.</p>\n\n\n\n<h2>Custom Validator in Angular Reactive Form</h2>\n\n\n\n<p>Built-in validators are useful but do not cover all use cases. This is where we use the custom validator. It is very easy to create a custom validator in Angular.</p>\n\n\n\n<h2>How to Build Custom Validator</h2>\n\n\n\n<p>Building a custom Validator is as easy as creating a&nbsp;<code>Validator</code>&nbsp;function. It is a function, which must implement&nbsp;ValidatorFn&nbsp;Interface.</p>\n\n\n\n<h3>ValidatorFn</h3>\n\n\n\n<p>The&nbsp;<code>ValidatorFn</code>&nbsp;is an Interface, which defines the signature of the Validator function.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> interface ValidatorFn {\r\n  (control: AbstractControl): ValidationErrors | null\r\n}\r\n </code></pre>\n\n\n\n<p>The function takes the&nbsp;AbstractControl. This is the base class for&nbsp;<code>FormControl</code>,&nbsp;<code>FormGroup</code>, and&nbsp;<code>FormArray</code>. The validator function must return a list of errors i.e&nbsp;ValidationErrors&nbsp;or&nbsp;<code>null</code>&nbsp;if the validation has passed</p>\n\n\n\n<h2>Custom Validator Example</h2>\n\n\n\n<p>Create a new angular application. Add the following code in&nbsp;<code>app.component.html</code></p>\n\n\n\n<pre class=\"wp-block-code\"><code> \r\n&lt;h1>Custom Validator in Angular&lt;/h1>\r\n \r\n&lt;h2>Reactive Form&lt;/h2>\r\n \r\n&lt;form &#91;formGroup]=\"myForm\" (ngSubmit)=\"onSubmit()\" novalidate>\r\n \r\n  &lt;div>\r\n    &lt;label for=\"numVal\">Number :&lt;/label>\r\n    &lt;input type=\"text\" id=\"numVal\" name=\"numVal\" formControlName=\"numVal\">\r\n  &lt;/div>\r\n \r\n  &lt;p>Is Form Valid : {{myForm.valid}} &lt;/p>\r\n \r\n  &lt;p>\r\n    &lt;button type=\"submit\" &#91;disabled]=\"!myForm.valid\">Submit&lt;/button>\r\n  &lt;/p>\r\n \r\n&lt;/form></code></pre>\n\n\n\n<p>Our example app has&nbsp;<code>numVal</code>&nbsp;form field. We want it to be greater than 10.</p>\n\n\n\n<p>Angular does not have any built-in validator for that. Hence let us build a custom Validator&nbsp;<code>gte</code></p>\n\n\n\n<p>Create a new file&nbsp;<code>gte.validator.ts</code>&nbsp;under the&nbsp;<code>app</code>&nbsp;folder.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>import { AbstractControl, ValidationErrors } from '@angular/forms'\r\n \r\nexport function gte(control: AbstractControl): ValidationErrors | null {\r\n \r\n    const v=+control.value;\r\n \r\n    if (isNaN(v)) {\r\n      return { 'gte': true, 'requiredValue': 10 }\r\n    }      \r\n \r\n    if (v &lt;= 10) {\r\n      return { 'gte': true, 'requiredValue': 10 }\r\n    } \r\n \r\n    return null\r\n \r\n}</code></pre>\n\n\n\n<p>First, import the&nbsp;<code>AbstractControl</code>&nbsp;and&nbsp;<code>ValidationErrors</code>&nbsp;from the&nbsp;<code>@angular/forms</code></p>\n\n\n\n<pre class=\"wp-block-code\"><code> import { AbstractControl, ValidationErrors } from '@angular/forms</code></pre>\n\n\n\n<p>The validator function must adhere to the&nbsp;ValidatorFn&nbsp;Interface. It should receive the&nbsp;<code>AbstractControl</code>&nbsp;as its parameter. It can be&nbsp;<code>FormControl</code>,&nbsp;<code>FormGroup</code>&nbsp;or&nbsp;<code>FormArray</code>.</p>\n\n\n\n<p>The function must validate the control value and return&nbsp;<code>ValidationErrors</code>&nbsp;if any errors are found otherwise&nbsp;<code>null</code>.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> export function gte(control: AbstractControl): ValidationErrors | null { </code></pre>\n\n\n\n<p>The&nbsp;<code>ValidationErrors</code>&nbsp;is a key-value pair object of type&nbsp;<code>[key: string]: any</code>&nbsp;and it defines the broken rule. The&nbsp;<code>key</code>&nbsp;is the string and should contain the name of the broken rule. The value can be anything, but usually set to&nbsp;<code>true</code>.</p>\n\n\n\n<p>The validation logic is very simple. Check if the value of the control is a number using the&nbsp;isNaN&nbsp;method. Also, check if the value is less than or equal to 10. If both the rules are valid and then return&nbsp;<code>null</code></p>\n\n\n\n<pre class=\"wp-block-code\"><code>    const v=+control.value;\r\n \r\n    if (isNaN(v)) {\r\n      return { 'gte': true, 'requiredValue': 10 }\r\n    }      \r\n \r\n    if (v &lt;= 10) {\r\n      return { 'gte': true, 'requiredValue': 10 }\r\n    } \r\n \r\n    return null </code></pre>\n\n\n\n<p>If the validation fails then return the&nbsp;<code>ValidationErrors</code>. You can use anything for the&nbsp;<code>key</code>, but it is advisable to use the name of the validator i.e&nbsp;<code>gte</code>&nbsp;as the key. Also, assign&nbsp;<code>true</code>&nbsp;as value. You can as well assign a string value.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> return { 'gte': true, 'requiredValue': 10 } </code></pre>\n\n\n\n<p>You can return more than one&nbsp;<code>key-value</code>&nbsp;pair as shown in the above example. The second key&nbsp;<code>requiredValue</code>&nbsp;returns the value 10. We use this in the template to show the error message.</p>\n\n\n\n<h2>Using the Custom Validator</h2>\n\n\n\n<p>To use this validator first, import it in the component class.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> import { gte } from './gte.validator'; </code></pre>\n\n\n\n<p>Add the validator to the Validator collection of the&nbsp;<code>FormControl</code>&nbsp;as shown below.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>   myForm = new FormGroup({    numVal: new FormControl('', &#91;gte]),  })  </code></pre>\n\n\n\n<p>The complete&nbsp;<code>app.component.ts</code>&nbsp;is shown below.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>\r\nimport { Component } from '@angular/core';\r\nimport { FormGroup, FormControl, AbstractControl, ValidationErrors } from '@angular/forms'\r\nimport { gte } from './gte.validator';\r\n \r\n@Component({\r\n  selector: 'app-root',\r\n  templateUrl: './app.component.html',\r\n  styleUrls: &#91;'./app.component.css']\r\n})\r\nexport class AppComponent {\r\n \r\n  constructor() {\r\n  }\r\n \r\n  myForm = new FormGroup({\r\n    numVal: new FormControl('', &#91;gte]),\r\n  })\r\n \r\n  get numVal() {\r\n    return this.myForm.get('numVal');\r\n  }\r\n \r\n  onSubmit() {\r\n    console.log(this.myForm.value);\r\n  }\r\n}</code></pre>\n\n\n\n<h2>Accessing the Errors from Custom Validator</h2>\n\n\n\n<p>We need to provide a meaningful error message to the user.</p>\n\n\n\n<p>Validators return&nbsp;<code>ValidationErrors</code>. They are added to the control’s&nbsp;<code>errors</code>&nbsp;collection of the control. The&nbsp;<code>valid</code>&nbsp;property of the control is set to&nbsp;<code>false</code>.</p>\n\n\n\n<p>Hence we check if the&nbsp;<code>valid</code>&nbsp;property. We also check the&nbsp;<code>dirty</code>&nbsp;and&nbsp;<code>touched</code>&nbsp;property. Because we do not want to display the error message when the form is displayed for the first time.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>   &lt;div>\r\n    &lt;label for=\"numVal\">Number :&lt;/label>\r\n    &lt;input type=\"text\" id=\"numVal\" name=\"numVal\" formControlName=\"numVal\">\r\n    &lt;div *ngIf=\"!numVal.valid &amp;&amp; (numVal.dirty ||numVal.touched)\">\r\n      &lt;div *ngIf=\"numVal.errors.gte\">\r\n        The number should be greater than {{numVal.errors.requiredValue}}\r\n      &lt;/div>\r\n    &lt;/div>\r\n \r\n  &lt;/div></code></pre>\n\n\n\n<p>We check if the&nbsp;<code>gte</code>&nbsp;is true and display the error message. Note that&nbsp;<code>gte</code>&nbsp;is the name of the&nbsp;<code>key</code>&nbsp;we used while creating the validator.</p>\n\n\n\n<p>We also make use of the&nbsp;<code>requiredValue</code>&nbsp;to show a meaningful message to the user.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> &lt;div *ngIf=\"numVal.errors.gte\">   The number should be greater than {{numVal.errors.requiredValue}}\n&lt;/div> </code></pre>\n\n\n\n<p>Now, we have successfully built a custom validator in reactive forms.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Built-in Validators Validating the Forms is very important, otherwise, we will end up having invalid data in our database. The&nbsp;Angular Forms&nbsp;Module provides a few built-in validators to help us to validate the form. They are listed below. Required validator Min length Validator Max length Validator Pattern Validator Email Validator We covered them in the&nbsp;validation in [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [132],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3629"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=3629"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 2,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3629/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3833,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3629/revisions/3833"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=3629"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=3629"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=3629"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 3631,
+    "date": "2020-12-07T06:09:36",
+    "date_gmt": "2020-12-07T06:09:36",
+    "guid": {
+      "rendered": "http://angular.foobrdigital.com/?p=3631"
+    },
+    "modified": "2020-12-09T06:13:42",
+    "modified_gmt": "2020-12-09T06:13:42",
+    "slug": "custom-validator-with-parameters-in-angular",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/custom-validator-with-parameters-in-angular/",
+    "title": {
+      "rendered": "Custom Validator with Parameters in Angular"
+    },
+    "content": {
+      "rendered": "\n<h2>Custom Validator with Parameter</h2>\n\n\n\n<p>Here is the code of greater than validator (<code>gte</code>) from the&nbsp;Custom Validators in Angular Reactive Form&nbsp;tutorial. The validator checks if the given value is greater than 10 and if not return&nbsp;<code>ValidationErrors</code>.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>\r\nexport function gte(control: AbstractControl): ValidationErrors | null {\r\n \r\n    const v:number=+control.value;\r\n \r\n    if (isNaN(v)) {\r\n      return { 'gte': true, 'requiredValue': 10 }\r\n    }      \r\n \r\n    if (v &lt;= 10) {\r\n      return { 'gte': true, 'requiredValue': 10 }\r\n    } \r\n \r\n    return null\r\n \r\n}</code></pre>\n\n\n\n<p>The problem with the above validator is that the value 10 is hardcoded. Hence, we will be not able to reuse it. If we want to resue it, we need to pass the number as the parameter.</p>\n\n\n\n<p>Let us add the parameter <code>val:number</code> to the validator as shown below.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>export function gte(control: AbstractControl,val:number): ValidationErrors | null {</code></pre>\n\n\n\n<p>The compiler immediately throws an error as shown below.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>error TS2345: Argument of type '((control: AbstractControl, val: number) => ValidationErrors)&#91;]' is not assignable to parameter of type 'ValidatorFn | ValidatorFn&#91;] | AbstractControlOptions'. </code></pre>\n\n\n\n<p>That is because, the&nbsp;<code>Validator</code>&nbsp;must implement&nbsp;ValidatorFn&nbsp;Interface. It can have only one parameter i.e&nbsp;<code>control: AbstractControl</code></p>\n\n\n\n<pre class=\"wp-block-code\"><code> interface ValidatorFn {\r\n  (control: AbstractControl): ValidationErrors | null\r\n}</code></pre>\n\n\n\n<h2>Passing Parameters to a Custom Validator</h2>\n\n\n\n<p>To pass a parameter, we need to create a factory function or a function that returns a function. The example code is as shown below</p>\n\n\n\n<pre class=\"wp-block-code\"><code>export function gte(val: number): ValidatorFn {\r\n \r\n  return (control: AbstractControl): ValidationErrors | null => {\r\n \r\n    let v: number = +control.value;\r\n \r\n    if (isNaN(v)) {\r\n      return { 'gte': true, 'requiredValue': val }\r\n    }      \r\n \r\n    if (v &lt;= +val) {\r\n      return { 'gte': true, 'requiredValue': val }\r\n    } \r\n      \r\n    return null;\r\n    \r\n  }\r\n \r\n}</code></pre>\n\n\n\n<p>First, we create a factory function. It receives the&nbsp;<code>val</code>&nbsp;as the argument. It must return the function of the type&nbsp;<code>ValidatorFn</code></p>\n\n\n\n<pre class=\"wp-block-code\"><code>export function gte(val: number): ValidatorFn { </code></pre>\n\n\n\n<p>The&nbsp;<code>get</code>&nbsp;must return a function&nbsp;<code>ValidatorFn</code></p>\n\n\n\n<pre class=\"wp-block-code\"><code> return (control: AbstractControl): ValidationErrors | null => {    //Validaton code here} </code></pre>\n\n\n\n<h2>Using the Validator</h2>\n\n\n\n<p>Now, add the validator to the Validator collection of the FormControl as shown below</p>\n\n\n\n<pre class=\"wp-block-code\"><code>   myForm = new FormGroup({    numVal: new FormControl('', &#91;gte(10)]),  }) </code></pre>\n\n\n\n<h2>Accessing the Errors in Template</h2>\n\n\n\n<pre class=\"wp-block-code\"><code>\r\n&lt;h1>Custom Validator with Parameter in Angular&lt;/h1>\r\n \r\n&lt;h2>Reactive Form&lt;/h2>\r\n \r\n&lt;form &#91;formGroup]=\"myForm\" (ngSubmit)=\"onSubmit()\" novalidate>\r\n \r\n  &lt;div>\r\n    &lt;label for=\"numVal\">Number :&lt;/label>\r\n    &lt;input type=\"text\" id=\"numVal\" name=\"numVal\" formControlName=\"numVal\">\r\n    &lt;div *ngIf=\"!numVal.valid &amp;&amp; (numVal.dirty ||numVal.touched)\">\r\n      &lt;div *ngIf=\"numVal.errors.gte\">\r\n        The number should be greater than {{numVal.errors.requiredValue}}\r\n      &lt;/div>\r\n    &lt;/div>\r\n \r\n  &lt;/div>\r\n \r\n \r\n  &lt;p>Is Form Valid : {{myForm.valid}} &lt;/p>\r\n \r\n  &lt;p>\r\n    &lt;button type=\"submit\" &#91;disabled]=\"!myForm.valid\">Submit&lt;/button>\r\n  &lt;/p>\r\n \r\n \r\n&lt;/form></code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Custom Validator with Parameter Here is the code of greater than validator (gte) from the&nbsp;Custom Validators in Angular Reactive Form&nbsp;tutorial. The validator checks if the given value is greater than 10 and if not return&nbsp;ValidationErrors. The problem with the above validator is that the value 10 is hardcoded. Hence, we will be not able to [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [132],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3631"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=3631"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 2,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3631/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3834,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3631/revisions/3834"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=3631"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=3631"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=3631"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 3633,
+    "date": "2020-12-07T06:11:42",
+    "date_gmt": "2020-12-07T06:11:42",
+    "guid": {
+      "rendered": "http://angular.foobrdigital.com/?p=3633"
+    },
+    "modified": "2020-12-09T06:15:12",
+    "modified_gmt": "2020-12-09T06:15:12",
+    "slug": "inject-service-into-validator-in-angular",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/inject-service-into-validator-in-angular/",
+    "title": {
+      "rendered": "Inject Service Into Validator in Angular"
+    },
+    "content": {
+      "rendered": "\n<h2>Custom Validator</h2>\n\n\n\n<p>Here is our greater than&nbsp;custom validator&nbsp;<code>gte</code>&nbsp;from the previous tutorial. The&nbsp;<code>gte</code>&nbsp;is a function that returns&nbsp;ValidatorFn&nbsp;function.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms'\r\n \r\nexport function gte(val: number): ValidatorFn {\r\n \r\n  return (control: AbstractControl): ValidationErrors | null => {\r\n \r\n    let v: number = +control.value;\r\n \r\n    if (isNaN(v)) {\r\n      return { 'gte': true, 'requiredValue': val }\r\n    }      \r\n \r\n    if (v &lt;= +val) {\r\n      return { 'gte': true, 'requiredValue': val }\r\n    } \r\n      \r\n    return null;\r\n  }\r\n}</code></pre>\n\n\n\n<p>We pass the parameter to the validator in the component class as shown below.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> myForm = new FormGroup({  numVal: new FormControl('', &#91;gte(10)]),}) </code></pre>\n\n\n\n<h2>Validator Service</h2>\n\n\n\n<p>Let us now see how we can inject service into the above validator. First, move the logic from the&nbsp;<code>gte</code>&nbsp;validator to a separate service.</p>\n\n\n\n<p>Create a new service&nbsp;<code>gte.service.ts</code></p>\n\n\n\n<pre class=\"wp-block-code\"><code> import { Injectable } from '@angular/core';\r\n \r\n@Injectable({\r\n  providedIn: 'root',\r\n})\r\nexport class gteService {\r\n \r\n  gte(num:any, requiredValue:Number) : Boolean {\r\n \r\n    if (isNaN(num)) {\r\n      return false;\r\n    }      \r\n  \r\n    if (num &lt;= +requiredValue) {\r\n      return false;\r\n    }\r\n \r\n    return true;\r\n  }\r\n}</code></pre>\n\n\n\n<p>The&nbsp;<code>gteService</code>&nbsp;is very simple.</p>\n\n\n\n<p>The&nbsp;<code>gte</code>&nbsp;method takes&nbsp;<code>val</code>&nbsp;and&nbsp;<code>requiredValue</code>&nbsp;as the parameter. It checks if the&nbsp;<code>val</code>&nbsp;is a number and is greater than&nbsp;<code>requiredValue</code>. If yes returns&nbsp;<code>true</code>&nbsp;else returns&nbsp;<code>false</code>.</p>\n\n\n\n<h2>Injecting Service</h2>\n\n\n\n<p>There are two ways you can inject service into the validator. One is to create a wrapper service. The other option is to inject service directly into the validator.</p>\n\n\n\n<h3>Wrapper Service</h3>\n\n\n\n<p>Open the&nbsp;<code>gte.validator.ts</code>. Create the&nbsp;<code>gteValidatorService</code>&nbsp;class. In the constructor inject the&nbsp;<code>gteService</code>. Copy the validator function<code>gte</code>&nbsp;into the class and use the&nbsp;<code>gteService</code>&nbsp;as shown below</p>\n\n\n\n<pre class=\"wp-block-code\"><code>  \r\nimport { AbstractControl, ValidationErrors, ValidatorFn, Validator, NG_VALIDATORS, FormControl } from '@angular/forms'\r\nimport { gteService } from './gte.service';\r\nimport { Directive, OnInit, forwardRef, Input, Injectable } from '@angular/core';\r\n \r\n@Injectable({\r\n  providedIn: 'root',\r\n})\r\nexport class gteValidatorService {\r\n \r\n  constructor(private gteService: gteService) {\r\n  }\r\n \r\n  gte(val: number): ValidatorFn {\r\n \r\n    return (control: AbstractControl): ValidationErrors | null => {\r\n  \r\n      let v: number = +control.value;\r\n      if (!this.gteService.gte(v,val)) {\r\n        return { 'gte': true, 'requiredValue': val }\r\n      }\r\n  \r\n      return null;\r\n    }\r\n  }\r\n}</code></pre>\n\n\n\n<p>Inject the&nbsp;<code>gteValidatorService</code>&nbsp;in the component class and use the validator as shown below.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> \r\nimport { Component } from '@angular/core';\r\nimport { FormGroup, FormControl, AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms'\r\nimport { gteValidatorService } from './gte.validator';\r\n \r\n@Component({\r\n  selector: 'app-root',\r\n  templateUrl: './app.component.html',\r\n  styleUrls: &#91;'./app.component.css']\r\n})\r\nexport class AppComponent {\r\n \r\n  constructor(private gteValidator:gteValidatorService) {\r\n  }\r\n \r\n \r\n  myForm = new FormGroup({\r\n    numVal: new FormControl('', &#91;this.gteValidator.gte(10)]),\r\n  })\r\n \r\n  get numVal() {\r\n    return this.myForm.get('numVal');\r\n  }\r\n \r\n \r\n  onSubmit() {\r\n    console.log(this.myForm.value);\r\n  }\r\n}</code></pre>\n\n\n\n<h3>Inject Service directly into the Validator</h3>\n\n\n\n<p>Another option is to directly inject the service into the Validator as shown below.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> import { AbstractControl, ValidationErrors, ValidatorFn, Validator, NG_VALIDATORS, FormControl } from '@angular/forms'\r\nimport { gteService } from './gte.service';\r\nimport { Directive, OnInit, forwardRef, Input, Injector } from '@angular/core';\r\n \r\nexport function gte(val: number): ValidatorFn {\r\n \r\n  return (control: AbstractControl): ValidationErrors | null => {\r\n \r\n    let injector = Injector.create(&#91; { provide: gteService, useClass:gteService,deps: &#91;]}])\r\n    let service = injector.get(gteService);\r\n \r\n    let v: number = +control.value;\r\n    if (!service.gte(v, val)) {\r\n      return { 'gte': true, 'requiredValue': val }\r\n    }\r\n \r\n    return null;\r\n \r\n  }\r\n}</code></pre>\n\n\n\n<p>We use the&nbsp;<code>Injector</code>to inject the instance of the service.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> let injector = Injector.create(&#91; { provide: gteService, useClass:gteService,deps: &#91;]}])\r\nlet service = injector.get(gteService);</code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Custom Validator Here is our greater than&nbsp;custom validator&nbsp;gte&nbsp;from the previous tutorial. The&nbsp;gte&nbsp;is a function that returns&nbsp;ValidatorFn&nbsp;function. We pass the parameter to the validator in the component class as shown below. Validator Service Let us now see how we can inject service into the above validator. First, move the logic from the&nbsp;gte&nbsp;validator to a separate service. [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [132],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3633"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=3633"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 2,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3633/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3835,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3633/revisions/3835"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=3633"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=3633"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=3633"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 3635,
+    "date": "2020-12-07T06:15:34",
+    "date_gmt": "2020-12-07T06:15:34",
+    "guid": {
+      "rendered": "http://angular.foobrdigital.com/?p=3635"
+    },
+    "modified": "2020-12-09T06:17:17",
+    "modified_gmt": "2020-12-09T06:17:17",
+    "slug": "template-driven-form-validation-in-angular",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/template-driven-form-validation-in-angular/",
+    "title": {
+      "rendered": "Template driven form validation in Angular"
+    },
+    "content": {
+      "rendered": "\n<h2>Template-driven Form Validation</h2>\n\n\n\n<p>Validations in&nbsp;Template-driven forms&nbsp;are provided by the Validation directives. The&nbsp;Angular Forms Module&nbsp;comes with several built-in validators. You can also create your own custom Validator.</p>\n\n\n\n<h2>Template</h2>\n\n\n\n<p>Consider the following template-driven form. It has&nbsp;<code>firstname</code>,&nbsp;<code>lastname</code>,&nbsp;<code>email</code>,&nbsp;<code>gender</code>&nbsp;&amp;&nbsp;<code>istoc</code>&nbsp;form fields.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;form #contactForm=\"ngForm\" (ngSubmit)=\"onSubmit(contactForm)\">\r\n \r\n  &lt;p>\r\n    &lt;label for=\"firstname\">First Name &lt;/label>\r\n    &lt;input type=\"text\" id=\"firstname\" name=\"firstname\" &#91;(ngModel)]=\"contact.firstname\">\r\n  &lt;/p>\r\n \r\n  &lt;p>\r\n    &lt;label for=\"lastname\">Last Name &lt;/label>\r\n    &lt;input type=\"text\" id=\"lastname\" name=\"lastname\" &#91;(ngModel)]=\"contact.lastname\">\r\n  &lt;/p>\r\n \r\n  &lt;p>\r\n    &lt;label for=\"email\">email &lt;/label>\r\n    &lt;input type=\"text\" id=\"email\" name=\"email\" &#91;(ngModel)]=\"contact.email\">\r\n  &lt;/p>\r\n \r\n  &lt;p>\r\n    &lt;label for=\"gender\">Geneder &lt;/label>\r\n    &lt;input type=\"radio\" value=\"male\" id=\"gender\" name=\"gender\" &#91;(ngModel)]=\"contact.gender\"> Male\r\n    &lt;input type=\"radio\" value=\"female\" id=\"gender\" name=\"gender\" &#91;(ngModel)]=\"contact.gender\"> Female\r\n  &lt;/p>\r\n \r\n  &lt;p>\r\n    &lt;label for=\"isToc\">Accept TOC&lt;/label>\r\n    &lt;input type=\"checkbox\" id=\"isToc\" name=\"isToc\" &#91;(ngModel)]=\"contact.isToc\">\r\n  &lt;/p>\r\n \r\n  &lt;p>\r\n    &lt;button type=\"submit\">Submit&lt;/button>\r\n  &lt;/p>\r\n \r\n&lt;/form></code></pre>\n\n\n\n<h2><strong>Component Class</strong></h2>\n\n\n\n<pre class=\"wp-block-code\"><code> \r\nimport { Component, ViewChild, ElementRef, OnInit } from '@angular/core';\r\nimport { NgForm } from '@angular/forms';\r\n \r\n@Component({\r\n  selector: 'app-root',\r\n  templateUrl: './app.component.html',\r\n  styleUrls: &#91;'./app.component.css']\r\n})\r\nexport class AppComponent implements OnInit  {\r\n  title = 'Template driven forms';\r\n \r\n  @ViewChild('contactForm',null) contactForm: NgForm;\r\n \r\n  contact:contact;\r\n \r\n  ngOnInit() {\r\n \r\n    this.contact = { \r\n      firstname:\"\",\r\n      lastname:\"\",\r\n      gender:\"male\",\r\n      isToc:true,\r\n      email:\"\",\r\n    };\r\n \r\n  }\r\n \r\n  onSubmit() {\r\n    console.log(this.contactForm.value);\r\n  }\r\n \r\n}\r\n \r\nexport class contact {\r\n  firstname:string;\r\n  lastname:string;\r\n  gender:string;\r\n  isToc:boolean;\r\n  email:string;\r\n} </code></pre>\n\n\n\n<h2>Disabling the Browser validation</h2>\n\n\n\n<p>First, we need to disable browser validator interfering with the&nbsp;Angular validator. To do that we need to add&nbsp;<code>novalidate</code>&nbsp;attribute on&nbsp;<code>&lt;form&gt;</code>&nbsp;element as shown below</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;form #contactForm=\"ngForm\" (ngSubmit)=\"onSubmit(contactForm)\" novalidate></code></pre>\n\n\n\n<h2>Built-in Validators</h2>\n\n\n\n<p>The Built-in validators use&nbsp;the HTML5 validation attributes like&nbsp;<code>required</code>,&nbsp;<code>minlength</code>,&nbsp;<code>maxlength</code>&nbsp;&amp;&nbsp;<code>pattern</code>. Angular interprets these validation attributes and add the validator functions to&nbsp;<code>FormControl</code>&nbsp;instance.</p>\n\n\n\n<h2>Adding in Built-in Validators</h2>\n\n\n\n<h3>Required Validation</h3>\n\n\n\n<p>The required validator returns true only if the form control has non-empty value entered. Let us add this validator to all fields</p>\n\n\n\n<pre class=\"wp-block-code\"><code> &lt;input type=\"text\" id=\"firstname\" name=\"firstname\" required &#91;(ngModel)]=\"contact.firstname\"> </code></pre>\n\n\n\n<p>The required validator returns true only if the form control has non-empty value entered. Let us add this validator to all fields</p>\n\n\n\n<h3><br>Minlength Validation</h3>\n\n\n\n<p>This Validator requires the control value must not have less number of characters than the value specified in the validator.</p>\n\n\n\n<p>For Example, minlength validator ensures that the firstname value has at least 10 characters.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;input type=\"text\" id=\"firstname\" name=\"firstname\" required minlength=\"10\" &#91;(ngModel)]=\"contact.firstname\"> </code></pre>\n\n\n\n<p>For Example, minlength validator ensures that the firstname value has at least 10 characters.</p>\n\n\n\n<h3>Maxlength Validation</h3>\n\n\n\n<p>This Validator requires that the number of characters must not exceed the value of the attribute.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;input type=\"text\" id=\"lastname\" name=\"lastname\" required maxlength=\"15\" &#91;(ngModel)]=\"contact.lastname\"> </code></pre>\n\n\n\n<p>This Validator requires that the number of characters must not exceed the value of the attribute.</p>\n\n\n\n<h3>Pattern Validation</h3>\n\n\n\n<p>This Validator requires that the control value must match the regex pattern provided in the attribute. For example, the pattern&nbsp;<code>^[a-zA-Z]+$</code>&nbsp;ensures that the only letters are allowed (even spaces are not allowed). Let us apply this pattern to the&nbsp;<code>lastName</code></p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;input type=\"text\" id=\"lastname\" name=\"lastname\" required maxlength=\"15\"     \npattern=\"^&#91;a-zA-Z]+$\" &#91;(ngModel)]=\"contact.lastname\"> </code></pre>\n\n\n\n<h3>Email Validation</h3>\n\n\n\n<p>This Validator requires that the control value must be a valid email address. We apply this to the email field</p>\n\n\n\n<pre class=\"wp-block-code\"><code> &lt;input type=\"text\" id=\"email\" name=\"email\" required email &#91;(ngModel)]=\"contact.email\"></code></pre>\n\n\n\n<h2>Disable Submit button</h2>\n\n\n\n<p>Now, we have successfully added the validators. You will notice that the click submit button still submits the form.</p>\n\n\n\n<p>We need to disable the submit button if our form is not valid.</p>\n\n\n\n<p>Angular forms module keep track of the state of our form and each of its form elements. These states are exposed to the user through&nbsp;<code>FormGroup</code>,&nbsp;<code>FormArray</code>&nbsp;&amp;&nbsp;<code>FormControl</code>&nbsp;objects.</p>\n\n\n\n<p>We get the reference to the top-level&nbsp;<code>FormGroup</code>&nbsp;instance by creating a template variable and bind it to&nbsp;<code>ngForm</code>. We have already done it when we had added the&nbsp;<code>#contactForm=\"ngForm\"</code>&nbsp;in our&nbsp;<code>form</code>&nbsp;tag.</p>\n\n\n\n<p>The&nbsp;<code>FormGroup</code>&nbsp;has a&nbsp;<code>valid</code>&nbsp;property, which is set to true if all of its child controls are valid. We use it to set the&nbsp;<code>disabled</code>&nbsp;attribute of the submit button.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;button type=\"submit\" &#91;disabled]=\"!contactForm.valid\">Submit&lt;/button> </code></pre>\n\n\n\n<p>So long as&nbsp;<code>contactForm.valid</code>&nbsp;remains&nbsp;<code>false</code>, the submit button remains disabled.</p>\n\n\n\n<h2>Displaying the Validation/Error messages</h2>\n\n\n\n<p>We need to provide a short and meaningful error message to the user.</p>\n\n\n\n<p>Angular creates a&nbsp;<code>FormControl</code>&nbsp;for each and every field, which has&nbsp;<code>ngModel</code>&nbsp;directive applied. The&nbsp;<code>FormControl</code>&nbsp;exposes the state of form element like&nbsp;<code>valid</code>,&nbsp;<code>dirty</code>,&nbsp;<code>touched</code>, etc.</p>\n\n\n\n<p>There are two ways in which you can get the reference to the&nbsp;<code>FormControl</code>.</p>\n\n\n\n<p>One way is to use the&nbsp;<code>contactForm</code>&nbsp;variable. We can use the&nbsp;<code>contactForm.controls.firstname.valid</code>&nbsp;to find out if the firstname is valid.</p>\n\n\n\n<p>The other way is to create a new local variable for each&nbsp;<code>FormControl</code>&nbsp;For Example, the following&nbsp;<code>firstname=\"ngModel\"</code>&nbsp;creates the&nbsp;<code>firstname</code>&nbsp;variable with the&nbsp;<code>FormControl</code>&nbsp;instance.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;input type=\"text\" id=\"firstname\" name=\"firstname\" required minlength=\"10\" \r\n            #firstname=\"ngModel\" &#91;(ngModel)]=\"contact.firstname\"></code></pre>\n\n\n\n<p>Now, we have a reference to the&nbsp;<code>firstname</code>&nbsp;FormControl instance, we can check its status. We use the&nbsp;<code>valid</code>&nbsp;property to check if the&nbsp;<code>firstname</code>&nbsp;has any errors.</p>\n\n\n\n<p><code>valid:</code>&nbsp;returns either invalid status or null which means a valid status</p>\n\n\n\n<pre class=\"wp-block-code\"><code> &lt;div *ngIf=\"!firstname?.valid &amp;&amp; (firstname?.dirty || firstname?.touched)\">   Invalid First Name\n&lt;/div> </code></pre>\n\n\n\n<h3>Why check&nbsp;<code>dirty</code>&nbsp;and&nbsp;<code>touched</code>?</h3>\n\n\n\n<p>We do not want the application to display the error when the form is displayed for the first time. We want to display errors only after the user has attempted to change the value. The&nbsp;<code>dirty</code>&nbsp;&amp;&nbsp;<code>touched</code>&nbsp;properties help us do that.</p>\n\n\n\n<p><code>dirty:</code>&nbsp;A control is&nbsp;<code>dirty</code>&nbsp;if the user has changed the value in the UI.<br><code>touched:</code>&nbsp;A control is touched if the user has triggered a&nbsp;<code>blur</code>&nbsp;event on it.</p>\n\n\n\n<h3>Error message</h3>\n\n\n\n<p>The error message ” “Invalid First Name” ” is not helpful. The firstname has two validators.&nbsp;<code>required</code>&nbsp;and&nbsp;<code>minlength</code></p>\n\n\n\n<p>Any errors generated by the failing validation is updated in the&nbsp;<code>errors</code>&nbsp;object. The&nbsp;<code>errors</code>&nbsp;object returns the error object or&nbsp;<code>null</code>&nbsp;if there are no errors.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>\r\n&lt;div *ngIf=\"!firstname?.valid &amp;&amp; (firstname?.dirty || firstname?.touched)\">\r\n  Invalid First Name\r\n  &lt;div *ngIf=\"firstname.errors.required\">\r\n     First Name is required\r\n  &lt;/div>\r\n  &lt;div *ngIf=\"firstname.errors.minlength\">\r\n    First Name Minimum Length is {{firstname.errors.minlength?.requiredLength}}\r\n  &lt;/div>\r\n&lt;/div></code></pre>\n\n\n\n<p>Note that the&nbsp;<code>minlength</code>&nbsp;validators return the&nbsp;<code>{{firstname.errors.minlength?.requiredLength}}</code>, which we use the display the error message.</p>\n\n\n\n<h2>Final Template</h2>\n\n\n\n<pre class=\"wp-block-code\"><code> \r\n&lt;form #contactForm=\"ngForm\" (ngSubmit)=\"onSubmit(contactForm)\" novalidate>\r\n \r\n  &lt;p>\r\n    &lt;label for=\"firstname\">First Name &lt;/label>\r\n    &lt;input type=\"text\" id=\"firstname\" name=\"firstname\" required minlength=\"10\" #firstname=\"ngModel\"\r\n      &#91;(ngModel)]=\"contact.firstname\">\r\n  &lt;/p>\r\n  &lt;div *ngIf=\"!firstname?.valid &amp;&amp; (firstname?.dirty || firstname?.touched)\" class=\"error\">\r\n    &lt;div *ngIf=\"firstname.errors.required\">\r\n      First Name is required\r\n    &lt;/div>\r\n    &lt;div *ngIf=\"firstname.errors.minlength\">\r\n      First Name Minimum Length is {{firstname.errors.minlength?.requiredLength}}\r\n    &lt;/div>\r\n  &lt;/div>\r\n \r\n  &lt;p>\r\n    &lt;label for=\"lastname\">Last Name &lt;/label>\r\n    &lt;input type=\"text\" id=\"lastname\" name=\"lastname\" required maxlength=\"15\" #lastname=\"ngModel\" \r\n            pattern=\"^&#91;a-zA-Z]+$\"  &#91;(ngModel)]=\"contact.lastname\">\r\n  &lt;/p>\r\n  &lt;div *ngIf=\"!lastname?.valid &amp;&amp; (lastname?.dirty || lastname?.touched)\" class=\"error\">\r\n    &lt;div *ngIf=\"lastname.errors.required\">\r\n      Last Name is required\r\n    &lt;/div>\r\n    &lt;div *ngIf=\"lastname.errors.maxlength\">\r\n      Last Name Minimum Length is {{lastname.errors.maxlength?.requiredLength}}\r\n    &lt;/div>\r\n    &lt;div *ngIf=\"lastname.errors.pattern\">\r\n      Only characters are allowed\r\n    &lt;/div>\r\n  &lt;/div>\r\n \r\n \r\n \r\n  &lt;p>\r\n    &lt;label for=\"email\">email &lt;/label>\r\n    &lt;input type=\"text\" id=\"email\" name=\"email\" required email #email=\"ngModel\" &#91;(ngModel)]=\"contact.email\">\r\n  &lt;/p>\r\n  &lt;div *ngIf=\"!email?.valid &amp;&amp; (email?.dirty || email?.touched)\" class=\"error\">\r\n    &lt;div *ngIf=\"email.errors.required\">\r\n      Email is required\r\n    &lt;/div>\r\n    &lt;div *ngIf=\"email.errors.email\">\r\n      Invalid Email Address\r\n    &lt;/div>\r\n  &lt;/div>\r\n \r\n  &lt;p>\r\n    &lt;label for=\"gender\">Geneder &lt;/label>\r\n    &lt;input type=\"radio\" value=\"male\" id=\"gender\" name=\"gender\" #gender=\"ngModel\" required &#91;(ngModel)]=\"contact.gender\">\r\n    Male\r\n    &lt;input type=\"radio\" value=\"female\" id=\"gender\" name=\"gender\" #gender=\"ngModel\" required\r\n      &#91;(ngModel)]=\"contact.gender\"> Female\r\n  &lt;/p>\r\n  &lt;div *ngIf=\"!gender?.valid &amp;&amp; (gender?.dirty || gender?.touched)\" class=\"error\">\r\n    &lt;div *ngIf=\"gender.errors.required\">\r\n      Gender is required\r\n    &lt;/div>\r\n  &lt;/div>\r\n \r\n \r\n  &lt;p>\r\n    &lt;label for=\"isToc\">Accept TOC&lt;/label>\r\n    &lt;input type=\"checkbox\" id=\"isToc\" name=\"isToc\" required #isToc=\"ngModel\" &#91;(ngModel)]=\"contact.isToc\">\r\n  &lt;/p>\r\n  &lt;div *ngIf=\"!isToc?.valid &amp;&amp; (isToc?.dirty || isToc?.touched)\" class=\"error\">\r\n    &lt;div *ngIf=\"isToc.errors.required\">\r\n      Please accept the TOC\r\n    &lt;/div>\r\n  &lt;/div>\r\n \r\n  &lt;p>\r\n    &lt;button type=\"submit\" &#91;disabled]=\"!contactForm.valid\">Submit&lt;/button>\r\n  &lt;/p>\r\n \r\n  &lt;p>{{contactForm.valid}} &lt;/p>\r\n \r\n&lt;/form></code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Template-driven Form Validation Validations in&nbsp;Template-driven forms&nbsp;are provided by the Validation directives. The&nbsp;Angular Forms Module&nbsp;comes with several built-in validators. You can also create your own custom Validator. Template Consider the following template-driven form. It has&nbsp;firstname,&nbsp;lastname,&nbsp;email,&nbsp;gender&nbsp;&amp;&nbsp;istoc&nbsp;form fields. Component Class Disabling the Browser validation First, we need to disable browser validator interfering with the&nbsp;Angular validator. To do that [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [132],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3635"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=3635"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 2,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3635/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3836,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3635/revisions/3836"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=3635"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=3635"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=3635"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 3637,
+    "date": "2020-12-07T06:19:39",
+    "date_gmt": "2020-12-07T06:19:39",
+    "guid": {
+      "rendered": "http://angular.foobrdigital.com/?p=3637"
+    },
+    "modified": "2020-12-09T06:18:59",
+    "modified_gmt": "2020-12-09T06:18:59",
+    "slug": "custom-validator-in-template-driven-forms-in-angular",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/custom-validator-in-template-driven-forms-in-angular/",
+    "title": {
+      "rendered": "Custom Validator in Template Driven Forms in Angular"
+    },
+    "content": {
+      "rendered": "\n<h2>Custom Validator in Template Driven Forms</h2>\n\n\n\n<p>Create a new Angular Project. Copy the following code to<code>app.component.ts</code></p>\n\n\n\n<pre class=\"wp-block-code\"><code>\r\nimport { Component } from '@angular/core';\r\n \r\n@Component({\r\n  selector: 'app-root',\r\n  templateUrl: './app.component.html',\r\n})\r\nexport class AppComponent {\r\n \r\n  constructor() {\r\n  }\r\n \r\n}</code></pre>\n\n\n\n<p>Copy the following code&nbsp;<code>app.component.html</code></p>\n\n\n\n<pre class=\"wp-block-code\"><code> \r\n&lt;h1>Custom Validator in Template driven forms&lt;/h1>\r\n \r\n&lt;h2>Template Form&lt;/h2>\r\n \r\n&lt;form #myForm=\"ngForm\" (ngSubmit)=\"onSubmit(myForm)\" novalidate>\r\n \r\n  &lt;label for=\"numVal\">Number :&lt;/label>\r\n  &lt;input type=\"text\" name=\"numVal\" ngModel #numVal=\"ngModel\"> \r\n \r\n  &lt;p>Is Form Valid : {{myForm.valid}} &lt;/p>\r\n \r\n  &lt;p>Form  : {{ myForm.value | json}} &lt;/p>\r\n  &lt;p>\r\n    &lt;button type=\"submit\" &#91;disabled]=\"!myForm.valid\">Submit&lt;/button>\r\n  &lt;/p> \r\n \r\n&lt;/form></code></pre>\n\n\n\n<p>It has only one input field&nbsp;<code>numVal</code>. Let us create a validator to ensure that the value of the&nbsp;<code>numVal</code>&nbsp;is greater than 10.</p>\n\n\n\n<h2>Built-in Validators</h2>\n\n\n\n<p>The&nbsp;Angular Forms&nbsp;Module already has a few built-in validators. They are listed below. But we do not have a greater than validator.</p>\n\n\n\n<ol><li>Required validator</li><li>Min length Validator</li><li>Max length Validator</li><li>Pattern Validator</li><li>Email Validator</li></ol>\n\n\n\n<h2>How to Build Custom Validator in template-driven form</h2>\n\n\n\n<p>Building a Validator in&nbsp;template-driven forms&nbsp;is similar to building an Angular directive. The directive must implement the Validator interface.</p>\n\n\n\n<h3>Validator Interface</h3>\n\n\n\n<pre class=\"wp-block-code\"><code> interface Validator {\r\n  validate(control: AbstractControl): ValidationErrors | null\r\n  registerOnValidatorChange(fn: () => void)?: void\r\n}\r\n </code></pre>\n\n\n\n<p>The directive must implement the&nbsp;<code>validate</code>&nbsp;function. Notice that the&nbsp;<code>validate</code>&nbsp;function has the same signature as the&nbsp;ValidatorFn&nbsp;Interface. Whenever the&nbsp;<code>Validator</code>&nbsp;directive is invoked angular looks for the&nbsp;<code>validate</code>&nbsp;method and invokes it.</p>\n\n\n\n<h3>Validate Function</h3>\n\n\n\n<p>A&nbsp;<code>Validator</code>&nbsp;is just a function, which must implement&nbsp;ValidatorFn&nbsp;Interface.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>interface ValidatorFn {  (control: AbstractControl): ValidationErrors | null} </code></pre>\n\n\n\n<p>The function takes the&nbsp;AbstractControl. This is the base class for&nbsp;<code>FormControl</code>,&nbsp;<code>FormGroup</code>, and&nbsp;<code>FormArray</code>. The validator function must return a list of errors i.e&nbsp;ValidationErrors&nbsp;or&nbsp;<code>null</code>&nbsp;if the validation has passed</p>\n\n\n\n<h2>Custom Validator Example</h2>\n\n\n\n<p>Create the&nbsp;<code>gte.validator.ts</code>&nbsp;and copy the following code.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> \r\nimport { Validator, NG_VALIDATORS, FormControl } from '@angular/forms'\r\nimport { Directive, OnInit, forwardRef } from '@angular/core';\r\n \r\n \r\n@Directive({\r\n  selector: '&#91;gteValidator]',\r\n  providers: &#91;\r\n    { provide: NG_VALIDATORS, useExisting: gteValidatorDirective, multi: true }\r\n  ]\r\n})\r\nexport class gteValidatorDirective implements Validator, OnInit {\r\n \r\n  ngOnInit() {\r\n  }\r\n \r\n  validate(c: FormControl) {\r\n \r\n    let v: number = +c.value;\r\n \r\n    if (isNaN(v)) {\r\n      return { 'gte': true, 'requiredValue': 10 }\r\n    }\r\n \r\n    if (v &lt;= +10) {\r\n      return { 'gte': true, 'requiredValue': 10 }\r\n    }\r\n \r\n    return null;\r\n  }\r\n}\r\n </code></pre>\n\n\n\n<p>We decorate the&nbsp;directive&nbsp;using&nbsp;<code>@Directive</code>&nbsp;decorator.</p>\n\n\n\n<p>We use the directive as an attribute in the HTML template. The attribute needs a name or selector. We assign the name as&nbsp;<code>gteValidator</code>&nbsp;in the selector metadata section of the directive decorator.</p>\n\n\n\n<figure class=\"wp-block-table\"><table><tbody><tr><td>123</td><td>&nbsp;selector: &#8216;[gteValidator]&#8217;,&nbsp;</td></tr></tbody></table></figure>\n\n\n\n<p>The Angular knows nothing about the Validation capabilities of our directive. Hence we need to register it in&nbsp;Angular Providers&nbsp;metadata using the special injection token&nbsp;NG_VALIDATORS. We also set&nbsp;<code>multi:true</code>&nbsp;because there can be more validation directives.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> { provide: NG_VALIDATORS, useExisting: gteValidatorDirective, multi: true } </code></pre>\n\n\n\n<p>The directive class must implement the validate method. The validate method must honor the&nbsp;ValidatorFn&nbsp;Interface.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>  \r\n  validate(c: FormControl) {\r\n \r\n    let v: number = +c.value;\r\n \r\n    if (isNaN(v)) {\r\n      return { 'gte': true, 'requiredValue': 10 }\r\n    }\r\n \r\n    if (v &lt;= +10) {\r\n      return { 'gte': true, 'requiredValue': 10 }\r\n    }\r\n \r\n    return null;\r\n  }</code></pre>\n\n\n\n<p>It is a simple function, which checks if the value is a number and is less than 10. It returns null if it passes all checks.</p>\n\n\n\n<p>If Validation fails it returns the&nbsp;<code>ValidationErrors.</code>&nbsp;It is a key-value pair object of type&nbsp;<code>[key: string]: any</code>&nbsp;and it defines the broken rule. The&nbsp;<code>key</code>&nbsp;is the string and should contain the name of the broken rule. The value can be anything, but usually set to&nbsp;<code>true</code>.</p>\n\n\n\n<p>We return the following key-value pair when the validation fails</p>\n\n\n\n<pre class=\"wp-block-code\"><code> return { 'gte': true, 'requiredValue': 10 } </code></pre>\n\n\n\n<p>The&nbsp;<code>'gte': true:</code>&nbsp;indicates that the validation has failed.&nbsp;<code>'requiredValue': 10</code>&nbsp;is used by the template to display that the expected value is greater than 10.</p>\n\n\n\n<h2>Using the Custom Validator</h2>\n\n\n\n<p>Since this is a template-driven form., we do not have to do anything in the component class. In the HTML template just add the attribute&nbsp;<code>gteValidator</code>&nbsp;as shown below</p>\n\n\n\n<pre class=\"wp-block-code\"><code>  &lt;label for=\"numVal\">Number :&lt;/label>\r\n \r\n  &lt;input type=\"text\" name=\"numVal\" ngModel #numVal=\"ngModel\" gteValidator> \r\n \r\n  &lt;div *ngIf=\"!numVal.valid &amp;&amp; (numVal.dirty ||numVal.touched)\">\r\n    &lt;div *ngIf=\"numVal.errors.gte\">\r\n      The number should be greater than {{numVal.errors.requiredValue}}\r\n    &lt;/div>\r\n  &lt;/div></code></pre>\n\n\n\n<p>Validators return&nbsp;<code>ValidationErrors</code>. They are added to the control’s&nbsp;<code>errors</code>&nbsp;collection of the control. The&nbsp;<code>valid</code>&nbsp;property of the control is set to&nbsp;<code>false</code>.</p>\n\n\n\n<p>Hence we check if the&nbsp;<code>valid</code>&nbsp;property. We also check the&nbsp;<code>dirty</code>&nbsp;and&nbsp;<code>touched</code>&nbsp;property. Because we do not want to display the error message when the form is displayed for the first time.</p>\n\n\n\n<p>We check if the&nbsp;<code>gte</code>&nbsp;is true and display the error message. Note that&nbsp;<code>gte</code>&nbsp;is the name of the&nbsp;<code>key</code>&nbsp;we used while creating the validator.</p>\n\n\n\n<p>We also make use of&nbsp;<code>requiredValue</code>&nbsp;to show a meaningful message to the user.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>  &lt;div *ngIf=\"numVal.errors.gte\">      The number should be greater than {{numVal.errors.requiredValue}}    &lt;/div> </code></pre>\n\n\n\n<h2>Passing Parameter to Validator</h2>\n\n\n\n<p>We have hardcoded the value of 10 in the above example. This will make our validator difficult to reuse. If we want to resue it, we need to pass the number to be checked as the parameter.</p>\n\n\n\n<p>Since they are directives, we can use&nbsp;Input decorator&nbsp;to pass the parameter to the Validator.</p>\n\n\n\n<p>Open the template add the special attribute&nbsp;<code>gteNum=\"20\"</code></p>\n\n\n\n<pre class=\"wp-block-code\"><code> &lt;input type=\"text\" name=\"numVal\" ngModel #numVal=\"ngModel\" gteValidator gteNum=\"20\" ></code></pre>\n\n\n\n<p>You can read the&nbsp;<code>gteNum</code>&nbsp;from the template using the Input decorator as shown below</p>\n\n\n\n<pre class=\"wp-block-code\"><code>@Input(\"gteNum\") gteNum:number </code></pre>\n\n\n\n<p>Now, you can remove the hardcoded value 10 and use the&nbsp;<code>gteNum</code>&nbsp;instead.</p>\n\n\n\n<p>The complete validator code is as shown below.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>import { Validator, NG_VALIDATORS, FormControl } from '@angular/forms'\r\nimport { Directive,  Input } from '@angular/core';\r\n \r\n@Directive({\r\n  selector: '&#91;gteValidator]',\r\n  providers: &#91;\r\n    { provide: NG_VALIDATORS, useExisting: gteValidatorDirective, multi: true }\r\n  ]\r\n})\r\nexport class gteValidatorDirective implements Validator {\r\n \r\n  @Input(\"gteNum\") gteNum:number\r\n \r\n  validate(c: FormControl) {\r\n \r\n    let v: number = +c.value;\r\n \r\n    if (isNaN(v)) {\r\n      return { 'gte': true, 'requiredValue': this.gteNum }\r\n    }\r\n \r\n    if (v &lt;= +this.gteNum) {\r\n      return { 'gte': true, 'requiredValue': this.gteNum }\r\n    }\r\n \r\n    return null;\r\n  }\r\n \r\n}</code></pre>\n\n\n\n<h2>Injecting Service into Validator</h2>\n\n\n\n<p>The validator may depend on some external service to validate the value. For Example, it may need to fetch data from the back end server.</p>\n\n\n\n<p>Let us move the validation logic in the above validator to a separate service. Create a service&nbsp;<code>gte.service.ts</code>&nbsp;and copy the following code</p>\n\n\n\n<pre class=\"wp-block-code\"><code> import { Injectable } from '@angular/core';\r\n \r\n@Injectable({\r\n  providedIn: 'root',\r\n})\r\nexport class gteService {\r\n \r\n  gte(num:any, requiredValue:Number) : Boolean {\r\n \r\n    if (isNaN(num)) {\r\n      return false;\r\n    }      \r\n  \r\n    if (num &lt;= +requiredValue) {\r\n      return false;\r\n    }\r\n \r\n    return true;\r\n  }\r\n}</code></pre>\n\n\n\n<p>In the validation directive, create a constructor method and inject the service. The complete code is as shown below</p>\n\n\n\n<pre class=\"wp-block-code\"><code> import { Validator, NG_VALIDATORS, FormControl } from '@angular/forms'\r\nimport { Directive,  Input } from '@angular/core';\r\nimport { gteService } from 'projects/injectService1/src/app/gte.service';\r\n \r\n@Directive({\r\n  selector: '&#91;gteValidator]',\r\n  providers: &#91;\r\n    { provide: NG_VALIDATORS, useExisting: gteValidatorDirective, multi: true }\r\n  ]\r\n})\r\nexport class gteValidatorDirective implements Validator {\r\n \r\n  @Input(\"gteNum\") gteNum:number\r\n \r\n  constructor(private gteService:gteService) {\r\n  }\r\n \r\n  validate(c: FormControl) {\r\n \r\n    let v: number = +c.value;\r\n \r\n    if (this.gteService.gte(v,this.gteNum)) {\r\n      return { 'gte': true, 'requiredValue': this.gteNum }\r\n    }\r\n \r\n    return null;\r\n  }\r\n}</code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Custom Validator in Template Driven Forms Create a new Angular Project. Copy the following code toapp.component.ts Copy the following code&nbsp;app.component.html It has only one input field&nbsp;numVal. Let us create a validator to ensure that the value of the&nbsp;numVal&nbsp;is greater than 10. Built-in Validators The&nbsp;Angular Forms&nbsp;Module already has a few built-in validators. They are listed below. [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [132],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3637"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=3637"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 2,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3637/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3837,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3637/revisions/3837"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=3637"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=3637"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=3637"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 3640,
+    "date": "2020-12-07T06:22:25",
+    "date_gmt": "2020-12-07T06:22:25",
+    "guid": {
+      "rendered": "http://angular.foobrdigital.com/?p=3640"
+    },
+    "modified": "2020-12-09T06:20:15",
+    "modified_gmt": "2020-12-09T06:20:15",
+    "slug": "angular-async-validator-example",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/angular-async-validator-example/",
+    "title": {
+      "rendered": "Angular Async Validator Example"
+    },
+    "content": {
+      "rendered": "\n<h2>How to Create Async Validator</h2>\n\n\n\n<p>Creating a Async Validator is simple as creating a function, which must obey the following rules</p>\n\n\n\n<ol><li>The function must implement the&nbsp;<code>AsyncValidatorFn</code>&nbsp;Interface, which defines the signature of the validator function.</li><li>The function must return either an&nbsp;<code>observable</code>or a&nbsp;<code>promise</code></li><li>Return&nbsp;<code>null</code>&nbsp;for valid, or an&nbsp;<code>ValidationErrors</code>&nbsp;if the input is invalid</li></ol>\n\n\n\n<h3>AsyncValidatorFn&nbsp;</h3>\n\n\n\n<p>The&nbsp;<code>AsyncValidatorFn</code>&nbsp;is an Interface, which defines the signature of the validator function.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>interface AsyncValidatorFn {\r\n  (control: AbstractControl): Promise&lt;ValidationErrors | null> | Observable&lt;ValidationErrors | null>\r\n}</code></pre>\n\n\n\n<p>The function takes the&nbsp;AbstractControl. This is the base class for&nbsp;<code>FormControl</code>,&nbsp;<code>FormGroup</code>, and&nbsp;<code>FormArray</code>. The validator function must return a list of errors i.e&nbsp;ValidationErrors&nbsp;or&nbsp;<code>null</code>&nbsp;if the validation has passed. The only difference it has with the Sync Validator is the return type. It must return either a&nbsp;<code>promise</code>&nbsp;or an&nbsp;<code>observable</code>.</p>\n\n\n\n<h2>Async Validator Example</h2>\n\n\n\n<p>We build&nbsp;<code>gte</code>&nbsp;validator in&nbsp;how to create a custom validator in Angular&nbsp;tutorial. In this Async Validator Example, let us convert that validator to Async Validator.</p>\n\n\n\n<p>Create a new Angular Application. Add the&nbsp;<code>gte.validator.ts</code>&nbsp;and copy the following code.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>import { AbstractControl, ValidationErrors } from '@angular/forms'\r\n \r\nimport { Observable, of } from 'rxjs';\r\n \r\nexport function gte(control: AbstractControl): \r\n         Observable&lt;ValidationErrors> | null {\r\n \r\n    const v:number=+control.value;\r\n \r\n    console.log(v)\r\n    \r\n    if (isNaN(v)) {\r\n      return of({ 'gte': true, 'requiredValue': 10 })\r\n    }      \r\n \r\n    if (v &lt;= 10) {\r\n      return of({ 'gte': true, 'requiredValue': 10 })\r\n    } \r\n \r\n    return of(null)\r\n \r\n}\r\n </code></pre>\n\n\n\n<p>First, import the&nbsp;<code>AbstractControl</code>&nbsp;and&nbsp;<code>ValidationErrors</code>&nbsp;from the&nbsp;<code>@angular/forms</code>. Since we need to return an observable, we also need to import&nbsp;<code>Observable</code>&nbsp;from the&nbsp;<code>rxjs</code>&nbsp;library.</p>\n\n\n\n<p>The validator function must follow the&nbsp;AsyncValidatorFn&nbsp;Interface. It should receive the&nbsp;<code>AbstractControl</code>&nbsp;as its parameter. It can be&nbsp;<code>FormControl</code>,&nbsp;<code>FormGroup</code>&nbsp;or&nbsp;<code>FormArray</code>.</p>\n\n\n\n<p>The function must validate the control value and return&nbsp;<code>ValidationErrors</code>&nbsp;if any errors are found otherwise&nbsp;<code>null</code>. It must return them as&nbsp;observable.</p>\n\n\n\n<p>The&nbsp;<code>ValidationErrors</code>&nbsp;is a key-value pair object of type&nbsp;<code>[key: string]: any</code>&nbsp;and it defines the broken rule. The&nbsp;<code>key</code>&nbsp;is the string and should contain the name of the broken rule. The value can be anything, but usually set to&nbsp;<code>true</code>.</p>\n\n\n\n<p>The validation logic is very simple. Check if the value of the control is a number using the&nbsp;isNaN&nbsp;method. Also, check if the value is less than or equal to 10. If both the rules are valid and then return&nbsp;<code>null</code></p>\n\n\n\n<p>If the validation fails then return the&nbsp;<code>ValidationErrors</code>. You can use anything for the&nbsp;<code>key</code>, but it is advisable to use the name of the validator i.e&nbsp;<code>gte</code>&nbsp;as the key. Also, assign&nbsp;<code>true</code>&nbsp;as value. You can as well assign a string value.</p>\n\n\n\n<p>You can return more than one&nbsp;<code>key-value</code>&nbsp;pair as shown in the above example. The second key&nbsp;<code>requiredValue</code>&nbsp;returns the value 10. We use this in the template to show the error message.</p>\n\n\n\n<p>We use the&nbsp;<code>of</code>&nbsp;operator convert the result into an observable and return it</p>\n\n\n\n<h2>Using the Async Validator</h2>\n\n\n\n<p>To use this validator first, import it in the component class.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> import { gte } from './gte.validator'; </code></pre>\n\n\n\n<p>Add the validator to the Async Validator collection of the&nbsp;<code>FormControl</code>&nbsp;as shown below. The async validator is the third argument to the FormControl.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> myForm = new FormGroup({\r\n    numVal: new FormControl('', &#91;gte]),\r\n  })\r\n \r\n  // Without FormGroup\r\n  // this.myForm = new FormGroup({\r\n  //   numVal: new FormControl('', null, &#91;gte]),\r\n  // })</code></pre>\n\n\n\n<p>That’s it. The complete&nbsp;<code>app.component.ts</code>&nbsp;code as show below</p>\n\n\n\n<pre class=\"wp-block-code\"><code> \r\nimport { Component } from '@angular/core';\r\nimport { FormGroup, FormControl } from '@angular/forms'\r\nimport { gte } from './gte.validator';\r\n \r\n \r\n@Component({\r\n  selector: 'app-root',\r\n  templateUrl: './app.component.html',\r\n  styleUrls: &#91;'./app.component.css']\r\n})\r\nexport class AppComponent {\r\n \r\n  constructor() {\r\n  }\r\n \r\n \r\n  myForm = new FormGroup({\r\n    numVal: new FormControl('',null, &#91;gte]),\r\n  })\r\n \r\n  get numVal() {\r\n    return this.myForm.get('numVal');\r\n  }\r\n \r\n \r\n  onSubmit() {\r\n    console.log(this.myForm.value);\r\n  }</code></pre>\n\n\n\n<p>The complete&nbsp;<code>app.component.html</code></p>\n\n\n\n<pre class=\"wp-block-code\"><code> \r\n&lt;h1>Async Validator in Angular&lt;/h1>\r\n \r\n&lt;h2>Reactive Form&lt;/h2>\r\n \r\n&lt;form autocomplete=\"off\" &#91;formGroup]=\"myForm\" (ngSubmit)=\"onSubmit()\" novalidate>\r\n \r\n  &lt;div>\r\n    &lt;label for=\"numVal\">Number :&lt;/label>\r\n    &lt;input type=\"text\" id=\"numVal\" name=\"numVal\" formControlName=\"numVal\">\r\n    &lt;div *ngIf=\"!numVal.valid &amp;&amp; (numVal.dirty ||numVal.touched)\">\r\n      &lt;div *ngIf=\"numVal.errors.gte\">\r\n        The number should be greater than {{numVal.errors.requiredValue}}\r\n      &lt;/div>\r\n    &lt;/div>\r\n \r\n  &lt;/div>\r\n \r\n \r\n  &lt;p>Is Form Valid : {{myForm.valid}} &lt;/p>\r\n \r\n  &lt;p>\r\n    &lt;button type=\"submit\" &#91;disabled]=\"!myForm.valid\">Submit&lt;/button>\r\n  &lt;/p>\r\n \r\n \r\n&lt;/form></code></pre>\n\n\n\n<p><code>app.module.ts</code></p>\n\n\n\n<pre class=\"wp-block-code\"><code> import { BrowserModule } from '@angular/platform-browser';\r\nimport { NgModule } from '@angular/core';\r\nimport { ReactiveFormsModule } from '@angular/forms';\r\n \r\n \r\nimport { AppComponent } from './app.component';\r\n \r\n@NgModule({\r\n  declarations: &#91;\r\n    AppComponent\r\n  ],\r\n  imports: &#91;\r\n    BrowserModule,\r\n    ReactiveFormsModule\r\n  ],\r\n  providers: &#91;],\r\n  bootstrap: &#91;AppComponent]\r\n})\r\nexport class AppModule { }</code></pre>\n\n\n\n<h2>The use case for Async Validators</h2>\n\n\n\n<p>We use the async validator when we need to send an HTTP call to the server to check if the data is valid.</p>\n\n\n\n<p>The following code shows how you can send a HTTP Request to verify the data.</p>\n\n\n\n<p>If the data is Valid we will return nothing, else we return the&nbsp;<code>ValidationErrors</code>&nbsp; i.e.&nbsp;<code>({ 'InValid': true })</code>.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> \r\nimport { AbstractControl, ValidationErrors } from '@angular/forms'\r\nimport { Observable, pipe } from 'rxjs';\r\nimport { map, debounceTime } from 'rxjs/operators';\r\n \r\nexport function validate(control: AbstractControl): Observable&lt;ValidationErrors> | null {\r\n \r\n  const value: string = control.value;\r\n \r\n  return this.http.get(this.baseURL + 'checkIfValid/?value=' + value)\r\n    .pipe(\r\n      debounceTime(500),\r\n      map( (data:any) =>  {\r\n          if (!data.isValid) return ({ 'InValid': true })\r\n      })\r\n    )\r\n  \r\n}</code></pre>\n\n\n\n<p></p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>How to Create Async Validator Creating a Async Validator is simple as creating a function, which must obey the following rules The function must implement the&nbsp;AsyncValidatorFn&nbsp;Interface, which defines the signature of the validator function. The function must return either an&nbsp;observableor a&nbsp;promise Return&nbsp;null&nbsp;for valid, or an&nbsp;ValidationErrors&nbsp;if the input is invalid AsyncValidatorFn&nbsp; The&nbsp;AsyncValidatorFn&nbsp;is an Interface, which defines [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [132],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3640"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=3640"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 2,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3640/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3840,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3640/revisions/3840"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=3640"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=3640"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=3640"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 3642,
+    "date": "2020-12-07T06:24:38",
+    "date_gmt": "2020-12-07T06:24:38",
+    "guid": {
+      "rendered": "http://angular.foobrdigital.com/?p=3642"
+    },
+    "modified": "2020-12-09T06:21:33",
+    "modified_gmt": "2020-12-09T06:21:33",
+    "slug": "cross-field-or-multi-field-validation-angular",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/cross-field-or-multi-field-validation-angular/",
+    "title": {
+      "rendered": "Cross Field or Multi Field Validation Angular"
+    },
+    "content": {
+      "rendered": "\n<h2>Validation Recap</h2>\n\n\n\n<p>We assign a validator’s to a form filed, using the second argument of the&nbsp;FormControl&nbsp;as shown below. You can also attach an&nbsp;Async Validator&nbsp;as the third argument.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> this.contactForm = new FormGroup({    \nuserName: new FormControl('',&#91;Validators.required,customValidator]),</code></pre>\n\n\n\n<p>The above syntax using the&nbsp;FormBuilder.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>this.contactForm = this.builder.group({      \nuserName: &#91;\"\", &#91;Validators.required,customValidator]], </code></pre>\n\n\n\n<p>The Validator will run only when we change the value of&nbsp;<code>userName</code>&nbsp;and Validates only the&nbsp;<code>userName</code>&nbsp;field.</p>\n\n\n\n<h2>Cross Field Validation</h2>\n\n\n\n<p>When we validate the multiple fields, we need to ensure that our validation logic runs for each of those fields.</p>\n\n\n\n<p>Hence we attach the validator to the&nbsp;Formgroup&nbsp;instead of&nbsp;FormControl. The Validator runs whenever we modify any of the fields in the&nbsp;<code>FormGroup</code>.</p>\n\n\n\n<h2>Example</h2>\n\n\n\n<p>Let us create a&nbsp;<code>matchPassword</code>&nbsp;custom validator&nbsp;to compare the password &amp; confirm Password fields.</p>\n\n\n\n<p>Since we attach it to a&nbsp;FormGroup, it gets the instance of&nbsp;<code>FormGroup</code>&nbsp;as its parameter. We can use the&nbsp;<code>get</code>&nbsp;method to get the values of both password &amp; confirm FormControls. If they do not match then return the&nbsp;<code>ValidationErrors</code>. Return&nbsp;<code>null</code>&nbsp;if it values passes the Validation.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> matchPassword(control: AbstractControl): ValidationErrors | null {\r\n \r\n    const password = control.get(\"password\").value;\r\n    const confirm = control.get(\"confirm\").value;\r\n \r\n \r\n    if (password != confirm) { return { 'noMatch': true } }\r\n \r\n    return null\r\n \r\n  }</code></pre>\n\n\n\n<p>We attach the&nbsp;<code>matchPassword</code>&nbsp;Validator to&nbsp;<code>FormGroup</code>&nbsp;using its second argument as shown below.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>   this.mainForm = this.builder.group({\r\n      userName: &#91;\"\", &#91;Validators.required]],\r\n      password: &#91;\"\", &#91;Validators.required, Validators.minLength(5)]],\r\n      confirm: &#91;\"\", &#91;Validators.required]]\r\n    }, { validator: this.matchPassword });</code></pre>\n\n\n\n<p>The&nbsp;<code>FormGroup</code>&nbsp;also allows us the add more than one validator using the&nbsp;<code>Validators.compose</code>&nbsp;method.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> this.mainForm = this.builder.group({\r\n      userName: &#91;\"\", &#91;Validators.required]],\r\n      password: &#91;\"\", &#91;Validators.required, Validators.minLength(5)]],\r\n      confirm: &#91;\"\", &#91;Validators.required]]\r\n    }, {\r\n      validator: Validators.compose(\r\n        &#91;\r\n          this.matchPassword,\r\n          Validators.required\r\n        ]\r\n      )\r\n    });</code></pre>\n\n\n\n<h2>Passing Parameter</h2>\n\n\n\n<p>You can also pass the parameter to the Multiple Field Validator.</p>\n\n\n\n<p>In the following example, we pass the name of the</p>\n\n\n\n<pre class=\"wp-block-code\"><code>   this.mainForm = this.builder.group({\r\n      userName: &#91;\"\", &#91;Validators.required]],\r\n      password: &#91;\"\", &#91;Validators.required, Validators.minLength(5)]],\r\n      confirm: &#91;\"\", &#91;Validators.required]]\r\n    }, { validator: this.matchPassword2('password', 'confirm') });</code></pre>\n\n\n\n<pre class=\"wp-block-code\"><code>matchPassword2(firstControl, secondControl): ValidatorFn {\r\n \r\n    return (control: AbstractControl): ValidationErrors | null => {\r\n \r\n      const password = control.get(firstControl).value;\r\n      const confirm = control.get(secondControl).value;\r\n \r\n      if (password != confirm) { return { 'noMatch': true } }\r\n \r\n      return null\r\n \r\n    }\r\n  }</code></pre>\n\n\n\n<p>Refer to the&nbsp;Custom Validator with Parameters in Angular. Also refer to the tutorial on&nbsp;how to inject service into a Validator.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Validation Recap We assign a validator’s to a form filed, using the second argument of the&nbsp;FormControl&nbsp;as shown below. You can also attach an&nbsp;Async Validator&nbsp;as the third argument. The above syntax using the&nbsp;FormBuilder. The Validator will run only when we change the value of&nbsp;userName&nbsp;and Validates only the&nbsp;userName&nbsp;field. Cross Field Validation When we validate the multiple fields, [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [132],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3642"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=3642"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 2,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3642/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3841,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3642/revisions/3841"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=3642"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=3642"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=3642"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 3644,
+    "date": "2020-12-07T06:29:34",
+    "date_gmt": "2020-12-07T06:29:34",
+    "guid": {
+      "rendered": "http://angular.foobrdigital.com/?p=3644"
+    },
+    "modified": "2020-12-09T06:23:00",
+    "modified_gmt": "2020-12-09T06:23:00",
+    "slug": "how-to-add-validators-dynamically-using-setvalidators-in-angular",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/how-to-add-validators-dynamically-using-setvalidators-in-angular/",
+    "title": {
+      "rendered": "How to add Validators Dynamically using SetValidators in Angular"
+    },
+    "content": {
+      "rendered": "\n<h2>Adding the Validators Using the SetValidators</h2>\n\n\n\n<h3>Syntax</h3>\n\n\n\n<p>The setValidators programmatically adds the sync validators. This method will remove all the previously added sync or async validators.</p>\n\n\n\n<p><code>setValidators(newValidator: ValidatorFn | ValidatorFn[]): void</code></p>\n\n\n\n<p>Examples:</p>\n\n\n\n<pre class=\"wp-block-code\"><code> this.myform.controls&#91;\"mobile\"].setValidators(Validators.required); </code></pre>\n\n\n\n<pre class=\"wp-block-code\"><code>this.myform.controls&#91;\"mobile\"].setValidators\n(&#91;Validators.required,Validators.minLength(10)]);</code></pre>\n\n\n\n<h3>setAsyncValidators</h3>\n\n\n\n<p>The&nbsp;<code>setAsyncValidators</code>&nbsp;programmatically add the Async validators.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> setAsyncValidators(newValidator: AsyncValidatorFn |\n AsyncValidatorFn&#91;]): void </code></pre>\n\n\n\n<h2>Removing Validators Using clearValidators</h2>\n\n\n\n<p>There is no option that exists, which can remove an individual validator. Use&nbsp;<code>clearValidators</code>&nbsp;to remove all the validators of a control.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> this.myForm.controls&#91;'controlName'].clearValidators() </code></pre>\n\n\n\n<h2>Update Validation Status</h2>\n\n\n\n<p>Removing or adding the validators does not change the validity status of the form or the control immediately. The Validators run only when we change the value of the field.</p>\n\n\n\n<p>We can force angular to run the validations using the&nbsp;<code>updateValueAndValidity</code>&nbsp;method.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> this.myForm.controls&#91;'controlName'].updateValueAndValidity()</code></pre>\n\n\n\n<h2>SetValidators Example</h2>\n\n\n\n<p>The following example, shows how to use the&nbsp;<code>SetValidators</code>&nbsp;in Angular</p>\n\n\n\n<p>We have two fields&nbsp;<code>email</code>&nbsp;&amp;&nbsp;<code>mobile</code>.</p>\n\n\n\n<p>The user needs to choose, how he wants the system to notify him, using the drop-down field&nbsp;<code>notifyVia</code>. The drop-down has two options&nbsp;<code>email</code>&nbsp;&amp;&nbsp;<code>Mobile</code>.</p>\n\n\n\n<p>If the user chooses email, then we need to make the email field as a&nbsp;<code>Required</code>&nbsp;field. If he chooses the Mobile, then we must make the mobile field as&nbsp;<code>Required</code>&nbsp;field.</p>\n\n\n\n<p>We subscribe to the&nbsp;valueChanges&nbsp;event of the&nbsp;<code>notifyVia</code>&nbsp;to listen for changes and invoke the&nbsp;<code>changeValidators</code>&nbsp;method.</p>\n\n\n\n<p>In the&nbsp;<code>changeValidators</code>&nbsp;method, we check the value of&nbsp;<code>notifyVia</code>&nbsp;and add or remove the required validator using the&nbsp;<code>setValidators</code>. We also add the email validator (for email field) or MinLength validator (for mobile field). To remove the validator, we use the method&nbsp;<code>clearValidators()</code></p>\n\n\n\n<p>Finally, we use the&nbsp;<code>updateValueAndValidity</code>&nbsp;method, which forces the angular to update the validity status of the control.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> \r\nimport { Component } from '@angular/core';\r\nimport { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';\r\n \r\n@Component({\r\n  selector: 'app-root',\r\n  templateUrl: './app.component.html',\r\n})\r\nexport class AppComponent {\r\n  title = 'setValidators';\r\n \r\n  myform:FormGroup;\r\n \r\n  notifyOptions = &#91;\"Email\" ,\"SMS\"]\r\n \r\n  constructor(private fb: FormBuilder) {\r\n \r\n    this.myform = this.fb.group({\r\n      email: new FormControl(''),\r\n      mobile: new FormControl(''),\r\n      notifyVia: new FormControl('',Validators.required),\r\n    });\r\n \r\n    this.myform.get(\"notifyVia\").valueChanges\r\n      .subscribe(data=> {\r\n        this.changeValidators()\r\n      })\r\n  }\r\n \r\n \r\n  changeValidators() {\r\n    \r\n    console.log(this.myform.get(\"notifyVia\").value)\r\n \r\n    if (this.myform.get(\"notifyVia\").value==\"Email\") {\r\n      this.myform.controls&#91;\"email\"].setValidators(&#91;Validators.required,Validators.email]);\r\n      this.myform.controls&#91;\"mobile\"].clearValidators();\r\n    } else {\r\n      this.myform.controls&#91;\"email\"].clearValidators();\r\n      this.myform.controls&#91;\"mobile\"].setValidators(&#91;Validators.required,Validators.minLength(10)]);\r\n    }\r\n \r\n    this.myform.get(\"email\").updateValueAndValidity();\r\n    this.myform.get(\"mobile\").updateValueAndValidity();\r\n \r\n       \r\n  }\r\n} </code></pre>\n\n\n\n<p>The component template</p>\n\n\n\n<pre class=\"wp-block-code\"><code> \r\n&lt;form &#91;formGroup]=\"myform\">\r\n \r\n  notify :\r\n&lt;select formControlName=\"notifyVia\">\r\n  &lt;option *ngFor=\"let item of notifyOptions\" &#91;ngValue]=\"item\">{{item}}&lt;/option>\r\n&lt;/select>\r\n&lt;br>\r\n&lt;br>\r\n \r\n \r\nemail :\r\n&lt;input type=\"text\" formControlName= \"email\"/>\r\n&lt;br>\r\n&lt;br>\r\nmobile :\r\n&lt;input type=\"text\" formControlName= \"mobile\"/>\r\n&lt;br>\r\n&lt;br>\r\n \r\n&lt;button type=\"submit\" >Submit &lt;/button>\r\n&lt;/form>\r\n \r\n&lt;br>\r\n&lt;br>\r\n \r\nForm valid ---- {{myform.valid}}  &lt;br>\r\n \r\nemail valid-- {{myform.controls&#91;'email'].valid}}  &lt;br>\r\n \r\nmobile valid -- {{myform.controls&#91;'mobile'].valid}}  &lt;br></code></pre>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://www.tektutorialshub.com/wp-content/uploads/2020/09/SetValidators-Example-in-Angular.gif\" alt=\"\" class=\"wp-image-20289\"/></figure>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Adding the Validators Using the SetValidators Syntax The setValidators programmatically adds the sync validators. This method will remove all the previously added sync or async validators. setValidators(newValidator: ValidatorFn | ValidatorFn[]): void Examples: setAsyncValidators The&nbsp;setAsyncValidators&nbsp;programmatically add the Async validators. Removing Validators Using clearValidators There is no option that exists, which can remove an individual validator. Use&nbsp;clearValidators&nbsp;to [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [132],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3644"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=3644"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 2,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3644/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3842,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3644/revisions/3842"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=3644"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=3644"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=3644"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  }
+]

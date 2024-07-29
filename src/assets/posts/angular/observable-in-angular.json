@@ -1,0 +1,1002 @@
+[
+  {
+    "id": 3754,
+    "date": "2020-12-08T10:29:47",
+    "date_gmt": "2020-12-08T10:29:47",
+    "guid": {
+      "rendered": "http://angular.foobrdigital.com/?p=3754"
+    },
+    "modified": "2020-12-09T10:51:20",
+    "modified_gmt": "2020-12-09T10:51:20",
+    "slug": "angular-observable-tutorial-using-rxjs",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/angular-observable-tutorial-using-rxjs/",
+    "title": {
+      "rendered": "Angular Observable Tutorial Using RxJs"
+    },
+    "content": {
+      "rendered": "\n<h2>What is a data stream</h2>\n\n\n\n<p>A stream is a data, which arrives over a period of time. The stream of data can be anything. Like variables, user inputs, properties, caches, data structures, and even failures, etc</p>\n\n\n\n<p>Consider the example of a sequence of x &amp; y positions of mouse click events. Assume that user has clicked on the locations (12,15), (10,12), (15,20) &amp; (17,15) in that order.</p>\n\n\n\n<p>The following diagram shows how the values arrive over a period of time. As you can see stream emits the values as they happen i.e asynchronously.</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://www.tektutorialshub.com/wp-content/uploads/2020/01/mouse-click-events-as-data-streams.jpg\" alt=\"mouse click events as data streams\" class=\"wp-image-16039\"/></figure>\n\n\n\n<p>Value is not the only thing that stream emits. The stream may complete as the user closes the window or app. Or an error may happen which results in the closure of the stream. At any point in time stream may emit any of the following three things</p>\n\n\n\n<p><code><strong>Value:</strong></code>&nbsp;i.e the next value in the stream<br><strong><code>Complete:</code></strong>&nbsp;The stream has ended<br><strong><code>Error:</code></strong>&nbsp;The error has stopped the stream.</p>\n\n\n\n<p>The following diagram shows all the three possibilities in a stream</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://www.tektutorialshub.com/wp-content/uploads/2020/01/mouse-click-events-as-data-streams-with-emit-error-and-complete-events.jpg\" alt=\"mouse click events as data streams with emit error and complete events\" class=\"wp-image-16040\"/><figcaption>mouse click events as data streams with emit error and complete events</figcaption></figure>\n\n\n\n<p>As said earlier the stream of data can be anything. For Example</p>\n\n\n\n<ul><li>Mouse click or Mouse hover events with x &amp; y positions</li><li>Keyboard events like keyup, keydown, keypress, etc</li><li>Form events like value changes etc</li><li>Data which arrives after an HTTP request</li><li>User Notifications</li><li>Measurements from any sensor</li></ul>\n\n\n\n<p>Important Points regarding streams can</p>\n\n\n\n<ul><li>emit zero, one or more values of any time.</li><li>can also emit errors.</li><li>must emit the complete signal, when completes (finite streams).</li><li>can be infinite, that they never complete</li></ul>\n\n\n\n<p>Now, we have understood what is a data stream, let us look at what is Reactive Programming is</p>\n\n\n\n<h2>Reactive Programming</h2>\n\n\n\n<p>The reactive programming is all about creating the stream, emitting value, error or complete signals, manipulate, transfer or do something useful with the data streams.</p>\n\n\n\n<p>This is where the RxJs comes into the picture</p>\n\n\n\n<p>The introduction to Reactive Programming you’ve been missing&nbsp;gives you a very nice introduction to Reactive Programming.&nbsp;Introduction to Rx</p>\n\n\n\n<h2>What is RxJS</h2>\n\n\n\n<p>The&nbsp;RxJS&nbsp;(Reactive Extensions Library for JavaScript) is a javascript library, that allows us to work with asynchronous data streams</p>\n\n\n\n<p>The Angular uses the RxJS library heavily in its framework to implement Reactive Programming. Some of the examples where reactive programming used are</p>\n\n\n\n<ul><li>Reacting to an HTTP request</li><li>Value changes&nbsp;/&nbsp;Status Changes&nbsp;in Angular Forms</li><li>The Router and Forms modules use observables to listen for and respond to user-input events.</li><li>You can define custom events that send observable output data from a child to a parent component.</li><li>The HTTP module uses observables to handle AJAX requests and responses.</li></ul>\n\n\n\n<p>The RxJs has two main players</p>\n\n\n\n<ol><li>Observable</li><li>Observers ( Subscribers)</li></ol>\n\n\n\n<h2>What is an Observable</h2>\n\n\n\n<p>Observable converts the ordinary stream of data into an observable stream of data. It observes the stream of data and emits the value, complete or error signals to the consumers of the stream</p>\n\n\n\n<p>You can think of Observable it as a wrapper around the stream of data.</p>\n\n\n\n<p>Observables are declarative. You define an observable function just like any other variable. The observable function executes only when someone subscribes to it.</p>\n\n\n\n<h2>Who are observers (subscribers)</h2>\n\n\n\n<p>The Observable on its own is useless unless someone consumes the value delivered by the observable. We call them observers or subscribers.</p>\n\n\n\n<p>The observable communicates with the observers using callbacks</p>\n\n\n\n<p>The observer must subscribe with the observable to receive the value from the observer. While subscribing it optionally passes the three callbacks.&nbsp;<code>next()</code>,&nbsp;<code>error()</code>&nbsp;&amp;&nbsp;<code>complete()</code></p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://www.tektutorialshub.com/wp-content/uploads/2020/01/Angular-Observable-Tutorial-how-observable-and-observers-communicates-with-call-backs-.jpg\" alt=\"Angular Observable Tutorial how observable and observers communicates with callbacks\" class=\"wp-image-16043\"/><figcaption>Angular Observable Tutorial how observable and observers communicates with callbacks</figcaption></figure>\n\n\n\n<p>The observable starts emitting the value as soon as observer or consumer subscribes to it.</p>\n\n\n\n<p>The observable invokes the&nbsp;<code>next()</code>&nbsp;callback whenever the value arrives in the stream. It passes the value as the argument to the next callback. If the error occurs, then the&nbsp;<code>error()</code>&nbsp;callback is invoked. It invokes the&nbsp;<code>complete()</code>&nbsp;callback when the stream completes.</p>\n\n\n\n<ul><li>Observers/subscribers subscribe to Observables</li><li>Observer registers three callbacks with the observable at the time of subscribing. i .e&nbsp;<code>next()</code>,&nbsp;<code>error()</code>&nbsp;&amp;&nbsp;<code>complete()</code></li><li>All three callbacks are optional</li><li>The observer receives the data from the observer via the&nbsp;<code>next()</code>&nbsp;callback</li><li>They also receive the errors and completion events from the Observable via the&nbsp;<code>error()</code>&nbsp;&amp;&nbsp;<code>complete()</code>&nbsp;callbacks</li></ul>\n\n\n\n<h2>Angular Observable tutorial</h2>\n\n\n\n<p>Now, we have learned the basics of the RxJs Observable, let us now see how it works using an example.</p>\n\n\n\n<p>Create a new project in angular. Remove the contents from&nbsp;<code>app.component.html</code>. Open the&nbsp;<code>app.component.ts</code></p>\n\n\n\n<h3>Import the required libraries</h3>\n\n\n\n<p>RxJs library is installed automatically when you create the Angular project. Hence there is no need to install it.</p>\n\n\n\n<p>Import the Observable from the rxjs library</p>\n\n\n\n<pre class=\"wp-block-code\"><code> import { Observable } from 'rxjs'; </code></pre>\n\n\n\n<h3>Observable Creation</h3>\n\n\n\n<p>There are few ways in which you can create observable in angular. Simplest is to use the Observable constructor. The observable constructor takes observer (or subscriber) as its argument. The subscriber will run when this observable’s&nbsp;<code>subscribe()</code>&nbsp;method executes.</p>\n\n\n\n<p>The following example creates an observable of a stream of numbers 1, 2, 3, 4, 5</p>\n\n\n\n<pre class=\"wp-block-code\"><code>\r\nobs = new Observable((observer) => {\r\n     console.log(“Observable starts”)\r\n     observer.next(\"1\")\r\n     observer.next(\"2\")\r\n     observer.next(\"3\")\r\n     observer.next(\"4\")\r\n     observer.next(\"5\")\r\n   })</code></pre>\n\n\n\n<p>The variable&nbsp;<code>obs</code>&nbsp;is now of the type of observable.</p>\n\n\n\n<p>The above example declares the&nbsp;<code>obs</code>&nbsp;as the observable but does not instantiate it. To make the observable to emit values, we need to subscribe to it.</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://www.tektutorialshub.com/wp-content/uploads/2020/01/Creating-observable-in-Angular-Observable-Tutorial.jpg\" alt=\"Creating observable in Angular Observable Tutorial app\" class=\"wp-image-16046\"/><figcaption>Creating observable in Angular Observable Tutorial app</figcaption></figure>\n\n\n\n<p>In the above example, we used the Observable Constructor to create the Observable. There are many operators available with the RxJS library, which makes the task of creating the observable easy. These operators help us to create observable from an array, string, promise, any iterable, etc. Here are list some of the commonly used operators</p>\n\n\n\n<ul><li>create</li><li>defer</li><li>empty</li><li>from</li><li>fromEvent</li><li>interval</li><li>of</li><li>range</li><li>throw</li><li>timer</li></ul>\n\n\n\n<h3>Subscribing to the observable</h3>\n\n\n\n<p>We subscribe to the observable, by invoking the&nbsp;<code>subscribe</code>&nbsp;method on it. We can optionally, include the three callbacks&nbsp;<code>next()</code>,&nbsp;<code>error()</code>&nbsp;&amp;&nbsp;<code>complete()</code>&nbsp;as shown below</p>\n\n\n\n<pre class=\"wp-block-code\"><code> \r\nngOnInit() {\r\n \r\n    this.obs.subscribe(\r\n      val => { console.log(val) },                 //next callback\r\n      error => { console.log(\"error\") },           //error callback\r\n      () => { console.log(\"Completed\") }           //complete callback\r\n    )\r\n}\r\n </code></pre>\n\n\n\n<p>The complete&nbsp;<code>app.component.ts</code>&nbsp;code is as shown below.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> \r\nimport { Component, OnInit } from '@angular/core';\r\nimport { Observable } from 'rxjs';\r\n \r\n@Component({\r\n  selector: 'app-root',\r\n  templateUrl: './app.component.html',\r\n  styleUrls: &#91;'./app.component.css']\r\n})\r\nexport class AppComponent implements OnInit {\r\n  title = 'Angular Observable using RxJs - Getting Started';\r\n \r\n  obs = new Observable((observer) => {\r\n    console.log(\"Observable starts\")\r\n      observer.next(\"1\")\r\n      observer.next(\"2\")\r\n      observer.next(\"3\")\r\n      observer.next(\"4\")\r\n      observer.next(\"5\")\r\n  })\r\n \r\n  data=&#91;];\r\n \r\n  ngOnInit() {\r\n \r\n    this.obs.subscribe(\r\n      val=> { console.log(val) },\r\n      error => { console.log(\"error\")},\r\n      () => {console.log(\"Completed\")}\r\n    )\r\n  }\r\n}\r\n </code></pre>\n\n\n\n<p>Now, run the code and watch the debug window.</p>\n\n\n\n<h3>Adding interval</h3>\n\n\n\n<p>We can add a timeout to insert a delay in each&nbsp;<code>next()</code>&nbsp;callback</p>\n\n\n\n<pre class=\"wp-block-code\"><code>\r\n  obs = new Observable((observer) => {\r\n    console.log(\"Observable starts\")\r\n \r\n    setTimeout(() => { observer.next(\"1\") }, 1000);\r\n    setTimeout(() => { observer.next(\"2\") }, 2000);\r\n    setTimeout(() => { observer.next(\"3\") }, 3000);\r\n    setTimeout(() => { observer.next(\"4\") }, 4000);\r\n    setTimeout(() => { observer.next(\"5\") }, 5000);\r\n    \r\n  })</code></pre>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://www.tektutorialshub.com/wp-content/uploads/2020/01/Angular-Observable-tutorial-example-app.gif\" alt=\"Angular Observable tutorial example app\" class=\"wp-image-16050\"/><figcaption>Angular Observable tutorial example app</figcaption></figure>\n\n\n\n<h3>Error event</h3>\n\n\n\n<p>As mentioned earlier, the observable can also emit an error. This is done by invoking the&nbsp;<code>error()</code>&nbsp;callback and passing the error object. The observables stop after emitting the error signal. Hence values 4 &amp; 5 are never emitted.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>obs = new Observable((observer) => {\r\n    console.log(\"Observable starts\")\r\n \r\n    setTimeout(() => { observer.next(\"1\") }, 1000);\r\n    setTimeout(() => { observer.next(\"2\") }, 2000);\r\n    setTimeout(() => { observer.next(\"3\") }, 3000);\r\n    setTimeout(() => { observer.error(\"error emitted\") }, 3500);    //sending error event. observable stops here\r\n    setTimeout(() => { observer.next(\"4\") }, 4000);          //this code is never called\r\n    setTimeout(() => { observer.next(\"5\") }, 5000);\r\n    \r\n  })</code></pre>\n\n\n\n<p>You can send the error object as the argument to the error method</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://www.tektutorialshub.com/wp-content/uploads/2020/01/Observable-with-error-event.gif\" alt=\"Observable with error event\" class=\"wp-image-16051\"/><figcaption>Observable with the error event</figcaption></figure>\n\n\n\n<h3>Complete Event</h3>\n\n\n\n<p>Similarly the complete event. The observables stop after emitting the complete signal. Hence values 4 &amp; 5 are never emitted.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> obs = new Observable((observer) => {\r\n    console.log(\"Observable starts\")\r\n \r\n    setTimeout(() => { observer.next(\"1\") }, 1000);\r\n    setTimeout(() => { observer.next(\"2\") }, 2000);\r\n    setTimeout(() => { observer.next(\"3\") }, 3000);\r\n    setTimeout(() => { observer.complete() }, 3500);   //sending complete event. observable stops here\r\n    setTimeout(() => { observer.next(\"4\") }, 4000);    //this code is never called\r\n    setTimeout(() => { observer.next(\"5\") }, 5000);\r\n    \r\n  })</code></pre>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://www.tektutorialshub.com/wp-content/uploads/2020/01/Observable-with-complete-event.gif\" alt=\"Observable with complete event\" class=\"wp-image-16052\"/><figcaption>Observable with complete event</figcaption></figure>\n\n\n\n<h3>Operators</h3>\n\n\n\n<p>The power of observable comes from the&nbsp;operators.</p>\n\n\n\n<p>The RxJs library several functions or operators to manipulate the observable data stream. The following table lists some of the commonly used operators</p>\n\n\n\n<figure id=\"tablepress-76\" class=\"wp-block-table\"><table><thead><tr><th>AREA</th><th>OPERATORS</th></tr></thead><tbody><tr><td>Combination</td><td>combineLatest, concat, merge, startWith , withLatestFrom, zip</td></tr><tr><td>Filtering</td><td>debounceTime, distinctUntilChanged, filter, take, takeUntil</td></tr><tr><td>Transformation</td><td>bufferTime, concatMap, map, mergeMap, scan, switchMap</td></tr><tr><td>Utility</td><td>tap</td></tr><tr><td>Multicasting</td><td>share</td></tr></tbody></table></figure>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>What is a data stream A stream is a data, which arrives over a period of time. The stream of data can be anything. Like variables, user inputs, properties, caches, data structures, and even failures, etc Consider the example of a sequence of x &amp; y positions of mouse click events. Assume that user has [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [137],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3754"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=3754"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 2,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3754/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3880,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3754/revisions/3880"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=3754"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=3754"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=3754"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 3756,
+    "date": "2020-12-08T10:33:45",
+    "date_gmt": "2020-12-08T10:33:45",
+    "guid": {
+      "rendered": "http://angular.foobrdigital.com/?p=3756"
+    },
+    "modified": "2020-12-09T10:53:12",
+    "modified_gmt": "2020-12-09T10:53:12",
+    "slug": "create-observable-from-a-string-array-object-in-angular",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/create-observable-from-a-string-array-object-in-angular/",
+    "title": {
+      "rendered": "Create observable from a string, array &#038; object in angular"
+    },
+    "content": {
+      "rendered": "\n<h2>Observable creation functions</h2>\n\n\n\n<p>There are many ways to create observable in Angular. You can make use of Observable Constructor as shown in the&nbsp;observable tutorial. There are a number of functions that are available which you can use to create new observables. These operators help us to create observable from an array, string, promise, any iterable, etc. Here are some of the operators</p>\n\n\n\n<ul><li>create</li><li>defer</li><li>empty</li><li>from</li><li>fromEvent</li><li>interval</li><li>of</li><li>range</li><li>throw</li><li>timer</li></ul>\n\n\n\n<p>All the creation related operators are part of the RxJs core library. You can import it from the ‘rxjs’ library</p>\n\n\n\n<h2>Create</h2>\n\n\n\n<p>The&nbsp;<code>Create</code>&nbsp;method is one of the easiest. The create method calls the observable constructor behind the scene. Create is a method of the observable object, Hence you do not have to import it.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>ngOnInit() {\r\n \r\n   //Observable from Create Method\r\n   const obsUsingCreate = Observable.create( observer => {\r\n     observer.next( '1' )\r\n     observer.next( '2' )\r\n     observer.next( '3' )\r\n \r\n     observer.complete()\r\n   })\r\n   \r\n    obsUsingCreate\r\n      .subscribe(val => console.log(val),\r\n              error=> console.log(\"error\"),\r\n              () => console.log(\"complete\"))\r\n}\r\n \r\n \r\n \r\n****Output *****\r\n1\r\n2\r\n3\r\nComplete</code></pre>\n\n\n\n<h3>Observable Constructor</h3>\n\n\n\n<p>We looked at this in the previous tutorial. There is no difference between the&nbsp;<code>Observable.create</code>&nbsp;method and observable&nbsp;<code>constructor</code>. The&nbsp;<code>Create</code>&nbsp;method calls the constructor behind the scene.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>\r\nngOnInit() {\r\n   //Observable Using Constructor\r\n   const obsUsingConstructor = new Observable( observer => {\r\n      observer.next( '1' )\r\n      observer.next( '2' )\r\n      observer.next( '3' )\r\n \r\n      observer.complete()\r\n   })\r\n \r\n   obsUsingConstructor\r\n        .subscribe(val => console.log(val),\r\n                error=> console.log(\"error\"),\r\n                () => console.log(\"complete\"))\r\n}\r\n \r\n \r\n****Output *****\r\n1\r\n2\r\n3\r\ncomplete</code></pre>\n\n\n\n<h2>Of Operator</h2>\n\n\n\n<p>The&nbsp;<code>Of</code>&nbsp;creates the observable from the arguments that you pass into it. You can pass any number of arguments to the&nbsp;<code>Of</code>. Each argument emitted separately and one after the other. It sends the&nbsp;<code>Complete</code>&nbsp;signal in the end.</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://www.tektutorialshub.com/wp-content/uploads/2020/01/Observable-Of-Operator.jpg\" alt=\"RxJs Observable Of Operator in Angular\" class=\"wp-image-16139\"/></figure>\n\n\n\n<p>To use&nbsp;<code>of</code>&nbsp;you need to import it from&nbsp;<code>rxjs</code>&nbsp;library as shown below.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> import { of } from 'rxjs'; </code></pre>\n\n\n\n<h3>observable from an array</h3>\n\n\n\n<p>Example of sending an array. Note that the entire array is emitted at once.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>ngOnInit() {\r\n  const array=&#91;1,2,3,4,5,6,7]\r\n  const obsof1=of(array);\r\n  obsof1.subscribe(val => console.log(val),\r\n           error=> console.log(\"error\"),\r\n          () => console.log(\"complete\"))\r\n \r\n}\r\n \r\n \r\n**** Output ***\r\n&#91;1, 2, 3, 4, 5, 6, 7]\r\ncomplete</code></pre>\n\n\n\n<p>You can pass more than one array</p>\n\n\n\n<pre class=\"wp-block-code\"><code>ngOnInit() {\r\n  const array1=&#91;1,2,3,4,5,6,7]\r\n  const array2=&#91;'a','b','c','d','e','f','g']  \r\n  const obsof2=of(array1,array2 );\r\n  obsof2.subscribe(val => console.log(val),\r\n           error=> console.log(\"error\"),\r\n          () => console.log(\"complete\"))\r\n \r\n}\r\n \r\n \r\n**** Output ***\r\n&#91;1, 2, 3, 4, 5, 6, 7]\r\n&#91;'a','b','c','d','e','f','g']\r\ncomplete</code></pre>\n\n\n\n<h3>observable from a sequence of numbers</h3>\n\n\n\n<p>In the following example, we pass 1,2 &amp; 3 as the argument to the from. Each emitted separately.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> \r\nngOnInit() {\r\n    const obsof3 = of(1, 2, 3);\r\n    obsof3.subscribe(val => console.log(val),\r\n      error => console.log(\"error\"),\r\n      () => console.log(\"complete\"))\r\n \r\n}\r\n \r\n \r\n \r\n**** Output ***\r\n1\r\n2\r\n3\r\ncomplete</code></pre>\n\n\n\n<h3>observable from string</h3>\n\n\n\n<p>We pass two strings to the&nbsp;<code>of</code>&nbsp;method. Each argument is emitted as it is.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>ngOnInit() {\r\n    const obsof4 = of('Hello', 'World');\r\n    obsof4.subscribe(val => console.log(val),\r\n      error => console.log(\"error\"),\r\n      () => console.log(\"complete\"))\r\n}\r\n \r\n \r\n**** Output ***\r\nHello\r\nWorld\r\ncomplete</code></pre>\n\n\n\n<h3>observable from a value, array &amp; string</h3>\n\n\n\n<p>We can pass anything to the&nbsp;<code>Of</code>&nbsp;operator. It justs emits it back one after the other.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>ngOnInit() { \r\n    const obsof5 = of(100, &#91;1, 2, 3, 4, 5, 6, 7],\"Hello World\");\r\n    obsof5.subscribe(val => console.log(val),\r\n      error => console.log(\"error\"),\r\n      () => console.log(\"complete\"))\r\n}\r\n \r\n**** Output ***\r\n100\r\n&#91;1, 2, 3, 4, 5, 6, 7]\r\nHello World\r\ncomplete</code></pre>\n\n\n\n<h2>From&nbsp;Operator</h2>\n\n\n\n<p>From Operator takes only one argument that can be iterated and converts it into an observable.</p>\n\n\n\n<p>You can use it to convert</p>\n\n\n\n<ul><li>an Array,</li><li>anything that behaves like an array</li><li>Promise</li><li>any iterable object</li><li>collections</li><li>any observable like object</li></ul>\n\n\n\n<p>It converts almost anything that can be iterated to an Observable.</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://www.tektutorialshub.com/wp-content/uploads/2020/01/Observable-from-Operator.jpg\" alt=\"RxJs observable from operator in Angular\" class=\"wp-image-16141\"/></figure>\n\n\n\n<p>To use&nbsp;<code>from</code>&nbsp;you need to import it from&nbsp;<code>rxjs</code>&nbsp;library as shown below.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> import { from } from 'rxjs'; </code></pre>\n\n\n\n<h3>observable from an array</h3>\n\n\n\n<p>The following example converts an array into an observable. Note that each element of the array is iterated and emitted separately.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>ngOnInit() {\r\n \r\n    const array3 = &#91;1, 2, 3, 4, 5, 6, 7]\r\n    const obsfrom1 = from(array3);\r\n    obsfrom1.subscribe(val => console.log(val),\r\n      error => console.log(\"error\"),\r\n      () => console.log(\"complete\"))\r\n \r\n}\r\n \r\n*** Output ****\r\n1\r\n2\r\n3\r\n4\r\n5\r\n6\r\n7\r\ncomplete</code></pre>\n\n\n\n<h3>Observable from string</h3>\n\n\n\n<p>The&nbsp;<code>from</code>&nbsp;operator iterates over each character of the string and then emits it. The example is as shown below.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>ngOnInit() { \r\n  const obsfrom2 = from('Hello World');\r\n    obsfrom2.subscribe(val => console.log(val),\r\n      error => console.log(\"error\"),\r\n      () => console.log(\"complete\"))\r\n}\r\n \r\n \r\n*** Output ****\r\nH\r\ne\r\nl\r\nl\r\no\r\n \r\nW\r\no\r\nr\r\nl\r\nd\r\ncomplete</code></pre>\n\n\n\n<h3>Observable from collection</h3>\n\n\n\n<p>Anything that can be iterated can be converted to observable. Here is an example using a collection.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>ngOnInit() {\r\n      let myMap = new Map()\r\n      myMap.set(0, 'Hello')\r\n      myMap.set(1, 'World')\r\n      const obsFrom3 = from(myMap);\r\n      obsFrom3.subscribe(val => console.log(val),\r\n        error => console.log(\"error\"),\r\n        () => console.log(\"complete\"))\r\n)\r\n \r\n*** output ***\r\n&#91;0, \"Hello\"]\r\n&#91;1, \"World\"]\r\ncomplete</code></pre>\n\n\n\n<h3>Observable from iterable</h3>\n\n\n\n<p>Any Iterable types like Generator functions can be converted into an observable using&nbsp;<em>from</em>&nbsp;the operator.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>ngOnInit() {\r\n     const obsFrom4 = from(this.generateNos())\r\n      obsFrom4.subscribe(val => console.log(val),\r\n      error => console.log(\"error\"),\r\n      () => console.log(\"complete\"))\r\n}\r\n \r\n*generateNos() {\r\n   var i = 0;\r\n   while (i &lt; 5) {\r\n     i = i + 1;\r\n     yield i;\r\n  }\r\n \r\n \r\n*** Output ***\r\n1\r\n2\r\n3\r\n4\r\n5\r\n </code></pre>\n\n\n\n<h3>Observable from promise</h3>\n\n\n\n<p>Use it to convert a Promise to an observable</p>\n\n\n\n<pre class=\"wp-block-code\"><code>ngOnInit() {\r\n    const promiseSource = from(new Promise(resolve => resolve('Hello World!')));\r\n    const obsFrom5 = from(promiseSource);\r\n    obsFrom5.subscribe(val => console.log(val),\r\n      error => console.log(\"error\"),\r\n      () => console.log(\"complete\"))\r\n}\r\n \r\n*** Output ****\r\nHello World\r\ncomplete</code></pre>\n\n\n\n<h2>Of Vs From</h2>\n\n\n\n<figure id=\"tablepress-77\" class=\"wp-block-table\"><table><thead><tr><th>Of</th><th>from</th></tr></thead><tbody><tr><td>Accepts variable no of arguments</td><td>Accepts only one argument</td></tr><tr><td>emits each argument as it is without changing anything</td><td>iterates over the argument and emits each value</td></tr></tbody></table></figure>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Observable creation functions There are many ways to create observable in Angular. You can make use of Observable Constructor as shown in the&nbsp;observable tutorial. There are a number of functions that are available which you can use to create new observables. These operators help us to create observable from an array, string, promise, any iterable, [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [137],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3756"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=3756"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 2,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3756/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3881,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3756/revisions/3881"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=3756"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=3756"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=3756"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 3758,
+    "date": "2020-12-08T10:35:57",
+    "date_gmt": "2020-12-08T10:35:57",
+    "guid": {
+      "rendered": "http://angular.foobrdigital.com/?p=3758"
+    },
+    "modified": "2020-12-09T10:54:34",
+    "modified_gmt": "2020-12-09T10:54:34",
+    "slug": "create-observable-from-event-using-fromevent-in-angular",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/create-observable-from-event-using-fromevent-in-angular/",
+    "title": {
+      "rendered": "Create Observable from Event using FromEvent in Angular"
+    },
+    "content": {
+      "rendered": "\n<h2>Syntax</h2>\n\n\n\n<pre class=\"wp-block-code\"><code> \r\nfromEvent&lt;T>(target: FromEventTarget&lt;T>, \r\n             eventName: string, \r\n             options: EventListenerOptions, \r\n             resultSelector: (...args: any&#91;]) => T): Observable&lt;T></code></pre>\n\n\n\n<p><code>FromEventTarget</code>&nbsp;is the first argument to&nbsp;<code>fromevent</code>. It can be a DOM EventTarget, Node.js EventEmitter, JQuery-like event target, NodeList or HTMLCollection. The target must have a method to register/unregister the event handler. (<code>addEventListener</code>/&nbsp;<code>removeEventListener</code>&nbsp;in case of DOM Event target)</p>\n\n\n\n<p><code>eventName</code>&nbsp;is the second argument, which is a type of event we want to listen to.</p>\n\n\n\n<p><code>Options</code>&nbsp;are the additional argument that we want to pass to , when registering the event handler i.e&nbsp;<code>addEventListener</code></p>\n\n\n\n<p><code>resultSelector</code>&nbsp;is optional and will be deprecated in future versions.</p>\n\n\n\n<h2>Example of fromEvent</h2>\n\n\n\n<p>To create an observable from any event, first, we need to get the reference to DOM element using the&nbsp;<code>viewchild</code>&nbsp;&amp;&nbsp;<code>ElementRef</code>. For example the following code gets the reference to the&nbsp;<code>button</code>&nbsp;element with the id&nbsp;<code>#btn</code></p>\n\n\n\n<pre class=\"wp-block-code\"><code> //Template&lt;button #btn>Button&lt;/button> </code></pre>\n\n\n\n<pre class=\"wp-block-code\"><code> //Component @ViewChild('btn', { static: true }) button: ElementRef; </code></pre>\n\n\n\n<p>The code&nbsp;<code>this.button.nativeElement</code>&nbsp;returns the native DOM element. We pass this as the first argument to the&nbsp;<code>fromEvent</code>&nbsp;to create an observable to the&nbsp;<code>click</code>&nbsp;event.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> buttonClick() {\r\n    this.buttonSubscription =  fromEvent(this.button.nativeElement, 'click')\r\n        .subscribe(res => console.log(res));\r\n  }\r\n </code></pre>\n\n\n\n<p>We can invoke the above method from the&nbsp;<code>ngAfterViewInit</code>&nbsp;method. Note that the&nbsp;<code>@ViewChild</code>will not initialize the&nbsp;<code>btn</code>&nbsp;element until the&nbsp;<code>ngOnInit</code>&nbsp;Hence we are using the&nbsp;<code>ngAfterViewInit</code>&nbsp;here.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>   ngAfterViewInit() {    this.buttonClick();  }  </code></pre>\n\n\n\n<h3>How it works</h3>\n\n\n\n<p>When we subscribe to an observable, which we created using the&nbsp;<code>fromEvent</code>&nbsp;method, it registers the event handler using the&nbsp;<code>addEventListener</code>&nbsp;in the DOM element. Whenever the user clicks on the button,&nbsp;<code>fromevent</code>&nbsp;captures the value and emits it to the subscriber as the first argument. When we unsubscribe, it unregisters the event handler using the&nbsp;<code>removeEventListener</code>.</p>\n\n\n\n<h2><code>fromevent</code>&nbsp;from button click</h2>\n\n\n\n<p>The following is the complete code of&nbsp;<code>fromevent</code>&nbsp;from a button click.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>import { Component, Input, ViewChild, ElementRef, AfterViewInit, OnInit, OnDestroy } from '@angular/core';\r\nimport { Observable, of, from, fromEvent } from 'rxjs';\r\nimport { debounceTime } from 'rxjs/operators';\r\n \r\n@Component({\r\n  selector: 'app-root',\r\n  templateUrl: './app.component.html',\r\n  styleUrls: &#91;'./app.component.css']\r\n})\r\nexport class AppComponent implements AfterViewInit , OnInit, OnDestroy {\r\n \r\n  title = 'Angular fromEvent Example';\r\n \r\n  @ViewChild('btn', { static: true }) button: ElementRef;\r\n  \r\n  buttonSubscription\r\n \r\n  constructor(private elm: ElementRef) {\r\n  }\r\n \r\n  ngOnInit() {\r\n  }\r\n \r\n \r\n  ngAfterViewInit() {\r\n    this.buttonClick();\r\n  }\r\n \r\n \r\n  buttonClick() {\r\n    this.buttonSubscription =  fromEvent(this.button.nativeElement, 'click')\r\n        .pipe(debounceTime(300))\r\n        .subscribe(res => console.log(res));\r\n  }\r\n \r\n \r\n  ngOnDestroy() {\r\n    this.buttonSubscription.unsubscribe()\r\n  }\r\n \r\n}</code></pre>\n\n\n\n<h2><code>fromevent</code>&nbsp;from scroll</h2>\n\n\n\n<p>The following code shows how to create observable from the window&nbsp;<code>scroll</code>&nbsp;event</p>\n\n\n\n<pre class=\"wp-block-code\"><code>\r\n  scroll() {\r\n    const source = fromEvent(window, 'scroll');\r\n    source.subscribe(val => console.log(val));\r\n  }</code></pre>\n\n\n\n<h2><code>fromevent</code>&nbsp;from keyup</h2>\n\n\n\n<p>The following code shows how to create observable from a&nbsp;<code>keyUp</code>&nbsp;event.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>\r\n//Component\r\n \r\n@ViewChild('name', { static: true }) name: ElementRef;\r\n \r\nngAfterViewInit() {\r\n    fromEvent(this.name.nativeElement, 'keyup')\r\n      .subscribe(res => console.log(res));\r\n  }</code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Syntax FromEventTarget&nbsp;is the first argument to&nbsp;fromevent. It can be a DOM EventTarget, Node.js EventEmitter, JQuery-like event target, NodeList or HTMLCollection. The target must have a method to register/unregister the event handler. (addEventListener/&nbsp;removeEventListener&nbsp;in case of DOM Event target) eventName&nbsp;is the second argument, which is a type of event we want to listen to. Options&nbsp;are the additional [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [137],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3758"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=3758"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 2,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3758/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3882,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3758/revisions/3882"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=3758"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=3758"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=3758"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 3760,
+    "date": "2020-12-08T10:37:54",
+    "date_gmt": "2020-12-08T10:37:54",
+    "guid": {
+      "rendered": "http://angular.foobrdigital.com/?p=3760"
+    },
+    "modified": "2020-12-09T10:56:05",
+    "modified_gmt": "2020-12-09T10:56:05",
+    "slug": "using-angular-observable-pipe-with-example",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/using-angular-observable-pipe-with-example/",
+    "title": {
+      "rendered": "Using Angular observable pipe with example"
+    },
+    "content": {
+      "rendered": "\n<h2>RxJs Operators</h2>\n\n\n\n<p>The operators are very important components of the Rxjs library. They are functions that take an observable as input and transform it into a new observable and return it. We use them to manipulate the observable data stream.</p>\n\n\n\n<p>For Example.</p>\n\n\n\n<p><code>Map</code>&nbsp;operator applies a given project function to each value emitted by the source Observable and emits the resulting values as an Observable.</p>\n\n\n\n<p><code>Filter</code>&nbsp;operator filter items from the source observable based on some condition and returns the filtered value as a new observable</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://www.tektutorialshub.com/wp-content/uploads/2020/06/The-RxJS-Operator-transforms-the-source-into-a-new-observable.-Use-pipe-to-invoke-operators.png\" alt=\"The RxJS Operator transforms the source into a new observable. Use pipe to invoke operators\" class=\"wp-image-19255\"/></figure>\n\n\n\n<p>The following table lists some of the commonly used operators</p>\n\n\n\n<figure id=\"tablepress-76\" class=\"wp-block-table\"><table><thead><tr><th>AREA</th><th>OPERATORS</th></tr></thead><tbody><tr><td>Combination</td><td>combineLatest, concat, merge, startWith , withLatestFrom, zip</td></tr><tr><td>Filtering</td><td>debounceTime, distinctUntilChanged, filter, take, takeUntil</td></tr><tr><td>Transformation</td><td>bufferTime, concatMap, map, mergeMap, scan, switchMap</td></tr><tr><td>Utility</td><td>tap</td></tr><tr><td>Multicasting</td><td>share</td></tr></tbody></table></figure>\n\n\n\n<h2>Using pipe to combine operators</h2>\n\n\n\n<p>The pipe method accepts operators such as&nbsp;<code>filter</code>,&nbsp;<code>map</code>, as arguments. Each argument must be separated by a comma. The order of the operators is important because when a user subscribes to an observable, the pipe executes the operators in a sequence in which they are added.</p>\n\n\n\n<p>There are two ways we can use the pipe. One as an instance of observable and the other way is to use if as standalone method</p>\n\n\n\n<p>To use observable we need it to import from the&nbsp;<code>rxjs</code>&nbsp;library. If you are intend to use the&nbsp;<code>pipe</code>&nbsp;standalone function, then you also need to import it as well. All the operators are available in the library&nbsp;<code>rxjs/operators</code>.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>import { Observable, of, pipe} from 'rxjs';\r\nimport { map, filter, tap } from 'rxjs/operators'</code></pre>\n\n\n\n<h3>Pipe as an instance method</h3>\n\n\n\n<p>The pipe as an instance method is used as below. We the operators&nbsp;<code>op1</code>,&nbsp;<code>op2</code>&nbsp;etc are passed as the argument to&nbsp;<code>pipe</code>&nbsp;method. The output of&nbsp;<code>op1</code>&nbsp;method becomes input of the&nbsp;<code>op2</code>&nbsp;operator and so forth.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> obs.pipe(  op1(),  op2(),  op3(),  op3(),) </code></pre>\n\n\n\n<h4>Example :&nbsp;<code>Pipe</code>&nbsp;with&nbsp;<code>Map</code>,&nbsp;<code>Filter</code>&nbsp;&amp;&nbsp;<code>Tap</code></h4>\n\n\n\n<p>Here is the example of using pipe with&nbsp;<code>map</code>&nbsp;&amp;&nbsp;<code>filter</code>&nbsp;operator.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> \r\nimport { Component, OnInit } from '@angular/core';\r\nimport { Observable, of} from 'rxjs';\r\nimport { map, filter, tap } from 'rxjs/operators'\r\n \r\n \r\n@Component({\r\n  selector: 'app-root',\r\n  templateUrl: './app.component.html',\r\n  styleUrls: &#91;'./app.component.css']\r\n})\r\nexport class AppComponent implements OnInit {\r\n \r\n  obs = new Observable((observer) => {\r\n    observer.next(1)\r\n    observer.next(2)\r\n    observer.next(3)\r\n    observer.next(4)\r\n    observer.next(5)\r\n    observer.complete()\r\n  }).pipe(\r\n    filter(data => data > 2),                    //filter Operator\r\n    map((val) => {return val as number * 2}),    //map operator\r\n  )\r\n \r\n data = &#91;];\r\n \r\n  ngOnInit() {\r\n    this.obs1.subscribe(\r\n      val => {\r\n        console.log(this.data)\r\n      }\r\n    )\r\n  }\r\n \r\n}\r\n \r\n \r\n//result\r\n&#91;6, 8, 10]\r\n </code></pre>\n\n\n\n<p>The following example makes use of pipe with&nbsp;<code>map</code>,&nbsp;<code>filter</code>&nbsp;&amp;&nbsp;<code>tap</code>&nbsp;operator. The&nbsp;<code>tap</code>&nbsp;operator returns a new observable which is a mirror copy of the source observable. We use it mostly for debugging purposes ( for example for logging the values of observable as shown below).</p>\n\n\n\n<pre class=\"wp-block-code\"><code> \r\nimport { Component, OnInit } from '@angular/core';\r\nimport { Observable, of, pipe } from 'rxjs';\r\nimport { map, filter, tap } from 'rxjs/operators'\r\n \r\n \r\n@Component({\r\n  selector: 'app-root',\r\n  templateUrl: './app.component.html',\r\n  styleUrls: &#91;'./app.component.css']\r\n})\r\nexport class AppComponent implements OnInit {\r\n \r\n  obs = new Observable((observer) => {\r\n    observer.next(1)\r\n    observer.next(2)\r\n    observer.next(3)\r\n    observer.next(4)\r\n    observer.next(5)\r\n    observer.complete()\r\n  }).pipe(\r\n    tap(data => console.log('tap '+data)),           //tap\r\n    filter(data => data > 2),                        //filter\r\n    tap(data => console.log('filter '+data)),        //tap\r\n    map((val) => { return val as number * 2 }),      //map\r\n    tap(data => console.log('final '+data)),         //tap\r\n  )\r\n \r\n \r\n  data = &#91;];\r\n \r\n  ngOnInit() {\r\n \r\n    this.obs.subscribe(\r\n      val => {\r\n        this.data.push(val)\r\n        console.log(this.data)\r\n      }\r\n    )\r\n \r\n  }\r\n}\r\n </code></pre>\n\n\n\n<h3>Pipe as stand alone method</h3>\n\n\n\n<p>We can also use the&nbsp;<code>pipe</code>&nbsp;as a standalone function to compose operators and re use the&nbsp;<code>pipe</code>&nbsp;at other places.</p>\n\n\n\n<h4>Example</h4>\n\n\n\n<pre class=\"wp-block-code\"><code>import { Component, OnInit } from '@angular/core';\r\nimport { Observable, of, pipe } from 'rxjs';\r\nimport { map, filter, tap } from 'rxjs/operators'\r\n \r\n \r\n@Component({\r\n  selector: 'app-root',\r\n  templateUrl: './app.component.html',\r\n  styleUrls: &#91;'./app.component.css']\r\n})\r\nexport class AppComponent implements OnInit {\r\n \r\n \r\n  customOperator = pipe(\r\n    tap(data => console.log('tap '+data)),\r\n    filter(data => data > 2),\r\n    tap(data => console.log('filter '+data)),\r\n    map((val) => {\r\n      return val as number * 2\r\n    }),\r\n    tap(data => console.log('final '+data)),\r\n  );\r\n \r\n \r\n  obs = new Observable((observer) => {\r\n    observer.next(1)\r\n    observer.next(2)\r\n    observer.next(3)\r\n    observer.next(4)\r\n    observer.next(5)\r\n    observer.complete()\r\n  }).pipe(    \r\n    this.customOperator,\r\n    tap(data => console.log('final '+data)),\r\n  )\r\n \r\n \r\n  data = &#91;];\r\n \r\n  ngOnInit() {\r\n \r\n    this.obs.subscribe(\r\n      val => {\r\n        this.data.push(val)\r\n        console.log(this.data)\r\n      }\r\n    )\r\n \r\n  }\r\n}</code></pre>\n\n\n\n<p>You can also use the stand alone pipe as shown below.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>\r\n  customOperator = pipe(\r\n    tap(data => console.log('tap '+data)),\r\n    filter(data => data > 2),\r\n    tap(data => console.log('filter '+data)),\r\n    map((val) => {\r\n      return val as number * 2\r\n    }),\r\n    tap(data => console.log('final '+data)),\r\n  );\r\n \r\n \r\n  obs = new Observable((observer) => {\r\n    observer.next(1)\r\n    observer.next(2)\r\n    observer.next(3)\r\n    observer.next(4)\r\n    observer.next(5)\r\n    observer.complete()\r\n  })\r\n  \r\n  ngOnInit() {\r\n    this.customOperator(this.obs).subscribe();\r\n  }</code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>RxJs Operators The operators are very important components of the Rxjs library. They are functions that take an observable as input and transform it into a new observable and return it. We use them to manipulate the observable data stream. For Example. Map&nbsp;operator applies a given project function to each value emitted by the source [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [137],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3760"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=3760"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 2,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3760/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3883,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3760/revisions/3883"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=3760"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=3760"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=3760"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 3762,
+    "date": "2020-12-08T10:40:35",
+    "date_gmt": "2020-12-08T10:40:35",
+    "guid": {
+      "rendered": "http://angular.foobrdigital.com/?p=3762"
+    },
+    "modified": "2020-12-09T10:57:33",
+    "modified_gmt": "2020-12-09T10:57:33",
+    "slug": "using-map-operator-in-angular",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/using-map-operator-in-angular/",
+    "title": {
+      "rendered": "Using Map operator in Angular"
+    },
+    "content": {
+      "rendered": "\n<h2>Syntax</h2>\n\n\n\n<p>The syntax of the&nbsp;<code>map</code>&nbsp;operator is as follows.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> map&lt;T, R>(project: (value: T, index: number) => R, thisArg?: any): OperatorFunction&lt;T, R></code></pre>\n\n\n\n<p><code>project:</code>&nbsp;is a function that we use to manipulate the values emitted by the source observable. The project can accept two arguments. one is&nbsp;<code>value</code>&nbsp;i.e. the value emitted by the observable. The second argument is&nbsp;<code>index</code>&nbsp;number. The&nbsp;<code>index</code>&nbsp;number starts from&nbsp;<code>0</code>&nbsp;for the first value emitted and incremented by one for every subsequent value emitted. It is similar to the index of an array.</p>\n\n\n\n<p><code>thisArg</code>: is optional and default is&nbsp;undefined.It defines what&nbsp;<code>this</code>&nbsp;is in the&nbsp;<code>project</code>&nbsp;function.</p>\n\n\n\n<h2>Using Observable Map</h2>\n\n\n\n<p>To use&nbsp;<code>map</code>&nbsp;first we need to import it from the&nbsp;<code>rxjs/operators</code>&nbsp;library.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> import { map } from 'rxjs/operators' </code></pre>\n\n\n\n<p>Next,&nbsp;create an observable from array of numbers&nbsp;as shown below.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> srcArray = from(&#91;1, 2, 3, 4]); </code></pre>\n\n\n\n<p>Use the&nbsp;pipe&nbsp;method to and invoke the map method.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>\r\n  multiplyBy2() {\r\n    this.srcArray\r\n    .pipe(map(val => { return val * 2}))\r\n    .subscribe(val => { console.log(val)})\r\n  }\r\n </code></pre>\n\n\n\n<p>The project function accepts only one argument&nbsp;<code>val</code>&nbsp;and returns it multiplied by 2.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> map(val => { return val * 2}) </code></pre>\n\n\n\n<p>Finally, we subscribe and print the result in console. The output is 2,4,6,8</p>\n\n\n\n<p>The following image explains how values from the source observable ( i.e.1,2,3,4 ) go through the&nbsp;<code>map</code>&nbsp;which transforms it into new values by multiplying it by 2.</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://www.tektutorialshub.com/wp-content/uploads/2020/06/Angular-Observable-Map-Operator.png\" alt=\"\" class=\"wp-image-19280\"/></figure>\n\n\n\n<p>You can also access the second argument&nbsp;<code>index</code>&nbsp;as shown below. It starts as 0 for the first value and gets incremented for every subsequent value</p>\n\n\n\n<pre class=\"wp-block-code\"><code>\r\n  multiplyBy2() {\r\n \r\n    this.srcArray\r\n      .pipe(map((val, i) => {         //index\r\n        console.log(i)                //0\r\n        return val * 2;\r\n      }))\r\n      .subscribe(val => { console.log(val) })\r\n  }\r\n </code></pre>\n\n\n\n<h2>Map Examples</h2>\n\n\n\n<h3>Convert input to upper case</h3>\n\n\n\n<pre class=\"wp-block-code\"><code>\r\nsrcName$ = from(&#91;'John', 'Tom', 'Katy'])\r\n \r\ntoUpperCase() {\r\n  this.srcName$\r\n   .pipe(map(data => {\r\n     return data.toUpperCase();\r\n   }))\r\n   .subscribe(data => console.log(data))\r\n}\r\n </code></pre>\n\n\n\n<h3>Map to a Single Property</h3>\n\n\n\n<pre class=\"wp-block-code\"><code>\r\nsrcObject = from(&#91;\r\n  { fName: 'Sachin', lName: \"Tendulkar\" },\r\n  { fName: 'Rahul', lName: \"Dravid\" },\r\n  { fName: 'Saurav', lName: \"Ganguly\" },\r\n]);\r\n \r\n \r\nMapToSingleProperty() {\r\n  this.srcObject\r\n   .pipe(map(data => { return data.fName + ' ' + data.lName }))\r\n   .subscribe(data => { console.log(data) })\r\n}\r\n \r\n//output\r\nSachin Tendulkar\r\nRahul Dravid\r\nSaurav Ganguly</code></pre>\n\n\n\n<h3>Using Map with&nbsp;HTTP&nbsp;Request</h3>\n\n\n\n<p>The following code gets the list of dogs breeds from the&nbsp;<code>https://dog.ceo/api/breeds/list/all</code>&nbsp;API and uses the&nbsp;<code>keyValue</code>&nbsp;pipe to transform the object into an array of key-value pairs.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';\r\nimport { Observable, from, pipe, fromEvent } from 'rxjs';\r\nimport { map, filter, tap } from 'rxjs/operators'\r\nimport { HttpClient } from '@angular/common/http';\r\nimport { KeyValuePipe } from '@angular/common';\r\n \r\n@Component({\r\n  selector: 'app-root',\r\n  templateUrl: './app.component.html',\r\n  styleUrls: &#91;'./app.component.css'],\r\n  providers: &#91;KeyValuePipe]\r\n})\r\nexport class AppComponent implements OnInit {\r\n \r\nconstructor(private http: HttpClient,\r\n             private keyValue: KeyValuePipe) {\r\n }\r\n \r\n@ViewChild('btn', { static: true }) button: ElementRef;\r\n \r\n  $dogsBreed(): Observable&lt;any> {\r\n    return this.http.get&lt;any>(\"https://dog.ceo/api/breeds/list/all\")\r\n  }\r\n \r\n  getDogsBreed() {\r\n \r\n    this.$dogsBreed()\r\n      .pipe(map(data => {\r\n        var dogs = this.keyValue.transform(data.message)\r\n        console.log(dogs)\r\n      }))\r\n      .subscribe();\r\n \r\n  }\r\n}</code></pre>\n\n\n\n<h3>Using with event</h3>\n\n\n\n<p>You can&nbsp;create observable from event&nbsp;and use the&nbsp;<code>map</code>&nbsp;to transform the values.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>  buttonClick() {\r\n    fromEvent(this.button.nativeElement, 'click')\r\n        .pipe(map( ev => (ev as any).clientX))\r\n        .subscribe(res => console.log(res));\r\n  }</code></pre>\n\n\n\n<h3>map with filter</h3>\n\n\n\n<pre class=\"wp-block-code\"><code>\r\nsrcArray = from(&#91;1, 2, 3, 4]);\r\n \r\n  filterWithMap() {\r\n    this.srcArray\r\n    .pipe(\r\n      filter(val => {\r\n        return val > 2;\r\n      }),\r\n      map((val, i) => {\r\n        return val * 2;\r\n      }))\r\n    .subscribe(val => { console.log(val) })\r\n  }\r\n </code></pre>\n\n\n\n<h3>Multiple map</h3>\n\n\n\n<p>The following examples shows use of multiple map functions. The first map adds 10, while the second mad multiplies by 2.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>\r\n  mulitpleMaps() {\r\n    this.srcArray\r\n    .pipe(\r\n      map(val => {\r\n        return val + 10;\r\n      }),\r\n      map((val, i) => {\r\n        return val * 2;\r\n      }))\r\n    .subscribe(val => { console.log(val) })\r\n  }</code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Syntax The syntax of the&nbsp;map&nbsp;operator is as follows. project:&nbsp;is a function that we use to manipulate the values emitted by the source observable. The project can accept two arguments. one is&nbsp;value&nbsp;i.e. the value emitted by the observable. The second argument is&nbsp;index&nbsp;number. The&nbsp;index&nbsp;number starts from&nbsp;0&nbsp;for the first value emitted and incremented by one for every subsequent [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [137],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3762"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=3762"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 2,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3762/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3884,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3762/revisions/3884"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=3762"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=3762"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=3762"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 3764,
+    "date": "2020-12-08T10:42:48",
+    "date_gmt": "2020-12-08T10:42:48",
+    "guid": {
+      "rendered": "http://angular.foobrdigital.com/?p=3764"
+    },
+    "modified": "2020-12-09T10:59:29",
+    "modified_gmt": "2020-12-09T10:59:29",
+    "slug": "using-catcherror-operator-in-angular-observable",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/using-catcherror-operator-in-angular-observable/",
+    "title": {
+      "rendered": "Using Catcherror Operator in Angular Observable"
+    },
+    "content": {
+      "rendered": "\n<h2>Handling Errors in Observable</h2>\n\n\n\n<p>We can handle the errors at two places.</p>\n\n\n\n<ol><li>Using the&nbsp;<code>error</code>&nbsp;callback of the&nbsp;<code>subscribe</code>&nbsp;method</li><li>Catch errors in the observable stream</li></ol>\n\n\n\n<h3>Using Error Callback of Subscribe method</h3>\n\n\n\n<p>We subscribe to an Observable by using the&nbsp;<code>subscribe</code>&nbsp;method. The subscribe method accepts three callback methods as arguments. They are the&nbsp;<code>next</code>&nbsp;value,&nbsp;<code>error</code>,&nbsp; or&nbsp;<code>complete</code>&nbsp;event. We use the error callback to catch &amp; handle the errors.</p>\n\n\n\n<p>For Example, consider the following code. The&nbsp;<code>obs</code>&nbsp;observable multiplies the values (<code>srcArray</code>) by 2 using the&nbsp;map&nbsp;operator. If the result is&nbsp;NaN, then we throw an error using&nbsp;<code>throw new Error(\"Result is NaN\")</code>.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> \r\n  srcArray = from(&#91;1, 2, 'A', 4]);\r\n \r\n  obs = this.srcArray\r\n    .pipe(\r\n      map(val => {\r\n        let result = val as number * 2;\r\n        if (Number.isNaN(result)) {\r\n          console.log('Errors Occurred in Stream')\r\n          throw new Error(\"Result is NaN\")\r\n          }\r\n          return result\r\n        }),\r\n    );\r\n \r\n  ngOnInit() {\r\n \r\n    this.obs.subscribe(\r\n      el => {\r\n        console.log('Value Received ' + el)\r\n      },\r\n      err => {\r\n        console.log(\"Error Returned to Subscriber \" + err)\r\n      },\r\n      () => console.log(\"Processing Complete.\")\r\n    )\r\n  }\r\n \r\n \r\n**** Output *****\r\nValue Received 2\r\nValue Received 4\r\nErrors Occurred in Stream\r\nError Caught at subscriber Error: Result is NaN</code></pre>\n\n\n\n<p>We subscribe and start to receive the values from the&nbsp;<code>obs</code>&nbsp;observable in the&nbsp;<code>ngOnInit</code>&nbsp;method. When the observable stream throws an error, it invokes the&nbsp;<code>error</code>&nbsp;callback. In the&nbsp;<code>error</code>&nbsp;callback, we decide what to do with the error.</p>\n\n\n\n<p>Note that once the observable errors out it will not emit any values neither it calls the&nbsp;<code>complete</code>&nbsp;callback. Our subscription method will never receive the final value of 8.</p>\n\n\n\n<h3>Catch errors in the observable stream</h3>\n\n\n\n<p>Another option to catch errors is to use the&nbsp;<code>CatchError</code>&nbsp;Operator. The CatchError Operators catches the error in the observable stream as and when the error happens. This allows us to retry the failed observable or use a replacement observable.</p>\n\n\n\n<h2>Using&nbsp;<code>CatchError</code>&nbsp;Operator</h2>\n\n\n\n<p>To use CatchError operator, we need to import it from the&nbsp;<code>rxjs/operators</code>&nbsp;as shown below</p>\n\n\n\n<pre class=\"wp-block-code\"><code>import { catchError } from 'rxjs/operators' </code></pre>\n\n\n\n<h3>Syntax</h3>\n\n\n\n<p>The catchError is a&nbsp;pipeable operator. We can use it in a&nbsp;Pipe method&nbsp;similar to the other operators like&nbsp;Map, etc.</p>\n\n\n\n<p>The catchError operator gets two argument.</p>\n\n\n\n<p>The first argument is&nbsp;<code>err</code>, which is the error object that was caught.</p>\n\n\n\n<p>The second argument is&nbsp;<code>caught</code>, which is the source observable. We can return it back effectively retrying the observable.</p>\n\n\n\n<p>The catchError&nbsp;<em><strong>must return a new observable</strong></em>&nbsp;or it can throw an error.</p>\n\n\n\n<h3>Returning a new observable</h3>\n\n\n\n<p>The following examples shows the use of&nbsp;<code>catchError</code>&nbsp;operator.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>srcArray = from(&#91;1, 2, 'A', 4]);\r\n \r\nobs = this.srcArray\r\n  .pipe(\r\n    map(val => {\r\n      let result = val as number * 2;\r\n      if (Number.isNaN(result)) {\r\n        console.log('Errors Occurred in Stream')\r\n        throw new Error(\"Result is NaN\")\r\n      }\r\n      return result\r\n    }),\r\n    catchError(error => {\r\n      console.log('Caught in CatchError. Returning 0')\r\n      return of(0);     //return from(&#91;'A','B','C'])\r\n    })\r\n  );\r\n \r\n \r\n//Output\r\nValue Received 2\r\nValue Received 4\r\nErrors Occurred in Stream\r\nCaught in CatchError. Returning 0\r\nValue Received 0\r\nObservable Completed</code></pre>\n\n\n\n<p>In the code above, the map emits the values 2 &amp; 4, which is input to the&nbsp;<code>catchError</code>. Since there are no errors,&nbsp;<code>catchError</code>&nbsp;forwards it to the output. Hence the subscribers receive values 2 &amp; 4.</p>\n\n\n\n<p>The&nbsp;<code>catchError</code>&nbsp;comes into play, when the&nbsp;map operator&nbsp;throws an error. The&nbsp;<code>catchError</code>&nbsp;handle the error and must return a new observable (or throw an error). In the example above we return a new observable i.e.&nbsp;<code>of(0)</code>. You can also emit any observable for example&nbsp;<code>return&nbsp;from(['A','B','C'])</code>&nbsp;etc</p>\n\n\n\n<p>The new observable is automatically subscribed and the subscriber gets the value&nbsp;<code>0</code>. The new observable now finishes and emits the&nbsp;<code>complete</code>&nbsp;event.</p>\n\n\n\n<p>Since the original observable ended in a error, it will never emit the the value 8.</p>\n\n\n\n<h3>Throws a new Error</h3>\n\n\n\n<p><code>catchError</code>&nbsp;can also throw an error. In the following example, we use the&nbsp;<code>throw new Error(error)</code>&nbsp;to throw a JavaScript error. This error will propagate to the subscriber as shown in the example below.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>obs2 = this.srcArray\r\n  .pipe(\r\n    map(val => {\r\n      let result = val as number * 2;\r\n      if (Number.isNaN(result)) {\r\n        console.log('Errors Occurred in Stream')\r\n        throw new Error(\"Result is NaN\")\r\n      }\r\n      return result\r\n    }),\r\n    catchError(error => {\r\n      console.log('Caught in CatchError. Throwing error')\r\n      throw new Error(error)\r\n    })\r\n  );\r\n \r\n \r\n//OUTPUT\r\nValue Received 2\r\nValue Received 4\r\nErrors Occurred in Stream\r\nCaught in CatchError. Throwing error\r\nError Caught at subscriber Error: Error: Result is NaN</code></pre>\n\n\n\n<p>We can also make use of&nbsp;<code>throwError</code>&nbsp;to return an observable. Remember that the throwError does not throw an error like&nbsp;<code>throw new Error</code>&nbsp;but returns an observable, which emits an error immediately.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>obs3 = this.srcArray\r\n  .pipe(\r\n    map(val => {\r\n      let result = val as number * 2;\r\n      if (Number.isNaN(result)) {\r\n        console.log('Errors Occurred in Stream')\r\n        throw new Error(\"Result is NaN\")\r\n      }\r\n      return result\r\n    }),\r\n    catchError(error => {\r\n      console.log('Caught in CatchError. Throwing error')\r\n      return throwError(error);\r\n    })\r\n  );\r\n \r\n//OUTPUT\r\nValue Received 2\r\nValue Received 4\r\nErrors Occurred in Stream\r\nCaught in CatchError. Throwing error\r\nError Caught at subscriber Error: Result is NaN</code></pre>\n\n\n\n<h3>Retrying</h3>\n\n\n\n<p>You can also retry the observable using the Retry operator.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>obs5 = this.srcArray\r\n.pipe(\r\n  map(val => {\r\n    let result = val as number * 2;\r\n    if (Number.isNaN(result)) {\r\n      console.log('Errors Occurred in Stream')\r\n      throw new Error(\"Result is NaN\")\r\n    }\r\n    return result\r\n  }),\r\n  retry(2),\r\n  catchError((error,src) => {\r\n    console.log('Caught in CatchError. Throwing error')\r\n    throw new Error(error)\r\n  })\r\n);\r\n \r\n \r\n//Output\r\nValue Received 2\r\nValue Received 4\r\nErrors Occurred in Stream\r\nValue Received 2\r\nValue Received 4\r\nErrors Occurred in Stream\r\nValue Received 2\r\nValue Received 4\r\nErrors Occurred in Stream\r\nCaught in CatchError. Throwing error\r\nError Caught at subscriber Error: Error: Result is NaN</code></pre>\n\n\n\n<p>The&nbsp;<code>catchError</code>&nbsp;gets the source observable as the second argument. If we return it, it will get subscribed again effectively retrying the observable.</p>\n\n\n\n<p>Ensure that you keep track of no of tries so that you can stop the observable after a few failed attempts. Otherwise, you may run into an infinite loop if the observable always emits an error.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>obs4 = this.srcArray\r\n.pipe(\r\n  map(val => {\r\n    let result = val as number * 2;\r\n    if (Number.isNaN(result)) {\r\n      console.log('Errors Occurred in Stream')\r\n      throw new Error(\"Result is NaN\")\r\n    }\r\n    return result\r\n  }),\r\n  catchError((error,src) => {\r\n    console.log('Caught in CatchError. Throwing error')\r\n    this.count++;\r\n    if (this.count &lt; 2) {\r\n      return src;\r\n    } else {\r\n      throw new Error(error)\r\n    }\r\n  })\r\n);</code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Handling Errors in Observable We can handle the errors at two places. Using the&nbsp;error&nbsp;callback of the&nbsp;subscribe&nbsp;method Catch errors in the observable stream Using Error Callback of Subscribe method We subscribe to an Observable by using the&nbsp;subscribe&nbsp;method. The subscribe method accepts three callback methods as arguments. They are the&nbsp;next&nbsp;value,&nbsp;error,&nbsp; or&nbsp;complete&nbsp;event. We use the error callback to [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [137],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3764"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=3764"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 2,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3764/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3885,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3764/revisions/3885"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=3764"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=3764"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=3764"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 3766,
+    "date": "2020-12-08T10:45:28",
+    "date_gmt": "2020-12-08T10:45:28",
+    "guid": {
+      "rendered": "http://angular.foobrdigital.com/?p=3766"
+    },
+    "modified": "2020-12-09T11:00:51",
+    "modified_gmt": "2020-12-09T11:00:51",
+    "slug": "using-switchmap-in-angular",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/using-switchmap-in-angular/",
+    "title": {
+      "rendered": "Using SwitchMap in Angular"
+    },
+    "content": {
+      "rendered": "\n<h2>Syntax</h2>\n\n\n\n<p>The syntax of the&nbsp;<code>SwitchMap</code>&nbsp;operator is as shown below.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>switchMap(project: (value: T, index: number) => O): OperatorFunction&lt;T, ObservedValueOf&lt;O>> </code></pre>\n\n\n\n<p><code>project:</code>&nbsp;is a function that we use to manipulate the values emitted by the source observable. The project can accept two arguments. one is&nbsp;<code>value</code>&nbsp;i.e. the value emitted by the source observable. The second argument is&nbsp;<code>index</code>&nbsp;number. The&nbsp;<code>index</code>&nbsp;number starts from&nbsp;<code>0</code>&nbsp;for the first value emitted and incremented by one for every subsequent value emitted. It is similar to the index of an array.&nbsp;<strong>The project function must return an observable</strong>.</p>\n\n\n\n<h2>SwitchMap Example</h2>\n\n\n\n<p>To use SwitchMap in Angular first we need to import it our&nbsp;Component&nbsp;or&nbsp;Service.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> import { switchMap } from 'rxjs/operators'; </code></pre>\n\n\n\n<p>The following code shows how to use SwitchMap in Angular. We have two observables&nbsp;<code>srcObservable</code>&nbsp;which emits&nbsp;<code>1,2,3,4</code>&nbsp;&amp;&nbsp;<code>innerObservable</code>&nbsp;which emits&nbsp;<code>'A','B','C','D'</code>.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> \r\nlet srcObservable= of(1,2,3,4)\r\nlet innerObservable= of('A','B','C','D')\r\n \r\nsrcObservable.pipe(\r\n  switchMap( val => {\r\n    console.log('Source value '+val)\r\n    console.log('starting new observable')\r\n    return innerObservable\r\n  })\r\n)\r\n.subscribe(ret=> {\r\n  console.log('Recd ' + ret);\r\n})\r\n \r\n \r\n//Output\r\nSource value 1\r\nstarting new observable\r\nRecd A\r\nRecd B\r\nRecd C\r\nRecd D\r\nSource value 2\r\nstarting new observable\r\nRecd A\r\nRecd B\r\nRecd C\r\nRecd D\r\nSource value 3\r\nstarting new observable\r\nRecd A\r\nRecd B\r\nRecd C\r\nRecd D\r\nSource value 4\r\nstarting new observable\r\nRecd A\r\nRecd B\r\nRecd C\r\nRecd D\r\n </code></pre>\n\n\n\n<p>The project function is the first argument to the switchMap. It takes the values from the&nbsp;<code>srcObservable</code>. For each value, it receives from the&nbsp;<code>srcObservable</code>&nbsp;(i. e. 1,2,3 &amp;4) it creates a new observable i.e.&nbsp;<code>innerObservable.</code></p>\n\n\n\n<p>SwitchMap automatically subscribes to the innerObservable returned by the project function. The innerObservable emits the values (A,B,C,D), and pushes it to the stream</p>\n\n\n\n<p>Hence the subscribers will receive the values A, B, C, D four times. Once for each value of the&nbsp;<code>srcObservable</code>.</p>\n\n\n\n<h2>SwitchMap Vs Map</h2>\n\n\n\n<p>The map operators emits value as observable. The SwitchMap creates a inner observable, subscribes to it and emits its value as observable.</p>\n\n\n\n<p>The Following example shows the difference between them.</p>\n\n\n\n<p>The map operator below maps the value coming from the source observable to a new value by multiplying it by 2. It then emits it into the observable stream. The subscribers will receive the values 2,4,6 &amp; 8.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let obs= of(1,2,3,4)\r\n \r\n//Using MAP\r\nobs.pipe(\r\n  map(val => {\r\n    return val*2      //Returning Value\r\n  })\r\n)\r\n.subscribe(ret=> {\r\n  console.log('Recd from map : ' + ret);\r\n})\r\n \r\n//Output\r\nRecd from map : 2\r\nRecd from map : 4\r\nRecd from map : 6\r\nRecd from map : 8\r\n </code></pre>\n\n\n\n<p>We can write the above code using SwitchMap as follows. The only thing that changes is how we return the new value in the project function. The map example returns the value as&nbsp;<code>val*2</code>, while the SwitchMap returns new observable (<code>of(val*2)</code>) using the&nbsp;<code>of</code>&nbsp;function. It also subscribes to the newly created observable and emits its value to the stream.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>\r\nlet obs= of(1,2,3,4)\r\n \r\nobs.pipe(\r\n   switchMap( val => {\r\n     return of(val*2)  //Returning observable\r\n   })\r\n)\r\n.subscribe(ret=> {\r\n  console.log('Recd from switchMap : ' + ret);\r\n })\r\n \r\n//Output\r\nRecd from switchMap : 2\r\nRecd from switchMap : 4\r\nRecd from switchMap : 6\r\nRecd from switchMap : 8</code></pre>\n\n\n\n<h2>SwitchMap switches to the most recent observable</h2>\n\n\n\n<p>Whenever SwitchMap subscribes to a new inner observable, it unsubscribes from the previous one.</p>\n\n\n\n<p>In the following example, we create an observable from the&nbsp;<code>click</code>&nbsp;event of a&nbsp;<code>button</code>&nbsp;using the&nbsp;<code>fromEvent</code>&nbsp;method. The SwitchMap operator returns an observable using the&nbsp;interval&nbsp;method. The&nbsp;interval&nbsp;method creates an infinite observable, which emits a sequence of integers spaced by a given time interval.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';\r\nimport { of, from, fromEvent, interval, Observable } from 'rxjs';\r\nimport { switchMap, map, catchError } from 'rxjs/operators';\r\n \r\n@Component({\r\n  selector: 'app-root',\r\n  template: `&lt;button #button>Click Me&lt;/button>`,\r\n})\r\nexport class AppComponent implements AfterViewInit{\r\n \r\n  @ViewChild('button',{static:true}) button;\r\n  clicks$:Observable&lt;any>;\r\n \r\n  ngAfterViewInit() {\r\n    this.clicks$ = fromEvent(this.button.nativeElement, 'click');\r\n    this.switchExample();\r\n  }\r\n \r\n  switchExample() {\r\n    this.clicks$\r\n      .pipe(\r\n        switchMap(() => {\r\n          return interval(500)\r\n        })\r\n      )\r\n      .subscribe( val => console.log(val));\r\n  }\r\n}</code></pre>\n\n\n\n<p>When you click on the button, the&nbsp;<code>clicks</code>&nbsp;observable emits its first value. The&nbsp;<code>switchMap</code>&nbsp;replaces it with the&nbsp;<code>interval</code>&nbsp;observable, which starts emitting value starting from 0 every 500ms.</p>\n\n\n\n<p>When you click again, the&nbsp;<code>switchMap</code>&nbsp;unsubscribes from the previous&nbsp;<code>interval</code>&nbsp;observable and starts new one, which again starts to emit value from 0.</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://www.tektutorialshub.com/wp-content/uploads/2020/06/Angular-SwitchMap-Example.gif\" alt=\"\" class=\"wp-image-19556\"/></figure>\n\n\n\n<h2>Using SwitchMap in Angular</h2>\n\n\n\n<p>The following are some of the real use cases for the SwitchMap in Angular</p>\n\n\n\n<h3>With Route Parameters</h3>\n\n\n\n<p>When we use the&nbsp;Angular Router&nbsp;to&nbsp;Pass parameter to route, we need to read it in our component class. We do that by subscribing to the&nbsp;<code>paramMap</code>&nbsp;to get the&nbsp;<code>id</code>. We then use the&nbsp;<code>id</code>&nbsp;to retrieve the&nbsp;<code>product</code>&nbsp;data.</p>\n\n\n\n<p>The code is as shown below.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> \r\nngOnInit() {\r\n    this._Activatedroute.paramMap.subscribe(params => { \r\n       this.service.getProduct(+params.get('id')) \r\n          .subscribe((product: Product) => this.product = product);\r\n    });\r\n  }</code></pre>\n\n\n\n<p>Consider the example where the user navigates to the&nbsp;<code>/product/1</code>&nbsp;route. The service will send the query to the database to get the Product with id 1. Now, the user decides to navigate to the route&nbsp;<code>/product/2</code>. This will also result in another query for the Product being sent to the database. It is possible that the result of the second query arrives before the first query. In such a scenario, we will be in the route&nbsp;<code>/product/2</code>&nbsp;, while our component displays the data of the product 1.</p>\n\n\n\n<p>We can easily solve the above issue using the&nbsp;<code>switchMap</code>. When&nbsp;<code>SwitchMap</code>&nbsp;creates the second observable it unsubscribes from all the previous observable. Hence even if the Product 1 data arrives late, it would be discarded as there are no subscribers</p>\n\n\n\n<pre class=\"wp-block-code\"><code>\r\nngOnInit() {\r\n \r\n    this.activatedRoute.paramMap\r\n      .pipe(\r\n        switchMap((params: Params) => {\r\n          return this.service.getProduct(params.get('id'))\r\n        }\r\n        ))\r\n      .subscribe((product: Product) => this.product = product);\r\n}</code></pre>\n\n\n\n<h3>Angular Forms ValueChanges event</h3>\n\n\n\n<p>The similar situations described above can also happen when we subscribe to the&nbsp;ValueChanges&nbsp;event and use that to get data from the back end.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>this.mainForm.get(\"productCode\").valueChanges\r\n.pipe(\r\n  debounceTime(700)\r\n)\r\n.subscribe(val=> {\r\n  this.queryDepositData(val)\r\n    .subscribe(data => {\r\n      this.product=data;\r\n  })\r\n})</code></pre>\n\n\n\n<p>The switchMap ensures that only the result from the last observable populates the Product</p>\n\n\n\n<pre class=\"wp-block-code\"><code> \r\nthis.mainForm.get(\"productCode\").valueChanges\r\n.pipe(\r\n  debounceTime(700),\r\n  switchMap(val => {\r\n    return this.queryDepositData();\r\n  })\r\n)\r\n.subscribe(data => {\r\n  this.product=data;\r\n})</code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Syntax The syntax of the&nbsp;SwitchMap&nbsp;operator is as shown below. project:&nbsp;is a function that we use to manipulate the values emitted by the source observable. The project can accept two arguments. one is&nbsp;value&nbsp;i.e. the value emitted by the source observable. The second argument is&nbsp;index&nbsp;number. The&nbsp;index&nbsp;number starts from&nbsp;0&nbsp;for the first value emitted and incremented by one for [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [137],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3766"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=3766"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 2,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3766/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3886,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3766/revisions/3886"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=3766"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=3766"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=3766"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 3768,
+    "date": "2020-12-08T10:48:21",
+    "date_gmt": "2020-12-08T10:48:21",
+    "guid": {
+      "rendered": "http://angular.foobrdigital.com/?p=3768"
+    },
+    "modified": "2020-12-09T11:04:36",
+    "modified_gmt": "2020-12-09T11:04:36",
+    "slug": "using-mergemap-in-angular",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/using-mergemap-in-angular/",
+    "title": {
+      "rendered": "Using MergeMap in Angular"
+    },
+    "content": {
+      "rendered": "\n<h2>Syntax</h2>\n\n\n\n<p>The syntax of the&nbsp;<code>MergeMap</code>&nbsp;operator is as shown below.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> mergeMap(project: (value: T, index: number) => O): OperatorFunction&lt;T, ObservedValueOf&lt;O>> </code></pre>\n\n\n\n<p><code>project:</code>&nbsp;is a function that we use to manipulate the values emitted by the source observable. The project function accepts two arguments. one is&nbsp;<code>value</code>&nbsp;i.e. the value emitted by the source observable. The second argument is&nbsp;<code>index</code>&nbsp;number. The&nbsp;<code>index</code>&nbsp;number starts from&nbsp;<code>0</code>&nbsp;for the first value emitted and incremented by one for every subsequent value emitted. It is similar to the index of an array.&nbsp;<strong>The project function must return an observable</strong>.</p>\n\n\n\n<h2>MergeMap Example</h2>\n\n\n\n<p>To use MergeMap in Angular first we need to import it our&nbsp;Component&nbsp;or&nbsp;Service.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> import { mergeMap } from 'rxjs/operators'; \n</code></pre>\n\n\n\n<p>The following code shows how to use MergeMap in Angular. We have two observables&nbsp;<code>srcObservable</code>&nbsp;which emits&nbsp;<code>1,2,3,4</code>&nbsp;&amp;&nbsp;<code>innerObservable</code>&nbsp;which emits&nbsp;<code>'A','B','C','D'</code>.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let srcObservable= of(1,2,3,4)\r\nlet innerObservable= of('A','B','C','D')\r\n \r\nsrcObservable.pipe(\r\n  mergeMap( val => {\r\n    console.log('Source value '+val)\r\n    console.log('starting new observable')\r\n    return innerObservable\r\n  })\r\n)\r\n.subscribe(ret=> {\r\n  console.log('Recd ' + ret);\r\n})\r\n \r\n \r\n//Output\r\nSource value 1\r\nstarting new observable\r\nRecd A\r\nRecd B\r\nRecd C\r\nRecd D\r\nSource value 2\r\nstarting new observable\r\nRecd A\r\nRecd B\r\nRecd C\r\nRecd D\r\nSource value 3\r\nstarting new observable\r\nRecd A\r\nRecd B\r\nRecd C\r\nRecd D\r\nSource value 4\r\nstarting new observable\r\nRecd A\r\nRecd B\r\nRecd C\r\nRecd D</code></pre>\n\n\n\n<p>The project function is the first argument to the MergeMap. It takes the values from the&nbsp;<code>srcObservable</code>. For each value, it receives from the&nbsp;<code>srcObservable</code>&nbsp;(i. e. 1,2,3 &amp;4) it creates a new observable i.e.&nbsp;<code>innerObservable.</code></p>\n\n\n\n<p>MergeMap automatically subscribes to the&nbsp;<code>innerObservable</code>&nbsp;returned by the project function. The&nbsp;<code>innerObservable</code>&nbsp;emits the values (A, B, C, D), and pushes it to the stream</p>\n\n\n\n<p>Hence the subscribers will receive the values A, B, C, D&nbsp;<strong>four</strong>&nbsp;times. Once for each value of the&nbsp;<code>srcObservable</code>.</p>\n\n\n\n<h2>MergeMap Vs Map</h2>\n\n\n\n<p>The&nbsp;map&nbsp;operators emit value as observable. The MergeMap creates an inner observable, subscribes to it, and emits its value as observable.</p>\n\n\n\n<p>The Following example shows the difference between MergeMap &amp;&nbsp;Map.</p>\n\n\n\n<p>The&nbsp;Map&nbsp;operator below maps the value coming from the source observable to a new value by multiplying it by 2. It then emits it into the observable stream. The subscribers will receive the values 2, 4, 6 &amp; 8.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> \r\nlet obs= of(1,2,3,4)\r\n \r\n//Using MAP\r\nobs.pipe(\r\n  map(val => {\r\n    return val*2      //Returning Value\r\n  })\r\n)\r\n.subscribe(ret=> {\r\n  console.log('Recd from map : ' + ret);\r\n})\r\n \r\n//Output\r\nRecd from map : 2\r\nRecd from map : 4\r\nRecd from map : 6\r\nRecd from map : 8\r\n </code></pre>\n\n\n\n<p>We can achieve the same using the MergeMap also. The only thing that changes is how we return the new value from our project function. The&nbsp;map&nbsp;returns the value as&nbsp;<code>val*2</code>, while the MergeMap returns the value as observable (<code>of(val*2)</code>) using the&nbsp;<code>of</code>&nbsp;function. It also subscribes to the newly created observable and emits its value to the stream.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let obs= of(1,2,3,4)\r\n \r\nobs.pipe(\r\n   mergeMap( val => {\r\n     return of(val*2)  //Returning observable\r\n   })\r\n)\r\n.subscribe(ret=> {\r\n  console.log('Recd from mergeMap : ' + ret);\r\n })\r\n \r\n//Output\r\nRecd from mergeMap: 2\r\nRecd from mergeMap: 4\r\nRecd from mergeMap: 6\r\nRecd from mergeMap: 8</code></pre>\n\n\n\n<h2>MergeMap combines results of inner observable</h2>\n\n\n\n<p>MergeMap never cancels any of its inner observable. It waits for them to finish and emit value. Note that the inner observable’s might finish in an order that is different from the order in which they are subscribed. MergeMap does not care about the order.</p>\n\n\n\n<p>In the following example, we create an observable from the&nbsp;<code>click</code>&nbsp;event of a&nbsp;<code>button</code>&nbsp;using the&nbsp;<code>fromEvent</code>&nbsp;method. On every click of the button, the MergeMap operator returns an inner observable&nbsp;<code>delayedObs</code></p>\n\n\n\n<p>The&nbsp;<code>delayedObs</code>&nbsp;emits 5 values separated by 1000 ms.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';\r\nimport { of, from, fromEvent, interval, Observable } from 'rxjs';\r\nimport { switchMap, map, catchError } from 'rxjs/operators';\r\n \r\n@Component({\r\n  selector: 'app-root',\r\n  template: `&lt;button #button>Click Me&lt;/button>`,\r\n})\r\nexport class AppComponent implements AfterViewInit{\r\n \r\n  @ViewChild('button',{static:true}) button;\r\n  clicks$:Observable&lt;any>;\r\n \r\n  ngAfterViewInit() {\r\n    this.clicks$ = fromEvent(this.button.nativeElement, 'click');\r\n    this.mergeMapExample();\r\n  }\r\n \r\n  delayedObs(count:number) {\r\n    return new Observable((observer) => {\r\n      setTimeout(() => { observer.next(count+\" A\") }, 1000);\r\n      setTimeout(() => { observer.next(count+\" B\") }, 2000);\r\n      setTimeout(() => { observer.next(count+\" C\") }, 3000);\r\n      setTimeout(() => { observer.next(count+\" D\") }, 4000);\r\n      setTimeout(() => { observer.next(count+\" E\"); observer.complete() }, 5000);\r\n    })\r\n  }\r\n \r\n  mergeMapExample() {\r\n \r\n    let obs=\r\n \r\n    this.clicks$\r\n      .pipe(\r\n        mergeMap(() => {\r\n          this.count=this.count+1;\r\n          return this.delayedObs(this.count)\r\n        })\r\n      )\r\n      .subscribe(val => console.log(val));\r\n  }\r\n \r\n}</code></pre>\n\n\n\n<p>When you click on the button, the&nbsp;<code>clicks</code>&nbsp;observable emits its first value. Inside the&nbsp;<code>MergeMap</code>&nbsp;we increase the count by 1 and pass it to the&nbsp;<code>delayedObs</code>. The&nbsp;<code>mergeMap</code>&nbsp;subscribes to the&nbsp;<code>delayedObs</code>. It starts emitting values A to E prepended by the count.</p>\n\n\n\n<p>When you click again, the&nbsp;<code>mergeMap</code>&nbsp;again subscribes to the&nbsp;<code>delayedObs</code>&nbsp;and it starts to emit the values again.</p>\n\n\n\n<p>The&nbsp;<code>mergeMap</code>&nbsp;collects all the emitted values as they arrive from all of its inner observables and emits it into the subscribers.</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://www.tektutorialshub.com/wp-content/uploads/2020/07/Angular-MergeMap-Example.gif\" alt=\"MergeMap Example in Angular\" class=\"wp-image-19579\"/></figure>\n\n\n\n<h2>Using MergeMap in Angular</h2>\n\n\n\n<p>The following are some of the real use cases for the MergeMap in Angular</p>\n\n\n\n<h3>Merging values from two or more HTTP Calls</h3>\n\n\n\n<p>Consider a scenario where you receive data from an observable (outer observable). For each of those values, you want to call another observable (inner observable) to get more data. The scenario like this is an ideal use case for MergeMap</p>\n\n\n\n<p>In the following example, we have an array of a breed of dogs. We convert the&nbsp;array into an observable. This becomes our outer observable</p>\n\n\n\n<p>For each of those dog breeds emitted by the outer observable, we make an HTTP request to get the sub-breeds using the free&nbsp;Dog API. The URL for the HTTP request constructed using the dog breed, which we receive from the outer observable.</p>\n\n\n\n<p>The&nbsp;<code>MergeMap</code>&nbsp;automatically subscribes to all of its inner observable and waits for them to complete. It then pushes the values from them into the subscribers.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>\r\nof(\"hound\", \"mastiff\", \"retriever\")        //outer observable\r\n  .pipe(\r\n    mergeMap(breed => {\r\n      const url = 'https://dog.ceo/api/breed/' + breed + '/list';\r\n      return this.http.get&lt;any>(url)       //inner observable   \r\n    })\r\n  )\r\n  .subscribe(data => {\r\n    console.log(data)\r\n  })\r\n </code></pre>\n\n\n\n<p>The above code, without using the&nbsp;<code>MergeMap</code>&nbsp;is as follows. The code makes use of nested observable.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>\r\nof(\"hound\", \"mastiff\", \"retriever\")\r\n  .subscribe(breed => {\r\n    const url = 'https://dog.ceo/api/breed/' + breed + '/list';\r\n \r\n    this.http.get&lt;any>(url)\r\n      .subscribe(data => {\r\n        console.log(data)\r\n      })\r\n  })</code></pre>\n\n\n\n<h3>Using ForkJoin with MergeMap</h3>\n\n\n\n<p>The MergeMap create a one inner observable for each value of outer observable. To Create more than one inner observable, we can make use of the&nbsp;<code>ForkJoin</code>&nbsp;Operator.</p>\n\n\n\n<p>In the following example, along with a list of breeds, we also send a query for a random image of the dog breed. This requires us to send two&nbsp;HTTP get request in Angular. We create two observables&nbsp;<code>obs1</code>&nbsp;&amp;&nbsp;<code>obs2</code>&nbsp;to do that. Then we use the&nbsp;<code>forJoin</code>&nbsp;to merge&nbsp;<code>obs1</code>&nbsp;with&nbsp;<code>obs2</code>&nbsp;and return a new observable.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>MergeHTTPRequestWithFork() {\r\n \r\n  //const url='https://dog.ceo/api/breed/'+hound+'/list';\r\n \r\n  of(\"hound\", \"mastiff\", \"retriever\")\r\n    .pipe(\r\n      mergeMap(breed => {\r\n        const url1 = 'https://dog.ceo/api/breed/' + breed + '/list';\r\n        const url2 = 'https://dog.ceo/api/breed/' + breed + '/images/random';\r\n \r\n        let obs1= this.http.get&lt;any>(url1)\r\n        let obs2= this.http.get&lt;any>(url2)\r\n \r\n        return forkJoin(obs1,obs2)\r\n \r\n      })\r\n    )\r\n    .subscribe(data => {\r\n      console.log(data)\r\n    })\r\n \r\n}</code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Syntax The syntax of the&nbsp;MergeMap&nbsp;operator is as shown below. project:&nbsp;is a function that we use to manipulate the values emitted by the source observable. The project function accepts two arguments. one is&nbsp;value&nbsp;i.e. the value emitted by the source observable. The second argument is&nbsp;index&nbsp;number. The&nbsp;index&nbsp;number starts from&nbsp;0&nbsp;for the first value emitted and incremented by one for [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [137],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3768"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=3768"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 2,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3768/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3887,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3768/revisions/3887"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=3768"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=3768"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=3768"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 3770,
+    "date": "2020-12-08T10:51:47",
+    "date_gmt": "2020-12-08T10:51:47",
+    "guid": {
+      "rendered": "http://angular.foobrdigital.com/?p=3770"
+    },
+    "modified": "2020-12-09T11:06:35",
+    "modified_gmt": "2020-12-09T11:06:35",
+    "slug": "using-concatmap-in-angular",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/using-concatmap-in-angular/",
+    "title": {
+      "rendered": "Using concatMap in Angular"
+    },
+    "content": {
+      "rendered": "\n<h2>Syntax</h2>\n\n\n\n<p>The syntax of the&nbsp;<code>concatMap</code>&nbsp;operator is as shown below.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>concatMap(project: (value: T, index: number) => O): OperatorFunction&lt;T, ObservedValueOf&lt;O>> </code></pre>\n\n\n\n<p><code>project:</code>&nbsp;is a function that we use to manipulate the values emitted by the source observable. The project function accepts two arguments. one is&nbsp;<code>value</code>&nbsp;i.e. the value emitted by the source observable. The second argument is&nbsp;<code>index</code>&nbsp;number. The&nbsp;<code>index</code>&nbsp;number starts from&nbsp;<code>0</code>&nbsp;for the first value emitted and incremented by one for every subsequent value emitted. It is similar to the index of an array.&nbsp;<strong>The project function must return an observable</strong>.</p>\n\n\n\n<h2>ConcatMap Example</h2>\n\n\n\n<p>To use concatMap in Angular first we need to import it our&nbsp;Component&nbsp;or&nbsp;Service.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> import { concatMap } from 'rxjs/operators'; </code></pre>\n\n\n\n<p>In the following code, we have two observables&nbsp;<code>srcObservable</code>&nbsp;which emits&nbsp;<code>1,2,3,4</code>&nbsp;&amp;&nbsp;<code>innerObservable</code>&nbsp;which emits&nbsp;<code>'A','B','C','D'</code>.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let srcObservable= of(1,2,3,4)\r\nlet innerObservable= of('A','B','C','D')\r\n \r\nsrcObservable.pipe(\r\n  concatMap( val => {\r\n    console.log('Source value '+val)\r\n    console.log('starting new observable')\r\n    return innerObservable\r\n  })\r\n)\r\n.subscribe(ret=> {\r\n  console.log('Recd ' + ret);\r\n})\r\n \r\n \r\n//Output\r\nSource value 1\r\nstarting new observable\r\nRecd A\r\nRecd B\r\nRecd C\r\nRecd D\r\nSource value 2\r\nstarting new observable\r\nRecd A\r\nRecd B\r\nRecd C\r\nRecd D\r\nSource value 3\r\nstarting new observable\r\nRecd A\r\nRecd B\r\nRecd C\r\nRecd D\r\nSource value 4\r\nstarting new observable\r\nRecd A\r\nRecd B\r\nRecd C\r\nRecd D</code></pre>\n\n\n\n<p>The ConcatMap receives its values from the&nbsp;<code>srcObservable</code>. For each value, it creates a new observable i.e.&nbsp;<code>innerObservable.</code>&nbsp;It also automatically subscribes to the&nbsp;<code>innerObservable</code>. The&nbsp;<code>innerObservable</code>&nbsp;emits the values (A, B, C, D), and pushes it to the subscribers.</p>\n\n\n\n<p>The ConcactMap differs from the MergeMap, the way it handles the inner observable. ConcatMap always waits for the previous inner observable to finish before creating a new observble. This will ensure that the subscribers will receive the data in the order in which the observable’s are subscribed.</p>\n\n\n\n<p>Hence the subscribers will receive the values A, B, C, D&nbsp;<strong>four</strong>&nbsp;times. Once for each value of the&nbsp;<code>srcObservable</code>.</p>\n\n\n\n<h2>ConcatMap Vs Map</h2>\n\n\n\n<p>The&nbsp;map&nbsp;operators emit value as observable. The ConcatMap creates an inner observable, subscribes to it, and emits its value as observable. It emits the value in the order in which it creates the observable.</p>\n\n\n\n<p>The Following example shows the difference between ConcatMap &amp;&nbsp;Map.</p>\n\n\n\n<p>The&nbsp;Map&nbsp;operator below maps the value coming from the source observable to a new value by multiplying it by 2. It then emits it into the observable stream. The subscribers will receive the values 2, 4, 6 &amp; 8.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let obs= of(1,2,3,4)\r\n \r\n//Using MAP\r\nobs.pipe(\r\n  map(val => {\r\n    return val*2      //Returning Value\r\n  })\r\n)\r\n.subscribe(ret=> {\r\n  console.log('Recd from map : ' + ret);\r\n})\r\n \r\n//Output\r\nRecd from map : 2\r\nRecd from map : 4\r\nRecd from map : 6\r\nRecd from map : 8\r\n </code></pre>\n\n\n\n<p>In the ConcatMap example, only thing that changes is how we return the new value from our project function. The&nbsp;map&nbsp;returns the value as&nbsp;<code>val*2</code>, while the concatMap returns the value as observable (<code>of(val*2)</code>) using the&nbsp;<code>of</code>&nbsp;function. It also subscribes to the newly created observable and emits its value to the stream.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> \r\nlet obs= of(1,2,3,4)\r\n \r\nobs.pipe(\r\n   concatMap( val => {\r\n     return of(val*2)  //Returning observable\r\n   })\r\n)\r\n.subscribe(ret=> {\r\n  console.log('Recd from concatMap : ' + ret);\r\n })\r\n \r\n//Output\r\nRecd from concatMap: 2\r\nRecd from concatMap: 4\r\nRecd from concatMap: 6\r\nRecd from concatMap: 8</code></pre>\n\n\n\n<h2>ConcatMap combines inner observable and keeps the order</h2>\n\n\n\n<p>ConcatMap never cancels any of its inner observable. It waits for them to finish and emit value. It also waits for the previous inner observable to finish before creating a new observable.</p>\n\n\n\n<p>In the following example, we create an observable from the&nbsp;<code>click</code>&nbsp;event of a&nbsp;<code>button</code>&nbsp;using the&nbsp;<code>fromEvent</code>&nbsp;method. On every click of the button, the ConcatMap operator returns an inner observable&nbsp;<code>delayedObs</code></p>\n\n\n\n<p>The&nbsp;<code>delayedObs</code>&nbsp;emits 5 values separated by 1000 ms.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';\r\nimport { of, from, fromEvent, interval, Observable } from 'rxjs';\r\nimport { switchMap, map, catchError } from 'rxjs/operators';\r\n \r\n@Component({\r\n  selector: 'app-root',\r\n  template: `&lt;button #button>Click Me&lt;/button>`,\r\n})\r\nexport class AppComponent implements AfterViewInit{\r\n \r\n  @ViewChild('button',{static:true}) button;\r\n  clicks$:Observable&lt;any>;\r\n \r\n  ngAfterViewInit() {\r\n    this.clicks$ = fromEvent(this.button.nativeElement, 'click');\r\n    this.concatMapExample3();\r\n  }\r\n \r\n  delayedObs(count:number) {\r\n    return new Observable((observer) => {\r\n      setTimeout(() => { observer.next(count+\" A\") }, 1000);\r\n      setTimeout(() => { observer.next(count+\" B\") }, 2000);\r\n      setTimeout(() => { observer.next(count+\" C\") }, 3000);\r\n      setTimeout(() => { observer.next(count+\" D\") }, 4000);\r\n      setTimeout(() => { observer.next(count+\" E\"); observer.complete() }, 5000);\r\n    })\r\n  }\r\n \r\n  concatMapExample3() {\r\n \r\n    let obs=\r\n \r\n    this.clicks$\r\n      .pipe(\r\n        concatMap(() => {\r\n          this.count=this.count+1;\r\n          return this.delayedObs(this.count)\r\n        })\r\n      )\r\n      .subscribe(val => console.log(val));\r\n  }\r\n \r\n}</code></pre>\n\n\n\n<p>When you click on the button, the&nbsp;<code>clicks</code>&nbsp;observable emits its first value. Inside the&nbsp;<code>concatMap</code>&nbsp;we increase the count by 1 and pass it to the&nbsp;<code>delayedObs</code>. The&nbsp;<code>concatMap</code>&nbsp;subscribes to the&nbsp;<code>delayedObs</code>. It starts emitting values A to E prepended by the count.</p>\n\n\n\n<p>When you click again, the&nbsp;<code>concatMap</code>&nbsp;checks if the previous observable has finished. If not it waits for it to finish before subscribing to the&nbsp;<code>delayedObs</code></p>\n\n\n\n<p>The&nbsp;<code>concatMap</code>&nbsp;collects all the emitted values from all of its inner observables and emits it into the subscribers.</p>\n\n\n\n<p>You can verify from the following result that even though we click multiple times on the click button, the results always appear in the correct order.</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://www.tektutorialshub.com/wp-content/uploads/2020/07/Angular-concatMap-Example.gif\" alt=\"Angular ConcatMap Example\" class=\"wp-image-19588\"/></figure>\n\n\n\n<h2>Using ConcatMap in Angular</h2>\n\n\n\n<p>The following are some of the real use cases for the concatMap in Angular</p>\n\n\n\n<h3>Merging values from two or more HTTP Calls</h3>\n\n\n\n<p>Consider a scenario where you receive data from an observable (outer observable). For each of those values, you want to call another observable (inner observable) to get more data. The scenario like this is an ideal use case for ConcatMap</p>\n\n\n\n<p>In the following example, we have an array of a breed of dogs. We convert the&nbsp;array into an observable. This becomes our outer observable</p>\n\n\n\n<p>For each of those dog breeds emitted by the outer observable, we make an HTTP request to get the sub-breeds using the free&nbsp;Dog API. The URL for the HTTP request constructed using the dog breed, which we receive from the outer observable.</p>\n\n\n\n<p>The&nbsp;<code>ConcatMap</code>&nbsp;automatically subscribes to all of its inner observable and waits for them to complete. It then pushes the values from them into the subscribers.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>of(\"hound\", \"mastiff\", \"retriever\")        //outer observable\r\n  .pipe(\r\n    concatMap(breed => {\r\n      const url = 'https://dog.ceo/api/breed/' + breed + '/list';\r\n      return this.http.get&lt;any>(url)       //inner observable   \r\n    })\r\n  )\r\n  .subscribe(data => {\r\n    console.log(data)\r\n  })</code></pre>\n\n\n\n<p>The above code, without using the&nbsp;<code>concatMap</code>&nbsp;is as follows. The code makes use of nested observable.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>\r\nof(\"hound\", \"mastiff\", \"retriever\")\r\n  .subscribe(breed => {\r\n    const url = 'https://dog.ceo/api/breed/' + breed + '/list';\r\n \r\n    this.http.get&lt;any>(url)\r\n      .subscribe(data => {\r\n        console.log(data)\r\n      })\r\n  })</code></pre>\n\n\n\n<h3>Using ForkJoin with ConcatMap</h3>\n\n\n\n<p>The ConcatMap create a one inner observable for each value of outer observable. To Create more than one inner observable, we can make use of the&nbsp;<code>ForkJoin</code>&nbsp;Operator.</p>\n\n\n\n<p>In the following example, along with a list of breeds, we also send a query for a random image of the dog breed. This requires us to send two&nbsp;HTTP get request in Angular. We create two observables&nbsp;<code>obs1</code>&nbsp;&amp;&nbsp;<code>obs2</code>&nbsp;to do that. Then we use the&nbsp;<code>forJoin</code>&nbsp;to merge&nbsp;<code>obs1</code>&nbsp;with&nbsp;<code>obs2</code>&nbsp;and return a new observable.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>\r\nMergeHTTPRequestWithFork() {\r\n \r\n  //const url='https://dog.ceo/api/breed/'+hound+'/list';\r\n \r\n  of(\"hound\", \"mastiff\", \"retriever\")\r\n    .pipe(\r\n      concatMap(breed => {\r\n        const url1 = 'https://dog.ceo/api/breed/' + breed + '/list';\r\n        const url2 = 'https://dog.ceo/api/breed/' + breed + '/images/random';\r\n \r\n        let obs1= this.http.get&lt;any>(url1)\r\n        let obs2= this.http.get&lt;any>(url2)\r\n \r\n        return forkJoin(obs1,obs2)\r\n \r\n      })\r\n    )\r\n    .subscribe(data => {\r\n      console.log(data)\r\n    })\r\n \r\n}</code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Syntax The syntax of the&nbsp;concatMap&nbsp;operator is as shown below. project:&nbsp;is a function that we use to manipulate the values emitted by the source observable. The project function accepts two arguments. one is&nbsp;value&nbsp;i.e. the value emitted by the source observable. The second argument is&nbsp;index&nbsp;number. The&nbsp;index&nbsp;number starts from&nbsp;0&nbsp;for the first value emitted and incremented by one for [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [137],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3770"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=3770"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 2,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3770/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3888,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3770/revisions/3888"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=3770"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=3770"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=3770"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 3772,
+    "date": "2020-12-08T10:53:35",
+    "date_gmt": "2020-12-08T10:53:35",
+    "guid": {
+      "rendered": "http://angular.foobrdigital.com/?p=3772"
+    },
+    "modified": "2020-12-09T11:07:22",
+    "modified_gmt": "2020-12-09T11:07:22",
+    "slug": "using-exhaustmap-in-angular",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/using-exhaustmap-in-angular/",
+    "title": {
+      "rendered": "Using ExhaustMap in Angular"
+    },
+    "content": {
+      "rendered": "\n<h2>Syntax</h2>\n\n\n\n<p>The syntax of the&nbsp;<code>exhaustMap</code>&nbsp;operator is as shown below.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> exhaustMap(project: (value: T, index: number) => O): OperatorFunction&lt;T, ObservedValueOf&lt;O>> </code></pre>\n\n\n\n<p><code>project:</code>&nbsp;is a function that we use to manipulate the values emitted by the source observable. The project function accepts two arguments. one is&nbsp;<code>value</code>&nbsp;i.e. the value emitted by the source observable. The second argument is&nbsp;<code>index</code>&nbsp;number. The&nbsp;<code>index</code>&nbsp;number starts from&nbsp;<code>0</code>&nbsp;for the first value emitted and incremented by one for every subsequent value emitted. It is similar to the index of an array.&nbsp;<strong>The project function must return an observable</strong>.</p>\n\n\n\n<h2>ExhaustMap Example</h2>\n\n\n\n<p>To use ExhaustMap in Angular first we need to import it our&nbsp;Component&nbsp;or&nbsp;Service.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> import { exhaustMap} from 'rxjs/operators'; </code></pre>\n\n\n\n<p>In the following code, we have two observables&nbsp;<code>srcObservable</code>&nbsp;which emits&nbsp;<code>1,2,3,4</code>&nbsp;&amp;&nbsp;<code>innerObservable</code>&nbsp;which emits&nbsp;<code>'A','B','C','D'</code>.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> \r\nlet srcObservable= of(1,2,3,4)\r\nlet innerObservable= of('A','B','C','D')\r\n \r\nsrcObservable.pipe(\r\n  exhaustMap( val => {\r\n    console.log('Source value '+val)\r\n    console.log('starting new observable')\r\n    return innerObservable\r\n  })\r\n)\r\n.subscribe(ret=> {\r\n  console.log('Recd ' + ret);\r\n})\r\n \r\n \r\n//Output\r\nSource value 1\r\nstarting new observable\r\nRecd A\r\nRecd B\r\nRecd C\r\nRecd D\r\nSource value 2\r\nstarting new observable\r\nRecd A\r\nRecd B\r\nRecd C\r\nRecd D\r\nSource value 3\r\nstarting new observable\r\nRecd A\r\nRecd B\r\nRecd C\r\nRecd D\r\nSource value 4\r\nstarting new observable\r\nRecd A\r\nRecd B\r\nRecd C\r\nRecd D\r\n </code></pre>\n\n\n\n<p>The ExhaustMap receives its values from the&nbsp;<code>srcObservable</code>. For each value, it creates a new observable i.e.&nbsp;<code>innerObservable.</code>&nbsp;It also automatically subscribes to the&nbsp;<code>innerObservable</code>. The&nbsp;<code>innerObservable</code>&nbsp;emits the values (A, B, C, D), and pushes it to the subscribers.</p>\n\n\n\n<p>The ExhaustMap differs from the&nbsp;MergeMap,&nbsp;SwitchMap&nbsp;&amp;&nbsp;ConcatMap&nbsp;the way it handles the inner observable. ExhaustMap always waits for the inner observable to finish. It ignores any value it receives from the source during this period. Any value it receives after the inner observable is finished is accepted and it creates a new inner observable.</p>\n\n\n\n<p>This difference is becomes clear in the next example.</p>\n\n\n\n<h2>ExhaustMap waits for the inner observable to finish</h2>\n\n\n\n<p>ExhaustMap creates and waits for inner observable before resuming.</p>\n\n\n\n<p>In the following example, we create an observable from the&nbsp;<code>click</code>&nbsp;event of a&nbsp;<code>button</code>&nbsp;using the&nbsp;<code>fromEvent</code>&nbsp;method. On every click of the button, the ExhaustMap operator returns an inner observable&nbsp;<code>delayedObs</code></p>\n\n\n\n<p>The&nbsp;<code>delayedObs</code>&nbsp;emits 5 values separated by 1000 ms.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';\r\nimport { of, from, fromEvent, interval, Observable } from 'rxjs';\r\nimport { switchMap, map, catchError } from 'rxjs/operators';\r\n \r\n@Component({\r\n  selector: 'app-root',\r\n  template: `&lt;button #button>Click Me&lt;/button>`,\r\n})\r\nexport class AppComponent implements AfterViewInit{\r\n \r\n  @ViewChild('button',{static:true}) button;\r\n  clicks$:Observable&lt;any>;\r\n \r\n  ngAfterViewInit() {\r\n    this.clicks$ = fromEvent(this.button.nativeElement, 'click');\r\n    this.exhaustMapExample3();\r\n  }\r\n \r\n  delayedObs(count:number) {\r\n    return new Observable((observer) => {\r\n      setTimeout(() => { observer.next(count+\" A\") }, 1000);\r\n      setTimeout(() => { observer.next(count+\" B\") }, 2000);\r\n      setTimeout(() => { observer.next(count+\" C\") }, 3000);\r\n      setTimeout(() => { observer.next(count+\" D\") }, 4000);\r\n      setTimeout(() => { observer.next(count+\" E\"); observer.complete() }, 5000);\r\n    })\r\n  }\r\n \r\n  exhaustMapExample3() {\r\n \r\n    let obs=\r\n \r\n    this.clicks$\r\n      .pipe(\r\n        exhaustMap(() => {\r\n          this.count=this.count+1;\r\n          return this.delayedObs(this.count)\r\n        })\r\n      )\r\n      .subscribe(val => console.log(val));\r\n  }\r\n \r\n}</code></pre>\n\n\n\n<p>When you click on the button, the&nbsp;<code>clicks</code>&nbsp;observable emits its first value. Inside the&nbsp;<code>exhaustMap</code>we increase the count by 1 and pass it to the&nbsp;<code>delayedObs</code>. The&nbsp;<code>exhaustMap</code>subscribes to the&nbsp;<code>delayedObs</code>. It starts emitting values A to E prepended by the count.</p>\n\n\n\n<p>When you click again, the&nbsp;<code>exhaustMap</code>checks to see if the previous observable has finished. If not it ignore the value.</p>\n\n\n\n<p>You can verify it from the following result. When we click multiple times, it ignores the values when the inner observable is running.</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://www.tektutorialshub.com/wp-content/uploads/2020/07/Angular-exhaustMap-Example.gif\" alt=\"\" class=\"wp-image-19597\"/></figure>\n\n\n\n<h2>Using ExhaustMap in Angular</h2>\n\n\n\n<p>The exhaustMap is useful in scenarios, where you want to prevent submission of duplicate values</p>\n\n\n\n<p>For Example, the user clicking on the Submit button twice will trigger two HTTP calls to the back end. The ExhaustMap will prevent the creation of new HTTP call until the previous one finishes</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Syntax The syntax of the&nbsp;exhaustMap&nbsp;operator is as shown below. project:&nbsp;is a function that we use to manipulate the values emitted by the source observable. The project function accepts two arguments. one is&nbsp;value&nbsp;i.e. the value emitted by the source observable. The second argument is&nbsp;index&nbsp;number. The&nbsp;index&nbsp;number starts from&nbsp;0&nbsp;for the first value emitted and incremented by one for [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [137],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3772"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=3772"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 2,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3772/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3889,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3772/revisions/3889"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=3772"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=3772"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=3772"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  }
+]

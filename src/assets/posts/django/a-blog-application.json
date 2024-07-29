@@ -1,0 +1,2668 @@
+[
+  {
+    "id": 3577,
+    "date": "2022-06-27T08:35:33",
+    "date_gmt": "2022-06-27T08:35:33",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3577" },
+    "modified": "2022-06-27T08:35:33",
+    "modified_gmt": "2022-06-27T08:35:33",
+    "slug": "introduction-18",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/introduction-18/",
+    "title": { "rendered": "Introduction" },
+    "content": {
+      "rendered": "\n<p>Django is a powerful Python web framework with a relatively shallow learning curve. You can easily build simple web applications in a short time. Django is also a robust and scalable framework that can be used to create large-scale web applications with complex requirements and integrations. This makes Django attractive for both beginners and expert programmers.</p>\n\n\n\n<p>How to build complete Django projects that are ready for production use. If you haven&#8217;t installed Django yet.</p>\n\n\n\n<p>How to create a simple blog application using Django. The purpose is to help you to get a general idea of how the framework works, an understanding of how the different components interact with each other, and the skills to easily create Django projects with basic functionality. You will be guided through the creation of a complete project, but I will go into more detail on this later. The different framework components will be explored in detail.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Django is a powerful Python web framework with a relatively shallow learning curve. You can easily build simple web applications in a short time. Django is also a robust and scalable framework that can be used to create large-scale web applications with complex requirements and integrations. This makes Django attractive for both beginners and expert&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/introduction-18/\">Continue reading <span class=\"screen-reader-text\">Introduction</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [125],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3577" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3577"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3577/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3578,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3577/revisions/3578"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3577"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3577"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3577"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3579,
+    "date": "2022-06-27T08:44:43",
+    "date_gmt": "2022-06-27T08:44:43",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3579" },
+    "modified": "2022-06-27T08:44:43",
+    "modified_gmt": "2022-06-27T08:44:43",
+    "slug": "installing-django",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/installing-django/",
+    "title": { "rendered": "Installing Django" },
+    "content": {
+      "rendered": "\n<p>If you have already installed Django, you can skip this section and jump directly to&nbsp;the&nbsp;<em>Creating your first project</em>&nbsp;section. Django comes as a Python package and thus can be installed in&nbsp;<a></a>any Python environment. If you haven&#8217;t installed Django yet, the&nbsp;following is a quick guide to installing it for local development.</p>\n\n\n\n<p>Django 3 continues the path of providing new features while maintaining the core functionalities&nbsp;<a></a>of the framework. The 3.0 release includes for the first time&nbsp;<strong>Asynchronous Server Gateway Interface</strong>&nbsp;(<strong>ASGI</strong>) support, which makes Django fully async-capable. Django 3.0 also includes official support for MariaDB, new exclusion constraints on PostgreSQL, filter expressions enhancements, and enumerations for model field choices, as well as other new features.</p>\n\n\n\n<p>Django 3.0 supports Python 3.6, 3.7, and 3.8. In the examples we will use Python 3.8.2. If you&#8217;re using Linux or macOS, you probably have Python installed. If you&#8217;re using Windows, you can download a Python installer at https://www.python.org/downloads/windows/.</p>\n\n\n\n<p>If you&#8217;re not sure whether Python is installed on your computer, you can verify this&nbsp;by typing&nbsp;<code>python</code>&nbsp;into the shell. If you see something like the following, then Python is installed on your computer:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Python 3.8.2 (v3.8.2:7b3ab5921f, Feb 24 2020, 17:52:18)\n&#91;Clang 6.0 (clang-600.0.57)] on darwin\nType \"help\", \"copyright\", \"credits\" or \"license\" for more information.\n</code></pre>\n\n\n\n<p>If your installed Python version is lower than 3.6, or if Python is not installed on your computer, download Python 3.8.2 from https://www.python.org/downloads/ and install it.</p>\n\n\n\n<p>Since you will be using Python 3, you don&#8217;t have to install a database. This Python version comes with a built-in SQLite database. SQLite is a lightweight database that you can use with Django for development. If you plan to deploy your application in a production environment, you should use a full-featured database, such as PostgreSQL, MySQL, or Oracle. You can find more information about how to get your database running with Django at https://docs.djangoproject.com/en/3.0/topics/install/#database-installation.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>If you have already installed Django, you can skip this section and jump directly to&nbsp;the&nbsp;Creating your first project&nbsp;section. Django comes as a Python package and thus can be installed in&nbsp;any Python environment. If you haven&#8217;t installed Django yet, the&nbsp;following is a quick guide to installing it for local development. Django 3 continues the path of&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/installing-django/\">Continue reading <span class=\"screen-reader-text\">Installing Django</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [125],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3579" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3579"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3579/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3580,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3579/revisions/3580"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3579"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3579"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3579"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3581,
+    "date": "2022-06-27T08:45:19",
+    "date_gmt": "2022-06-27T08:45:19",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3581" },
+    "modified": "2022-06-27T08:45:19",
+    "modified_gmt": "2022-06-27T08:45:19",
+    "slug": "creating-an-isolated-python-environment",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/creating-an-isolated-python-environment/",
+    "title": { "rendered": "Creating an isolated Python environment" },
+    "content": {
+      "rendered": "\n<p>Since version 3.3, Python has come with the&nbsp;<code>venv</code>&nbsp;library, which provides support for creating lightweight virtual environments. Each virtual environment has its own Python binary and&nbsp;<a></a>can have its own independent set of installed Python packages in its site directories. Using the Python&nbsp;<code>venv</code>&nbsp;module to create isolated Python environments allows you to use different package versions for different projects, which is far more practical than installing Python packages system-wide. Another advantage of using&nbsp;<code>venv</code>&nbsp;is that you won&#8217;t need any administration privileges to install Python packages.</p>\n\n\n\n<p>Create an isolated environment with the following command:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>python -m venv my_env\n</code></pre>\n\n\n\n<p>This will create a&nbsp;<code>my_env/</code>&nbsp;directory, including your Python environment. Any Python libraries you install while your virtual environment is active will go into the&nbsp;<code>my_env/lib/python3.8/site-packages</code>&nbsp;directory.</p>\n\n\n\n<p>Run the following command to activate your virtual environment:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>source my_env/bin/activate\n</code></pre>\n\n\n\n<p>The shell prompt will include the name of the active virtual environment enclosed in&nbsp;parentheses, as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>(my_env)laptop:~ zenx$\n</code></pre>\n\n\n\n<p>You can deactivate your environment at any time with the <code>deactivate</code> command. You can find more information about <code>venv</code> at https://docs.python.org/3/library/venv.html.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Since version 3.3, Python has come with the&nbsp;venv&nbsp;library, which provides support for creating lightweight virtual environments. Each virtual environment has its own Python binary and&nbsp;can have its own independent set of installed Python packages in its site directories. Using the Python&nbsp;venv&nbsp;module to create isolated Python environments allows you to use different package versions for different&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/creating-an-isolated-python-environment/\">Continue reading <span class=\"screen-reader-text\">Creating an isolated Python environment</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [125],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3581" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3581"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3581/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3582,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3581/revisions/3582"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3581"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3581"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3581"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3583,
+    "date": "2022-06-27T08:45:50",
+    "date_gmt": "2022-06-27T08:45:50",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3583" },
+    "modified": "2022-06-27T08:45:50",
+    "modified_gmt": "2022-06-27T08:45:50",
+    "slug": "installing-django-with-pip",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/installing-django-with-pip/",
+    "title": { "rendered": "Installing Django with pip" },
+    "content": {
+      "rendered": "\n<p>The <code>pip</code> package management system is the preferred method for installing Django. Python 3.8 comes with <code>pip</code> preinstalled, but you can find <code>pip</code> installation instructions at https://pip.pypa.io/en/stable/installing/.</p>\n\n\n\n<p>Run the following command at the shell prompt to install Django with&nbsp;<code>pip</code>:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>pip install \"Django==3.0.*\"\n</code></pre>\n\n\n\n<p>Django will be installed in the Python&nbsp;<code>site-packages/</code>&nbsp;directory of your virtual environment.</p>\n\n\n\n<p>Now check whether Django has been successfully installed. Run&nbsp;<code>python</code>&nbsp;on a terminal, import&nbsp;<a></a>Django, and check its version, as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&gt;&gt;&gt; import django\n&gt;&gt;&gt; django.get_version()\n'3.0.4'\n</code></pre>\n\n\n\n<p>If you&nbsp;<a></a>get an output like&nbsp;<code>3.0.X</code>, Django has been successfully installed on your machine.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>The pip package management system is the preferred method for installing Django. Python 3.8 comes with pip preinstalled, but you can find pip installation instructions at https://pip.pypa.io/en/stable/installing/. Run the following command at the shell prompt to install Django with&nbsp;pip: Django will be installed in the Python&nbsp;site-packages/&nbsp;directory of your virtual environment. Now check whether Django has been successfully installed. Run&nbsp;python&nbsp;on a terminal, import&nbsp;Django, and check its version,&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/installing-django-with-pip/\">Continue reading <span class=\"screen-reader-text\">Installing Django with pip</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [125],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3583" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3583"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3583/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3584,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3583/revisions/3584"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3583"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3583"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3583"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3585,
+    "date": "2022-06-27T08:46:27",
+    "date_gmt": "2022-06-27T08:46:27",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3585" },
+    "modified": "2022-06-27T08:46:27",
+    "modified_gmt": "2022-06-27T08:46:27",
+    "slug": "creating-your-first-project",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/creating-your-first-project/",
+    "title": { "rendered": "Creating your first project" },
+    "content": {
+      "rendered": "\n<p>Our first&nbsp;<a></a>Django project will be building a complete blog. Django provides a command that allows you to create an initial project file structure. Run the following&nbsp;command from your shell:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>django-admin startproject mysite\n</code></pre>\n\n\n\n<p>This will create a Django project with the name&nbsp;<code>mysite</code>.</p>\n\n\n\n<p>Avoid naming projects after built-in Python or Django modules in order to avoid conflicts.</p>\n\n\n\n<p>Let&#8217;s take a look at the project structure generated:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>mysite/\n    manage.py\n    mysite/\n      __init__.py\n      asgi.py\n      wsgi.py\n      settings.py\n      urls.py\n</code></pre>\n\n\n\n<p>These files are as follows:</p>\n\n\n\n<ul><li><code>manage.py</code>: This is a command-line utility used to interact with your project. It is a thin wrapper around the&nbsp;<code>django-admin.py</code>&nbsp;tool. You don&#8217;t need to edit this file.</li><li><code>mysite/</code>: This is your project directory, which consists of the following files:<ul><li><code>__init__.py</code>: An empty file that tells Python to treat the&nbsp;<code>mysite</code>&nbsp;directory as a Python module.</li><li><code>asgi.py</code>: This is the configuration to run your project as ASGI, the emerging Python standard for asynchronous web servers and applications.</li><li><code>settings.py</code>: This indicates settings and configuration for your project and contains initial default settings.</li><li><code>urls.py</code>: This is the place where your URL patterns live. Each URL defined here is mapped to a view.</li><li><code>wsgi.py</code>: This is the configuration to run your project as a&nbsp;<strong>Web Server Gateway Interface</strong>&nbsp;(<strong>WSGI</strong>) application.</li></ul></li></ul>\n\n\n\n<p>The generated&nbsp;<code>settings.py</code>&nbsp;file contains the project settings, including a basic configuration&nbsp;<a></a>to use an SQLite3 database and a&nbsp;<a></a>list named&nbsp;<code>INSTALLED_APPS</code>&nbsp;that contains common Django applications that are added to your project by default. We&nbsp;will go through these applications later in the&nbsp;<em>Project settings</em>&nbsp;section.</p>\n\n\n\n<p>Django applications contain a&nbsp;<code>models.py</code>&nbsp;file where data models are defined. Each&nbsp;data model is mapped to a database table. To complete the project setup, you need to&nbsp;create the tables associated with the models of the applications listed in&nbsp;<code>INSTALLED_APPS</code>. Django includes a migration system that manages this.</p>\n\n\n\n<p>Open the shell and run the following commands:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>cd mysite\npython manage.py migrate\n</code></pre>\n\n\n\n<p>You will note an output that ends with the following lines:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Applying contenttypes.0001_initial... OK\nApplying auth.0001_initial... OK\nApplying admin.0001_initial... OK\nApplying admin.0002_logentry_remove_auto_add... OK\nApplying admin.0003_logentry_add_action_flag_choices... OK\nApplying contenttypes.0002_remove_content_type_name... OK\nApplying auth.0002_alter_permission_name_max_length... OK\nApplying auth.0003_alter_user_email_max_length... OK\nApplying auth.0004_alter_user_username_opts... OK\nApplying auth.0005_alter_user_last_login_null... OK\nApplying auth.0006_require_contenttypes_0002... OK\nApplying auth.0007_alter_validators_add_error_messages... OK\nApplying auth.0008_alter_user_username_max_length... OK\nApplying auth.0009_alter_user_last_name_max_length... OK\nApplying auth.0010_alter_group_name_max_length... OK\nApplying auth.0011_update_proxy_permissions... OK\nApplying sessions.0001_initial... OK\n</code></pre>\n\n\n\n<p>The preceding lines are the database migrations that are applied by Django. By applying migrations, the tables for the initial applications are created in the database. You will learn about the <code>migrate</code> management command in the <em>Creating and applying migrations</em> section.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Our first&nbsp;Django project will be building a complete blog. Django provides a command that allows you to create an initial project file structure. Run the following&nbsp;command from your shell: This will create a Django project with the name&nbsp;mysite. Avoid naming projects after built-in Python or Django modules in order to avoid conflicts. Let&#8217;s take a&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/creating-your-first-project/\">Continue reading <span class=\"screen-reader-text\">Creating your first project</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [125],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3585" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3585"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3585/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3586,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3585/revisions/3586"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3585"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3585"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3585"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3587,
+    "date": "2022-06-27T08:47:14",
+    "date_gmt": "2022-06-27T08:47:14",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3587" },
+    "modified": "2022-06-27T08:47:14",
+    "modified_gmt": "2022-06-27T08:47:14",
+    "slug": "running-the-development-server",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/running-the-development-server/",
+    "title": { "rendered": "Running the development server" },
+    "content": {
+      "rendered": "\n<p>Django comes with a lightweight web server to run your code quickly, without needing to spend time&nbsp;<a></a>configuring a production server. When you run the Django development server, it keeps checking for changes in your code. It reloads automatically, freeing you from manually reloading it after code changes. However, it might not notice some actions, such as adding new files to your project, so you will&nbsp;have to restart the server manually in these cases.</p>\n\n\n\n<p>Start the development server by typing the following command from your project&#8217;s root folder:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>python manage.py runserver\n</code></pre>\n\n\n\n<p>You should see something like this:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Watching for file changes with StatReloader\nPerforming system checks...\nSystem check identified no issues (0 silenced).\nJanuary 01, 2020 - 10:00:00\nDjango version 3.0, using settings 'mysite.settings'\nStarting development server at http://127.0.0.1:8000/\nQuit the server with CONTROL-C.\n</code></pre>\n\n\n\n<p>Now open&nbsp;<code>http://127.0.0.1:8000/</code>&nbsp;in your browser. You should see a page stating that the project is successfully running, as shown in the following screenshot:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/14981_01_01.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 1.1: The default page of the Django development server</p>\n\n\n\n<p>The preceding screenshot indicates that Django is running. If you take a look at your&nbsp;console, you will see the&nbsp;<code>GET</code>&nbsp;request performed by your browser:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&#91;01/Jan/2020 17:20:30] \"GET / HTTP/1.1\" 200 16351\n</code></pre>\n\n\n\n<p>Each HTTP request is logged in the console by the development server. Any error that occurs while&nbsp;<a></a>running the development server will also appear in the console.</p>\n\n\n\n<p>You can run the Django development server on a custom host and port or tell Django&nbsp;to load a specific settings file, as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>python manage.py runserver 127.0.0.1:8001 \\--settings=mysite.settings\n</code></pre>\n\n\n\n<p>When you have to deal with multiple environments that require different configurations, you can create a different settings file for each environment.</p>\n\n\n\n<p>Remember that this server is only intended for development and is not suitable for production use. In order to deploy Django in a production environment, you should run it as a WSGI application using a web server, such as Apache, Gunicorn, or uWSGI, or as an ASGI application using a server like Uvicorn or Daphne. You can find more information on how to deploy Django with different web servers at https://docs.djangoproject.com/en/3.0/howto/deployment/wsgi/.</p>\n\n\n\n<p><em>Going Live</em>, explains how to set up a production environment for your Django projects.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Django comes with a lightweight web server to run your code quickly, without needing to spend time&nbsp;configuring a production server. When you run the Django development server, it keeps checking for changes in your code. It reloads automatically, freeing you from manually reloading it after code changes. However, it might not notice some actions, such&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/running-the-development-server/\">Continue reading <span class=\"screen-reader-text\">Running the development server</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [125],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3587" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3587"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3587/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3588,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3587/revisions/3588"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3587"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3587"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3587"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3589,
+    "date": "2022-06-27T08:47:58",
+    "date_gmt": "2022-06-27T08:47:58",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3589" },
+    "modified": "2022-06-27T08:47:58",
+    "modified_gmt": "2022-06-27T08:47:58",
+    "slug": "project-settings",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/project-settings/",
+    "title": { "rendered": "Project settings" },
+    "content": {
+      "rendered": "\n<p>Let&#8217;s open the <code>settings.py</code> file and take a look at the configuration of the project. There are several settings that Django includes in this file, but these are only part of all the Django settings available. You can see all the settings and their default values at https://docs.djangoproject.com/en/3.0/ref/settings/.</p>\n\n\n\n<p>The following settings are worth looking at:</p>\n\n\n\n<ul><li><code>DEBUG</code>&nbsp;is a Boolean that&nbsp;<a></a>turns the debug mode of the project on and off. If it is set to&nbsp;<code>True</code>, Django will display detailed error pages when an uncaught exception is thrown by your application. When you move to a production environment, remember that you have to set it to&nbsp;<code>False</code>. Never deploy a site into production with&nbsp;<code>DEBUG</code>&nbsp;turned on because you will expose sensitive project-related data.</li><li><code>ALLOWED_HOSTS</code>&nbsp;is not applied while debug mode is on or when the tests are&nbsp;run. Once you&nbsp;<a></a>move your site to production and set&nbsp;<code>DEBUG</code>&nbsp;to&nbsp;<code>False</code>, you&nbsp;will have to add your domain/host to this setting in order to allow it to&nbsp;serve your Django site.</li><li><code>INSTALLED_APPS</code>&nbsp;is a setting&nbsp;<a></a>you will have to edit for all projects. This setting&nbsp;tells Django which applications are active for this site. By default, Django includes the following applications:<ul><li><code>django.contrib.admin</code>: An administration site</li><li><code>django.contrib.auth</code>: An authentication framework</li><li><code>django.contrib.contenttypes</code>: A framework for handling content&nbsp;types</li><li><code>django.contrib.sessions</code>: A session framework</li><li><code>django.contrib.messages</code>: A messaging framework</li><li><code>django.contrib.staticfiles</code>: A framework for managing static files</li></ul></li><li><code>MIDDLEWARE</code>&nbsp;is a list&nbsp;<a></a>that contains middleware to be executed.</li><li><code>ROOT_URLCONF</code>&nbsp;indicates&nbsp;<a></a>the Python module where the root URL patterns of&nbsp;your application are defined.</li><li><code>DATABASES</code>&nbsp;is a dictionary that contains the settings for all the databases to be used&nbsp;<a></a>in the project. There must always be a default database. The default configuration uses an SQLite3 database.</li><li><code>LANGUAGE_CODE</code>&nbsp;defines&nbsp;<a></a>the default language code for this Django site.</li><li><code>USE_TZ</code>&nbsp;tells Django to activate/deactivate timezone support. Django comes&nbsp;<a></a>with support for timezone-aware datetime. This setting is set to&nbsp;<code>True</code>&nbsp;when you create a new project using the&nbsp;<code>startproject</code>&nbsp;management command.</li></ul>\n\n\n\n<p>Don&#8217;t worry if you don&#8217;t understand much about what you&#8217;re seeing here. You will learn the different Django settings.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Let&#8217;s open the settings.py file and take a look at the configuration of the project. There are several settings that Django includes in this file, but these are only part of all the Django settings available. You can see all the settings and their default values at https://docs.djangoproject.com/en/3.0/ref/settings/. The following settings are worth looking at: DEBUG&nbsp;is a Boolean that&nbsp;turns the&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/project-settings/\">Continue reading <span class=\"screen-reader-text\">Project settings</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [125],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3589" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3589"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3589/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3590,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3589/revisions/3590"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3589"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3589"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3589"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3591,
+    "date": "2022-06-27T08:48:30",
+    "date_gmt": "2022-06-27T08:48:30",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3591" },
+    "modified": "2022-06-27T08:48:30",
+    "modified_gmt": "2022-06-27T08:48:30",
+    "slug": "projects-and-applications",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/projects-and-applications/",
+    "title": { "rendered": "Projects and applications" },
+    "content": {
+      "rendered": "\n<p>The terms <strong>project</strong> and <strong>application</strong> over and over. In Django, a project is considered a Django installation with some settings. An application is a group of models, views, templates, and URLs. Applications interact with the framework to provide some specific functionalities and may be reused in various projects. You can think of a project as your website, which contains several applications, such as a blog, wiki, or forum, that can also be used by other projects.</p>\n\n\n\n<p>The following diagram shows the structure of a Django project:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/14981_01_02.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 1.2: The Django project/application structure</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>The terms project and application over and over. In Django, a project is considered a Django installation with some settings. An application is a group of models, views, templates, and URLs. Applications interact with the framework to provide some specific functionalities and may be reused in various projects. You can think of a project as your website, which contains several applications, such as&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/projects-and-applications/\">Continue reading <span class=\"screen-reader-text\">Projects and applications</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [125],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3591" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3591"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3591/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3592,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3591/revisions/3592"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3591"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3591"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3591"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3593,
+    "date": "2022-06-27T08:49:04",
+    "date_gmt": "2022-06-27T08:49:04",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3593" },
+    "modified": "2022-06-27T08:49:04",
+    "modified_gmt": "2022-06-27T08:49:04",
+    "slug": "creating-an-application",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/creating-an-application/",
+    "title": { "rendered": "Creating an application" },
+    "content": {
+      "rendered": "\n<p>Now let&#8217;s create&nbsp;<a></a>your first Django application. You will create a blog application from scratch. From the project&#8217;s root directory, run the following command:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>python manage.py startapp blog\n</code></pre>\n\n\n\n<p>This will create the basic structure of the application, which looks like this:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>blog/\n    __init__.py\n    admin.py\n    apps.py\n    migrations/\n        __init__.py\n    models.py\n    tests.py\n    views.py\n</code></pre>\n\n\n\n<p>These files are as follows:</p>\n\n\n\n<ul><li><code>admin.py</code>: This is where you register models to include them in the Django administration site—using this site is optional.</li><li><code>apps.py</code>: This includes the main configuration of the <code>blog</code> application.</li><li><code>migrations</code>: This directory will contain database migrations of your application. Migrations allow Django to track your model changes and synchronize the database accordingly.</li><li><code>models.py</code>: This includes the data models of your application; all Django applications need to have a <code>models.py</code> file, but this file can be left empty.</li><li><code>tests.py</code>: This is where you can add tests for your application.</li><li><code>views.py</code>: The logic of your application goes here; each view receives an HTTP request, processes it, and returns a response.</li></ul>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Now let&#8217;s create&nbsp;your first Django application. You will create a blog application from scratch. From the project&#8217;s root directory, run the following command: This will create the basic structure of the application, which looks like this: These files are as follows: admin.py: This is where you register models to include them in the Django administration&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/creating-an-application/\">Continue reading <span class=\"screen-reader-text\">Creating an application</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [125],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3593" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3593"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3593/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3594,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3593/revisions/3594"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3593"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3593"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3593"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3595,
+    "date": "2022-06-27T10:23:23",
+    "date_gmt": "2022-06-27T10:23:23",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3595" },
+    "modified": "2022-06-27T10:23:23",
+    "modified_gmt": "2022-06-27T10:23:23",
+    "slug": "designing-the-blog-data-schema",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/designing-the-blog-data-schema/",
+    "title": { "rendered": "Designing the blog data schema" },
+    "content": {
+      "rendered": "\n<p>You will start designing your blog data schema by defining the data models for your&nbsp;blog. A model&nbsp;<a></a>is a Python class that subclasses&nbsp;<code>django.db.models.Model</code>&nbsp;in which each attribute represents a database field. Django will create a table for each model defined in the&nbsp;<code>models.py</code>&nbsp;file. When you create a model, Django will provide&nbsp;you with a practical API to query objects in the database easily.</p>\n\n\n\n<p>First, you need to define a&nbsp;<code>Post</code>&nbsp;model. Add the following lines to the&nbsp;<code>models.py</code>&nbsp;file&nbsp;of the&nbsp;<code>blog</code>&nbsp;application:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>from django.db import models\nfrom django.utils import timezone\nfrom django.contrib.auth.models import User\nclass Post(models.Model):\n    STATUS_CHOICES = (\n        ('draft', 'Draft'),\n        ('published', 'Published'),\n    )\n    title = models.CharField(max_length=250)\n    slug = models.SlugField(max_length=250,\n                            unique_for_date='publish')\n    author = models.ForeignKey(User,\n                              on_delete=models.CASCADE,\n                              related_name='blog_posts')\n    body = models.TextField()\n    publish = models.DateTimeField(default=timezone.now)\n    created = models.DateTimeField(auto_now_add=True)\n    updated = models.DateTimeField(auto_now=True)\n    status = models.CharField(max_length=10,\n                              choices=STATUS_CHOICES,\n                              default='draft')\n    class Meta:\n        ordering = ('-publish',)\n    def __str__(self):\n        return self.title\n</code></pre>\n\n\n\n<p>This is your&nbsp;<a></a>data model for blog posts. Let&#8217;s take a look at the fields you just defined for this model:</p>\n\n\n\n<ul><li><code>title</code>: This is the field for the post title. This field is <code>CharField</code>, which translates into a <code>VARCHAR</code> column in the SQL database.</li><li><code>slug</code>: This is a field intended to be used in URLs. A slug is a short label that contains only letters, numbers, underscores, or hyphens. You will use the <code>slug</code> field to build beautiful, SEO-friendly URLs for your blog posts. You have added the <code>unique_for_date</code> parameter to this field so that you can build URLs for posts using their <code>publish</code> date and <code>slug</code>. Django will prevent multiple posts from having the same slug for a given date.</li><li><code>author</code>: This field defines a many-to-one relationship, meaning that each post is written by a user, and a user can write any number of posts. For this field, Django will create a foreign key in the database using the primary key of the related model. In this case, you are relying on the <code>User</code> model of the Django authentication system. The <code>on_delete</code> parameter specifies the behavior to adopt when the referenced object is deleted. This is not specific to Django; it is an SQL standard. Using <code>CASCADE</code>, you specify that when the referenced user is deleted, the database will also delete all related blog posts. You can take a look at all the possible options at https://docs.djangoproject.com/en/3.0/ref/models/fields/#django.db.models.ForeignKey.on_delete. You specify the name of the reverse relationship, from <code>User</code> to <code>Post</code>, with the <code>related_name</code> attribute. This will allow you to access related objects easily. You will learn more about this later.</li><li><code>body</code>: This is the body of the post. This field is a text field that translates into a <code>TEXT</code> column in the SQL database.</li><li><code>publish</code>: This datetime indicates when the post was published. You use Django&#8217;s timezone <code>now</code> method as the default value. This returns the current datetime in a timezone-aware format. You can think of it as a timezone-aware version of the standard Python <code>datetime.now</code> method.</li><li><code>created</code>: This datetime indicates when the post was created. Since you are using <code>auto_now_add</code> here, the date will be saved automatically when creating an object.</li><li><code>updated</code>: This datetime indicates the last time the post was updated. Since you are using <code>auto_now</code> here, the date will be updated automatically when saving an object.</li><li><code>status</code>: This field shows the status of a post. You use a <code>choices</code> parameter, so the value of this field can only be set to one of the given choices.</li></ul>\n\n\n\n<p>Django comes with different types of fields that you can use to define your models. You can find all field types at https://docs.djangoproject.com/en/3.0/ref/models/fields/.</p>\n\n\n\n<p>The&nbsp;<code>Meta</code>&nbsp;class inside the model contains metadata. You tell Django to sort results by the&nbsp;<code>publish</code>&nbsp;field in descending order by default when you query the database. You specify the descending order using the negative prefix. By doing this, posts published recently will appear first.</p>\n\n\n\n<p>The&nbsp;<code>__str__()</code>&nbsp;method is the&nbsp;<a></a>default human-readable representation of the object. Django will use it in many places, such as the administration site.</p>\n\n\n\n<p>If you are coming from using Python 2.x, note that in Python 3, all strings are natively considered Unicode; therefore, we&nbsp;<a></a>only use the&nbsp;<code>__str__()</code>&nbsp;method and the&nbsp;<code>__unicode__()</code>&nbsp;method is obsolete.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>You will start designing your blog data schema by defining the data models for your&nbsp;blog. A model&nbsp;is a Python class that subclasses&nbsp;django.db.models.Model&nbsp;in which each attribute represents a database field. Django will create a table for each model defined in the&nbsp;models.py&nbsp;file. When you create a model, Django will provide&nbsp;you with a practical API to query objects&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/designing-the-blog-data-schema/\">Continue reading <span class=\"screen-reader-text\">Designing the blog data schema</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [125],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3595" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3595"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3595/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3596,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3595/revisions/3596"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3595"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3595"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3595"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3597,
+    "date": "2022-06-27T10:23:52",
+    "date_gmt": "2022-06-27T10:23:52",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3597" },
+    "modified": "2022-06-27T10:23:52",
+    "modified_gmt": "2022-06-27T10:23:52",
+    "slug": "activating-the-application",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/activating-the-application/",
+    "title": { "rendered": "Activating the application" },
+    "content": {
+      "rendered": "\n<p>In order&nbsp;<a></a>for Django to keep track of your application and be able to create database tables for its models, you have to activate it. To do this, edit the&nbsp;<code>settings.py</code>&nbsp;file and add&nbsp;<code>blog.apps.BlogConfig</code>&nbsp;to the&nbsp;<code>INSTALLED_APPS</code>&nbsp;setting. It should look like this:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>INSTALLED_APPS = &#91;\n    'django.contrib.admin',\n    'django.contrib.auth',\n    'django.contrib.contenttypes',\n    'django.contrib.sessions',\n    'django.contrib.messages',\n    'django.contrib.staticfiles',\n    <strong>'blog.apps.BlogConfig'</strong>,\n]\n</code></pre>\n\n\n\n<p>The&nbsp;<code>BlogConfig</code>&nbsp;class is&nbsp;<a></a>your application configuration. Now Django knows that your application is active for this project and will be able to load its models.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>In order&nbsp;for Django to keep track of your application and be able to create database tables for its models, you have to activate it. To do this, edit the&nbsp;settings.py&nbsp;file and add&nbsp;blog.apps.BlogConfig&nbsp;to the&nbsp;INSTALLED_APPS&nbsp;setting. It should look like this: The&nbsp;BlogConfig&nbsp;class is&nbsp;your application configuration. Now Django knows that your application is active for this project and will be&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/activating-the-application/\">Continue reading <span class=\"screen-reader-text\">Activating the application</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [125],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3597" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3597"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3597/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3598,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3597/revisions/3598"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3597"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3597"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3597"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3599,
+    "date": "2022-06-27T10:24:38",
+    "date_gmt": "2022-06-27T10:24:38",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3599" },
+    "modified": "2022-06-27T10:24:38",
+    "modified_gmt": "2022-06-27T10:24:38",
+    "slug": "creating-and-applying-migrations",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/creating-and-applying-migrations/",
+    "title": { "rendered": "Creating and applying migrations" },
+    "content": {
+      "rendered": "\n<p>Now that you have a data model for your blog posts, you will need a database table for it. Django&nbsp;<a></a>comes with a migration system that tracks the changes made to models and enables them to propagate into the database. As mentioned, the&nbsp;<code>migrate</code>&nbsp;command applies migrations for all applications listed in&nbsp;<code>INSTALLED_APPS</code>; it synchronizes the database with the current models and existing migrations.</p>\n\n\n\n<p>First, you will&nbsp;<a></a>need to create an initial migration for your&nbsp;<code>Post</code>&nbsp;model. In the root directory of your project, run the following command:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>python manage.py makemigrations blog\n</code></pre>\n\n\n\n<p>You should get the following output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Migrations for 'blog':\n    blog/migrations/0001_initial.py\n        - Create model Post\n</code></pre>\n\n\n\n<p>Django just created the&nbsp;<code>0001_initial.py</code>&nbsp;file inside the&nbsp;<code>migrations</code>&nbsp;directory of the&nbsp;<code>blog</code>&nbsp;application. You can open that file to see how a migration appears. A&nbsp;migration specifies dependencies on other migrations and operations to perform in&nbsp;the database to synchronize it with model changes.</p>\n\n\n\n<p>Let&#8217;s take a look at the SQL code that Django will execute in the database to create the table for your model. The&nbsp;<code>sqlmigrate</code>&nbsp;command takes the migration names and returns their SQL without executing it. Run the following command to inspect the SQL output of your first migration:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>python manage.py sqlmigrate blog 0001\n</code></pre>\n\n\n\n<p>The output should look as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>BEGIN;\n<em>--</em>\n<em>-- Create model Post</em>\n<em>--</em>\nCREATE TABLE \"blog_post\" (\"id\" integer NOT NULL PRIMARY KEY AUTOINCREMENT, \"title\" varchar(250) NOT NULL, \"slug\" varchar(250) NOT NULL, \"body\" text NOT NULL, \"publish\" datetime NOT NULL, \"created\" datetime NOT NULL, \"updated\" datetime NOT NULL, \"status\" varchar(10) NOT NULL, \"author_id\" integer NOT NULL REFERENCES \"auth_user\" (\"id\") DEFERRABLE INITIALLY DEFERRED);\nCREATE INDEX \"blog_post_slug_b95473f2\" ON \"blog_post\" (\"slug\");\nCREATE INDEX \"blog_post_author_id_dd7a8485\" ON \"blog_post\" (\"author_id\");\nCOMMIT;\n</code></pre>\n\n\n\n<p>The exact output depends on the database you are using. The preceding output is&nbsp;generated for SQLite. As you can see in the output, Django generates the table names by combining&nbsp;<a></a>the application name and the lowercase name of the model (<code>blog_post</code>), but you can also specify a custom database name for your model in the&nbsp;<code>Meta</code>&nbsp;class of the model using the&nbsp;<code>db_table</code>&nbsp;attribute.</p>\n\n\n\n<p>Django creates&nbsp;<a></a>a primary key automatically for each model, but you can also override this by specifying&nbsp;<code>primary_key=True</code>&nbsp;in one of your model fields. The&nbsp;default primary key is an&nbsp;<code>id</code>&nbsp;column, which consists of an integer that is incremented automatically. This column corresponds to the&nbsp;<code>id</code>&nbsp;field that is automatically added to your models.</p>\n\n\n\n<p>Let&#8217;s sync your database with the new model. Run the following command to apply&nbsp;existing migrations:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>python manage.py migrate\n</code></pre>\n\n\n\n<p>You will get an output that ends with the following line:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Applying blog.0001_initial... OK\n</code></pre>\n\n\n\n<p>You just applied migrations for the applications listed in&nbsp;<code>INSTALLED_APPS</code>, including your&nbsp;<code>blog</code>&nbsp;application. After applying the migrations, the database reflects the current status of your models.</p>\n\n\n\n<p>If you edit the&nbsp;<code>models.py</code>&nbsp;file in order to add, remove, or change the fields of existing models, or if you add new models, you will have to create a new migration using the&nbsp;<code>makemigrations</code>&nbsp;command. The migration will allow Django to keep track&nbsp;of model changes. Then, you will have to apply it with the&nbsp;<code>migrate</code>&nbsp;command to keep the database in sync with your models.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Now that you have a data model for your blog posts, you will need a database table for it. Django&nbsp;comes with a migration system that tracks the changes made to models and enables them to propagate into the database. As mentioned, the&nbsp;migrate&nbsp;command applies migrations for all applications listed in&nbsp;INSTALLED_APPS; it synchronizes the database with the&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/creating-and-applying-migrations/\">Continue reading <span class=\"screen-reader-text\">Creating and applying migrations</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [125],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3599" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3599"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3599/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3600,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3599/revisions/3600"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3599"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3599"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3599"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3601,
+    "date": "2022-06-27T10:25:09",
+    "date_gmt": "2022-06-27T10:25:09",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3601" },
+    "modified": "2022-06-27T10:25:09",
+    "modified_gmt": "2022-06-27T10:25:09",
+    "slug": "creating-an-administration-site-for-models",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/creating-an-administration-site-for-models/",
+    "title": { "rendered": "Creating an administration site for models" },
+    "content": {
+      "rendered": "\n<p>Now that you have defined the&nbsp;<code>Post</code>&nbsp;model, you will create a simple administration site to manage&nbsp;<a></a>your blog posts. Django comes with a built-in administration interface&nbsp;that is very useful for editing content. The Django site is built dynamically by reading your model metadata and providing a production-ready interface for editing content. You can use it out of the box, configuring how you want your models to be displayed in it.</p>\n\n\n\n<p>The&nbsp;<code>django.contrib.admin</code>&nbsp;application is already included in the&nbsp;<code>INSTALLED_APPS</code>&nbsp;setting, so you don&#8217;t need to add it.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Now that you have defined the&nbsp;Post&nbsp;model, you will create a simple administration site to manage&nbsp;your blog posts. Django comes with a built-in administration interface&nbsp;that is very useful for editing content. The Django site is built dynamically by reading your model metadata and providing a production-ready interface for editing content. You can use it out of&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/creating-an-administration-site-for-models/\">Continue reading <span class=\"screen-reader-text\">Creating an administration site for models</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [125],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3601" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3601"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3601/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3602,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3601/revisions/3602"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3601"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3601"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3601"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3603,
+    "date": "2022-06-27T10:25:36",
+    "date_gmt": "2022-06-27T10:25:36",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3603" },
+    "modified": "2022-06-27T10:25:36",
+    "modified_gmt": "2022-06-27T10:25:36",
+    "slug": "creating-a-superuser",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/creating-a-superuser/",
+    "title": { "rendered": "Creating a superuser" },
+    "content": {
+      "rendered": "\n<p>First, you will&nbsp;<a></a>need to create a user to manage the administration site. Run the following command:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>python manage.py createsuperuser\n</code></pre>\n\n\n\n<p>You will see the following output; enter your desired username, email, and password, as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Username (leave blank to use 'admin'): admin\nEmail address: admin@admin.com\nPassword: ********\nPassword (again): ********\nSuperuser created successfully.\n</code></pre>\n\n\n\n<h2 id=\"_idParaDest-28\">The Django administration site</h2>\n\n\n\n<p>Now start&nbsp;<a></a>the development server with the&nbsp;<code>python manage.py runserver</code>&nbsp;command and open&nbsp;<code>http://127.0.0.1:8000/admin/</code>&nbsp;in your browser. You should see the administration login page, as shown in the following screenshot:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/14981_01_03.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 1.3: The Django administration site login screen</p>\n\n\n\n<p>Log in using&nbsp;<a></a>the credentials of the user you created in the preceding step. You will see the administration site index page, as shown in the following screenshot:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/14981_01_04.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 1.4: The Django administration site index page</p>\n\n\n\n<p>The&nbsp;<code>Group</code>&nbsp;and&nbsp;<code>User</code>&nbsp;models that you can see in the preceding screenshot are part of&nbsp;the Django authentication framework located in&nbsp;<code>django.contrib.auth</code>. If you click on&nbsp;<strong>Users</strong>, you will see the user you created previously.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>First, you will&nbsp;need to create a user to manage the administration site. Run the following command: You will see the following output; enter your desired username, email, and password, as follows: The Django administration site Now start&nbsp;the development server with the&nbsp;python manage.py runserver&nbsp;command and open&nbsp;http://127.0.0.1:8000/admin/&nbsp;in your browser. You should see the administration login page, as&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/creating-a-superuser/\">Continue reading <span class=\"screen-reader-text\">Creating a superuser</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [125],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3603" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3603"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3603/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3604,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3603/revisions/3604"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3603"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3603"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3603"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3605,
+    "date": "2022-06-27T10:26:04",
+    "date_gmt": "2022-06-27T10:26:04",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3605" },
+    "modified": "2022-06-27T10:26:04",
+    "modified_gmt": "2022-06-27T10:26:04",
+    "slug": "adding-models-to-the-administration-site",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/adding-models-to-the-administration-site/",
+    "title": { "rendered": "Adding models to the administration site" },
+    "content": {
+      "rendered": "\n<p>Let&#8217;s add your&nbsp;<a></a>blog models to the administration site. Edit the&nbsp;<code>admin.py</code>&nbsp;file of the&nbsp;<code>blog</code>&nbsp;application and make it look like this:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>from django.contrib import admin\nfrom .models import Post\nadmin.site.register(Post)\n</code></pre>\n\n\n\n<p>Now reload&nbsp;<a></a>the administration site in your browser. You should see your&nbsp;<code>Post</code>&nbsp;model on the site, as follows:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/14981_01_05.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 1.5: The Post model of the blog application included in the Django administration site index page</p>\n\n\n\n<p>That was easy, right? When you register a model in the Django administration site, you get a user-friendly interface generated by introspecting your models that allows you to list, edit, create, and delete objects in a simple way.</p>\n\n\n\n<p>Click on the&nbsp;<strong>Add</strong>&nbsp;link beside&nbsp;<strong>Posts</strong>&nbsp;to add a new post. You will note the form that Django has generated dynamically for your model, as shown in the following screenshot:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/14981_01_06.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 1.6: The Django administration site edit form for the Post model</p>\n\n\n\n<p>Django uses&nbsp;<a></a>different form widgets for each type of field. Even complex fields, such&nbsp;as the&nbsp;<code>DateTimeField</code>, are displayed with an easy interface, such as a JavaScript date picker.</p>\n\n\n\n<p>Fill in the form and click on the&nbsp;<strong>SAVE</strong>&nbsp;button. You should be redirected to the post list page with a success message and the post you just created, as shown in the following screenshot:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/14981_01_07.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 1.7: The Django administration site list view for the Post model with an added successfully message</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Let&#8217;s add your&nbsp;blog models to the administration site. Edit the&nbsp;admin.py&nbsp;file of the&nbsp;blog&nbsp;application and make it look like this: Now reload&nbsp;the administration site in your browser. You should see your&nbsp;Post&nbsp;model on the site, as follows: Figure 1.5: The Post model of the blog application included in the Django administration site index page That was easy, right?&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/adding-models-to-the-administration-site/\">Continue reading <span class=\"screen-reader-text\">Adding models to the administration site</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [125],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3605" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3605"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3605/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3606,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3605/revisions/3606"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3605"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3605"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3605"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3607,
+    "date": "2022-06-27T10:27:11",
+    "date_gmt": "2022-06-27T10:27:11",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3607" },
+    "modified": "2022-06-27T10:27:11",
+    "modified_gmt": "2022-06-27T10:27:11",
+    "slug": "customizing-the-way-that-models-are-displayed",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/customizing-the-way-that-models-are-displayed/",
+    "title": { "rendered": "Customizing the way that models are displayed" },
+    "content": {
+      "rendered": "\n<p>Now, we will&nbsp;<a></a>take a look at how to customize the administration site. Edit the&nbsp;<code>admin.py</code>&nbsp;file of your&nbsp;<code>blog</code>&nbsp;application and change it, as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>from django.contrib import admin\nfrom .models import Post\n@admin.register(Post)\nclass PostAdmin(admin.ModelAdmin):\n    list_display = ('title', 'slug', 'author', 'publish', 'status')\n</code></pre>\n\n\n\n<p>You are telling the Django administration site that your model is registered in the&nbsp;site&nbsp;using a custom class that inherits from&nbsp;<code>ModelAdmin</code>. In this class, you can include information about how to display the model in the site and how to interact&nbsp;with it.</p>\n\n\n\n<p>The&nbsp;<code>list_display</code>&nbsp;attribute allows you to set the fields of your model that you want&nbsp;to display on the administration object list page. The&nbsp;<code>@admin.register()</code>&nbsp;decorator performs the same function as the&nbsp;<code>admin.site.register()</code>&nbsp;function that&nbsp;you replaced, registering the&nbsp;<code>ModelAdmin</code>&nbsp;class that it decorates.</p>\n\n\n\n<p>Let&#8217;s customize the&nbsp;<code>admin</code>&nbsp;model with some more options, using the following code:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>@admin.register(Post)\nclass PostAdmin(admin.ModelAdmin):\n    list_display = ('title', 'slug', 'author', 'publish', 'status')\n    <strong>list_filter = ('status', 'created', 'publish', 'author')</strong>\n    <strong>search_fields = ('title', 'body')</strong>\n    <strong>prepopulated_fields = {'slug': ('title',)}</strong>\n    <strong>raw_id_fields = ('author',)</strong>\n    <strong>date_hierarchy = 'publish'</strong>\n    <strong>ordering = ('status', 'publish')</strong>\n</code></pre>\n\n\n\n<p>Return to your browser and reload the post list page. Now, it will look like this:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/14981_01_08.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 1.8: The Django administration site custom list view for the Post model</p>\n\n\n\n<p>You can see that the fields displayed on the post list page are the ones you specified in the&nbsp;<code>list_display</code>&nbsp;attribute. The list page now includes a right sidebar that allows&nbsp;you to filter the results by the fields included in the&nbsp;<code>list_filter</code>&nbsp;attribute.</p>\n\n\n\n<p>A search bar has appeared on the page. This is because you have defined a list of&nbsp;searchable fields using the&nbsp;<code>search_fields</code>&nbsp;attribute. Just below the search bar, there are navigation links to navigate through a date hierarchy; this has been defined&nbsp;by the&nbsp;<code>date_hierarchy</code>&nbsp;attribute. You can also see that the posts are ordered&nbsp;by&nbsp;<strong>STATUS</strong>&nbsp;and&nbsp;<strong>PUBLISH</strong>&nbsp;columns by default. You have specified the&nbsp;default sorting criteria using the&nbsp;<code>ordering</code>&nbsp;attribute.</p>\n\n\n\n<p>Next, click on the&nbsp;<strong>ADD POST</strong>&nbsp;link. You will also note some changes here. As you type the title&nbsp;<a></a>of a new post, the&nbsp;<code>slug</code>&nbsp;field is filled in automatically. You have told Django to prepopulate the&nbsp;<code>slug</code>&nbsp;field with the input of the&nbsp;<code>title</code>&nbsp;field using the&nbsp;<code>prepopulated_fields</code>&nbsp;attribute.</p>\n\n\n\n<p>Also, the&nbsp;<code>author</code>&nbsp;field is now displayed with a lookup widget that can scale much better than a drop-down select input when you have thousands of users. This is achieved with the&nbsp;<code>raw_id_fields</code>&nbsp;attribute and it looks like this:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/14981_01_09.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 1.9: The widget to select related objects for the author field of the Post model</p>\n\n\n\n<p>With a few lines of code, you have customized the way your model is displayed on the administration site. There are plenty of ways to customize and extend the Django administration site.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Now, we will&nbsp;take a look at how to customize the administration site. Edit the&nbsp;admin.py&nbsp;file of your&nbsp;blog&nbsp;application and change it, as follows: You are telling the Django administration site that your model is registered in the&nbsp;site&nbsp;using a custom class that inherits from&nbsp;ModelAdmin. In this class, you can include information about how to display the model in&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/customizing-the-way-that-models-are-displayed/\">Continue reading <span class=\"screen-reader-text\">Customizing the way that models are displayed</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [125],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3607" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3607"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3607/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3608,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3607/revisions/3608"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3607"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3607"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3607"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3609,
+    "date": "2022-06-27T10:27:38",
+    "date_gmt": "2022-06-27T10:27:38",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3609" },
+    "modified": "2022-06-27T10:27:38",
+    "modified_gmt": "2022-06-27T10:27:38",
+    "slug": "working-with-querysets-and-managers",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/working-with-querysets-and-managers/",
+    "title": { "rendered": "Working with QuerySets and managers" },
+    "content": {
+      "rendered": "\n<p>Now that you have a fully functional administration site to manage your blog&#8217;s content, it&#8217;s time to learn&nbsp;<a></a>how to retrieve information from the database&nbsp;<a></a>and interact with it. Django comes with a powerful database&nbsp;<a></a>abstraction API that lets you create, retrieve, update, and delete objects easily. The Django&nbsp;<strong>object-relational mapper</strong>&nbsp;(<strong>ORM</strong>) is compatible with MySQL, PostgreSQL, SQLite, Oracle, and MariaDB. Remember that you can define the database of your project in the&nbsp;<code>DATABASES</code>&nbsp;setting of your project&#8217;s&nbsp;<code>settings.py</code>&nbsp;file. Django can work with multiple databases at a time, and you can program database routers to create custom routing schemes.</p>\n\n\n\n<p>Once you have created your data models, Django gives you a free API to interact with them. You can find the data model reference of the official documentation at https://docs.djangoproject.com/en/3.0/ref/models/.</p>\n\n\n\n<p>The Django ORM is based on QuerySets. A QuerySet is&nbsp;<a></a>a collection of database queries to retrieve objects from your database. You can apply filters to QuerySets to&nbsp;narrow down the query results based on given parameters.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Now that you have a fully functional administration site to manage your blog&#8217;s content, it&#8217;s time to learn&nbsp;how to retrieve information from the database&nbsp;and interact with it. Django comes with a powerful database&nbsp;abstraction API that lets you create, retrieve, update, and delete objects easily. The Django&nbsp;object-relational mapper&nbsp;(ORM) is compatible with MySQL, PostgreSQL, SQLite, Oracle, and&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/working-with-querysets-and-managers/\">Continue reading <span class=\"screen-reader-text\">Working with QuerySets and managers</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [125],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3609" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3609"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3609/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3610,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3609/revisions/3610"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3609"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3609"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3609"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3611,
+    "date": "2022-06-27T10:28:23",
+    "date_gmt": "2022-06-27T10:28:23",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3611" },
+    "modified": "2022-06-27T10:28:23",
+    "modified_gmt": "2022-06-27T10:28:23",
+    "slug": "creating-objects",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/creating-objects/",
+    "title": { "rendered": "Creating objects" },
+    "content": {
+      "rendered": "\n<p>Open the&nbsp;<a></a>terminal and run the following command to open the Python shell:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>python manage.py shell\n</code></pre>\n\n\n\n<p>Then, type the following lines:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&gt;&gt;&gt; from django.contrib.auth.models import User\n&gt;&gt;&gt; from blog.models import Post\n&gt;&gt;&gt; user = User.objects.get(username='admin')\n&gt;&gt;&gt; post = Post(title='Another post',\n...             slug='another-post',\n...             body='Post body.',\n...             author=user)\n&gt;&gt;&gt; post.save()\n</code></pre>\n\n\n\n<p>Let&#8217;s analyze what this code does. First, you retrieve the&nbsp;<code>user</code>&nbsp;object with the username&nbsp;<code>admin</code>:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>user = User.objects.get(username='admin')\n</code></pre>\n\n\n\n<p>The&nbsp;<code>get()</code>&nbsp;method allows you to retrieve a single object from the database. Note that&nbsp;this method expects a result that matches the query. If no results are returned by&nbsp;the database, this method will raise a&nbsp;<code>DoesNotExist</code>&nbsp;exception, and if the database returns more than one result, it will raise a&nbsp;<code>MultipleObjectsReturned</code>&nbsp;exception. Both exceptions&nbsp;<a></a>are attributes of the model class that the query is being performed on.</p>\n\n\n\n<p>Then, you create a&nbsp;<code>Post</code>&nbsp;instance with a custom title, slug, and body, and set the user that&nbsp;you previously retrieved as the author of the post:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>post = Post(title='Another post', slug='another-post', body='Post body.', author=user)\n</code></pre>\n\n\n\n<p>This object is in memory and is not persisted to the database.</p>\n\n\n\n<p>Finally, you save the&nbsp;<code>Post</code>&nbsp;object to the database using the&nbsp;<code>save()</code>&nbsp;method:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>post.save()\n</code></pre>\n\n\n\n<p>The preceding action performs an&nbsp;<code>INSERT</code>&nbsp;SQL statement behind the scenes. You&nbsp;have seen how to create an object in memory first and then persist it to the database, but you can also create the object and persist it into the database in a single&nbsp;operation using the&nbsp;<code>create()</code>&nbsp;method, as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Post.objects.create(title='One more post',\n                    slug='one-more-post',\n                    body='Post body.',\n                    author=user)\n</code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Open the&nbsp;terminal and run the following command to open the Python shell: Then, type the following lines: Let&#8217;s analyze what this code does. First, you retrieve the&nbsp;user&nbsp;object with the username&nbsp;admin: The&nbsp;get()&nbsp;method allows you to retrieve a single object from the database. Note that&nbsp;this method expects a result that matches the query. If no results are&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/creating-objects/\">Continue reading <span class=\"screen-reader-text\">Creating objects</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [125],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3611" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3611"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3611/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3612,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3611/revisions/3612"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3611"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3611"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3611"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3613,
+    "date": "2022-06-27T10:29:04",
+    "date_gmt": "2022-06-27T10:29:04",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3613" },
+    "modified": "2022-06-27T10:29:04",
+    "modified_gmt": "2022-06-27T10:29:04",
+    "slug": "updating-objects-2",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/updating-objects-2/",
+    "title": { "rendered": "Updating objects" },
+    "content": {
+      "rendered": "\n<p>Now, change the&nbsp;<a></a>title of the post to something different and save the object again:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&gt;&gt;&gt; post.title = 'New title'\n&gt;&gt;&gt; post.save()\n</code></pre>\n\n\n\n<p>This time, the&nbsp;<code>save()</code>&nbsp;method performs an&nbsp;<code>UPDATE</code>&nbsp;SQL statement.</p>\n\n\n\n<p>The changes you make to the object are not persisted to the database until you call the&nbsp;<code>save()</code>&nbsp;method.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Now, change the&nbsp;title of the post to something different and save the object again: This time, the&nbsp;save()&nbsp;method performs an&nbsp;UPDATE&nbsp;SQL statement. The changes you make to the object are not persisted to the database until you call the&nbsp;save()&nbsp;method.</p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [125],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3613" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3613"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3613/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3614,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3613/revisions/3614"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3613"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3613"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3613"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3615,
+    "date": "2022-06-27T10:32:06",
+    "date_gmt": "2022-06-27T10:32:06",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3615" },
+    "modified": "2022-06-27T10:32:06",
+    "modified_gmt": "2022-06-27T10:32:06",
+    "slug": "retrieving-objects",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/retrieving-objects/",
+    "title": { "rendered": "Retrieving objects" },
+    "content": {
+      "rendered": "\n<p>You already know how to retrieve a single object from the database using the&nbsp;<code>get()</code>&nbsp;method. You accessed this method using&nbsp;<code>Post.objects.get()</code>. Each Django model has at least&nbsp;<a></a>one manager, and the default manager is called&nbsp;<code>objects</code>. You get a&nbsp;<code>QuerySet</code>&nbsp;object using your model manager. To retrieve all objects from a table, you&nbsp;just use the&nbsp;<code>all()</code>&nbsp;method on the default objects manager, like this:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&gt;&gt;&gt; all_posts = Post.objects.all()\n</code></pre>\n\n\n\n<p>This is how you create a QuerySet that returns all objects in the database. Note that this QuerySet has not been executed yet. Django QuerySets are&nbsp;<em>lazy</em>, which means they are only evaluated when they are forced to be. This behavior makes QuerySets very efficient. If you don&#8217;t set the QuerySet to a variable, but instead write it directly on the Python shell, the SQL statement of the QuerySet is executed because you&nbsp;force it to output results:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&gt;&gt;&gt; all_posts\n</code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>You already know how to retrieve a single object from the database using the&nbsp;get()&nbsp;method. You accessed this method using&nbsp;Post.objects.get(). Each Django model has at least&nbsp;one manager, and the default manager is called&nbsp;objects. You get a&nbsp;QuerySet&nbsp;object using your model manager. To retrieve all objects from a table, you&nbsp;just use the&nbsp;all()&nbsp;method on the default objects manager, like&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/retrieving-objects/\">Continue reading <span class=\"screen-reader-text\">Retrieving objects</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [125],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3615" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3615"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3615/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3616,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3615/revisions/3616"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3615"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3615"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3615"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3617,
+    "date": "2022-06-27T10:32:43",
+    "date_gmt": "2022-06-27T10:32:43",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3617" },
+    "modified": "2022-06-27T10:32:43",
+    "modified_gmt": "2022-06-27T10:32:43",
+    "slug": "using-the-filter-method",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/using-the-filter-method/",
+    "title": { "rendered": "Using the filter() method" },
+    "content": {
+      "rendered": "\n<p>To filter a QuerySet, you can use the&nbsp;<code>filter()</code>&nbsp;method of the manager. For example, you can&nbsp;<a></a>retrieve all posts published in the year 2020 using the following QuerySet:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&gt;&gt;&gt; Post.objects.filter(publish__year=2020)\n</code></pre>\n\n\n\n<p>You can also filter by multiple fields. For example, you can retrieve all posts published in 2020 by the author with the username&nbsp;<code>admin</code>:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&gt;&gt;&gt; Post.objects.filter(publish__year=2020, author__username='admin')\n</code></pre>\n\n\n\n<p>This equates to building the same QuerySet chaining multiple filters:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&gt;&gt;&gt; Post.objects.filter(publish__year=2020) \\\n&gt;&gt;&gt;             .filter(author__username='admin')\n</code></pre>\n\n\n\n<p>Queries with field lookup methods are built using two underscores,&nbsp;for example,&nbsp;<code>publish__year</code>, but the same notation is also used for accessing fields of related models, such&nbsp;as&nbsp;<code>author__username</code>.</p>\n\n\n\n<h3 id=\"_idParaDest-36\">Using exclude()</h3>\n\n\n\n<p>You can exclude&nbsp;<a></a>certain results from your QuerySet using the&nbsp;<code>exclude()</code>&nbsp;method of&nbsp;the manager. For example, you can retrieve all posts published in 2020 whose titles don&#8217;t start with&nbsp;<code>Why</code>:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&gt;&gt;&gt; Post.objects.filter(publish__year=2020) \\\n&gt;&gt;&gt;             .exclude(title__startswith='Why')\n</code></pre>\n\n\n\n<h3 id=\"_idParaDest-37\">Using order_by()</h3>\n\n\n\n<p>You can&nbsp;<a></a>order results by different fields using the&nbsp;<code>order_by()</code>&nbsp;method of the manager. For example, you can retrieve all objects ordered by their&nbsp;<code>title</code>, as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&gt;&gt;&gt; Post.objects.order_by('title')\n</code></pre>\n\n\n\n<p>Ascending order is implied. You can indicate descending order with a negative sign prefix, like this:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&gt;&gt;&gt; Post.objects.order_by('-title')\n</code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>To filter a QuerySet, you can use the&nbsp;filter()&nbsp;method of the manager. For example, you can&nbsp;retrieve all posts published in the year 2020 using the following QuerySet: You can also filter by multiple fields. For example, you can retrieve all posts published in 2020 by the author with the username&nbsp;admin: This equates to building the same&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/using-the-filter-method/\">Continue reading <span class=\"screen-reader-text\">Using the filter() method</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [125],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3617" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3617"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3617/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3618,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3617/revisions/3618"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3617"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3617"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3617"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3619,
+    "date": "2022-06-27T10:33:09",
+    "date_gmt": "2022-06-27T10:33:09",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3619" },
+    "modified": "2022-06-27T10:33:09",
+    "modified_gmt": "2022-06-27T10:33:09",
+    "slug": "deleting-objects",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/deleting-objects/",
+    "title": { "rendered": "Deleting objects" },
+    "content": {
+      "rendered": "\n<p>If you want&nbsp;<a></a>to delete an object, you can do it from the object instance using the&nbsp;<code>delete()</code>&nbsp;method:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&gt;&gt;&gt; post = Post.objects.get(id=1)\n&gt;&gt;&gt; post.delete()\n</code></pre>\n\n\n\n<p>Note that deleting objects will also delete any dependent relationships for&nbsp;<code>ForeignKey</code>&nbsp;objects defined with&nbsp;<code>on_delete</code>&nbsp;set to&nbsp;<code>CASCADE</code>.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>If you want&nbsp;to delete an object, you can do it from the object instance using the&nbsp;delete()&nbsp;method: Note that deleting objects will also delete any dependent relationships for&nbsp;ForeignKey&nbsp;objects defined with&nbsp;on_delete&nbsp;set to&nbsp;CASCADE.</p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [125],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3619" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3619"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3619/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3620,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3619/revisions/3620"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3619"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3619"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3619"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3621,
+    "date": "2022-06-27T10:33:42",
+    "date_gmt": "2022-06-27T10:33:42",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3621" },
+    "modified": "2022-06-27T10:33:42",
+    "modified_gmt": "2022-06-27T10:33:42",
+    "slug": "when-querysets-are-evaluated",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/when-querysets-are-evaluated/",
+    "title": { "rendered": "When QuerySets are evaluated" },
+    "content": {
+      "rendered": "\n<p>Creating a QuerySet doesn&#8217;t involve any database activity until it is evaluated. QuerySets usually return&nbsp;<a></a>another unevaluated QuerySet. You can concatenate as many filters as you like to a QuerySet, and you will not hit the database until the QuerySet is evaluated. When a QuerySet is evaluated, it translates into an SQL query&nbsp;to the database.</p>\n\n\n\n<p>QuerySets are only evaluated in the following cases:</p>\n\n\n\n<ul><li>The first time you iterate over them</li><li>When you slice them, for instance,&nbsp;<code>Post.objects.all()[:3]</code></li><li>When you pickle or cache them</li><li>When you call&nbsp;<code>repr()</code>&nbsp;or&nbsp;<code>len()</code>&nbsp;on them</li><li>When you explicitly call&nbsp;<code>list()</code>&nbsp;on them</li><li>When you test them in a statement, such as&nbsp;<code>bool()</code>,&nbsp;<code>or</code>,&nbsp;<code>and</code>, or&nbsp;<code>if</code></li></ul>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Creating a QuerySet doesn&#8217;t involve any database activity until it is evaluated. QuerySets usually return&nbsp;another unevaluated QuerySet. You can concatenate as many filters as you like to a QuerySet, and you will not hit the database until the QuerySet is evaluated. When a QuerySet is evaluated, it translates into an SQL query&nbsp;to the database. QuerySets&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/when-querysets-are-evaluated/\">Continue reading <span class=\"screen-reader-text\">When QuerySets are evaluated</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [125],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3621" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3621"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3621/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3622,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3621/revisions/3622"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3621"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3621"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3621"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3623,
+    "date": "2022-06-27T10:34:09",
+    "date_gmt": "2022-06-27T10:34:09",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3623" },
+    "modified": "2022-06-27T10:34:09",
+    "modified_gmt": "2022-06-27T10:34:09",
+    "slug": "creating-model-managers",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/creating-model-managers/",
+    "title": { "rendered": "Creating model managers" },
+    "content": {
+      "rendered": "\n<p>As I previously mentioned,&nbsp;<code>objects</code>&nbsp;is the default manager of every model that retrieves all&nbsp;<a></a>objects in the database. However, you can also define custom managers for your models. You will create a custom manager to retrieve all posts with the&nbsp;<code>published</code>&nbsp;status.</p>\n\n\n\n<p>There are two ways to add or customize managers for your models: you can add extra manager methods to an existing manager, or create a new manager by modifying the initial QuerySet that the manager returns. The first method provides you with a QuerySet API such as&nbsp;<code>Post.objects.my_manager()</code>, and the latter provides you with&nbsp;<code>Post.my_manager.all()</code>. The manager will allow you to retrieve&nbsp;posts using&nbsp;<code>Post.published.all()</code>.</p>\n\n\n\n<p>Edit the&nbsp;<code>models.py</code>&nbsp;file of your&nbsp;<code>blog</code>&nbsp;application to add the custom manager:</p>\n\n\n\n<pre class=\"wp-block-code\"><code><strong>class PublishedManager(models.Manager):</strong>\n    <strong>def get_queryset(self):</strong>\n        <strong>return super(PublishedManager,</strong>\n                     <strong>self).get_queryset()\\</strong>\n                          <strong>.filter(status='published')</strong>\nclass Post(models.Model):\n    <em># ...</em>\n    <strong>objects = models.Manager() <em># The default manager.</em></strong>\n    <strong>published = PublishedManager() <em># Our custom manager.</em></strong>\n</code></pre>\n\n\n\n<p>The first manager declared in a model becomes the default manager. You can use the&nbsp;<code>Meta</code>&nbsp;attribute&nbsp;<code>default_manager_name</code>&nbsp;to specify a different default manager. If no manager is defined in the model, Django automatically creates the&nbsp;<code>objects</code>&nbsp;default manager for it. If you declare any managers for your model but you want to&nbsp;keep the&nbsp;<code>objects</code>&nbsp;manager as well, you have to add it explicitly to your model. In the preceding code, you add the default&nbsp;<code>objects</code>&nbsp;manager and the&nbsp;<code>published</code>&nbsp;custom manager to the&nbsp;<code>Post</code>&nbsp;model.</p>\n\n\n\n<p>The&nbsp;<code>get_queryset()</code>&nbsp;method of a manager returns the QuerySet that will be executed. You override this method to include your custom filter in the final QuerySet.</p>\n\n\n\n<p>You have now defined your custom manager and added it to the&nbsp;<code>Post</code>&nbsp;model; you can use it to perform queries. Let&#8217;s test it.</p>\n\n\n\n<p>Start the development server again with the following command:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>python manage.py shell\n</code></pre>\n\n\n\n<p>Now, you can import the&nbsp;<code>Post</code>&nbsp;model and retrieve all published posts whose title starts with&nbsp;<code>Who</code>, executing the following QuerySet:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&gt;&gt;&gt; from blog.models import Post\n&gt;&gt;&gt; Post.published.filter(title__startswith='Who')\n</code></pre>\n\n\n\n<p>To obtain&nbsp;<a></a>results for this QuerySet, make sure that you set the&nbsp;<code>published</code>&nbsp;field to&nbsp;<code>True</code>&nbsp;in the&nbsp;<code>Post</code>&nbsp;object whose&nbsp;<code>title</code>&nbsp;starts with&nbsp;<code>Who</code>.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>As I previously mentioned,&nbsp;objects&nbsp;is the default manager of every model that retrieves all&nbsp;objects in the database. However, you can also define custom managers for your models. You will create a custom manager to retrieve all posts with the&nbsp;published&nbsp;status. There are two ways to add or customize managers for your models: you can add extra manager&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/creating-model-managers/\">Continue reading <span class=\"screen-reader-text\">Creating model managers</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [125],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3623" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3623"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3623/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3624,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3623/revisions/3624"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3623"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3623"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3623"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3625,
+    "date": "2022-06-27T10:34:38",
+    "date_gmt": "2022-06-27T10:34:38",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3625" },
+    "modified": "2022-06-27T10:34:38",
+    "modified_gmt": "2022-06-27T10:34:38",
+    "slug": "building-list-and-detail-views",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/building-list-and-detail-views/",
+    "title": { "rendered": "Building list and detail views" },
+    "content": {
+      "rendered": "\n<p>Now that you&nbsp;<a></a>have knowledge of how to use the ORM, you are ready to build the&nbsp;views of the&nbsp;<code>blog</code>&nbsp;application. A Django view is just a Python function that&nbsp;<a></a>receives a web request and returns a web response. All the logic to return the desired&nbsp;response goes inside the view.</p>\n\n\n\n<p>First, you will create your application views, then you will define a URL pattern for each view, and finally, you will create HTML templates to render the data generated by the views. Each view will render a template, passing variables to it, and will return an HTTP response with the rendered output.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Now that you&nbsp;have knowledge of how to use the ORM, you are ready to build the&nbsp;views of the&nbsp;blog&nbsp;application. A Django view is just a Python function that&nbsp;receives a web request and returns a web response. All the logic to return the desired&nbsp;response goes inside the view. First, you will create your application views, then you&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/building-list-and-detail-views/\">Continue reading <span class=\"screen-reader-text\">Building list and detail views</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [125],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3625" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3625"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3625/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3626,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3625/revisions/3626"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3625"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3625"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3625"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3627,
+    "date": "2022-06-27T10:35:24",
+    "date_gmt": "2022-06-27T10:35:24",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3627" },
+    "modified": "2022-06-27T10:35:24",
+    "modified_gmt": "2022-06-27T10:35:24",
+    "slug": "creating-list-and-detail-views",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/creating-list-and-detail-views/",
+    "title": { "rendered": "Creating list and detail views" },
+    "content": {
+      "rendered": "\n<p>Let&#8217;s start&nbsp;<a></a>by creating a view to display the list of posts. Edit the&nbsp;<code>views.py</code>&nbsp;file&nbsp;<a></a>of your&nbsp;<code>blog</code>&nbsp;application and make it look like this:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>from django.shortcuts import render, get_object_or_404\nfrom .models import Post\ndef post_list(request):\n    posts = Post.published.all()\n    return render(request,\n                 'blog/post/list.html',\n                 {'posts': posts})\n</code></pre>\n\n\n\n<p>You just created your first Django view. The&nbsp;<code>post_list</code>&nbsp;view takes the&nbsp;<code>request</code>&nbsp;object as the only parameter. This parameter is required by all views. In this view, you retrieve all the posts with the&nbsp;<code>published</code>&nbsp;status using the&nbsp;<code>published</code>&nbsp;manager that you created previously.</p>\n\n\n\n<p>Finally, you use the <code>render()</code> shortcut provided by Django to render the list of posts with the given template. This function takes the <code>request</code> object, the template path, and the context variables to render the given template. It returns an <code>HttpResponse</code> object with the rendered text (normally HTML code). The <code>render()</code> shortcut takes the request context into account, so any variable set by the template context processors is accessible by the given template. Template context processors are just callables that set variables into the context. <em>Extending Your Blog Application</em>.</p>\n\n\n\n<p>Let&#8217;s create a second view to display a single post. Add the following function to the&nbsp;<code>views.py</code>&nbsp;file:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>def post_detail(request, year, month, day, post):\n    post = get_object_or_404(Post, slug=post,\n                                   status='published',\n                                   publish__year=year,\n                                   publish__month=month,\n                                   publish__day=day)\n    return render(request,\n                  'blog/post/detail.html',\n                  {'post': post})\n</code></pre>\n\n\n\n<p>This is the post detail view. This view takes the <code>year</code>, <code>month</code>, <code>day</code>, and <code>post</code> arguments to retrieve a published post with the given slug and date. Note that when you created the <code>Post</code> model, you added the <code>unique_for_date</code> parameter to the <code>slug</code> field. This ensures that there will be only one post with a slug for a given date, and thus, you can retrieve single posts using the date and slug. In the detail view, you use the <code>get_object_or_404()</code> shortcut to retrieve the desired post. This function retrieves the object that matches the given parameters or an HTTP 404 (not found) exception if no object is found. Finally, you use the <code>render()</code> shortcut to render the retrieved post using a template.c</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Let&#8217;s start&nbsp;by creating a view to display the list of posts. Edit the&nbsp;views.py&nbsp;file&nbsp;of your&nbsp;blog&nbsp;application and make it look like this: You just created your first Django view. The&nbsp;post_list&nbsp;view takes the&nbsp;request&nbsp;object as the only parameter. This parameter is required by all views. In this view, you retrieve all the posts with the&nbsp;published&nbsp;status using the&nbsp;published&nbsp;manager that you&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/creating-list-and-detail-views/\">Continue reading <span class=\"screen-reader-text\">Creating list and detail views</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [125],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3627" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3627"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3627/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3628,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3627/revisions/3628"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3627"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3627"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3627"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3629,
+    "date": "2022-06-27T10:36:28",
+    "date_gmt": "2022-06-27T10:36:28",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3629" },
+    "modified": "2022-06-27T10:36:28",
+    "modified_gmt": "2022-06-27T10:36:28",
+    "slug": "adding-url-patterns-for-your-views",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/adding-url-patterns-for-your-views/",
+    "title": { "rendered": "Adding URL patterns for your views" },
+    "content": {
+      "rendered": "\n<p>URL patterns allow you to map URLs to views. A URL pattern is composed of a string pattern, a view, and, optionally, a name that allows you to name the URL project-wide. Django runs&nbsp;<a></a>through each URL pattern and stops at&nbsp;<a></a>the first one that matches the requested URL. Then, Django imports the view of the matching URL pattern and executes it, passing an instance of the&nbsp;<code>HttpRequest</code>&nbsp;class and the&nbsp;keyword or positional arguments.</p>\n\n\n\n<p>Create a&nbsp;<code>urls.py</code>&nbsp;file in the directory of the&nbsp;<code>blog</code>&nbsp;application and add the following lines to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>from django.urls import path\nfrom . import views\napp_name = 'blog'\nurlpatterns = &#91;\n    # post views\n    path('', views.post_list, name='post_list'),\n    path('&lt;int:year&gt;/&lt;int:month&gt;/&lt;int:day&gt;/&lt;slug:post&gt;/',\n         views.post_detail,\n         name='post_detail'),\n]\n</code></pre>\n\n\n\n<p>In the preceding code, you define an application namespace with the&nbsp;<code>app_name</code>&nbsp;variable. This allows&nbsp;<a></a>you to organize URLs by application&nbsp;<a></a>and use the name when referring to them. You define two different patterns using the&nbsp;<code>path()</code>&nbsp;function. The first URL pattern doesn&#8217;t take any arguments and is mapped to the&nbsp;<code>post_list</code>&nbsp;view. The second pattern takes the following four arguments and is mapped to the&nbsp;<code>post_detail</code>&nbsp;view:</p>\n\n\n\n<ul><li><code>year</code>: Requires an integer</li><li><code>month</code>: Requires an integer</li><li><code>day</code>: Requires an integer</li><li><code>post</code>: Can be composed of words and hyphens</li></ul>\n\n\n\n<p>You use angle brackets to capture the values from the URL. Any value specified in the URL pattern as <code>&lt;parameter></code> is captured as a string. You use path converters, such as <code>&lt;int:year></code>, to specifically match and return an integer and <code>&lt;slug:post></code> to specifically match a slug. You can see all path converters provided by Django at https://docs.djangoproject.com/en/3.0/topics/http/urls/#path-converters.</p>\n\n\n\n<p>If using <code>path()</code> and converters isn&#8217;t sufficient for you, you can use <code>re_path()</code> instead to define complex URL patterns with Python regular expressions. You can learn more about defining URL patterns with regular expressions at https://docs.djangoproject.com/en/3.0/ref/urls/#django.urls.re_path. If you haven&#8217;t worked with regular expressions before, you might want to take a look at the <em>Regular Expression HOWTO</em> located at https://docs.python.org/3/howto/regex.html first.</p>\n\n\n\n<p>Creating a&nbsp;<code>urls.py</code>&nbsp;file for each application is the best way to make your applications reusable by other projects.</p>\n\n\n\n<p>Next, you have to include the URL patterns of the&nbsp;<code>blog</code>&nbsp;application in the main URL&nbsp;patterns of the project.</p>\n\n\n\n<p>Edit the&nbsp;<code>urls.py</code>&nbsp;file located in the&nbsp;<code>mysite</code>&nbsp;directory of your project and make it look&nbsp;like the following:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>from django.urls import path, <strong>include</strong>\nfrom django.contrib import admin\nurlpatterns = &#91;\n    path('admin/', admin.site.urls),\n    <strong>path('blog/', include('blog.urls', namespace='blog'))</strong>,\n]\n</code></pre>\n\n\n\n<p>The new URL pattern defined with <code>include</code> refers to the URL patterns defined in the <code>blog</code> application so that they are included under the <code>blog/</code> path. You include these patterns under the namespace <code>blog</code>. Namespaces have to be unique across your entire project. Later, you will refer to your blog URLs easily by using the namespace followed by a colon and the URL name, for example, <code>blog:post_list</code> and <code>blog:post_detail</code>. You can learn more about URL namespaces at https://docs.djangoproject.com/en/3.0/topics/http/urls/#url-namespaces.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>URL patterns allow you to map URLs to views. A URL pattern is composed of a string pattern, a view, and, optionally, a name that allows you to name the URL project-wide. Django runs&nbsp;through each URL pattern and stops at&nbsp;the first one that matches the requested URL. Then, Django imports the view of the matching&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/adding-url-patterns-for-your-views/\">Continue reading <span class=\"screen-reader-text\">Adding URL patterns for your views</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [125],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3629" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3629"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3629/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3630,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3629/revisions/3630"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3629"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3629"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3629"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3631,
+    "date": "2022-06-27T10:37:00",
+    "date_gmt": "2022-06-27T10:37:00",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3631" },
+    "modified": "2022-06-27T10:37:00",
+    "modified_gmt": "2022-06-27T10:37:00",
+    "slug": "canonical-urls-for-models",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/canonical-urls-for-models/",
+    "title": { "rendered": "Canonical URLs for models" },
+    "content": {
+      "rendered": "\n<p>A canonical URL is the preferred URL for a resource. You may have different pages in your site where&nbsp;<a></a>you display posts, but there is&nbsp;<a></a>a single URL that you use as the main URL for a blog post. The convention in Django is to add a&nbsp;<code>get_absolute_url()</code>&nbsp;method to&nbsp;<a></a>the model that returns the canonical URL for the object.</p>\n\n\n\n<p>You can use the <code>post_detail</code> URL that you have defined in the preceding section to build the canonical URL for <code>Post</code> objects. For this method, you will use the <code>reverse()</code> method, which allows you to build URLs by their name and pass optional parameters. You can learn more about the URLs utility functions at https://docs.djangoproject.com/en/3.0/ref/urlresolvers/.</p>\n\n\n\n<p>Edit the&nbsp;<code>models.py</code>&nbsp;file of the&nbsp;<code>blog</code>&nbsp;application and add the following code:</p>\n\n\n\n<pre class=\"wp-block-code\"><code><strong>from django.urls import reverse</strong>\nclass Post(models.Model):\n    <em># ...</em>\n    <strong>def get_absolute_url(self):</strong>\n        <strong>return reverse('blog:post_detail',</strong>\n                       <strong>args=&#91;self.publish.year,</strong>\n                             <strong>self.publish.month,</strong>\n                             <strong>self.publish.day, self.slug])</strong>\n</code></pre>\n\n\n\n<p>You will use the&nbsp;<code>get_absolute_url()</code>&nbsp;method in your templates to link to specific&nbsp;posts.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>A canonical URL is the preferred URL for a resource. You may have different pages in your site where&nbsp;you display posts, but there is&nbsp;a single URL that you use as the main URL for a blog post. The convention in Django is to add a&nbsp;get_absolute_url()&nbsp;method to&nbsp;the model that returns the canonical URL for the object.&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/canonical-urls-for-models/\">Continue reading <span class=\"screen-reader-text\">Canonical URLs for models</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [125],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3631" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3631"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3631/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3632,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3631/revisions/3632"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3631"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3631"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3631"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3633,
+    "date": "2022-06-27T10:40:10",
+    "date_gmt": "2022-06-27T10:40:10",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3633" },
+    "modified": "2022-06-27T10:40:10",
+    "modified_gmt": "2022-06-27T10:40:10",
+    "slug": "creating-templates-for-your-views",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/creating-templates-for-your-views/",
+    "title": { "rendered": "Creating templates for your views" },
+    "content": {
+      "rendered": "\n<p>You have created views and URL patterns for the <code>blog</code> application. URL patterns map URLs to views, and views decide which data gets returned to the user. Templates define how the data is displayed; they are usually written in HTML in combination with the Django template language. You can find more information about the Django template language at https://docs.djangoproject.com/en/3.0/ref/templates/language/.</p>\n\n\n\n<p>Let&#8217;s add templates to your application to display posts in a user-friendly manner.</p>\n\n\n\n<p>Create the following directories and files inside your&nbsp;<code>blog</code>&nbsp;application directory:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>templates/\n    blog/\n        base.html\n        post/\n            list.html\n            detail.html\n</code></pre>\n\n\n\n<p>The preceding structure will be the file structure for your templates. The&nbsp;<code>base.html</code>&nbsp;file will include the main HTML structure of the website and divide the content into the main content area and a sidebar. The&nbsp;<code>list.html</code>&nbsp;and&nbsp;<code>detail.html</code>&nbsp;files will inherit from the&nbsp;<code>base.html</code>&nbsp;file to render the blog post list and detail views, respectively.</p>\n\n\n\n<p>Django has a powerful template language that allows you to specify how data is displayed. It is based on&nbsp;<em>template tags</em>,&nbsp;<em>template variables</em>, and&nbsp;<em>template filters</em>:</p>\n\n\n\n<ul><li>Template tags control the&nbsp;<a></a>rendering of the template and look like&nbsp;<code>{% tag %}</code></li><li>Template variables get&nbsp;<a></a>replaced with values when the template is rendered and look like&nbsp;<code>{{ variable }}</code></li><li>Template filters allow&nbsp;<a></a>you to modify variables for display and look like&nbsp;<code>{{ variable</code><strong>|filter</strong><code>&nbsp;}}</code>.</li></ul>\n\n\n\n<p>You can see all built-in template tags and filters at https://docs.djangoproject.com/en/3.0/ref/templates/builtins/.</p>\n\n\n\n<p>Edit the&nbsp;<code>base.html</code>&nbsp;file and add the following code:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{% load static %}\n&lt;!DOCTYPE html&gt;\n&lt;html&gt;\n&lt;head&gt;\n  &lt;title&gt;{% block title %}{% endblock %}&lt;/title&gt;\n  &lt;link href=\"{% static \"css/blog.css\" %}\" rel=\"stylesheet\"&gt;\n&lt;/head&gt;\n&lt;body&gt;\n  &lt;div id=\"content\"&gt;\n    {% block content %}\n    {% endblock %}\n  &lt;/div&gt;\n  &lt;div id=\"sidebar\"&gt;\n    &lt;h2&gt;My blog&lt;/h2&gt;\n    &lt;p&gt;This is my blog.&lt;/p&gt;\n  &lt;/div&gt;\n&lt;/body&gt;\n&lt;/html&gt;\n</code></pre>\n\n\n\n<p><code>{% load static %}</code> tells Django to load the <code>static</code> template tags that are provided by the <code>django.contrib.staticfiles</code> application, which is contained in the <code>INSTALLED_APPS</code> setting. After loading them, you are able to use the <code>{% static %}</code> template tag throughout this template. With this template tag, you can include the static files, such as the <code>blog.css</code> file, which you will find in the code of this example under the <code>static/</code> directory of the <code>blog</code> application. Copy the <code>static/</code> directory from the code that comes along with the same location as your project to apply the CSS styles to the templates. You can find the directory&#8217;s contents at https://github.com/PacktPublishing/Django-3-by-Example/tree/master/mysite/blog/static.</p>\n\n\n\n<p>You can see that there are two&nbsp;<code>{% block %}</code>&nbsp;tags. These tell Django that you want to define a block in that area. Templates that inherit from this template can fill in the blocks with content. You have defined a block called&nbsp;<code>title</code>&nbsp;and a block called&nbsp;<code>content</code>.</p>\n\n\n\n<p>Let&#8217;s edit the&nbsp;<code>post/list.html</code>&nbsp;file and make it look like the following:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{% extends \"blog/base.html\" %}\n{% block title %}My Blog{% endblock %}\n{% block content %}\n  &lt;h1&gt;My Blog&lt;/h1&gt;\n  {% for post in posts %}\n    &lt;h2&gt;\n      &lt;a href=\"{{ post.get_absolute_url }}\"&gt;\n        {{ post.title }}\n      &lt;/a&gt;\n    &lt;/h2&gt;\n    &lt;p class=\"date\"&gt;\n      Published {{ post.publish }} by {{ post.author }}\n    &lt;/p&gt;\n    {{ post.body|truncatewords:30|linebreaks }}\n  {% endfor %}\n{% endblock %}\n</code></pre>\n\n\n\n<p>With the&nbsp;<code>{% extends %}</code>&nbsp;template tag, you tell Django to inherit from the&nbsp;<code>blog/base.html</code>&nbsp;template. Then, you fill the&nbsp;<code>title</code>&nbsp;and&nbsp;<code>content</code>&nbsp;blocks of the base template with content. You iterate through the posts and display their title, date, author, and body, including a link in the title to the canonical URL of the post.</p>\n\n\n\n<p>In the body&nbsp;<a></a>of the post, you apply two template filters:&nbsp;<code>truncatewords</code>&nbsp;truncates the value to the number of words specified, and&nbsp;<code>linebreaks</code>&nbsp;converts the&nbsp;<a></a>output into HTML line breaks. You can concatenate as many template filters as you wish; each one will be applied to the output generated by the preceding one.</p>\n\n\n\n<p>Open the shell and execute the&nbsp;<code>python manage.py runserver</code>&nbsp;command to start the development server. Open&nbsp;<code>http://127.0.0.1:8000/blog/</code>&nbsp;in your browser; you will see everything running. Note that you need to have some posts with the&nbsp;<code>Published</code>&nbsp;status to show them here. You should see something like this:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/14981_01_10.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 1.10: The page for the post list view</p>\n\n\n\n<p>Next, edit the&nbsp;<code>post/detail.html</code>&nbsp;file:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{% extends \"blog/base.html\" %}\n{% block title %}{{ post.title }}{% endblock %}\n{% block content %}\n  &lt;h1&gt;{{ post.title }}&lt;/h1&gt;\n  &lt;p class=\"date\"&gt;\n    Published {{ post.publish }} by {{ post.author }}\n  &lt;/p&gt;\n  {{ post.body|linebreaks }}\n{% endblock %}\n</code></pre>\n\n\n\n<p>Next, you can&nbsp;<a></a>return to your browser and click on one of the&nbsp;<a></a>post titles to take a look&nbsp;at the detail view of the post. You should see something like this:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/14981_01_11.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 1.11: The page for the post&#8217;s detail view</p>\n\n\n\n<p>Take a look at the URL—it should be&nbsp;<code>/blog/2020/1/1/who-was-django-reinhardt/</code>. You have designed SEO-friendly URLs for your blog posts.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>You have created views and URL patterns for the blog application. URL patterns map URLs to views, and views decide which data gets returned to the user. Templates define how the data is displayed; they are usually written in HTML in combination with the Django template language. You can find more information about the Django template language at https://docs.djangoproject.com/en/3.0/ref/templates/language/. Let&#8217;s add&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/creating-templates-for-your-views/\">Continue reading <span class=\"screen-reader-text\">Creating templates for your views</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [125],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3633" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3633"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3633/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3634,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3633/revisions/3634"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3633"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3633"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3633"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3635,
+    "date": "2022-06-27T10:40:45",
+    "date_gmt": "2022-06-27T10:40:45",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3635" },
+    "modified": "2022-06-27T10:40:45",
+    "modified_gmt": "2022-06-27T10:40:45",
+    "slug": "adding-pagination",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/adding-pagination/",
+    "title": { "rendered": "Adding pagination" },
+    "content": {
+      "rendered": "\n<p>When you start adding content to your blog, you might easily reach the point where tens or hundreds&nbsp;<a></a>of posts are stored in your database. Instead of displaying all the posts on a single page, you may want to split the list of posts across several pages. This can be achieved through pagination. You can define the number of posts you want to be displayed per page and retrieve the posts that correspond to the page requested by the user. Django has a built-in pagination class that allows you to manage paginated data easily.</p>\n\n\n\n<p>Edit the&nbsp;<code>views.py</code>&nbsp;file of the&nbsp;<code>blog</code>&nbsp;application to import the Django paginator classes&nbsp;and&nbsp;<a></a>modify the&nbsp;<code>post_list</code>&nbsp;view, as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code><strong>from django.core.paginator import Paginator, EmptyPage,\\</strong>\n                                  <strong>PageNotAnInteger</strong>\ndef post_list(request):\n    <strong>object_list = Post.published.all()</strong>\n    <strong>paginator = Paginator(object_list, 3) # 3 posts in each page</strong>\n    <strong>page = request.GET.get('page')</strong>\n    <strong>try:</strong>\n        <strong>posts = paginator.page(page)</strong>\n    <strong>except PageNotAnInteger:</strong>\n        <strong># If page is not an integer deliver the first page</strong>\n        <strong>posts = paginator.page(1)</strong>\n    <strong>except EmptyPage:</strong>\n        <strong># If page is out of range deliver last page of results</strong>\n        <strong>posts = paginator.page(paginator.num_pages)</strong>\n    return render(request,\n                  'blog/post/list.html',\n                   {<strong>'page': page,</strong>\n                    'posts': posts})\n</code></pre>\n\n\n\n<p>This is how&nbsp;<a></a>pagination works:</p>\n\n\n\n<ol><li>You instantiate the&nbsp;<code>Paginator</code>&nbsp;class with the number of objects that you want to&nbsp;display on each page.</li><li>You get the&nbsp;<code>page GET</code>&nbsp;parameter, which indicates the current page number.</li><li>You obtain the objects for the desired page by calling the&nbsp;<code>page()</code>&nbsp;method of&nbsp;<code>Paginator</code>.</li><li>If the&nbsp;<code>page</code>&nbsp;parameter is not an integer, you retrieve the first page of results. If&nbsp;this&nbsp;parameter is a number higher than the last page of results, you retrieve the&nbsp;last page.</li><li>You pass the page number and retrieved objects to the template.</li></ol>\n\n\n\n<p>Now you have to create a template to display the paginator so that it can be included in any template that uses pagination. In the&nbsp;<code>templates/</code>&nbsp;folder of the&nbsp;<code>blog</code>&nbsp;application, create a new file and name it&nbsp;<code>pagination.html</code>. Add the following HTML code to the file:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;div class=\"pagination\"&gt;\n  &lt;span class=\"step-links\"&gt;\n    {% if page.has_previous %}\n      &lt;a href=\"?page={{ page.previous_page_number }}\"&gt;Previous&lt;/a&gt;\n    {% endif %}\n    &lt;span class=\"current\"&gt;\n      Page {{ page.number }} of {{ page.paginator.num_pages }}.\n    &lt;/span&gt;\n    {% if page.has_next %}\n      &lt;a href=\"?page={{ page.next_page_number }}\"&gt;Next&lt;/a&gt;\n    {% endif %}\n  &lt;/span&gt;\n&lt;/div&gt;\n</code></pre>\n\n\n\n<p>The pagination&nbsp;<a></a>template expects a&nbsp;<code>Page</code>&nbsp;object in order to render the previous and next links, and to display the current page and total pages of results. Let&#8217;s return to the&nbsp;<code>blog/post/list.html</code>&nbsp;template and include the&nbsp;<code>pagination.html</code>&nbsp;template at the bottom of the&nbsp;<code>{% content %}</code>&nbsp;block, as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{% block content %}\n  ...\n  <strong>{% include \"pagination.html\" with page=posts %}</strong>\n{% endblock %}\n</code></pre>\n\n\n\n<p>Since the&nbsp;<code>Page</code>&nbsp;object you are passing to the template is called&nbsp;<code>posts</code>, you include the pagination template in the post list template, passing the parameters to render it correctly. You can follow this method to reuse your pagination template in the paginated views of different models.</p>\n\n\n\n<p>Now open&nbsp;<code>http://127.0.0.1:8000/blog/</code>&nbsp;in your browser. You should see the&nbsp;pagination at the bottom of the post list and should be able to navigate through&nbsp;pages:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/14981_01_12.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 1.12: The post list page including pagination</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>When you start adding content to your blog, you might easily reach the point where tens or hundreds&nbsp;of posts are stored in your database. Instead of displaying all the posts on a single page, you may want to split the list of posts across several pages. This can be achieved through pagination. You can define&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/adding-pagination/\">Continue reading <span class=\"screen-reader-text\">Adding pagination</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [125],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3635" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3635"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3635/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3636,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3635/revisions/3636"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3635"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3635"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3635"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3637,
+    "date": "2022-06-27T10:41:42",
+    "date_gmt": "2022-06-27T10:41:42",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3637" },
+    "modified": "2022-06-27T10:41:42",
+    "modified_gmt": "2022-06-27T10:41:42",
+    "slug": "using-class-based-views",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/using-class-based-views/",
+    "title": { "rendered": "Using class-based views" },
+    "content": {
+      "rendered": "\n<p>Class-based views are an alternative way to implement views as Python objects instead of functions. Since a view is a callable that takes a web request and returns a web response, you can also define your views as class methods. Django provides base view classes for this. All of them inherit from the&nbsp;<code>View</code>&nbsp;class, which handles HTTP method dispatching&nbsp;<a></a>and other common functionalities.</p>\n\n\n\n<p>Class-based views offer advantages over function-based views for some use cases. They have the&nbsp;<a></a>following features:</p>\n\n\n\n<ul><li>Organizing code related to HTTP methods, such as&nbsp;<code>GET</code>,&nbsp;<code>POST</code>, or&nbsp;<code>PUT</code>, in separate methods, instead of using conditional branching</li><li>Using multiple inheritance to create reusable view classes (also known as&nbsp;<em>mixins</em>)</li></ul>\n\n\n\n<p>You can take a look at an introduction to class-based views at https://docs.djangoproject.com/en/3.0/topics/class-based-views/intro/.</p>\n\n\n\n<p>You will change your&nbsp;<code>post_list</code>&nbsp;view into a class-based view to use the generic&nbsp;<code>ListView</code>&nbsp;offered by Django. This base view allows you to list objects of any kind.</p>\n\n\n\n<p>Edit the&nbsp;<code>views.py</code>&nbsp;file of your&nbsp;<code>blog</code>&nbsp;application and add the following code:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>from django.views.generic import ListView\nclass PostListView(ListView):\n    queryset = Post.published.all()\n    context_object_name = 'posts'\n    paginate_by = 3\n    template_name = 'blog/post/list.html'\n</code></pre>\n\n\n\n<p>This class-based view&nbsp;<a></a>is analogous to the previous&nbsp;<code>post_list</code>&nbsp;view. In the preceding&nbsp;code, you are telling&nbsp;<code>ListView</code>&nbsp;to do the following things:</p>\n\n\n\n<ul><li>Use a specific QuerySet instead of retrieving all objects. Instead of defining a&nbsp;<code>queryset</code>&nbsp;attribute, you could have specified&nbsp;<code>model = Post</code>&nbsp;and Django would have built the generic&nbsp;<code>Post.objects.all()</code>&nbsp;QuerySet for you.</li><li>Use the context variable&nbsp;<code>posts</code>&nbsp;for the query results. The default variable is&nbsp;<code>object_list</code>&nbsp;if you don&#8217;t specify any&nbsp;<code>context_object_name</code>.</li><li>Paginate the result, displaying three objects per page.</li><li>Use a custom template to render the page. If you don&#8217;t set a default template,&nbsp;<code>ListView</code>&nbsp;will use&nbsp;<code>blog/post_list.html</code>.</li></ul>\n\n\n\n<p>Now open the&nbsp;<code>urls.py</code>&nbsp;file of your&nbsp;<code>blog</code>&nbsp;application, comment the preceding&nbsp;<code>post_list</code>&nbsp;URL pattern, and add a new URL pattern using the&nbsp;<code>PostListView</code>&nbsp;class, as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>urlpatterns = &#91;\n    # post views\n    <strong>#</strong> path('', views.post_list, name='post_list'),\n    <strong>path('', views.PostListView.as_view(), name='post_list')</strong>,\n    path('&lt;int:year&gt;/&lt;int:month&gt;/&lt;int:day&gt;/&lt;slug:post&gt;/',\n        views.post_detail,\n        name='post_detail'),\n]\n</code></pre>\n\n\n\n<p>In order to keep pagination working, you have to use the right page object that is passed to the template. Django&#8217;s&nbsp;<code>ListView</code>&nbsp;generic view passes the selected page in a variable called&nbsp;<code>page_obj</code>, so you have to edit your&nbsp;<code>post/list.html</code>&nbsp;template accordingly to include the paginator using the right variable, as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{% include \"pagination.html\" with <strong>page=page_obj</strong> %}\n</code></pre>\n\n\n\n<p>Open <code>http://127.0.0.1:8000/blog/</code> in your browser and verify that everything works the same way as with the previous <code>post_list</code> view. This is a simple example of a class-based view that uses a generic class provided by Django. You will learn more about class-based views the <em>Building an E-Learning Platform</em>, and successive.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Class-based views are an alternative way to implement views as Python objects instead of functions. Since a view is a callable that takes a web request and returns a web response, you can also define your views as class methods. Django provides base view classes for this. All of them inherit from the&nbsp;View&nbsp;class, which handles&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/using-class-based-views/\">Continue reading <span class=\"screen-reader-text\">Using class-based views</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [125],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3637" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3637"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3637/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3638,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3637/revisions/3638"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3637"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3637"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3637"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  }
+]

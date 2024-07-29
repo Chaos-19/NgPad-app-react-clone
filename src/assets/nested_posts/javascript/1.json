@@ -1,0 +1,378 @@
+[
+  {
+    "id": 3026,
+    "date": "2020-11-27T10:47:10",
+    "date_gmt": "2020-11-27T10:47:10",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3026"
+    },
+    "modified": "2020-11-27T10:47:10",
+    "modified_gmt": "2020-11-27T10:47:10",
+    "slug": "what-is-javascript-2",
+    "status": "publish",
+    "type": "post",
+    "link": "https://computerprogramming.foobrdigital.com/what-is-javascript-2/",
+    "title": {
+      "rendered": "What is JavaScript"
+    },
+    "content": {
+      "rendered": "\n<p>JavaScript is a programming language initially designed to interact with elements of web pages. In web browsers, JavaScript consists of three main parts:</p>\n\n\n\n<ul><li>ECMAScript that provides the core functionality.</li><li>The Document Object Model (DOM), which provides interfaces for interacting with elements on web pages</li><li>The Browser Object Model (BOM), which provides API for interacting with web browsers.</li></ul>\n\n\n\n<p>JavaScript allows you to add interactivity to a web page. It is often used with HTML and CSS to enhance the functionality of a web page such as validating forms, creating interactive maps, and displaying animated charts.</p>\n\n\n\n<p>When a web page is loaded i.e. after HTML and CSS have been downloaded, the JavaScript engine in the web browser executes the JavaScript code. The JavaScript code then modifies the HTML and CSS to dynamically update the user interface.</p>\n\n\n\n<p>The JavaScript engine is a program that executes JavaScript code. In the beginning, JavaScript engines were implemented as interpreters. However, modern JavaScript engines are typically implemented as just-in-time compilers that compile JavaScript code to bytecode for improved performance.</p>\n\n\n\n<h2>Client-side vs. Server-side JavaScript</h2>\n\n\n\n<p>When JavaScript is used on a web page, it is executed in the web browsers of user’s computers. In this case, JavaScript works as a client-side language.</p>\n\n\n\n<p>JavaScript can run on both web browsers and servers. A popular server-side environment for JavaScript is Node.js. Unlike the client-side JavaScript, the server-side JavaScript executes on the server that allows you to access databases, file systems, etc.</p>\n\n\n\n<h2>JavaScript History</h2>\n\n\n\n<p>In 1995, JavaScript was created by a Netscape developer named Brendan Eich. First, it was called Mocha that later was renamed to LiveScript.</p>\n\n\n\n<p>Netscape decided to change LiveScript to JavaScript to leverage the fame of Java which was popular at that time. The decision was made just before Netscape released its web browser product called Netscape Navigator 2. As a result, JavaScript entered its version 1.0.</p>\n\n\n\n<p>Netscape released JavaScript 1.1 in Netscape Navigator 3. In the meantime, Microsoft introduced a web browser product called the Internet Explorer 3 (IE 3), that competed with Netscape. However, IE came with its JavaScript implementation called JScript. Microsoft used the name JScript to avoid possible license issues with Netscape.</p>\n\n\n\n<p>As a result, two different JavaScript versions were in the market. JavaScript in Netscape Navigator and JScript in Internet Explorer. JavaScript had no standards that govern its syntax and features. And it was decided that the language must be standardized.</p>\n\n\n\n<p>In 1997, JavaScript 1.1 was submitted to the European Computer Manufacturers Association (ECMA) as a proposal. Technical Committee #39 (TC39) was assigned to standardize the language to make it a general-purpose, cross-platform, and vendor-neutral scripting language. TC39 came up with ECMA-262 which was a standard defining a new scripting language named ECMAScript (often pronounced Ek-ma-script).</p>\n\n\n\n<p>After that, the International Organization for Standardization and International Electrotechnical Commissions (ISO/IEC) adopted ECMAScript as a standard (ISO/IEC-16262).</p>\n\n\n\n<h2>Overview of JavaScript</h2>\n\n\n\n<p>To define a variable in JavaScript, you use <code>var</code> keyword. For example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>var x = 10;\nvar y = 20;</code></pre>\n\n\n\n<p>ES6 added a new way to declare a variable with the <code>let</code> keyword:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let x = 10;\nlet y = 20;</code></pre>\n\n\n\n<p>To declare a function, you use the <code>function</code> keyword. The following example defines a function that calculates the sum of two arguments:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function add( a, b ) {\n   return a + b;\n}</code></pre>\n\n\n\n<p>To call the&nbsp;<code>add()</code>&nbsp;function, you use the following syntax:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let result = add(x, y);</code></pre>\n\n\n\n<p>To log the result into the console window of the web browser, you use the&nbsp;<code>console.log()</code>&nbsp;:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>console.log(result); </code></pre>\n\n\n\n<p>Now, you should see&nbsp;<code>30</code>&nbsp;in the console window.</p>\n\n\n\n<p>JavaScript provides you with condition statements such as <code>if-else</code> and <code>switch</code> statements. For example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let a = 20, \n    b = 30;\n\nfunction divide(a, b) {\n    if(b == 0) {\n       throw new Exception('Division by zero');\n    }\n    return a / b;\n}</code></pre>\n\n\n\n<p>In the <code>divide()</code> function, we checked whether the de-numerator (b) is zero. If yes, we threw an exception. Otherwise, we returned the result of a / b.</p>\n\n\n\n<p>To declare an array, you use the following syntax:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let items = &#91;];</code></pre>\n\n\n\n<p>To declare an array with some initial elements, you specify the elements in the square brackets:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let items = &#91;1, 2, 3];</code></pre>\n\n\n\n<p>You can access the number of elements in the&nbsp;<code>items</code>&nbsp;array through its&nbsp;<code>length</code>&nbsp;property:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>console.log(items.length); // 3</code></pre>\n\n\n\n<p>To iterate over the elements of the <code>items</code> array, you use the <code>for</code> loop statement as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>for(let i = 0; i &lt; items.length; i++) {\n    console.log(items&#91;i]);\n}</code></pre>\n\n\n\n<p>Or use the <code>for...of</code> loop in ES6:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>for(let item of items) {\n    console.log(item);\n}</code></pre>\n\n\n\n<p>To declare a “class” in JavaScript, you use the <code>function</code> keyword:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function Person(firstName, lastName ){\n    this.firstName = firstName;\n    this.lastName = lastName;\n}\n</code></pre>\n\n\n\n<p>By convention, a class name should be a noun in a&nbsp;<code>UpperCamelCase</code>, with the first letter of every word capitalized.</p>\n\n\n\n<p>The following example declares a method of the&nbsp;<code>Person</code>&nbsp;“class”:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Person.prototype.getFullName = function(){\n    return this.firstName + ' ' + this.lastName;\n}\n</code></pre>\n\n\n\n<p>To create an instance of the&nbsp;<code>Person</code>&nbsp;“class”, you use the&nbsp;<code>new</code>&nbsp;keyword:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let john = new Person('John','Doe');</code></pre>\n\n\n\n<p>To call the method of the class you can use the (&nbsp;<code>.</code>) operator:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let fullName = john.getFullName();\n</code></pre>\n\n\n\n<p>In ES6, you can use the <code>class</code> keyword to declare a class in JavaScript:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>class Person {\n    constructor(firstName, lastName) {\n        this.firstName = firstName;\n        this.lastName = lastName;\n    }\n    getFullName() {\n        return this.firstName + ' ' + this.lastName;\n    }\n}</code></pre>\n\n\n\n<p>We have just introduced you to some features of JavaScript. You will learn each feature in detail in the subsequent tutorials.</p>\n\n\n\n<p>Having fun learning JavaScript!</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>JavaScript is a programming language initially designed to interact with elements of web pages. In web browsers, JavaScript consists of three main parts: ECMAScript that provides the core functionality. The Document Object Model (DOM), which provides interfaces for interacting with elements on web pages The Browser Object Model (BOM), which provides API for interacting with web browsers. [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [32],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3026"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/comments?post=3026"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3026/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/media?parent=3026"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/categories?post=3026"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/tags?post=3026"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 3278,
+    "date": "2020-11-27T10:48:12",
+    "date_gmt": "2020-11-27T10:48:12",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3029"
+    },
+    "modified": "2020-11-27T10:48:12",
+    "modified_gmt": "2020-11-27T10:48:12",
+    "slug": "javascript-code-editors",
+    "status": "publish",
+    "type": "post",
+    "link": "https://computerprogramming.foobrdigital.com/javascript-code-editors/",
+    "title": {
+      "rendered": "JavaScript Code Editors"
+    },
+    "content": {
+      "rendered": "\n<p><strong>Summary</strong>: In this tutorial, you will learn about JavaScript code editors and how to install the Visual Studio Code for coding JavaScript.</p>\n\n\n\n<h2>Popular JavaScript Code Editors</h2>\n\n\n\n<p>To edit JavaScript source code, basically, you just need a plain text editor such as Notepad on Windows.</p>\n\n\n\n<p>To simplify and speed up typing of JavaScript code, you need a JavaScript code editor.</p>\n\n\n\n<p>Besides basic editing features, the JavaScript code editor provides syntax highlighting, indentation, autocomplete and brace matching functionality.</p>\n\n\n\n<p>Some editors also provide a convenient way to debug JavaScript and other tools relevant to the software development process.</p>\n\n\n\n<p>The following are some popular JavaScript code editors:</p>\n\n\n\n<ul><li>Visual Studio Code</li><li>Atom</li><li>Notepad++</li><li>Vim</li><li>GNU Emacs</li></ul>\n\n\n\n<p>Note that all the above JavaScript editors are free. As a matter of choice, we will use the Visual Studio Code.</p>\n\n\n\n<h2>Visual Studio Code</h2>\n\n\n\n<p>Visual Studio Code is a free and open-source code editor developed by Microsoft. Visual Studio Code is often called VS Code.</p>\n\n\n\n\n\n\n\n<p>VS Code works across platforms including Windows, Linux, and macOS.</p>\n\n\n\n<p>VS Code is highly customizable. It allows you to change the theme, keyboard shortcuts, preferences, and install extensions that add extra functionality.</p>\n\n\n\n<p>VS Code includes built-in support for JavaScript, which includes IntelliSense, debugging, formatting, code navigation, refactoring, and many other advanced language features.</p>\n\n\n\n<p>To learn all the features supported by VS code, you check it out the JavaScript in Visual Studio Code.</p>\n\n\n\n<h3>Download Visual Studio Code</h3>\n\n\n\n<p>To download the Visual Studio Code, you go to the following download link:</p>\n\n\n\n<p>Download Visual Studio Code</p>\n\n\n\n<h3>Installing Visual Studio Code</h3>\n\n\n\n<p>Setting up the Visual Studio Code is easy and quick. It is a small download so that you can install it in a few minutes.</p>\n\n\n\n<p><strong>A) Windows</strong></p>\n\n\n\n<p>To install the VS Code on Windows, you follow these steps:</p>\n\n\n\n<ul><li>First, execute the installer from the downloaded file. It only takes a few minutes.</li><li>Then, open the Visual Studio code.</li></ul>\n\n\n\n<p>Note that the installer will add the Visual Studio Code to your&nbsp;<code>%PATH%</code>. It will allow you to type the command&nbsp;<code>code .</code>&nbsp;to launch the VS Code on that folder.</p>\n\n\n\n<p><strong>B) MacOS</strong></p>\n\n\n\n<p>You follow these steps to install the VS Code on macOS:</p>\n\n\n\n<ul><li>First, double-click on the downloaded archive to expands the contents.</li><li>Then, drag Visual Studio Code.app to the Applications to make it available in the launchpad.</li></ul>\n\n\n\n<h3>Installing the Live Server extension</h3>\n\n\n\n<p>The live server extension allows you to launch a development local server with the hot reload feature for static pages. Once you change the JavaScript code, you don’t need to refresh the page to see the changes.</p>\n\n\n\n<p>To install the Live Servre extension, you follow these steps:</p>\n\n\n\n\n\n\n\n<ul><li>First, click the Extensions.</li><li>Second, search for the Live Server and select the Live Server extension on the list.</li><li>Finally, click the Install button.</li></ul>\n\n\n\n<p>In this tutorial, you have learned about the JavaScript code editor and how to install the Visual Studio Code for editing JavaScript source code.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Summary: In this tutorial, you will learn about JavaScript code editors and how to install the Visual Studio Code for coding JavaScript. Popular JavaScript Code Editors To edit JavaScript source code, basically, you just need a plain text editor such as Notepad on Windows. To simplify and speed up typing of JavaScript code, you need [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [32],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3278"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/comments?post=3278"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3278/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/media?parent=3278"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/categories?post=3278"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/tags?post=3278"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 3279,
+    "date": "2020-11-27T10:49:47",
+    "date_gmt": "2020-11-27T10:49:47",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3031"
+    },
+    "modified": "2020-11-27T10:49:47",
+    "modified_gmt": "2020-11-27T10:49:47",
+    "slug": "web-development-tools",
+    "status": "publish",
+    "type": "post",
+    "link": "https://computerprogramming.foobrdigital.com/web-development-tools/",
+    "title": {
+      "rendered": "Web Development Tools"
+    },
+    "content": {
+      "rendered": "\n<p><strong>Summary</strong>: in this tutorial, you will learn how to open the Console tab of web development tools to view messages issued by JavaScript.</p>\n\n\n\n<p>Web development tools allow you to test and debug the JavaScript code. Web development tools are often called devtools.</p>\n\n\n\n<p>Modern web browsers such as Google Chrome, Firefox, Edge, Safari, and Opera provide the devtools as built-in features.</p>\n\n\n\n<p>Generally, devtools allow you to work with a variety of web technologies such as HTML, CSS, DOM, and JavaScript.</p>\n\n\n\n<p>In this tutorial, you will learn how to open the Console tab of the devtools to view messages output by JavaScript.</p>\n\n\n\n<h2>Google Chrome</h2>\n\n\n\n<p>First, open the devtools.html file.</p>\n\n\n\n<p>The&nbsp;<code>devtools.html</code>&nbsp;file has the following JavaScript code:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;script>\n    console.log('Hello, devtools!');\n\n    // the following code causes an error\n    let greeting = msg;\n&lt;/script>\n</code></pre>\n\n\n\n<p>Second, press&nbsp;<code>F12</code>&nbsp;on Windows or&nbsp;<code>Cmd+Opt+J</code>&nbsp;if you are on Mac.</p>\n\n\n\n<p>The devtools will open the Console tab by default. It will look like this:</p>\n\n\n\n<p>The first message is&nbsp;<code>'Hello, DevTools!'</code>&nbsp;which is the output of the following command:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>console.log('Hello, DevTools!');\n</code></pre>\n\n\n\n<p>To output the value of the variable, you use the following <code>console.log()</code> method. For example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let message = 'Good Morning!';\nconsole.log(message);\n</code></pre>\n\n\n\n<p>The second message that appeared on the Console tab is an error.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Uncaught ReferenceError: msg is not defined\n</code></pre>\n\n\n\n<p>This is because the variable&nbsp;<code>msg</code>&nbsp;has not been defined in the code but was referenced in the assignment.</p>\n\n\n\n<p>Now, you can see both normal messages issued by the&nbsp;<code>console.log()</code>&nbsp;and the error messages. It’s enough to start. We’ll dive into the devtools in the later tutorial.</p>\n\n\n\n<h2>Firefox and Edge</h2>\n\n\n\n<p>Typically, you open the Console tab of the devtools in Firefox and Edge using&nbsp;<code>F12</code>. They have similar user interfaces.</p>\n\n\n\n<h2>Safari</h2>\n\n\n\n<p>If you are using Safari browser on Mac, you need to enable the Developer Menu first:</p>\n\n\n\n<p>And then press&nbsp;<code>Cmd+Opt+C</code>&nbsp;to toggle the Console window:</p>\n\n\n\n<p>In this tutorial, you have learned how to open the Console tab of the devtools for checking messages issued by JavaScript code.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Summary: in this tutorial, you will learn how to open the Console tab of web development tools to view messages issued by JavaScript. Web development tools allow you to test and debug the JavaScript code. Web development tools are often called devtools. Modern web browsers such as Google Chrome, Firefox, Edge, Safari, and Opera provide [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [32],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3279"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/comments?post=3279"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3279/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/media?parent=3279"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/categories?post=3279"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/tags?post=3279"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 3036,
+    "date": "2020-11-27T10:51:00",
+    "date_gmt": "2020-11-27T10:51:00",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3036"
+    },
+    "modified": "2020-11-27T10:51:00",
+    "modified_gmt": "2020-11-27T10:51:00",
+    "slug": "javascript-hello-world-example",
+    "status": "publish",
+    "type": "post",
+    "link": "https://computerprogramming.foobrdigital.com/javascript-hello-world-example/",
+    "title": {
+      "rendered": "JavaScript Hello World Example"
+    },
+    "content": {
+      "rendered": "\n<p><strong>Summary</strong>: This tutorial helps you get started with JavaScript by showing you how to embed JavaScript code into an HTML page.</p>\n\n\n\n<p>To insert JavaScript into an HTML page, you use the&nbsp;<code>&lt;script&gt;</code>&nbsp;element. There are two ways to use the &lt;script&gt; element in an HTML page:</p>\n\n\n\n<ul><li>Embed JavaScript code directly into the HTML page.</li><li>Reference an external JavaScript code file.</li></ul>\n\n\n\n<h2>Embed JavaScript code in an HTML page</h2>\n\n\n\n<p>Placing JavaScript code inside the&nbsp;<code>&lt;script&gt;</code>&nbsp;element directly is not recommended and should be used only for proof of concept or testing purposes.</p>\n\n\n\n<p>The JavaScript code in the&nbsp;<code>&lt;script&gt;</code>&nbsp;element is interpreted from top to bottom. For example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;!DOCTYPE html>\n&lt;html lang=\"en\">\n&lt;head>\n    &lt;meta charset=\"UTF-8\">\n    &lt;title>JavaScript Hello World Example&lt;/title>\n    &lt;script>\n        alert('Hello, World!');\n    &lt;/script>\n&lt;/head>\n&lt;body>\n&lt;/body>\n&lt;/html></code></pre>\n\n\n\n<p>In the <code>&lt;script></code> element, we use the <code>alert()</code> function to display the <code>Hello, World!</code> message.</p>\n\n\n\n<h2>Include&nbsp;an external JavaScript file</h2>\n\n\n\n<p>To include a JavaScript from an external file:</p>\n\n\n\n<ul><li>First, create a file whose extension is&nbsp;<code>.js</code>&nbsp;e.g.,&nbsp;<code>app.js</code>&nbsp;and place it in the&nbsp;<code>js</code>&nbsp;subfolder. Note that placing the JavaScript file in the&nbsp;<code>js&nbsp;</code>folder is not required however it is a good practice.</li><li>Then, use the URL to the JavasScript source code file in the&nbsp;<code>src</code>&nbsp;attribute of the&nbsp;<code>&lt;script&gt;</code>&nbsp;element.</li></ul>\n\n\n\n<p>The following shows the contents of the app.js file:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>alert('Hello, World!');</code></pre>\n\n\n\n<p>And the following shows the&nbsp;<code>helloworld.html</code>&nbsp;file:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;!DOCTYPE html>\n&lt;html lang=\"en\">\n&lt;head>\n    &lt;meta charset=\"UTF-8\">\n    &lt;title>JavaScript Hello World Example&lt;/title>\n    &lt;script src=\"js/app.js\">&lt;/script>\n&lt;/head>\n&lt;body>\n\n&lt;/body>\n&lt;/html></code></pre>\n\n\n\n<p>If you launch the&nbsp;<code>helloworld.html</code>&nbsp;file in the web browser, you will see a popup that has the&nbsp;<code>Hello, World!</code>&nbsp;message.</p>\n\n\n\n<p>Note that you can load a JavaScript file from a remote server. This allows you to serve up JavaScript from various domains e.g., content delivery network (CDN) to speed up the page.</p>\n\n\n\n<p>When you have multiple JavaScript files on a page, the JavaScript engine interprets the files in the order that they appear. See the following example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;script src=\"js/service.js\">&lt;/script>\n&lt;script src=\"js/app.js\">&lt;/script></code></pre>\n\n\n\n<p>JavaScript engine will interpret the&nbsp;<code>service.js</code>&nbsp;and the&nbsp;<code>app.js</code>&nbsp;files in sequence. It completes&nbsp;interpreting the&nbsp;<code>service.js</code>&nbsp;file first before interpreting the&nbsp;<code>app.js</code>&nbsp;file.</p>\n\n\n\n<p>For the page that includes many external JavaScript files, the blank page is shown during the page rendering phase. To avoid this, you include the JavaScript file just before the&nbsp;<code>&lt;/body&gt;</code>&nbsp;tag as shown in this example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;!DOCTYPE html>\n&lt;html lang=\"en\">\n&lt;head>\n    &lt;meta charset=\"UTF-8\">\n    &lt;title>JavaScript Hello World Example&lt;/title>\n&lt;/head>\n&lt;body>\n \n   &lt;!-- end of page content here-->\n   &lt;script src=\"js/service.js\">&lt;/script>\n   &lt;script src=\"js/app.js\">&lt;/script>\n&lt;/body>\n&lt;/html></code></pre>\n\n\n\n<h2>The&nbsp;<code>async</code>&nbsp;and&nbsp;<code>defer</code>&nbsp;attributes</h2>\n\n\n\n<p>To change how the JavaScript code load and execute, you use one of two attributes of the&nbsp;<code>&lt;script&gt;</code>&nbsp;element&nbsp;<code>async</code>&nbsp;and&nbsp;<code>defer</code>.</p>\n\n\n\n<p>These attributes take effect only on the external script files. The&nbsp;<code>async</code>&nbsp;attribute, if visible, instructs the web browser to execute the JavaScript file asynchronously if possible. The&nbsp;<code>async</code>&nbsp;attribute does not guarantee the script files to execute in the order that they appear. For example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;script async src=\"service.js\">&lt;/script>\n&lt;script async src=\"app.js\">&lt;/script></code></pre>\n\n\n\n<p>The&nbsp;<code>app.js</code>&nbsp;file might execute before the&nbsp;<code>service.js</code>&nbsp;file, therefore, you must ensure that there is no dependency between them.</p>\n\n\n\n<p>The&nbsp;<code>defer</code>&nbsp;attribute, if visible, requests the web browser to execute the script file after the document has been parsed.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;!DOCTYPE html>\n&lt;html lang=\"en\">\n&lt;head>\n    &lt;meta charset=\"UTF-8\">\n    &lt;title>JavaScript defer demonstration&lt;/title>\n    &lt;script defer src=\"defer-script.js\">&lt;/script>\n&lt;/head>\n&lt;body>\n&lt;/body>\n&lt;/html></code></pre>\n\n\n\n<p>Even though we place the&nbsp;<code>&lt;script&gt;</code>&nbsp;element in the&nbsp;<code>&lt;head&gt;</code>&nbsp;section, the script will wait for the browser to receive the closing tag&nbsp;<code>&lt;html&gt;</code>&nbsp;to start executing.</p>\n\n\n\n<h2>Summary</h2>\n\n\n\n<ul><li>Use&nbsp;<code>&lt;script&gt;</code>&nbsp;element to include a JavaScript file in a HTML page.</li><li>The&nbsp;<code>async</code>&nbsp;attribute of the&nbsp;<code>&lt;script&gt;</code>&nbsp;element instructs the web browser to fetch the JavaScript file in parallel and then parse and execute as soon as the JavaScript file is available.</li><li>The&nbsp;<code>defer</code>&nbsp;attribute of the&nbsp;<code>&lt;script&gt;</code>&nbsp;element allows the web browser to execute the JavaScript file after the document has been parsed.</li></ul>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Summary: This tutorial helps you get started with JavaScript by showing you how to embed JavaScript code into an HTML page. To insert JavaScript into an HTML page, you use the&nbsp;&lt;script&gt;&nbsp;element. There are two ways to use the &lt;script&gt; element in an HTML page: Embed JavaScript code directly into the HTML page. Reference an external [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [32],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3036"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/comments?post=3036"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3036/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/media?parent=3036"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/categories?post=3036"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/tags?post=3036"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  }
+]

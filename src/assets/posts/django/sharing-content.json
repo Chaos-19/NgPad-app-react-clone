@@ -1,0 +1,1380 @@
+[
+  {
+    "id": 3733,
+    "date": "2022-06-28T10:59:06",
+    "date_gmt": "2022-06-28T10:59:06",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3733" },
+    "modified": "2022-06-28T10:59:06",
+    "modified_gmt": "2022-06-28T10:59:06",
+    "slug": "creating-an-image-bookmarking-website",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/creating-an-image-bookmarking-website/",
+    "title": { "rendered": "Creating an image bookmarking website" },
+    "content": {
+      "rendered": "\n<p>How to allow users to bookmark and share images that they find on other websites and on your site. For this, you will need to do the following tasks:</p>\n\n\n\n<ol><li>Define a model to store images and their information</li><li>Create a form and a view to handle image uploads</li><li>Build a system for users to be able to post images that they find on external websites</li></ol>\n\n\n\n<p>First, create a&nbsp;<a></a>new application inside your&nbsp;<code>bookmarks</code>&nbsp;project directory with the following command:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>django-admin startapp images\n</code></pre>\n\n\n\n<p>Add the new application to the&nbsp;<code>INSTALLED_APPS</code>&nbsp;setting in the&nbsp;<code>settings.py</code>&nbsp;file, as&nbsp;follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>INSTALLED_APPS = &#91;\n    <em># ...</em>\n    <strong>'images.apps.ImagesConfig',</strong>\n]\n</code></pre>\n\n\n\n<p>You have activated the&nbsp;<code>images</code>&nbsp;application in the project.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>How to allow users to bookmark and share images that they find on other websites and on your site. For this, you will need to do the following tasks: Define a model to store images and their information Create a form and a view to handle image uploads Build a system for users to be able&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/creating-an-image-bookmarking-website/\">Continue reading <span class=\"screen-reader-text\">Creating an image bookmarking website</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [129],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3733" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3733"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3733/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3734,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3733/revisions/3734"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3733"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3733"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3733"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3735,
+    "date": "2022-06-28T10:59:43",
+    "date_gmt": "2022-06-28T10:59:43",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3735" },
+    "modified": "2022-06-28T10:59:43",
+    "modified_gmt": "2022-06-28T10:59:43",
+    "slug": "building-the-image-model",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/building-the-image-model/",
+    "title": { "rendered": "Building the image model" },
+    "content": {
+      "rendered": "\n<p>Edit&nbsp;<a></a>the&nbsp;<code>models.py</code>&nbsp;file of the&nbsp;<code>images</code>&nbsp;application&nbsp;<a></a>and add the following code to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>from django.db import models\nfrom django.conf import settings\nclass Image(models.Model):\n    user = models.ForeignKey(settings.AUTH_USER_MODEL,\n                             related_name='images_created',\n                             on_delete=models.CASCADE)\n    title = models.CharField(max_length=200)\n    slug = models.SlugField(max_length=200,\n                            blank=True)\n    url = models.URLField()\n    image = models.ImageField(upload_to='images/%Y/%m/%d/')\n    description = models.TextField(blank=True)\n    created = models.DateField(auto_now_add=True,\n                               db_index=True)\n    def __str__(self):\n        return self.title\n</code></pre>\n\n\n\n<p>This is the model that you will use to store images retrieved from different sites. Let&#8217;s&nbsp;take a look at the fields of this model:</p>\n\n\n\n<ul><li><code>user</code>: This indicates the&nbsp;<code>User</code>&nbsp;object that bookmarked this image. This is a foreign key field because it specifies a one-to-many relationship: a user can post multiple images, but each image is posted by a single user. You use&nbsp;<code>CASCADE</code>&nbsp;for the&nbsp;<code>on_delete</code>&nbsp;parameter so that related images are also deleted when a user is deleted.</li><li><code>title</code>: A title for the image.</li><li><code>slug</code>: A short label that contains only letters, numbers, underscores, or hyphens to be used for building beautiful SEO-friendly URLs.</li><li><code>url</code>: The original URL for this image.</li><li><code>image</code>: The image file.</li><li><code>description</code>: An optional description for the image.</li><li><code>created</code>: The date and time that indicate when the object was created in the database. Since you use&nbsp;<code>auto_now_add</code>, this datetime is automatically set when the object is created. You use&nbsp;<code>db_index=True</code>&nbsp;so that Django creates an&nbsp;index in the database for this field.</li></ul>\n\n\n\n<p>Database indexes improve query performance. Consider setting <code>db_index=True</code> for fields that you frequently query using <code>filter()</code>, <code>exclude()</code>, or <code>order_by()</code>. <code>ForeignKey</code> fields or fields with <code>unique=True</code> imply the creation of an index. You can also use <code>Meta.index_together</code> or <code>Meta.indexes</code> to create indexes for multiple fields. You can learn more about database indexes at https://docs.djangoproject.com/en/3.0/ref/models/options/#django.db.models.Options.indexes.</p>\n\n\n\n<p>You will override the&nbsp;<code>save()</code>&nbsp;method of the&nbsp;<code>Image</code>&nbsp;model to automatically generate the&nbsp;<code>slug</code>&nbsp;field based on the value of the&nbsp;<code>title</code>&nbsp;field. Import the&nbsp;<code>slugify()</code>&nbsp;function and add a&nbsp;<code>save()</code>&nbsp;method to the&nbsp;<code>Image</code>&nbsp;model, as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code><strong>from django.utils.text import slugify</strong>\nclass Image(models.Model):\n    <em># ...</em>\n    <strong>def save(self, *args, **kwargs):</strong>\n        <strong>if not self.slug:</strong>\n            <strong>self.slug = slugify(self.title)</strong>\n        <strong>super().save(*args, **kwargs)</strong>\n</code></pre>\n\n\n\n<p>In the preceding code, you use the&nbsp;<code>slugify()</code>&nbsp;function provided by Django to automatically generate the image slug for the given title when no slug is provided. Then, you save the object. By generating slugs automatically, users don&#8217;t have to&nbsp;manually enter a slug for each image.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Edit&nbsp;the&nbsp;models.py&nbsp;file of the&nbsp;images&nbsp;application&nbsp;and add the following code to it: This is the model that you will use to store images retrieved from different sites. Let&#8217;s&nbsp;take a look at the fields of this model: user: This indicates the&nbsp;User&nbsp;object that bookmarked this image. This is a foreign key field because it specifies a one-to-many relationship: a user&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/building-the-image-model/\">Continue reading <span class=\"screen-reader-text\">Building the image model</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [129],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3735" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3735"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3735/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3736,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3735/revisions/3736"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3735"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3735"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3735"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3737,
+    "date": "2022-06-28T11:00:44",
+    "date_gmt": "2022-06-28T11:00:44",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3737" },
+    "modified": "2022-06-28T11:00:44",
+    "modified_gmt": "2022-06-28T11:00:44",
+    "slug": "creating-many-to-many-relationships",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/creating-many-to-many-relationships/",
+    "title": { "rendered": "Creating many-to-many relationships" },
+    "content": {
+      "rendered": "\n<p>Next, you will add another field to the&nbsp;<code>Image</code>&nbsp;model to store the users who like an image. You will&nbsp;<a></a>need a many-to-many relationship in this case because a user might like multiple images&nbsp;<a></a>and each image can be liked by multiple users.</p>\n\n\n\n<p>Add the following field to the&nbsp;<code>Image</code>&nbsp;model:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>users_like = models.ManyToManyField(settings.AUTH_USER_MODEL,\n                                    related_name='images_liked',\n                                    blank=True)\n</code></pre>\n\n\n\n<p>When you define a&nbsp;<code>ManyToManyField</code>, Django creates an intermediary join table using the primary keys of both models. The&nbsp;<code>ManyToManyField</code>&nbsp;can be defined in either of the two related models.</p>\n\n\n\n<p>As with&nbsp;<code>ForeignKey</code>&nbsp;fields, the&nbsp;<code>related_name</code>&nbsp;attribute of&nbsp;<code>ManyToManyField</code>&nbsp;allows you to name the relationship from the related object back to this one. The&nbsp;<code>ManyToManyField</code>&nbsp;fields provide a many-to-many manager that allows you to retrieve related objects, such as&nbsp;<code>image.users_like.all()</code>, or get them from a&nbsp;<code>user</code>&nbsp;object, such as&nbsp;<code>user.images_liked.all()</code>.</p>\n\n\n\n<p>You can learn more about many-to-many relationships at https://docs.djangoproject.com/en/3.0/topics/db/examples/many_to_many/.</p>\n\n\n\n<p>Open the command line and run the following command to create an initial migration:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>python manage.py makemigrations images\n</code></pre>\n\n\n\n<p>You should see the following output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Migrations for 'images':\n  images/migrations/0001_initial.py\n    - Create model Image\n</code></pre>\n\n\n\n<p>Now run the following command to apply your migration:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>python manage.py migrate images\n</code></pre>\n\n\n\n<p>You will get an output that includes the following line:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Applying images.0001_initial... OK\n</code></pre>\n\n\n\n<p>The&nbsp;<code>Image</code>&nbsp;model is now synced to the database.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Next, you will add another field to the&nbsp;Image&nbsp;model to store the users who like an image. You will&nbsp;need a many-to-many relationship in this case because a user might like multiple images&nbsp;and each image can be liked by multiple users. Add the following field to the&nbsp;Image&nbsp;model: When you define a&nbsp;ManyToManyField, Django creates an intermediary join table&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/creating-many-to-many-relationships/\">Continue reading <span class=\"screen-reader-text\">Creating many-to-many relationships</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [129],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3737" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3737"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3737/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3738,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3737/revisions/3738"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3737"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3737"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3737"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3739,
+    "date": "2022-06-28T11:01:13",
+    "date_gmt": "2022-06-28T11:01:13",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3739" },
+    "modified": "2022-06-28T11:01:13",
+    "modified_gmt": "2022-06-28T11:01:13",
+    "slug": "registering-the-image-model-in-the-administration-site",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/registering-the-image-model-in-the-administration-site/",
+    "title": {
+      "rendered": "Registering the image model in the administration site"
+    },
+    "content": {
+      "rendered": "\n<p>Edit&nbsp;<a></a>the&nbsp;<code>admin.py</code>&nbsp;file of the&nbsp;<code>images</code>&nbsp;application&nbsp;<a></a>and register the&nbsp;<code>Image</code>&nbsp;model into the administration site, as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>from django.contrib import admin\n<strong>from .models import Image</strong>\n<strong>@admin.register(Image)</strong>\n<strong>class ImageAdmin(admin.ModelAdmin):</strong>\n    <strong>list_display = &#91;'title', 'slug', 'image', 'created']</strong>\n    <strong>list_filter = &#91;'created']</strong>\n</code></pre>\n\n\n\n<p>Start the development server with the following command:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>python manage.py runserver_plus --cert-file cert.crt\n</code></pre>\n\n\n\n<p>Open&nbsp;<code>https://127.0.0.1:8000/admin/</code>&nbsp;in your browser, and you will see the&nbsp;<code>Image</code>&nbsp;model in the administration site, like this:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/B14981_05_01.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 5.1: The IMAGES block on the Django administration site index page</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Edit&nbsp;the&nbsp;admin.py&nbsp;file of the&nbsp;images&nbsp;application&nbsp;and register the&nbsp;Image&nbsp;model into the administration site, as follows: Start the development server with the following command: Open&nbsp;https://127.0.0.1:8000/admin/&nbsp;in your browser, and you will see the&nbsp;Image&nbsp;model in the administration site, like this: Figure 5.1: The IMAGES block on the Django administration site index page</p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [129],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3739" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3739"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3739/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3740,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3739/revisions/3740"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3739"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3739"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3739"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3741,
+    "date": "2022-06-28T11:01:42",
+    "date_gmt": "2022-06-28T11:01:42",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3741" },
+    "modified": "2022-06-28T11:01:42",
+    "modified_gmt": "2022-06-28T11:01:42",
+    "slug": "posting-content-from-other-websites",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/posting-content-from-other-websites/",
+    "title": { "rendered": "Posting content from other websites" },
+    "content": {
+      "rendered": "\n<p>You will allow users to bookmark images from external websites. The user will provide&nbsp;the URL of&nbsp;<a></a>the image, a title, and an optional description. Your application will download the image and create a new&nbsp;<code>Image</code>&nbsp;object in the database.</p>\n\n\n\n<p>Let&#8217;s start by building a form to submit new images. Create a new&nbsp;<code>forms.py</code>&nbsp;file&nbsp;inside the&nbsp;<code>Images</code>&nbsp;application directory and add the following code to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>from django import forms\nfrom .models import Image\nclass ImageCreateForm(forms.ModelForm):\n    class Meta:\n        model = Image\n        fields = ('title', 'url', 'description')\n        widgets = {\n            'url': forms.HiddenInput,\n        }\n</code></pre>\n\n\n\n<p>As you will notice in the preceding code, this form is a&nbsp;<code>ModelForm</code>&nbsp;form built from the&nbsp;<code>Image</code>&nbsp;model, including only the&nbsp;<code>title</code>,&nbsp;<code>url</code>, and&nbsp;<code>description</code>&nbsp;fields. Users will not enter the&nbsp;<a></a>image URL directly in the form. Instead, you will provide them with a JavaScript tool to choose an image from an external site, and your form will receive its URL as a parameter. You override the default widget of the&nbsp;<code>url</code>&nbsp;field to use a&nbsp;<code>HiddenInput</code>&nbsp;widget. This widget is rendered as an HTML&nbsp;<code>input</code>&nbsp;element with a&nbsp;<code>type=\"hidden\"</code>&nbsp;attribute. You use this widget because you don&#8217;t want this field to be visible to users.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>You will allow users to bookmark images from external websites. The user will provide&nbsp;the URL of&nbsp;the image, a title, and an optional description. Your application will download the image and create a new&nbsp;Image&nbsp;object in the database. Let&#8217;s start by building a form to submit new images. Create a new&nbsp;forms.py&nbsp;file&nbsp;inside the&nbsp;Images&nbsp;application directory and add the following&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/posting-content-from-other-websites/\">Continue reading <span class=\"screen-reader-text\">Posting content from other websites</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [129],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3741" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3741"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3741/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3742,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3741/revisions/3742"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3741"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3741"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3741"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3743,
+    "date": "2022-06-28T11:02:32",
+    "date_gmt": "2022-06-28T11:02:32",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3743" },
+    "modified": "2022-06-28T11:02:32",
+    "modified_gmt": "2022-06-28T11:02:32",
+    "slug": "cleaning-form-fields",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/cleaning-form-fields/",
+    "title": { "rendered": "Cleaning form fields" },
+    "content": {
+      "rendered": "\n<p>In order to verify that the provided image URL is valid, you will check that the filename ends with a <code>.jpg</code> or <code>.jpeg</code> extension to only allow JPEG files. As you saw in the Django allows you to define form methods to clean specific fields using the <code>clean_&lt;fieldname>()</code> convention. This method is executed for each field, if present, when you call <code>is_valid()</code> on a form instance. In the clean method, you can alter the field&#8217;s value or raise any validation errors for this specific field when needed. Add the following method to <code>ImageCreateForm</code>:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>def clean_url(self):\n    url = self.cleaned_data&#91;'url']\n    valid_extensions = &#91;'jpg', 'jpeg']\n    extension = url.rsplit('.', 1)&#91;1].lower()\n    if extension not in valid_extensions:\n        raise forms.ValidationError('The given URL does not ' \\\n                                    'match valid image extensions.')\n    return url\n</code></pre>\n\n\n\n<p>In the preceding code, you define a&nbsp;<code>clean_url()</code>&nbsp;method to clean the&nbsp;<code>url</code>&nbsp;field. The code works as follows:</p>\n\n\n\n<ol><li>You get the value of the&nbsp;<code>url</code>&nbsp;field by accessing the&nbsp;<code>cleaned_data</code>&nbsp;dictionary of the form instance.</li><li>You split the URL to get the file extension and check whether it is one of the valid extensions. If the extension is invalid, you raise&nbsp;<code>ValidationError</code>&nbsp;and the form instance will not be validated. Here, you are performing a very simple validation. You could use more advanced methods to check whether the given URL provides a valid image file.</li></ol>\n\n\n\n<p>In addition to&nbsp;<a></a>validating the given URL, you also need to download the image file and save it. You could, for example, use the view that handles the form to download the image file. Instead, let&#8217;s take a more general approach by overriding the&nbsp;<code>save()</code>&nbsp;method of your model form to perform this task every time the form is saved.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>In order to verify that the provided image URL is valid, you will check that the filename ends with a .jpg or .jpeg extension to only allow JPEG files. As you saw in the Django allows you to define form methods to clean specific fields using the clean_&lt;fieldname>() convention. This method is executed for each field, if present, when you call is_valid() on a&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/cleaning-form-fields/\">Continue reading <span class=\"screen-reader-text\">Cleaning form fields</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [129],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3743" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3743"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3743/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3745,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3743/revisions/3745"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3743"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3743"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3743"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3746,
+    "date": "2022-06-28T11:03:31",
+    "date_gmt": "2022-06-28T11:03:31",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3746" },
+    "modified": "2022-06-28T11:03:31",
+    "modified_gmt": "2022-06-28T11:03:31",
+    "slug": "overriding-the-save-method-of-a-modelform",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/overriding-the-save-method-of-a-modelform/",
+    "title": { "rendered": "Overriding the save() method of a ModelForm" },
+    "content": {
+      "rendered": "\n<p>As you know,&nbsp;<code>ModelForm</code>&nbsp;provides a&nbsp;<code>save()</code>&nbsp;method to save the current model instance to the&nbsp;<a></a>database and return the object. This method receives a Boolean&nbsp;<code>commit</code>&nbsp;parameter, which allows you to specify whether the object has to be persisted to the database. If&nbsp;<code>commit</code>&nbsp;is&nbsp;<code>False</code>, the&nbsp;<code>save()</code>&nbsp;method will return a model instance but will not save it to the database. You will override the&nbsp;<code>save()</code>&nbsp;method of your form in order to retrieve the given image and save it.</p>\n\n\n\n<p>Add the following imports at the top of the&nbsp;<code>forms.py</code>&nbsp;file:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>from urllib import request\nfrom django.core.files.base import ContentFile\nfrom django.utils.text import slugify\n</code></pre>\n\n\n\n<p>Then, add the following&nbsp;<code>save()</code>&nbsp;method to the&nbsp;<code>ImageCreateForm</code>&nbsp;form:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>def save(self, force_insert=False,\n               force_update=False,\n               commit=True):\n    image = super().save(commit=False)\n    image_url = self.cleaned_data&#91;'url']\n    name = slugify(image.title)\n    extension = image_url.rsplit('.', 1)&#91;1].lower()\n    image_name = f'{name}.{extension}'\n    # download image from the given URL\n    response = request.urlopen(image_url)\n    image.image.save(image_name,\n                     ContentFile(response.read()),\n                     save=False)\n    if commit:\n        image.save()\n    return image\n</code></pre>\n\n\n\n<p>You override the&nbsp;<code>save()</code>&nbsp;method, keeping the parameters required by&nbsp;<code>ModelForm</code>. The preceding code can be explained as follows:</p>\n\n\n\n<ol><li>You create a new&nbsp;<code>image</code>&nbsp;instance by calling the&nbsp;<code>save()</code>&nbsp;method of the form with&nbsp;<code>commit=False</code>.</li><li>You get the URL from the&nbsp;<code>cleaned_data</code>&nbsp;dictionary of the form.</li><li>You generate the image name by combining the&nbsp;<code>image</code>&nbsp;title slug with the original file extension.</li><li>You use the Python&nbsp;<code>urllib</code>&nbsp;module to download the image and then call the&nbsp;<code>save()</code>&nbsp;method of the image field, passing it a&nbsp;<code>ContentFile</code>&nbsp;object that is instantiated with the downloaded file content. In this way, you save the file to the media directory of your project. You pass the&nbsp;<code>save=False</code>&nbsp;parameter to avoid saving the object to the database yet.</li><li>In order to maintain the same behavior as the&nbsp;<code>save()</code>&nbsp;method you override, you save the form to the database only when the&nbsp;<code>commit</code>&nbsp;parameter is&nbsp;<code>True</code>.</li></ol>\n\n\n\n<p>In order to use the&nbsp;<code>urllib</code>&nbsp;to retrieve images from URLs served through HTTPS, you&nbsp;need to&nbsp;<a></a>install the Certifi Python package. Certifi is a collection of root certificates for validating the trustworthiness of SSL/TLS certificates.</p>\n\n\n\n<p>Install&nbsp;<code>certifi</code>&nbsp;with the following command:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>pip install <em>--upgrade certifi</em>\n</code></pre>\n\n\n\n<p>You will need a view for handling the form. Edit the&nbsp;<code>views.py</code>&nbsp;file of the&nbsp;<code>images</code>&nbsp;application and add the following code to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>from django.shortcuts import render, redirect\nfrom django.contrib.auth.decorators import login_required\nfrom django.contrib import messages\nfrom .forms import ImageCreateForm\n@login_required\ndef image_create(request):\n    if request.method == 'POST':\n        <em># form is sent</em>\n        form = ImageCreateForm(data=request.POST)\n        if form.is_valid():\n            <em># form data is valid</em>\n            cd = form.cleaned_data\n            new_item = form.save(commit=False)\n            <em># assign current user to the item</em>\n            new_item.user = request.user\n            new_item.save()\n            messages.success(request, 'Image added successfully')\n            <em># redirect to new created item detail view</em>\n            return redirect(new_item.get_absolute_url())\n    else:\n        <em># build form with data provided by the bookmarklet via GET</em>\n        form = ImageCreateForm(data=request.GET)\n    return render(request,\n                  'images/image/create.html',\n                  {'section': 'images',\n                   'form': form})\n</code></pre>\n\n\n\n<p>In the preceding code, you use&nbsp;<a></a>the&nbsp;<code>login_required</code>&nbsp;decorator for the&nbsp;<code>image_create</code>&nbsp;view to prevent access for unauthenticated users. This is how this view works:</p>\n\n\n\n<ol><li>You expect initial data via&nbsp;<code>GET</code>&nbsp;in order to create an instance of the form. This data will consist of the&nbsp;<code>url</code>&nbsp;and&nbsp;<code>title</code>&nbsp;attributes of an image from an external website and will be provided via&nbsp;<code>GET</code>&nbsp;by the JavaScript tool that you will create later. For now, you just assume that this data will be there initially.</li><li>If the form is submitted, you check whether it is valid. If the form data is valid, you create a new&nbsp;<code>Image</code>&nbsp;instance, but prevent the object from being saved to the database yet by passing&nbsp;<code>commit=False</code>&nbsp;to the form&#8217;s&nbsp;<code>save()</code>&nbsp;method.</li><li>You assign the current user to the new&nbsp;<code>image</code>&nbsp;object. This is how you can know who uploaded each image.</li><li>You save the&nbsp;<code>image</code>&nbsp;object to the database.</li><li>Finally, you create a success message using the Django messaging framework and redirect the user to the canonical URL of the new image. You haven&#8217;t yet implemented the&nbsp;<code>get_absolute_url()</code>&nbsp;method of the&nbsp;<code>Image</code>&nbsp;model; you will do that later.</li></ol>\n\n\n\n<p>Create a new&nbsp;<code>urls.py</code>&nbsp;file inside the&nbsp;<code>images</code>&nbsp;application and add the following code to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>from django.urls import path\nfrom . import views\napp_name = 'images'\nurlpatterns = &#91;\n    path('create/', views.image_create, name='create'),\n]\n</code></pre>\n\n\n\n<p>Edit the main&nbsp;<code>urls.py</code>&nbsp;file of the&nbsp;<code>bookmarks</code>&nbsp;project to include the patterns for the&nbsp;<code>images</code>&nbsp;application, as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>urlpatterns = &#91;\n    path('admin/', admin.site.urls),\n    path('account/', include('account.urls')),\n    path('social-auth/',\n         include('social_django.urls', namespace='social')),\n    <strong>path('images/', include('images.urls', namespace='images')),</strong>\n]\n</code></pre>\n\n\n\n<p>Finally, you need&nbsp;<a></a>to create a template to render the form. Create the following directory structure inside the&nbsp;<code>images</code>&nbsp;application directory:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>templates/\n  images/\n    image/\n      create.html\n</code></pre>\n\n\n\n<p>Edit the new&nbsp;<code>create.html</code>&nbsp;template and add the following code to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{% extends \"base.html\" %}\n{% block title %}Bookmark an image{% endblock %}\n{% block content %}\n  &lt;h1&gt;Bookmark an image&lt;/h1&gt;\n  &lt;img src=\"{{ request.GET.url }}\" class=\"image-preview\"&gt;\n  &lt;form method=\"post\"&gt;\n    {{ form.as_p }}\n    {% csrf_token %}\n    &lt;input type=\"submit\" value=\"Bookmark it!\"&gt;\n  &lt;/form&gt;\n{% endblock %}\n</code></pre>\n\n\n\n<p>Run the development server with&nbsp;<code>runserver_plus</code>&nbsp;and open&nbsp;<code>https://127.0.0.1:8000/images/create/?title=...&amp;url=...</code>&nbsp;in your browser, including the&nbsp;<code>title</code>&nbsp;and&nbsp;<code>url</code>&nbsp;GET parameters, providing an existing JPEG image URL in&nbsp;the latter. For example, you can use the following URL:&nbsp;<code>https://127.0.0.1:8000/images/create/?title=%20Django%20and%20Duke&amp;url=https://upload.wikimedia.org/wikipedia/commons/8/85/Django_Reinhardt_and_Duke_Ellington_%28Gottlieb%29.jpg</code>.</p>\n\n\n\n<p>You will see the form with an image preview, like the following:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/B14981_05_02.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 5.2: The create a new image bookmark page</p>\n\n\n\n<p>Add a description and click on the&nbsp;<strong>BOOKMARK IT!</strong>&nbsp;button. A new&nbsp;<code>Image</code>&nbsp;object will be saved&nbsp;<a></a>in your database. However, you will get an error that indicates that the&nbsp;<code>Image</code>&nbsp;model has no&nbsp;<code>get_absolute_url()</code>&nbsp;method, as follows:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/B14981_05_03.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 5.3: An error showing that the Image object has no attribute get_absolute_url</p>\n\n\n\n<p>Don&#8217;t worry about this error for now; you are going to add a&nbsp;<code>get_absolute_url</code>&nbsp;method to the&nbsp;<code>Image</code>&nbsp;model later.</p>\n\n\n\n<p>Open&nbsp;<code>https://127.0.0.1:8000/admin/images/image/</code>&nbsp;in your browser and verify that the new&nbsp;<code>image</code>&nbsp;object has been saved, like this:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/B14981_05_04.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 5.4: The administration site image list page showing the Image object created</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>As you know,&nbsp;ModelForm&nbsp;provides a&nbsp;save()&nbsp;method to save the current model instance to the&nbsp;database and return the object. This method receives a Boolean&nbsp;commit&nbsp;parameter, which allows you to specify whether the object has to be persisted to the database. If&nbsp;commit&nbsp;is&nbsp;False, the&nbsp;save()&nbsp;method will return a model instance but will not save it to the database. You will override the&nbsp;save()&nbsp;method&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/overriding-the-save-method-of-a-modelform/\">Continue reading <span class=\"screen-reader-text\">Overriding the save() method of a ModelForm</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [129],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3746" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3746"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3746/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3747,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3746/revisions/3747"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3746"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3746"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3746"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3749,
+    "date": "2022-06-28T11:05:16",
+    "date_gmt": "2022-06-28T11:05:16",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3749" },
+    "modified": "2022-06-28T11:05:16",
+    "modified_gmt": "2022-06-28T11:05:16",
+    "slug": "building-a-bookmarklet-with-jquery",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/building-a-bookmarklet-with-jquery/",
+    "title": { "rendered": "Building a bookmarklet with jQuery" },
+    "content": {
+      "rendered": "\n<p>A bookmarklet is a bookmark stored in a web browser that contains JavaScript code to extend the&nbsp;<a></a>browser&#8217;s functionality. When you click on&nbsp;<a></a>the bookmark, the JavaScript code is executed on the website being displayed in the browser. This is very useful for building tools that interact with other websites.</p>\n\n\n\n<p>Some online services, such as Pinterest, implement their own bookmarklets to let users share content from other sites onto their platform. Let&#8217;s create a bookmarklet in a similar way for your website, using jQuery to build your bookmarklet. jQuery is a popular JavaScript library that allows you to develop client-side functionality faster. You can read more about jQuery on its official website: https://jquery.com/.</p>\n\n\n\n<p>This is how your users will add a bookmarklet to their browser and use it:</p>\n\n\n\n<ol><li>The user drags a link from your site to their browser&#8217;s bookmarks. The link contains JavaScript code in its&nbsp;<code>href</code>&nbsp;attribute. This code will be stored in the bookmark.</li><li>The user navigates to any website and clicks on the bookmark. The JavaScript code of the bookmark is executed.</li></ol>\n\n\n\n<p>Since the JavaScript code will be stored as a bookmark, you will not be able to update it later. This is an important drawback that you can solve by implementing a launcher script to load the actual JavaScript bookmarklet from a URL. Your users will save this launcher script as a bookmark, and you will be able to update the code of the bookmarklet at any time. This is the approach that you will take to build your bookmarklet. Let&#8217;s start!</p>\n\n\n\n<p>Create a new template under&nbsp;<code>images/templates/</code>&nbsp;and name it&nbsp;<code>bookmarklet_launcher.js</code>. This will be the launcher script. Add the following JavaScript code to&nbsp;this file:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>(function(){\n    if (window.myBookmarklet !== undefined){\n        myBookmarklet()<em>;</em>\n    }\n    else {\n        document.body.appendChild(document.createElement('script')).src='https://127.0.0.1:8000/static/js/bookmarklet.js?r='+Math.floor(Math.random()*99999999999999999999)<em>;</em>\n    }\n})()<em>;</em>\n</code></pre>\n\n\n\n<p>The preceding script discovers whether the bookmarklet has already been loaded by checking whether the&nbsp;<code>myBookmarklet</code>&nbsp;variable is defined. By doing so, you avoid loading it&nbsp;<a></a>again if the user clicks on the bookmarklet repeatedly. If&nbsp;<code>myBookmarklet</code>&nbsp;is not defined, you load another JavaScript file by adding a&nbsp;<code>&lt;script&gt;</code>&nbsp;element to the document. The&nbsp;<code>script</code>&nbsp;tag loads the&nbsp;<code>bookmarklet.js</code>&nbsp;script using a random number as a parameter to prevent loading the file from&nbsp;<a></a>the browser&#8217;s cache. The actual bookmarklet code resides in the&nbsp;<code>bookmarklet.js</code>&nbsp;static file. This allows you to update your bookmarklet code without requiring your users to update the bookmark they previously added to their browser.</p>\n\n\n\n<p>Let&#8217;s add the bookmarklet launcher to the dashboard pages so that your users can copy it to their bookmarks. Edit the&nbsp;<code>account/dashboard.html</code>&nbsp;template of the&nbsp;<code>account</code>&nbsp;application and make it look like the following:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{% extends \"base.html\" %}\n{% block title %}Dashboard{% endblock %}\n{% block content %}\n  &lt;h1&gt;Dashboard&lt;/h1&gt;\n  \n  <strong>{% with total_images_created=request.user.images_created.count %}</strong>\n    <strong>&lt;p&gt;Welcome to your dashboard. You have bookmarked {{ total_images_created }} image{{ total_images_created|pluralize }}.&lt;/p&gt;</strong>\n  <strong>{% endwith %}</strong>\n  <strong>&lt;p&gt;Drag the following button to your bookmarks toolbar to bookmark images from other websites → &lt;a href=\"javascript:{% include \"bookmarklet_launcher.js\" %}\" class=\"button\"&gt;Bookmark it&lt;/a&gt;&lt;/p&gt;</strong>\n  <strong>&lt;p&gt;You can also &lt;a href=\"{% url \"edit\" %}\"&gt;edit your profile&lt;/a&gt; or&nbsp;&lt;a href=\"{% url \"password_change\" %}\"&gt;change your password&lt;/a&gt;.&lt;/p&gt;</strong>\n{% endblock %}\n</code></pre>\n\n\n\n<p>Make sure that no template tag is split into multiple lines; Django doesn&#8217;t support multiple line tags.</p>\n\n\n\n<p>The dashboard now displays the total number of images bookmarked by the user. You use the&nbsp;<code>{% with %}</code>&nbsp;template tag to set a variable with the total number of images bookmarked by the current user. You include a link with an&nbsp;<code>href</code>&nbsp;attribute that contains the bookmarklet&nbsp;<a></a>launcher script. You will include this JavaScript code from&nbsp;the&nbsp;<code>bookmarklet_launcher.js</code>&nbsp;template.</p>\n\n\n\n<p>Open&nbsp;<code>https://127.0.0.1:8000/account/</code>&nbsp;in your browser. You should see the following page:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/B14981_05_05.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 5.5: The dashboard page, including the total images bookmarked and the button for the bookmarklet</p>\n\n\n\n<p>Now create&nbsp;<a></a>the following directories and files inside the&nbsp;<code>images</code>&nbsp;application directory:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>static/\n  js/\n    bookmarklet.js\n</code></pre>\n\n\n\n<p>You will find a <code>static/css/</code> directory under the <code>images</code> application directory in the code that comes along with this chapter. Copy the <code>css/</code> directory into the <code>static/</code> directory of your code. You can find the contents of the directory at https://github.com/PacktPublishing/Django-3-by-Example/tree/master/Chapter05/bookmarks/images/static.</p>\n\n\n\n<p>The&nbsp;<code>css/bookmarklet.css</code>&nbsp;file provides the styles for your JavaScript bookmarklet.</p>\n\n\n\n<p>Edit the&nbsp;<code>bookmarklet.js</code>&nbsp;static file and add the following JavaScript code to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>(function(){\n  var jquery_version = '3.4.1';\n  var site_url = 'https://127.0.0.1:8000/';\n  var static_url = site_url + 'static/';\n  var min_width = 100;\n  var min_height = 100;\n  function bookmarklet(msg) {\n    <em>// Here goes our bookmarklet code</em>\n  };\n  <em>// Check if jQuery is loaded</em>\n  if(typeof window.jQuery != 'undefined') {\n    bookmarklet();\n  } else {\n    <em>// Check for conflicts</em>\n    var conflict = typeof window.$ != 'undefined';\n    <em>// Create the script and point to Google API</em>\n    var script = document.createElement('script');\n    script.src = '//ajax.googleapis.com/ajax/libs/jquery/' +\n      jquery_version + '/jquery.min.js';\n    <em>// Add the script to the 'head' for processing</em>\n    document.head.appendChild(script);\n    <em>// Create a way to wait until script loading</em>\n    var attempts = 15;\n    (function(){\n      <em>// Check again if jQuery is undefined</em>\n      if(typeof window.jQuery == 'undefined') {\n        if(--attempts &gt; 0) {\n          <em>// Calls himself in a few milliseconds</em>\n          window.setTimeout(arguments.callee, 250)\n        } else {\n          <em>// Too much attempts to load, send error</em>\n          alert('An error occurred while loading jQuery')\n        }\n      } else {\n          bookmarklet();\n      }\n    })();\n  }\n})()\n</code></pre>\n\n\n\n<p>This is the&nbsp;<a></a>main jQuery loader script. It takes care&nbsp;<a></a>of using jQuery if it has already been loaded on the current website. If jQuery is not loaded, the script loads jQuery from Google&#8217;s&nbsp;<strong>content delivery network</strong>&nbsp;(<strong>CDN</strong>), which hosts popular JavaScript frameworks. When jQuery is loaded, it executes the&nbsp;<code>bookmarklet()</code>&nbsp;function that will contain your bookmarklet code. Also, set some variables at the top&nbsp;of the file:</p>\n\n\n\n<ul><li><code>jquery_version</code>: The jQuery version to load</li><li><code>site_url</code>&nbsp;and&nbsp;<code>static_url</code>: The base URL for your website and the base URL&nbsp;for static files</li><li><code>min_width</code>&nbsp;and&nbsp;<code>min_height</code>: The minimum width and height in pixels for&nbsp;the images that your bookmarklet will try to find on the site</li></ul>\n\n\n\n<p>Now let&#8217;s&nbsp;<a></a>implement the&nbsp;<code>bookmarklet</code>&nbsp;function. Edit the&nbsp;<code>bookmarklet()</code>&nbsp;function to make it look like this:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function bookmarklet(msg) {\n  <strong><em>// load CSS</em></strong>\n  <strong>var css = jQuery('&lt;link&gt;');</strong>\n  <strong>css.attr({</strong>\n    <strong>rel: 'stylesheet',</strong>\n    <strong>type: 'text/css',</strong>\n    <strong>href: static_url + 'css/bookmarklet.css?r=' + Math.floor(Math.random()*99999999999999999999)</strong>\n  <strong>});</strong>\n  <strong>jQuery('head').append(css);</strong>\n  <strong><em>// load HTML</em></strong>\n  <strong>box_html = '&lt;div id=\"bookmarklet\"&gt;&lt;a href=\"#\" id=\"close\"&gt;&amp;times;&lt;/a&gt;&lt;h1&gt;Select an image to bookmark:&lt;/h1&gt;&lt;div class=\"images\"&gt;&lt;/div&gt;&lt;/div&gt;';</strong>\n  <strong>jQuery('body').append(box_html);</strong>\n  <strong><em>// close event</em></strong>\n  <strong>jQuery('#bookmarklet #close').click(function(){</strong>\n     <strong>jQuery('#bookmarklet').remove();</strong>\n  <strong>});</strong>\n};\n</code></pre>\n\n\n\n<p>The preceding&nbsp;<a></a>code works as follows:</p>\n\n\n\n<ol><li>You load the&nbsp;<code>bookmarklet.css</code>&nbsp;stylesheet using a random number as a&nbsp;parameter to prevent the browser from returning a cached file.</li><li>You add custom HTML to the document&nbsp;<code>&lt;body&gt;</code>&nbsp;element of the current website. This consists of a&nbsp;<code>&lt;div&gt;</code>&nbsp;element that will contain the images found&nbsp;on the current website.</li><li>You add an event that removes your HTML from the document when the user clicks on the close link of your HTML block. You use the&nbsp;<code>#bookmarklet #close</code>&nbsp;selector to find the HTML element with an ID named&nbsp;<code>close</code>, which has a parent element with an ID named&nbsp;<code>bookmarklet</code>. jQuery selectors allow you to find HTML elements. A jQuery selector returns all elements found&nbsp;<a></a>by the given CSS selector. You can find a list of jQuery selectors at&nbsp;<a href=\"https://api.jquery.com/category/selectors/\">https://api.jquery.com/category/selectors/</a>.</li></ol>\n\n\n\n<p>After loading the CSS styles and the HTML code for the bookmarklet, you will need to find the images on the website. Add the following JavaScript code at the bottom of&nbsp;the&nbsp;<code>bookmarklet()</code>&nbsp;function:</p>\n\n\n\n<pre class=\"wp-block-code\"><code><em>// find images and display them</em>\njQuery.each(jQuery('img&#91;src$=\"jpg\"]'), function(index, image) {\n  if (jQuery(image).width() &gt;= min_width &amp;&amp; jQuery(image).height()\n  &gt;= min_height)\n  {\n    image_url = jQuery(image).attr('src');\n    jQuery('#bookmarklet .images').append('&lt;a href=\"#\"&gt;&lt;img src=\"'+\n    image_url +'\" /&gt;&lt;/a&gt;');\n  }\n});\n</code></pre>\n\n\n\n<p>The preceding&nbsp;<a></a>code uses the&nbsp;<code>img[src$=\"jpg\"]</code>&nbsp;selector to find all&nbsp;<code>&lt;img&gt;</code>&nbsp;HTML elements whose&nbsp;<code>src</code>&nbsp;attribute finishes with a&nbsp;<code>jpg</code>&nbsp;string. This means that you will search all JPEG images displayed on the current website. You iterate over the results using the&nbsp;<code>each()</code>&nbsp;method of jQuery. You add the&nbsp;<a></a>images with a size larger than the one specified with the&nbsp;<code>min_width</code>&nbsp;and&nbsp;<code>min_height</code>&nbsp;variables to your&nbsp;<code>&lt;div class=\"images\"&gt;</code>&nbsp;HTML container.</p>\n\n\n\n<p>For security reasons, your browser will prevent you from running the bookmarklet over HTTP on a site served through HTTPS. You will need to be able to load the bookmarklet on any site, including sites secured through HTTPS. To run your development server using an auto-generated SSL/TLS certificate, you will use RunServerPlus from&nbsp;Django Extensions, which you installed in the previous chapter.</p>\n\n\n\n<p>Run the RunServerPlus development server with the following command:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>python manage.py runserver_plus --cert-file cert.crt\n</code></pre>\n\n\n\n<p>Open&nbsp;<code>https://127.0.0.1:8000/account/</code>&nbsp;in your browser. Log in with an existing user and then drag the&nbsp;<strong>BOOKMARK IT</strong>&nbsp;button to the bookmarks toolbar of your browser, as follows:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/B14981_05_06.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 5.6: Adding the BOOKMARK IT button to the bookmarks toolbar</p>\n\n\n\n<p>Open a website&nbsp;<a></a>of your own choice in your browser&nbsp;<a></a>and click on your bookmarklet. You will see that a new white box appears on the website, displaying all JPEG images found with dimensions higher than 100×100 pixels. It should look like the following example:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/B14981_05_07.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 5.7: The bookmarklet loaded on an external website</p>\n\n\n\n<p>The HTML container includes the images that can be bookmarked. You want the user to click on the desired image and bookmark it. Edit the&nbsp;<code>js/bookmarklet.js</code>&nbsp;static file and add the&nbsp;<a></a>following code at the bottom of the&nbsp;<code>bookmarklet()</code>&nbsp;function:</p>\n\n\n\n<pre class=\"wp-block-code\"><code><em>// when an image is selected open URL with it</em>\njQuery('#bookmarklet .images a').click(function(e){\n  selected_image = jQuery(this).children('img').attr('src');\n  <em>// hide bookmarklet</em>\n  jQuery('#bookmarklet').hide();\n  <em>// open new window to submit the image</em>\n  window.open(site_url +'images/create/?url='\n              + encodeURIComponent(selected_image)\n              + '&amp;title='\n              + encodeURIComponent(jQuery('title').text()),\n              '_blank');\n});\n</code></pre>\n\n\n\n<p>The&nbsp;<a></a>preceding code works as follows:</p>\n\n\n\n<ol><li>You attach a&nbsp;<code>click()</code>&nbsp;event to each image&#8217;s link element.</li><li>When a user clicks on an image, you set a new variable called&nbsp;<code>selected_image</code>&nbsp;that contains the URL of the selected image.</li><li>You hide the bookmarklet and open a new browser window with the URL for bookmarking a new image on your site. You pass the content of the&nbsp;<code>&lt;title&gt;</code>&nbsp;element of the website and the selected image URL as&nbsp;<code>GET</code>&nbsp;parameters.</li></ol>\n\n\n\n<p>Open a new URL with your browser and click on your bookmarklet again to display the image selection box. If you click on an image, you will be redirected to the image create page, passing the title of the website and the URL of the selected image as&nbsp;<code>GET</code>&nbsp;parameters:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/B14981_05_08.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 5.8: Adding a new image bookmark</p>\n\n\n\n<p>Congratulations! This is&nbsp;<a></a>your first JavaScript bookmarklet, and&nbsp;<a></a>it is fully integrated into your Django project.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>A bookmarklet is a bookmark stored in a web browser that contains JavaScript code to extend the&nbsp;browser&#8217;s functionality. When you click on&nbsp;the bookmark, the JavaScript code is executed on the website being displayed in the browser. This is very useful for building tools that interact with other websites. Some online services, such as Pinterest, implement&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/building-a-bookmarklet-with-jquery/\">Continue reading <span class=\"screen-reader-text\">Building a bookmarklet with jQuery</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [129],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3749" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3749"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3749/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3750,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3749/revisions/3750"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3749"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3749"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3749"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3751,
+    "date": "2022-06-28T11:07:31",
+    "date_gmt": "2022-06-28T11:07:31",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3751" },
+    "modified": "2022-06-28T11:07:31",
+    "modified_gmt": "2022-06-28T11:07:31",
+    "slug": "creating-a-detail-view-for-images",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/creating-a-detail-view-for-images/",
+    "title": { "rendered": "Creating a detail view for images" },
+    "content": {
+      "rendered": "\n<p>Let&#8217;s now&nbsp;<a></a>create a simple detail view to display an image that has been saved into your site. Open the&nbsp;<code>views.py</code>&nbsp;file of the&nbsp;<code>images</code>&nbsp;application and add the following code to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>from django.shortcuts import get_object_or_404\nfrom .models import Image\ndef image_detail(request, id, slug):\n    image = get_object_or_404(Image, id=id, slug=slug)\n    return render(request,\n                  'images/image/detail.html',\n                  {'section': 'images',\n                   'image': image})\n</code></pre>\n\n\n\n<p>This is a simple view to display an image. Edit the&nbsp;<code>urls.py</code>&nbsp;file of the&nbsp;<code>images</code>&nbsp;application and add the following URL pattern:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>path('detail/&lt;int:id&gt;/&lt;slug:slug&gt;/',\n     views.image_detail, name='detail'),\n</code></pre>\n\n\n\n<p>Edit the&nbsp;<code>models.py</code>&nbsp;file of the&nbsp;<code>images</code>&nbsp;application and add the&nbsp;<code>get_absolute_url()</code>&nbsp;method&nbsp;<a></a>to the&nbsp;<code>Image</code>&nbsp;model, as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code><strong>from django.urls import reverse</strong>\nclass Image(models.Model):\n    <em># ...</em>\n    <strong>def get_absolute_url(self):</strong>\n        <strong>return reverse('images:detail', args=&#91;self.id, self.slug])</strong>\n</code></pre>\n\n\n\n<p>Remember that the common pattern for providing canonical URLs for objects is to&nbsp;define a&nbsp;<code>get_absolute_url()</code>&nbsp;method in the model.</p>\n\n\n\n<p>Finally, create a template inside the&nbsp;<code>/images/image/</code>&nbsp;template directory of the&nbsp;<code>images</code>&nbsp;application and name it&nbsp;<code>detail.html</code>. Add the following code to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{% extends \"base.html\" %}\n{% block title %}{{ image.title }}{% endblock %}\n{% block content %}\n  &lt;h1&gt;{{ image.title }}&lt;/h1&gt;\n  &lt;img src=\"{{ image.image.url }}\" class=\"image-detail\"&gt;\n  {% with total_likes=image.users_like.count %}\n    &lt;div class=\"image-info\"&gt;\n      &lt;div&gt;\n        &lt;span class=\"count\"&gt;\n          {{ total_likes }} like{{ total_likes|pluralize }}\n        &lt;/span&gt;\n      &lt;/div&gt;\n      {{ image.description|linebreaks }}\n    &lt;/div&gt;\n    &lt;div class=\"image-likes\"&gt;\n      {% for user in image.users_like.all %}\n        &lt;div&gt;\n          &lt;img src=\"{{ user.profile.photo.url }}\"&gt;\n          &lt;p&gt;{{ user.first_name }}&lt;/p&gt;\n        &lt;/div&gt;\n      {% empty %}\n        Nobody likes this image yet.\n      {% endfor %}\n    &lt;/div&gt;\n  {% endwith %}\n{% endblock %}\n</code></pre>\n\n\n\n<p>This is the template to display the detail view of a bookmarked image. You make use of the&nbsp;<code>{% with %}</code>&nbsp;tag to store the result of the QuerySet, counting all user likes in a new variable called&nbsp;<code>total_likes</code>. By doing so, you avoid evaluating the same QuerySet twice. You also include the image description and iterate over&nbsp;<code>image.users_like.all</code>&nbsp;to display all the users who like this image.</p>\n\n\n\n<p>Whenever you&nbsp;<a></a>need to repeat a query in your template, use the&nbsp;<code>{%&nbsp;with %}</code>&nbsp;template tag to avoid additional database queries.</p>\n\n\n\n<p>Next, bookmark a new image using the bookmarklet. You will be redirected to the image detail page after you post the image. The page will include a success message, as follows:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/B14981_05_09.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 5.9: The image detail page for the image bookmark</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Let&#8217;s now&nbsp;create a simple detail view to display an image that has been saved into your site. Open the&nbsp;views.py&nbsp;file of the&nbsp;images&nbsp;application and add the following code to it: This is a simple view to display an image. Edit the&nbsp;urls.py&nbsp;file of the&nbsp;images&nbsp;application and add the following URL pattern: Edit the&nbsp;models.py&nbsp;file of the&nbsp;images&nbsp;application and add the&nbsp;get_absolute_url()&nbsp;method&nbsp;to the&nbsp;Image&nbsp;model,&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/creating-a-detail-view-for-images/\">Continue reading <span class=\"screen-reader-text\">Creating a detail view for images</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [129],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3751" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3751"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3751/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3752,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3751/revisions/3752"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3751"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3751"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3751"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3753,
+    "date": "2022-06-28T11:08:09",
+    "date_gmt": "2022-06-28T11:08:09",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3753" },
+    "modified": "2022-06-28T11:08:09",
+    "modified_gmt": "2022-06-28T11:08:09",
+    "slug": "creating-image-thumbnails-using-easy-thumbnails",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/creating-image-thumbnails-using-easy-thumbnails/",
+    "title": { "rendered": "Creating image thumbnails using easy-thumbnails" },
+    "content": {
+      "rendered": "\n<p>You are displaying the original image on the detail page, but dimensions for different images may&nbsp;<a></a>vary considerably. Also, the original files for some images may be huge, and loading them might take too long. The best&nbsp;<a></a>way to display optimized images in a uniform way is to generate thumbnails. Let&#8217;s use a Django application called&nbsp;<code>easy-thumbnails</code>&nbsp;for this purpose.</p>\n\n\n\n<p>Open the terminal and install&nbsp;<code>easy-thumbnails</code>&nbsp;using the following command:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>pip install easy-thumbnails==2.7\n</code></pre>\n\n\n\n<p>Edit the&nbsp;<code>settings.py</code>&nbsp;file of the bookmarks project and add&nbsp;<code>easy_thumbnails</code>&nbsp;to the&nbsp;<code>INSTALLED_APPS</code>&nbsp;setting, as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>INSTALLED_APPS = &#91;\n    <em># ...</em>\n    <strong>'easy_thumbnails',</strong>\n]\n</code></pre>\n\n\n\n<p>Then, run the following command to sync the application with your database:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>python manage.py migrate\n</code></pre>\n\n\n\n<p>You should see an output that includes the following lines:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Applying easy_thumbnails.0001_initial... OK\nApplying easy_thumbnails.0002_thumbnaildimensions... OK\n</code></pre>\n\n\n\n<p>The&nbsp;<code>easy-thumbnails</code>&nbsp;application offers you different ways to define image thumbnails. The application provides a&nbsp;<code>{% thumbnail %}</code>&nbsp;template tag to generate thumbnails in templates and a custom&nbsp;<code>ImageField</code>&nbsp;if you want to define thumbnails in your models. Let&#8217;s use the template tag approach. Edit the&nbsp;<code>images/image/detail.html</code>&nbsp;template and consider the following line:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;img src=\"{{ image.image.url }}\" class=\"image-detail\"&gt;\n</code></pre>\n\n\n\n<p>The following lines should replace the preceding one:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{% load thumbnail %}\n&lt;a href=\"{{ image.image.url }}\"&gt;\n  &lt;img src=\"{% thumbnail image.image 300x0 %}\" class=\"image-detail\"&gt;\n&lt;/a&gt;\n</code></pre>\n\n\n\n<p>You define a thumbnail with a fixed width of&nbsp;<code>300</code>&nbsp;pixels and a flexible height to maintain the aspect ratio by using the value&nbsp;<code>0</code>. The first time a user loads this page, a thumbnail image is created. The thumbnail is stored in the same directory of the original file. The location is defined by the&nbsp;<code>MEDIA_ROOT</code>&nbsp;setting and the&nbsp;<code>upload_to</code>&nbsp;attribute of the&nbsp;<code>image</code>&nbsp;field of the&nbsp;<code>Image</code>&nbsp;model.</p>\n\n\n\n<p>The generated thumbnail is served in the following requests. Start the development&nbsp;<a></a>server and access the image detail page for an existing image. The thumbnail will be generated and displayed on the site. If you check the URL of the generated image, you will see that the original&nbsp;<a></a>filename is followed by additional details of the settings used to create the thumbnail; for example,&nbsp;<code>filen</code><code>ame.jpg.300x0_q85.jpg.</code>&nbsp;<code>85</code>&nbsp;is the value for the default JPEG quality used by the library to generate the thumbnail.</p>\n\n\n\n<p>You can use a different quality value using the&nbsp;<code>quality</code>&nbsp;parameter. To set the highest JPEG quality, you can use the value&nbsp;<code>100</code>, like this&nbsp;<code>{% thumbnail image.image 300x0 quality=100 %}</code>.</p>\n\n\n\n<p>The <code>easy-thumbnails</code> application offers several options to customize your thumbnails, including cropping algorithms and different effects that can be applied. If you have any difficulty generating thumbnails, you can add <code>THUMBNAIL_DEBUG = True</code> to the <code>settings.py</code> file in order to obtain debug information. You can read the full documentation of <code>easy-thumbnails</code> at https://easy-thumbnails.readthedocs.io/.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>You are displaying the original image on the detail page, but dimensions for different images may&nbsp;vary considerably. Also, the original files for some images may be huge, and loading them might take too long. The best&nbsp;way to display optimized images in a uniform way is to generate thumbnails. Let&#8217;s use a Django application called&nbsp;easy-thumbnails&nbsp;for this&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/creating-image-thumbnails-using-easy-thumbnails/\">Continue reading <span class=\"screen-reader-text\">Creating image thumbnails using easy-thumbnails</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [129],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3753" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3753"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3753/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3754,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3753/revisions/3754"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3753"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3753"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3753"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3755,
+    "date": "2022-06-28T11:08:41",
+    "date_gmt": "2022-06-28T11:08:41",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3755" },
+    "modified": "2022-06-28T11:08:41",
+    "modified_gmt": "2022-06-28T11:08:41",
+    "slug": "adding-ajax-actions-with-jquery",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/adding-ajax-actions-with-jquery/",
+    "title": { "rendered": "Adding AJAX actions with jQuery" },
+    "content": {
+      "rendered": "\n<p>Now let&#8217;s add AJAX actions to your application. AJAX comes from Asynchronous JavaScript&nbsp;<a></a>and XML, encompassing a group of techniques to make asynchronous HTTP requests. It consists of sending and retrieving data from&nbsp;<a></a>the server asynchronously, without reloading the whole page. Despite the name, XML is not required. You can send or retrieve data in other formats, such as JSON, HTML, or plain text.</p>\n\n\n\n<p>You are going to add a link to the image detail page to let users click on it in order to like an image. You will perform this action with an AJAX call to avoid reloading the whole page.</p>\n\n\n\n<p>First, create a view for users to like/unlike images. Edit the&nbsp;<code>views.py</code>&nbsp;file of the&nbsp;<code>images</code>&nbsp;application and add the following code to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>from django.http import JsonResponse\nfrom django.views.decorators.http import require_POST\n@login_required\n@require_POST\ndef image_like(request):\n    image_id = request.POST.get('id')\n    action = request.POST.get('action')\n    if image_id and action:\n        try:\n            image = Image.objects.get(id=image_id)\n            if action == 'like':\n                image.users_like.add(request.user)\n            else:\n                image.users_like.remove(request.user)\n            return JsonResponse({'status':'ok'})\n        except:\n            pass\n    return JsonResponse({'status':'error'})\n</code></pre>\n\n\n\n<p>You use two decorators for your view. The&nbsp;<code>login_required</code>&nbsp;decorator prevents users who&nbsp;<a></a>are not logged in from accessing this view. The&nbsp;<code>require_POST</code>&nbsp;decorator returns an&nbsp;<code>HttpResponseNotAllowed</code>&nbsp;object (status code&nbsp;<code>405</code>) if the HTTP request is&nbsp;not done via&nbsp;<code>POST</code>. This way, you only allow&nbsp;<code>POST</code>&nbsp;requests for this view.</p>\n\n\n\n<p>Django&nbsp;<a></a>also provides a&nbsp;<code>require_GET</code>&nbsp;decorator to only allow&nbsp;<code>GET</code>&nbsp;requests and a&nbsp;<code>require_http_methods</code>&nbsp;decorator to which you can pass a list of allowed methods as an argument.</p>\n\n\n\n<p>In this view, you use two&nbsp;<code>POST</code>&nbsp;parameters:</p>\n\n\n\n<ul><li><code>image_id</code>: The ID of the&nbsp;<code>image</code>&nbsp;object on which the user is performing the action</li><li><code>action</code>: The action that the user wants to perform, which you assume to&nbsp;be a string with the value&nbsp;<code>like</code>&nbsp;or&nbsp;<code>unlike</code></li></ul>\n\n\n\n<p>You use the manager provided by Django for the&nbsp;<code>users_like</code>&nbsp;many-to-many field of the&nbsp;<code>Image</code>&nbsp;model in order to add or remove objects from the relationship using the&nbsp;<code>add()</code>&nbsp;or&nbsp;<code>remove()</code>&nbsp;methods. Calling&nbsp;<code>add()</code>, that is, passing an object that is already present in the related object set, does not duplicate it. Calling&nbsp;<code>remove()</code>&nbsp;and passing an object that is not in the related object set does nothing. Another useful method of many-to-many managers is&nbsp;<code>clear()</code>, which removes all objects from the related object set.</p>\n\n\n\n<p>Finally, you use the&nbsp;<code>JsonResponse</code>&nbsp;class provided by Django, which returns an HTTP response with an&nbsp;<code>application/json</code>&nbsp;content type, converting the given object into a JSON output.</p>\n\n\n\n<p>Edit the&nbsp;<code>urls.py</code>&nbsp;file of the&nbsp;<code>images</code>&nbsp;application and add the following URL pattern to&nbsp;it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>path('like/', views.image_like, name='like'),\n</code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Now let&#8217;s add AJAX actions to your application. AJAX comes from Asynchronous JavaScript&nbsp;and XML, encompassing a group of techniques to make asynchronous HTTP requests. It consists of sending and retrieving data from&nbsp;the server asynchronously, without reloading the whole page. Despite the name, XML is not required. You can send or retrieve data in other formats,&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/adding-ajax-actions-with-jquery/\">Continue reading <span class=\"screen-reader-text\">Adding AJAX actions with jQuery</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [129],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3755" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3755"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3755/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3756,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3755/revisions/3756"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3755"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3755"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3755"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3757,
+    "date": "2022-06-28T11:09:23",
+    "date_gmt": "2022-06-28T11:09:23",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3757" },
+    "modified": "2022-06-28T11:09:23",
+    "modified_gmt": "2022-06-28T11:09:23",
+    "slug": "loading-jquery",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/loading-jquery/",
+    "title": { "rendered": "Loading jQuery" },
+    "content": {
+      "rendered": "\n<p>You will need to add the AJAX functionality to your image detail template. In order to use jQuery&nbsp;<a></a>in your templates, you will include it in the&nbsp;<code>base.html</code>&nbsp;template of your project first. Edit the&nbsp;<code>base.html</code>&nbsp;template of the&nbsp;<code>account</code>&nbsp;application and include the following code before the closing&nbsp;<code>&lt;/body&gt;</code>&nbsp;HTML tag:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js\"&gt;&lt;/script&gt;\n&lt;script&gt;\n  $(document).ready(function(){\n    {% block domready %}\n    {% endblock %}\n  });\n&lt;/script&gt;\n</code></pre>\n\n\n\n<p>You load the jQuery framework from Google&#8217;s CDN. You can also download jQuery from https://jquery.com/ and add it to the <code>static</code> directory of your application instead.</p>\n\n\n\n<p>You add a&nbsp;<code>&lt;script&gt;</code>&nbsp;tag to include JavaScript code.&nbsp;<code>$(document).ready()</code>&nbsp;is a&nbsp;jQuery function that takes a handler that is executed when the&nbsp;<strong>Document Object Model</strong>&nbsp;(<strong>DOM</strong>) hierarchy&nbsp;<a></a>has been fully constructed. The DOM is created by the browser when a web page is loaded, and it is constructed as a tree of objects. By including your code inside this function, you will make sure that all HTML elements that you are going to interact with are loaded in the DOM. Your code will&nbsp;only be executed once the DOM is ready.</p>\n\n\n\n<p>Inside the document-ready handler function, you include a Django template block called&nbsp;<code>domready</code>, in which templates that extend the base template will be able to include specific JavaScript. Don&#8217;t get confused by the JavaScript code and Django template tags. The Django template language is rendered on the server side, outputting the final HTML document, and JavaScript is executed on the client side. In some cases, it is useful to generate JavaScript code dynamically using Django, to be able to use the results of QuerySets or server-side calculations to define variables in JavaScript.</p>\n\n\n\n<p>JavaScript code in Django templates. The preferred way to include JavaScript code is by loading <code>.js</code> files, which are served as static files, especially when they are large scripts.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>You will need to add the AJAX functionality to your image detail template. In order to use jQuery&nbsp;in your templates, you will include it in the&nbsp;base.html&nbsp;template of your project first. Edit the&nbsp;base.html&nbsp;template of the&nbsp;account&nbsp;application and include the following code before the closing&nbsp;&lt;/body&gt;&nbsp;HTML tag: You load the jQuery framework from Google&#8217;s CDN. You can also download jQuery&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/loading-jquery/\">Continue reading <span class=\"screen-reader-text\">Loading jQuery</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [129],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3757" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3757"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3757/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3758,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3757/revisions/3758"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3757"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3757"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3757"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3759,
+    "date": "2022-06-28T11:10:20",
+    "date_gmt": "2022-06-28T11:10:20",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3759" },
+    "modified": "2022-06-28T11:10:20",
+    "modified_gmt": "2022-06-28T11:10:20",
+    "slug": "cross-site-request-forgery-in-ajax-requests",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/cross-site-request-forgery-in-ajax-requests/",
+    "title": { "rendered": "Cross-site request forgery in AJAX requests" },
+    "content": {
+      "rendered": "\n<p>You learned about <strong>cross-site request </strong><strong>forgery</strong> (<strong>CSRF</strong>) <em>Enhancing Your Blog with Advanced Features</em>. With CSRF protection active, Django checks for a CSRF token in all <code>POST</code> requests. When you submit forms, you can use the <code>{% csrf_token %}</code> template tag to send the token along with the form. However, it is a bit inconvenient for AJAX requests to pass the CSRF token as <code>POST</code> data with every <code>POST</code> request. Therefore, Django allows you to set a custom <code>X-CSRFToken</code> header in your AJAX requests with the value of the CSRF token. This enables you to set up jQuery or any other JavaScript library to automatically set the <code>X-CSRFToken</code> header in every request.</p>\n\n\n\n<p>In order to include the token in all requests, you need to take the following steps:</p>\n\n\n\n<ol><li>Retrieve the CSRF token from the&nbsp;<code>csrftoken</code>&nbsp;cookie, which is set if CSRF protection is active</li><li>Send the token in the AJAX request using the&nbsp;<code>X-CSRFToken</code>&nbsp;header</li></ol>\n\n\n\n<p>You can find more information about CSRF protection and AJAX at https://docs.djangoproject.com/en/3.0/ref/csrf/#ajax.</p>\n\n\n\n<p>Edit the last code you included in your <code>base.html</code> template and make it look like the following:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;script src=\"https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js\"&gt;&lt;/script&gt;\n<strong>&lt;script src=\"https://cdn.jsdelivr.net/npm/js-cookie@2.2.1/src/js.cookie.min.js\"&gt;&lt;/script&gt;</strong>\n&lt;script&gt;\n  <strong>var csrftoken = Cookies.get('csrftoken');</strong>\n  <strong>function csrfSafeMethod(method) {</strong>\n    <strong><em>// these HTTP methods do not require CSRF protection</em></strong>\n    <strong>return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));</strong>\n  <strong>}</strong>\n  <strong>$.ajaxSetup({</strong>\n    <strong>beforeSend: function(xhr, settings) {</strong>\n      <strong>if (!csrfSafeMethod(settings.type) &amp;&amp; !this.crossDomain) {</strong>\n        <strong>xhr.setRequestHeader(\"X-CSRFToken\", csrftoken);</strong>\n      <strong>}</strong>\n    <strong>}</strong>\n  <strong>});</strong>\n  $(document).ready(function(){\n    {% block domready %}\n    {% endblock %}\n  });\n&lt;/script&gt;\n</code></pre>\n\n\n\n<p>The preceding code is as follows:</p>\n\n\n\n<ol><li>You load the JS Cookie plugin from a public CDN so that you can easily interact with cookies. JS Cookie is a lightweight JavaScript API for handling cookies. You can learn more about it at https://github.com/js-cookie/js-cookie.</li><li>You read the value of the <code>csrftoken</code> cookie with <code>Cookies.get()</code>.</li><li>You define the <code>csrfSafeMethod()</code> function to check whether an HTTP method is safe. Safe methods don&#8217;t require CSRF protection—these are <code>GET</code>, <code>HEAD</code>, <code>OPTIONS</code>, and <code>TRACE</code>.</li><li>You set up jQuery AJAX requests using <code>$.ajaxSetup()</code>. Before each AJAX request is performed, you check whether the request method is safe and that the current request is not cross-domain. If the request is unsafe, you set the <code>X-CSRFToken</code> header with the value obtained from the cookie. This setup will apply to all AJAX requests performed with jQuery.</li></ol>\n\n\n\n<p>The CSRF token will be included in all AJAX requests that use unsafe HTTP methods, such as&nbsp;<code>POST</code>&nbsp;or&nbsp;<code>PUT</code>.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>You learned about cross-site request forgery (CSRF) Enhancing Your Blog with Advanced Features. With CSRF protection active, Django checks for a CSRF token in all POST requests. When you submit forms, you can use the {% csrf_token %} template tag to send the token along with the form. However, it is a bit inconvenient for AJAX requests to pass the CSRF token as POST data with every POST request.&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/cross-site-request-forgery-in-ajax-requests/\">Continue reading <span class=\"screen-reader-text\">Cross-site request forgery in AJAX requests</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [129],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3759" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3759"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3759/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3760,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3759/revisions/3760"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3759"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3759"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3759"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3761,
+    "date": "2022-06-28T11:11:05",
+    "date_gmt": "2022-06-28T11:11:05",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3761" },
+    "modified": "2022-06-28T11:11:05",
+    "modified_gmt": "2022-06-28T11:11:05",
+    "slug": "performing-ajax-requests-with-jquery",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/performing-ajax-requests-with-jquery/",
+    "title": { "rendered": "Performing AJAX requests with jQuery" },
+    "content": {
+      "rendered": "\n<p>Edit the&nbsp;<code>images/image/detail.html</code>&nbsp;template of the&nbsp;<code>images</code>&nbsp;application and consider the&nbsp;<a></a>following line:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{% with total_likes=image.users_like.count %}\n</code></pre>\n\n\n\n<p>Replace&nbsp;<a></a>the preceding line with the following one:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{% with total_likes=image.users_like.count <strong>users_like=image.users_like.all</strong> %}\n</code></pre>\n\n\n\n<p>Make sure that the template tag is split into multiple lines.</p>\n\n\n\n<p>Replace the line that defines the&nbsp;<code>for</code>&nbsp;loop:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{% for user in image.users_like.all %}\n</code></pre>\n\n\n\n<p>with the following one:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{% for user in <strong>users_like</strong> %}\n</code></pre>\n\n\n\n<p>Then, modify the&nbsp;<code>&lt;div&gt;</code>&nbsp;element with the&nbsp;<code>image-info</code>&nbsp;class, as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;div class=\"image-info\"&gt;\n  &lt;div&gt;\n    &lt;span class=\"count\"&gt;\n      <strong>&lt;span class=\"total\"&gt;{{ total_likes }}&lt;/span&gt;</strong>\n      like{{ total_likes|pluralize }}\n    &lt;/span&gt;\n    <strong>&lt;a href=\"#\" data-id=\"{{ image.id }}\" data-action=\"{% if</strong>\n    <strong>request.user in users_like %}un{% endif %}like\"</strong>\n    <strong>class=\"like button\"&gt;</strong>\n      <strong>{% if request.user not in users_like %}</strong>\n        <strong>Like</strong>\n      <strong>{% else %}</strong>\n        <strong>Unlike</strong>\n      <strong>{% endif %}</strong>\n    <strong>&lt;/a&gt;</strong>\n  &lt;/div&gt;\n  {{ image.description|linebreaks }}\n&lt;/div&gt;\n</code></pre>\n\n\n\n<p>First, you add another variable to the&nbsp;<code>{% with %}</code>&nbsp;template tag in order to store the results of the&nbsp;<code>image.users_like.all</code>&nbsp;query and avoid executing it twice. You use the variable&nbsp;<a></a>for the&nbsp;<code>for</code>&nbsp;loop that iterates over the users that like this image.</p>\n\n\n\n<p>You display the total number of users who like the image&nbsp;<a></a>and include a link to&nbsp;like/unlike the image. You check whether the user is in the related object set of&nbsp;<code>users_like</code>&nbsp;to display either&nbsp;<em>like</em>&nbsp;or&nbsp;<em>unlike</em>, based on the current relationship between the user and this image. You add the following attributes to the&nbsp;<code>&lt;a&gt;</code>&nbsp;HTML element:</p>\n\n\n\n<ul><li><code>data-id</code>: The ID of the image displayed.</li><li><code>data-action</code>: The action to run when the user clicks on the link. This can be&nbsp;<code>like</code>&nbsp;or&nbsp;<code>unlike</code>.</li></ul>\n\n\n\n<p>Any attribute on any HTML element whose attribute name starts with&nbsp;<code>data-</code>&nbsp;is a data attribute. Data attributes are used to store custom data for your application.</p>\n\n\n\n<p>You will send the value of both attributes in the AJAX request to the&nbsp;<code>image_like</code>&nbsp;view. When a user clicks on the&nbsp;<code>like/unlike</code>&nbsp;link, you will perform the following actions on the client side:</p>\n\n\n\n<ol><li>Call the AJAX view, passing the image ID and the action parameters to it</li><li>If the AJAX request is successful, update the&nbsp;<code>data-action</code>&nbsp;attribute of the&nbsp;<code>&lt;a&gt;</code>&nbsp;HTML element with the opposite action (<code>like</code>&nbsp;/&nbsp;<code>unlike</code>), and modify its&nbsp;display text accordingly</li><li>Update the total number of&nbsp;<code>likes</code>&nbsp;that is displayed</li></ol>\n\n\n\n<p>Add the&nbsp;<code>domready</code>&nbsp;block at the bottom of the&nbsp;<code>images/image/detail.html</code>&nbsp;template with the following JavaScript code:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{% block domready %}\n  $('a.like').click(function(e){\n    e.preventDefault();\n    $.post('{% url \"images:like\" %}',\n      {\n        id: $(this).data('id'),\n        action: $(this).data('action')\n      },\n      function(data){\n        if (data&#91;'status'] == 'ok')\n        {\n          var previous_action = $('a.like').data('action');\n          <em>// toggle data-action</em>\n          $('a.like').data('action', previous_action == 'like' ?\n          'unlike' : 'like');\n          <em>// toggle link text</em>\n          $('a.like').text(previous_action == 'like' ? 'Unlike' :\n          'Like');\n          <em>// update total likes</em>\n          var previous_likes = parseInt($('span.count .total').text());\n          $('span.count .total').text(previous_action == 'like' ?\n          previous_likes + 1 : previous_likes - 1);\n        }\n      }\n    );\n  });\n{% endblock %}\n</code></pre>\n\n\n\n<p>The preceding&nbsp;<a></a>code works as follows:</p>\n\n\n\n<ol><li>You use the&nbsp;<code>$('a.like')</code>&nbsp;jQuery selector to find all&nbsp;<code>&lt;a&gt;</code>&nbsp;elements of the HTML document with the&nbsp;<code>like</code>&nbsp;class.</li><li>You define&nbsp;<a></a>a handler function for the&nbsp;<code>click</code>&nbsp;event. This function will be executed every time the user clicks on the&nbsp;<code>like/unlike</code>&nbsp;link.</li><li>Inside the handler function, you use&nbsp;<code>e.preventDefault()</code>&nbsp;to avoid the default behavior of the&nbsp;<code>&lt;a&gt;</code>&nbsp;element. This will prevent the link from taking you anywhere.</li><li>You use&nbsp;<code>$.post()</code>&nbsp;to perform an asynchronous&nbsp;<code>POST</code>&nbsp;request to the server. jQuery also provides a&nbsp;<code>$.get()</code>&nbsp;method to perform&nbsp;<code>GET</code>&nbsp;requests and a low-level&nbsp;<code>$.ajax()</code>&nbsp;method.</li><li>You use Django&#8217;s&nbsp;<code>{% url %}</code>&nbsp;template tag to build the URL for the AJAX request.</li><li>You build the&nbsp;<code>POST</code>&nbsp;parameters dictionary to send in the request. The parameters are the&nbsp;<code>ID</code>&nbsp;and&nbsp;<code>action</code>&nbsp;parameters expected by your Django view. You retrieve these values from the&nbsp;<code>&lt;a&gt;</code>&nbsp;element&#8217;s&nbsp;<code>data-id</code>&nbsp;and&nbsp;<code>data-action</code>&nbsp;attributes.</li><li>You define a callback function that is executed when the HTTP response is received; it takes a&nbsp;<code>data</code>&nbsp;attribute that contains the content of the response.</li><li>You access the&nbsp;<code>status</code>&nbsp;attribute of the data received and check whether it equals&nbsp;<code>ok</code>. If the returned data is as expected, you toggle the&nbsp;<code>data-action</code>&nbsp;attribute of the link and its text. This allows the user to undo their action.</li><li>You increase or decrease the total likes count by one, depending on the action performed.</li></ol>\n\n\n\n<p>Open the&nbsp;<a></a>image detail page in your browser&nbsp;<a></a>for an image that you have uploaded. You should be able to see the following initial likes count and the&nbsp;<strong>LIKE</strong>&nbsp;button, as&nbsp;follows:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/B14981_05_10.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 5.10: The likes count and LIKE button in the image detail template</p>\n\n\n\n<p>Click on the&nbsp;<strong>LIKE</strong>&nbsp;button. You will note that the total likes count increases by&nbsp;one and the button text changes to&nbsp;<strong>UNLIKE</strong>, as follows:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/B14981_05_11.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 5.11: The likes count and button after clicking the LIKE button</p>\n\n\n\n<p>If you click on the&nbsp;<strong>UNLIKE</strong>&nbsp;button, the action is performed, and then the button&#8217;s text changes back to&nbsp;<strong>LIKE</strong>, and the total count changes accordingly.</p>\n\n\n\n<p>When programming JavaScript, especially when performing AJAX requests, it is&nbsp;recommended&nbsp;<a></a>that you use a tool for debugging&nbsp;<a></a>JavaScript and HTTP requests. Most modern browsers include developer tools to debug JavaScript. Usually, you can right-click anywhere on the website and click on&nbsp;<strong>Inspect Element</strong>&nbsp;to access the web developer tools.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Edit the&nbsp;images/image/detail.html&nbsp;template of the&nbsp;images&nbsp;application and consider the&nbsp;following line: Replace&nbsp;the preceding line with the following one: Make sure that the template tag is split into multiple lines. Replace the line that defines the&nbsp;for&nbsp;loop: with the following one: Then, modify the&nbsp;&lt;div&gt;&nbsp;element with the&nbsp;image-info&nbsp;class, as follows: First, you add another variable to the&nbsp;{% with %}&nbsp;template tag in order&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/performing-ajax-requests-with-jquery/\">Continue reading <span class=\"screen-reader-text\">Performing AJAX requests with jQuery</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [129],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3761" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3761"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3761/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3763,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3761/revisions/3763"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3761"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3761"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3761"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3764,
+    "date": "2022-06-28T11:11:40",
+    "date_gmt": "2022-06-28T11:11:40",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3764" },
+    "modified": "2022-06-28T11:11:40",
+    "modified_gmt": "2022-06-28T11:11:40",
+    "slug": "creating-custom-decorators-for-your-views",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/creating-custom-decorators-for-your-views/",
+    "title": { "rendered": "Creating custom decorators for your views" },
+    "content": {
+      "rendered": "\n<p>Let&#8217;s restrict your AJAX views to allow only requests generated via AJAX. The Django request&nbsp;<a></a>object provides an&nbsp;<code>is_ajax()</code>&nbsp;method that checks whether the request is being made with&nbsp;<code>XMLHttpRequest</code>, which means that it is an AJAX request. This value is set in the&nbsp;<code>HTTP_X_REQUESTED_WITH</code>&nbsp;HTTP header, which is included in AJAX requests by most JavaScript libraries.</p>\n\n\n\n<p>Next, you will create a decorator for checking the <code>HTTP_X_REQUESTED_WITH</code> header in your views. A decorator is a function that takes another function and extends the behavior of the latter without explicitly modifying it. If the concept of decorators is foreign to you, you might want to take a look at https://www.python.org/dev/peps/pep-0318/ before you continue reading.</p>\n\n\n\n<p>Since your decorator will be generic and could be applied to any view, you will create a&nbsp;<code>common</code>&nbsp;Python package in your project. Create the following directory and&nbsp;files inside the&nbsp;<code>bookmarks</code>&nbsp;project directory:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>common/\n    __init__.py\n    decorators.py\n</code></pre>\n\n\n\n<p>Edit the&nbsp;<code>decorators.py</code>&nbsp;file and add the following code to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>from django.http import HttpResponseBadRequest\ndef ajax_required(f):\n    def wrap(request, *args, **kwargs):\n        if not request.is_ajax():\n            return HttpResponseBadRequest()\n        return f(request, *args, **kwargs)\n    wrap.__doc__=f.__doc__\n    wrap.__name__=f.__name__\n    return wrap\n</code></pre>\n\n\n\n<p>The preceding code is your custom&nbsp;<code>ajax_required</code>&nbsp;decorator. It defines a&nbsp;<code>wrap</code>&nbsp;function that returns an&nbsp;<code>HttpResponseBadRequest</code>&nbsp;object (HTTP&nbsp;<code>400</code>&nbsp;code) if the request is not AJAX. Otherwise, it returns the decorated function.</p>\n\n\n\n<p>Now you&nbsp;<a></a>can edit the&nbsp;<code>views.py</code>&nbsp;file of the&nbsp;<code>images</code>&nbsp;application and add this decorator to your&nbsp;<code>image_like</code>&nbsp;AJAX view, as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code><strong>from common.decorators import ajax_required</strong>\n<strong>@ajax_required</strong>\n@login_required\n@require_POST\ndef image_like(request):\n    <em># ...</em>\n</code></pre>\n\n\n\n<p>If you try to access&nbsp;<code>https://127.0.0.1:8000/images/like/</code>&nbsp;directly with your browser, you will get an HTTP&nbsp;<code>400</code>&nbsp;response.</p>\n\n\n\n<p>Build custom decorators for your views if you find that you are repeating the same checks in multiple views.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Let&#8217;s restrict your AJAX views to allow only requests generated via AJAX. The Django request&nbsp;object provides an&nbsp;is_ajax()&nbsp;method that checks whether the request is being made with&nbsp;XMLHttpRequest, which means that it is an AJAX request. This value is set in the&nbsp;HTTP_X_REQUESTED_WITH&nbsp;HTTP header, which is included in AJAX requests by most JavaScript libraries. Next, you will create&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/creating-custom-decorators-for-your-views/\">Continue reading <span class=\"screen-reader-text\">Creating custom decorators for your views</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [129],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3764" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3764"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3764/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3765,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3764/revisions/3765"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3764"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3764"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3764"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3766,
+    "date": "2022-06-28T11:12:31",
+    "date_gmt": "2022-06-28T11:12:31",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3766" },
+    "modified": "2022-06-28T11:12:31",
+    "modified_gmt": "2022-06-28T11:12:31",
+    "slug": "adding-ajax-pagination-to-your-list-views",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/adding-ajax-pagination-to-your-list-views/",
+    "title": { "rendered": "Adding AJAX pagination to your list views" },
+    "content": {
+      "rendered": "\n<p>Next, you need to list all bookmarked images on your website. You will use AJAX pagination&nbsp;<a></a>to build an infinite scroll functionality. Infinite scroll is achieved by loading the next results automatically when the user&nbsp;<a></a>scrolls to the bottom of the page.</p>\n\n\n\n<p>Let&#8217;s implement an image list view that will handle both standard browser requests and AJAX requests, including pagination. When the user initially loads the image list page, you will display the first page of images. When they scroll to the bottom of the page, you will load the following page of items via AJAX and append it to the bottom of the main page.</p>\n\n\n\n<p>The same view will handle both standard and AJAX pagination. Edit the&nbsp;<code>views.py</code>&nbsp;file of the&nbsp;<code>images</code>&nbsp;application and add the following code to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>from django.http import HttpResponse\nfrom django.core.paginator import Paginator, EmptyPage, \\\n                                  PageNotAnInteger\n@login_required\ndef image_list(request):\n    images = Image.objects.all()\n    paginator = Paginator(images, 8)\n    page = request.GET.get('page')\n    try:\n        images = paginator.page(page)\n    except PageNotAnInteger:\n        <em># If page is not an integer deliver the first page</em>\n        images = paginator.page(1)\n    except EmptyPage:\n        if request.is_ajax():\n            <em># If the request is AJAX and the page is out of range</em>\n            <em># return an empty page</em>\n            return HttpResponse('')\n        <em># If page is out of range deliver last page of results</em>\n        images = paginator.page(paginator.num_pages)\n    if request.is_ajax():\n        return render(request,\n                      'images/image/list_ajax.html',\n                      {'section': 'images', 'images': images})\n    return render(request,\n                  'images/image/list.html',\n                   {'section': 'images', 'images': images})\n</code></pre>\n\n\n\n<p>In this view, you create a QuerySet to return all images from the database. Then, you build a&nbsp;<code>Paginator</code>&nbsp;object to paginate the results, retrieving eight images per page. You get an&nbsp;<code>EmptyPage</code>&nbsp;exception if the requested page is out of range. If this is the case and the request is done via AJAX, you&nbsp;<a></a>return an empty&nbsp;<code>HttpResponse</code>&nbsp;that will help you to stop the AJAX pagination on the client side. You render the results to two different templates:</p>\n\n\n\n<ul><li>For AJAX requests, you render the&nbsp;<code>list_ajax.html</code>&nbsp;template. This template will only contain the images of the requested page.</li><li>For standard requests, you render the&nbsp;<code>list.html</code>&nbsp;template. This template will&nbsp;extend the&nbsp;<code>base.html</code>&nbsp;template to display the whole page and will include the&nbsp;<code>list_ajax.html</code>&nbsp;template to include the list of images.</li></ul>\n\n\n\n<p>Edit the&nbsp;<code>urls.py</code>&nbsp;file of the&nbsp;<code>images</code>&nbsp;application and add the following URL pattern to&nbsp;it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>path('', views.image_list, name='list'),\n</code></pre>\n\n\n\n<p>Finally, you need to create the templates mentioned here. Inside the&nbsp;<code>images/image/</code>&nbsp;template directory, create a new template and name it&nbsp;<code>list_ajax.html</code>. Add the following code to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{% load thumbnail %}\n{% for image in images %}\n  &lt;div class=\"image\"&gt;\n    &lt;a href=\"{{ image.get_absolute_url }}\"&gt;\n      {% thumbnail image.image 300x300 crop=\"smart\" as im %}\n      &lt;a href=\"{{ image.get_absolute_url }}\"&gt;\n        &lt;img src=\"{{ im.url }}\"&gt;\n      &lt;/a&gt;\n    &lt;/a&gt;\n    &lt;div class=\"info\"&gt;\n      &lt;a href=\"{{ image.get_absolute_url }}\" class=\"title\"&gt;\n        {{ image.title }}\n      &lt;/a&gt;\n    &lt;/div&gt;\n  &lt;/div&gt;\n{% endfor %}\n</code></pre>\n\n\n\n<p>The preceding&nbsp;<a></a>template displays the list of images. You will use it to return results for AJAX requests. In this code, you iterate over images and&nbsp;<a></a>generate a square thumbnail for each image. You normalize the size of the thumbnails to&nbsp;<code>300x300</code>&nbsp;pixels. You also use the&nbsp;<code>smart</code>&nbsp;cropping option. This option indicates that the image has to be incrementally cropped down to the requested size by removing slices from the edges with the least entropy.</p>\n\n\n\n<p>Create another template in the same directory and name it&nbsp;<code>list.html</code>. Add the following code to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{% extends \"base.html\" %}\n{% block title %}Images bookmarked{% endblock %}\n{% block content %}\n  &lt;h1&gt;Images bookmarked&lt;/h1&gt;\n  &lt;div id=\"image-list\"&gt;\n    {% include \"images/image/list_ajax.html\" %}\n  &lt;/div&gt;\n{% endblock %}\n</code></pre>\n\n\n\n<p>The list template extends the&nbsp;<code>base.html</code>&nbsp;template. To avoid repeating code, you include the&nbsp;<code>list_ajax.html</code>&nbsp;template for displaying images. The&nbsp;<code>list.html</code>&nbsp;template will hold the JavaScript code for loading additional pages when scrolling to&nbsp;the&nbsp;bottom of the page.</p>\n\n\n\n<p>Add the following code to the&nbsp;<code>list.html</code>&nbsp;template:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{% block domready %}\n  var page = 1;\n  var empty_page = false;\n  var block_request = false;\n  $(window).scroll(function() {\n    var margin = $(document).height() - $(window).height() - 200;\n    if($(window).scrollTop() &gt; margin &amp;&amp; empty_page == false &amp;&amp;\n    block_request == false) {\n     block_request = true;\n      page += 1;\n      $.get('?page=' + page, function(data) {\n        if(data == '') {\n          empty_page = true;\n        }\n        else {\n          block_request = false;\n          $('#image-list').append(data);\n        }\n      });\n    }\n  });\n{% endblock %}\n</code></pre>\n\n\n\n<p>The preceding&nbsp;<a></a>code provides the infinite scroll functionality. You include the JavaScript code in the&nbsp;<code>domready</code>&nbsp;block that you defined&nbsp;<a></a>in the&nbsp;<code>base.html</code>&nbsp;template. The code is as follows:</p>\n\n\n\n<ol><li>You define the following variables:<ul><li><code>page</code>: Stores the current page number.</li><li><code>empty_page</code>: Allows you to know whether the user is on the last page and retrieves an empty page. As soon as you get an empty page, you will stop sending additional AJAX requests because you will assume that there are no more results.</li><li><code>block_request</code>: Prevents you from sending additional requests while an AJAX request is in progress.</li></ul></li><li>You use&nbsp;<code>$(window).scroll()</code>&nbsp;to capture the scroll event and also to define a&nbsp;handler function for it.</li><li>You calculate the&nbsp;<code>margin</code>&nbsp;variable to get the difference between the total document height and the window height, because that&#8217;s the height of the remaining content for the user to scroll. You subtract a value of 200 from the result so that you load the next page when the user is closer than 200 pixels to the bottom of the page.</li><li>You only send an AJAX request if no other AJAX request is being done (<code>block_request</code>&nbsp;has to be&nbsp;<code>false</code>) and the user didn&#8217;t get to the last page of&nbsp;results (<code>empty_page</code>&nbsp;is also&nbsp;<code>false</code>).</li><li>You set&nbsp;<code>block_request</code>&nbsp;to&nbsp;<code>true</code>&nbsp;to avoid a situation where the scroll event triggers&nbsp;<a></a>additional AJAX requests, and increase the&nbsp;<code>page</code>&nbsp;counter by one, in&nbsp;order to retrieve the next page.</li><li>You&nbsp;<a></a>perform an AJAX&nbsp;<code>GET</code>&nbsp;request using&nbsp;<code>$.get()</code>&nbsp;and receive the HTML response in a variable called&nbsp;<code>data</code>. The following are the two scenarios:<ul><li><strong>The response has no content</strong>: You got to the end of the results, and&nbsp;there&nbsp;<a></a>are no more pages to load. You set&nbsp;<code>empty_page</code>&nbsp;to&nbsp;<code>true</code>&nbsp;to&nbsp;prevent additional AJAX requests.</li><li><strong>The response contains data</strong>: You append the data to the HTML element&nbsp;<a></a>with the&nbsp;<code>image-list</code>&nbsp;ID. The page content expands vertically, appending results when the user approaches the bottom of&nbsp;the page.</li></ul></li></ol>\n\n\n\n<p>Open&nbsp;<code>https://127.0.0.1:8000/images/</code>&nbsp;in your browser. You will see the list of images that you have bookmarked so far. It should look similar to this:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/B14981_05_12.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 5.12: The image list page with AJAX pagination</p>\n\n\n\n<p>Scroll to&nbsp;<a></a>the bottom of the page to load additional pages. Ensure that you have bookmarked more than eight images using the bookmarklet, because&nbsp;<a></a>that&#8217;s the number of images you are displaying per page. Remember that you can use Firebug or a similar tool to track the AJAX requests and debug your JavaScript code.</p>\n\n\n\n<p>Finally, edit the&nbsp;<code>base.html</code>&nbsp;template of the&nbsp;<code>account</code>&nbsp;application and add the URL for&nbsp;the images item of the main menu, as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;li {% if section == \"images\" %}class=\"selected\"{% endif %}&gt;\n  &lt;a href=<strong>\"{% url \"images:list\" %}\"</strong>&gt;Images&lt;/a&gt;\n&lt;/li&gt;\n</code></pre>\n\n\n\n<p>Now you can access the image list from the main menu.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Next, you need to list all bookmarked images on your website. You will use AJAX pagination&nbsp;to build an infinite scroll functionality. Infinite scroll is achieved by loading the next results automatically when the user&nbsp;scrolls to the bottom of the page. Let&#8217;s implement an image list view that will handle both standard browser requests and AJAX&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/adding-ajax-pagination-to-your-list-views/\">Continue reading <span class=\"screen-reader-text\">Adding AJAX pagination to your list views</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [129],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3766" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3766"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3766/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3767,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3766/revisions/3767"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3766"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3766"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3766"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  }
+]

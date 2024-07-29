@@ -1,0 +1,1206 @@
+[
+  {
+    "id": 3664,
+    "date": "2022-06-28T09:35:38",
+    "date_gmt": "2022-06-28T09:35:38",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3664" },
+    "modified": "2022-06-28T09:35:38",
+    "modified_gmt": "2022-06-28T09:35:38",
+    "slug": "creating-custom-template-tags-and-filters",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/creating-custom-template-tags-and-filters/",
+    "title": { "rendered": "Creating custom template tags and filters" },
+    "content": {
+      "rendered": "\n<p>Django offers a variety of built-in template tags, such as <code>{% if %}</code> or <code>{% block %}</code>. You used different template tags in <em>Building a Blog Application</em>, and  <em>Enhancing Your Blog with Advanced Features</em>. You can find a complete reference of built-in template tags and filters at https://docs.djangoproject.com/en/3.0/ref/templates/builtins/.</p>\n\n\n\n<p>Django also allows you to create your own template tags to perform custom actions. Custom template tags come in very handy when you need to add a functionality to your templates that is not covered by the core set of Django template tags. This could be a tag to&nbsp;<a></a>perform a QuerySet or any server-side processing that you want to reuse across templates. For example, you could build a template tag&nbsp;<a></a>to display the list of latest posts published on your blog. You can include this list in the sidebar of the blog for multiple pages, regardless of the view.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Django offers a variety of built-in template tags, such as {% if %} or {% block %}. You used different template tags in Building a Blog Application, and  Enhancing Your Blog with Advanced Features. You can find a complete reference of built-in template tags and filters at https://docs.djangoproject.com/en/3.0/ref/templates/builtins/. Django also allows you to create your own template tags to perform custom actions. Custom template&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/creating-custom-template-tags-and-filters/\">Continue reading <span class=\"screen-reader-text\">Creating custom template tags and filters</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [127],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3664" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3664"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3664/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3665,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3664/revisions/3665"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3664"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3664"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3664"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3666,
+    "date": "2022-06-28T09:37:04",
+    "date_gmt": "2022-06-28T09:37:04",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3666" },
+    "modified": "2022-06-28T09:37:04",
+    "modified_gmt": "2022-06-28T09:37:04",
+    "slug": "custom-template-tags",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/custom-template-tags/",
+    "title": { "rendered": "Custom template tags" },
+    "content": {
+      "rendered": "\n<p>Django provides&nbsp;<a></a>the following helper functions that allow you to create your own template tags in an easy manner:</p>\n\n\n\n<ul><li><code>simple_tag</code>: Processes the data and returns a string</li><li><code>inclusion_tag</code>: Processes the data and returns a rendered template</li></ul>\n\n\n\n<p>Template tags must live inside Django applications.</p>\n\n\n\n<p>Inside your&nbsp;<code>blog</code>&nbsp;application directory, create a new directory, name it&nbsp;<code>templatetags</code>, and add an empty&nbsp;<code>__init__.py</code>&nbsp;file to it. Create another file in the same folder and name it&nbsp;<code>blog_tags.py</code>. The file structure of the blog application should look like the following:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>blog/\n    __init__.py\n    models.py\n    ...\n    templatetags/\n        __init__.py\n        blog_tags.py\n</code></pre>\n\n\n\n<p>The way you name the file is important. You will use the name of this module to&nbsp;load tags in templates.</p>\n\n\n\n<p>Let&#8217;s start by creating a simple tag to retrieve the total posts published on the blog. Edit the&nbsp;<code>blog_tags.py</code>&nbsp;file you just created and add the following code:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>from django import template\nfrom ..models import Post\nregister = template.Library()\n@register.simple_tag\ndef total_posts():\n    return Post.published.count()\n</code></pre>\n\n\n\n<p>You have created a simple template tag that returns the number of posts published so far. Each module that contains template tags needs to define a variable called&nbsp;<code>register</code>&nbsp;to be a valid tag library. This variable is an instance of&nbsp;<code>template.Library</code>, and it&#8217;s used to register your own template tags and filters.</p>\n\n\n\n<p>In the code above, you define a tag called&nbsp;<code>total_posts</code>&nbsp;with a Python function and use the&nbsp;<code>@register.simple_tag</code>&nbsp;decorator to register the function as a simple tag. Django will use the function&#8217;s name as the tag name. If you want to register it using a different name, you can do so by specifying a&nbsp;<code>name</code>&nbsp;attribute, such as&nbsp;<code>@register.simple_tag(name='my_tag')</code>.</p>\n\n\n\n<p>After adding&nbsp;<a></a>a new template tags module, you will need to restart the Django development server in order to use the new tags and filters in templates.</p>\n\n\n\n<p>Before using custom template tags, you have to make them available for the template using the&nbsp;<code>{% load %}</code>&nbsp;tag. As mentioned before, you need to use the name of the Python module containing your template tags and filters.</p>\n\n\n\n<p>Open the&nbsp;<code>blog/templates/base.html</code>&nbsp;template and add&nbsp;<code>{% load blog_tags %}</code>&nbsp;at the top of it to load your template tags module. Then, use the tag you created to display your total posts. Just add&nbsp;<code>{% total_posts %}</code>&nbsp;to your template. The template should look like this:</p>\n\n\n\n<pre class=\"wp-block-code\"><code><strong>{% load blog_tags %}</strong>\n{% load static %}\n&lt;!DOCTYPE html&gt;\n&lt;html&gt;\n&lt;head&gt;\n  &lt;title&gt;{% block title %}{% endblock %}&lt;/title&gt;\n  &lt;link href=\"{% static \"css/blog.css\" %}\" rel=\"stylesheet\"&gt;\n&lt;/head&gt;\n&lt;body&gt;\n  &lt;div id=\"content\"&gt;\n    {% block content %}\n    {% endblock %}\n  &lt;/div&gt;\n  &lt;div id=\"sidebar\"&gt;\n    &lt;h2&gt;My blog&lt;/h2&gt;\n    <strong>&lt;p&gt;This is my blog. I've written {% total_posts %} posts so far.&lt;/p&gt;</strong>\n  &lt;/div&gt;\n&lt;/body&gt;\n&lt;/html&gt;\n</code></pre>\n\n\n\n<p>You will need to restart the server to keep track of the new files added to the project. Stop the development server with&nbsp;<kbd>Ctrl</kbd>&nbsp;+&nbsp;<kbd>C</kbd>&nbsp;and run it again using the following command:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>python manage.py runserver\n</code></pre>\n\n\n\n<p>Open&nbsp;<code>http://127.0.0.1:8000/blog/</code>&nbsp;in your browser. You should see the total number of posts in the sidebar of the site, as follows:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/B14981_03_01.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 3.1: The total posts published included in the sidebar</p>\n\n\n\n<p>The power of&nbsp;<a></a>custom template tags is that you can process any data and add it to any template regardless of the view executed. You can perform QuerySets or process any data to display results in your templates.</p>\n\n\n\n<p>Now, you will create another tag to display the latest posts in the sidebar of your blog. This time, you will use an inclusion tag. Using an inclusion tag, you can render a template with context variables returned by your template tag.</p>\n\n\n\n<p>Edit the&nbsp;<code>blog_tags.py</code>&nbsp;file and add the following code:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>@register.inclusion_tag('blog/post/latest_posts.html')\ndef show_latest_posts(count=5):\n    latest_posts = Post.published.order_by('-publish')&#91;:count]\n    return {'latest_posts': latest_posts}\n</code></pre>\n\n\n\n<p>In the preceding code, you register the template tag using&nbsp;<code>@register.inclusion_tag</code>&nbsp;and specify the template that will be rendered with the returned values using&nbsp;<code>blog/post/latest_posts.html</code>. Your template tag will accept an optional&nbsp;<code>count</code>&nbsp;parameter that defaults to&nbsp;<code>5</code>. This parameter you to specify the number of&nbsp;posts that you want to display. You use this variable to limit the results of the&nbsp;query&nbsp;<code>Post.published.order_by('-publish')[:count]</code>.</p>\n\n\n\n<p>Note that the function returns a dictionary of variables instead of a simple value. Inclusion tags have to return a dictionary of values, which is used as the context to render the specified template. The template tag you just created allows you to specify the optional number of posts to display as&nbsp;<code>{% show_latest_posts 3 %}</code>.</p>\n\n\n\n<p>Now, create a new template file under&nbsp;<code>blog/post/</code>&nbsp;and name it&nbsp;<code>latest_posts.html</code>. Add the following code to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;ul&gt;\n  {% for post in latest_posts %}\n    &lt;li&gt;\n      &lt;a href=\"{{ post.get_absolute_url }}\"&gt;{{ post.title }}&lt;/a&gt;\n    &lt;/li&gt;\n  {% endfor %}\n&lt;/ul&gt;\n</code></pre>\n\n\n\n<p>In the preceding code, you display an unordered list of posts using the&nbsp;<code>latest_posts</code>&nbsp;variable returned&nbsp;<a></a>by your template tag. Now, edit the&nbsp;<code>blog/base.html</code>&nbsp;template and add the new template tag to display the last three posts. The sidebar code should look like the following:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;div id=\"sidebar\"&gt;\n  &lt;h2&gt;My blog&lt;/h2&gt;\n  &lt;p&gt;This is my blog. I've written {% total_posts %} posts so far.&lt;/p&gt;\n  <strong>&lt;h3&gt;Latest posts&lt;/h3&gt;</strong>\n  <strong>{% show_latest_posts 3 %}</strong>\n&lt;/div&gt;\n</code></pre>\n\n\n\n<p>The template tag is called, passing the number of posts to display, and the template is rendered in place with the given context.</p>\n\n\n\n<p>Next, return to your browser and refresh the page. The sidebar should now look like&nbsp;this:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/B14981_03_02.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 3.2: The sidebar, including the latest published posts</p>\n\n\n\n<p>Finally, you will create a simple template tag that returns a value. You will store the result in a variable that can be reused, rather than directly outputting it. You will create a tag to display the most commented posts.</p>\n\n\n\n<p>Edit the&nbsp;<code>blog_tags.py</code>&nbsp;file and add the following import and template tag to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>from django.db.models import Count\n@register.simple_tag\ndef get_most_commented_posts(count=5):\n    return Post.published.annotate(\n               total_comments=Count('comments')\n           ).order_by('-total_comments')&#91;:count]\n</code></pre>\n\n\n\n<p>In the preceding template tag, you build a QuerySet using the&nbsp;<code>annotate()</code>&nbsp;function to aggregate the&nbsp;<a></a>total number of comments for each post. You use the&nbsp;<code>Count</code>&nbsp;aggregation function to store the number of comments in the computed field&nbsp;<code>total_comments</code>&nbsp;for each&nbsp;<code>Post</code>&nbsp;object. You order the QuerySet by the computed field in descending order. You also provide an optional&nbsp;<code>count</code>&nbsp;variable to limit the total number of objects returned.</p>\n\n\n\n<p>In addition to <code>Count</code>, Django offers the aggregation functions <code>Avg</code>, <code>Max</code>, <code>Min</code>, and <code>Sum</code>. You can read more about aggregation functions at https://docs.djangoproject.com/en/3.0/topics/db/aggregation/.</p>\n\n\n\n<p>Next, edit the&nbsp;<code>blog/base.html</code>&nbsp;template and append the following code to the sidebar&nbsp;<code>&lt;div&gt;</code>&nbsp;element:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;h3&gt;Most commented posts&lt;/h3&gt;\n{% get_most_commented_posts as most_commented_posts %}\n&lt;ul&gt;\n  {% for post in most_commented_posts %}\n    &lt;li&gt;\n      &lt;a href=\"{{ post.get_absolute_url }}\"&gt;{{ post.title }}&lt;/a&gt;\n    &lt;/li&gt;\n  {% endfor %}\n&lt;/ul&gt;\n</code></pre>\n\n\n\n<p>In the preceding code, you store the result in a custom variable using the&nbsp;<code>as</code>&nbsp;argument followed by the variable name. For your template tag, you use&nbsp;<code>{% get_most_commented_posts as most_commented_posts %}</code>&nbsp;to store the result of the template tag in a new variable named&nbsp;<code>most_commented_posts</code>. Then, you display the returned posts using an unordered list.</p>\n\n\n\n<p>Now open your browser and refresh the page to see the final result. It should look like the following:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/B14981_03_03.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 3.3: The post list view, including the complete sidebar with the latest and most commented posts</p>\n\n\n\n<p>You have now a clear idea about how to build custom template tags. You can read more about them at https://docs.djangoproject.com/en/3.0/howto/custom-template-tags/.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Django provides&nbsp;the following helper functions that allow you to create your own template tags in an easy manner: simple_tag: Processes the data and returns a string inclusion_tag: Processes the data and returns a rendered template Template tags must live inside Django applications. Inside your&nbsp;blog&nbsp;application directory, create a new directory, name it&nbsp;templatetags, and add an empty&nbsp;__init__.py&nbsp;file&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/custom-template-tags/\">Continue reading <span class=\"screen-reader-text\">Custom template tags</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [127],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3666" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3666"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3666/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3667,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3666/revisions/3667"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3666"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3666"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3666"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3669,
+    "date": "2022-06-28T09:38:04",
+    "date_gmt": "2022-06-28T09:38:04",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3669" },
+    "modified": "2022-06-28T09:38:04",
+    "modified_gmt": "2022-06-28T09:38:04",
+    "slug": "custom-template-filters",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/custom-template-filters/",
+    "title": { "rendered": "Custom template filters" },
+    "content": {
+      "rendered": "\n<p>Django has a variety of built-in template filters that allow you to alter variables in templates. These are&nbsp;<a></a>Python functions that take one or two parameters, the value of the variable that the filter is applied to, and an optional argument. They return a value that can be displayed or treated by another filter. A filter looks like&nbsp;<code>{{ variable</code><strong>|my_filter</strong><code>&nbsp;}}</code>. Filters with an argument look like&nbsp;<code>{{ variable</code><strong>|my_filter:&#8221;foo&#8221;</strong><code>&nbsp;}}</code>. For example, you can use the&nbsp;<code>capfirst</code>&nbsp;filter to capitalize the first character of the value, like&nbsp;<code>{{ value</code><strong>|capfirst</strong><code>&nbsp;}}</code>. If&nbsp;<code>value</code>&nbsp;is &#8220;django&#8221;, the output will be &#8220;Django&#8221;. You can apply as many filters as you like to a variable, for example,&nbsp;<code>{{ variable|filter1|filter2 }}</code>, and each of them will be applied to the output generated by the preceding filter.</p>\n\n\n\n<p>You can find the list of Django&#8217;s built-in template filters at https://docs.djangoproject.com/en/3.0/ref/templates/builtins/#built-in-filter-reference.</p>\n\n\n\n<p>You will create a custom filter to enable you to use markdown syntax in your blog posts and then convert the post contents to HTML in the templates. Markdown is a plain-text formatting syntax that is very simple to use, and it&#8217;s intended to be converted into HTML. You can write posts using simple markdown syntax and get the content automatically converted into HTML code. Learning markdown syntax is much easier than learning HTML. By using markdown, you can get other non-tech savvy contributors to easily write posts for your blog. You can learn the basics of the markdown format at https://daringfireball.net/projects/markdown/basics.</p>\n\n\n\n<p>First, install the Python&nbsp;<code>markdown</code>&nbsp;module via&nbsp;<code>pip</code>&nbsp;using the following command:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>pip install markdown==3.2.1\n</code></pre>\n\n\n\n<p>Then, edit the&nbsp;<code>blog_tags.py</code>&nbsp;file and include the following code:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>from django.utils.safestring import mark_safe\nimport markdown\n@register.filter(name='markdown')\ndef markdown_format(text):\n    return mark_safe(markdown.markdown(text))\n</code></pre>\n\n\n\n<p>You register template filters in the same way as template tags. To prevent a name clash between your function name and the&nbsp;<code>markdown</code>&nbsp;module, you name your function&nbsp;<code>markdown_format</code>&nbsp;and name the filter&nbsp;<code>markdown</code>&nbsp;for use in templates, such as&nbsp;<code>{{ variable|markdown }}</code>. Django escapes the HTML code generated by filters; characters of HTML entities are replaced with their HTML encoded characters. For example,&nbsp;<code>&lt;p&gt;</code>&nbsp;is converted to&nbsp;<code>&amp;lt;p&amp;gt;</code>&nbsp;(<em>less than</em>&nbsp;symbol,&nbsp;<em>p</em>&nbsp;character,&nbsp;<em>greater than</em>&nbsp;symbol). You use the&nbsp;<code>mark_safe</code>&nbsp;function provided by Django to mark the result as safe HTML to be rendered in the template. By default, Django will not trust any HTML code and will escape it before placing it in the output. The only exceptions are variables that are marked as safe from escaping. This behavior prevents Django from outputting potentially dangerous HTML and allows you to create exceptions for returning safe HTML.</p>\n\n\n\n<p>Now, load your template tags module in the post list and detail templates. Add the following line at the top of the&nbsp;<code>blog/post/list.html</code>&nbsp;and&nbsp;<code>blog/post/detail.html</code>&nbsp;templates after the&nbsp;<code>{% extends %}</code>&nbsp;tag:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{% load blog_tags %}\n</code></pre>\n\n\n\n<p>In the&nbsp;<code>post/detail.html</code>&nbsp;template, look for the following line:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{{ post.body|linebreaks }}\n</code></pre>\n\n\n\n<p>Replace it with the following one:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{{ post.body|markdown }}\n</code></pre>\n\n\n\n<p>Then, in the&nbsp;<code>post/list.html</code>&nbsp;template, find the following line:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{{ post.body|truncatewords:30|linebreaks }}\n</code></pre>\n\n\n\n<p>Replace it&nbsp;<a></a>with the following one:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{{ post.body|markdown|truncatewords_html:30 }}\n</code></pre>\n\n\n\n<p>The&nbsp;<code>truncatewords_html</code>&nbsp;filter truncates a string after a certain number of words, avoiding unclosed HTML tags.</p>\n\n\n\n<p>Now open&nbsp;<code>http://127.0.0.1:8000/admin/blog/post/add/</code>&nbsp;in your browser and add a post with the following body:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>This is a post formatted with markdown\n--------------------------------------\n<em>*This is emphasized*</em> and <strong>**this is more emphasized**</strong>.\nHere is a list:\n* One\n* Two\n* Three\nAnd a &#91;link to the Django website](https://www.djangoproject.com/)\n</code></pre>\n\n\n\n<p>Open your browser and take a look at how the post is rendered. You should see the following output:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/B14981_03_04.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 3.4: The post with markdown content rendered as HTML</p>\n\n\n\n<p>As you can see in the preceding screenshot, custom template filters are very useful for customizing formatting. You can find more information about custom filters at https://docs.djangoproject.com/en/3.0/howto/custom-template-tags/#writing-custom-template-filters.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Django has a variety of built-in template filters that allow you to alter variables in templates. These are&nbsp;Python functions that take one or two parameters, the value of the variable that the filter is applied to, and an optional argument. They return a value that can be displayed or treated by another filter. A filter&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/custom-template-filters/\">Continue reading <span class=\"screen-reader-text\">Custom template filters</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [127],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3669" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3669"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3669/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3670,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3669/revisions/3670"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3669"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3669"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3669"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3671,
+    "date": "2022-06-28T09:39:03",
+    "date_gmt": "2022-06-28T09:39:03",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3671" },
+    "modified": "2022-06-28T09:39:03",
+    "modified_gmt": "2022-06-28T09:39:03",
+    "slug": "adding-a-sitemap-to-your-site",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/adding-a-sitemap-to-your-site/",
+    "title": { "rendered": "Adding a sitemap to your site" },
+    "content": {
+      "rendered": "\n<p>Django comes with a sitemap framework, which allows you to generate sitemaps for your site dynamically. A sitemap is an XML file that tells search engines the pages of your website, their relevance, and how frequently they are updated. Using a sitemap will make&nbsp;<a></a>your site more visible in search engine rankings: sitemaps help crawlers to index your website&#8217;s content.</p>\n\n\n\n<p>The Django sitemap framework depends on&nbsp;<code>django.contrib.sites</code>, which allows you to associate objects to particular websites that are running with your project. This comes in handy when you want to run multiple sites using a single Django project. To install the sitemap framework, you will need to activate both the&nbsp;<code>sites</code>&nbsp;and the&nbsp;<code>sitemap</code>&nbsp;applications in your project.</p>\n\n\n\n<p>Edit the&nbsp;<code>settings.py</code>&nbsp;file of your project and add&nbsp;<code>django.contrib.sites</code>&nbsp;and&nbsp;<code>django.contrib.sitemaps</code>&nbsp;to the&nbsp;<code>INSTALLED_APPS</code>&nbsp;setting. Also, define a new setting for the site ID, as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code><strong>SITE_ID = 1</strong>\n<em># Application definition</em>\nINSTALLED_APPS = &#91;\n    <em># ...</em>\n    <strong>'django.contrib.sites',</strong>\n    <strong>'django.contrib.sitemaps',</strong>\n]\n</code></pre>\n\n\n\n<p>Now run the following command to create the tables of the Django site application in the database:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>python manage.py migrate\n</code></pre>\n\n\n\n<p>You should&nbsp;<a></a>see an output that contains the following lines:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Applying sites.0001_initial... OK\nApplying sites.0002_alter_domain_unique... OK\n</code></pre>\n\n\n\n<p>The&nbsp;<code>sites</code>&nbsp;application is now synced with the database.</p>\n\n\n\n<p>Next, create a new file inside your&nbsp;<code>blog</code>&nbsp;application directory and name it&nbsp;<code>sitemaps.py</code>. Open the file and add the following code to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>from django.contrib.sitemaps import Sitemap\nfrom .models import Post\nclass PostSitemap(Sitemap):\n    changefreq = 'weekly'\n    priority = 0.9\n    def items(self):\n        return Post.published.all()\n    def lastmod(self, obj):\n        return obj.updated\n</code></pre>\n\n\n\n<p>You create a custom sitemap by inheriting the&nbsp;<code>Sitemap</code>&nbsp;class of the&nbsp;<code>sitemaps</code>&nbsp;module. The&nbsp;<code>changefreq</code>&nbsp;and&nbsp;<code>priority</code>&nbsp;attributes indicate the change frequency of&nbsp;your post pages and their relevance in your website (the maximum value is&nbsp;<code>1</code>).</p>\n\n\n\n<p>The <code>items()</code> method returns the QuerySet of objects to include in this sitemap. By default, Django calls the <code>get_absolute_url()</code> method on each object to retrieve its URL. Remember that you created this method <em>Building a Blog Application</em>, to retrieve the canonical URL for posts. If you want to specify the URL for each object, you can add a <code>location</code> method to your sitemap class.</p>\n\n\n\n<p>The&nbsp;<code>lastmod</code>&nbsp;method receives each object returned by&nbsp;<code>items()</code>&nbsp;and returns the last time the object was modified.</p>\n\n\n\n<p>Both the <code>changefreq</code> and <code>priority</code> attributes can be either methods or attributes. You can take a look at the complete sitemap reference in the official Django documentation located at https://docs.djangoproject.com/en/3.0/ref/contrib/sitemaps/.</p>\n\n\n\n<p>Finally, you just&nbsp;<a></a>need to add your sitemap URL. Edit the main&nbsp;<code>urls.py</code>&nbsp;file of your project and add the sitemap, as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>from django.urls import path, include\nfrom django.contrib import admin\n<strong>from django.contrib.sitemaps.views import sitemap</strong>\n<strong>from blog.sitemaps import PostSitemap</strong>\n<strong>sitemaps = {</strong>\n    <strong>'posts': PostSitemap,</strong>\n}\nurlpatterns = &#91;\n    path('admin/', admin.site.urls),\n    path('blog/', include('blog.urls', namespace='blog')),\n    <strong>path('sitemap.xml', sitemap, {'sitemaps': sitemaps},</strong>\n         <strong>name='django.contrib.sitemaps.views.sitemap')</strong>\n]\n</code></pre>\n\n\n\n<p>In the preceding code, you include the required imports and define a dictionary of sitemaps. You define a URL pattern that matches&nbsp;<code>sitemap.xml</code>&nbsp;and uses the&nbsp;<code>sitemap</code>&nbsp;view. The&nbsp;<code>sitemaps</code>&nbsp;dictionary is passed to the&nbsp;<code>sitemap</code>&nbsp;view.</p>\n\n\n\n<p>Now run the development server and open&nbsp;<code>http://127.0.0.1:8000/sitemap.xml</code>&nbsp;in your browser. You will see the following XML output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;?xml version=\"1.0\" encoding=\"utf-8\"?&gt;\n&lt;urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\"&gt;\n  &lt;url&gt;\n    &lt;loc&gt;http://example.com/blog/2020/1/2/markdown-post/&lt;/loc&gt;\n    &lt;lastmod&gt;2020-01-02&lt;/lastmod&gt;\n    &lt;changefreq&gt;weekly&lt;/changefreq&gt;\n    &lt;priority&gt;0.9&lt;/priority&gt;\n  &lt;/url&gt;\n  &lt;url&gt;\n    &lt;loc&gt;\nhttp:&#47;&#47;example.com/blog/2020/1/1/who-was-django-reinhardt/\n&lt;/loc&gt;\n    &lt;lastmod&gt;2020-01-02&lt;/lastmod&gt;\n    &lt;changefreq&gt;weekly&lt;/changefreq&gt;\n    &lt;priority&gt;0.9&lt;/priority&gt;\n  &lt;/url&gt;\n&lt;/urlset&gt;\n</code></pre>\n\n\n\n<p>The URL for each post has been built calling its&nbsp;<code>get_absolute_url()</code>&nbsp;method.</p>\n\n\n\n<p>The&nbsp;<code>lastmod</code>&nbsp;attribute corresponds to the post&nbsp;<code>updated</code>&nbsp;date field, as you specified in your sitemap, and the&nbsp;<code>changefreq</code>&nbsp;and&nbsp;<code>priority</code>&nbsp;attributes are also taken from the&nbsp;<code>PostSitemap</code>&nbsp;class.</p>\n\n\n\n<p>You can see&nbsp;<a></a>that the domain used to build the URLs is&nbsp;<code>example.com</code>. This domain comes from a&nbsp;<code>Site</code>&nbsp;object stored in the database. This default object was created when you synced the site&#8217;s framework with your database.</p>\n\n\n\n<p>Open&nbsp;<code>http://127.0.0.1:8000/admin/sites/site/</code>&nbsp;in your browser. You should see something like this:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/B14981_03_05.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 3.5: The Django administration list view for the Site model of the site&#8217;s framework</p>\n\n\n\n<p>The preceding screenshot contains the list display administration view for the site&#8217;s framework. Here, you can set the domain or host to be used by the site&#8217;s framework and the applications that depend on it. In order to generate URLs that exist in your local environment, change the domain name to&nbsp;<code>localhost:8000</code>, as shown in the following screenshot, and save it:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/B14981_03_06.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 3.6: The Django administration edit view for the Site model of the site&#8217;s framework</p>\n\n\n\n<p>The URLs displayed&nbsp;<a></a>in your feed will now be built using this hostname. In a production environment, you will have to use your own domain name for the site&#8217;s&nbsp;framework.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Django comes with a sitemap framework, which allows you to generate sitemaps for your site dynamically. A sitemap is an XML file that tells search engines the pages of your website, their relevance, and how frequently they are updated. Using a sitemap will make&nbsp;your site more visible in search engine rankings: sitemaps help crawlers to&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/adding-a-sitemap-to-your-site/\">Continue reading <span class=\"screen-reader-text\">Adding a sitemap to your site</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [127],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3671" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3671"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3671/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3672,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3671/revisions/3672"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3671"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3671"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3671"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3673,
+    "date": "2022-06-28T09:39:58",
+    "date_gmt": "2022-06-28T09:39:58",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3673" },
+    "modified": "2022-06-28T09:39:58",
+    "modified_gmt": "2022-06-28T09:39:58",
+    "slug": "creating-feeds-for-your-blog-posts",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/creating-feeds-for-your-blog-posts/",
+    "title": { "rendered": "Creating feeds for your blog posts" },
+    "content": {
+      "rendered": "\n<p>Django has a built-in syndication feed framework that you can use to dynamically generate RSS or&nbsp;<a></a>Atom feeds in a similar manner to creating sitemaps using the site&#8217;s framework. A web feed is a data format (usually XML) that provides&nbsp;<a></a>users with the most recently updated content. Users will be able to subscribe to your feed&nbsp;using a feed aggregator (software that is used to read feeds and get new content notifications).</p>\n\n\n\n<p>Create a new file in your&nbsp;<code>blog</code>&nbsp;application directory and name it&nbsp;<code>feeds.py</code>. Add the&nbsp;following lines to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>from django.contrib.syndication.views import Feed\nfrom django.template.defaultfilters import truncatewords\nfrom django.urls import reverse_lazy\nfrom .models import Post\nclass LatestPostsFeed(Feed):\n    title = 'My blog'\n    link = reverse_lazy('blog:post_list')\n    description = 'New posts of my blog.'\n    def items(self):\n        return Post.published.all()&#91;:5]\n    def item_title(self, item):\n        return item.title\n    def item_description(self, item):\n        return truncatewords(item.body, 30)\n</code></pre>\n\n\n\n<p>First, you subclass the&nbsp;<code>Feed</code>&nbsp;class of the syndication framework. The&nbsp;<code>title</code>,&nbsp;<code>link</code>, and&nbsp;<code>description</code>&nbsp;attributes correspond to the&nbsp;<code>&lt;title&gt;</code>,&nbsp;<code>&lt;link&gt;</code>, and&nbsp;<code>&lt;description&gt;</code>&nbsp;RSS elements, respectively.</p>\n\n\n\n<p>You use <code>reverse_lazy()</code> to generate the URL for the <code>link</code> attribute. The <code>reverse()</code> method allows you to build URLs by their name and pass optional parameters. You used <code>reverse()</code> <em>Building a Blog Application</em>. The <code>reverse_lazy()</code> utility function is a lazily evaluated version of <code>reverse()</code>. It allows you to use a URL reversal before the project&#8217;s URL configuration is loaded.</p>\n\n\n\n<p>The&nbsp;<code>items()</code>&nbsp;method&nbsp;<a></a>retrieves the objects to be included in the feed. You are retrieving only the last five published posts for this feed. The&nbsp;<code>item_title()</code>&nbsp;and&nbsp;<code>item_description()</code>&nbsp;methods will receive each object returned by&nbsp;<code>items()</code>&nbsp;and return the title and description for each item. You use the&nbsp;<code>truncatewords</code>&nbsp;built-in template&nbsp;<a></a>filter to build the description of the blog post with the first 30 words.</p>\n\n\n\n<p>Now edit the&nbsp;<code>blog/urls.py</code>&nbsp;file, import the&nbsp;<code>LatestPostsFeed</code>&nbsp;you just created, and&nbsp;instantiate the feed in a new URL pattern:</p>\n\n\n\n<pre class=\"wp-block-code\"><code><strong>from .feeds import LatestPostsFeed</strong>\nurlpatterns = &#91;\n    # ...\n    <strong>path('feed/', LatestPostsFeed(), name='post_feed'),</strong>\n]\n</code></pre>\n\n\n\n<p>Navigate to&nbsp;<code>http://127.0.0.1:8000/blog/feed/</code>&nbsp;in your browser. You should now see the RSS feed, including the last five blog posts:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;?xml version=\"1.0\" encoding=\"utf-8\"?&gt;\n&lt;rss xmlns:atom=\"http://www.w3.org/2005/Atom\" version=\"2.0\"&gt;\n  &lt;channel&gt;\n    &lt;title&gt;My blog&lt;/title&gt;\n    &lt;link&gt;http://localhost:8000/blog/&lt;/link&gt;\n    &lt;description&gt;New posts of my blog.&lt;/description&gt;\n    &lt;atom:link href=\"http://localhost:8000/blog/feed/\" rel=\"self\"/&gt;\n    &lt;language&gt;en-us&lt;/language&gt;\n    &lt;lastBuildDate&gt;Fri, 2 Jan 2020 09:56:40 +0000&lt;/lastBuildDate&gt;\n    &lt;item&gt;\n      &lt;title&gt;Who was Django Reinhardt?&lt;/title&gt;\n      &lt;link&gt;http://localhost:8000/blog/2020/1/2/who-was-django-\n      reinhardt/&lt;/link&gt;\n      &lt;description&gt;Who was Django Reinhardt.&lt;/description&gt;\n      &lt;guid&gt;http://localhost:8000/blog/2020/1/2/who-was-django-\n      reinhardt/&lt;/guid&gt;\n    &lt;/item&gt;\n    ...\n  &lt;/channel&gt;\n&lt;/rss&gt;\n</code></pre>\n\n\n\n<p>If you open&nbsp;<a></a>the same URL in an RSS client, you will be able&nbsp;<a></a>to see your feed with a user-friendly interface.</p>\n\n\n\n<p>The final step is to add a feed subscription link to the blog&#8217;s sidebar. Open the&nbsp;<code>blog/base.html</code>&nbsp;template and add the following line under the number of total posts inside the sidebar&nbsp;<code>div</code>:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;p&gt;\n  &lt;a href=\"{% url \"blog:post_feed\" %}\"&gt;Subscribe to my RSS feed&lt;/a&gt;\n&lt;/p&gt;\n</code></pre>\n\n\n\n<p>Now open&nbsp;<code>http://127.0.0.1:8000/blog/</code>&nbsp;in your browser and take a look at the sidebar. The new link should take you to your blog&#8217;s feed:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/B14981_03_07.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 3.7: The RSS feed subscription link added to the sidebar</p>\n\n\n\n<p>You can read more about the Django syndication feed framework at https://docs.djangoproject.com/en/3.0/ref/contrib/syndication/.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Django has a built-in syndication feed framework that you can use to dynamically generate RSS or&nbsp;Atom feeds in a similar manner to creating sitemaps using the site&#8217;s framework. A web feed is a data format (usually XML) that provides&nbsp;users with the most recently updated content. Users will be able to subscribe to your feed&nbsp;using a&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/creating-feeds-for-your-blog-posts/\">Continue reading <span class=\"screen-reader-text\">Creating feeds for your blog posts</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [127],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3673" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3673"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3673/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3674,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3673/revisions/3674"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3673"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3673"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3673"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3676,
+    "date": "2022-06-28T09:40:48",
+    "date_gmt": "2022-06-28T09:40:48",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3676" },
+    "modified": "2022-06-28T09:40:48",
+    "modified_gmt": "2022-06-28T09:40:48",
+    "slug": "adding-full-text-search-to-your-blog",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/adding-full-text-search-to-your-blog/",
+    "title": { "rendered": "Adding full-text search to your blog" },
+    "content": {
+      "rendered": "\n<p>Next, you will add search capabilities to your blog. Searching for data in the database with user&nbsp;<a></a>input is a common task for web applications. The Django ORM allows you to perform simple matching operations using, for example, the&nbsp;<code>contains</code>&nbsp;filter (or its case-insensitive version,&nbsp;<code>icontains</code>). You can use the following query to find posts that contain the word&nbsp;<code>framework</code>&nbsp;in their body:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>from blog.models import Post\nPost.objects.filter(body__contains='framework')\n</code></pre>\n\n\n\n<p>However, if you want to perform complex search lookups, retrieving results by similarity, or by weighting terms based on how frequently they appear in the text or by how important different fields are (for example, relevancy of the term appearing in the title versus in the body), you will need to use a full-text search engine. When you consider large blocks of text, building queries with operations on a string of characters is not enough. Full-text&nbsp;<a></a>search examines the actual words against stored content as it tries to match search criteria.</p>\n\n\n\n<p>Django provides a powerful search functionality built on top of PostgreSQL&#8217;s full-text search features. The <code>django.contrib.postgres</code> module provides functionalities offered by PostgreSQL that are not shared by the other databases that Django supports. You can learn about PostgreSQL full-text search at https://www.postgresql.org/docs/12/static/textsearch.html.</p>\n\n\n\n<p>Although Django is a database-agnostic web framework, it provides a module that supports part of the rich feature set offered by PostgreSQL, which is not offered by other databases that Django supports.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Next, you will add search capabilities to your blog. Searching for data in the database with user&nbsp;input is a common task for web applications. The Django ORM allows you to perform simple matching operations using, for example, the&nbsp;contains&nbsp;filter (or its case-insensitive version,&nbsp;icontains). You can use the following query to find posts that contain the word&nbsp;framework&nbsp;in&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/adding-full-text-search-to-your-blog/\">Continue reading <span class=\"screen-reader-text\">Adding full-text search to your blog</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [127],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3676" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3676"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3676/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3677,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3676/revisions/3677"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3676"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3676"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3676"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3678,
+    "date": "2022-06-28T09:41:20",
+    "date_gmt": "2022-06-28T09:41:20",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3678" },
+    "modified": "2022-06-28T09:41:20",
+    "modified_gmt": "2022-06-28T09:41:20",
+    "slug": "installing-postgresql",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/installing-postgresql/",
+    "title": { "rendered": "Installing PostgreSQL" },
+    "content": {
+      "rendered": "\n<p>You are currently using SQLite for your&nbsp;<code>blog</code>&nbsp;project. This is sufficient for development purposes. However, for a production environment, you will need a&nbsp;more powerful database, such as PostgreSQL, MariaDB, MySQL, or Oracle. You will change your database to&nbsp;<a></a>PostgreSQL to benefit from its full-text search features.</p>\n\n\n\n<p>If you are using Linux, install PostgreSQL with the following command:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>sudo apt-get install postgresql postgresql-contrib\n</code></pre>\n\n\n\n<p>If you are using macOS or Windows, download PostgreSQL from https://www.postgresql.org/download/ and install it.</p>\n\n\n\n<p>You also need to install the&nbsp;<code>psycopg2</code>&nbsp;PostgreSQL adapter for Python. Run the following command in the shell to install it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>pip install psycopg2-binary==2.8.4\n</code></pre>\n\n\n\n<p>Let&#8217;s create a user for your PostgreSQL database. Open the shell and run the following commands:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>su postgres\ncreateuser -dP blog\n</code></pre>\n\n\n\n<p>You will be prompted for a password for the new user. Enter the desired password and then create the&nbsp;<code>blog</code>&nbsp;database and give ownership to the&nbsp;<code>blog</code>&nbsp;user you just created with the following command:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>createdb -E utf8 -U blog blog\n</code></pre>\n\n\n\n<p>Then, edit the&nbsp;<code>settings.py</code>&nbsp;file of your project and modify the&nbsp;<code>DATABASES</code>&nbsp;setting to&nbsp;make it look as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>DATABASES = {\n    'default': {\n        'ENGINE': 'django.db.backends.postgresql',\n        'NAME': 'blog',\n        'USER': 'blog',\n        'PASSWORD': '*****',\n    }\n}\n</code></pre>\n\n\n\n<p>Replace the&nbsp;<a></a>preceding data with the database name and credentials for the user you created. The new database is empty. Run the following command to apply all&nbsp;database migrations:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>python manage.py migrate\n</code></pre>\n\n\n\n<p>Finally, create a superuser with the following command:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>python manage.py createsuperuser\n</code></pre>\n\n\n\n<p>You can now run the development server and access the administration site at&nbsp;<code>http://127.0.0.1:8000/admin/</code>&nbsp;with the new superuser.</p>\n\n\n\n<p>Since you switched the database, there are no posts stored in it. Populate your new database with a couple of sample blog posts so that you can perform searches against the database.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>You are currently using SQLite for your&nbsp;blog&nbsp;project. This is sufficient for development purposes. However, for a production environment, you will need a&nbsp;more powerful database, such as PostgreSQL, MariaDB, MySQL, or Oracle. You will change your database to&nbsp;PostgreSQL to benefit from its full-text search features. If you are using Linux, install PostgreSQL with the following command:&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/installing-postgresql/\">Continue reading <span class=\"screen-reader-text\">Installing PostgreSQL</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [127],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3678" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3678"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3678/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3679,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3678/revisions/3679"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3678"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3678"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3678"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3680,
+    "date": "2022-06-28T09:41:48",
+    "date_gmt": "2022-06-28T09:41:48",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3680" },
+    "modified": "2022-06-28T09:41:48",
+    "modified_gmt": "2022-06-28T09:41:48",
+    "slug": "simple-search-lookups",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/simple-search-lookups/",
+    "title": { "rendered": "Simple search lookups" },
+    "content": {
+      "rendered": "\n<p>Edit the&nbsp;<code>settings.py</code>&nbsp;file of&nbsp;<a></a>your project and add&nbsp;<code>django.contrib.postgres</code>&nbsp;to the&nbsp;<code>INSTALLED_APPS</code>&nbsp;setting, as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>INSTALLED_APPS = &#91;\n    <em># ...</em>\n    <strong>'django.contrib.postgres',</strong>\n]\n</code></pre>\n\n\n\n<p>Now you can search against a single field using the&nbsp;<code>search</code>&nbsp;QuerySet lookup, like&nbsp;this:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>from blog.models import Post\nPost.objects.filter(body__search='django')\n</code></pre>\n\n\n\n<p>This query uses PostgreSQL to create a search vector for the&nbsp;<code>body</code>&nbsp;field and a search query&nbsp;<a></a>from the term&nbsp;<code>django</code>. Results are obtained by matching the query with the vector.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Edit the&nbsp;settings.py&nbsp;file of&nbsp;your project and add&nbsp;django.contrib.postgres&nbsp;to the&nbsp;INSTALLED_APPS&nbsp;setting, as follows: Now you can search against a single field using the&nbsp;search&nbsp;QuerySet lookup, like&nbsp;this: This query uses PostgreSQL to create a search vector for the&nbsp;body&nbsp;field and a search query&nbsp;from the term&nbsp;django. Results are obtained by matching the query with the vector.</p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [127],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3680" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3680"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3680/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3681,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3680/revisions/3681"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3680"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3680"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3680"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3682,
+    "date": "2022-06-28T09:42:18",
+    "date_gmt": "2022-06-28T09:42:18",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3682" },
+    "modified": "2022-06-28T09:42:18",
+    "modified_gmt": "2022-06-28T09:42:18",
+    "slug": "searching-against-multiple-fields",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/searching-against-multiple-fields/",
+    "title": { "rendered": "Searching against multiple fields" },
+    "content": {
+      "rendered": "\n<p>You might&nbsp;<a></a>want to search against multiple fields. In this case, you will need to define a&nbsp;<code>SearchVector</code>&nbsp;object. Let&#8217;s build a vector that allows you to search against the&nbsp;<code>title</code>&nbsp;and&nbsp;<code>body</code>&nbsp;fields of the&nbsp;<code>Post</code>&nbsp;model:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>from django.contrib.postgres.search import SearchVector\nfrom blog.models import Post\nPost.objects.annotate(\n    search=SearchVector('title', 'body'),\n).filter(search='django')\n</code></pre>\n\n\n\n<p>Using&nbsp;<code>annotate</code>&nbsp;and defining&nbsp;<code>SearchVector</code>&nbsp;with both fields, you provide a&nbsp;functionality to match the query against both the title and body of the posts.</p>\n\n\n\n<p>Full-text search is an intensive process. If you are searching for more than a few hundred rows, you should define a functional index that matches the search vector you are using. Django provides a <code>SearchVectorField</code> field for your models. You can read more about this at https://docs.djangoproject.com/en/3.0/ref/contrib/postgres/search/#performance.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>You might&nbsp;want to search against multiple fields. In this case, you will need to define a&nbsp;SearchVector&nbsp;object. Let&#8217;s build a vector that allows you to search against the&nbsp;title&nbsp;and&nbsp;body&nbsp;fields of the&nbsp;Post&nbsp;model: Using&nbsp;annotate&nbsp;and defining&nbsp;SearchVector&nbsp;with both fields, you provide a&nbsp;functionality to match the query against both the title and body of the posts. Full-text search is an intensive process.&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/searching-against-multiple-fields/\">Continue reading <span class=\"screen-reader-text\">Searching against multiple fields</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [127],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3682" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3682"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3682/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3683,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3682/revisions/3683"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3682"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3682"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3682"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3684,
+    "date": "2022-06-28T09:44:26",
+    "date_gmt": "2022-06-28T09:44:26",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3684" },
+    "modified": "2022-06-28T09:44:26",
+    "modified_gmt": "2022-06-28T09:44:26",
+    "slug": "building-a-search-view",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/building-a-search-view/",
+    "title": { "rendered": "Building a search view" },
+    "content": {
+      "rendered": "\n<p>Now, you will create&nbsp;<a></a>a custom view to allow your users to search posts. First, you will need a search form. Edit the&nbsp;<code>forms.py</code>&nbsp;file of the&nbsp;<code>blog</code>&nbsp;application and add the following form:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>class SearchForm(forms.Form):\n    query = forms.CharField()\n</code></pre>\n\n\n\n<p>You will use the&nbsp;<code>query</code>&nbsp;field to let users introduce search terms. Edit the&nbsp;<code>views.py</code>&nbsp;file of the&nbsp;<code>blog</code>&nbsp;application and add the following code to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code><strong>from django.contrib.postgres.search import SearchVector</strong>\nfrom .forms import EmailPostForm, CommentForm, <strong>SearchForm</strong>\n<strong>def post_search(request):</strong>\n    <strong>form = SearchForm()</strong>\n    <strong>query = None</strong>\n    <strong>results = &#91;]</strong>\n    <strong>if 'query' in request.GET:</strong>\n        <strong>form = SearchForm(request.GET)</strong>\n        <strong>if form.is_valid():</strong>\n            <strong>query = form.cleaned_data&#91;'query']</strong>\n            <strong>results = Post.published.annotate(</strong>\n                <strong>search=SearchVector('title', 'body'),</strong>\n            <strong>).filter(search=query)</strong>\n    <strong>return render(request,</strong>\n                  <strong>'blog/post/search.html',</strong>\n                  <strong>{'form': form,</strong>\n                   <strong>'query': query,</strong>\n                   <strong>'results': results})</strong>\n</code></pre>\n\n\n\n<p>In the preceding view, first, you instantiate the&nbsp;<code>SearchForm</code>&nbsp;form. To check whether the form is submitted, you look for the&nbsp;<code>query</code>&nbsp;parameter in the&nbsp;<code>request.GET</code>&nbsp;dictionary. You send the form using the&nbsp;<code>GET</code>&nbsp;method instead of&nbsp;<code>POST</code>, so that the resulting URL&nbsp;<a></a>includes the&nbsp;<code>query</code>&nbsp;parameter and is easy to share. When the form is submitted, you instantiate it with the submitted&nbsp;<code>GET</code>&nbsp;data, and verify that the form data is valid. If the form is valid, you search for published posts with a&nbsp;custom&nbsp;<code>SearchVector</code>&nbsp;instance built with the&nbsp;<code>title</code>&nbsp;and&nbsp;<code>body</code>&nbsp;fields.</p>\n\n\n\n<p>The search view is ready now. You need to create a template to display the form and the results when the user performs a search. Create a new file inside the&nbsp;<code>blog/post/</code>&nbsp;template directory, name it&nbsp;<code>search.html</code>, and add the following code to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{% extends \"blog/base.html\" %}\n{% load blog_tags %}\n{% block title %}Search{% endblock %}\n{% block content %}\n  {% if query %}\n    &lt;h1&gt;Posts containing \"{{ query }}\"&lt;/h1&gt;\n    &lt;h3&gt;\n      {% with results.count as total_results %}\n        Found {{ total_results }} result{{ total_results|pluralize }}\n      {% endwith %}\n    &lt;/h3&gt;\n    {% for post in results %}\n      &lt;h4&gt;&lt;a href=\"{{ post.get_absolute_url }}\"&gt;{{ post.title }}&lt;/a&gt;&lt;/h4&gt;\n      {{ post.body|markdown|truncatewords_html:5 }}\n    {% empty %}\n      &lt;p&gt;There are no results for your query.&lt;/p&gt;\n    {% endfor %}\n    &lt;p&gt;&lt;a href=\"{% url \"blog:post_search\" %}\"&gt;Search again&lt;/a&gt;&lt;/p&gt;\n  {% else %}\n    &lt;h1&gt;Search for posts&lt;/h1&gt;\n    &lt;form method=\"get\"&gt;\n      {{ form.as_p }}\n      &lt;input type=\"submit\" value=\"Search\"&gt;\n    &lt;/form&gt;\n  {% endif %}\n{% endblock %}\n</code></pre>\n\n\n\n<p>As in the search view, you can distinguish whether the form has been submitted by the presence of the&nbsp;<code>query</code>&nbsp;parameter. Before the query is submitted, you display the form&nbsp;<a></a>and a submit button. After the post is submitted, you display the query performed, the total number of results, and the list of posts returned.</p>\n\n\n\n<p>Finally, edit the&nbsp;<code>urls.py</code>&nbsp;file of your&nbsp;<code>blog</code>&nbsp;application and add the following URL pattern:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>path('search/', views.post_search, name='post_search'),\n</code></pre>\n\n\n\n<p>Next, open&nbsp;<code>http://127.0.0.1:8000/blog/search/</code>&nbsp;in your browser. You should see the following search form:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/B14981_03_08.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 3.8: The form with the query field to search for posts</p>\n\n\n\n<p>Enter a query and click on the&nbsp;<strong>SEARCH</strong>&nbsp;button. You will see the results of the search query, as follows:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/B14981_03_09.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 3.9: Search results for the term &#8220;music&#8221;</p>\n\n\n\n<p>Congratulations! You have&nbsp;<a></a>created a basic search engine for your blog.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Now, you will create&nbsp;a custom view to allow your users to search posts. First, you will need a search form. Edit the&nbsp;forms.py&nbsp;file of the&nbsp;blog&nbsp;application and add the following form: You will use the&nbsp;query&nbsp;field to let users introduce search terms. Edit the&nbsp;views.py&nbsp;file of the&nbsp;blog&nbsp;application and add the following code to it: In the preceding view, first,&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/building-a-search-view/\">Continue reading <span class=\"screen-reader-text\">Building a search view</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [127],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3684" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3684"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3684/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3685,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3684/revisions/3685"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3684"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3684"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3684"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3686,
+    "date": "2022-06-28T09:44:55",
+    "date_gmt": "2022-06-28T09:44:55",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3686" },
+    "modified": "2022-06-28T09:44:55",
+    "modified_gmt": "2022-06-28T09:44:55",
+    "slug": "stemming-and-ranking-results",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/stemming-and-ranking-results/",
+    "title": { "rendered": "Stemming and ranking results" },
+    "content": {
+      "rendered": "\n<p>Stemming is the process of reducing words to their word stem, base, or root form. Stemming is used&nbsp;<a></a>by search engines to reduce indexed words to their stem, and to be&nbsp;able to match inflected or derived words. For example, &#8220;music&#8221; and &#8220;musician&#8221; can be&nbsp;<a></a>considered similar words by a search engine.</p>\n\n\n\n<p>Django provides a&nbsp;<code>SearchQuery</code>&nbsp;class to translate terms into a search query object. By default, the terms are passed through stemming algorithms, which helps you to obtain better matches. You also want to order results by relevancy. PostgreSQL provides a ranking function that orders results based on how often the query terms appear and how close together they are.</p>\n\n\n\n<p>Edit the&nbsp;<code>views.py</code>&nbsp;file of your&nbsp;<code>blog</code>&nbsp;application and add the following imports:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>from django.contrib.postgres.search import SearchVector, <strong>SearchQuery, SearchRank</strong>\n</code></pre>\n\n\n\n<p>Then, take a look at the following lines:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>results = Post.published.annotate(\n                search=SearchVector('title', 'body'),\n          ).filter(search=query)\n</code></pre>\n\n\n\n<p>Replace them with the following ones:</p>\n\n\n\n<pre class=\"wp-block-code\"><code><strong>search_vector = SearchVector('title', 'body')</strong>\n<strong>search_query = SearchQuery(query)</strong>\nresults = Post.published.annotate(\n              search=<strong>search_vector,</strong>\n              <strong>rank=SearchRank(search_vector, search_query)</strong>\n          ).filter(search=<strong>search_query</strong>)<strong>.order_by('-rank')</strong>\n</code></pre>\n\n\n\n<p>In the&nbsp;<a></a>preceding code, you create a&nbsp;<code>SearchQuery</code>&nbsp;object, filter results by it, and use&nbsp;<code>SearchRank</code>&nbsp;to order the results by relevancy.</p>\n\n\n\n<p>You can open&nbsp;<code>http://127.0.0.1:8000/blog/search/</code>&nbsp;in your browser and test different searches to test&nbsp;<a></a>stemming and ranking. The following is an example of ranking by the number of occurrences for the word&nbsp;<code>django</code>&nbsp;in the title and body of&nbsp;the posts:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/B14981_03_10.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 3.10: Search results for the term &#8220;django&#8221;</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Stemming is the process of reducing words to their word stem, base, or root form. Stemming is used&nbsp;by search engines to reduce indexed words to their stem, and to be&nbsp;able to match inflected or derived words. For example, &#8220;music&#8221; and &#8220;musician&#8221; can be&nbsp;considered similar words by a search engine. Django provides a&nbsp;SearchQuery&nbsp;class to translate terms&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/stemming-and-ranking-results/\">Continue reading <span class=\"screen-reader-text\">Stemming and ranking results</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [127],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3686" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3686"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3686/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3687,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3686/revisions/3687"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3686"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3686"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3686"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3688,
+    "date": "2022-06-28T09:45:20",
+    "date_gmt": "2022-06-28T09:45:20",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3688" },
+    "modified": "2022-06-28T09:45:20",
+    "modified_gmt": "2022-06-28T09:45:20",
+    "slug": "weighting-queries",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/weighting-queries/",
+    "title": { "rendered": "Weighting queries" },
+    "content": {
+      "rendered": "\n<p>You can boost specific vectors so that more weight is attributed to them when ordering results by&nbsp;<a></a>relevancy. For example, you can use this to give more relevance to posts that are matched by title rather than by content.</p>\n\n\n\n<p>Edit the previous lines of the&nbsp;<code>views.py</code>&nbsp;file of your&nbsp;<code>blog</code>&nbsp;application and make them look like this:</p>\n\n\n\n<pre class=\"wp-block-code\"><code><strong>search_vector = SearchVector('title', weight='A') + \\</strong>\n                <strong>SearchVector('body', weight='B')</strong>\nsearch_query = SearchQuery(query)\nresults = Post.published.annotate(\n rank=SearchRank(search_vector, search_query)\n ).filter(<strong>rank__gte=0.3</strong>).order_by('-rank')\n</code></pre>\n\n\n\n<p>In the preceding code, you apply different weights to the search vectors built using the&nbsp;<code>title</code>&nbsp;and&nbsp;<code>body</code>&nbsp;fields. The default weights are&nbsp;<code>D</code>,&nbsp;<code>C</code>,&nbsp;<code>B</code>, and&nbsp;<code>A</code>, and they refer to the numbers&nbsp;<code>0.1</code>,&nbsp;<code>0.2</code>,&nbsp;<code>0.4</code>, and&nbsp;<code>1.0</code>, respectively. You apply a weight of&nbsp;<code>1.0</code>&nbsp;to the&nbsp;<code>title</code>&nbsp;search vector and a weight of&nbsp;<code>0.4</code>&nbsp;to the&nbsp;<code>body</code>&nbsp;vector. Title matches will prevail over body content matches. You filter the results to display only the ones with a rank higher than&nbsp;<code>0.3</code>.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>You can boost specific vectors so that more weight is attributed to them when ordering results by&nbsp;relevancy. For example, you can use this to give more relevance to posts that are matched by title rather than by content. Edit the previous lines of the&nbsp;views.py&nbsp;file of your&nbsp;blog&nbsp;application and make them look like this: In the preceding&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/weighting-queries/\">Continue reading <span class=\"screen-reader-text\">Weighting queries</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [127],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3688" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3688"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3688/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3689,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3688/revisions/3689"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3688"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3688"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3688"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3690,
+    "date": "2022-06-28T09:45:52",
+    "date_gmt": "2022-06-28T09:45:52",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3690" },
+    "modified": "2022-06-28T09:45:52",
+    "modified_gmt": "2022-06-28T09:45:52",
+    "slug": "searching-with-trigram-similarity",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/searching-with-trigram-similarity/",
+    "title": { "rendered": "Searching with trigram similarity" },
+    "content": {
+      "rendered": "\n<p>Another search approach is trigram similarity. A trigram is a group of three consecutive characters. You can measure the similarity of two strings by counting the&nbsp;number of trigrams&nbsp;<a></a>that they share. This approach turns out to be very effective for measuring the similarity of words in many languages.</p>\n\n\n\n<p>In order to use trigrams in PostgreSQL, you will need to install the&nbsp;<code>pg_trgm</code>&nbsp;extension first. Execute the following command from the shell to connect to your database:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>psql blog\n</code></pre>\n\n\n\n<p>Then, execute the following command to install the&nbsp;<code>pg_trgm</code>&nbsp;extension:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>CREATE EXTENSION pg_trgm;\n</code></pre>\n\n\n\n<p>Let&#8217;s edit your view and modify it to search for trigrams. Edit the&nbsp;<code>views.py</code>&nbsp;file of&nbsp;your&nbsp;<code>blog</code>&nbsp;application and add the following import:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>from django.contrib.postgres.search import TrigramSimilarity\n</code></pre>\n\n\n\n<p>Then, replace the&nbsp;<code>Post</code>&nbsp;search query with the following lines:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>results = Post.published.annotate(\n    <strong>similarity=TrigramSimilarity('title', query),</strong>\n).filter(<strong>similarity__gt=0.1</strong>).order_by(<strong>'-similarity'</strong>)\n</code></pre>\n\n\n\n<p>Open&nbsp;<code>http://127.0.0.1:8000/blog/search/</code>&nbsp;in your browser and test different searches for trigrams. The following example displays a hypothetical typo in the&nbsp;<code>django</code>&nbsp;term, showing&nbsp;<a></a>search results for&nbsp;<code>yango</code>:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/B14981_03_11.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 3.11: Search results for the term &#8220;yango&#8221;</p>\n\n\n\n<p>Now you have a powerful search engine built into your project. You can find more information about full-text search at https://docs.djangoproject.com/en/3.0/ref/contrib/postgres/search/.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Another search approach is trigram similarity. A trigram is a group of three consecutive characters. You can measure the similarity of two strings by counting the&nbsp;number of trigrams&nbsp;that they share. This approach turns out to be very effective for measuring the similarity of words in many languages. In order to use trigrams in PostgreSQL, you&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/searching-with-trigram-similarity/\">Continue reading <span class=\"screen-reader-text\">Searching with trigram similarity</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [127],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3690" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3690"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3690/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3691,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3690/revisions/3691"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3690"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3690"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3690"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3693,
+    "date": "2022-06-28T09:46:14",
+    "date_gmt": "2022-06-28T09:46:14",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3693" },
+    "modified": "2022-06-28T09:46:14",
+    "modified_gmt": "2022-06-28T09:46:14",
+    "slug": "other-full-text-search-engines",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/other-full-text-search-engines/",
+    "title": { "rendered": "Other full-text search engines" },
+    "content": {
+      "rendered": "\n<p>You may want to use a full-text search engine other than from PostgreSQL. If you want to use Solr or Elasticsearch, you can integrate them into your Django project using Haystack. Haystack is a Django application that works as an abstraction layer for multiple search engines. It offers a simple search API that is very similar to Django QuerySets. You can find more information about Haystack at https://django-haystack.readthedocs.io/en/master/.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>You may want to use a full-text search engine other than from PostgreSQL. If you want to use Solr or Elasticsearch, you can integrate them into your Django project using Haystack. Haystack is a Django application that works as an abstraction layer for multiple search engines. It offers a simple search API that is very similar&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/other-full-text-search-engines/\">Continue reading <span class=\"screen-reader-text\">Other full-text search engines</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [127],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3693" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3693"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3693/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3694,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3693/revisions/3694"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3693"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3693"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3693"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  }
+]

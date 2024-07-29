@@ -1,0 +1,1728 @@
+[
+  {
+    "id": 3768,
+    "date": "2022-06-28T11:13:33",
+    "date_gmt": "2022-06-28T11:13:33",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3768" },
+    "modified": "2022-06-28T11:13:33",
+    "modified_gmt": "2022-06-28T11:13:33",
+    "slug": "building-a-follow-system",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/building-a-follow-system/",
+    "title": { "rendered": "Building a follow system" },
+    "content": {
+      "rendered": "\n<p>Let&#8217;s build a follow system in your project. This means that your users will be able to follow each other and track what other users share on the platform. The relationship between users is a many-to-many relationship: a user can follow multiple users and they, in turn, can be followed by multiple users.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Let&#8217;s build a follow system in your project. This means that your users will be able to follow each other and track what other users share on the platform. The relationship between users is a many-to-many relationship: a user can follow multiple users and they, in turn, can be followed by multiple users.</p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [130],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3768" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3768"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3768/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3769,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3768/revisions/3769"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3768"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3768"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3768"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3770,
+    "date": "2022-06-28T11:14:38",
+    "date_gmt": "2022-06-28T11:14:38",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3770" },
+    "modified": "2022-06-28T11:14:38",
+    "modified_gmt": "2022-06-28T11:14:38",
+    "slug": "creating-many-to-many-relationships-with-an-intermediary-model",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/creating-many-to-many-relationships-with-an-intermediary-model/",
+    "title": {
+      "rendered": "Creating many-to-many relationships with an intermediary model"
+    },
+    "content": {
+      "rendered": "\n<p>The created many-to-many relationships by adding the <code>ManyToManyField</code> to one of the related models and letting Django create the database table for the relationship. This is suitable for most cases, but sometimes you may need to create an intermediary model for the relationship. Creating an intermediary model is necessary when you want to store additional information for the relationship, for example, the date when the relationship was created, or a field that describes the nature of the relationship.</p>\n\n\n\n<p>Let&#8217;s create&nbsp;<a></a>an intermediary model to build relationships between users. There are two reasons for using&nbsp;<a></a>an intermediary model:</p>\n\n\n\n<ul><li>You are using the&nbsp;<code>User</code>&nbsp;model provided by Django and you want to avoid altering it</li><li>You want to store the time when the relationship was created</li></ul>\n\n\n\n<p>Edit the&nbsp;<code>models.py</code>&nbsp;file of your&nbsp;<code>account</code>&nbsp;application and add the following code to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>class Contact(models.Model):\n    user_from = models.ForeignKey('auth.User',\n                                  related_name='rel_from_set',\n                                  on_delete=models.CASCADE)\n    user_to = models.ForeignKey('auth.User',\n                                related_name='rel_to_set',\n                                on_delete=models.CASCADE)\n    created = models.DateTimeField(auto_now_add=True,\n                                   db_index=True)\n    class Meta:\n        ordering = ('-created',)\n    def __str__(self):\n        return f'{self.user_from} follows {self.user_to}'\n</code></pre>\n\n\n\n<p>The preceding code shows the&nbsp;<code>Contact</code>&nbsp;model that you will use for user relationships. It contains the following fields:</p>\n\n\n\n<ul><li><code>user_from</code>: A&nbsp;<code>ForeignKey</code>&nbsp;for the user who creates the relationship</li><li><code>user_to</code>: A&nbsp;<code>ForeignKey</code>&nbsp;for the user being followed</li><li><code>created</code>: A&nbsp;<code>DateTimeField</code>&nbsp;field with&nbsp;<code>auto_now_add=True</code>&nbsp;to store the time when the relationship was created</li></ul>\n\n\n\n<p>A database index is automatically created on the&nbsp;<code>ForeignKey</code>&nbsp;fields. You use&nbsp;<code>db_index=True</code>&nbsp;to create a database index for the&nbsp;<code>created</code>&nbsp;field. This will&nbsp;improve query performance when ordering QuerySets by this field.</p>\n\n\n\n<p>Using the ORM, you could create a relationship for a user,&nbsp;<code>user1</code>, following another user,&nbsp;<code>user2</code>, like this:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>user1 = User.objects.get(id=1)\nuser2 = User.objects.get(id=2)\nContact.objects.create(user_from=user1, user_to=user2)\n</code></pre>\n\n\n\n<p>The related&nbsp;<a></a>managers,&nbsp;<code>rel_from_set</code>&nbsp;and&nbsp;<code>rel_to_set</code>, will return a QuerySet for the&nbsp;<code>Contact</code>&nbsp;model. In order to access the end side of the relationship from the&nbsp;<code>User</code>&nbsp;model, it would be desirable for&nbsp;<code>User</code>&nbsp;to contain a&nbsp;<code>ManyToManyField</code>, as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>following = models.ManyToManyField('self',\n                                   through=Contact,\n                                   related_name='followers',\n                                   symmetrical=False)\n</code></pre>\n\n\n\n<p>In the preceding example, you tell Django to use your custom intermediary model for the&nbsp;<a></a>relationship by adding&nbsp;<code>through=Contact</code>&nbsp;to the&nbsp;<code>ManyToManyField</code>. This is a&nbsp;many-to-many relationship from the&nbsp;<code>User</code>&nbsp;model to itself; you refer to&nbsp;<code>'self'</code>&nbsp;in&nbsp;the&nbsp;<code>ManyToManyField</code>&nbsp;field to create a relationship to the same model.</p>\n\n\n\n<p>When you need additional fields in a many-to-many relationship, create a custom model with a&nbsp;<code>ForeignKey</code>&nbsp;for each side of the relationship. Add a&nbsp;<code>ManyToManyField</code>&nbsp;in one of the related models and indicate to Django that your intermediary model should be used by including it in the&nbsp;<code>through</code>&nbsp;parameter.</p>\n\n\n\n<p>If the&nbsp;<code>User</code>&nbsp;model was part of your application, you could add the previous field to the model. However, you can&#8217;t alter the&nbsp;<code>User</code>&nbsp;class directly because it belongs to the&nbsp;<code>django.contrib.auth</code>&nbsp;application. Let&#8217;s take a slightly different approach by adding this field dynamically to the&nbsp;<code>User</code>&nbsp;model.</p>\n\n\n\n<p>Edit the&nbsp;<code>models.py</code>&nbsp;file of the&nbsp;<code>account</code>&nbsp;application and add the following lines:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>from django.contrib.auth import get_user_model\n<em># Add following field to User dynamically</em>\nuser_model = get_user_model()\nuser_model.add_to_class('following',\n                        models.ManyToManyField('self',\n                            through=Contact,\n                            related_name='followers',\n                            symmetrical=False))\n</code></pre>\n\n\n\n<p>In the preceding code, you retrieve the user model by using the generic function&nbsp;<code>get_user_model()</code>, which is provided by Django. You use the&nbsp;<code>add_to_class()</code>&nbsp;method of Django models to monkey patch the&nbsp;<code>User</code>&nbsp;model. Be aware that using&nbsp;<code>add_to_class()</code>&nbsp;is not the recommended way of adding fields to models. However, you take advantage of using it in this case to avoid creating a custom user model, keeping&nbsp;<a></a>all the advantages of Django&#8217;s built-in&nbsp;<code>User</code>&nbsp;model.</p>\n\n\n\n<p>You also simplify the way that you retrieve related objects using the Django ORM with&nbsp;<code>user.followers.all()</code>&nbsp;and&nbsp;<code>user.following.all()</code>. You use the intermediary&nbsp;<code>Contact</code>&nbsp;model and avoid complex queries that would involve additional database joins, as would have been the case had you defined the relationship in your custom&nbsp;<code>Profile</code>&nbsp;model. The table for this many-to-many relationship will be created using&nbsp;<a></a>the&nbsp;<code>Contact</code>&nbsp;model. Thus, the&nbsp;<code>ManyToManyField</code>, added dynamically, will not imply any database changes for the Django&nbsp;<code>User</code>&nbsp;model.</p>\n\n\n\n<p>Keep in mind that, in most cases, it is preferable to add fields to the <code>Profile</code> model you created before, instead of monkey patching the <code>User</code> model. Ideally, you shouldn&#8217;t alter the existing Django <code>User</code> model. Django allows you to use custom user models. If you want to use your custom user model, take a look at the documentation at https://docs.djangoproject.com/en/3.0/topics/auth/customizing/#specifying-a-custom-user-model.</p>\n\n\n\n<p>Note that the relationship includes&nbsp;<code>symmetrical=False</code>. When you define a&nbsp;<code>ManyToManyField</code>&nbsp;in the model creating a relationship with itself, Django forces the&nbsp;relationship to be symmetrical. In this case, you are setting&nbsp;<code>symmetrical=False</code>&nbsp;to define a non-symmetrical relationship (if I follow you, it doesn&#8217;t mean that you automatically follow me).</p>\n\n\n\n<p>When you use an intermediary model for many-to-many relationships, some of the related manager&#8217;s methods are disabled, such as&nbsp;<code>add()</code>,&nbsp;<code>create()</code>, or&nbsp;<code>remove()</code>. You need to create or delete instances of the intermediary model instead.</p>\n\n\n\n<p>Run the following command to generate the initial migrations for the&nbsp;<code>account</code>&nbsp;application:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>python manage.py makemigrations account\n</code></pre>\n\n\n\n<p>You will obtain the following output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Migrations for 'account':\n  account/migrations/0002_contact.py\n    - Create model Contact\n</code></pre>\n\n\n\n<p>Now, run&nbsp;<a></a>the following command to sync the application with the database:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>python manage.py migrate account\n</code></pre>\n\n\n\n<p>You should&nbsp;<a></a>see an output that includes the following line:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Applying account.0002_contact... OK\n</code></pre>\n\n\n\n<p>The&nbsp;<code>Contact</code>&nbsp;model is now synced to the database, and you are able to create relationships between users. However, your site doesn&#8217;t offer a way to browse users&nbsp;or see a particular user&#8217;s profile yet. Let&#8217;s build list and detail views for the&nbsp;<code>User</code>&nbsp;model.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>The created many-to-many relationships by adding the ManyToManyField to one of the related models and letting Django create the database table for the relationship. This is suitable for most cases, but sometimes you may need to create an intermediary model for the relationship. Creating an intermediary model is necessary when you want to store additional information for&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/creating-many-to-many-relationships-with-an-intermediary-model/\">Continue reading <span class=\"screen-reader-text\">Creating many-to-many relationships with an intermediary model</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [130],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3770" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3770"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3770/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3771,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3770/revisions/3771"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3770"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3770"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3770"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3772,
+    "date": "2022-06-28T11:15:29",
+    "date_gmt": "2022-06-28T11:15:29",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3772" },
+    "modified": "2022-06-28T11:15:29",
+    "modified_gmt": "2022-06-28T11:15:29",
+    "slug": "creating-list-and-detail-views-for-user-profiles",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/creating-list-and-detail-views-for-user-profiles/",
+    "title": { "rendered": "Creating list and detail views for user profiles" },
+    "content": {
+      "rendered": "\n<p>Open&nbsp;<a></a>the&nbsp;<code>views.py</code>&nbsp;file of the&nbsp;<code>account</code>&nbsp;application&nbsp;<a></a>and add the following code to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>from django.shortcuts import get_object_or_404\nfrom django.contrib.auth.models import User\n@login_required\ndef user_list(request):\n    users = User.objects.filter(is_active=True)\n    return render(request,\n                  'account/user/list.html',\n                  {'section': 'people',\n                   'users': users})\n@login_required\ndef user_detail(request, username):\n    user = get_object_or_404(User,\n                             username=username,\n                             is_active=True)\n    return render(request,\n                  'account/user/detail.html',\n                  {'section': 'people',\n                   'user': user})\n</code></pre>\n\n\n\n<p>These are&nbsp;<a></a>simple list and detail views for&nbsp;<code>User</code>&nbsp;objects. The&nbsp;<code>user_list</code>&nbsp;view&nbsp;<a></a>gets all active users. The&nbsp;<a></a>Django&nbsp;<code>User</code>&nbsp;model contains&nbsp;<a></a>an&nbsp;<code>is_active</code>&nbsp;flag to designate whether the user account is considered active. You filter the query by&nbsp;<code>is_active=True</code>&nbsp;to return only active users. This view returns all results, but you can&nbsp;improve it by adding pagination in the same way as you did for the&nbsp;<code>image_list</code>&nbsp;view.</p>\n\n\n\n<p>The&nbsp;<code>user_detail</code>&nbsp;view uses the&nbsp;<code>get_object_or_404()</code>&nbsp;shortcut to retrieve the active user with&nbsp;<a></a>the given username. The view returns an HTTP&nbsp;<code>404</code>&nbsp;response if no&nbsp;active user with the given username is found.</p>\n\n\n\n<p>Edit&nbsp;<a></a>the&nbsp;<code>urls.py</code>&nbsp;file of the&nbsp;<code>account</code>&nbsp;application, and add a URL pattern for each view, as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>urlpatterns = &#91;\n   # ...\n<strong>   path('users/', views.user_list, name='user_list'),</strong>\n<strong>   path('users/&lt;username&gt;/', views.user_detail, name='user_detail'),</strong>\n]\n</code></pre>\n\n\n\n<p>You will use the&nbsp;<code>user_detail</code>&nbsp;URL pattern to generate the canonical URL for users. You have&nbsp;<a></a>already defined a&nbsp;<code>get_absolute_url()</code>&nbsp;method in a model to return the canonical URL for each object. Another&nbsp;<a></a>way to specify the URL for a model is by adding the&nbsp;<code>ABSOLUTE_URL_OVERRIDES</code>&nbsp;setting to your project.</p>\n\n\n\n<p>Edit the&nbsp;<code>settings.py</code>&nbsp;file of your project and add the following code to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>from django.urls import reverse_lazy\nABSOLUTE_URL_OVERRIDES = {\n    'auth.user': lambda u: reverse_lazy('user_detail',\n                                        args=&#91;u.username])\n}\n</code></pre>\n\n\n\n<p>Django&nbsp;<a></a>adds a&nbsp;<code>get_absolute_url()</code>&nbsp;method dynamically to any models that appear in the&nbsp;<code>ABSOLUTE_URL_OVERRIDES</code>&nbsp;setting. This method returns the corresponding URL for the given&nbsp;<a></a>model specified in the setting. You return the&nbsp;<code>user_detail</code>&nbsp;URL for the given user. Now, you can use&nbsp;<code>get_absolute_url()</code>&nbsp;on a&nbsp;<code>User</code>&nbsp;instance to retrieve its corresponding URL.</p>\n\n\n\n<p>Open the Python shell with the&nbsp;<code>python manage.py shell</code>&nbsp;command and run the following code to test it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&gt;&gt;&gt; from django.contrib.auth.models import User\n&gt;&gt;&gt; user = User.objects.latest('id')\n&gt;&gt;&gt; str(user.get_absolute_url())\n'/account/users/ellington/'\n</code></pre>\n\n\n\n<p>The returned URL is as expected.</p>\n\n\n\n<p>You will need to create templates for the views that you just built. Add the following directory and files to the&nbsp;<code>templates/account/</code>&nbsp;directory of the&nbsp;<code>account</code>&nbsp;application:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>/user/\n    detail.html\n    list.html\n</code></pre>\n\n\n\n<p>Edit&nbsp;<a></a>the&nbsp;<code>account/user/list.html</code>&nbsp;template and&nbsp;<a></a>add the following code to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{% extends \"base.html\" %}\n{% load thumbnail %}\n{% block title %}People{% endblock %}\n{% block content %}\n  &lt;h1&gt;People&lt;/h1&gt;\n  &lt;div id=\"people-list\"&gt;\n    {% for user in users %}\n      &lt;div class=\"user\"&gt;\n        &lt;a href=\"{{ user.get_absolute_url }}\"&gt;\n          &lt;img src=\"{% thumbnail user.profile.photo 180x180 %}\"&gt;\n        &lt;/a&gt;\n        &lt;div class=\"info\"&gt;\n          &lt;a href=\"{{ user.get_absolute_url }}\" class=\"title\"&gt;\n            {{ user.get_full_name }}\n          &lt;/a&gt;\n        &lt;/div&gt;\n      &lt;/div&gt;\n    {% endfor %}\n  &lt;/div&gt;\n{% endblock %}\n</code></pre>\n\n\n\n<p>The preceding&nbsp;<a></a>template allows you to list all the&nbsp;<a></a>active users on the site. You iterate over the given users and use the&nbsp;<code>{% thumbnail %}</code>&nbsp;template tag from&nbsp;<code>easy-thumbnails</code>&nbsp;to generate profile image thumbnails.</p>\n\n\n\n<p>Open&nbsp;<a></a>the&nbsp;<code>base.html</code>&nbsp;template&nbsp;<a></a>of your project and include the&nbsp;<code>user_list</code>&nbsp;URL in the&nbsp;<code>href</code>&nbsp;attribute of the following menu item:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;li {% if section == \"people\" %}class=\"selected\"{% endif %}&gt;\n  &lt;a href=<strong>\"{% url \"user_list\" %}\"</strong>&gt;People&lt;/a&gt;\n&lt;/li&gt;\n</code></pre>\n\n\n\n<p>Start the development server with the&nbsp;<code>python manage.py runserver</code>&nbsp;command and&nbsp;open&nbsp;<code>http://127.0.0.1:8000/account/users/</code>&nbsp;in your browser. You should see a list of users like the following one:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/B14981_06_01.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 6.1: The user list page with profile image thumbnails</p>\n\n\n\n<p>Remember&nbsp;<a></a>that if you have any difficulty generating&nbsp;<a></a>thumbnails, you can add&nbsp;<code>THUMBNAIL_DEBUG = True</code>&nbsp;to your&nbsp;<code>settings.py</code>&nbsp;file in order to obtain debug information&nbsp;<a></a>in the shell.</p>\n\n\n\n<p>Edit&nbsp;<a></a>the&nbsp;<code>account/user/detail.html</code>&nbsp;template&nbsp;<a></a>of the&nbsp;<code>account</code>&nbsp;application&nbsp;<a></a>and add the following code to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{% extends \"base.html\" %}\n{% load thumbnail %}\n{% block title %}{{ user.get_full_name }}{% endblock %}\n{% block content %}\n  &lt;h1&gt;{{ user.get_full_name }}&lt;/h1&gt;\n  &lt;div class=\"profile-info\"&gt;\n    &lt;img src=\"{% thumbnail user.profile.photo 180x180 %}\" class=\"user-detail\"&gt;\n  &lt;/div&gt;\n  {% with total_followers=user.followers.count %}\n    &lt;span class=\"count\"&gt;\n      &lt;span class=\"total\"&gt;{{ total_followers }}&lt;/span&gt;\n      follower{{ total_followers|pluralize }}\n    &lt;/span&gt;\n    &lt;a href=\"#\" data-id=\"{{ user.id }}\" data-action=\"{% if request.user in user.followers.all %}un{% endif %}follow\" class=\"follow button\"&gt;\n      {% if request.user not in user.followers.all %}\n        Follow\n      {% else %}\n        Unfollow\n      {% endif %}\n    &lt;/a&gt;\n    &lt;div id=\"image-list\" class=\"image-container\"&gt;\n      {% include \"images/image/list_ajax.html\" with images=user.images_created.all %}\n    &lt;/div&gt;\n  {% endwith %}\n{% endblock %}\n</code></pre>\n\n\n\n<p>Make sure&nbsp;<a></a>that no template tag is split into multiple&nbsp;<a></a>lines; Django doesn&#8217;t support multiple line tags.</p>\n\n\n\n<p>In the&nbsp;<code>detail</code>&nbsp;template, you display the user profile and use the&nbsp;<code>{% thumbnail %}</code>&nbsp;template&nbsp;<a></a>tag to display the profile&nbsp;<a></a>image. You show the total number of followers and a link to follow or unfollow the user. You perform an AJAX request to follow/unfollow a particular user. You add&nbsp;<code>data-id</code>&nbsp;and&nbsp;<code>data-action</code>&nbsp;attributes to the&nbsp;<code>&lt;a&gt;</code>&nbsp;HTML element, including&nbsp;<a></a>the user ID and the initial action to perform when the link element is clicked –&nbsp;<code>follow</code>&nbsp;or&nbsp;<code>unfollow</code>, which depends on the user requesting the page being a follower of this other user or not, as&nbsp;the case may be. You display the images bookmarked by the user, including the&nbsp;<code>images/image/list_ajax.html&nbsp;</code>template.</p>\n\n\n\n<p>Open your browser again and click on a user who has bookmarked some images. You will see profile details, as follows:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/B14981_06_02.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 6.2: The user detail page</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Open&nbsp;the&nbsp;views.py&nbsp;file of the&nbsp;account&nbsp;application&nbsp;and add the following code to it: These are&nbsp;simple list and detail views for&nbsp;User&nbsp;objects. The&nbsp;user_list&nbsp;view&nbsp;gets all active users. The&nbsp;Django&nbsp;User&nbsp;model contains&nbsp;an&nbsp;is_active&nbsp;flag to designate whether the user account is considered active. You filter the query by&nbsp;is_active=True&nbsp;to return only active users. This view returns all results, but you can&nbsp;improve it by adding pagination in the same&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/creating-list-and-detail-views-for-user-profiles/\">Continue reading <span class=\"screen-reader-text\">Creating list and detail views for user profiles</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [130],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3772" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3772"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3772/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3773,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3772/revisions/3773"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3772"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3772"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3772"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3774,
+    "date": "2022-06-28T11:16:10",
+    "date_gmt": "2022-06-28T11:16:10",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3774" },
+    "modified": "2022-06-28T11:16:10",
+    "modified_gmt": "2022-06-28T11:16:10",
+    "slug": "building-an-ajax-view-to-follow-users",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/building-an-ajax-view-to-follow-users/",
+    "title": { "rendered": "Building an AJAX view to follow users" },
+    "content": {
+      "rendered": "\n<p>Let&#8217;s create&nbsp;<a></a>a simple view to follow/unfollow a user&nbsp;<a></a>using AJAX. Edit the&nbsp;<code>views.py</code>&nbsp;file of the&nbsp;<code>account</code>&nbsp;application and add the following code to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>from django.http import JsonResponse\nfrom django.views.decorators.http import require_POST\nfrom common.decorators import ajax_required\nfrom .models import Contact\n@ajax_required\n@require_POST\n@login_required\ndef user_follow(request):\n    user_id = request.POST.get('id')\n    action = request.POST.get('action')\n    if user_id and action:\n        try:\n            user = User.objects.get(id=user_id)\n            if action == 'follow':\n                Contact.objects.get_or_create(\n                    user_from=request.user,\n                    user_to=user)\n            else:\n                Contact.objects.filter(user_from=request.user,\n                                       user_to=user).delete()\n            return JsonResponse({'status':'ok'})\n        except User.DoesNotExist:\n            return JsonResponse({'status':'error'})\n    return JsonResponse({'status':'error'})\n</code></pre>\n\n\n\n<p>The&nbsp;<code>user_follow</code>&nbsp;view is quite similar to the&nbsp;<code>image_like</code>&nbsp;view that you created before. Since you&nbsp;<a></a>are using a custom intermediary model for the user&#8217;s many-to-many relationship, the default&nbsp;<code>add()</code>&nbsp;and&nbsp;<code>remove()</code>&nbsp;methods of the automatic manager of&nbsp;<code>ManyToManyField</code>&nbsp;are not available. You&nbsp;<a></a>use the intermediary&nbsp;<code>Contact</code>&nbsp;model to create or delete user relationships.</p>\n\n\n\n<p>Edit the&nbsp;<code>urls.py</code>&nbsp;file of the&nbsp;<code>account</code>&nbsp;application and add the following URL pattern to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>path('users/follow/', views.user_follow, name='user_follow'),\n</code></pre>\n\n\n\n<p>Ensure that you place the preceding pattern before the&nbsp;<code>user_detail</code>&nbsp;URL pattern. Otherwise, any requests to&nbsp;<code>/users/follow/</code>&nbsp;will match the regular expression of the&nbsp;<code>user_detail</code>&nbsp;pattern and that view will be executed instead. Remember that in every HTTP request, Django checks the requested URL against each pattern in order of appearance and stops at the first match.</p>\n\n\n\n<p>Edit the&nbsp;<code>user/detail.html</code>&nbsp;template of the&nbsp;<code>account</code>&nbsp;application and append the following code to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{% block domready %}\n  $('a.follow').click(function(e){\n    e.preventDefault();\n    $.post('{% url \"user_follow\" %}',\n      {\n        id: $(this).data('id'),\n        action: $(this).data('action')\n      },\n      function(data){\n        if (data&#91;'status'] == 'ok') {\n          var previous_action = $('a.follow').data('action');\n          <em>// toggle data-action</em>\n          $('a.follow').data('action',\n            previous_action == 'follow' ? 'unfollow' : 'follow');\n          <em>// toggle link text</em>\n          $('a.follow').text(\n            previous_action == 'follow' ? 'Unfollow' : 'Follow');\n          <em>// update total followers</em>\n          var previous_followers = parseInt(\n            $('span.count .total').text());\n          $('span.count .total').text(previous_action == 'follow' ?\n          previous_followers + 1 : previous_followers - 1);\n        }\n      }\n    );\n  });\n{% endblock %}\n</code></pre>\n\n\n\n<p>The preceding&nbsp;<a></a>code is the JavaScript code to perform the AJAX request to follow or unfollow a particular user and also to toggle the follow/unfollow link. You use jQuery to perform the AJAX request and set both the&nbsp;<code>data-action</code>&nbsp;attribute and the&nbsp;text of the HTML&nbsp;<code>&lt;a&gt;</code>&nbsp;element based on its previous value. When the&nbsp;<a></a>AJAX action is performed, you also update the total followers count displayed on the page.</p>\n\n\n\n<p>Open the user detail page of an existing user and click on the&nbsp;<strong>FOLLOW</strong>&nbsp;link to test the functionality you just built. You will see that the followers count is increased:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/B14981_06_03.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 6.3: The followers count and follow/unfollow buttonok</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Let&#8217;s create&nbsp;a simple view to follow/unfollow a user&nbsp;using AJAX. Edit the&nbsp;views.py&nbsp;file of the&nbsp;account&nbsp;application and add the following code to it: The&nbsp;user_follow&nbsp;view is quite similar to the&nbsp;image_like&nbsp;view that you created before. Since you&nbsp;are using a custom intermediary model for the user&#8217;s many-to-many relationship, the default&nbsp;add()&nbsp;and&nbsp;remove()&nbsp;methods of the automatic manager of&nbsp;ManyToManyField&nbsp;are not available. You&nbsp;use the intermediary&nbsp;Contact&nbsp;model to&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/building-an-ajax-view-to-follow-users/\">Continue reading <span class=\"screen-reader-text\">Building an AJAX view to follow users</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [130],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3774" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3774"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3774/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3775,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3774/revisions/3775"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3774"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3774"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3774"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3776,
+    "date": "2022-06-28T11:17:00",
+    "date_gmt": "2022-06-28T11:17:00",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3776" },
+    "modified": "2022-06-28T11:17:00",
+    "modified_gmt": "2022-06-28T11:17:00",
+    "slug": "building-a-generic-activity-stream-application",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/building-a-generic-activity-stream-application/",
+    "title": { "rendered": "Building a generic activity stream application" },
+    "content": {
+      "rendered": "\n<p>Many social websites display an activity stream to their users so that they can track what other&nbsp;<a></a>users do on the platform. An activity stream is a list of recent activities performed by a user or a group of users. For example, Facebook&#8217;s News Feed is an activity stream. Sample actions can be&nbsp;<em>user X bookmarked image Y&nbsp;</em>or<em>&nbsp;user X is now following user Y</em>.</p>\n\n\n\n<p>You are going to build an activity stream application so that every user can see the recent interactions of the users they follow. To do so, you will need a model to save the actions performed by users on the website and a simple way to add actions to the&nbsp;feed.</p>\n\n\n\n<p>Create a new application named&nbsp;<code>actions</code>&nbsp;inside your project with the following command:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>python manage.py startapp actions\n</code></pre>\n\n\n\n<p>Add the new application to&nbsp;<code>INSTALLED_APPS</code>&nbsp;in the&nbsp;<code>settings.py</code>&nbsp;file of your project to activate the application in your project:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>INSTALLED_APPS = &#91;\n    <em># ...</em>\n    <strong>'actions.apps.ActionsConfig',</strong>\n]\n</code></pre>\n\n\n\n<p>Edit the&nbsp;<code>models.py</code>&nbsp;file of the&nbsp;<code>actions</code>&nbsp;application and add the following code to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>from django.db import models\nclass Action(models.Model):\n    user = models.ForeignKey('auth.User',\n                             related_name='actions',\n                             db_index=True,\n                             on_delete=models.CASCADE)\n    verb = models.CharField(max_length=255)\n    created = models.DateTimeField(auto_now_add=True,\n                                   db_index=True)\n    class Meta:\n        ordering = ('-created',)\n</code></pre>\n\n\n\n<p>The preceding&nbsp;<a></a>code shows the&nbsp;<code>Action</code>&nbsp;model that will be used to store user activities. The fields of this model are as follows:</p>\n\n\n\n<ul><li><code>user</code>: The user who&nbsp;<a></a>performed the action; this is a&nbsp;<code>ForeignKey</code>&nbsp;to the Django&nbsp;<code>User</code>&nbsp;model.</li><li><code>verb</code>: The verb&nbsp;<a></a>describing the action that the user has performed.</li><li><code>created</code>: The date&nbsp;<a></a>and time when this action was created. You use&nbsp;<code>auto_now_add=True</code>&nbsp;to automatically set this to the current datetime when the object is saved for the first time in the database.</li></ul>\n\n\n\n<p>With this basic model, you can only store actions, such as&nbsp;<em>user X did something</em>. You need an extra&nbsp;<code>ForeignKey</code>&nbsp;field in order to save actions that involve a&nbsp;<code>target</code>&nbsp;object, such as&nbsp;<em>user X bookmarked image Y&nbsp;</em>or<em>&nbsp;user X is now following user Y</em>. As you already know, a normal&nbsp;<code>ForeignKey</code>&nbsp;can point to only one model. Instead, you will need a&nbsp;way for the action&#8217;s&nbsp;<code>target</code>&nbsp;object to be an instance of an existing model. This is what the Django&nbsp;<code>contenttypes</code>&nbsp;framework&nbsp;<a></a>will help you to do.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Many social websites display an activity stream to their users so that they can track what other&nbsp;users do on the platform. An activity stream is a list of recent activities performed by a user or a group of users. For example, Facebook&#8217;s News Feed is an activity stream. Sample actions can be&nbsp;user X bookmarked image&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/building-a-generic-activity-stream-application/\">Continue reading <span class=\"screen-reader-text\">Building a generic activity stream application</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [130],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3776" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3776"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3776/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3777,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3776/revisions/3777"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3776"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3776"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3776"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3778,
+    "date": "2022-06-28T11:18:27",
+    "date_gmt": "2022-06-28T11:18:27",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3778" },
+    "modified": "2022-06-28T11:18:27",
+    "modified_gmt": "2022-06-28T11:18:27",
+    "slug": "using-the-contenttypes-framework",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/using-the-contenttypes-framework/",
+    "title": { "rendered": "Using the contenttypes framework" },
+    "content": {
+      "rendered": "\n<p>Django includes a&nbsp;<code>contenttypes</code>&nbsp;framework located at&nbsp;<code>django.contrib.contenttypes</code>. This application can track all models installed in your project&nbsp;<a></a>and provides a generic interface to interact with your models.</p>\n\n\n\n<p>The&nbsp;<code>django.contrib.contenttypes</code>&nbsp;application is included in the&nbsp;<code>INSTALLED_APPS</code>&nbsp;setting by&nbsp;<a></a>default when you create a new project using the&nbsp;<code>startproject</code>&nbsp;command. It is used by other&nbsp;<code>contrib</code>&nbsp;packages, such as the authentication framework and the administration application.</p>\n\n\n\n<p>The&nbsp;<code>contenttypes</code>&nbsp;application contains a&nbsp;<code>ContentType</code>&nbsp;model. Instances of this model represent the actual models of your application, and new instances of&nbsp;<code>ContentType</code>&nbsp;are automatically created when new models are installed in your project. The&nbsp;<code>ContentType</code>&nbsp;model has the following fields:</p>\n\n\n\n<ul><li><code>app_label</code>: This&nbsp;<a></a>indicates the name of the application that the model belongs to. This is automatically taken from the&nbsp;<code>app_label</code>&nbsp;attribute of the model&nbsp;<code>Meta</code>&nbsp;options. For example, your&nbsp;<code>Image</code>&nbsp;model belongs to the&nbsp;<code>images</code>&nbsp;application.</li><li><code>model</code>: The&nbsp;<a></a>name of the model class.</li><li><code>name</code>: This&nbsp;<a></a>indicates the human-readable name of the model. This is automatically taken from the&nbsp;<code>verbose_name</code>&nbsp;attribute of the model&nbsp;<code>Meta</code>&nbsp;options.</li></ul>\n\n\n\n<p>Let&#8217;s take a look at how you can interact with&nbsp;<code>ContentType</code>&nbsp;objects. Open the shell using the&nbsp;<code>python manage.py shell</code>&nbsp;command. You can obtain the&nbsp;<code>ContentType</code>&nbsp;object corresponding to a specific model by performing a query with the&nbsp;<code>app_label</code>&nbsp;and&nbsp;<code>model</code>&nbsp;attributes, as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&gt;&gt;&gt; from django.contrib.contenttypes.models import ContentType\n&gt;&gt;&gt; image_type = ContentType.objects.get(app_label='images', model='image')\n&gt;&gt;&gt; image_type\n&lt;ContentType: images | image&gt;\n</code></pre>\n\n\n\n<p>You can also retrieve the model class from a&nbsp;<code>ContentType</code>&nbsp;object by calling its&nbsp;<code>model_class()</code>&nbsp;method:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&gt;&gt;&gt; image_type.model_class()\n&lt;class 'images.models.Image'&gt;\n</code></pre>\n\n\n\n<p>It&#8217;s also&nbsp;<a></a>common to get the&nbsp;<code>ContentType</code>&nbsp;object for a particular model class, as&nbsp;follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&gt;&gt;&gt; from images.models import Image\n&gt;&gt;&gt; ContentType.objects.get_for_model(Image)\n&lt;ContentType: images | image&gt;\n</code></pre>\n\n\n\n<p>These are just some examples of using <code>contenttypes</code>. Django offers more ways to work with them. You can find the official documentation about the <code>contenttypes</code> framework at https://docs.djangoproject.com/en/3.0/ref/contrib/contenttypes/.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Django includes a&nbsp;contenttypes&nbsp;framework located at&nbsp;django.contrib.contenttypes. This application can track all models installed in your project&nbsp;and provides a generic interface to interact with your models. The&nbsp;django.contrib.contenttypes&nbsp;application is included in the&nbsp;INSTALLED_APPS&nbsp;setting by&nbsp;default when you create a new project using the&nbsp;startproject&nbsp;command. It is used by other&nbsp;contrib&nbsp;packages, such as the authentication framework and the administration application. The&nbsp;contenttypes&nbsp;application contains a&nbsp;ContentType&nbsp;model.&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/using-the-contenttypes-framework/\">Continue reading <span class=\"screen-reader-text\">Using the contenttypes framework</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [130],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3778" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3778"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3778/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3779,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3778/revisions/3779"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3778"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3778"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3778"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3780,
+    "date": "2022-06-28T11:19:40",
+    "date_gmt": "2022-06-28T11:19:40",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3780" },
+    "modified": "2022-06-28T11:19:40",
+    "modified_gmt": "2022-06-28T11:19:40",
+    "slug": "adding-generic-relations-to-your-models",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/adding-generic-relations-to-your-models/",
+    "title": { "rendered": "Adding generic relations to your models" },
+    "content": {
+      "rendered": "\n<p>In generic relations,&nbsp;<code>ContentType</code>&nbsp;objects play the role of pointing to the model used for&nbsp;<a></a>the relationship. You will&nbsp;<a></a>need three fields to set up a generic relation in a model:</p>\n\n\n\n<ul><li>A&nbsp;<code>ForeignKey</code>&nbsp;field&nbsp;<a></a>to&nbsp;<code>ContentType</code>: This will tell you the model for the relationship</li><li>A field to&nbsp;<a></a>store the primary key of the related object: This will usually be a&nbsp;<code>PositiveIntegerField</code>&nbsp;to match Django&#8217;s automatic primary key fields</li><li>A field to&nbsp;<a></a>define and manage the generic relation using the two previous fields: The&nbsp;<code>contenttypes</code>&nbsp;framework offers a&nbsp;<code>GenericForeignKey</code>&nbsp;field for&nbsp;this purpose</li></ul>\n\n\n\n<p>Edit the&nbsp;<code>models.py</code>&nbsp;file of the&nbsp;<code>actions</code>&nbsp;application and make it look like this:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>from django.db import models\n<strong>from django.contrib.contenttypes.models import ContentType</strong>\n<strong>from django.contrib.contenttypes.fields import GenericForeignKey</strong>\nclass Action(models.Model):\n    user = models.ForeignKey('auth.User',\n                             related_name='actions',\n                             db_index=True,\n                             on_delete=models.CASCADE)\n    verb = models.CharField(max_length=255)\n    <strong>target_ct = models.ForeignKey(ContentType,</strong>\n                                  <strong>blank=True,</strong>\n                                  <strong>null=True,</strong>\n                                  <strong>related_name='target_obj',</strong>\n                                  <strong>on_delete=models.CASCADE)</strong>\n    <strong>target_id = models.PositiveIntegerField(null=True,</strong>\n                                            <strong>blank=True,</strong>\n                                            <strong>db_index=True)</strong>\n    <strong>target = GenericForeignKey('target_ct', 'target_id')</strong>\n    created = models.DateTimeField(auto_now_add=True,\n                                   db_index=True)\n    class Meta:\n        ordering = ('-created',)\n</code></pre>\n\n\n\n<p>You&nbsp;<a></a>have added the&nbsp;<a></a>following fields to the&nbsp;<code>Action</code>&nbsp;model:</p>\n\n\n\n<ul><li><code>target_ct</code>: A&nbsp;<code>ForeignKey</code>&nbsp;field&nbsp;<a></a>that points to the&nbsp;<code>ContentType</code>&nbsp;model</li><li><code>target_id</code>: A&nbsp;<code>PositiveIntegerField</code>&nbsp;for&nbsp;<a></a>storing the primary key of the related object</li><li><code>target</code>: A&nbsp;<code>GenericForeignKey</code>&nbsp;field&nbsp;<a></a>to the related object based on the combination of the two previous fields</li></ul>\n\n\n\n<p>Django does not create any field in the database for&nbsp;<code>GenericForeignKey</code>&nbsp;fields. The&nbsp;only fields that are mapped to database fields are&nbsp;<code>target_ct</code>&nbsp;and&nbsp;<code>target_id</code>. Both fields have&nbsp;<code>blank=True</code>&nbsp;and&nbsp;<code>null=True</code>&nbsp;attributes, so that a&nbsp;<code>target</code>&nbsp;object is not&nbsp;required when saving&nbsp;<code>Action</code>&nbsp;objects.</p>\n\n\n\n<p>You can make your applications more flexible by using generic relations instead of foreign keys.</p>\n\n\n\n<p>Run the following command to create initial migrations for this application:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>python manage.py makemigrations actions\n</code></pre>\n\n\n\n<p>You should see the following output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Migrations for 'actions':\n  actions/migrations/0001_initial.py\n    - Create model Action\n</code></pre>\n\n\n\n<p>Then, run the next command to sync the application with the database:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>python manage.py migrate\n</code></pre>\n\n\n\n<p>The output of the command should indicate that the new migrations have been applied, as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Applying actions.0001_initial... OK\n</code></pre>\n\n\n\n<p>Let&#8217;s add the&nbsp;<code>Action</code>&nbsp;model to the administration site. Edit the&nbsp;<code>admin.py</code>&nbsp;file of the&nbsp;<code>actions</code>&nbsp;application and add the following code to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>from django.contrib import admin\n<strong>from .models import Action</strong>\n<strong>@admin.register(Action)</strong>\n<strong>class ActionAdmin(admin.ModelAdmin):</strong>\n    <strong>list_display = ('user', 'verb', 'target', 'created')</strong>\n    <strong>list_filter = ('created',)</strong>\n    <strong>search_fields = ('verb',)</strong>\n</code></pre>\n\n\n\n<p>You&nbsp;<a></a>just registered the&nbsp;<code>Action</code>&nbsp;model in the administration site. Run the&nbsp;<code>python manage.py runserver</code>&nbsp;command&nbsp;<a></a>to start the development server and open&nbsp;<code>http://127.0.0.1:8000/admin/actions/action/add/</code>&nbsp;in your browser. You&nbsp;should see the page for creating a new&nbsp;<code>Action</code>&nbsp;object, as follows:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/B14981_06_04.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 6.4: The add action page on the Django administration site</p>\n\n\n\n<p>As you will notice in the preceding screenshot, only the&nbsp;<code>target_ct</code>&nbsp;and&nbsp;<code>target_id</code>&nbsp;fields that are mapped to actual database fields are shown. The&nbsp;<code>GenericForeignKey</code>&nbsp;field does not appear in the form. The&nbsp;<code>target_ct</code>&nbsp;field allows you to select any of the registered models of your Django project. You can restrict the content types to choose from a limited set of models using the&nbsp;<code>limit_choices_to</code>&nbsp;attribute in the&nbsp;<code>target_ct</code>&nbsp;field; the&nbsp;<code>limit_choices_to</code>&nbsp;attribute allows you to restrict the content of&nbsp;<code>ForeignKey</code>&nbsp;fields to a specific set of values.</p>\n\n\n\n<p>Create&nbsp;<a></a>a new file inside the&nbsp;<code>actions</code>&nbsp;application directory and name it&nbsp;<code>utils.py</code>. You need to define&nbsp;<a></a>a shortcut function that will allow you to create new&nbsp;<code>Action</code>&nbsp;objects in a simple way. Edit the new&nbsp;<code>utils.py</code>&nbsp;file and add the following code to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>from django.contrib.contenttypes.models import ContentType\nfrom .models import Action\ndef create_action(user, verb, target=None):\n    action = Action(user=user, verb=verb, target=target)\n    action.save()\n</code></pre>\n\n\n\n<p>The&nbsp;<code>create_action()</code>&nbsp;function allows you to create actions that optionally include a&nbsp;<code>target</code>&nbsp;object. You can use this function anywhere in your code as a shortcut to add new actions to the activity stream.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>In generic relations,&nbsp;ContentType&nbsp;objects play the role of pointing to the model used for&nbsp;the relationship. You will&nbsp;need three fields to set up a generic relation in a model: A&nbsp;ForeignKey&nbsp;field&nbsp;to&nbsp;ContentType: This will tell you the model for the relationship A field to&nbsp;store the primary key of the related object: This will usually be a&nbsp;PositiveIntegerField&nbsp;to match Django&#8217;s automatic&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/adding-generic-relations-to-your-models/\">Continue reading <span class=\"screen-reader-text\">Adding generic relations to your models</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [130],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3780" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3780"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3780/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3781,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3780/revisions/3781"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3780"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3780"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3780"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3782,
+    "date": "2022-06-28T11:20:06",
+    "date_gmt": "2022-06-28T11:20:06",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3782" },
+    "modified": "2022-06-28T11:20:06",
+    "modified_gmt": "2022-06-28T11:20:06",
+    "slug": "avoiding-duplicate-actions-in-the-activity-stream",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/avoiding-duplicate-actions-in-the-activity-stream/",
+    "title": {
+      "rendered": "Avoiding duplicate actions in the activity stream"
+    },
+    "content": {
+      "rendered": "\n<p>Sometimes, your users might click several times on the&nbsp;<strong>LIKE</strong>&nbsp;or&nbsp;<strong>UNLIKE</strong>&nbsp;button or&nbsp;perform&nbsp;<a></a>the same action multiple times in a short period of time. This will easily lead to storing and&nbsp;<a></a>displaying duplicate actions. To avoid this, let&#8217;s improve the&nbsp;<code>create_action()</code>&nbsp;function to skip obvious duplicated actions.</p>\n\n\n\n<p>Edit the&nbsp;<code>utils.py</code>&nbsp;file of the&nbsp;<code>actions</code>&nbsp;application, as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code><strong>import datetime</strong>\n<strong>from django.utils import timezone</strong>\nfrom django.contrib.contenttypes.models import ContentType\nfrom .models import Action\ndef create_action(user, verb, target=None):\n<strong>    # check for any similar action made in the last minute</strong>\n<strong>    now = timezone.now()</strong>\n<strong>    last_minute = now - datetime.timedelta(seconds=60)</strong>\n<strong>    similar_actions = Action.objects.filter(user_id=user.id,</strong>\n<strong>                                       verb= verb,</strong>\n<strong>                                       created__gte=last_minute)</strong>\n<strong>    if target:</strong>\n<strong>        target_ct = ContentType.objects.get_for_model(target)</strong>\n<strong>        similar_actions = similar_actions.filter(</strong>\n<strong>                                             target_ct=target_ct,</strong>\n<strong>                                             target_id=target.id)</strong>\n<strong>    if not similar_actions:</strong>\n<strong>        # no existing actions found</strong>\n        action = Action(user=user, verb=verb, target=target)\n        action.save()\n<strong>        return True</strong>\n<strong>    return False</strong>\n</code></pre>\n\n\n\n<p>You&nbsp;<a></a>have changed the&nbsp;<code>create_action()</code>&nbsp;function to avoid saving duplicate actions and return Boolean to tell you&nbsp;<a></a>whether the action was saved. This is how you avoid duplicates:</p>\n\n\n\n<ul><li>First, you get the current time using the&nbsp;<code>timezone.now()</code>&nbsp;method provided by Django. This method does the same as&nbsp;<code>datetime.datetime.now()</code>&nbsp;but returns a timezone-aware object. Django provides a setting called&nbsp;<code>USE_TZ</code>&nbsp;to&nbsp;enable or disable timezone support. The default&nbsp;<code>settings.py</code>&nbsp;file created using the&nbsp;<code>startproject</code>&nbsp;command includes&nbsp;<code>USE_TZ=True</code>.</li><li>You use the&nbsp;<code>last_minute</code>&nbsp;variable to store the datetime from one minute ago&nbsp;and retrieve any identical actions performed by the user since then.</li><li>You create an&nbsp;<code>Action</code>&nbsp;object if no identical action already exists in the last minute. You return&nbsp;<code>True</code>&nbsp;if an&nbsp;<code>Action</code>&nbsp;object was created, or&nbsp;<code>False</code>&nbsp;otherwise.</li></ul>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Sometimes, your users might click several times on the&nbsp;LIKE&nbsp;or&nbsp;UNLIKE&nbsp;button or&nbsp;perform&nbsp;the same action multiple times in a short period of time. This will easily lead to storing and&nbsp;displaying duplicate actions. To avoid this, let&#8217;s improve the&nbsp;create_action()&nbsp;function to skip obvious duplicated actions. Edit the&nbsp;utils.py&nbsp;file of the&nbsp;actions&nbsp;application, as follows: You&nbsp;have changed the&nbsp;create_action()&nbsp;function to avoid saving duplicate actions and&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/avoiding-duplicate-actions-in-the-activity-stream/\">Continue reading <span class=\"screen-reader-text\">Avoiding duplicate actions in the activity stream</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [130],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3782" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3782"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3782/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3783,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3782/revisions/3783"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3782"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3782"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3782"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3784,
+    "date": "2022-06-28T11:20:33",
+    "date_gmt": "2022-06-28T11:20:33",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3784" },
+    "modified": "2022-06-28T11:20:33",
+    "modified_gmt": "2022-06-28T11:20:33",
+    "slug": "adding-user-actions-to-the-activity-stream",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/adding-user-actions-to-the-activity-stream/",
+    "title": { "rendered": "Adding user actions to the activity stream" },
+    "content": {
+      "rendered": "\n<p>It&#8217;s time&nbsp;<a></a>to add some actions to your views to&nbsp;<a></a>build the activity stream for your users. You will store an action for each of the following interactions:</p>\n\n\n\n<ul><li>A user bookmarks an image</li><li>A user likes an image</li><li>A user creates an account</li><li>A user starts following another user</li></ul>\n\n\n\n<p>Edit the&nbsp;<code>views.py</code>&nbsp;file of the&nbsp;<code>images</code>&nbsp;application and add the following import:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>from actions.utils import create_action\n</code></pre>\n\n\n\n<p>In the&nbsp;<code>image_create</code>&nbsp;view, add&nbsp;<code>create_action()</code>&nbsp;after saving the image, like this:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>new_item.save()\n<strong>create_action(request.user, 'bookmarked image', new_item)</strong>\n</code></pre>\n\n\n\n<p>In the&nbsp;<code>image_like</code>&nbsp;view, add&nbsp;<code>create_action()</code>&nbsp;after adding the user to the&nbsp;<code>users_like</code>&nbsp;relationship, as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>image.users_like.add(request.user)\n<strong>create_action(request.user, 'likes', image)</strong>\n</code></pre>\n\n\n\n<p>Now,&nbsp;<a></a>edit the&nbsp;<code>views.py</code>&nbsp;file of the&nbsp;<code>account</code>&nbsp;application and add the following import:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>from actions.utils import create_action\n</code></pre>\n\n\n\n<p>In the&nbsp;<code>register</code>&nbsp;view, add&nbsp;<code>create_action()</code>&nbsp;after creating the&nbsp;<code>Profile</code>&nbsp;object, as&nbsp;follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Profile.objects.create(user=new_user)\n<strong>create_action(new_user, 'has created an account')</strong>\n</code></pre>\n\n\n\n<p>In&nbsp;<a></a>the&nbsp;<code>user_follow</code>&nbsp;view, add&nbsp;<code>create_action()</code>:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Contact.objects.get_or_create(user_from=request.user,\n                              user_to=user)\n<strong>create_action(request.user, 'is following', user)</strong>\n</code></pre>\n\n\n\n<p>As you can see in the preceding code, thanks to your&nbsp;<code>Action</code>&nbsp;model and your helper function, it&#8217;s very easy to save new actions to the activity stream.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>It&#8217;s time&nbsp;to add some actions to your views to&nbsp;build the activity stream for your users. You will store an action for each of the following interactions: A user bookmarks an image A user likes an image A user creates an account A user starts following another user Edit the&nbsp;views.py&nbsp;file of the&nbsp;images&nbsp;application and add the following&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/adding-user-actions-to-the-activity-stream/\">Continue reading <span class=\"screen-reader-text\">Adding user actions to the activity stream</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [130],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3784" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3784"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3784/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3785,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3784/revisions/3785"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3784"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3784"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3784"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3787,
+    "date": "2022-06-28T11:22:35",
+    "date_gmt": "2022-06-28T11:22:35",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3787" },
+    "modified": "2022-06-28T11:22:35",
+    "modified_gmt": "2022-06-28T11:22:35",
+    "slug": "displaying-the-activity-stream",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/displaying-the-activity-stream/",
+    "title": { "rendered": "Displaying the activity stream" },
+    "content": {
+      "rendered": "\n<p>Finally, you need a way to display the activity stream for each user. You will include the activity&nbsp;<a></a>stream in the user&#8217;s dashboard. Edit the&nbsp;<code>views.py</code>&nbsp;file of the&nbsp;<code>account</code>&nbsp;application. Import the&nbsp;<code>Action</code>&nbsp;model and&nbsp;<a></a>modify the&nbsp;<code>dashboard</code>&nbsp;view, as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code><strong>from actions.models import Action</strong>\n@login_required\ndef dashboard(request):\n    <strong><em># Display all actions by default</em></strong>\n    <strong>actions = Action.objects.exclude(user=request.user)</strong>\n    <strong>following_ids = request.user.following.values_list('id',</strong>\n                                                       <strong>flat=True)</strong>\n    <strong>if following_ids:</strong>\n        <strong><em># If user is following others, retrieve only their actions</em></strong>\n        <strong>actions = actions.filter(user_id__in=following_ids)</strong>\n    <strong>actions = actions&#91;:10]</strong>\n    return render(request,\n                  'account/dashboard.html',\n                  {'section': 'dashboard',\n                   <strong>'actions': actions</strong>})\n</code></pre>\n\n\n\n<p>In the preceding view, you retrieve all actions from the database, excluding the ones performed by the current user. By default, you retrieve the latest actions performed by all&nbsp;<a></a>users on the platform. If the user is following other users, you restrict the query to retrieve only the actions&nbsp;<a></a>performed by the users they follow. Finally, you limit the result to the first 10 actions returned. You don&#8217;t use&nbsp;<code>order_by()</code>&nbsp;in the QuerySet because you rely on the default ordering that&nbsp;you provided in the&nbsp;<code>Meta</code>&nbsp;options of the&nbsp;<code>Action</code>&nbsp;model. Recent actions will come&nbsp;first since you set&nbsp;<code>ordering = ('-created',)</code>&nbsp;in the&nbsp;<code>Action</code>&nbsp;model.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Finally, you need a way to display the activity stream for each user. You will include the activity&nbsp;stream in the user&#8217;s dashboard. Edit the&nbsp;views.py&nbsp;file of the&nbsp;account&nbsp;application. Import the&nbsp;Action&nbsp;model and&nbsp;modify the&nbsp;dashboard&nbsp;view, as follows: In the preceding view, you retrieve all actions from the database, excluding the ones performed by the current user. By default, you retrieve&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/displaying-the-activity-stream/\">Continue reading <span class=\"screen-reader-text\">Displaying the activity stream</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [130],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3787" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3787"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3787/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3788,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3787/revisions/3788"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3787"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3787"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3787"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3789,
+    "date": "2022-06-28T11:23:02",
+    "date_gmt": "2022-06-28T11:23:02",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3789" },
+    "modified": "2022-06-28T11:23:02",
+    "modified_gmt": "2022-06-28T11:23:02",
+    "slug": "optimizing-querysets-that-involve-related-objects",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/optimizing-querysets-that-involve-related-objects/",
+    "title": {
+      "rendered": "Optimizing QuerySets that involve related objects"
+    },
+    "content": {
+      "rendered": "\n<p>Every time&nbsp;<a></a>you retrieve an&nbsp;<code>Action</code>&nbsp;object, you will&nbsp;<a></a>usually access its related&nbsp;<code>User</code>&nbsp;object and the user&#8217;s related&nbsp;<code>Profile</code>&nbsp;object. The Django ORM offers a simple way to&nbsp;retrieve related objects at the same time, thereby avoiding additional queries to the&nbsp;database.</p>\n\n\n\n<h3 id=\"_idParaDest-130\">Using select_related()</h3>\n\n\n\n<p>Django offers a QuerySet method called&nbsp;<code>select_related()</code>&nbsp;that allows you to retrieve related objects&nbsp;<a></a>for one-to-many relationships. This translates to a single, more complex QuerySet, but you avoid additional queries when&nbsp;<a></a>accessing the related objects. The&nbsp;<code>select_related</code>&nbsp;method is for&nbsp;<code>ForeignKey</code>&nbsp;and&nbsp;<code>OneToOne</code>&nbsp;fields.&nbsp;It works by performing a SQL&nbsp;<code>JOIN</code>&nbsp;and including the fields of the related object in the&nbsp;<code>SELECT</code>&nbsp;statement.</p>\n\n\n\n<p>To take advantage of&nbsp;<code>select_related()</code>, edit the following line of the preceding code:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>actions = actions&#91;:10]\n</code></pre>\n\n\n\n<p>Also, add&nbsp;<code>select_related</code>&nbsp;to the fields that you will use, like this:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>actions = actions<strong>.select_related('user', 'user__profile')</strong>&#91;:10]\n</code></pre>\n\n\n\n<p>You use&nbsp;<code>user__profile</code>&nbsp;to join the&nbsp;<code>Profile</code>&nbsp;table in a single SQL query. If you call&nbsp;<code>select_related()</code>&nbsp;without passing any arguments to it, it will retrieve objects from all&nbsp;<code>ForeignKey</code>&nbsp;relationships. Always limit&nbsp;<code>select_related()</code>&nbsp;to the relationships that will be&nbsp;<a></a>accessed afterward.</p>\n\n\n\n<p>Using&nbsp;<code>select_related()</code>&nbsp;carefully&nbsp;<a></a>can vastly improve execution time.</p>\n\n\n\n<h3 id=\"_idParaDest-131\">Using prefetch_related()</h3>\n\n\n\n<p><code>select_related()</code>&nbsp;will help you to boost performance for retrieving related objects in one-to-many relationships. However,&nbsp;<code>select_related()</code>&nbsp;doesn&#8217;t work for many-to-many or&nbsp;<a></a>many-to-one relationships (<code>ManyToMany</code>&nbsp;or reverse&nbsp;<code>ForeignKey</code>&nbsp;fields). Django offers a different QuerySet method called&nbsp;<code>prefetch_related</code>&nbsp;that works for many-to-many and many-to-one relationships in addition&nbsp;<a></a>to the relationships supported by&nbsp;<code>select_related()</code>. The&nbsp;<code>prefetch_related()</code>&nbsp;method performs a separate lookup for each relationship and joins the results using Python. This method also supports the prefetching of&nbsp;<code>GenericRelation</code>&nbsp;and&nbsp;<code>GenericForeignKey</code>.</p>\n\n\n\n<p>Edit the&nbsp;<code>views.py</code>&nbsp;file of the&nbsp;<code>account</code>&nbsp;application and complete your query by adding&nbsp;<code>prefetch_related()</code>&nbsp;to it for the target&nbsp;<code>GenericForeignKey</code>&nbsp;field, as&nbsp;follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>actions = actions.select_related('user', 'user__profile')<strong>\\</strong>\n                 <strong>.prefetch_related('target')</strong>&#91;:10]\n</code></pre>\n\n\n\n<p>This query is now optimized for retrieving the user actions, including related objects.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Every time&nbsp;you retrieve an&nbsp;Action&nbsp;object, you will&nbsp;usually access its related&nbsp;User&nbsp;object and the user&#8217;s related&nbsp;Profile&nbsp;object. The Django ORM offers a simple way to&nbsp;retrieve related objects at the same time, thereby avoiding additional queries to the&nbsp;database. Using select_related() Django offers a QuerySet method called&nbsp;select_related()&nbsp;that allows you to retrieve related objects&nbsp;for one-to-many relationships. This translates to a single, more&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/optimizing-querysets-that-involve-related-objects/\">Continue reading <span class=\"screen-reader-text\">Optimizing QuerySets that involve related objects</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [130],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3789" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3789"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3789/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3790,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3789/revisions/3790"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3789"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3789"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3789"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3791,
+    "date": "2022-06-28T11:23:32",
+    "date_gmt": "2022-06-28T11:23:32",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3791" },
+    "modified": "2022-06-28T11:23:32",
+    "modified_gmt": "2022-06-28T11:23:32",
+    "slug": "creating-templates-for-actions",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/creating-templates-for-actions/",
+    "title": { "rendered": "Creating templates for actions" },
+    "content": {
+      "rendered": "\n<p>Let&#8217;s now&nbsp;<a></a>create the template to display a particular&nbsp;<code>Action</code>&nbsp;object. Create a new directory inside the&nbsp;<code>actions</code>&nbsp;application directory&nbsp;<a></a>and name it&nbsp;<code>templates</code>. Add the&nbsp;following file structure to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>actions/\n    action/\n        detail.html\n</code></pre>\n\n\n\n<p>Edit the&nbsp;<code>actions/action/detail.html</code>&nbsp;template file and add the following lines to&nbsp;it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{% load thumbnail %}\n{% with user=action.user profile=action.user.profile %}\n&lt;div class=\"action\"&gt;\n  &lt;div class=\"images\"&gt;\n    {% if profile.photo %}\n      {% thumbnail user.profile.photo \"80x80\" crop=\"100%\" as im %}\n      &lt;a href=\"{{ user.get_absolute_url }}\"&gt;\n        &lt;img src=\"{{ im.url }}\" alt=\"{{ user.get_full_name }}\"\n         class=\"item-img\"&gt;\n      &lt;/a&gt;\n    {% endif %}\n    {% if action.target %}\n      {% with target=action.target %}\n        {% if target.image %}\n          {% thumbnail target.image \"80x80\" crop=\"100%\" as im %}\n          &lt;a href=\"{{ target.get_absolute_url }}\"&gt;\n            &lt;img src=\"{{ im.url }}\" class=\"item-img\"&gt;\n          &lt;/a&gt;\n        {% endif %}\n      {% endwith %}\n    {% endif %}\n  &lt;/div&gt;\n  &lt;div class=\"info\"&gt;\n    &lt;p&gt;\n      &lt;span class=\"date\"&gt;{{ action.created|timesince }} ago&lt;/span&gt;\n      &lt;br /&gt;\n      &lt;a href=\"{{ user.get_absolute_url }}\"&gt;\n        {{ user.first_name }}\n      &lt;/a&gt;\n      {{ action.verb }}\n      {% if action.target %}\n        {% with target=action.target %}\n          &lt;a href=\"{{ target.get_absolute_url }}\"&gt;{{ target }}&lt;/a&gt;\n        {% endwith %}\n      {% endif %}\n    &lt;/p&gt;\n  &lt;/div&gt;\n&lt;/div&gt;\n{% endwith %}\n</code></pre>\n\n\n\n<p>This is&nbsp;<a></a>the template used to display an&nbsp;<code>Action</code>&nbsp;object. First, you use the&nbsp;<code>{% with %}</code>&nbsp;template tag to retrieve&nbsp;<a></a>the user performing the action and the related&nbsp;<code>Profile</code>&nbsp;object. Then, you display the image of the&nbsp;<code>target</code>&nbsp;object if the&nbsp;<code>Action</code>&nbsp;object has a&nbsp;related&nbsp;<code>target</code>&nbsp;object. Finally, you display the link to the user who performed the&nbsp;action, the verb, and the&nbsp;<code>target</code>&nbsp;object, if any.</p>\n\n\n\n<p>Edit the&nbsp;<code>account/dashboard.html</code>&nbsp;template of the&nbsp;<code>account</code>&nbsp;application and append the following code to the bottom of the&nbsp;<code>content</code>&nbsp;block:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;h2&gt;What's happening&lt;/h2&gt;\n&lt;div id=\"action-list\"&gt;\n  {% for action in actions %}\n    {% include \"actions/action/detail.html\" %}\n  {% endfor %}\n&lt;/div&gt;\n</code></pre>\n\n\n\n<p>Open&nbsp;<code>http://127.0.0.1:8000/account/</code>&nbsp;in your browser. Log in as an existing user and perform&nbsp;<a></a>several actions so that they get stored&nbsp;<a></a>in the database. Then, log in using another user, follow the previous user, and take a look at the generated action stream on the dashboard page. It should look like the following:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/B14981_06_05.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 6.5: The activity stream for the current user</p>\n\n\n\n<p>You just created a complete activity stream for your users, and you can easily add new user actions to it. You can also add infinite scroll functionality to the activity stream by implementing the same AJAX paginator that you used for the&nbsp;<code>image_list</code>&nbsp;view.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Let&#8217;s now&nbsp;create the template to display a particular&nbsp;Action&nbsp;object. Create a new directory inside the&nbsp;actions&nbsp;application directory&nbsp;and name it&nbsp;templates. Add the&nbsp;following file structure to it: Edit the&nbsp;actions/action/detail.html&nbsp;template file and add the following lines to&nbsp;it: This is&nbsp;the template used to display an&nbsp;Action&nbsp;object. First, you use the&nbsp;{% with %}&nbsp;template tag to retrieve&nbsp;the user performing the action and the related&nbsp;Profile&nbsp;object.&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/creating-templates-for-actions/\">Continue reading <span class=\"screen-reader-text\">Creating templates for actions</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [130],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3791" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3791"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3791/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3792,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3791/revisions/3792"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3791"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3791"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3791"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3793,
+    "date": "2022-06-28T11:23:59",
+    "date_gmt": "2022-06-28T11:23:59",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3793" },
+    "modified": "2022-06-28T11:23:59",
+    "modified_gmt": "2022-06-28T11:23:59",
+    "slug": "using-signals-for-denormalizing-counts",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/using-signals-for-denormalizing-counts/",
+    "title": { "rendered": "Using signals for denormalizing counts" },
+    "content": {
+      "rendered": "\n<p>There are some cases when you may want to denormalize your data. Denormalization is making&nbsp;<a></a>data redundant in such a way that it optimizes read performance. For example, you might be copying related data to an object to avoid expensive read queries to the database when retrieving the related data. You have to be careful about denormalization and only start using it when you really need it. The biggest issue you will find with denormalization is that it&#8217;s difficult to keep your&nbsp;<a></a>denormalized data updated.</p>\n\n\n\n<p>Let&#8217;s take a look at an example of how to improve your queries by denormalizing counts. You will denormalize data from your&nbsp;<code>Image</code>&nbsp;model and use Django signals to&nbsp;keep the data updated.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>There are some cases when you may want to denormalize your data. Denormalization is making&nbsp;data redundant in such a way that it optimizes read performance. For example, you might be copying related data to an object to avoid expensive read queries to the database when retrieving the related data. You have to be careful about&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/using-signals-for-denormalizing-counts/\">Continue reading <span class=\"screen-reader-text\">Using signals for denormalizing counts</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [130],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3793" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3793"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3793/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3794,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3793/revisions/3794"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3793"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3793"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3793"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3795,
+    "date": "2022-06-28T11:25:30",
+    "date_gmt": "2022-06-28T11:25:30",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3795" },
+    "modified": "2022-06-28T11:25:30",
+    "modified_gmt": "2022-06-28T11:25:30",
+    "slug": "working-with-signals",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/working-with-signals/",
+    "title": { "rendered": "Working with signals" },
+    "content": {
+      "rendered": "\n<p>Django comes with a signal dispatcher that allows receiver functions to get notified when certain actions occur. Signals are very useful when you need your code to do something&nbsp;<a></a>every time something else happens. Signals allow you to decouple logic: you can capture a certain action, regardless of the application or code that triggered that action, and implement logic that gets executed whenever that action occurs. For example, you can build a signal receiver function that gets executed every time a&nbsp;<code>User</code>&nbsp;object is saved. You can also create your own signals so that others can get notified when an event happens.</p>\n\n\n\n<p>Django provides several signals for models located at&nbsp;<code>django.db.models.signals</code>. Some of these signals are as follows:</p>\n\n\n\n<ul><li><code>pre_save</code>&nbsp;and&nbsp;<code>post_save</code>&nbsp;are sent before or after calling the&nbsp;<code>save()</code>&nbsp;method of a model</li><li><code>pre_delete</code>&nbsp;and&nbsp;<code>post_delete</code>&nbsp;are sent before or after calling the&nbsp;<code>delete()</code>&nbsp;method of a model or QuerySet</li><li><code>m2m_changed</code>&nbsp;is sent when a&nbsp;<code>ManyToManyField</code>&nbsp;on a model is changed</li></ul>\n\n\n\n<p>These are just a subset of the signals provided by Django. You can find a list of all built-in signals at https://docs.djangoproject.com/en/3.0/ref/signals/.</p>\n\n\n\n<p>Let&#8217;s say you want to retrieve images by popularity. You can use the Django aggregation functions to retrieve images ordered by the number of users who like them. Remember that you used Django aggregation functions <em>Extending Your Blog Application</em>. The following code will retrieve images according to their number of likes:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>from django.db.models import Count\nfrom images.models import Image\nimages_by_popularity = Image.objects.annotate(\n    total_likes=Count('users_like')).order_by('-total_likes')\n</code></pre>\n\n\n\n<p>However, ordering images by counting their total&nbsp;<code>likes</code>&nbsp;is more expensive in terms of performance than ordering them by a field that stores total counts. You can add a field to the&nbsp;<code>Image</code>&nbsp;model to denormalize the total number of likes to boost performance in queries that involve this field. The issue is how to keep this field&nbsp;updated.</p>\n\n\n\n<p>Edit the&nbsp;<code>models.py</code>&nbsp;file of the&nbsp;<code>images</code>&nbsp;application and add the following&nbsp;<code>total_likes</code>&nbsp;field to the&nbsp;<code>Image</code>&nbsp;model:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>class Image(models.Model):\n    # ...\n    <strong>total_likes = models.PositiveIntegerField(db_index=True,</strong>\n                                              <strong>default=0)</strong>\n</code></pre>\n\n\n\n<p>The&nbsp;<code>total_likes</code>&nbsp;field will allow you to store the total count of users who like each image. Denormalizing counts is useful when you want to filter or order QuerySets by&nbsp;them.</p>\n\n\n\n<p>There are&nbsp;<a></a>several ways to improve performance that you have to take into account before denormalizing fields. Consider database indexes, query optimization, and caching before starting to denormalize your data.</p>\n\n\n\n<p>Run the following command to create the migrations for adding the new field to the database table:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>python manage.py makemigrations images\n</code></pre>\n\n\n\n<p>You should see the following output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Migrations for 'images':\n  images/migrations/0002_image_total_likes.py\n    - Add field total_likes to image\n</code></pre>\n\n\n\n<p>Then, run the following command to apply the migration:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>python manage.py migrate images\n</code></pre>\n\n\n\n<p>The output should include the following line:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Applying images.0002_image_total_likes... OK\n</code></pre>\n\n\n\n<p>You need to attach a&nbsp;<code>receiver</code>&nbsp;function to the&nbsp;<code>m2m_changed</code>&nbsp;signal. Create a new file inside the&nbsp;<code>images</code>&nbsp;application directory and name it&nbsp;<code>signals.py</code>. Add the following code to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>from django.db.models.signals import m2m_changed\nfrom django.dispatch import receiver\nfrom .models import Image\n@receiver(m2m_changed, sender=Image.users_like.through)\ndef users_like_changed(sender, instance, **kwargs):\n    instance.total_likes = instance.users_like.count()\n    instance.save()\n</code></pre>\n\n\n\n<p>First, you register the&nbsp;<code>users_like_changed</code>&nbsp;function as a receiver function using the&nbsp;<code>receiver()</code>&nbsp;decorator. You attach it to the&nbsp;<code>m2m_changed</code>&nbsp;signal. Then, you connect the function to&nbsp;<code>Image.users_like.through</code>&nbsp;so that the function is only called if the&nbsp;<code>m2m_changed</code>&nbsp;signal has been launched by this sender. There is an alternate method for registering a receiver function; it consists of using the&nbsp;<code>connect()</code>&nbsp;method of the&nbsp;<code>Signal</code>&nbsp;object.</p>\n\n\n\n<p>Django signals are synchronous and blocking. Don&#8217;t confuse signals with asynchronous tasks. However, you can combine both to launch asynchronous tasks when your code gets notified by a signal. You will learn to create asynchronous tasks with Celery <em>Building an Online Shop</em>.</p>\n\n\n\n<p>You have to connect your receiver function to a signal so that it gets called every time the signal is sent. The recommended method for registering your signals is by importing them in the&nbsp;<code>ready()</code>&nbsp;method of your application configuration class. Django provides an application registry that allows you to configure and introspect your applications.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Django comes with a signal dispatcher that allows receiver functions to get notified when certain actions occur. Signals are very useful when you need your code to do something&nbsp;every time something else happens. Signals allow you to decouple logic: you can capture a certain action, regardless of the application or code that triggered that action,&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/working-with-signals/\">Continue reading <span class=\"screen-reader-text\">Working with signals</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [130],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3795" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3795"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3795/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3796,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3795/revisions/3796"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3795"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3795"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3795"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3797,
+    "date": "2022-06-28T11:28:16",
+    "date_gmt": "2022-06-28T11:28:16",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3797" },
+    "modified": "2022-06-28T11:28:16",
+    "modified_gmt": "2022-06-28T11:28:16",
+    "slug": "application-configuration-classes",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/application-configuration-classes/",
+    "title": { "rendered": "Application configuration classes" },
+    "content": {
+      "rendered": "\n<p>Django allows you to specify configuration classes for your applications. When you create an&nbsp;<a></a>application using the&nbsp;<code>startapp</code>&nbsp;command, Django adds an&nbsp;<code>apps.py</code>&nbsp;file to&nbsp;the application directory, including a basic application configuration that inherits from the&nbsp;<code>AppConfig</code>&nbsp;class.</p>\n\n\n\n<p>The application configuration class allows you to store metadata and the configuration for the application, and it provides introspection for the application. You can find more information about application configurations at https://docs.djangoproject.com/en/3.0/ref/applications/.</p>\n\n\n\n<p>In order to register your signal&nbsp;<code>receiver</code>&nbsp;functions, when you use the&nbsp;<code>receiver()</code>&nbsp;decorator, you just need to import the&nbsp;<code>signals</code>&nbsp;module of your application inside the&nbsp;<code>ready()</code>&nbsp;method of the application configuration class. This method is called as&nbsp;soon as the application registry is fully populated. Any other initializations for your application should also be included in this method.</p>\n\n\n\n<p>Edit the&nbsp;<code>apps.py</code>&nbsp;file of the&nbsp;<code>images</code>&nbsp;application and make it look like this:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>from django.apps import AppConfig\nclass ImagesConfig(AppConfig):\n    name = 'images'\n    <strong>def ready(self):</strong>\n        <strong><em># import signal handlers</em></strong>\n        <strong>import images.signals</strong>\n</code></pre>\n\n\n\n<p>You import the signals for this application in the&nbsp;<code>ready()</code>&nbsp;method so that they are imported when the&nbsp;<code>images</code>&nbsp;application is loaded.</p>\n\n\n\n<p>Run the development server with the following command:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>python manage.py runserver\n</code></pre>\n\n\n\n<p>Open your&nbsp;<a></a>browser to view an image detail&nbsp;<a></a>page and click on the&nbsp;<strong>LIKE</strong>&nbsp;button. Go back to the administration site, navigate to the edit image URL, such as&nbsp;<code>http://127.0.0.1:8000/admin/images/image/1/change/</code>, and take a look at&nbsp;the&nbsp;<code>total_likes</code>&nbsp;attribute. You should see that the&nbsp;<code>total_likes</code>&nbsp;attribute is updated with the total number of users who like the image, as follows:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/B14981_06_06.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 6.6: The image edit page on the administration site, including denormalization for total likes</p>\n\n\n\n<p>Now, you can use the&nbsp;<code>total_likes</code>&nbsp;attribute to order images by popularity or&nbsp;display the value anywhere, avoiding using complex queries to calculate it. Consider the following query to get images ordered according to their likes count:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>from django.db.models import Count\nimages_by_popularity = Image.objects.annotate(\n    likes=Count('users_like')).order_by('-likes')\n</code></pre>\n\n\n\n<p>The preceding query can now be written as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>images_by_popularity = Image.objects.order_by('-total_likes')\n</code></pre>\n\n\n\n<p>This results in a less expensive SQL query. This is just an example of how to use Django signals.</p>\n\n\n\n<p>Use signals&nbsp;<a></a>with caution since they make it difficult to know the control flow. In many cases, you can avoid using signals if you know which receivers need to be notified.</p>\n\n\n\n<p>You will&nbsp;<a></a>need to set initial counts for the rest of the&nbsp;<code>Image</code>&nbsp;objects to match the current status of the database. Open the shell with the&nbsp;<code>python manage.py shell</code>&nbsp;command and run the following code:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>from images.models import Image\nfor image in Image.objects.all():\n    image.total_likes = image.users_like.count()\n    image.save()\n</code></pre>\n\n\n\n<p>The likes count for each image is now up to date.v</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Django allows you to specify configuration classes for your applications. When you create an&nbsp;application using the&nbsp;startapp&nbsp;command, Django adds an&nbsp;apps.py&nbsp;file to&nbsp;the application directory, including a basic application configuration that inherits from the&nbsp;AppConfig&nbsp;class. The application configuration class allows you to store metadata and the configuration for the application, and it provides introspection for the application. You can find more&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/application-configuration-classes/\">Continue reading <span class=\"screen-reader-text\">Application configuration classes</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [130],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3797" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3797"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3797/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3798,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3797/revisions/3798"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3797"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3797"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3797"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3799,
+    "date": "2022-06-28T11:29:02",
+    "date_gmt": "2022-06-28T11:29:02",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3799" },
+    "modified": "2022-06-28T11:29:02",
+    "modified_gmt": "2022-06-28T11:29:02",
+    "slug": "installing-redis",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/installing-redis/",
+    "title": { "rendered": "Installing Redis" },
+    "content": {
+      "rendered": "\n<p>If you are using Linux or macOS, download the latest Redis version from https://redis.io/download. Unzip the <code>tar.gz</code> file, enter the <code>redis</code> directory, and compile Redis using the <code>make</code> command, as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>cd redis-5.0.8\nmake\n</code></pre>\n\n\n\n<p>Redis is now installed on your machine. If you are using Windows, the preferred method to install Redis is to enable the <strong>Windows Subsystem for Linux</strong> (<strong>WSL</strong>) and install it in the Linux system. You can read instructions on enabling WSL and installing Redis at https://redislabs.com/blog/redis-on-windows-10/.</p>\n\n\n\n<p>After installing Redis, use the following shell command to start the Redis server:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>src/redis-server\n</code></pre>\n\n\n\n<p>You should see an output that ends with the following lines:</p>\n\n\n\n<pre class=\"wp-block-code\"><code><em># Server initialized</em>\n* Ready to accept connections\n</code></pre>\n\n\n\n<p>By default, Redis runs on port&nbsp;<code>6379</code>. You can specify a custom port using the&nbsp;<code>--port</code>&nbsp;flag, for example,&nbsp;<code>redis-server --port 6655</code>.</p>\n\n\n\n<p>Keep the Redis server running and open another shell. Start the Redis client with the following command:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>src/redis-cli\n</code></pre>\n\n\n\n<p>You will&nbsp;<a></a>see the Redis client shell prompt, like this:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>127.0.0.1:6379&gt;\n</code></pre>\n\n\n\n<p>The Redis client allows you to execute Redis commands directly from the shell. Let&#8217;s try some commands. Enter the&nbsp;<code>SET</code>&nbsp;command in the Redis shell to store a value in a key:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>127.0.0.1:6379&gt; SET name \"Peter\"\nOK\n</code></pre>\n\n\n\n<p>The preceding command creates a&nbsp;<code>name</code>&nbsp;key with the string value&nbsp;<code>\"Peter\"</code>&nbsp;in the Redis database. The&nbsp;<code>OK</code>&nbsp;output indicates that the key has been saved successfully.</p>\n\n\n\n<p>Next, retrieve the value using the&nbsp;<code>GET</code>&nbsp;command, as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>127.0.0.1:6379&gt; GET name\n\"Peter\"\n</code></pre>\n\n\n\n<p>You can also check whether a key exists using the&nbsp;<code>EXISTS</code>&nbsp;command. This command returns&nbsp;<code>1</code>&nbsp;if the given key exists, and&nbsp;<code>0</code>&nbsp;otherwise:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>127.0.0.1:6379&gt; EXISTS name\n(integer) 1\n</code></pre>\n\n\n\n<p>You can set the time for a key to expire using the&nbsp;<code>EXPIRE</code>&nbsp;command, which allows you to set time-to-live in seconds. Another option is using the&nbsp;<code>EXPIREAT</code>&nbsp;command, which expects a Unix timestamp. Key expiration is useful for using Redis as a cache or to store volatile data:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>127.0.0.1:6379&gt; GET name\n\"Peter\"\n127.0.0.1:6379&gt; EXPIRE name 2\n(integer) 1\n</code></pre>\n\n\n\n<p>Wait for two seconds and try to get the same key again:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>127.0.0.1:6379&gt; GET name\n(nil)\n</code></pre>\n\n\n\n<p>The&nbsp;<code>(nil)</code>&nbsp;response is a null response and means that no key has been found. You can also delete&nbsp;<a></a>any key using the&nbsp;<code>DEL</code>&nbsp;command, as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>127.0.0.1:6379&gt; SET total 1\nOK\n127.0.0.1:6379&gt; DEL total\n(integer) 1\n127.0.0.1:6379&gt; GET total\n(nil)\n</code></pre>\n\n\n\n<p>These are just basic commands for key operations. You can take a look at all Redis commands at https://redis.io/commands and all Redis data types at https://redis.io/topics/data-types.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>If you are using Linux or macOS, download the latest Redis version from https://redis.io/download. Unzip the tar.gz file, enter the redis directory, and compile Redis using the make command, as follows: Redis is now installed on your machine. If you are using Windows, the preferred method to install Redis is to enable the Windows Subsystem for Linux (WSL) and install it in the Linux system. You can&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/installing-redis/\">Continue reading <span class=\"screen-reader-text\">Installing Redis</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [130],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3799" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3799"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3799/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3800,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3799/revisions/3800"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3799"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3799"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3799"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3801,
+    "date": "2022-06-28T11:29:44",
+    "date_gmt": "2022-06-28T11:29:44",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3801" },
+    "modified": "2022-06-28T11:29:44",
+    "modified_gmt": "2022-06-28T11:29:44",
+    "slug": "using-redis-with-python",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/using-redis-with-python/",
+    "title": { "rendered": "Using Redis with Python" },
+    "content": {
+      "rendered": "\n<p>You will&nbsp;<a></a>need Python bindings for Redis. Install&nbsp;<code>redis-py</code>&nbsp;via&nbsp;<code>pip</code>&nbsp;using&nbsp;<a></a>the following command:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>pip install redis==3.4.1\n</code></pre>\n\n\n\n<p>You can find the <code>redis-py</code> documentation at https://redis-py.readthedocs.io/.</p>\n\n\n\n<p>The&nbsp;<code>redis-py</code>&nbsp;package interacts with Redis, providing a Python interface that&nbsp;follows the Redis command syntax. Open the Python shell and execute the following code:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&gt;&gt;&gt; import redis\n&gt;&gt;&gt; r = redis.Redis(host='localhost', port=6379, db=0)\n</code></pre>\n\n\n\n<p>The preceding code creates a connection with the Redis database. In Redis, databases are identified by an integer index instead of a database name. By default, a client is connected to the database&nbsp;<code>0</code>. The number of available Redis databases is set to&nbsp;<code>16</code>, but&nbsp;you can change this in the&nbsp;<code>redis.conf</code>&nbsp;configuration file.</p>\n\n\n\n<p>Next, set a key using the Python shell:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&gt;&gt;&gt; r.set('foo', 'bar')\nTrue\n</code></pre>\n\n\n\n<p>The command returns&nbsp;<code>True</code>, indicating that the key has been successfully created. Now you can retrieve the key using the&nbsp;<code>get()</code>&nbsp;command:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&gt;&gt;&gt; r.get('foo')\nb'bar'\n</code></pre>\n\n\n\n<p>As you will&nbsp;<a></a>note from the preceding code, the methods of&nbsp;<code>Redis</code>&nbsp;follow the Redis command syntax.</p>\n\n\n\n<p>Let&#8217;s&nbsp;<a></a>integrate Redis into your project. Edit the&nbsp;<code>settings.py</code>&nbsp;file of the&nbsp;<code>bookmarks</code>&nbsp;project and add the following settings to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>REDIS_HOST = 'localhost'\nREDIS_PORT = 6379\nREDIS_DB = 0\n</code></pre>\n\n\n\n<p>These are the settings for the Redis server and the database that you will use for your project.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>You will&nbsp;need Python bindings for Redis. Install&nbsp;redis-py&nbsp;via&nbsp;pip&nbsp;using&nbsp;the following command: You can find the redis-py documentation at https://redis-py.readthedocs.io/. The&nbsp;redis-py&nbsp;package interacts with Redis, providing a Python interface that&nbsp;follows the Redis command syntax. Open the Python shell and execute the following code: The preceding code creates a connection with the Redis database. In Redis, databases are identified by an integer index instead&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/using-redis-with-python/\">Continue reading <span class=\"screen-reader-text\">Using Redis with Python</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [130],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3801" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3801"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3801/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3802,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3801/revisions/3802"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3801"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3801"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3801"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3803,
+    "date": "2022-06-28T11:30:14",
+    "date_gmt": "2022-06-28T11:30:14",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3803" },
+    "modified": "2022-06-28T11:30:14",
+    "modified_gmt": "2022-06-28T11:30:14",
+    "slug": "storing-item-views-in-redis",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/storing-item-views-in-redis/",
+    "title": { "rendered": "Storing item views in Redis" },
+    "content": {
+      "rendered": "\n<p>Let&#8217;s find a way to store the total number of times an image has been viewed. If you implement&nbsp;<a></a>this using the Django ORM, it will involve a SQL&nbsp;<code>UPDATE</code>&nbsp;query every time an image is displayed. If you use Redis instead, you just need to&nbsp;<a></a>increment a counter stored in memory, resulting in a much better performance and less overhead.</p>\n\n\n\n<p>Edit the&nbsp;<code>views.py</code>&nbsp;file of the&nbsp;<code>images</code>&nbsp;application and add the following code to it after the existing&nbsp;<code>import</code>&nbsp;statements:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>import redis\nfrom django.conf import settings\n<em># connect to redis</em>\nr = redis.Redis(host=settings.REDIS_HOST,\n                port=settings.REDIS_PORT,\n                db=settings.REDIS_DB)\n</code></pre>\n\n\n\n<p>With the preceding code, you establish the Redis connection in order to use it in your views. Edit the&nbsp;<code>views.py</code>&nbsp;file of the&nbsp;<code>images</code>&nbsp;application and modify the&nbsp;<code>image_detail</code>&nbsp;view, like this:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>def image_detail(request, id, slug):\n    image = get_object_or_404(Image, id=id, slug=slug)\n    <strong><em># increment total image views by 1</em></strong>\n    <strong>total_views = r.incr(f'image:{image.id}:views')</strong>\n    return render(request,\n                  'images/image/detail.html',\n                  {'section': 'images',\n                   'image': image<strong>,</strong>\n                   <strong>'total_views': total_views</strong>})\n</code></pre>\n\n\n\n<p>In this view, you use the&nbsp;<code>incr</code>&nbsp;command that increments the value of a given key by&nbsp;<code>1</code>. If the key doesn&#8217;t exist, the&nbsp;<code>incr</code>&nbsp;command creates it. The&nbsp;<code>incr()</code>&nbsp;method returns the final value of the key after performing the operation. You store the value in the&nbsp;<code>total_views</code>&nbsp;variable and pass it in the template context. You build the Redis key using a notation, such as&nbsp;<code>object-type:id:field</code>&nbsp;(for example,&nbsp;<code>image:33:id</code>).</p>\n\n\n\n<p>The convention&nbsp;<a></a>for naming Redis keys is to use a colon sign as a separator for creating namespaced keys. By doing so, the key names are especially verbose and related&nbsp;<a></a>keys share part of the same schema in their names.</p>\n\n\n\n<p>Edit the&nbsp;<code>images/image/detail.html</code>&nbsp;template of the&nbsp;<code>images</code>&nbsp;application and add the following code to it after the existing&nbsp;<code>&lt;span class=\"count\"&gt;</code>&nbsp;element:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;span class=\"count\"&gt;\n  {{ total_views }} view{{ total_views|pluralize }}\n&lt;/span&gt;\n</code></pre>\n\n\n\n<p>Now, open an image detail page in your browser and reload it several times. You will see that each time the view is processed, the total views displayed is incremented by 1. Take a look at the following example:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/B14981_06_07.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 6.7: The image detail page, including the count of likes and views</p>\n\n\n\n<p>Great! You have successfully integrated Redis into your project to store item counts.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Let&#8217;s find a way to store the total number of times an image has been viewed. If you implement&nbsp;this using the Django ORM, it will involve a SQL&nbsp;UPDATE&nbsp;query every time an image is displayed. If you use Redis instead, you just need to&nbsp;increment a counter stored in memory, resulting in a much better performance and&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/storing-item-views-in-redis/\">Continue reading <span class=\"screen-reader-text\">Storing item views in Redis</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [130],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3803" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3803"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3803/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3804,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3803/revisions/3804"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3803"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3803"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3803"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3805,
+    "date": "2022-06-28T11:31:02",
+    "date_gmt": "2022-06-28T11:31:02",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3805" },
+    "modified": "2022-06-28T11:31:02",
+    "modified_gmt": "2022-06-28T11:31:02",
+    "slug": "storing-a-ranking-in-redis",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/storing-a-ranking-in-redis/",
+    "title": { "rendered": "Storing a ranking in Redis" },
+    "content": {
+      "rendered": "\n<p>Let&#8217;s build something more complex with Redis. You will create a ranking of the most viewed&nbsp;<a></a>images in your platform. For building this ranking, you will use Redis sorted sets. A sorted set is a non-repeating collection of strings in&nbsp;<a></a>which every member is associated with a score. Items are sorted by their score.</p>\n\n\n\n<p>Edit the&nbsp;<code>views.py</code>&nbsp;file of the&nbsp;<code>images</code>&nbsp;application and make the&nbsp;<code>image_detail</code>&nbsp;view look as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>def image_detail(request, id, slug):\n    image = get_object_or_404(Image, id=id, slug=slug)\n    # increment total image views by 1\n    total_views = r.incr(f'image:{image.id}:views')\n<strong>    # increment image ranking by 1</strong>\n<strong>    r.zincrby('image_ranking', 1, image.id)</strong>\n    return render(request,\n                  'images/image/detail.html',\n                  {'section': 'images',\n                   'image': image,\n                   'total_views': total_views})\n</code></pre>\n\n\n\n<p>You use the&nbsp;<code>zincrby()</code>&nbsp;command to store image views in a sorted set with the&nbsp;<code>image:ranking</code>&nbsp;key. You will store the image&nbsp;<code>id</code>&nbsp;and a related score of&nbsp;<code>1</code>, which will be added to the total score of this element in the sorted set. This will allow you to keep track of all image views globally and have a sorted set ordered by the total number of views.</p>\n\n\n\n<p>Now, create a new view to display the ranking of the most viewed images. Add the following code to the&nbsp;<code>views.py</code>&nbsp;file of the&nbsp;<code>images</code>&nbsp;application:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>@login_required\ndef image_ranking(request):\n    # get image ranking dictionary\n    image_ranking = r.zrange('image_ranking', 0, -1,\n                             desc=True)&#91;:10]\n    image_ranking_ids = &#91;int(id) for id in image_ranking]\n    # get most viewed images\n    most_viewed = list(Image.objects.filter(\n                           id__in=image_ranking_ids))\n    most_viewed.sort(key=lambda x: image_ranking_ids.index(x.id))\n    return render(request,\n                  'images/image/ranking.html',\n                  {'section': 'images',\n                   'most_viewed': most_viewed})\n</code></pre>\n\n\n\n<p>The&nbsp;<code>image_ranking</code>&nbsp;view works like this:</p>\n\n\n\n<ol><li>You use the&nbsp;<code>zrange()</code>&nbsp;command to obtain the elements in the sorted set. This command expects a custom range according to the lowest and highest score. Using&nbsp;<code>0</code>&nbsp;as the lowest and&nbsp;<code>-1</code>&nbsp;as the highest score, you are telling Redis to return all elements in the sorted set. You also specify&nbsp;<code>desc=True</code>&nbsp;to retrieve the elements ordered by descending score. Finally, you slice the results using&nbsp;<code>[:10]</code>&nbsp;to get the first 10 elements with the highest score.</li><li>You build a list of returned image IDs and store it in the&nbsp;<code>image_ranking_ids</code>&nbsp;variable as a list of integers. You retrieve the&nbsp;<code>Image</code>&nbsp;objects for those IDs and force the query to be executed using the&nbsp;<code>list()</code>&nbsp;function. It is important to force the QuerySet execution because you will use the&nbsp;<code>sort()</code>&nbsp;list method on it (at this point, you need a list of objects instead of a QuerySet).</li><li>You sort the&nbsp;<code>Image</code>&nbsp;objects by their index of appearance in the image ranking. Now you can use the&nbsp;<code>most_viewed</code>&nbsp;list in your template to display the 10&nbsp;most viewed images.</li></ol>\n\n\n\n<p>Create&nbsp;<a></a>a new&nbsp;<code>ranking.html</code>&nbsp;template inside the&nbsp;<code>images/image/</code>&nbsp;template&nbsp;<a></a>directory of the&nbsp;<code>images</code>&nbsp;application and add the following code to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{% extends \"base.html\" %}\n{% block title %}Images ranking{% endblock %}\n{% block content %}\n  &lt;h1&gt;Images ranking&lt;/h1&gt;\n  &lt;ol&gt;\n    {% for image in most_viewed %}\n      &lt;li&gt;\n        &lt;a href=\"{{ image.get_absolute_url }}\"&gt;\n          {{ image.title }}\n        &lt;/a&gt;\n      &lt;/li&gt;\n    {% endfor %}\n  &lt;/ol&gt;\n{% endblock %}\n</code></pre>\n\n\n\n<p>The template is pretty straightforward. You iterate over the&nbsp;<code>Image</code>&nbsp;objects contained in the&nbsp;<code>most_viewed</code>&nbsp;list and display their names, including a link to the image detail page.</p>\n\n\n\n<p>Finally, you need to create a URL pattern for the new view. Edit the&nbsp;<code>urls.py</code>&nbsp;file of&nbsp;the&nbsp;<code>images</code>&nbsp;application and add the following pattern to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>path('ranking/', views.image_ranking, name='ranking'),\n</code></pre>\n\n\n\n<p>Run the development server, access your site in your web browser, and load the image detail page&nbsp;<a></a>multiple times for different images. Then, access&nbsp;<code>http://127.0.0.1:8000/images/ranking/</code>&nbsp;from your browser. You should&nbsp;<a></a>be&nbsp;able&nbsp;to see an image ranking, as follows:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/B14981_06_08.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 6.8: The ranking page built with data retrieved from Redis</p>\n\n\n\n<p>Great! You just created a ranking with Redis.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Let&#8217;s build something more complex with Redis. You will create a ranking of the most viewed&nbsp;images in your platform. For building this ranking, you will use Redis sorted sets. A sorted set is a non-repeating collection of strings in&nbsp;which every member is associated with a score. Items are sorted by their score. Edit the&nbsp;views.py&nbsp;file of&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/storing-a-ranking-in-redis/\">Continue reading <span class=\"screen-reader-text\">Storing a ranking in Redis</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [130],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3805" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3805"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3805/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3806,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3805/revisions/3806"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3805"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3805"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3805"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3807,
+    "date": "2022-06-28T11:31:27",
+    "date_gmt": "2022-06-28T11:31:27",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3807" },
+    "modified": "2022-06-28T11:31:27",
+    "modified_gmt": "2022-06-28T11:31:27",
+    "slug": "next-steps-with-redis",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/next-steps-with-redis/",
+    "title": { "rendered": "Next steps with Redis" },
+    "content": {
+      "rendered": "\n<p>Redis is not&nbsp;<a></a>a replacement for your SQL database, but it does offer fast in-memory storage that is more suitable for certain tasks. Add it to your stack and use it when you really feel it&#8217;s needed. The following are some scenarios in which Redis could be&nbsp;useful:</p>\n\n\n\n<ul><li><strong>Counting</strong>: As you&nbsp;<a></a>have seen, it is very easy to manage counters with Redis. You can use&nbsp;<code>incr()</code>&nbsp;and&nbsp;<code>incrby()</code>&nbsp;for counting stuff.</li><li><strong>Storing latest items</strong>: You can&nbsp;<a></a>add items to the start/end of a list using&nbsp;<code>lpush()</code>&nbsp;and&nbsp;<code>rpush()</code>. Remove and return the first/last element using&nbsp;<code>lpop()</code>&nbsp;/&nbsp;<code>rpop()</code>. You can trim the list&#8217;s length using&nbsp;<code>ltrim()</code>&nbsp;to maintain its&nbsp;length.</li><li><strong>Queues</strong>: In addition&nbsp;<a></a>to&nbsp;<code>push</code>&nbsp;and&nbsp;<code>pop</code>&nbsp;commands, Redis offers the blocking of&nbsp;queue commands.</li><li><strong>Caching</strong>: Using&nbsp;<code>expire()</code>&nbsp;and&nbsp;<code>expireat()</code>&nbsp;allows you to use Redis as a&nbsp;cache. You&nbsp;<a></a>can also find third-party Redis cache backends for Django.</li><li><strong>Pub/sub</strong>: Redis&nbsp;<a></a>provides commands for subscribing/unsubscribing and sending messages to channels.</li><li><strong>Rankings and leaderboards</strong>: Redis&nbsp;<a></a>sorted sets with scores make it very easy to create leaderboards.</li><li><strong>Real-time tracking</strong>: Redis&#8217;s&nbsp;<a></a>fast I/O makes it perfect for real-time scenarios.</li></ul>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Redis is not&nbsp;a replacement for your SQL database, but it does offer fast in-memory storage that is more suitable for certain tasks. Add it to your stack and use it when you really feel it&#8217;s needed. The following are some scenarios in which Redis could be&nbsp;useful: Counting: As you&nbsp;have seen, it is very easy to&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/next-steps-with-redis/\">Continue reading <span class=\"screen-reader-text\">Next steps with Redis</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [130],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3807" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3807"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3807/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3808,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3807/revisions/3808"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3807"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3807"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3807"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  }
+]

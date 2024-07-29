@@ -1,0 +1,472 @@
+[
+  {
+    "id": 3155,
+    "date": "2020-11-28T06:14:36",
+    "date_gmt": "2020-11-28T06:14:36",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3155"
+    },
+    "modified": "2020-11-28T06:14:36",
+    "modified_gmt": "2020-11-28T06:14:36",
+    "slug": "promises",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/promises/",
+    "title": {
+      "rendered": "Promises"
+    },
+    "content": {
+      "rendered": "\n<h2>Understanding JavaScript Promises</h2>\n\n\n\n<p>In JavaScript, a promise is an object that returns a value which you hope to receive in the future, but not now.</p>\n\n\n\n<p>Because the value will be returned by the promise in the future, the promise is very well-suited for handling asynchronous operations.</p>\n\n\n\n<p>It\u2019ll be easier to understand the concept of JavaScript promises through an analogy.</p>\n\n\n\n<p>Suppose that you promise to complete learning JavaScript by next month.</p>\n\n\n\n<p>You don\u2019t know if you will spend your time and effort to learn JavaScript until next month. You can either be completing learning JavaScript or not.</p>\n\n\n\n<p>A promise has three states:</p>\n\n\n\n<ul><li>Pending: you don\u2019t know if you will complete learning JavaScript by the next month.</li><li>Fulfilled: you complete learning JavaScript by the next month.</li><li>Rejected: you don\u2019t learn JavaScript at all.</li></ul>\n\n\n\n<p>A promise starts in the pending state which indicates that the promise hasn\u2019t completed. It ends with either fulfilled (successful) or rejected (failed) state.</p>\n\n\n\n<h2>Creating a promise: the&nbsp;<code>Promise</code>&nbsp;constructor</h2>\n\n\n\n<p>To create a promise in JavaScript, you use the&nbsp;<code>Promise</code>&nbsp;constructor:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let completed = true;\n\nlet learnJS = new Promise(function (resolve, reject) {\n    if (completed) {\n        resolve(\"I have completed learning JS.\");\n    } else {\n        reject(\"I haven't completed learning JS yet.\");\n    }\n});\n</code></pre>\n\n\n\n<p>The&nbsp;<code>Promise</code>&nbsp;constructor accepts a function as an argument. This function is called the&nbsp;<code>executor</code>.</p>\n\n\n\n<p>The executor accepts two functions with the names, by convention,&nbsp;<code>resolve()</code>&nbsp;and&nbsp;<code>reject()</code>.&nbsp;</p>\n\n\n\n<p>When you call the&nbsp;<code>new Promise(executor)</code>, the&nbsp;<code>executor</code>&nbsp;is called automatically.&nbsp;</p>\n\n\n\n<p>Inside the executor, you manually call the&nbsp;<code>resolve()</code>&nbsp;function if the executor is completed successfully and invoke the&nbsp;<code>reject()</code>&nbsp;function in case of an error occurs.</p>\n\n\n\n<p>If you embed the above JavaScript code in an HTML document and check the console window, you will see that the promise is resolved because the&nbsp;<code>completed</code>&nbsp;variable is set to&nbsp;<code>true</code>.</p>\n\n\n\n<p>To see the pending state of the promise, we wrap the code of the executor in the\u00a0<code>setTimeout()</code>\u00a0function:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let completed = true;\n\nlet learnJS = new Promise(function (resolve, reject) {\n    setTimeout(() => {\n        if (completed) {\n            resolve(\"I have completed learning JS.\");\n        } else {\n            reject(\"I haven't completed learning JS yet.\");\n        }\n    }, 3 * 1000);\n});</code></pre>\n\n\n\n<p>Now, you see that the promise starts with the&nbsp;<code>pending</code>&nbsp;state with the value is&nbsp;<code>undefined</code>. The promise value will be returned later once the promise is completed.</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://cdn.javascripttutorial.net/wp-content/uploads/2020/03/JavaScript-Promise-Pending.png\" alt=\"JavaScript Promise - Pending\" class=\"wp-image-85846\"/></figure>\n\n\n\n<p>After about 3 seconds, type the&nbsp;<code>learnJS</code>&nbsp;in the console window, you will see that the state of the promise becomes&nbsp;<code>resolved</code>&nbsp;and the promise value is the string that we passed to the&nbsp;<code>resolve()</code>&nbsp;function.</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://cdn.javascripttutorial.net/wp-content/uploads/2020/03/JavaScript-Promise-Resolved.png\" alt=\"JavaScript Promise - Resolved\" class=\"wp-image-85847\"/></figure>\n\n\n\n<p>So calling the&nbsp;<code>resolve()</code>&nbsp;function moves the promise object to the fulfilled state. If you change the value of the&nbsp;<code>completed</code>&nbsp;variable to&nbsp;<code>false</code>&nbsp;and run the script again:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let completed = false;</code></pre>\n\n\n\n<p>You will see an error message and the state of the promise becomes&nbsp;<code>rejected</code>&nbsp;after 3 seconds:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://cdn.javascripttutorial.net/wp-content/uploads/2020/03/JavaScript-Promise-Rejected.png\" alt=\"JavaScript Promise - Rejected\" class=\"wp-image-85849\"/></figure>\n\n\n\n<p>In other words, calling the&nbsp;<code>reject()</code>&nbsp;method moves the promise object to the&nbsp;<code>rejected</code>&nbsp;state.</p>\n\n\n\n<p>The following picture illustrates the states of a promise and the effect of calling the&nbsp;<code>resolve()</code>&nbsp;and&nbsp;<code>reject()</code>&nbsp;functions:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://cdn.javascripttutorial.net/wp-content/uploads/2020/03/JavaScript-Promise-state.png\" alt=\"\" class=\"wp-image-85858\"/></figure>\n\n\n\n<p>Once the promise reaches either fulfilled state or rejected state, it stays in that state and can\u2019t switch.</p>\n\n\n\n<p>In other words, a promise cannot go from the fulfilled state to the rejected state and vice versa. It also cannot go back from the fulfilled state or rejected state to the pending state.</p>\n\n\n\n<p>If the promise reaches fulfilled state or rejected state, the promise is resolved.</p>\n\n\n\n<p>Once a new&nbsp;<code>Promise</code>&nbsp;object is created, it is in the pending state until it is resolved. To schedule a callback when the promise is either resolved or rejected, you call the methods of the&nbsp;<code>Promise</code>&nbsp;object:&nbsp;<code>then()</code>,&nbsp;<code>catch()</code>, and&nbsp;<code>finally()</code>.</p>\n\n\n\n<h2>Consuming a Promise: then, catch, finally</h2>\n\n\n\n<h3>1) The&nbsp;<code>then()</code>&nbsp;method</h3>\n\n\n\n<p>The&nbsp;<code>then()</code>&nbsp;method is used to schedule a callback to be executed when the promise is successfully resolved.</p>\n\n\n\n<p>The\u00a0<code>then()</code>\u00a0method takes two\u00a0callback functions:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>promiseObject.then(onFulfilled, onRejected);</code></pre>\n\n\n\n<p>The&nbsp;<code>onFulfilled</code>&nbsp;callback is called if the promise is fulfilled. The&nbsp;<code>onRejected</code>&nbsp;callback is called when the promise is rejected.</p>\n\n\n\n<p>The following function returns a&nbsp;<code>Promise</code>&nbsp;object:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function makePromise(completed) {\n    return new Promise(function (resolve, reject) {\n        setTimeout(() => {\n            if (completed) {\n                resolve(\"I have completed learning JS.\");\n            } else {\n                reject(\"I haven't completed learning JS yet.\");\n            }\n        }, 3 * 1000);\n    });\n}</code></pre>\n\n\n\n<p>And the following calls the&nbsp;<code>makePromise()</code>&nbsp;function and invokes the&nbsp;<code>then()</code>&nbsp;method:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let learnJS = makePromise(true);\n\nlearnJS.then(\n    success => console.log(success),\n    reason => console.log(reason)\n);</code></pre>\n\n\n\n<p>It is possible to schedule a callback to handle the fulfilled or rejected case only. The following runs the fulfilled case:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>learnJS.then(\n    value => console.log(value)\n);</code></pre>\n\n\n\n<p>And the following schedules a callback to handle the rejected case:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let masterJS = makePromise(false);\n\nmasterJS.then(\n    undefined,\n    reason => console.log(reason)\n);</code></pre>\n\n\n\n<p>Note that you must pass&nbsp;<code>undefined</code>&nbsp;to the&nbsp;<code>then()</code>&nbsp;method as the first argument.</p>\n\n\n\n<h3>2) The&nbsp;<code>catch()</code>&nbsp;method</h3>\n\n\n\n<p>If you want to schedule a callback to be executed when the promise is rejected, you can use the&nbsp;<code>catch()</code>&nbsp;method of the&nbsp;<code>Promise</code>&nbsp;object:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>learnJS.catch(\n    reason => console.log(reason)\n);</code></pre>\n\n\n\n<p>Internally, the&nbsp;<code>catch()</code>&nbsp;method invokes the&nbsp;<code>then(undefined, onRejected)</code>&nbsp;method.</p>\n\n\n\n<h3>3) The&nbsp;<code>finally()</code>&nbsp;method</h3>\n\n\n\n<p>Sometimes, you want to execute the same piece of code whether the promise is fulfilled or rejected. For example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function createApp() {\n    // ...\n}\n\nlearnJS\n    .then(\n        (success) => {\n            console.log(success);\n            createApp();\n        }\n    ).catch(\n        (reason) => {\n            console.log(reason);\n            createApp();\n        }\n    );\n</code></pre>\n\n\n\n<p>As you can see, the&nbsp;<code>createApp()</code>&nbsp;function call is duplicated in both&nbsp;<code>then()</code>&nbsp;and&nbsp;<code>catch()</code>&nbsp;methods.</p>\n\n\n\n<p>To remove this duplicate and execute the&nbsp;<code>createApp()</code>&nbsp;whether the promise is fulfilled or rejected, you use the&nbsp;<code>finally()</code>&nbsp;method, like this:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>learnJS\n    .then(success => console.log(success))\n    .catch(reason => console.log(reason))\n    .finally(() => createApp());</code></pre>\n\n\n\n<h2>Practical JavaScript Promise example</h2>\n\n\n\n<p>We\u2019ll show you how to load a JSON file from the server and display the message on a webpage.</p>\n\n\n\n<p>Suppose that we have the following JSON file: https://www.javascripttutorial.net/sample/promise/api.json</p>\n\n\n\n<p>Here are the contents of the api.json file:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{\n    \"message\": \"JavaScript Promise Demo\"\n}</code></pre>\n\n\n\n<p>The following shows the HTML page that contains a button. When you click the button, the page loads data from the JSON file and shows the message:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;!DOCTYPE html>\n&lt;html>\n&lt;head>\n    &lt;meta charset=\"utf-8\">\n    &lt;title>JavaScript Promise Demo&lt;/title>\n    &lt;link href=\"css/style.css\" rel=\"stylesheet\">\n&lt;/head>\n&lt;body>\n    &lt;div id=\"container\">\n        &lt;div id=\"message\">&lt;/div>\n        &lt;button id=\"btnGet\">Get Message&lt;/button>\n    &lt;/div>\n    &lt;script src=\"js/promise-demo.js\">\n    &lt;/script>\n&lt;/body>\n&lt;/html></code></pre>\n\n\n\n<p>To load the JSON file, we\u2019ll use the&nbsp;<code>XMLHttpRequest</code>&nbsp;object. Later, you will learn how to use the&nbsp;<code>fetch()</code>&nbsp;method.</p>\n\n\n\n<p>The following function returns a Promise object that loads data from a remote file:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function load(url) {\n    return new Promise(function (resolve, reject) {\n        const request = new XMLHttpRequest();\n\n        request.onreadystatechange = function (e) {\n            if (this.readyState === 4) {\n                if (this.status == 200) {\n                    resolve(this.response);\n                } else {\n                    reject(this.status);\n                }\n            }\n        }\n        request.open('GET', url, true);\n        request.send();\n    });\n}</code></pre>\n\n\n\n<p>Inside the executor, we called&nbsp;<code>resolve()</code>&nbsp;function and passed in the response if the HTTP status code is 200, otherwise, we invoked the&nbsp;<code>reject()</code>&nbsp;function and passed in the HTTP status code.</p>\n\n\n\n<p>Register the button click event listener and call the&nbsp;<code>then()</code>&nbsp;method on the Promise. If the load is successful, then we show the message returned from the server. Otherwise, we show the error message with the HTTP status code.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>const btn = document.querySelector('#btnGet');\nconst msg = document.querySelector('#message');\nbtn.onclick = function () {\n    load('https://www.javascripttutorial.net/sample/promise/api.json')\n        .then(\n            response => {\n                const result = JSON.parse(response);\n                msg.innerHTML = result.message;\n            },\n            error => msg.innerHTML = `Error getting the message, HTTP status: ${error}`\n        );\n}</code></pre>\n\n\n\n<p></p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Understanding JavaScript Promises In JavaScript, a promise is an object that returns a value which you hope to receive in the future, but not now. Because the value will be returned by the promise in the future, the promise is very well-suited for handling asynchronous operations. It\u2019ll be easier to understand the concept of JavaScript [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [205],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3155"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=3155"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3155/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=3155"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=3155"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=3155"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 3157,
+    "date": "2020-11-28T06:15:44",
+    "date_gmt": "2020-11-28T06:15:44",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3157"
+    },
+    "modified": "2020-11-28T06:15:44",
+    "modified_gmt": "2020-11-28T06:15:44",
+    "slug": "promise-chaining",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/promise-chaining/",
+    "title": {
+      "rendered": "Promise chaining"
+    },
+    "content": {
+      "rendered": "\n<h2>Introduction to the JavaScript promise chaining</h2>\n\n\n\n<p>The instance method of the\u00a0<code>Promise</code>\u00a0object such as\u00a0<code>then()</code>,\u00a0<code>catch()</code>, or\u00a0<code>finally()</code>\u00a0returns a separate promise object.\u00a0Therefore, you can call the promise\u2019s instance method on the return\u00a0<code>Promise</code>. The successively calling methods in this way is referred to as the promise chaining.</p>\n\n\n\n<p>Consider the following example.</p>\n\n\n\n<p>First, create a new promise that resolves to the value 10 after 3 seconds:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let p = new Promise((resolve, reject) => {\n    setTimeout(() => {\n        resolve(10);\n    }, 3 * 100);\n});</code></pre>\n\n\n\n<p>Note that we use the\u00a0<code>setTimeout()</code>\u00a0method to simulate an asynchronous operation.</p>\n\n\n\n<p>Then, invoke the&nbsp;<code>then()</code>&nbsp;method on the promise:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>p.then((result) => {\n    console.log(result);\n    return result * 2;\n});</code></pre>\n\n\n\n<p>The callback passed to the&nbsp;<code>then()</code>&nbsp;method executes once the promise is resolved. In the callback, we showed the result of the promise and returned a new value:&nbsp;<code>result*2</code>.</p>\n\n\n\n<p>Because the&nbsp;<code>then()</code>&nbsp;method returns a new&nbsp;<code>Promise</code>&nbsp;whose value is resolved to the return value, you can call the&nbsp;<code>then()</code>&nbsp;method on the return&nbsp;<code>Promise</code>, like this:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let p = new Promise((resolve, reject) => {\n    setTimeout(() => {\n        resolve(10);\n    }, 3 * 100);\n});\n\np.then((result) => {\n    console.log(result);\n    return result * 2;\n}).then((result) => {\n    console.log(result);\n    return result * 3;\n});</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>10\n20</code></pre>\n\n\n\n<p>In this example, the return value in the first&nbsp;<code>then()</code>&nbsp;method is passed to the second&nbsp;<code>then()</code>&nbsp;method. You can keep calling the&nbsp;<code>then()</code>&nbsp;method successively as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let p = new Promise((resolve, reject) => {\n    setTimeout(() => {\n        resolve(10);\n    }, 3 * 100);\n});\n\np.then((result) => {\n    console.log(result); // 10\n    return result * 2;\n}).then((result) => {\n    console.log(result); // 20\n    return result * 3;\n}).then((result) => {\n    console.log(result); // 60\n    return result * 4;\n});\n</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>10\n20\n60</code></pre>\n\n\n\n<p>The following picture illustrates the promise chaining:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://cdn.javascripttutorial.net/wp-content/uploads/2020/03/JavaScript-Promise-Chaining.png\" alt=\"JavaScript Promise Chaining\" class=\"wp-image-85905\"/></figure>\n\n\n\n<h2>Multiple handlers for a promise</h2>\n\n\n\n<p>When you call the&nbsp;<code>then()</code>&nbsp;method multiple times on a promise, it is not promise chaining. For example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let p = new Promise((resolve, reject) => {\n    setTimeout(() => {\n        resolve(10);\n    }, 3 * 100);\n});\n\np.then((result) => {\n    console.log(result); // 10\n    return result * 2;\n})\n\np.then((result) => {\n    console.log(result); // 10\n    return result * 3;\n})\n\np.then((result) => {\n    console.log(result); // 10\n    return result * 4;\n});</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>10\n10\n10</code></pre>\n\n\n\n<p>In this example, you have multiple handlers for one promise. These handlers have no relationships. They execute independently and also don\u2019t pass the result from one to another like the promise chaining above.</p>\n\n\n\n<p>The following picture illustrates a promise that has multiple handlers:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://cdn.javascripttutorial.net/wp-content/uploads/2020/03/JavaScript-Promise-Chaining-multiple-handlers.png\" alt=\"JavaScript Promise Chaining - multiple handlers\" class=\"wp-image-85906\"/></figure>\n\n\n\n<p>In practice, you will rarely use the multiple handlers for one promise.</p>\n\n\n\n<h2>Returning a Promise</h2>\n\n\n\n<p>When you return a value in the&nbsp;<code>then()</code>&nbsp;method, the&nbsp;<code>then()</code>&nbsp;method returns a new&nbsp;<code>Promise</code>&nbsp;that immediately resolves to the return value.</p>\n\n\n\n<p>Also, you can return a new promise in the&nbsp;<code>then()</code>&nbsp;method, like this:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let p = new Promise((resolve, reject) => {\n    setTimeout(() => {\n        resolve(10);\n    }, 3 * 100);\n});\n\np.then((result) => {\n    console.log(result);\n    return new Promise((resolve, reject) => {\n        setTimeout(() => {\n            resolve(result * 2);\n        }, 3 * 1000);\n    });\n}).then((result) => {\n    console.log(result);\n    return new Promise((resolve, reject) => {\n        setTimeout(() => {\n            resolve(result * 3);\n        }, 3 * 1000);\n    });\n}).then(result => console.log(result));\n</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>10\n20\n60</code></pre>\n\n\n\n<p>This example shows 10, 20 and 60 after every 3 seconds. This code pattern allows you to execute some tasks in sequence.</p>\n\n\n\n<p>The following refactors the above example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function generateNumber(num) {\n    return new Promise((resolve, reject) => {\n        setTimeout(() => {\n            resolve(num);\n        }, 3 * 1000);\n    });\n}\n\ngenerateNumber(10)\n    .then(result => {\n        console.log(result);\n        return generateNumber(result * 2);\n    })\n    .then((result) => {\n        console.log(result);\n        return generateNumber(result * 3);\n    })\n    .then(result => console.log(result));\n</code></pre>\n\n\n\n<h3>Promise chaining syntax</h3>\n\n\n\n<p>Sometimes, you have multiple asynchronous tasks that you want to execute in sequence. In addition, you need to pass the result of the previous step to the next one. In this case, you can use the following syntax:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>step1()\n    .then(result => step2(result))\n    .then(result => step3(result))\n    ...\n</code></pre>\n\n\n\n<p>If you need to pass the result from the previous task to the next one without passing the result, you use this syntax:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>step1()\n    .then(step2)\n    .then(step3)\n    ...\n</code></pre>\n\n\n\n<p>Suppose that you want to perform the following asynchronous operations in sequence:</p>\n\n\n\n<ol><li>Get the user from the database.</li><li>Get the services of the selected user.</li><li>Calculate the service cost from the user\u2019s services.</li></ol>\n\n\n\n<p>The following functions illustrate the three asynchronous operations:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function getUser(userId) {\n    return new Promise((resolve, reject) => {\n        console.log('Get the user from the database.');\n        setTimeout(() => {\n            resolve({\n                userId: userId,\n                username: 'admin'\n            });\n        }, 1000);\n    })\n}\n\nfunction getServices(user) {\n    return new Promise((resolve, reject) => {\n        console.log(`Get the services of ${user.username} from the API.`);\n        setTimeout(() => {\n            resolve(&#91;'Email', 'VPN', 'CDN']);\n        }, 3 * 1000);\n    });\n}\n\nfunction getServiceCost(services) {\n    return new Promise((resolve, reject) => {\n        console.log(`Calculate the service cost of ${services}.`);\n        setTimeout(() => {\n            resolve(services.length * 100);\n        }, 2 * 1000);\n    });\n}</code></pre>\n\n\n\n<p>The following uses the promises to serialize the sequences:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>getUser(100)\n    .then(getServices)\n    .then(getServiceCost)\n    .then(console.log);</code></pre>\n\n\n\n<p>Output</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Get the user from the database.\nGet the services of admin from the API.\nCalculate the service cost of Email,VPN,CDN.\n300</code></pre>\n\n\n\n<p>Note that ES2017 introduced the\u00a0<code>async</code>/<code>await</code>\u00a0keywords that help you write cleaner code than using this promise chain technique.</p>\n\n\n\n<p>In this tutorial, you have learned about the promise chain that executes multiple asynchronous tasks in sequence.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Introduction to the JavaScript promise chaining The instance method of the\u00a0Promise\u00a0object such as\u00a0then(),\u00a0catch(), or\u00a0finally()\u00a0returns a separate promise object.\u00a0Therefore, you can call the promise\u2019s instance method on the return\u00a0Promise. The successively calling methods in this way is referred to as the promise chaining. Consider the following example. First, create a new promise that resolves to the [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [205],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3157"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=3157"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3157/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=3157"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=3157"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=3157"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 3159,
+    "date": "2020-11-28T06:17:23",
+    "date_gmt": "2020-11-28T06:17:23",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3159"
+    },
+    "modified": "2020-11-28T06:17:23",
+    "modified_gmt": "2020-11-28T06:17:23",
+    "slug": "promise-all",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/promise-all/",
+    "title": {
+      "rendered": "Promise.all( )"
+    },
+    "content": {
+      "rendered": "\n<p>The\u00a0<code>Promise.all()</code>\u00a0static method accepts a list of\u00a0Promises\u00a0and returns a\u00a0<code>Promise</code>\u00a0that:</p>\n\n\n\n<ul><li>resolves when every input Promise has resolved or</li><li>rejected when any of the input Promise has rejected.</li></ul>\n\n\n\n<p>The following shows the syntax of the&nbsp;<code>Promise.all()</code>&nbsp;method:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Promise.all(iterable);</code></pre>\n\n\n\n<p>The\u00a0<code>iterable</code>\u00a0argument is a list of the promises passed into the\u00a0<code>Promise.all()</code>\u00a0as an\u00a0iterable object.</p>\n\n\n\n<p>If all the input promises resolve, the&nbsp;<code>Promise.all()</code>&nbsp;static method returns a new&nbsp;<code>Promise</code>&nbsp;that resolves to an array of resolved values from the input promises, in an iterator order.</p>\n\n\n\n<p>If one of the input promises rejects, the&nbsp;<code>Promise.all()</code>&nbsp;returns&nbsp; a new&nbsp;<code>Promise</code>&nbsp;that rejects with the rejection reason from the first rejected promise. The subsequent rejections will not affect the rejection reason. The returned Promise also handles the rejections silently.</p>\n\n\n\n<p>The&nbsp;<code>Promise.all()</code>&nbsp;is useful when you want to aggregate the results from multiple asynchronous operations.</p>\n\n\n\n<h2>JavaScript&nbsp;<code>Promise.all()</code>&nbsp;examples</h2>\n\n\n\n<p>Let\u2019s take some examples to understand how the&nbsp;<code>Promise.all()</code>&nbsp;works.</p>\n\n\n\n<h3>1) Resolved promises example</h3>\n\n\n\n<p>The following promises resolve to 10, 20, and 30 after 1, 2, and 3 seconds. We use the\u00a0<code>setTimeout()</code>\u00a0to simulate the asynchronous operations:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>const p1 = new Promise((resolve, reject) => {\n    setTimeout(() => {\n        console.log('The first promise has resolved');\n\n        resolve(10);\n    }, 1 * 1000);\n\n});\nconst p2 = new Promise((resolve, reject) => {\n    setTimeout(() => {\n        console.log('The second promise has resolved');\n        resolve(20);\n    }, 2 * 1000);\n});\nconst p3 = new Promise((resolve, reject) => {\n    setTimeout(() => {\n        console.log('The third promise has resolved');\n        resolve(30);\n    }, 3 * 1000);\n});\n</code></pre>\n\n\n\n<p>To wait for all three promises to resolve, you use the&nbsp;<code>Promise.all()</code>&nbsp;method:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Promise.all(&#91;p1, p2, p3])\n    .then(results => {\n        const total = results.reduce((p, c) => p + c);\n\n        console.log(`Results: ${results}`);\n        console.log(`Total: ${total}`);\n    });\n</code></pre>\n\n\n\n<p>Output</p>\n\n\n\n<pre class=\"wp-block-code\"><code>The first promise has resolved\nThe second promise has resolved\nThe third promise has resolved\nResults: 10,20,30\nTotal: 60\n</code></pre>\n\n\n\n<p>When all promises have resolved, the values from these promises are passed into the callback of the&nbsp;<code>then()</code>&nbsp;method as an array.</p>\n\n\n\n<p>Inside the callback, we use the Array\u2019s\u00a0<code>reduce()</code>\u00a0method to calculate the total value and use the\u00a0<code>console.log</code>\u00a0to display the array of values as well as the total.</p>\n\n\n\n<h3>2) Rejected promises example</h3>\n\n\n\n<p>The&nbsp;<code>Promise.all()</code>&nbsp;returns a Promise that is rejected if any of the input promises are rejected.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>const p1 = new Promise((resolve, reject) => {\n    setTimeout(() => {\n        console.log('The first promise has resolved');\n        resolve(10);\n    }, 1 * 1000);\n\n});\nconst p2 = new Promise((resolve, reject) => {\n    setTimeout(() => {\n        console.log('The second promise has rejected');\n        reject('Failed');\n    }, 2 * 1000);\n});\nconst p3 = new Promise((resolve, reject) => {\n    setTimeout(() => {\n        console.log('The third promise has resolved');\n        resolve(30);\n    }, 3 * 1000);\n});\n\n\nPromise.all(&#91;p1, p2, p3])\n    .then(console.log) // never execute\n    .catch(console.log);\n</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>The first promise has resolved\nThe second promise has rejected\nFailed\nThe third promise has resolved\n</code></pre>\n\n\n\n<p>In this example, we have three promises: the first one is resolved after 1 second, the second is rejected after 2 seconds, and the third one is resolved after 3 seconds.</p>\n\n\n\n<p>As a result, the return promise is rejected because the second promise is rejected. The&nbsp;<code>catch()</code>&nbsp;method is executed to display the reason for the rejected promise.</p>\n\n\n\n<p>In this tutorial, you have learned how to use the JavaScript&nbsp;<code>Promise.all()</code>&nbsp;method to aggregate results from multiple asynchronous operations.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>The\u00a0Promise.all()\u00a0static method accepts a list of\u00a0Promises\u00a0and returns a\u00a0Promise\u00a0that: resolves when every input Promise has resolved or rejected when any of the input Promise has rejected. The following shows the syntax of the&nbsp;Promise.all()&nbsp;method: The\u00a0iterable\u00a0argument is a list of the promises passed into the\u00a0Promise.all()\u00a0as an\u00a0iterable object. If all the input promises resolve, the&nbsp;Promise.all()&nbsp;static method returns a new&nbsp;Promise&nbsp;that [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [205],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3159"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=3159"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3159/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=3159"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=3159"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=3159"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 3161,
+    "date": "2020-11-28T06:18:55",
+    "date_gmt": "2020-11-28T06:18:55",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3161"
+    },
+    "modified": "2020-11-28T06:18:55",
+    "modified_gmt": "2020-11-28T06:18:55",
+    "slug": "promise-race",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/promise-race/",
+    "title": {
+      "rendered": "Promise.race( )"
+    },
+    "content": {
+      "rendered": "\n<h2>Introduction to JavaScript&nbsp;<code>Promise.race()</code>&nbsp;static method</h2>\n\n\n\n<p>The\u00a0<code>Promise.race()</code>\u00a0static method accepts a list of\u00a0promises\u00a0and returns a promise that fulfills or rejects as soon as there is one promise that fulfills or rejects, with the value or reason from that promise.</p>\n\n\n\n<p>Here is the syntax of the&nbsp;<code>Promise.race()</code>&nbsp;method:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Promise.race(iterable)</code></pre>\n\n\n\n<p>In this syntax, the\u00a0<code>iterable</code>\u00a0is an\u00a0iterable object\u00a0that contains a list of promises.</p>\n\n\n\n<p>The name of&nbsp;<code>Promise.race()</code>&nbsp;implies that all the promises race against each other with a single winner, either resolved or rejected.</p>\n\n\n\n<h3><code>Promise.race()</code>&nbsp;vs.&nbsp;<code>Promise.all()</code></h3>\n\n\n\n<p>The\u00a0<code>Promise.all()</code>\u00a0returns a promise that resolves to an array of values from the input promises while the\u00a0<code>Promise.race()</code>\u00a0returns a promise that resolves to the value from the first settled promise.</p>\n\n\n\n<h2>JavaScript&nbsp;<code>Promise.race()</code>&nbsp;examples</h2>\n\n\n\n<p>Let\u2019s take some examples of using the&nbsp;<code>Promise.race()</code>&nbsp;static method.</p>\n\n\n\n<h3>1) Simple JavaScript&nbsp;<code>Promise.race()</code>&nbsp;examples</h3>\n\n\n\n<p>The following creates two promises: one resolves in 1 second and the other resolves in 2 seconds.</p>\n\n\n\n<p>Because the first promise resolves faster the second one, the return promise will resolve with the value from the first promise:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>const p1 = new Promise((resolve, reject) => {\n    setTimeout(() => {\n        console.log('The first promise has resolved');\n        resolve(10);\n    }, 1 * 1000);\n\n});\n\nconst p2 = new Promise((resolve, reject) => {\n    setTimeout(() => {\n        console.log('The second promise has resolved');\n        resolve(20);\n    }, 2 * 1000);\n});\n\n\nPromise.race(&#91;p1, p2])\n    .then(value => console.log(`Resolved: ${value}`))\n    .catch(reason => console.log(`Rejected: ${reason}`));\n</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>The first promise has resolved\nResolved: 10\nThe second promise has resolved\n</code></pre>\n\n\n\n<p>The following example creates two promises. The first one resolves in 1 second while the second one rejects in 2 seconds. Because the first promise is faster than the second one, the return promise resolves to the value from the first promise:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>const p1 = new Promise((resolve, reject) => {\n    setTimeout(() => {\n        console.log('The first promise has resolved');\n        resolve(10);\n    }, 1 * 1000);\n\n});\n\nconst p2 = new Promise((resolve, reject) => {\n    setTimeout(() => {\n        console.log('The second promise has rejected');\n        reject(20);\n    }, 2 * 1000);\n});\n\n\nPromise.race(&#91;p1, p2])\n    .then(value => console.log(`Resolved: ${value}`))\n    .catch(reason => console.log(`Rejected: ${reason}`));\n</code></pre>\n\n\n\n<p>Output</p>\n\n\n\n<pre class=\"wp-block-code\"><code>The first promise has resolved\nResolved: 10\nThe second promise has rejected\n</code></pre>\n\n\n\n<p>Note that if the second promise was faster than the first one, the return promise would reject with the reason of the second promise.</p>\n\n\n\n<h3>2) Practical JavaScript&nbsp;<code>Promise.race()</code>&nbsp;example</h3>\n\n\n\n<p>Suppose that you have to show a loading indicator if the data loading process from the server is taking longer than some seconds.</p>\n\n\n\n<p>To achieve this, you can use the&nbsp;<code>Promise.race()</code>&nbsp;static method. If a timeout occurs, you show the loading indicator, otherwise, you show the message.</p>\n\n\n\n<p>The following illustrates the HTML code:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;!DOCTYPE html>\n&lt;html>\n&lt;head>\n    &lt;meta charset=\"utf-8\">\n    &lt;title>JavaScript Promise.race() Demo&lt;/title>\n    &lt;link href=\"css/promise-race.css\" rel=\"stylesheet\">\n&lt;/head>\n\n&lt;body>\n    &lt;div id=\"container\">\n        &lt;button id=\"btnGet\">Get Message&lt;/button>\n        &lt;div id=\"message\">&lt;/div>\n        &lt;div id=\"loader\">&lt;/div>\n    &lt;/div>\n    &lt;script src=\"js/promise-race.js\">&lt;/script>\n&lt;/body>\n&lt;/html>\n</code></pre>\n\n\n\n<p>To make the loading indicator, we use the CSS animation feature. See the\u00a0<code>promise-race.css</code>\u00a0for more information. Technically speaking, if an element has the\u00a0<code>.loader</code>\u00a0class, it shows the loading indicator.</p>\n\n\n\n<p>First, define a new function that loads data. It uses the&nbsp;<code>setTimeout()</code>&nbsp;to emulate an asynchronous operation:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>const DATA_LOAD_TIME = 5000;\n\nfunction getData() {\n    return new Promise((resolve, reject) => {\n        setTimeout(() => {\n            const message = 'Promise.race() Demo';\n            resolve(message);\n        }, DATA_LOAD_TIME);\n    });\n}\n</code></pre>\n\n\n\n<p>Second, develop a function that shows some contents:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function showContent(message) {\n    document.querySelector('#message').textContent = message;\n}</code></pre>\n\n\n\n<p>This function can also be used to set the&nbsp;<code>message</code>&nbsp;to blank.</p>\n\n\n\n<p>Third, define the&nbsp;<code>timeout()</code>&nbsp;function returns a promise which rejects when the&nbsp;<code>TIMEOUT</code>&nbsp;is passed.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>const TIMEOUT = 500;\n\nfunction timeout() {\n    return new Promise((resolve, reject) => {\n        setTimeout(() => reject(), TIMEOUT);\n    });\n}</code></pre>\n\n\n\n<p>Fourth, develop a couple of functions that show and hide the loading indicator:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function showLoadingIndicator() {\n    document.querySelector('#loader').className = 'loader';\n}\n\nfunction hideLoadingIndicator() {\n    document.querySelector('#loader').className = '';\n}</code></pre>\n\n\n\n<p>Fifth, attach a click event listener to the<strong>&nbsp;Get Message</strong>&nbsp;button. Inside the click handler, use the&nbsp;<code>Promise.race()</code>&nbsp;static method:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>// handle button click event\nconst btn = document.querySelector('#btnGet');\n\nbtn.addEventListener('click', () => {\n    // reset UI if users click the 2nd, 3rd, ... time\n    reset();\n    \n    // show content or loading indicator\n    Promise.race(&#91;getData()\n            .then(showContent)\n            .then(hideLoadingIndicator), timeout()\n        ])\n        .catch(showLoadingIndicator);\n});</code></pre>\n\n\n\n<p>We pass two promises to the&nbsp;<code>Promise.race()</code>&nbsp;method:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Promise.race(&#91;getData()\n            .then(showContent)\n            .then(hideLoadingIndicator), timeout()\n        ])\n        .catch(showLoadingIndicator);</code></pre>\n\n\n\n<p>The first promise gets data from the server, show the content and hide the loading indicator. The second promise sets a timeout.</p>\n\n\n\n<p>If the first promise takes more than 500 ms to settle, the&nbsp;<code>catch()</code>&nbsp;is called to show the loading indicator. Once the first promise resolves, it hides the loading indicator.</p>\n\n\n\n<p>Finally, develop a&nbsp;<code>reset()</code>&nbsp;function that hides the message and loading indicator if the button is clicked from the second time.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>// reset UI\nfunction reset() {\n    hideLoadingIndicator();\n    showContent('');\n}</code></pre>\n\n\n\n<p>Put it all together.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>// after 0.5 seconds, if the getData() has not resolved, then show \n// the Loading indicator\nconst TIMEOUT = 500;\nconst DATA_LOAD_TIME = 5000;\n\nfunction getData() {\n    return new Promise((resolve, reject) => {\n        setTimeout(() => {\n            const message = 'Promise.race() Demo';\n            resolve(message);\n        }, DATA_LOAD_TIME);\n    });\n}\n\nfunction showContent(message) {\n    document.querySelector('#message').textContent = message;\n}\n\nfunction timeout() {\n    return new Promise((resolve, reject) => {\n        setTimeout(() => reject(), TIMEOUT);\n    });\n}\n\nfunction showLoadingIndicator() {\n    document.querySelector('#loader').className = 'loader';\n}\n\nfunction hideLoadingIndicator() {\n    document.querySelector('#loader').className = '';\n}\n\n\n// handle button click event\nconst btn = document.querySelector('#btnGet');\n\nbtn.addEventListener('click', () => {\n    // reset UI if users click the second time\n    reset();\n\n    // show content or loading indicator\n    Promise.race(&#91;getData()\n            .then(showContent)\n            .then(hideLoadingIndicator), timeout()\n        ])\n        .catch(showLoadingIndicator);\n});\n\n// reset UI\nfunction reset() {\n    hideLoadingIndicator();\n    showContent('');\n}</code></pre>\n\n\n\n<p>In this tutorial, you have learned how to use the JavaScript&nbsp;<code>Promise.race()</code>&nbsp;static method.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Introduction to JavaScript&nbsp;Promise.race()&nbsp;static method The\u00a0Promise.race()\u00a0static method accepts a list of\u00a0promises\u00a0and returns a promise that fulfills or rejects as soon as there is one promise that fulfills or rejects, with the value or reason from that promise. Here is the syntax of the&nbsp;Promise.race()&nbsp;method: In this syntax, the\u00a0iterable\u00a0is an\u00a0iterable object\u00a0that contains a list of promises. The name [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [205],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3161"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=3161"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3161/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=3161"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=3161"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=3161"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 3163,
+    "date": "2020-11-28T06:19:52",
+    "date_gmt": "2020-11-28T06:19:52",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3163"
+    },
+    "modified": "2020-11-28T06:19:52",
+    "modified_gmt": "2020-11-28T06:19:52",
+    "slug": "promise-error-handling",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/promise-error-handling/",
+    "title": {
+      "rendered": "Promise Error Handling"
+    },
+    "content": {
+      "rendered": "\n<p>Suppose that you have a function called\u00a0<code>getUserById()</code>\u00a0that returns a\u00a0Promise:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function getUserById(id) {\n    return new Promise((resolve, reject) => {\n        resolve({\n            id: id,\n            username: 'admin'\n        });\n    });\n}</code></pre>\n\n\n\n<h2>Normal error</h2>\n\n\n\n<p>First, change the\u00a0<code>getUserById()</code>\u00a0function to\u00a0throw an error\u00a0outside the promise:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function getUserById(id) {\n    if (typeof id !== 'number' || id &lt;= 0) {\n        throw new Error('Invalid id argument');\n    }\n\n    return new Promise((resolve, reject) => {\n        resolve({\n            id: id,\n            username: 'admin'\n        });\n    });\n}</code></pre>\n\n\n\n<p>Second, handle the promise by using both&nbsp;<code>then()</code>&nbsp;and&nbsp;<code>catch()</code>&nbsp;methods:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>getUserById('a')\n    .then(user => console.log(user.username))\n    .catch(err => console.log(err));\n</code></pre>\n\n\n\n<p>The code throws an error:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Uncaught Error: Invalid id argument</code></pre>\n\n\n\n<p>When you raise an exception outside the promise, you must catch it with&nbsp;<code>try/catch</code>:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>try {\n    getUserById('a')\n        .then(user => console.log(user.username))\n        .catch(err => console.log(`Caught by .catch ${error}`));\n} catch (error) {\n    console.log(`Caught by try/catch ${error}`);\n}</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Caught by try/catch Error: Invalid id argument</code></pre>\n\n\n\n<h2>Errors inside the Promises</h2>\n\n\n\n<p>We change the&nbsp;<code>getUserById()</code>&nbsp;function to throw an error inside the promise:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let authorized = false;\n\nfunction getUserById(id) {\n    return new Promise((resolve, reject) => {\n        if (!authorized) {\n            throw new Error('Unauthorized access to the user data');\n        }\n\n        resolve({\n            id: id,\n            username: 'admin'\n        });\n    });\n}</code></pre>\n\n\n\n<p>And consume the promise:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>try {\n    getUserById(10)\n        .then(user => console.log(user.username))\n        .catch(err => console.log(`Caught by .catch ${error}`));\n} catch (error) {\n    console.log(`Caught by try/catch ${error}`);\n}</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Caught by .catch Error: Unauthorized access to the user data</code></pre>\n\n\n\n<p>If you throw an error inside the promise, the&nbsp;<code>catch()</code>&nbsp;method will catch it, not the try/catch.</p>\n\n\n\n<p>If you chain promises, the catch() method will catch errors occurred in any promise. For example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>promise1\n    .then(promise2)\n    .then(promise3)\n    .then(promise4)\n    .catch(err => console.log(err));\n</code></pre>\n\n\n\n<p>In this example, if any error in the promise1, promise2, or promise4, the&nbsp;<code>catch()</code>&nbsp;method will handle it.</p>\n\n\n\n<h2>Calling&nbsp;<code>reject()</code>&nbsp;function</h2>\n\n\n\n<p>Throwing an error has the same effect as calling the&nbsp;<code>reject()</code>&nbsp;as illustrated in the following example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let authorized = false;\n\nfunction getUserById(id) {\n    return new Promise((resolve, reject) => {\n        if (!authorized) {\n            reject('Unauthorized access to the user data');\n        }\n\n        resolve({\n            id: id,\n            username: 'admin'\n        });\n    });\n}\n\ntry {\n    getUserById(10)\n        .then(user => console.log(user.username))\n        .catch(err => console.log(`Caught by .catch ${err}`));\n} catch (error) {\n    console.log(`Caught by try/catch ${error}`);\n}\n</code></pre>\n\n\n\n<p>In this example, instead of throwing an error inside the promise, we called the&nbsp;<code>reject()</code>&nbsp;explicitly. The&nbsp;<code>catch()</code>&nbsp;method also handles the error in this case.</p>\n\n\n\n<h2>Missing the&nbsp;<code>catch()</code>&nbsp;method</h2>\n\n\n\n<p>The following example does not provide the&nbsp;<code>catch()</code>&nbsp;method to handle the error inside the promise. It will cause a runtime error and terminate the program:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function getUserById(id) {\n    return new Promise((resolve, reject) => {\n        if (!authorized) {\n            reject('Unauthorized access to the user data');\n        }\n        resolve({\n            id: id,\n            username: 'admin'\n        });\n    });\n}\n\ntry {\n    getUserById(10)\n        .then(user => console.log(user.username));\n    // the following code will not execute\n    console.log('next');\n\n} catch (error) {\n    console.log(`Caught by try/catch ${error}`);\n}</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Uncaught (in promise) Unauthorized access to the user data</code></pre>\n\n\n\n<p>If the promise is resolved, you can omit the&nbsp;<code>catch()</code>&nbsp;method. In the future, a potential error may cause the program to stop unexpectedly.</p>\n\n\n\n<h2>Summary</h2>\n\n\n\n<ul><li>Inside the promise, the&nbsp;<code>catch()</code>&nbsp;method will catch the error caused by the&nbsp;<code>throw</code>&nbsp;statement and&nbsp;<code>reject()</code>.</li><li>If an error occurs and you don\u2019t have the&nbsp;<code>catch()</code>&nbsp;method, the JavaScript engine issues a runtime error and stops the program.</li></ul>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Suppose that you have a function called\u00a0getUserById()\u00a0that returns a\u00a0Promise: Normal error First, change the\u00a0getUserById()\u00a0function to\u00a0throw an error\u00a0outside the promise: Second, handle the promise by using both&nbsp;then()&nbsp;and&nbsp;catch()&nbsp;methods: The code throws an error: When you raise an exception outside the promise, you must catch it with&nbsp;try/catch: Output: Errors inside the Promises We change the&nbsp;getUserById()&nbsp;function to throw an [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [205],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3163"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=3163"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3163/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=3163"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=3163"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=3163"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  }
+]

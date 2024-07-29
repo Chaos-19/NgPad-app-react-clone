@@ -1,0 +1,302 @@
+[
+  {
+    "id": 3478,
+    "date": "2020-11-30T05:34:01",
+    "date_gmt": "2020-11-30T05:34:01",
+    "guid": {
+      "rendered": "http://angular.foobrdigital.com/?p=3478"
+    },
+    "modified": "2020-12-09T06:19:27",
+    "modified_gmt": "2020-12-09T06:19:27",
+    "slug": "installing-and-setting-up-an-angular-development-environment",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/installing-and-setting-up-an-angular-development-environment/",
+    "title": {
+      "rendered": "Setting Up Angular Environment"
+    },
+    "content": {
+      "rendered": "\n<h2>Choosing and Installing an Editor</h2>\n\n\n\n<p>You need to choose an editor for creating your angular projects. You can choose any editor of your choice including any editions of&nbsp;<strong>Visual Studio, Eclipse, Atom</strong>&nbsp;etc.</p>\n\n\n\n<p>We will be using&nbsp;<strong>Visual Studio code</strong>&nbsp;as our editor. Visual studio code is an open source project and free to use. It can run on Windows, Linux &amp; OS X. It has IntelliSense support, easy integration with Git and support for debugging the applications. It has a great support for Typescript</p>\n\n\n\n<h3>Installing Visual Studio Code</h3>\n\n\n\n<p>You can download Visual Studio Code from the following link. The installation procedure is very easy and straightforward process.</p>\n\n\n\n<h2>Install Package Manager</h2>\n\n\n\n<p>To install Angular and dependencies, we are going to&nbsp;<strong>Node Package Manager</strong>&nbsp;or&nbsp;NPM.</p>\n\n\n\n<h3>Node Package Manager</h3>\n\n\n\n<p>The <strong>NPM</strong> is a Package Manager similar to what NuGet is for Visual Studio. It is the Package manager of choice for the Javascript projects. NPM is used to install libraries, Packages &amp; applications from Public repositories.</p>\n\n\n\n<h4>Why it is Required</h4>\n\n\n\n<p>We are going to use&nbsp;NPM&nbsp;to install&nbsp;Angular,&nbsp;Typescript,&nbsp;Webpack,&nbsp;SystemJS&nbsp;and any other packages/modules required by our application. NPM is can be used to upgrade these packages as and when necessary. Without&nbsp;NPM, we have to download and install all these packages manually.</p>\n\n\n\n<h4>Installing NPM</h4>\n\n\n\n<p>You need to install&nbsp;NPM&nbsp;on your machine if it is not already installed.You can test whether the&nbsp;NPM&nbsp;is installed or not by using the command prompt</p>\n\n\n\n<pre class=\"wp-block-code\"><code>\n \nnpm -v</code></pre>\n\n\n\n<p>If NPM is installed, then it will return the version No. The current version No of the NPM is 3.10.3.  You can download NodeJS and install it. NPM is installed as part of the NodeJS. Click on the installing node for the instructions and procedures.</p>\n\n\n\n<h4>NPM Configuration</h4>\n\n\n\n<p>The&nbsp;NPM&nbsp;requires the&nbsp;Package.json&nbsp;file, which should contain the list of modules/packages used in your Application. We need to add all the list of dependencies required by our application the configuration file.</p>\n\n\n\n<p>Once the&nbsp;Package.json&nbsp;is created, we can install all the dependencies, by running the following command from the command prompt</p>\n\n\n\n<pre class=\"wp-block-code\"><code>npm install.</code></pre>\n\n\n\n<p>We will show the sample<strong>package.json</strong>&nbsp;required in our next tutorial.</p>\n\n\n\n<h2>Choosing a Language</h2>\n\n\n\n<p>We need to choose a language to write our angular application. The Angular Applications must be written in&nbsp;Javascript. This gives us few options, including the current version of&nbsp;Javascript&nbsp;(i.e. ES5),&nbsp;ES2015,&nbsp;Typescript, and&nbsp;Dart&nbsp;etc.</p>\n\n\n\n<p>The&nbsp;<strong>Typescript</strong>&nbsp;is a popular choice here. The Angular code is also written using&nbsp;Typescript. Many of the tutorial available on the internet also using&nbsp;Typescript. So we will go with the popular choice</p>\n\n\n\n<h3>What is Typescript</h3>\n\n\n\n<p>The&nbsp;Typescript&nbsp;is a&nbsp;superset of&nbsp;Javascript. The Code written in&nbsp;Typescript&nbsp;cannot be used directly in the web browser. It must be compiled to&nbsp;Javascript&nbsp;before running in the web browser. This process is known as&nbsp;Transpiling.</p>\n\n\n\n<p>Typescript&nbsp;is an Open source language. It is built and maintained by Microsoft.</p>\n\n\n\n<h3>Why Typescript</h3>\n\n\n\n<p>The&nbsp;Javascript&nbsp;is the default language of the web. But it does come with few problems. It does not support types. This makes it prone to run-time errors, it also makes it difficult to debug.&nbsp;Javascript&nbsp;does not support namespaces. Code Organisation is another major issue with&nbsp;Javascript&nbsp;code.&nbsp;Typescript&nbsp;Solves all these problems.</p>\n\n\n\n<h3>Features of Typescript</h3>\n\n\n\n<p>Typescript&nbsp;also supports&nbsp;Modules,&nbsp;classes,&nbsp;Interfaces&nbsp;and&nbsp;Generics. This makes&nbsp;Typescript&nbsp;ideal choice to for our&nbsp;Angular&nbsp;Application.</p>\n\n\n\n<p>Typescript&nbsp;Supports all current specification of&nbsp;Javascript&nbsp;(i.e.&nbsp;ES5&nbsp;&amp;&nbsp;ES2015&nbsp;). The major advantages of&nbsp;Typescript&nbsp;are that you can transpile it to either&nbsp;ES5&nbsp;or&nbsp;ES2015. Currently, not many browsers support&nbsp;ES2015. So you have to transpile your code to&nbsp;ES5. But in future, as more and more browser becomes&nbsp;ES2015&nbsp;compliant, you do not have to worry about upgrading your&nbsp;Javascript&nbsp;code. Typescript does that to you behind the scene.</p>\n\n\n\n<h3>Typescript Configuration</h3>\n\n\n\n<p>Typescript&nbsp;requires two configuration files to work correctly. One is&nbsp;tsconfig.json&nbsp;and another one is&nbsp;typings.json.</p>\n\n\n\n<p>The&nbsp;<strong>tsconfig.json</strong>&nbsp;file in a directory indicates that the directory is the root of a&nbsp;TypeScript&nbsp;project. The&nbsp;tsconfig.json&nbsp;file specifies the root files and the compiler options required to Transpile the&nbsp;Typescript&nbsp;project.</p>\n\n\n\n<p>Typings is the simple way to manage and install TypeScript definitions. It uses&nbsp;typings.json&nbsp;, which can resolve to the Typings Registry, GitHub, NPM, Bower, HTTP and local files. Packages can use type definitions from various sources and different versions, knowing they will never conflict for users.</p>\n\n\n\n<h3>Installing Typescript</h3>\n\n\n\n<p>We are going to use&nbsp;NPM package manager&nbsp;to install typescript and its dependencies.</p>\n\n\n\n<h2>Choosing a Module Loader</h2>\n\n\n\n<p><strong>Module loader</strong>&nbsp;takes a group of modules with their dependencies and merges them into a single file in the correct order. This process is called as&nbsp;<strong>Module bundling</strong>.</p>\n\n\n\n<h3>Why Module Loader Required</h3>\n\n\n\n<p>In Our applications, we create a&nbsp;lot&nbsp;of javascript files. We then include them in our main HTML file using the&nbsp;<strong>&lt;script&gt;</strong>&nbsp;tag. When user requests for your file, the browser loads these file. This is inefficient as it reduces the page speed as the browser requests each file separately.</p>\n\n\n\n<p>The above problems can be solved by bundling several files together into one big file. The entire file can be downloaded in one single request reducing the number of requests. You can also minify the file (remove the extra spaces, comments, unnecessary characters etc) and make files smaller</p>\n\n\n\n<h3>Choosing a Module Loader</h3>\n\n\n\n<p>There are many module loaders are available. The two more popular Module loaders are&nbsp;Webpack&nbsp;and&nbsp;SystemJS</p>\n\n\n\n<p>Webpack&nbsp;is a more flexible module bundler than&nbsp;SystemJS. &nbsp;It can not only bundle modules but also minifies our modules. It also comes with a development server with&nbsp;hot module replacement option.</p>\n\n\n\n<p>The Angular CLI project has moved to Webpack from the SystemJS. So we are going to stick with Webpack in our future tutorials.</p>\n\n\n\n<h3>Webpack</h3>\n\n\n\n<p>Webpack&nbsp;is a powerful module loader. It takes modules with dependencies and generates static assets representing those modules.&nbsp;Webpack has the ability to bundles any kind of file: JavaScript, TypeScript, CSS, SASS, LESS, images, HTML, fonts etc. The clever parser that can process nearly every 3rd party library.</p>\n\n\n\n<h4>Webpack Dev Server</h4>\n\n\n\n<p>The Webpack also comes with a development server. You can see your application running as you develop the application. The Development server uses the Webpack’s watch mode. Any changes made to our application are instantly&nbsp;updated.</p>\n\n\n\n<h4>Webpack Configuration</h4>\n\n\n\n<p>The&nbsp;Webpack&nbsp;can be configured by using the&nbsp;webpack.config.js. Configuration file</p>\n\n\n\n<h4>Installing Webpack</h4>\n\n\n\n<p>The best way to install Webpack to your project is to add it your&nbsp;Project.json&nbsp;file as Dev dependency as shown below</p>\n\n\n\n<pre class=\"wp-block-code\"><code>\"devDependencies\": {\n    \"webpack\": \"^1.13.2\",\n    \"webpack-dev-server\": \"^1.16.2\"\n}</code></pre>\n\n\n\n<p>And run&nbsp;npm install&nbsp;to install&nbsp;Webpack&nbsp;&amp;&nbsp;Webpack dev server.</p>\n\n\n\n<p>You can run the following command from the command line</p>\n\n\n\n<pre class=\"wp-block-code\"><code>npm install webpack --save-dev\nnpm install webpack-dev-server --save</code></pre>\n\n\n\n<p>The above will install the&nbsp;Webpack&nbsp;and update the&nbsp;project.json&nbsp;file</p>\n\n\n\n<h4>Resources</h4>\n\n\n\n<ol><li>webpack</li></ol>\n\n\n\n<h3>System.Js</h3>\n\n\n\n<p>System.JS is a module loader that can import modules at run-time in any of the popular formats used today (CommonJS, UMD, AMD, ES6). It also keeps track of all loaded modules in a module registry. System.Js is built on top of the ES6 module loader polyfill. It is smart enough to detect the format of the module being used and handle it appropriately. SystemJS can also transpile ES6 code (with Babel or Traceur) or other languages such as TypeScript and CoffeeScript using plugins.</p>\n\n\n\n<h4>System.Js Configuration</h4>\n\n\n\n<p>The&nbsp;System.Js&nbsp;uses the&nbsp;Systemjs.Config.Js&nbsp;to locate and load the modules. This config file tells&nbsp;SystemJs&nbsp;how to find certain modules. We can also map the module names ‘angular’ and ‘angular-route’ to their long paths:</p>\n\n\n\n<h4>Installing SystemJS</h4>\n\n\n\n<p>The&nbsp;SystemJS&nbsp;can be installed via&nbsp;NPM Package Manager.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Choosing and Installing an Editor You need to choose an editor for creating your angular projects. You can choose any editor of your choice including any editions of&nbsp;Visual Studio, Eclipse, Atom&nbsp;etc. We will be using&nbsp;Visual Studio code&nbsp;as our editor. Visual studio code is an open source project and free to use. It can run on [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [124],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3478"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=3478"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 3,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3478/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3839,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3478/revisions/3839"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=3478"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=3478"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=3478"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 3479,
+    "date": "2020-11-30T05:46:27",
+    "date_gmt": "2020-11-30T05:46:27",
+    "guid": {
+      "rendered": "http://angular.foobrdigital.com/?p=3479"
+    },
+    "modified": "2020-12-08T12:19:16",
+    "modified_gmt": "2020-12-08T12:19:16",
+    "slug": "how-to-create-a-new-project-in-angular",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/how-to-create-a-new-project-in-angular/",
+    "title": {
+      "rendered": "How to Create a new project in Angular"
+    },
+    "content": {
+      "rendered": "\n<h2>What is Angular CLI</h2>\n\n\n\n<p>The Angular CLI helps us to quickly create an Angular application with all the configuration files and packages in one single command. It also helps us to add features (components, directives, services, etc) to existing Angular applications.</p>\n\n\n\n<p>The Angular CLI creates the Angular Application and uses <code>Typescript</code>, <code>Webpack</code> ( for Module bundling), <code>Karma</code> ( for unit testing), <code>Protractor</code> ( for an end to end testing).</p>\n\n\n\n<p>Recommended Read: The Angular CLI Tutorial</p>\n\n\n\n<h2>How to Create a new Angular project</h2>\n\n\n\n<p>Before starting with Angular, you need to set up your developer environment and install the required tools. Before going further install the following</p>\n\n\n\n<ol><li>Visual Studio Code (or any other editor of your choice)</li><li>NPM Package Manager</li></ol>\n\n\n\n<p>You can read the instruction on how to install from the tutorial Installing and Setting Up an Angular Development Environment</p>\n\n\n\n<h3>Installing Angular CLI</h3>\n\n\n\n<p>The first step is to install the Angular CLI. We use the&nbsp;<code>npm install</code>&nbsp;command.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>npm install -g @angular/cli@latest</code></pre>\n\n\n\n<p>The above command installs the latest version of Angular CLI in your machine. Note that we have used the&nbsp;<code>-g</code>&nbsp;flag, (which stands for global) installs the Angular CLI system-wide so that you can use it in your all projects.</p>\n\n\n\n<h3>Finding the Angular CLI Version</h3>\n\n\n\n<p>You can find out the Current Installed Angular CLI Version by Using the Command</p>\n\n\n\n<pre class=\"wp-block-code\"><code>ng --version</code></pre>\n\n\n\n<p>The latest version as of writing this article is 8.3.19. The command above also gives the version of the node installed in your system. You can keep track of the latest Angular CLI release from this link </p>\n\n\n\n<h3>Creating a new Angular Application</h3>\n\n\n\n<p>The creation of your First Project Angular has become very simple using Angular CLI. All you need to run the command from the Prompt</p>\n\n\n\n<pre class=\"wp-block-code\"><code>ng new GettingStarted</code></pre>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://www.tektutorialshub.com/wp-content/uploads/2018/11/Creating-Angular-Application-Using-Angular-CLI.png\" alt=\"\" class=\"wp-image-9703\"/></figure>\n\n\n\n<p>The above command will create a folder&nbsp;<code>GettingStarted</code>&nbsp;and copies all the required dependencies and configuration settings. The Angular CLI does the following</p>\n\n\n\n<ol><li>Creates a new directory <code>GettingStarted</code> is created</li><li>Sets up the folder structure for the application</li><li>Downloads and installs Angular libraries and any other dependencies</li><li>Installs and configures <code>TypeScript</code></li><li>Installs and configures <code>Karma</code> &amp; <code>Protractor</code> for testing</li></ol>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://www.tektutorialshub.com/wp-content/uploads/2018/11/Creating-Angular-Application-in-Progress.png\" alt=\"\" class=\"wp-image-9704\"/></figure>\n\n\n\n<p><br>BEST ANGULAR BOOKS<br><strong>The Top 8 Best Angular Books, which helps you to get started with Angular </strong> </p>\n\n\n\n<h3>Running your new Angular Project</h3>\n\n\n\n<p>To run your application all you need to do is type the following command</p>\n\n\n\n<pre class=\"wp-block-code\"><code>ng serve </code></pre>\n\n\n\n<p>The above command compiles the Angular application and invokes the&nbsp;<strong>Webpack development server</strong>. The server keeps a watch on our project folder. If you make any changes in the code, it compiles the project again.</p>\n\n\n\n<p>You can also use&nbsp;<code>npm start</code>.&nbsp;</p>\n\n\n\n<p>The Webpack Development server listens on HTTP Port 4200. Hence open the browser and type&nbsp;<strong>http://localhost:4200/</strong>&nbsp;and you will see&nbsp;<strong>GettingStarted app is running</strong>&nbsp;displayed on the browser.</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://www.tektutorialshub.com/wp-content/uploads/2019/11/How-to-Create-Your-First-Angular-Project-1024x516.png\" alt=\"How to Create Your First Angular Project\" class=\"wp-image-15186\"/></figure>\n\n\n\n<h2>Angular project Folder structure</h2>\n\n\n\n<p>Open the GettingStarted Folder from Visual Studio Code and you will see the following folder structure</p>\n\n\n\n<pre class=\"wp-block-code\"><code> \n├── e2e\n│   ├── src\n│   │   ├── app.e2e-spec.ts \n│   │   ├── app.po.ts\n│   ├── protractor.conf.js \n│   ├── tsconfig.e2e.json\n├── node_modules\n├── src\n│   ├── app\n│   │   ├── app-routing.module.ts\n│   │   ├── app.component.css\n│   │   ├── app.component.html\n│   │   ├── app.component.spec.ts\n│   │   ├── app.component.ts\n│   │   ├── app.module.ts\n│   ├── assets\n│   │   ├── .gitkeep\n│   ├── environments\n│   │   ├── environment.prod.ts\n│   │   ├── environment.ts\n│   ├── favicon.ico\n│   ├── index.html\n│   ├── main.ts\n│   ├── polyfills.ts\n│   ├── styles.css\n│   ├── test.ts\n├── .editorconfig\n├── .gitignore\n├── angular.json\n│── browserslist   \n├── karma.conf.js\n├── package-lock.json\n├── package.json\n├── README.md\n├── tsconfig.app.json\n├── tsconfig.json\n├── tsconfig.spec.json\n└── tslint.json</code></pre>\n\n\n\n<p>The root folder application contains subfolders&nbsp;<code>e2e</code>,&nbsp;<code>node_modules</code>&nbsp;and&nbsp;<code>src</code>. &nbsp;It also contains the few configuration files</p>\n\n\n\n<p><code>.editorconfig</code>: This is the configuration file for the Visual Studio code editor. You can visit&nbsp;<strong>http://editorconfig.org</strong>&nbsp;for more information.</p>\n\n\n\n<p><code>.gitignore</code>: Git configuration to make sure autogenerated files are not committed to source control.</p>\n\n\n\n<p><code>angular.json</code>: This is the configuration file for Angular CLI. The older versions of the Angular used the file&nbsp;<code>angular-cli.json</code></p>\n\n\n\n<p><code>browserslist</code>: Ensures the compatibility of the Angular app with different browsers.</p>\n\n\n\n<p><code>karma.conf.js</code>: The Configuration file for the karma test runner.</p>\n\n\n\n<p><code>package.json</code>: The package.json is an npm configuration file, that lists the third-party packages that your project depends on. We also have package-lock.json</p>\n\n\n\n<p><code>README.md</code>: The Read me file</p>\n\n\n\n<p><code>tsconfig.json</code>, <code>tsconfig.app.json</code> &amp; <code>tsconfig.spec.json</code> are Typescript configuration files. The tsconfig.json is the Typescript compiler configuration file. This file specifies the compiler options required for the Typescript to compile (transpile) the project. The <code>tsconfig.app.json</code> is used for compiling the code, while <code>tsconfig.spec.json</code> for compiling the tests</p>\n\n\n\n<p><code>tslint.json</code>: tslint is a static code analysis tool. We use this to check Typescript code quality. To check if TypeScript source code complies with coding rules. TSLint checks your TypeScript code for readability, maintainability, and functionality errors</p>\n\n\n\n<h3>e2e</h3>\n\n\n\n<p>This folder contains the files required for end to end tests by protractor. Protractor allows us to test our application against a real browser. You can learn more about protractor from this link</p>\n\n\n\n<h3>node_modules</h3>\n\n\n\n<p>All our external dependencies are downloaded and copied here by NPM Package Manager.</p>\n\n\n\n<h3>src</h3>\n\n\n\n<p>This where our application lives.</p>\n\n\n\n<h2>app folder</h2>\n\n\n\n<p>The Angular CLI has created a simple application, which works out of the box. It creates the root component, a root module, a unit test class to test the component. Now let us see each component of the application one at a time</p>\n\n\n\n<p>The&nbsp;<code>src</code>&nbsp;folder is where our application lives.</p>\n\n\n\n<h3>The Component</h3>\n\n\n\n<p>The&nbsp;<code>app.component.ts</code>&nbsp;is the component that is added to the project by Angular CLI. You will find it under the folder&nbsp;<code>app/src</code></p>\n\n\n\n<pre class=\"wp-block-code\"><code> \nimport { Component } from '@angular/core';\n \n@Component({\n  selector: 'app-root',\n  templateUrl: './app.component.html',\n  styleUrls: &#91;'./app.component.css']\n})\nexport class AppComponent {\n  title = 'GettingStarted';\n}</code></pre>\n\n\n\n<p>The component class is the most important part of our application. It represents the view of the application. A view is a region on the screen. It consists of three main parts i.e. a&nbsp;<strong>class</strong>, a&nbsp;<strong>class decorator</strong>, and an&nbsp;<strong>import statement</strong></p>\n\n\n\n<h4>Import statement</h4>\n\n\n\n<pre class=\"wp-block-code\"><code>import { Component } from '@angular/core';</code></pre>\n\n\n\n<p>The&nbsp;<code>import</code>&nbsp;statement is used to import the libraries that are used in our component class. This statement is similar to C# using statement. Our Component is decorated with the&nbsp;<code>@Component</code>&nbsp;decorator, which is part of the&nbsp;<code>@angular/core</code>&nbsp;module. Hence we need to refer it in our class. This is done using the&nbsp;<code>import</code>&nbsp;method as shown above.</p>\n\n\n\n<h4>Component class</h4>\n\n\n\n<pre class=\"wp-block-code\"><code>export class AppComponent {\n  title = 'GettingStarted';\n}\n </code></pre>\n\n\n\n<p>The component is a simple class. We define it using the <strong>export</strong> keyword. The other parts of the app can import it use it. The above component class has one property <strong>title</strong>. This title is displayed, when the application is run.</p>\n\n\n\n<p>The component class can have many methods and properties. The main purpose of the component is to supply logic to our view.</p>\n\n\n\n<h4>@Component decorator</h4>\n\n\n\n<p>The&nbsp;<code>AppComponent</code>&nbsp;class is then, decorated with&nbsp;<code>@Component</code>&nbsp;decorator. The&nbsp;<code>@Component</code>&nbsp;(called class decorator) provides Metadata about our component. The Angular uses this Metadata to create the view</p>\n\n\n\n<pre class=\"wp-block-code\"><code>@Component({    \n    selector: 'app-root',    \n    templateUrl: './app.component.html',    \n    styleUrls: &#91;'./app.component.css']\n})</code></pre>\n\n\n\n<p>The&nbsp;<code>@component</code>&nbsp;Metadata above has three fields. The&nbsp;<code>selector</code>,&nbsp;<code>templateURL</code>&nbsp;&amp;&nbsp;<code>styleUrls</code></p>\n\n\n\n<h5>templateUrl</h5>\n\n\n\n<p>The&nbsp;<code>templateUrl</code>&nbsp;contains the path to the HTML template file. The Angular uses this HTML file to render the view. In the above example, it points to the&nbsp;<code>app.component.html</code>&nbsp;file.</p>\n\n\n\n<h5>styleUrls</h5>\n\n\n\n<p>The&nbsp;<code>styleUrls</code>&nbsp;is an array of Style Sheets that Angular uses to style our HTML file. In the above example, it points towards to&nbsp;<code>app.component.css</code>&nbsp;style sheet.</p>\n\n\n\n<p>The<code>app.component.css</code>&nbsp;file is in the same folder as the&nbsp;<code>AppComponent</code>. The file is empty. You can create styles for the component and put it here</p>\n\n\n\n<h5>selector</h5>\n\n\n\n<p>The&nbsp;<code>selector</code>&nbsp;tells angular, where to display the template. In the example above&nbsp;<code>selector</code>&nbsp;is&nbsp;<code>app-root</code>. The Angular &nbsp;whenever it encounters the above tag in the HTML file it replaces it with the template (<code>app.component.html</code>)</p>\n\n\n\n<p>The&nbsp;<code>app-root</code>&nbsp;selector is used in&nbsp;<code>index.html</code>, which we will see later.</p>\n\n\n\n<h3>Template</h3>\n\n\n\n<p>The&nbsp;<code>app.component.html</code>&nbsp;is our template.The&nbsp;<code>templateUrl</code>&nbsp;in the component class above points to this class. In</p>\n\n\n\n<p>The&nbsp;<code>app.component.html</code>&nbsp;file is in the same folder as the&nbsp;<code>AppComponent</code>. The code is almost 500 lines of code and almost all of it is standard HTML &amp; CSS</p>\n\n\n\n<p>Note that <code>{{title}}</code> is placed inside the <code>h1</code> tags in line no 344. The double curly braces are the angular way of telling our app to read the <code>title</code> property from the component (<code>AppComponent</code>). We call this data binding (interpolation).</p>\n\n\n\n<h3>Root Module</h3>\n\n\n\n<p>Angular organizes the application code as Angular modules. The Modules are closely related blocks of code in functionality. Every application must have at least one module.</p>\n\n\n\n<p>The Module, which loads first is the root Module. This Module is our root module.</p>\n\n\n\n<p>The root module is called&nbsp;<code>app.module.ts</code>. (under&nbsp;<code>src/app</code>&nbsp;folder). It contains the following code</p>\n\n\n\n<pre class=\"wp-block-code\"><code>import { BrowserModule } from '@angular/platform-browser';\nimport { NgModule } from '@angular/core';\n \nimport { AppRoutingModule } from './app-routing.module';\nimport { AppComponent } from './app.component';\n \n@NgModule({\n  declarations: &#91;\n    AppComponent\n  ],\n  imports: &#91;\n    BrowserModule,\n    AppRoutingModule\n  ],\n  providers: &#91;],\n  bootstrap: &#91;AppComponent]\n})\nexport class AppModule { }</code></pre>\n\n\n\n<p>The structure of the Angular module is similar to the component class. Like Component, it consists of three parts. A&nbsp;<code>class</code>,&nbsp;<code>class decorator</code>&nbsp;and&nbsp;<code>import</code>&nbsp;statement</p>\n\n\n\n<h4>Module class</h4>\n\n\n\n<pre class=\"wp-block-code\"><code>export class AppModule { }</code></pre>\n\n\n\n<p>Similar to the component, the Module class is defined with the&nbsp;<code>export</code>&nbsp;keyword. Exporting the class ensures that you can use this module in other modules.</p>\n\n\n\n<h4>@NgModule class decorator</h4>\n\n\n\n<pre class=\"wp-block-code\"><code>@NgModule({\n  declarations: &#91;\n    AppComponent\n  ],\n  imports: &#91;\n    BrowserModule,\n    AppRoutingModule\n  ],\n  providers: &#91;],\n  bootstrap: &#91;AppComponent]\n})</code></pre>\n\n\n\n<p>We used <code>@component</code> decorator to define our component. The Angular Modules require a <code>@ngModule</code> decorator. <code>@ngModue</code> decorator passes the metadata about the module.</p>\n\n\n\n<p>The&nbsp;<code>@ngModule</code>&nbsp;Metadata above has four fields. The&nbsp;<code>declarations</code>,&nbsp;<code>imports</code>,&nbsp;<code>providers</code>, &amp;&nbsp;<code>bootstrap</code></p>\n\n\n\n<p><code>Imports</code> Metadata tells the angular list of other modules used by this module. We are importing <code>BrowserModule</code> and <code>AppRoutingModule</code>.<br>The <code>BrowserModule</code> is the core angular module, which contains critical services, directives, and pipes, etc.<br>The <code>AppRoutingModule</code> is defines the application Routes and is mentioned below</p>\n\n\n\n<p><code>Declaration</code> Metadata lists the components, directives &amp; pipes that are part of this module.</p>\n\n\n\n<p><code>Providers</code>&nbsp;are the services that are part of this module, which can be used by other modules.</p>\n\n\n\n<p><code>Bootstrap</code>&nbsp;Metadata identifies the root component of the module. When Angular loads the&nbsp;<code>appModule</code>&nbsp;it looks for bootstrap Metadata and loads all the components listed here. We want our module to load&nbsp;<code>AppComponent</code>&nbsp;, hence we have listed it here.</p>\n\n\n\n<h4>Import statement</h4>\n\n\n\n<pre class=\"wp-block-code\"><code>import { BrowserModule } from '@angular/platform-browser';\nimport { NgModule } from '@angular/core';\n \nimport { AppRoutingModule } from './app-routing.module';\nimport { AppComponent } from './app.component';</code></pre>\n\n\n\n<p>The&nbsp;<code>import</code>&nbsp;statement is used to import the Angular libraries required by&nbsp;<code>AppModule</code>. like&nbsp;<code>NgModule</code>&nbsp;&amp;<code>BrowserModule</code>. We also need to import&nbsp;<code>AppComponent</code>, as we want to load&nbsp;<code>AppComponent</code>, when we load the&nbsp;<code>AppModule</code></p>\n\n\n\n<h3>App Routing Module</h3>\n\n\n\n<pre class=\"wp-block-code\"><code>import { NgModule } from '@angular/core';\nimport { Routes, RouterModule } from '@angular/router';\n \nconst routes: Routes = &#91;];\n \n@NgModule({\n  imports: &#91;RouterModule.forRoot(routes)],\n  exports: &#91;RouterModule]\n})\nexport class AppRoutingModule { }</code></pre>\n\n\n\n<p>The&nbsp;<code>AppRoutingModule</code>&nbsp;in the file&nbsp;<code>app-routing.module.ts</code>&nbsp;defines the&nbsp;<code>Routes</code>&nbsp;of the application. These&nbsp;<code>Routes</code>&nbsp;tells Angular how to move from one part of the application to another part or one View to another View.</p>\n\n\n\n<p>The&nbsp;<code>Routes</code>&nbsp;defined in the constant&nbsp;<code>const routes: Routes = [];</code>, which is empty</p>\n\n\n\n<p>This Module is defined as a separate Module and is imported in&nbsp;&nbsp;<code>AppModule</code>.</p>\n\n\n\n<h3>Bootstrapping our root module</h3>\n\n\n\n<p>The&nbsp;<code>app.component.html</code>&nbsp;is the file, which we need to show it the user. It is bound to&nbsp;<code>AppComponent</code>&nbsp;component. We indicated that the&nbsp;<code>AppComponent</code>&nbsp;is to be bootstrapped&nbsp;when&nbsp;<code>AppModule</code>&nbsp;is loaded</p>\n\n\n\n<p>Now we need to ask the Angular to load the&nbsp;<code>AppModule</code>&nbsp;when the application is loaded. This is done in&nbsp;<code>main.ts</code>&nbsp;file</p>\n\n\n\n<p>The&nbsp;<code>main.ts</code>&nbsp;file is found under the&nbsp;<code>src</code>&nbsp;folder. The code is as follows.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>import { enableProdMode } from '@angular/core';\nimport { platformBrowserDynamic } from '@angular/platform-browser-dynamic';\n \nimport { AppModule } from './app/app.module';\nimport { environment } from './environments/environment';\n \nif (environment.production) {\n  enableProdMode();\n}\n \nplatformBrowserDynamic().bootstrapModule(AppModule)\n  .catch(err => console.error(err));</code></pre>\n\n\n\n<p>The second line of the import is&nbsp;<code>platformBrowserDynamic</code>&nbsp;library. This library contains all the functions required to bootstrap the angular application.</p>\n\n\n\n<p>We also import is <code>enableProdMode</code> from <code>@angular/core</code> library. The Angular’s code by default runs in development mode. The development mode runs few assertions and checks, which helps in debugging the application. The <code>enableProdMode</code> enables the production only if the current build Angular environment is <code>production</code></p>\n\n\n\n<p>We also need to import our&nbsp;<code>AppModule</code>.</p>\n\n\n\n<p>The last import is the&nbsp;<code>environment</code>, which is in the folder&nbsp;<code>src/environments</code>.&nbsp;The file&nbsp;<code>environment.ts</code>&nbsp;contains the contents for the current environment. The development environment uses the&nbsp;<code>environment.ts</code>&nbsp;file. When you build the project for the&nbsp;production environment, then the&nbsp;<code>environment.prod.ts</code>&nbsp;will be used. The environment are configured in&nbsp;<code>angular.json</code>`</p>\n\n\n\n<p>In the next line, our code checks the environmental variable and enable the production mode, if the environment is <code>production</code>.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>if (environment.production) {\n  enableProdMode();\n}</code></pre>\n\n\n\n<p>Finally, the&nbsp;<code>bootstrapModule</code>&nbsp;method of&nbsp;<code>platformBrowserDynamic</code>&nbsp;library to bootstrap our&nbsp;<code>AppModule</code></p>\n\n\n\n<pre class=\"wp-block-code\"><code>platformBrowserDynamic().bootstrapModule(AppModule)\n  .catch(err => console.error(err</code></pre>\n\n\n\n<h3>index.html</h3>\n\n\n\n<p><code>Index.html</code>&nbsp;is the entry point of our application.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;!doctype html>\n&lt;html lang=\"en\">\n&lt;head>\n  &lt;meta charset=\"utf-8\">\n  &lt;title>GettingStarted&lt;/title>\n  &lt;base href=\"/\">\n  &lt;meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  &lt;link rel=\"icon\" type=\"image/x-icon\" href=\"favicon.ico\">\n&lt;/head>\n&lt;body>\n  &lt;app-root>&lt;/app-root>\n&lt;/body>\n&lt;/html></code></pre>\n\n\n\n<p>The selector&nbsp;<code>app-root</code>, which we defined in our component metadata is used as an HTML tag. The Angular scans the HTML page and when it finds the tag&nbsp;<code>&lt;app-root&gt;&lt;app-root&gt;</code>&nbsp;replaces the entire content with content of&nbsp;<code>app.component.html</code></p>\n\n\n\n<h2>Other files &amp; folders</h2>\n\n\n\n<p>We have a few other files under the app folder.</p>\n\n\n\n<h3>Assets</h3>\n\n\n\n<p>A folder where you can put images and anything else to be copied wholesale when you build your application.</p>\n\n\n\n<h3>Environments</h3>\n\n\n\n<p>The environment folder is where we define environment variables for various build setups. The build setups can be development, production, testing &amp; staging. The Angular has creates two build environments out of the box. One is development, which is the default and the other one in Production. The two files <code>environment.ts</code> is the default for development and the <code>environment.prod.ts</code> is for the production build.</p>\n\n\n\n<h3>polyfills.ts</h3>\n\n\n\n<p>Different browsers have different levels of support of the web standards. <code>Polyfills</code> help normalize those differences. You can read more about browser support guide about the browsers supported by Angular </p>\n\n\n\n<h3>styles.css</h3>\n\n\n\n<p>Your Angular global styles go here. Most of the time you’ll want to have local styles in your components for easier maintenance, but styles that affect all of your apps need to be in a central place.</p>\n\n\n\n<h3>test.ts</h3>\n\n\n\n<p>This is the main entry point for your unit tests. It has some custom configuration that might be unfamiliar, but it’s not something you’ll need to edit.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>What is Angular CLI The Angular CLI helps us to quickly create an Angular application with all the configuration files and packages in one single command. It also helps us to add features (components, directives, services, etc) to existing Angular applications. The Angular CLI creates the Angular Application and uses Typescript, Webpack ( for Module bundling), Karma ( for unit testing), Protractor ( for an end to end testing). [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [124],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3479"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=3479"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 2,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3479/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3806,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3479/revisions/3806"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=3479"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=3479"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=3479"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 3483,
+    "date": "2020-11-30T05:51:50",
+    "date_gmt": "2020-11-30T05:51:50",
+    "guid": {
+      "rendered": "http://angular.foobrdigital.com/?p=3483"
+    },
+    "modified": "2020-12-09T06:19:10",
+    "modified_gmt": "2020-12-09T06:19:10",
+    "slug": "bootstrapping-in-angular-how-it-works-internally",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/bootstrapping-in-angular-how-it-works-internally/",
+    "title": {
+      "rendered": "Bootstrapping in Angular"
+    },
+    "content": {
+      "rendered": "\n<h2>Bootstrapping in Angular</h2>\n\n\n\n<h3>What is a Bootstrapping</h3>\n\n\n\n<p>Bootstrapping is a technique of initializing or loading our Angular application.</p>\n\n\n\n<p>let’s walk through our code created in Create your First new Angular project and see what happens at each stage and how our <code>AppComponent</code> gets loaded and displays “app works!”. The Angular takes the following steps to load our first view.</p>\n\n\n\n<ol><li>Index.html loads</li><li>Angular, Third-party libraries &amp; Application loads</li><li>Main.ts the application entry point</li><li>Root Module</li><li>Root Component</li><li>Template</li></ol>\n\n\n\n<h2>Index.html Loads First</h2>\n\n\n\n<p>Web apps need a starting point.&nbsp;<code>Index.html</code>&nbsp;is usually the first page to load. Let us open the file and find out what it contains. You will find it under the&nbsp;<code>src</code>&nbsp;folder.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;!doctype html>\n&lt;html lang=\"en\">\n&lt;head>\n  &lt;meta charset=\"utf-8\">\n  &lt;title>GettingStarted&lt;/title>\n  &lt;base href=\"/\">\n  &lt;meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  &lt;link rel=\"icon\" type=\"image/x-icon\" href=\"favicon.ico\">\n&lt;/head>\n&lt;body>\n  &lt;app-root>&lt;/app-root>\n&lt;/body>\n&lt;/html></code></pre>\n\n\n\n<p>There are no javascript files in the&nbsp;<code>index.html</code>. Neither you can see a stylesheet file. The body of the files has the following HTML tag.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>\n&lt;app-root>&lt;/app-root></code></pre>\n\n\n\n<p>How do Angular loads ?. &nbsp;To Find out, let us build our application</p>\n\n\n\n<p><br>BEST ANGULAR BOOKS<br><strong>The Top 8 Best Angular Books, which helps you to get started with Angular </strong> </p>\n\n\n\n<h3>Building Application</h3>\n\n\n\n<p>To run our application, we use the Angular CLI command <code>ng serve</code> or NPM command <code>npm start</code> (<code>npm start</code> command actually translates into <code>ng serve</code>.)</p>\n\n\n\n<p><code>ng serve</code>&nbsp;does build&nbsp;our application&nbsp;but does not save the compiled application to the disk. It saves it in memory and starts the development server.</p>\n\n\n\n<p>We use&nbsp;<code>ng build</code>&nbsp;to build our app. Open the command prompt and run the command. This will build and copy the output files to the&nbsp;<code>dist</code>&nbsp;folder</p>\n\n\n\n<pre class=\"wp-block-code\"><code>ng build\n </code></pre>\n\n\n\n<p>Use&nbsp;<code>ng build --prod</code>&nbsp;to build and distribute the app for production. For testing/debugging use&nbsp;<code>ng build</code>. The production build optimizes, minimize and uglify the code.</p>\n\n\n\n<p>Now open the&nbsp;<code>dist</code>&nbsp;and open the&nbsp;<code>index.html</code>.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;!doctype html>\n&lt;html lang=\"en\">\n&lt;head>\n  &lt;meta charset=\"utf-8\">\n  &lt;title>GettingStarted&lt;/title>\n  &lt;base href=\"/\">\n  &lt;meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n  &lt;link rel=\"icon\" type=\"image/x-icon\" href=\"favicon.ico\">\n&lt;/head>\n&lt;body>\n  &lt;app-root>&lt;/app-root>\n \n  &lt;script src=\"runtime-es2015.js\" type=\"module\">&lt;/script>\n  &lt;script src=\"runtime-es5.js\" nomodule defer>&lt;/script>\n  &lt;script src=\"polyfills-es5.js\" nomodule defer>&lt;/script>\n  &lt;script src=\"polyfills-es2015.js\" type=\"module\">&lt;/script>\n  &lt;script src=\"styles-es2015.js\" type=\"module\">&lt;/script>\n  &lt;script src=\"styles-es5.js\" nomodule defer>&lt;/script>\n  &lt;script src=\"vendor-es2015.js\" type=\"module\">&lt;/script>\n  &lt;script src=\"vendor-es5.js\" nomodule defer>&lt;/script>\n  &lt;script src=\"main-es2015.js\" type=\"module\">&lt;/script>\n  &lt;script src=\"main-es5.js\" nomodule defer>&lt;/script>&lt;/body>\n&lt;/html></code></pre>\n\n\n\n<p>You can see that the compiler included five script files. They are&nbsp;<code>runtime</code>,&nbsp;<code>polyfills</code>,&nbsp;<code>styles</code>,&nbsp;<code>vendor</code>, &amp;&nbsp;<code>main</code>. All these files have two versions one is&nbsp;<code>es5</code>&nbsp;&amp; the other one&nbsp;<code>es2015</code></p>\n\n\n\n<p>Since the Angular 7<strong>,&nbsp;</strong>we have new feature called&nbsp;<strong>conditional polyfill loading</strong>. Now Angular builds two script files, one for es2015 &amp; another for es5. The es2015 (es6) is for modern browser and es5 is older browsers, which do not support the new features of es2015.<br><br>Note the&nbsp;<code>nomodule</code>&nbsp;attribute, which tells the modern browser to ignore the script and do not load it. Hence&nbsp;<code>es5</code>&nbsp;scripts are not loaded in the modern browsers</p>\n\n\n\n<p><code>runtime.js:</code>&nbsp;Webpack runtime file<br><code>polyfills.js</code>&nbsp;– Polyfill scripts for supporting the variety of the latest modern browsers<br><code>styles.js</code>&nbsp;– This file contains the global style rules bundled as javascript file.<br><code>vendor.js</code>&nbsp;– contains the scripts from the Angular core library and any other 3rd party library.<br><code>main.js</code>&nbsp;– code of the application.</p>\n\n\n\n<p>The Angular Version 2 generated only three script files ( inline.js, styles.bundle.js &amp; main.bundle.js).</p>\n\n\n\n<p>These files are added by the Webpack module loader.</p>\n\n\n\n<h4>What is Webpack?</h4>\n\n\n\n<p>Webpack is a bundler. it scans our application looking for javascript files and merges them into one ( or more) big file. Webpack has the ability to bundle any kind of file like JavaScript, CSS, SASS, LESS, images, HTML, &amp; fonts, etc.</p>\n\n\n\n<p>The Angular CLI uses Webpack as a module bundler. Webpack needs a lot of configuration options to work correctly. The Angular CLI sets up all these configuration options behind the scene.</p>\n\n\n\n<p>The Webpack&nbsp;traverses through our application looking for javascript and other files and merges all of them into one or more bundles. In our example application, it has created five files.</p>\n\n\n\n<h2>Application Loads</h2>\n\n\n\n<p>So when&nbsp;<code>index.html</code>&nbsp;is loaded, the Angular core libraries, third-party libraries are loaded. Now the angular needs to locate the entry point.</p>\n\n\n\n<h3>Application Entry point</h3>\n\n\n\n<p>The entry point of our application is&nbsp;<code>main.ts</code>. You will find it under the&nbsp;<code>src</code>&nbsp;folder.</p>\n\n\n\n<h3>angular.json</h3>\n\n\n\n<p>The Angular finds out the entry point from the configuration file&nbsp;<code>angular.json</code>. This file is located in the root folder of the project. The relevant part of the&nbsp;<code>angular.json</code>&nbsp;is shown below</p>\n\n\n\n<p>The&nbsp;<code>angular-cli.json</code>&nbsp;was the configuration file in Angular 5 and before. It is now&nbsp;<code>angular.json</code>&nbsp;since the version Angular 6.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{\n  \"$schema\": \"./node_modules/@angular/cli/lib/config/schema.json\",\n  \"version\": 1,\n  \"newProjectRoot\": \"projects\",\n  \"projects\": {\n    \"GettingStarted\": {\n      \"projectType\": \"application\",\n      \"schematics\": {},\n      \"root\": \"\",\n      \"sourceRoot\": \"src\",\n      \"prefix\": \"app\",\n      \"architect\": {\n        \"build\": {\n          \"builder\": \"@angular-devkit/build-angular:browser\",\n          \"options\": {\n            \"outputPath\": \"dist/GettingStarted\",\n            \"index\": \"src/index.html\",\n            \"main\": \"src/main.ts\",                        &lt;====\n            \"polyfills\": \"src/polyfills.ts\",\n            \"tsConfig\": \"tsconfig.app.json\",\n            \"aot\": false,\n            \"assets\": &#91;\n              \"src/favicon.ico\",\n              \"src/assets\"\n            ],\n            \"styles\": &#91;\n              \"src/styles.css\"\n            ],\n            \"scripts\": &#91;]\n          },</code></pre>\n\n\n\n<p>The&nbsp;<code>main</code>&nbsp;entry under the node&nbsp;<em>projects -&gt; GettingStarted -&gt; architect -&gt; build -&gt; options&nbsp;</em>points towards the&nbsp;<code>src/main.ts</code>. This file is the entry point of our application.</p>\n\n\n\n<h2>main.ts Application entry point</h2>\n\n\n\n<p>The main.ts file is as shown below.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>import { enableProdMode } from '@angular/core';\nimport { platformBrowserDynamic } from '@angular/platform-browser-dynamic';\n \nimport { AppModule } from './app/app.module';\nimport { environment } from './environments/environment';\n \nif (environment.production) {\n  enableProdMode();\n}\n \nplatformBrowserDynamic().bootstrapModule(AppModule)\n  .catch(err => console.error(err));</code></pre>\n\n\n\n<p>Let us look at the relevant code in detail.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';</code></pre>\n\n\n\n<p>This line imports&nbsp;the module&nbsp;<code>platformBrowserDynamic</code>&nbsp;from the library<code>@angular/platform-browser-dynamic</code>.</p>\n\n\n\n<h3>What is platformBrowserDynamic</h3>\n\n\n\n<p><code>platformBrowserDynamic</code>&nbsp;is the module, which is responsible for loading the Angular application in the&nbsp;desktop browser.</p>\n\n\n\n<p>The Angular Applications can be bootstrapped in many ways and in many platforms. For example, we can load our application in a Desktop Browser or in a mobile device with Ionic or NativeScript.</p>\n\n\n\n<p>If you are using the nativescript, then you will be using <code>platformNativeScriptDynamic</code> from <code>nativescript-angular/platform</code> library and will be calling <code>platformNativeScriptDynamic().bootstrapModule(AppModule)</code>. Read more about Angular Nativescript bootstrap process from here</p>\n\n\n\n<pre class=\"wp-block-code\"><code>\nimport { AppModule } from './app/app.module';</code></pre>\n\n\n\n<p>The above line imports&nbsp;<code>AppModule</code>. The&nbsp;<code>AppModule</code>&nbsp;is the Root Module of the app. The Angular applications are organized as modules. Every application built in Angular must have at least one module. The module, which is loaded first when the application is loaded is called a root module.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>platformBrowserDynamic().bootstrapModule(AppModule)\n  .catch(err => console.error(err));</code></pre>\n\n\n\n<p>The<code>platformBrowserDynamic</code>&nbsp;loads the root module by invoking the&nbsp;<code>bootstrapModule</code>&nbsp;and giving it the reference to our Root module i.e&nbsp;<code>AppModule</code></p>\n\n\n\n<h2>Root&nbsp;Module</h2>\n\n\n\n<p>The angular bootstrapper loads our root module&nbsp;<code>AppModule</code>. The&nbsp;<code>AppModule</code>&nbsp;is located under the folder&nbsp;<code>src/app</code>. The code of our Root module is shown below</p>\n\n\n\n<pre class=\"wp-block-code\"><code>import { BrowserModule } from '@angular/platform-browser';\nimport { NgModule } from '@angular/core';\n \nimport { AppRoutingModule } from './app-routing.module';\nimport { AppComponent } from './app.component';\n \n@NgModule({\n  declarations: &#91;\n    AppComponent\n  ],\n  imports: &#91;\n    BrowserModule,\n    AppRoutingModule\n  ],\n  providers: &#91;],\n  bootstrap: &#91;AppComponent]\n})\nexport class AppModule { }</code></pre>\n\n\n\n<p>The root module must have at least one root component. The root component is loaded, when the module is loaded by the Angular.</p>\n\n\n\n<p>In our example,&nbsp;<code>AppComponent</code>&nbsp;is our root component. Hence we import it.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>import { AppComponent } from './app.component';</code></pre>\n\n\n\n<p>We use&nbsp;<code>@NgModule</code>&nbsp;class decorator to define a Module and provide metadata about the Modules.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>@NgModule({\n  declarations: &#91;\n    AppComponent\n  ],\n  imports: &#91;\n    BrowserModule,\n    AppRoutingModule\n  ],\n  providers: &#91;],\n  bootstrap: &#91;AppComponent]\n})\nexport class AppModule { }</code></pre>\n\n\n\n<p>The @NgModule has several metadata properties.</p>\n\n\n\n<h5>imports</h5>\n\n\n\n<p>We need to list all the external modules required including other Angular modules, that is used by this Angular Module</p>\n\n\n\n<h5>Declarations</h5>\n\n\n\n<p>The Declarations array contains the list of components, directives, &amp; pipes that belong to this Angular Module. We have only one component in our application&nbsp;<code>AppComponent</code>.</p>\n\n\n\n<h5>Providers</h5>\n\n\n\n<p>The Providers array, is where we register the services we create. The Angular Dependency injection framework injects these services in components, directives. pipes and other services.</p>\n\n\n\n<h5>Bootstrap</h5>\n\n\n\n<p>The component that angular should load, when this Angular Module loads. The component must be part of this module. We want&nbsp;<code>AppComponent</code>&nbsp;load when&nbsp;<code>AppModule</code>&nbsp;loads, hence we list it here.</p>\n\n\n\n<p>The Angular reads the bootstrap metadata and loads the&nbsp;<code>AppComponent</code></p>\n\n\n\n<h2>Component</h2>\n\n\n\n<p>Finally, we arrive at&nbsp;<code>AppComponent</code>, which is the root component of the&nbsp;<code>AppModule</code>. The code of our&nbsp;<code>AppComponent</code>&nbsp;is shown below</p>\n\n\n\n<pre class=\"wp-block-code\"><code>import { Component } from '@angular/core';\n \n@Component({\n  selector: 'app-root',\n  templateUrl: './app.component.html',\n  styleUrls: &#91;'./app.component.css']\n})\nexport class AppComponent {\n  title = 'GettingStarted';\n}</code></pre>\n\n\n\n<p>The Class AppComponent is decorated with&nbsp;<code>@Component</code>&nbsp;Class Decorator.</p>\n\n\n\n<p>The&nbsp;<code>@Component</code>&nbsp;class decorator provides the metadata about the class to the Angular. It has 3&nbsp;properties in the above code.&nbsp;<code>Selector</code>,&nbsp;<code>templateURL</code>&nbsp;&amp;&nbsp;<code>styleUrls</code></p>\n\n\n\n<h5>templateURL</h5>\n\n\n\n<p>This property contains an HTML&nbsp;template, which is going to be displayed in the browser. The template file is&nbsp;<code>app.component.html</code></p>\n\n\n\n<h5>Selector</h5>\n\n\n\n<p>This property specifies the CSS Selector, where our template will be inserted into the HTML. The CSS Selector in our code is&nbsp;<code>app-root</code></p>\n\n\n\n<h2>Template</h2>\n\n\n\n<p>The&nbsp;<code>AppComponent</code>&nbsp;defines the template as&nbsp;<code>app.component.html</code>and the CSS Selector is&nbsp;<code>app-root</code></p>\n\n\n\n<p>Our&nbsp;<code>index.html</code>&nbsp;already have the&nbsp;<code>app-root</code>&nbsp;CSS selector defined</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;body>\n  &lt;app-root>&lt;/app-root>\n&lt;/body></code></pre>\n\n\n\n<p>The Angular locates&nbsp;<code>app-root</code>&nbsp;in our index.html&nbsp;and renders our template between those tags.</p>\n\n\n\n<h2>Source Code</h2>\n\n\n\n<p>Download the source code gitHub. The Code is available in GettingStarted Folder</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Bootstrapping in Angular What is a Bootstrapping Bootstrapping is a technique of initializing or loading our Angular application. let’s walk through our code created in Create your First new Angular project and see what happens at each stage and how our AppComponent gets loaded and displays “app works!”. The Angular takes the following steps to load our first view. [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [124],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3483"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=3483"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 3,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3483/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3838,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3483/revisions/3838"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=3483"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=3483"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=3483"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  }
+]

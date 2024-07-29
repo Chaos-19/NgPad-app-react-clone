@@ -1,0 +1,378 @@
+[
+  {
+    "id": 4097,
+    "date": "2020-11-28T07:52:21",
+    "date_gmt": "2020-11-28T07:52:21",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3241"
+    },
+    "modified": "2020-11-28T07:52:21",
+    "modified_gmt": "2020-11-28T07:52:21",
+    "slug": "what-is-typescript",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/what-is-typescript/",
+    "title": {
+      "rendered": "What is TypeScript"
+    },
+    "content": {
+      "rendered": "\n<h2>Introduction to TypeScript</h2>\n\n\n\n<p>TypeScript is a super set of JavaScript.</p>\n\n\n\n<p>TypeScript builds on top of JavaScript. First, you write the TypeScript code. Then, you compile the TypeScript code into plain JavaScript code using a TypeScript compiler.</p>\n\n\n\n<p>Once you have the plain JavaScript code, you can deploy it to any environments that JavaScript runs.</p>\n\n\n\n<p>TypeScript files use the&nbsp;<code>.ts</code>&nbsp;extension rather than the&nbsp;<code>.js</code>&nbsp;extension of JavaScript files.</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://www.typescripttutorial.net/wp-content/uploads/2020/05/what-is-typescript-compiler.png\" alt=\"\" class=\"wp-image-38\"/></figure>\n\n\n\n<p>TypeScript uses the JavaScript syntaxes and adds additional syntaxes for supporting Types.</p>\n\n\n\n<p>If you have a JavaScript program that doesn\u2019t have any syntax errors, it is also a TypeScript program. It means that all JavaScript programs are TypeScript programs. This is very helpful if you\u2019re migrating an existing JavaScript codebase to TypeScript.</p>\n\n\n\n<p>The following diagram shows the relationship between TypeScript and JavaScript:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://www.typescripttutorial.net/wp-content/uploads/2020/05/what-is-typescript-typescript-and-js.png\" alt=\"\" class=\"wp-image-39\"/></figure>\n\n\n\n<h2>Why TypeScript</h2>\n\n\n\n<p>The main goals of TypeScript are:</p>\n\n\n\n<ul><li>Introduce optional types to JavaScript.</li><li>Implement planned features of future JavaScript a.k.a. ECMAScript Next or ES Next to the current JavaScript.</li></ul>\n\n\n\n<h3>1) TypeScript improves your productivity while helping avoid bugs</h3>\n\n\n\n<p>Types increase productivity by helping you avoid many mistakes. By using types, you can catch bugs at the compile-time instead of having them occurring at runtime.</p>\n\n\n\n<p>The following function adds two numbers&nbsp;<code>x</code>&nbsp;and&nbsp;<code>y</code>:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function add(x, y) {\n   return x + y;\n}</code></pre>\n\n\n\n<p>If you get the values from HTML input elements and pass them into the function, you may get an unexpected result:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let result = add(input1.value, input2.value);\nconsole.log(result); // result of concatenating strings</code></pre>\n\n\n\n<p>For example, if users entered&nbsp;<code>10</code>&nbsp;and&nbsp;<code>20</code>, the&nbsp;<code>add()</code>&nbsp;function would return&nbsp;<code>1020</code>, instead of&nbsp;<code>30</code>.</p>\n\n\n\n<p>The reason is that the&nbsp;<code>input1.value</code>&nbsp;and&nbsp;<code>input2.value</code>&nbsp;are strings, not numbers. When you use the operator&nbsp;<code>+</code>&nbsp;to add two strings, it concatenates them into a single string.</p>\n\n\n\n<p>When you use TypeScript to explicitly specify the type for the parameters like this:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function add(x: number, y: number) {\n   return x + y;\n}</code></pre>\n\n\n\n<p>In this function, we added the number types to the parameters. The function&nbsp;<code>add()</code>&nbsp;will accept only numbers, not any other values.</p>\n\n\n\n<p>When you invoke the function as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let result = add(input1.value, input2.value);</code></pre>\n\n\n\n<p>\u2026 the TypeScript compiler will issue an error if you compile the TypeScript code into JavaScript. Hence, you can prevent the error from happening at runtime.</p>\n\n\n\n<h3>2) TypeScript brings the future JavaScript to today</h3>\n\n\n\n<p>TypeScript supports the upcoming features planned in the ES Next for the current JavaScript engines. It means that you can use the new JavaScript features before web browsers (or other environments) fully support them.</p>\n\n\n\n<p>Every year, TC39 releases a number of new features for ECMAScript which is the standard of JavaScript. The feature proposals typically go through five stages:</p>\n\n\n\n<ul><li>Stage 0: Strawperson</li><li>Stage 1: Proposal</li><li>Stage 2: Draft</li><li>Stage 3: Candidate</li><li>Stage 4: Finished</li></ul>\n\n\n\n<p>And TypeScript generally supports features that are in the stage 3.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Introduction to TypeScript TypeScript is a super set of JavaScript. TypeScript builds on top of JavaScript. First, you write the TypeScript code. Then, you compile the TypeScript code into plain JavaScript code using a TypeScript compiler. Once you have the plain JavaScript code, you can deploy it to any environments that JavaScript runs. TypeScript files [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [207],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4097"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=4097"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4097/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=4097"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=4097"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=4097"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 4098,
+    "date": "2020-11-28T07:53:18",
+    "date_gmt": "2020-11-28T07:53:18",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3243"
+    },
+    "modified": "2020-11-28T07:53:18",
+    "modified_gmt": "2020-11-28T07:53:18",
+    "slug": "setting-up-the-typescript-development-environment",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/setting-up-the-typescript-development-environment/",
+    "title": {
+      "rendered": "Setting up the TypeScript development environment"
+    },
+    "content": {
+      "rendered": "\n<h2>Install Node.js</h2>\n\n\n\n<p>To install node.js, you follow these steps:</p>\n\n\n\n<ul><li>Go to the\u00a0node.js download page.</li><li>Download the node.js version that suits your platform i.e., Windows, macOS, or Linux.</li><li>Execute the downloaded node.js package or execution file. The installation is quite straightforward.</li><li>Verify the installation by open the terminal on macOS and Linux or command line on Windows and type the command\u00a0<code>node -v</code>. If you see the version that you downloaded, then you have successfully installed the node.js on your computer.</li></ul>\n\n\n\n<h2>Install TypeScript compiler</h2>\n\n\n\n<p>To install the TypeScript compiler, you launch the Terminal on macOS or Linux and Command Prompt on Windows and type the following command:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>npm\u00a0install\u00a0-g\u00a0typescript</code></pre>\n\n\n\n<p>After the installation, you can type the following command to check the current version of the TypeScript compiler:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>tsc --v</code></pre>\n\n\n\n<p>It should return the verison like this:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Version 4.0.2</code></pre>\n\n\n\n<p>Note that your version are probaly newer than this version.</p>\n\n\n\n<p>If you\u2019re on Windows and got the following error:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>'tsc' is not recognized as an internal or external command,\noperable program or batch file.</code></pre>\n\n\n\n<p>\u2026 then you should add the following path&nbsp;<code>C:\\Users\\&lt;user&gt;\\AppData\\Roaming\\npm</code>&nbsp;to the&nbsp;<code>PATH</code>&nbsp;variable. Notice that you should change the&nbsp;<code>&lt;user&gt;</code>&nbsp;to your windows user.</p>\n\n\n\n<p>To install the&nbsp;<code>ts-node</code>&nbsp;module globally, you run the following command from the Terminal on macOS and Linux or Command Prompt on Windows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>npm\u00a0install\u00a0-g\u00a0ts-node</code></pre>\n\n\n\n<h2>Install VS Code</h2>\n\n\n\n<p>To install the VS Code, you follow these steps:</p>\n\n\n\n<ul><li>Navigate to the\u00a0VS Code download page.</li><li>Download the latest version of VS Code that suits your OS (Windows, macOS, or Linux)</li><li>Execute the downloaded package or the installer file to launch the setup wizard. The installation process is also quite straightforward.</li><li>Launch the VS Code.</li></ul>\n\n\n\n<p>You\u2019ll see the VS Code as shown in the following picture:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://www.typescripttutorial.net/wp-content/uploads/2020/05/vs-code.png\" alt=\"\" class=\"wp-image-53\"/></figure>\n\n\n\n<p>To install the&nbsp;<strong>Live Server</strong>&nbsp;extension, you follow these steps:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://www.typescripttutorial.net/wp-content/uploads/2020/05/Live-Server.png\" alt=\"\" class=\"wp-image-54\"/></figure>\n\n\n\n<ul><li>Click the&nbsp;<strong>Extensions&nbsp;</strong>tab to find the extensions for VS Code.</li><li>Type the&nbsp;<strong>live server</strong>&nbsp;to search for it.</li><li>Click the&nbsp;<strong>install&nbsp;</strong>button to install the extension.</li></ul>\n\n\n\n<p>In this tutorial, you\u2019ve learned how to install a development environment for working with TypeScript.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Install Node.js To install node.js, you follow these steps: Go to the\u00a0node.js download page. Download the node.js version that suits your platform i.e., Windows, macOS, or Linux. Execute the downloaded node.js package or execution file. The installation is quite straightforward. Verify the installation by open the terminal on macOS and Linux or command line on [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [207],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4098"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=4098"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4098/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=4098"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=4098"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=4098"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 4099,
+    "date": "2020-11-28T07:54:03",
+    "date_gmt": "2020-11-28T07:54:03",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3245"
+    },
+    "modified": "2020-11-28T07:54:03",
+    "modified_gmt": "2020-11-28T07:54:03",
+    "slug": "typescript-hello-world",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/typescript-hello-world/",
+    "title": {
+      "rendered": "TypeScript Hello World"
+    },
+    "content": {
+      "rendered": "\n<h2>TypeScript Hello World program in node.js</h2>\n\n\n\n<p>First, create a new folder to store the code e.g.,&nbsp;<code>helloword</code>.</p>\n\n\n\n<p>Second, launch VS Code and open that folder.</p>\n\n\n\n<p>Third, create a new TypeScript file called&nbsp;<code>app.ts</code>. The extension of a TypeScript file is&nbsp;<code>.ts</code>.</p>\n\n\n\n<p>Fourth, type the following source code in the&nbsp;<code>app.ts</code>&nbsp;file:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let message: string = 'Hello, World!';\nconsole.log(message);</code></pre>\n\n\n\n<p>Fifth, launch a new Terminal within the VS Code by using the keyboard shortcut&nbsp;<code>Ctrl+`</code>&nbsp;or follow the menu&nbsp;<code>Terminal &gt; New Terminal</code></p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://www.typescripttutorial.net/wp-content/uploads/2020/05/TypeScript-Hello-World-Launch-Terminal.png\" alt=\"\" class=\"wp-image-57\"/></figure>\n\n\n\n<p>Sixth, type the following command on the Terminal to compile the&nbsp;<code>app.ts</code>&nbsp;file:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>tsc app.ts</code></pre>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://www.typescripttutorial.net/wp-content/uploads/2020/05/TypeScript-Hello-World-compile-TS-file.png\" alt=\"\" class=\"wp-image-58\"/></figure>\n\n\n\n<p>If everything is fine, you\u2019ll see a new file called&nbsp;<code>app.js</code>&nbsp;is generated by the TypeScript compiler:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://www.typescripttutorial.net/wp-content/uploads/2020/05/TypeScript-Hello-World-Output-file.png\" alt=\"\" class=\"wp-image-59\"/></figure>\n\n\n\n<p>To run the&nbsp;<code>app.js</code>&nbsp;file in&nbsp;<code>node.js</code>, you use the following command:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>node app.js</code></pre>\n\n\n\n<p>If you installed the\u00a0<code>ts-node</code>\u00a0module mentioned in the\u00a0setting up TypeScript development environment, you can use just one command to compile the TypeScript file and execute the output file at one shot:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>ts-node app.ts</code></pre>\n\n\n\n<h2>TypeScript Hello World program in Web Browsers</h2>\n\n\n\n<p>You follow these steps to create a webpage that shows the&nbsp;<code>Hello, World!</code>&nbsp;message on web browsers.</p>\n\n\n\n<p>First, create a new file called&nbsp;<code>index.html</code>&nbsp;and include the&nbsp;<code>app.js</code>&nbsp;as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;!DOCTYPE html>\n&lt;html lang=\"en\">\n&lt;head>\n    &lt;meta charset=\"UTF-8\">\n    &lt;meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    &lt;title>TypeScript: Hello, World!&lt;/title>\n&lt;/head>\n&lt;body>\n    &lt;script src=\"app.js\">&lt;/script>\n&lt;/body>\n&lt;/html></code></pre>\n\n\n\n<p>Second, change the&nbsp;<code>app.js</code>&nbsp;code to the following:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let message: string = 'Hello, World!';\n// create a new heading 1 element\nlet heading = document.createElement('h1');\nheading.textContent = message;\n// add the heading the document\ndocument.body.appendChild(heading);</code></pre>\n\n\n\n<p>Third, compile the&nbsp;<code>app.ts</code>&nbsp;file:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>tsc app.ts</code></pre>\n\n\n\n<p>Fourth, open the Live Server from the VS code by right-mouse click the index.html and select the Open with Live Server option:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://www.typescripttutorial.net/wp-content/uploads/2020/05/TypeScript-Hello-World-Live-Server.png\" alt=\"\" class=\"wp-image-61\"/></figure>\n\n\n\n<p>The Live Server will open the index.html with the following message:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://www.typescripttutorial.net/wp-content/uploads/2020/05/TypeScript-Hello-World-Web-Browser.png\" alt=\"\" class=\"wp-image-63\"/></figure>\n\n\n\n<p>To make the changes, you need to edit the&nbsp;<code>app.ts</code>&nbsp;file. For example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let message: string = 'Hello, TypeScript!';\n\nlet heading = document.createElement('h1');\nheading.textContent = message;\n\ndocument.body.appendChild(heading);</code></pre>\n\n\n\n<p>And compile the&nbsp;<code>app.ts</code>&nbsp;file:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>tsc app.ts</code></pre>\n\n\n\n<p>The TypeScript compiler will generate a new&nbsp;<code>app.js</code>&nbsp;file and the Live Server will automatically reload it on the web browser.</p>\n\n\n\n<p>Note that the&nbsp;<code>app.js</code>&nbsp;is the output file of the&nbsp;<code>app.ts</code>&nbsp;file, therefore, you should never directly change the code in this file or you\u2019ll lose the changes once you recompile the&nbsp;<code>app.ts</code>&nbsp;file.</p>\n\n\n\n<p>In this tutorial, you have learned how to create the first program in TypeScript called&nbsp;<code>Hello, World!</code>&nbsp;that works on node.js and web browsers.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>TypeScript Hello World program in node.js First, create a new folder to store the code e.g.,&nbsp;helloword. Second, launch VS Code and open that folder. Third, create a new TypeScript file called&nbsp;app.ts. The extension of a TypeScript file is&nbsp;.ts. Fourth, type the following source code in the&nbsp;app.ts&nbsp;file: Fifth, launch a new Terminal within the VS Code [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [207],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4099"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=4099"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4099/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=4099"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=4099"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=4099"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 4100,
+    "date": "2020-11-28T07:55:00",
+    "date_gmt": "2020-11-28T07:55:00",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3247"
+    },
+    "modified": "2020-11-28T07:55:00",
+    "modified_gmt": "2020-11-28T07:55:00",
+    "slug": "why-typescript",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/why-typescript/",
+    "title": {
+      "rendered": "Why TypeScript"
+    },
+    "content": {
+      "rendered": "\n<h2>Why use TypeScript</h2>\n\n\n\n<p>There are two main reasons to use TypeScript:</p>\n\n\n\n<ul><li>TypeScript adds a type system to help you avoid many problems with dynamic types in JavaScript.</li><li>TypeScript implements the future features of JavaScript a.k.a\u00a0ES Next\u00a0so that you can use them today.</li></ul>\n\n\n\n<p>This tutorial focuses on the first reason.</p>\n\n\n\n<h2>Understanding dynamic type in JavaScript</h2>\n\n\n\n<p>JavaScript is dynamically typed. Unlike statically-typed languages such as Java or C#,&nbsp;<strong>values have types instead of variables</strong>. For example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>\"Hello\"</code></pre>\n\n\n\n<p>From the value, you can tell that its type is&nbsp;<code>string</code>. Also, the following value is a number:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>2020</code></pre>\n\n\n\n<p>See the following example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let box;\nbox = \"hello\";\nbox = 100;</code></pre>\n\n\n\n<p>The type of the&nbsp;<code>box</code>&nbsp;variable changes based on the value assigned to it.</p>\n\n\n\n<p>To find the type of the&nbsp;<code>box</code>&nbsp;variable at runtime, you use the&nbsp;<code>typeof</code>&nbsp;operator:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let box;\nconsole.log(typeof(box)); // undefined\n\nbox = \"Hello\";\nconsole.log(typeof(box)); // string\n\nbox = 100;\nconsole.log(typeof(box)); // number</code></pre>\n\n\n\n<p>In this example, the first statement defines the variable without assigning a value. Its type is&nbsp;<code>undefined</code>.</p>\n\n\n\n<p>Then, we assign&nbsp;<code>\"Hello\"</code>&nbsp;to&nbsp;<code>box</code>&nbsp;variable and show its type. The type of the&nbsp;<code>box</code>&nbsp;variable now changes to&nbsp;<code>string</code>.</p>\n\n\n\n<p>Finally, we assign&nbsp;<code>100</code>&nbsp;to the&nbsp;<code>box</code>&nbsp;variable. This time, the type of the&nbsp;<code>box</code>&nbsp;variable changes to&nbsp;<code>number</code>.</p>\n\n\n\n<p>As you can see, as soon as the value is assigned, the type of the variable changes.</p>\n\n\n\n<p>And you don\u2019t need to explicitly tell JavaScript the type. JavaScript will automatically infer the type from the value.</p>\n\n\n\n<p>Dynamic types offer flexibility. However, they also leads to problems.</p>\n\n\n\n<h3>Problems with dynamic types</h3>\n\n\n\n<p>Suppose you have a function that returns a&nbsp;<code>product</code>&nbsp;object based on an id:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function getProduct(id){\n  return {\n    id: id,\n    name: `Awesome Gadget ${id}`,\n    price: 99.5\n  }\n}\n</code></pre>\n\n\n\n<p>The following uses the&nbsp;<code>getProduct()</code>&nbsp;function to retrieve the product with id 1 and shows its data:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>const product = getProduct(1);\nconsole.log(`The product ${product.Name} costs $${product.price}`);</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>The product undefined costs $99.5 </code></pre>\n\n\n\n<p>It isn\u2019t what we expected.</p>\n\n\n\n<p>The issue with this code is that the&nbsp;<code>product</code>&nbsp;object doesn\u2019t have the&nbsp;<code>Name</code>&nbsp;property. It has the&nbsp;<code>name</code>&nbsp;property with the first letter&nbsp;<code>n</code>&nbsp;in lowercase.</p>\n\n\n\n<p>However, you can only know it until you run the script.</p>\n\n\n\n<p>Referencing a property that doesn\u2019t exist on the object is a common issue when working in JavaScript.</p>\n\n\n\n<p>The following example defines a new function that outputs the product information to the Console:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>const showProduct = (name, price)  => {\n  console.log(`The product ${name} costs ${price}$.`);\n};</code></pre>\n\n\n\n<p>And the following uses the&nbsp;<code>getProduct()</code>&nbsp;and&nbsp;<code>showProduct()</code>&nbsp;functions:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>const product = getProduct(1);\nshowProduct(product.price, product.name);</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>The product 99.5 costs $Awesome Gadget 1 \n</code></pre>\n\n\n\n<p>This time we pass the arguments in the wrong order to the&nbsp;<code>showProduct()</code>&nbsp;function. This is another common problem that you often have when working with JavaScript.</p>\n\n\n\n<p>This is why the TypeScript comes into play.</p>\n\n\n\n<h2>How Typescript solves the problems of dynamic types</h2>\n\n\n\n<p>To fix the problem of referencing a property that doesn\u2019t exist on an object, you do the following steps:</p>\n\n\n\n<p>First, define the \u201cshape\u201d of the\u00a0<code>product</code>\u00a0object using an\u00a0interface. Note that you\u2019ll\u00a0learn about the interface\u00a0in a later tutorial.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>interface Product{\n    id: number,\n    name: string,\n    price: number\n};\n</code></pre>\n\n\n\n<p>Second, explicitly use the&nbsp;<code>Product</code>&nbsp;type as the return type of the&nbsp;<code>getProduct()</code>&nbsp;function:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function getProduct(id) : Product{\n  return {\n    id: id,\n    name: `Awesome Gadget ${id}`,\n    price: 99.5\n  }\n}</code></pre>\n\n\n\n<p>When you reference a property that doesn\u2019t exist, the code editor will inform you immediately:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>const product = getProduct(1);\nconsole.log(`The product ${product.Name} costs $${product.price}`);\n</code></pre>\n\n\n\n<p>The code editor highlighted the following error on the&nbsp;<code>Name</code>&nbsp;property:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://www.typescripttutorial.net/wp-content/uploads/2020/09/why-typescript-error.png\" alt=\"\" class=\"wp-image-401\"/></figure>\n\n\n\n<p>And when you hover the mouse cursor on the error, you\u2019ll see a hint that helps you to solve the issue:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://www.typescripttutorial.net/wp-content/uploads/2020/09/why-typescript-hint.png\" alt=\"\" class=\"wp-image-402\"/></figure>\n\n\n\n<p>To solve the problem of passing the arguments in the wrong order, you explicitly assign types to function parameters:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>const showProduct = (name: string, price:number)  => {\n  console.log(`The product ${name} costs ${price}$.`);\n};</code></pre>\n\n\n\n<p>And when you pass the arguments of the wrong types to the&nbsp;<code>showProduct()</code>&nbsp;function, you\u2019ll receive an error:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>const product = getProduct(1);\nshowProduct(product.price, product.name);</code></pre>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://www.typescripttutorial.net/wp-content/uploads/2020/09/why-typescript-error-in-function-arguments.png\" alt=\"\" class=\"wp-image-403\"/></figure>\n\n\n\n<h2>Summary</h2>\n\n\n\n<ul><li>JavaScript is dynamically typed. It offers flexibility but also creates many problems.</li><li>TypeScript adds an optional type system to JavaScript to solve these problems.</li></ul>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Why use TypeScript There are two main reasons to use TypeScript: TypeScript adds a type system to help you avoid many problems with dynamic types in JavaScript. TypeScript implements the future features of JavaScript a.k.a\u00a0ES Next\u00a0so that you can use them today. This tutorial focuses on the first reason. Understanding dynamic type in JavaScript JavaScript [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [207],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4100"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=4100"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4100/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=4100"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=4100"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=4100"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  }
+]

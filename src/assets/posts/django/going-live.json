@@ -1,0 +1,1894 @@
+[
+  {
+    "id": 4150,
+    "date": "2022-06-29T08:14:18",
+    "date_gmt": "2022-06-29T08:14:18",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=4150" },
+    "modified": "2022-06-29T08:14:18",
+    "modified_gmt": "2022-06-29T08:14:18",
+    "slug": "creating-a-production-environment",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/creating-a-production-environment/",
+    "title": { "rendered": "Creating a production environment" },
+    "content": {
+      "rendered": "\n<p>It&#8217;s time&nbsp;<a></a>to deploy your Django project in a production environment. You are going to follow these steps to get your project live:</p>\n\n\n\n<ul><li>Configure project settings for a production environment</li><li>Use a PostgreSQL database</li><li>Set up a web server with uWSGI and NGINX</li><li>Serve static assets through NGINX</li><li>Secure connections using SSL</li><li>Use Daphne to serve Django Channels</li></ul>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>It&#8217;s time&nbsp;to deploy your Django project in a production environment. You are going to follow these steps to get your project live: Configure project settings for a production environment Use a PostgreSQL database Set up a web server with uWSGI and NGINX Serve static assets through NGINX Secure connections using SSL Use Daphne to serve&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/creating-a-production-environment/\">Continue reading <span class=\"screen-reader-text\">Creating a production environment</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [138],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4150" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=4150"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4150/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4151,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4150/revisions/4151"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=4150"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=4150"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=4150"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 4152,
+    "date": "2022-06-29T08:15:00",
+    "date_gmt": "2022-06-29T08:15:00",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=4152" },
+    "modified": "2022-06-29T08:15:00",
+    "modified_gmt": "2022-06-29T08:15:00",
+    "slug": "managing-settings-for-multiple-environments",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/managing-settings-for-multiple-environments/",
+    "title": { "rendered": "Managing settings for multiple environments" },
+    "content": {
+      "rendered": "\n<p>In real-world projects, you will have to deal with multiple environments. You will have at least a local&nbsp;<a></a>and a production environment, but you could have other environments as well, such as testing or preproduction environments. Some project settings will be common to all environments, but others will have to be overridden per environment. Let&#8217;s set up project settings for multiple environments, while keeping everything neatly organized.</p>\n\n\n\n<p>Create a&nbsp;<code>settings/</code>&nbsp;directory next to the&nbsp;<code>settings.py</code>&nbsp;file of the&nbsp;<code>educa</code>&nbsp;project. Rename the&nbsp;<code>settings.py</code>&nbsp;file to&nbsp;<code>base.py</code>&nbsp;and move it into the new&nbsp;<code>settings/</code>&nbsp;directory. Create the following additional files inside the&nbsp;<code>settings/</code>&nbsp;folder so that&nbsp;the new directory looks as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>settings/\n    __init__.py\n    base.py\n    local.py\n    pro.py\n</code></pre>\n\n\n\n<p>These files are as follows:</p>\n\n\n\n<ul><li><code>base.py</code>: The base settings file that contains common settings (previously&nbsp;<code>settings.py</code>)</li><li><code>local.py</code>: Custom settings for your local environment</li><li><code>pro.py</code>: Custom settings for the production environment</li></ul>\n\n\n\n<p>Edit the&nbsp;<code>settings/base.py</code>&nbsp;file and replace the following line:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))\n</code></pre>\n\n\n\n<p>with the following one:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(\n                           <strong>os.path.join(__file__, os.pardir)</strong>)))\n</code></pre>\n\n\n\n<p>You have moved your settings files to a directory one level lower, so you need&nbsp;<code>BASE_DIR</code>&nbsp;to point to the parent directory to be correct. You achieve this by pointing to the&nbsp;parent directory with&nbsp;<code>os.pardir</code>.</p>\n\n\n\n<p>Edit the&nbsp;<code>settings/local.py</code>&nbsp;file and add the following lines of code:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>from .base import *\nDEBUG = True\nDATABASES = {\n    'default': {\n        'ENGINE': 'django.db.backends.sqlite3',\n        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),\n    }\n}\n</code></pre>\n\n\n\n<p>This is the settings file for your local environment. You import all settings defined in&nbsp;the&nbsp;<code>base.py</code>&nbsp;file and you only define specific settings for this environment. You copy the&nbsp;<code>DEBUG</code>&nbsp;and&nbsp;<code>DATABASES</code>&nbsp;settings from the&nbsp;<code>base.py</code>&nbsp;file, since these will be set&nbsp;per environment. You can remove the&nbsp;<code>DATABASES</code>&nbsp;and&nbsp;<code>DEBUG</code>&nbsp;settings from the&nbsp;<code>base.py</code>&nbsp;settings file.</p>\n\n\n\n<p>Edit the&nbsp;<code>settings/pro.py</code>&nbsp;file and make it look as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>from .base import *\nDEBUG = False\nADMINS = (\n    ('Antonio M', 'email@mydomain.com'),\n)\nALLOWED_HOSTS = &#91;'*']\nDATABASES = {\n    'default': {\n    }\n}\n</code></pre>\n\n\n\n<p>These are&nbsp;<a></a>the settings for the production environment. Let&#8217;s take a closer look at each of them:</p>\n\n\n\n<ul><li><code>DEBUG</code>: Setting&nbsp;<code>DEBUG</code>&nbsp;to&nbsp;<code>False</code>&nbsp;should be mandatory for any production environment. Failing to do so will result in the traceback information and sensitive configuration data being exposed to everyone.</li><li><code>ADMINS</code>: When&nbsp;<code>DEBUG</code>&nbsp;is&nbsp;<code>False</code>&nbsp;and a view raises an exception, all information will be sent by email to the people listed in the&nbsp;<code>ADMINS</code>&nbsp;setting. Make sure that you replace the name/email tuple with your own information.</li><li><code>ALLOWED_HOSTS</code>: Django will only allow the hosts included in this list to serve&nbsp;the application. This is a security measure. You include the asterisk symbol,&nbsp;<code>*</code>, to refer to all hostnames. You will limit the hostnames that can be&nbsp;used for serving the application later.</li><li><code>DATABASES</code>: You just keep this setting empty. We are going to cover the database setup for production later.</li></ul>\n\n\n\n<p>When handling multiple environments, create a base settings file and a settings file for each environment. Environment settings files should inherit the common settings and override environment-specific settings.</p>\n\n\n\n<p>You have placed the project settings in a different location than the default&nbsp;<code>settings.py</code>&nbsp;file. You will not be able to execute any commands with the&nbsp;<code>manage.py</code>&nbsp;tool unless you specify the settings module to use. You will need to add a&nbsp;<code>--settings</code>&nbsp;flag when you run management commands from the shell or set a&nbsp;<code>DJANGO_SETTINGS_MODULE</code>&nbsp;environment variable.</p>\n\n\n\n<p>Open the&nbsp;<a></a>shell and run the following command:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>export DJANGO_SETTINGS_MODULE=educa.settings.pro\n</code></pre>\n\n\n\n<p>This will set the&nbsp;<code>DJANGO_SETTINGS_MODULE</code>&nbsp;environment variable for the current shell session. If you want to avoid executing this command for each new shell, add this command to your shell&#8217;s configuration in the&nbsp;<code>.bashrc</code>&nbsp;or&nbsp;<code>.bash_profile</code>&nbsp;files. If&nbsp;you don&#8217;t set this variable, you will have to run management commands, including&nbsp;the&nbsp;<code>--settings</code>&nbsp;flag, as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>python manage.py shell --settings=educa.settings.pro\n</code></pre>\n\n\n\n<p>You have successfully organized settings for handling multiple environments.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>In real-world projects, you will have to deal with multiple environments. You will have at least a local&nbsp;and a production environment, but you could have other environments as well, such as testing or preproduction environments. Some project settings will be common to all environments, but others will have to be overridden per environment. Let&#8217;s set&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/managing-settings-for-multiple-environments/\">Continue reading <span class=\"screen-reader-text\">Managing settings for multiple environments</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [138],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4152" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=4152"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4152/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4153,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4152/revisions/4153"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=4152"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=4152"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=4152"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 4154,
+    "date": "2022-06-29T08:15:52",
+    "date_gmt": "2022-06-29T08:15:52",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=4154" },
+    "modified": "2022-06-29T08:15:52",
+    "modified_gmt": "2022-06-29T08:15:52",
+    "slug": "using-postgresql",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/using-postgresql/",
+    "title": { "rendered": "Using PostgreSQL" },
+    "content": {
+      "rendered": "\n<p>Throughout this book, you have mostly used the SQLite database. SQLite is simple and quick to set up, but for a production environment, you will need a more powerful database, such as PostgreSQL, MySQL, or Oracle. You already learned how to install PostgreSQL and set up a PostgreSQL database, <em>Extending Your Blog Application</em>. If you need to install PostgreSQL, you can read the <em>Installing PostgreSQL</em> section.</p>\n\n\n\n<p>Let&#8217;s create a PostgreSQL user. Open the shell and run the following commands to create a database user:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>su postgres\ncreateuser -dP educa\n</code></pre>\n\n\n\n<p>You will be prompted for a password and the permissions that you want to give to this user. Enter the desired password and permissions, and then create a new database with the following command:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>createdb -E utf8 -U educa educa\n</code></pre>\n\n\n\n<p>Then, edit the&nbsp;<code>settings/pro.py</code>&nbsp;file and modify the&nbsp;<code>DATABASES</code>&nbsp;setting to make it look as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>DATABASES = {\n   'default': {\n       'ENGINE': 'django.db.backends.postgresql',\n       'NAME': 'educa',\n       'USER': 'educa',\n       'PASSWORD': '*****',\n   }\n}\n</code></pre>\n\n\n\n<p>Replace the preceding data with the database name and credentials for the user you created. The new&nbsp;<a></a>database is empty. Run the following command to apply all database migrations:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>python manage.py migrate\n</code></pre>\n\n\n\n<p>Finally, create a superuser with the following command:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>python manage.py createsuperuser\n</code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Throughout this book, you have mostly used the SQLite database. SQLite is simple and quick to set up, but for a production environment, you will need a more powerful database, such as PostgreSQL, MySQL, or Oracle. You already learned how to install PostgreSQL and set up a PostgreSQL database, Extending Your Blog Application. If you need to&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/using-postgresql/\">Continue reading <span class=\"screen-reader-text\">Using PostgreSQL</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [138],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4154" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=4154"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4154/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4155,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4154/revisions/4155"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=4154"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=4154"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=4154"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 4156,
+    "date": "2022-06-29T08:16:26",
+    "date_gmt": "2022-06-29T08:16:26",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=4156" },
+    "modified": "2022-06-29T08:16:26",
+    "modified_gmt": "2022-06-29T08:16:26",
+    "slug": "checking-your-project",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/checking-your-project/",
+    "title": { "rendered": "Checking your project" },
+    "content": {
+      "rendered": "\n<p>Django includes the&nbsp;<code>check</code>&nbsp;management command for checking your project at any time. This&nbsp;<a></a>command inspects the applications installed in your Django project and outputs any errors or warnings. If you include the&nbsp;<code>--deploy</code>&nbsp;option, additional checks only relevant for production use will be triggered. Open the shell and run the&nbsp;following command to perform a check:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>python manage.py check --deploy\n</code></pre>\n\n\n\n<p>You will see output with no errors, but several warnings. This means the check was successful, but you should go through the warnings to see if there is anything more you can do to make your project safe for production. We are not going to go deeper into this, but keep in mind that you should check your project before production use&nbsp;to look for any relevant issues.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Django includes the&nbsp;check&nbsp;management command for checking your project at any time. This&nbsp;command inspects the applications installed in your Django project and outputs any errors or warnings. If you include the&nbsp;&#8211;deploy&nbsp;option, additional checks only relevant for production use will be triggered. Open the shell and run the&nbsp;following command to perform a check: You will see output&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/checking-your-project/\">Continue reading <span class=\"screen-reader-text\">Checking your project</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [138],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4156" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=4156"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4156/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4157,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4156/revisions/4157"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=4156"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=4156"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=4156"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 4158,
+    "date": "2022-06-29T08:17:02",
+    "date_gmt": "2022-06-29T08:17:02",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=4158" },
+    "modified": "2022-06-29T08:17:02",
+    "modified_gmt": "2022-06-29T08:17:02",
+    "slug": "serving-django-through-wsgi",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/serving-django-through-wsgi/",
+    "title": { "rendered": "Serving Django through WSGI" },
+    "content": {
+      "rendered": "\n<p>Django&#8217;s&nbsp;<a></a>primary deployment platform is WSGI.&nbsp;<strong>WSGI</strong>&nbsp;stands for&nbsp;<strong>Web Server Gateway Interface</strong>&nbsp;and it is the standard for serving Python&nbsp;<a></a>applications on the web.</p>\n\n\n\n<p>When you generate a new project using the&nbsp;<code>startproject</code>&nbsp;command, Django creates a&nbsp;<code>wsgi.py</code>&nbsp;file inside your project directory. This file contains a WSGI application callable, which is an access point to your application.</p>\n\n\n\n<p>WSGI is used for both running your project with the&nbsp;<a></a>Django development server and deploying your application with the server of your choice in a production environment.</p>\n\n\n\n<p>You can learn more about WSGI at https://wsgi.readthedocs.io/en/latest/.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Django&#8217;s&nbsp;primary deployment platform is WSGI.&nbsp;WSGI&nbsp;stands for&nbsp;Web Server Gateway Interface&nbsp;and it is the standard for serving Python&nbsp;applications on the web. When you generate a new project using the&nbsp;startproject&nbsp;command, Django creates a&nbsp;wsgi.py&nbsp;file inside your project directory. This file contains a WSGI application callable, which is an access point to your application. WSGI is used for both running&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/serving-django-through-wsgi/\">Continue reading <span class=\"screen-reader-text\">Serving Django through WSGI</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [138],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4158" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=4158"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4158/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4159,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4158/revisions/4159"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=4158"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=4158"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=4158"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 4160,
+    "date": "2022-06-29T08:17:40",
+    "date_gmt": "2022-06-29T08:17:40",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=4160" },
+    "modified": "2022-06-29T08:17:40",
+    "modified_gmt": "2022-06-29T08:17:40",
+    "slug": "installing-uwsgi",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/installing-uwsgi/",
+    "title": { "rendered": "Installing uWSGI" },
+    "content": {
+      "rendered": "\n<p>The Django development server to run projects in your local environment. However, you need a real web server for deploying your application in a production environment.</p>\n\n\n\n<p>uWSGI is an&nbsp;<a></a>extremely fast Python application server. It communicates with your Python application using the WSGI specification. uWSGI translates web requests into&nbsp;a format that your Django project can process.</p>\n\n\n\n<p>Install uWSGI using the following command:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>pip install uwsgi==2.0.18\n</code></pre>\n\n\n\n<p>In order to build uWSGI, you will need a C compiler, such as&nbsp;<code>gcc</code>&nbsp;or&nbsp;<code>clang</code>. In a Linux environment, you can install a C compiler with the command&nbsp;<code>apt-get install build-essential</code>.</p>\n\n\n\n<p>If you are using macOS, you can install uWSGI with the Homebrew package manager using the command&nbsp;<code>brew install uwsgi</code>.</p>\n\n\n\n<p>If you want to install uWSGI on Windows, you will need Cygwin: https://www.cygwin.com. However, it&#8217;s desirable to use uWSGI in UNIX-based environments.</p>\n\n\n\n<p>You can read uWSGI&#8217;s documentation at https://uwsgi-docs.readthedocs.io/en/latest/.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>The Django development server to run projects in your local environment. However, you need a real web server for deploying your application in a production environment. uWSGI is an&nbsp;extremely fast Python application server. It communicates with your Python application using the WSGI specification. uWSGI translates web requests into&nbsp;a format that your Django project can process.&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/installing-uwsgi/\">Continue reading <span class=\"screen-reader-text\">Installing uWSGI</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [138],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4160" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=4160"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4160/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4161,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4160/revisions/4161"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=4160"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=4160"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=4160"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 4163,
+    "date": "2022-06-29T08:18:24",
+    "date_gmt": "2022-06-29T08:18:24",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=4163" },
+    "modified": "2022-06-29T08:18:24",
+    "modified_gmt": "2022-06-29T08:18:24",
+    "slug": "configuring-uwsgi",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/configuring-uwsgi/",
+    "title": { "rendered": "Configuring uWSGI" },
+    "content": {
+      "rendered": "\n<p>You can&nbsp;<a></a>run uWSGI from the command line. Open the shell and run the following command from the&nbsp;<code>educa</code>&nbsp;project directory:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>sudo uwsgi --module=educa.wsgi:application \\\n--env=DJANGO_SETTINGS_MODULE=educa.settings.pro \\\n--master --pidfile=/tmp/project-master.pid \\\n--http=127.0.0.1:8000 \\\n--uid=1000 \\\n--virtualenv=/home/env/educa/\n</code></pre>\n\n\n\n<p>Replace the path in the&nbsp;<code>virtualenv</code>&nbsp;option with your actual virtual environment directory. If you are not using a virtual environment, you can skip this option.</p>\n\n\n\n<p>You might have to prepend&nbsp;<code>sudo</code>&nbsp;to this command if you don&#8217;t have the required permissions. You might also need to add the&nbsp;<code>--plugin=python3</code>&nbsp;option if the module is not loaded by default.</p>\n\n\n\n<p>With this&nbsp;<a></a>command, you can run uWSGI on your localhost with the following options:</p>\n\n\n\n<ul><li>You use the&nbsp;<code>educa.wsgi:application</code>&nbsp;WSGI callable</li><li>You load the settings for the production environment</li><li>You tell uWSGI to use the&nbsp;<code>educa</code>&nbsp;virtual environment</li></ul>\n\n\n\n<p>If you are not running the command within the project directory, include the option&nbsp;<code>--chdir=/path/to/educa/</code>&nbsp;with the path to your project.</p>\n\n\n\n<p>Open&nbsp;<code>http://127.0.0.1:8000/</code>&nbsp;in your browser. You should see a screen like the following one:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/B14981_14_01.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 14.1: The course list page served with uWSGI</p>\n\n\n\n<p>You can see the rendered HTML that corresponds to the course list view, but no CSS style sheets or images are being loaded. The reason for this is that you didn&#8217;t configure uWSGI to serve static files. You will configure serving static files in the production environment later.</p>\n\n\n\n<p>uWSGI allows you to define a custom configuration in a&nbsp;<code>.ini</code>&nbsp;file. This is more convenient than passing options through the command line.</p>\n\n\n\n<p>Create the following file structure inside the global&nbsp;<code>educa/</code>&nbsp;directory:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>config/\n    uwsgi.ini\nlogs/\n</code></pre>\n\n\n\n<p>Edit the&nbsp;<code>config/uwsgi.ini</code>&nbsp;file and add the following code to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&#91;uwsgi]\n<em># variables</em>\nprojectname = educa\nbase = /home/projects/educa\n<em># configuration</em>\nmaster = true\nvirtualenv = /home/env/%(projectname)\npythonpath = %(base)\nchdir = %(base)\nenv = DJANGO_SETTINGS_MODULE=%(projectname).settings.pro\nmodule = %(projectname).wsgi:application\nsocket = /tmp/%(projectname).sock\nchmod-socket = 666\n</code></pre>\n\n\n\n<p>In the&nbsp;<code>uwsgi.ini</code>&nbsp;file, you define the following variables:</p>\n\n\n\n<ul><li><code>projectname</code>: The name of your Django project, which is&nbsp;<code>educa</code>.</li><li><code>base</code>: The absolute path to the&nbsp;<code>educa</code>&nbsp;project. Replace it with the absolute path to your project.</li></ul>\n\n\n\n<p>These are&nbsp;<a></a>custom variables that you will use in the uWSGI options. You can define any other variables you like as long as the names are different to the uWSGI options.</p>\n\n\n\n<p>You set the following options:</p>\n\n\n\n<ul><li><code>master</code>: Enable the master process.</li><li><code>virtualenv</code>: The path to your virtual environment. Replace this path with the appropriate path.</li><li><code>pythonpath</code>: The paths to add to your Python path.</li><li><code>chdir</code>: The path to your project directory, so that uWSGI changes to that directory before loading the application.</li><li><code>env</code>: Environment variables. You include the&nbsp;<code>DJANGO_SETTINGS_MODULE</code>&nbsp;variable, pointing to the settings for the production environment.</li><li><code>module</code>: The WSGI module to use. You set this to the&nbsp;<code>application</code>&nbsp;callable contained in the&nbsp;<code>wsgi</code>&nbsp;module of your project.</li><li><code>socket</code>: The UNIX/TCP socket to bind the server.</li><li><code>chmod-socket</code>: The file permissions to apply to the socket file. In this case, you use&nbsp;<code>666</code>&nbsp;so that NGINX can read/write the socket.</li></ul>\n\n\n\n<p>The&nbsp;<code>socket</code>&nbsp;option is intended for communication with some third-party router, such as NGINX, while the&nbsp;<code>http</code>&nbsp;option is for uWSGI to accept incoming HTTP requests and route them by itself. You are going to run uWSGI using a socket, since&nbsp;you are going to configure&nbsp;<a></a>NGINX as your web server and communicate with&nbsp;uWSGI through the socket.</p>\n\n\n\n<p>You can find the list of available uWSGI options at https://uwsgi-docs.readthedocs.io/en/latest/Options.html.</p>\n\n\n\n<p>Now, you can run uWSGI with your custom configuration using this command:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>uwsgi <em>--ini config/uwsgi.ini</em>\n</code></pre>\n\n\n\n<p>You will not be able to access your uWSGI instance from your browser now, since it&#8217;s&nbsp;running through a socket. Let&#8217;s complete the production environment.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>You can&nbsp;run uWSGI from the command line. Open the shell and run the following command from the&nbsp;educa&nbsp;project directory: Replace the path in the&nbsp;virtualenv&nbsp;option with your actual virtual environment directory. If you are not using a virtual environment, you can skip this option. You might have to prepend&nbsp;sudo&nbsp;to this command if you don&#8217;t have the required&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/configuring-uwsgi/\">Continue reading <span class=\"screen-reader-text\">Configuring uWSGI</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [138],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4163" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=4163"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4163/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4164,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4163/revisions/4164"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=4163"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=4163"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=4163"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 4165,
+    "date": "2022-06-29T08:18:52",
+    "date_gmt": "2022-06-29T08:18:52",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=4165" },
+    "modified": "2022-06-29T08:18:52",
+    "modified_gmt": "2022-06-29T08:18:52",
+    "slug": "installing-nginx",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/installing-nginx/",
+    "title": { "rendered": "Installing NGINX" },
+    "content": {
+      "rendered": "\n<p>When you are serving a website, you have to serve dynamic content, but you also need to serve static files, such as CSS style sheets, JavaScript files, and images. While uWSGI is capable of&nbsp;<a></a>serving static files, it adds an unnecessary overhead to HTTP requests and therefore, it is encouraged to set up a web server, such as NGINX, in&nbsp;front of it.</p>\n\n\n\n<p>NGINX is a web server focused on high concurrency, performance, and low memory&nbsp;usage. NGINX also acts as a reverse proxy, receiving HTTP requests and routing them to different backends. As mentioned, generally, you will use a web server, such as NGINX, in front of uWSGI for serving static files efficiently and quickly, and you will forward dynamic requests to uWSGI workers. By using NGINX, you can also apply rules and benefit from its reverse proxy capabilities.</p>\n\n\n\n<p>Install NGINX with the following command:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>sudo apt-get install nginx\n</code></pre>\n\n\n\n<p>If you are using macOS, you can install NGINX using the command&nbsp;<code>brew install nginx</code>.</p>\n\n\n\n<p>You can find NGINX binaries for Windows at https://nginx.org/en/download.html.</p>\n\n\n\n<p>Open a&nbsp;<a></a>shell and run NGINX with the following command:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>sudo nginx\n</code></pre>\n\n\n\n<p>Open the URL&nbsp;<code>http://127.0.0.1</code>&nbsp;in your browser. You should see the following screen:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/B14981_14_02.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 14.2: The NGINX default page</p>\n\n\n\n<p>If you see this screen, NGINX is successfully installed.&nbsp;<code>80</code>&nbsp;is the port for the default NGINX configuration.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>When you are serving a website, you have to serve dynamic content, but you also need to serve static files, such as CSS style sheets, JavaScript files, and images. While uWSGI is capable of&nbsp;serving static files, it adds an unnecessary overhead to HTTP requests and therefore, it is encouraged to set up a web server,&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/installing-nginx/\">Continue reading <span class=\"screen-reader-text\">Installing NGINX</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [138],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4165" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=4165"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4165/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4166,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4165/revisions/4166"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=4165"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=4165"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=4165"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 4167,
+    "date": "2022-06-29T08:19:30",
+    "date_gmt": "2022-06-29T08:19:30",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=4167" },
+    "modified": "2022-06-29T08:19:30",
+    "modified_gmt": "2022-06-29T08:19:30",
+    "slug": "the-production-environment",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/the-production-environment/",
+    "title": { "rendered": "The production environment" },
+    "content": {
+      "rendered": "\n<p>The following&nbsp;<a></a>diagram shows the request/response cycle of the production environment that you are setting up:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/B14981_14_03.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 14.3: The production environment request/response cycle</p>\n\n\n\n<p>The following&nbsp;<a></a>will happen when the client browser sends an HTTP request:</p>\n\n\n\n<ol><li>NGINX receives the HTTP request</li><li>NGINX delegates the request to uWSGI through a socket</li><li>uWSGI passes the request to Django for processing</li><li>Django returns an HTTP response that is passed back to NGINX, which in&nbsp;turn passes it back to the client browser</li></ol>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>The following&nbsp;diagram shows the request/response cycle of the production environment that you are setting up: Figure 14.3: The production environment request/response cycle The following&nbsp;will happen when the client browser sends an HTTP request: NGINX receives the HTTP request NGINX delegates the request to uWSGI through a socket uWSGI passes the request to Django for processing&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/the-production-environment/\">Continue reading <span class=\"screen-reader-text\">The production environment</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [138],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4167" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=4167"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4167/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4168,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4167/revisions/4168"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=4167"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=4167"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=4167"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 4169,
+    "date": "2022-06-29T08:20:16",
+    "date_gmt": "2022-06-29T08:20:16",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=4169" },
+    "modified": "2022-06-29T08:20:16",
+    "modified_gmt": "2022-06-29T08:20:16",
+    "slug": "configuring-nginx",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/configuring-nginx/",
+    "title": { "rendered": "Configuring NGINX" },
+    "content": {
+      "rendered": "\n<p>Create a&nbsp;<a></a>new file inside the&nbsp;<code>config/</code>&nbsp;directory and name it&nbsp;<code>nginx.conf</code>. Add the following code to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code><em># the upstream component nginx needs to connect to</em>\nupstream educa {\n    server      unix:///tmp/educa.sock;\n}\nserver {\n    listen       80;\n    server_name  www.educaproject.com educaproject.com;\n    access_log   off;\n    error_log    /home/projects/educa/logs/nginx_error.log;\n    location / {\n        include      /etc/nginx/uwsgi_params;\n        uwsgi_pass   educa;\n    }\n}\n</code></pre>\n\n\n\n<p>This is the basic configuration for NGINX. You set up an upstream named&nbsp;<code>educa</code>, which points to the socket created by uWSGI. You use the&nbsp;<code>server</code>&nbsp;block and add the&nbsp;following configuration:</p>\n\n\n\n<ul><li>You tell NGINX to listen on port&nbsp;<code>80</code>.</li><li>You set the server name to both&nbsp;<code>www.educaproject.com</code>&nbsp;and&nbsp;<code>educaproject.com</code>. NGINX will serve incoming requests for both domains.</li><li>You explicitly set&nbsp;<code>access_log</code>&nbsp;to&nbsp;<code>off</code>. You can use this directive to store access logs in a file.</li><li>You use the&nbsp;<code>error_log</code>&nbsp;directive to set the path to the file where you will be&nbsp;storing error logs. Replace this path with the path where you would like to store NGINX error logs. Analyze this log file if you run into any issue while using NGINX.</li><li>You include the default uWSGI configuration parameters that come with NGINX. These are located next to the default configuration file for NGINX. You can usually find them in any of these three locations:&nbsp;<code>/usr/local/nginx/conf/usgi_params</code>,&nbsp;<code>/etc/nginx/usgi_params</code>, or&nbsp;<code>/usr/local/etc/nginx/usgi_params</code>.</li><li>You specify that everything under the&nbsp;<code>/</code>&nbsp;path has to be routed to the&nbsp;<code>educa</code>&nbsp;socket (uWSGI).</li></ul>\n\n\n\n<p>You can find the NGINX documentation at https://nginx.org/en/docs/.</p>\n\n\n\n<p>The default&nbsp;<a></a>configuration file for NGINX is named&nbsp;<code>nginx.conf</code>&nbsp;and it usually resides in any of these three directories:&nbsp;<code>/usr/local/nginx/conf</code>,&nbsp;<code>/etc/nginx</code>, or&nbsp;<code>/usr/local/etc/nginx</code>.</p>\n\n\n\n<p>Locate your&nbsp;<code>nginx.conf</code>&nbsp;configuration file and add the following&nbsp;<code>include</code>&nbsp;directive inside the&nbsp;<code>http</code>&nbsp;block:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>http {\n    <strong>include /home/projects/educa/config/nginx.conf;</strong>\n    # ...\n}\n</code></pre>\n\n\n\n<p>Replace&nbsp;<code>/home/projects/educa/config/nginx.conf</code>&nbsp;with the path to the configuration file you created for the&nbsp;<code>educa</code>&nbsp;project. In this code, you include the NGINX configuration file for your project in the default NGINX configuration.</p>\n\n\n\n<p>Open a shell and run uWSGI if you are not running it yet:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>uwsgi <em>--ini config/uwsgi.ini</em>\n</code></pre>\n\n\n\n<p>Open a second shell and reload NGINX with the following command:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>sudo nginx -s reload\n</code></pre>\n\n\n\n<p>Whenever you want to stop NGINX, you can gracefully do so with the following command:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>sudo nginx -s quit\n</code></pre>\n\n\n\n<p>If you want to quickly stop NGINX, instead of&nbsp;<code>quit</code>&nbsp;use the signal&nbsp;<code>stop</code>. The&nbsp;<code>quit</code>&nbsp;signal waits for worker processes to finish serving current requests, while the&nbsp;<code>stop</code>&nbsp;signal stops NGINX abruptly.</p>\n\n\n\n<p>Since you are using a sample domain name, you need to redirect it to your local host. Edit your&nbsp;<code>/etc/hosts</code>&nbsp;file and add the following line to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>127.0.0.1 educaproject.com www.educaproject.com\n</code></pre>\n\n\n\n<p>By doing so, you are routing both hostnames to your local server. In a production server, you won&#8217;t need to do this, since you will have a fixed IP address and you will&nbsp;point your hostname to your server in your domain&#8217;s DNS configuration.</p>\n\n\n\n<p>Open&nbsp;<code>http://educaproject.com/</code>&nbsp;in your browser. You should be able to see your&nbsp;site, still without any static assets loaded. Your production environment is almost ready.</p>\n\n\n\n<p>Now you&nbsp;<a></a>can restrict the hosts that can serve your Django project. Edit the production settings file&nbsp;<code>settings/pro.py</code>&nbsp;of your project and change the&nbsp;<code>ALLOWED_HOSTS</code>&nbsp;setting, as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>ALLOWED_HOSTS = &#91;<strong>'educaproject.com', 'www.educaproject.com'</strong>]\n</code></pre>\n\n\n\n<p>Django will now only serve your application if it&#8217;s running under any of these hostnames. You can read more about the <code>ALLOWED_HOSTS</code> setting at https://docs.djangoproject.com/en/3.0/ref/settings/#allowed-hosts.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Create a&nbsp;new file inside the&nbsp;config/&nbsp;directory and name it&nbsp;nginx.conf. Add the following code to it: This is the basic configuration for NGINX. You set up an upstream named&nbsp;educa, which points to the socket created by uWSGI. You use the&nbsp;server&nbsp;block and add the&nbsp;following configuration: You tell NGINX to listen on port&nbsp;80. You set the server name to&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/configuring-nginx/\">Continue reading <span class=\"screen-reader-text\">Configuring NGINX</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [138],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4169" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=4169"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4169/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4170,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4169/revisions/4170"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=4169"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=4169"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=4169"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 4172,
+    "date": "2022-06-29T08:20:50",
+    "date_gmt": "2022-06-29T08:20:50",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=4172" },
+    "modified": "2022-06-29T08:20:50",
+    "modified_gmt": "2022-06-29T08:20:50",
+    "slug": "serving-static-and-media-assets",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/serving-static-and-media-assets/",
+    "title": { "rendered": "Serving static and media assets" },
+    "content": {
+      "rendered": "\n<p>uWSGI is capable of serving static files flawlessly, but it is not as fast and effective as NGINX. For the&nbsp;<a></a>best performance, you will use NGINX to serve the static files in your production environment. You will set up NGINX to serve both the static files of your application (CSS style sheets, JavaScript files, and images) and media files uploaded by instructors for the course contents.</p>\n\n\n\n<p>Edit the&nbsp;<code>settings/base.py</code>&nbsp;file and add the following line just below the&nbsp;<code>STATIC_URL</code>&nbsp;setting:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>STATIC_ROOT = os.path.join(BASE_DIR, 'static/')\n</code></pre>\n\n\n\n<p>Each application in your Django project may contain static files in a&nbsp;<code>static/</code>&nbsp;directory. Django provides a command to collect static files from all applications into&nbsp;a single location. This simplifies the setup for serving static files in production. The&nbsp;<code>collectstatic</code>&nbsp;command collects the static files from all applications of the project into the path defined in&nbsp;<code>STATIC_ROOT</code>.</p>\n\n\n\n<p>Open the shell and run the following command:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>python manage.py collectstatic\n</code></pre>\n\n\n\n<p>You will see this output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>165 static files copied to <em>'/educa/static'.</em>\n</code></pre>\n\n\n\n<p>Files located&nbsp;<a></a>under the&nbsp;<code>static/</code>&nbsp;directory of each application present in the&nbsp;<code>INSTALLED_APPS</code>&nbsp;setting have been copied to the global&nbsp;<code>/educa/static/</code>&nbsp;project directory.</p>\n\n\n\n<p>Now, edit the&nbsp;<code>config/nginx.conf</code>&nbsp;file and change its code, like this:</p>\n\n\n\n<pre class=\"wp-block-code\"><code><em># the upstream component nginx needs to connect to</em>\nupstream educa {\n    server      unix:///tmp/educa.sock;\n}\nserver {\n    listen       80;\n    server_name  www.educaproject.com educaproject.com;\n    access_log   off;\n    error_log    /home/projects/educa/logs/nginx_error.log;\n    location / {\n        include      /etc/nginx/uwsgi_params;\n        uwsgi_pass   educa;\n    }\n    \n    <strong>location /static/ {</strong>\n        <strong>alias /home/projects/educa/static/;</strong>\n    <strong>}</strong>\n    <strong>location /media/ {</strong>\n        <strong>alias /home/projects/educa/media/;</strong>\n    <strong>}</strong>\n}\n</code></pre>\n\n\n\n<p>Remember to replace the&nbsp;<code>/home/projects/educa/</code>&nbsp;path with the absolute path to&nbsp;your project directory. These directives tell NGINX to serve static files located under the&nbsp;<code>/static/</code>&nbsp;and&nbsp;<code>/media/</code>&nbsp;paths directly. These paths are as follows:</p>\n\n\n\n<ul><li><code>/static/</code>: Corresponds to the path of the&nbsp;<code>STATIC_URL</code>&nbsp;setting. The target path corresponds to the value of the&nbsp;<code>STATIC_ROOT</code>&nbsp;setting. You use it to serve the static files of your application.</li><li><code>/media/</code>: Corresponds to the path of the&nbsp;<code>MEDIA_URL</code>&nbsp;setting, and its target path corresponds to the value of the&nbsp;<code>MEDIA_ROOT</code>&nbsp;setting. You use it to serve the media files uploaded to the course contents.</li></ul>\n\n\n\n<p>The schema&nbsp;<a></a>of the production environment now looks like this:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/B14981_14_04.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 14.4: The production environment request/response cycle, including static files</p>\n\n\n\n<p>Files under the&nbsp;<code>/static/</code>&nbsp;and&nbsp;<code>/media/</code>&nbsp;paths are now served by NGINX directly, instead of being forwarded to uWSGI. Requests to any other paths are still passed by NGINX to uWSGI through the UNIX socket.</p>\n\n\n\n<p>Reload NGINX&#8217;s configuration with the following command to keep track of the new paths:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>sudo nginx -s reload\n</code></pre>\n\n\n\n<p>Open&nbsp;<code>http://educaproject.com/</code>&nbsp;in your browser. You should see the following screen:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/B14981_14_05.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 14.5: The course list page served with NGINX and uWSGI</p>\n\n\n\n<p>Static resources, such as CSS style sheets and images, are now loaded correctly. HTTP requests&nbsp;<a></a>for static files are now being served by NGINX directly, instead of being forwarded to uWSGI.</p>\n\n\n\n<p>Great! You have successfully configured NGINX for serving static files.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>uWSGI is capable of serving static files flawlessly, but it is not as fast and effective as NGINX. For the&nbsp;best performance, you will use NGINX to serve the static files in your production environment. You will set up NGINX to serve both the static files of your application (CSS style sheets, JavaScript files, and images)&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/serving-static-and-media-assets/\">Continue reading <span class=\"screen-reader-text\">Serving static and media assets</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [138],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4172" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=4172"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4172/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4173,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4172/revisions/4173"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=4172"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=4172"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=4172"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 4175,
+    "date": "2022-06-29T08:21:32",
+    "date_gmt": "2022-06-29T08:21:32",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=4175" },
+    "modified": "2022-06-29T08:21:32",
+    "modified_gmt": "2022-06-29T08:21:32",
+    "slug": "securing-connections-with-ssl-tls",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/securing-connections-with-ssl-tls/",
+    "title": { "rendered": "Securing connections with SSL/TLS" },
+    "content": {
+      "rendered": "\n<p>The <strong>Transport Layer Security</strong> (<strong>TLS</strong>) protocol is the standard for serving websites through a secure connection. The TLS predecessor is <strong>Secure Sockets Layer</strong> (<strong>SSL</strong>). Although SSL is now deprecated, in multiple libraries and online documentation you will find references to both the terms TLS and SSL. It&#8217;s strongly encouraged that you serve your websites under HTTPS. You are going to configure an SSL/TLS certificate in NGINX to serve your site securely.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>The Transport Layer Security (TLS) protocol is the standard for serving websites through a secure connection. The TLS predecessor is Secure Sockets Layer (SSL). Although SSL is now deprecated, in multiple libraries and online documentation you will find references to both the terms TLS and SSL. It&#8217;s strongly encouraged that you serve your websites under HTTPS. You are going to configure an SSL/TLS certificate&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/securing-connections-with-ssl-tls/\">Continue reading <span class=\"screen-reader-text\">Securing connections with SSL/TLS</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [138],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4175" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=4175"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4175/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4176,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4175/revisions/4176"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=4175"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=4175"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=4175"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 4177,
+    "date": "2022-06-29T08:22:04",
+    "date_gmt": "2022-06-29T08:22:04",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=4177" },
+    "modified": "2022-06-29T08:22:04",
+    "modified_gmt": "2022-06-29T08:22:04",
+    "slug": "creating-an-ssl-tls-certificate",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/creating-an-ssl-tls-certificate/",
+    "title": { "rendered": "Creating an SSL/TLS certificate" },
+    "content": {
+      "rendered": "\n<p>Create a new&nbsp;<a></a>directory inside the&nbsp;<code>educa</code>&nbsp;project directory and name it&nbsp;<code>ssl</code>. Then, generate an SSL/TLS certificate from the command line with the following command:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout ssl/educa.key -out ssl/educa.crt\n</code></pre>\n\n\n\n<p>You are generating a private key and a 2048-bit SSL/TLS certificate that is valid for one year. You will be asked to enter data, as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Country Name (2 letter code) &#91;]:\nState or Province Name (full name) &#91;]:\nLocality Name (eg, city) &#91;]:\nOrganization Name (eg, company) &#91;]:\nOrganizational Unit Name (eg, section) &#91;]:\nCommon Name (eg, fully qualified host name) &#91;]: <strong>educaproject.com</strong>\nEmail Address &#91;]: <strong>email@domain.com</strong>\n</code></pre>\n\n\n\n<p>You can fill&nbsp;<a></a>in the requested data with your own information. The most important field is the&nbsp;<code>Common Name</code>. You have to specify the domain name for the certificate. You use&nbsp;<code>educaproject.com</code>. This will generate, inside the&nbsp;<code>ssl/</code>&nbsp;directory, an&nbsp;<code>educa.key</code>&nbsp;private key file and an&nbsp;<code>educa.crt</code>&nbsp;file, which is the actual certificate.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Create a new&nbsp;directory inside the&nbsp;educa&nbsp;project directory and name it&nbsp;ssl. Then, generate an SSL/TLS certificate from the command line with the following command: You are generating a private key and a 2048-bit SSL/TLS certificate that is valid for one year. You will be asked to enter data, as follows: You can fill&nbsp;in the requested data with&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/creating-an-ssl-tls-certificate/\">Continue reading <span class=\"screen-reader-text\">Creating an SSL/TLS certificate</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [138],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4177" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=4177"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4177/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4178,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4177/revisions/4178"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=4177"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=4177"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=4177"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 4179,
+    "date": "2022-06-29T08:22:39",
+    "date_gmt": "2022-06-29T08:22:39",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=4179" },
+    "modified": "2022-06-29T08:22:39",
+    "modified_gmt": "2022-06-29T08:22:39",
+    "slug": "configuring-nginx-to-use-ssl-tls",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/configuring-nginx-to-use-ssl-tls/",
+    "title": { "rendered": "Configuring NGINX to use SSL/TLS" },
+    "content": {
+      "rendered": "\n<p>Edit the&nbsp;<code>nginx.conf</code>&nbsp;file of the&nbsp;<code>educa</code>&nbsp;project and edit the&nbsp;<code>server</code>&nbsp;block to include SSL/TLS, as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>server {\n   listen               80;\n   <strong>listen               443 ssl;</strong>\n   <strong>ssl_certificate      /home/projects/educa/ssl/educa.crt;</strong>\n   <strong>ssl_certificate_key  /home/projects/educa/ssl/educa.key;</strong>\n   server_name          www.educaproject.com educaproject.com;\n   <em># ...</em>\n}\n</code></pre>\n\n\n\n<p>With the&nbsp;<a></a>preceding code, your server now listens both to HTTP through port&nbsp;<code>80</code>&nbsp;and&nbsp;HTTPS through port&nbsp;<code>443</code>. You indicate the path to the SSL/TLS certificate with&nbsp;<code>ssl_certificate</code>&nbsp;and the certificate key with&nbsp;<code>ssl_certificate_key</code>.</p>\n\n\n\n<p>Reload NGINX with the following command:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>sudo nginx -s reload\n</code></pre>\n\n\n\n<p>NGINX will load the new configuration. Open&nbsp;<code>https://educaproject.com/</code>&nbsp;with your browser. You should see a warning message similar to the following one:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/B14981_14_06.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 14.6: An invalid certificate warning</p>\n\n\n\n<p>This screen might vary depending on your browser. It alerts you that your site is not using a trusted or valid certificate; the browser can&#8217;t verify the identity of your site. This is because you signed your own certificate instead of obtaining one from a trusted <strong>certification authority</strong> (<strong>CA</strong>). When you own a real domain, you can apply for a trusted CA to issue an SSL/TLS certificate for it, so that browsers can verify its identity. If you want to obtain a trusted certificate for a real domain, you can refer to the <em>Let&#8217;s Encrypt</em> project created by the Linux Foundation. It is a nonprofit CA that simplifies obtaining and renewing trusted SSL/TLS certificates for free. You can find more information at https://letsencrypt.org.</p>\n\n\n\n<p>Click on the link or button that provides additional information and choose to visit the website, ignoring warnings. The browser might ask you to add an exception for this certificate or verify that you trust it. If you are using Chrome, you might not see any option to proceed to the website. If this is the case, type&nbsp;<code>thisisunsafe</code>&nbsp;or&nbsp;<code>badidea</code>&nbsp;directly in Chrome on the same warning page. Chrome will then load the website. Note that you do this with your own issued certificate; don&#8217;t trust any unknown certificate or bypass the browser SSL/TLS certificate checks for other domains.</p>\n\n\n\n<p>When you access the site, you will see that the browser displays a lock icon next to the URL, as follows:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/B14981_14_07.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 14.7: The browser address bar, including a secure connection padlock icon</p>\n\n\n\n<p>If you&nbsp;<a></a>click the lock icon, SSL/TLS certificate details will be displayed as follows:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/B14981_14_08.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 14.8: TLS/SSL certificate details</p>\n\n\n\n<p>In the certificate details, you can see it is a self-signed certificate and you can see its expiration date. You are now serving your site securely.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Edit the&nbsp;nginx.conf&nbsp;file of the&nbsp;educa&nbsp;project and edit the&nbsp;server&nbsp;block to include SSL/TLS, as follows: With the&nbsp;preceding code, your server now listens both to HTTP through port&nbsp;80&nbsp;and&nbsp;HTTPS through port&nbsp;443. You indicate the path to the SSL/TLS certificate with&nbsp;ssl_certificate&nbsp;and the certificate key with&nbsp;ssl_certificate_key. Reload NGINX with the following command: NGINX will load the new configuration. Open&nbsp;https://educaproject.com/&nbsp;with your browser. You&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/configuring-nginx-to-use-ssl-tls/\">Continue reading <span class=\"screen-reader-text\">Configuring NGINX to use SSL/TLS</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [138],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4179" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=4179"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4179/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4180,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4179/revisions/4180"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=4179"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=4179"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=4179"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 4181,
+    "date": "2022-06-29T08:23:10",
+    "date_gmt": "2022-06-29T08:23:10",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=4181" },
+    "modified": "2022-06-29T08:23:10",
+    "modified_gmt": "2022-06-29T08:23:10",
+    "slug": "configuring-your-django-project-for-ssl-tls",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/configuring-your-django-project-for-ssl-tls/",
+    "title": { "rendered": "Configuring your Django project for SSL/TLS" },
+    "content": {
+      "rendered": "\n<p>Django&nbsp;<a></a>comes with specific settings for SSL/TLS support. Edit the&nbsp;<code>settings/pro.py</code>&nbsp;settings file and add the following settings to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>SECURE_SSL_REDIRECT = True\nCSRF_COOKIE_SECURE = True\n</code></pre>\n\n\n\n<p>These settings are as follows:</p>\n\n\n\n<ul><li><code>SECURE_SSL_REDIRECT</code>: Whether HTTP requests have to be redirected to HTTPS</li><li><code>CSRF_COOKIE_SECURE</code>: Has to be set for establishing a secure cookie for&nbsp;<strong>cross-site</strong><strong>&nbsp;request forgery</strong>&nbsp;(<strong>CSRF</strong>) protection</li></ul>\n\n\n\n<p>Django will&nbsp;<a></a>now redirect HTTP requests to HTTPS, and cookies for CSRF protection will now be secure.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Django&nbsp;comes with specific settings for SSL/TLS support. Edit the&nbsp;settings/pro.py&nbsp;settings file and add the following settings to it: These settings are as follows: SECURE_SSL_REDIRECT: Whether HTTP requests have to be redirected to HTTPS CSRF_COOKIE_SECURE: Has to be set for establishing a secure cookie for&nbsp;cross-site&nbsp;request forgery&nbsp;(CSRF) protection Django will&nbsp;now redirect HTTP requests to HTTPS, and cookies for&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/configuring-your-django-project-for-ssl-tls/\">Continue reading <span class=\"screen-reader-text\">Configuring your Django project for SSL/TLS</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [138],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4181" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=4181"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4181/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4182,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4181/revisions/4182"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=4181"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=4181"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=4181"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 4183,
+    "date": "2022-06-29T08:23:40",
+    "date_gmt": "2022-06-29T08:23:40",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=4183" },
+    "modified": "2022-06-29T08:23:40",
+    "modified_gmt": "2022-06-29T08:23:40",
+    "slug": "redirecting-http-traffic-over-to-https",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/redirecting-http-traffic-over-to-https/",
+    "title": { "rendered": "Redirecting HTTP traffic over to HTTPS" },
+    "content": {
+      "rendered": "\n<p>You are redirecting HTTP requests to HTTPS using Django. However, this can be handled in a more&nbsp;<a></a>efficient way using NGINX.</p>\n\n\n\n<p>Edit the&nbsp;<code>nginx.conf</code>&nbsp;file of the&nbsp;<code>educa</code>&nbsp;project and change it as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code><em># the upstream component nginx needs to connect to</em>\nupstream educa {\n    server      unix:///tmp/educa.sock;\n}\nserver {\n    listen 80;\n    <strong>server_name www.educaproject.com educaproject.com;</strong>\n    <strong>return 301 https://educaproject.com$request_uri;</strong>\n<strong>}</strong>\n<strong>server {</strong>\n    listen               443 ssl;\n    ssl_certificate      /home/projects/educa/ssl/educa.crt;\n    ssl_certificate_key  /home/projects/educa/ssl/educa.key;\n    server_name  www.educaproject.com educaproject.com;\n    access_log   off;\n    error_log    /home/projects/educa/logs/nginx_error.log;\n    location / {\n        include      /etc/nginx/uwsgi_params;\n        uwsgi_pass   educa;\n    }\n    \n    location /static/ {\n        alias /home/projects/educa/static/;\n    }\n    location /media/ {\n        alias /home/projects/educa/media/;\n    }\n}\n</code></pre>\n\n\n\n<p>In this code, you remove the directive&nbsp;<code>listen 80;</code>&nbsp;from the original&nbsp;<code>server</code>&nbsp;block, so&nbsp;that the&nbsp;<a></a>platform is only available through SSL/TLS (port&nbsp;<code>443</code>). On top of the original&nbsp;<code>server</code>&nbsp;block, you add an additional&nbsp;<code>server</code>&nbsp;block that only listens on port&nbsp;<code>80</code>&nbsp;and redirects all HTTP requests to HTTPS. To achieve this, you return an&nbsp;HTTP response code&nbsp;<code>301</code>&nbsp;(permanent redirect) that redirects to the&nbsp;<code>https://</code>&nbsp;version of the requested URL.</p>\n\n\n\n<p>Reload NGINX with the following command:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>sudo nginx -s reload\n</code></pre>\n\n\n\n<p>You are now redirecting all HTTP traffic to HTTPS using NGINX.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>You are redirecting HTTP requests to HTTPS using Django. However, this can be handled in a more&nbsp;efficient way using NGINX. Edit the&nbsp;nginx.conf&nbsp;file of the&nbsp;educa&nbsp;project and change it as follows: In this code, you remove the directive&nbsp;listen 80;&nbsp;from the original&nbsp;server&nbsp;block, so&nbsp;that the&nbsp;platform is only available through SSL/TLS (port&nbsp;443). On top of the original&nbsp;server&nbsp;block, you add an&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/redirecting-http-traffic-over-to-https/\">Continue reading <span class=\"screen-reader-text\">Redirecting HTTP traffic over to HTTPS</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [138],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4183" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=4183"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4183/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4184,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4183/revisions/4184"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=4183"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=4183"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=4183"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 4185,
+    "date": "2022-06-29T10:29:44",
+    "date_gmt": "2022-06-29T10:29:44",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=4185" },
+    "modified": "2022-06-29T10:29:44",
+    "modified_gmt": "2022-06-29T10:29:44",
+    "slug": "using-daphne-for-django-channels",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/using-daphne-for-django-channels/",
+    "title": { "rendered": "Using Daphne for Django Channels" },
+    "content": {
+      "rendered": "\n<p><em>Building a Chat Server</em>, you used Django Channels to build a chat server using WebSockets. uWSGI is suitable for running Django or any other WSGI application, but it doesn&#8217;t support asynchronous communication using <strong>Asynchronous Server Gateway Interface</strong> (<strong>ASGI</strong>) or WebSockets. In order to run Channels in production, you need an ASGI web server that is capable of managing WebSockets.</p>\n\n\n\n<p>Daphne is a HTTP, HTTP2, and WebSocket server for ASGI developed to serve Channels. You can run Daphne alongside uWSGI to serve both ASGI and WSGI applications efficiently.</p>\n\n\n\n<p>Daphne is installed automatically as a dependency of Channels. If you went through the steps to install Channels <em>Building a Chat Server</em>, Daphne is already installed in your Python environment. You can also install Daphne with the following command:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>pip install daphne==2.4.1\n</code></pre>\n\n\n\n<p>You can find more information about Daphne at https://github.com/django/daphne.</p>\n\n\n\n<p>Django 3 supports WSGI and ASGI, but it doesn&#8217;t support WebSockets yet. Therefore, you are going to edit the&nbsp;<code>asgi.py</code>&nbsp;file of the&nbsp;<code>educa</code>&nbsp;project to use Channels.</p>\n\n\n\n<p>Edit the&nbsp;<code>educa/asgi.py</code>&nbsp;file of your project and make it look like this:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>import os\nimport django\nfrom channels.routing import get_default_application\nos.environ.setdefault('DJANGO_SETTINGS_MODULE', 'educa.settings')\ndjango.setup()\napplication = get_default_application()\n</code></pre>\n\n\n\n<p>You are loading the default ASGI application using Channels instead of the standard Django ASGI module. You can find more information about deploying Daphne with protocol servers at https://channels.readthedocs.io/en/latest/deploying.html#run-protocol-servers.</p>\n\n\n\n<p>Open a&nbsp;<a></a>new shell and set the&nbsp;<code>DJANGO_SETTINGS_MODULE</code>&nbsp;environment variable with&nbsp;the production environment using the following command:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>export DJANGO_SETTINGS_MODULE=educa.settings.pro\n</code></pre>\n\n\n\n<p>In the same shell, from the&nbsp;<code>educa</code>&nbsp;project directory run the following command:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>daphne -u /tmp/daphne.sock educa.asgi:application\n</code></pre>\n\n\n\n<p>You will see the following output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>2020-02-11 00:49:44,223 INFO     Starting server at unix:/tmp/daphne.sock\n2020-02-11 00:49:44,223 INFO     HTTP/2 support not enabled (install the http2 and tls Twisted extras)\n2020-02-11 00:49:44,223 INFO     Configuring endpoint unix:/tmp/daphne.sock\n</code></pre>\n\n\n\n<p>The output shows that Daphne is successfully running on a UNIX socket.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Building a Chat Server, you used Django Channels to build a chat server using WebSockets. uWSGI is suitable for running Django or any other WSGI application, but it doesn&#8217;t support asynchronous communication using Asynchronous Server Gateway Interface (ASGI) or WebSockets. In order to run Channels in production, you need an ASGI web server that is capable of managing WebSockets.&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/using-daphne-for-django-channels/\">Continue reading <span class=\"screen-reader-text\">Using Daphne for Django Channels</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [138],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4185" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=4185"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4185/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4186,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4185/revisions/4186"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=4185"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=4185"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=4185"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 4187,
+    "date": "2022-06-29T10:30:39",
+    "date_gmt": "2022-06-29T10:30:39",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=4187" },
+    "modified": "2022-06-29T10:30:39",
+    "modified_gmt": "2022-06-29T10:30:39",
+    "slug": "using-secure-connections-for-websockets",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/using-secure-connections-for-websockets/",
+    "title": { "rendered": "Using secure connections for WebSockets" },
+    "content": {
+      "rendered": "\n<p>You have&nbsp;<a></a>configured NGINX to use secure connections through SSL/TLS. You need to change&nbsp;<code>ws</code>&nbsp;(WebSocket) connections to use the&nbsp;<code>wss</code>&nbsp;(WebSocket Secure) protocol now, in the same way that HTTP connections are now being served through HTTPS.</p>\n\n\n\n<p>Edit the&nbsp;<code>chat/room.html</code>&nbsp;template of the&nbsp;<code>chat</code>&nbsp;application and find the following line in the&nbsp;<code>domready</code>&nbsp;block:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>var url = 'ws://' + window.location.host +\n</code></pre>\n\n\n\n<p>Replace that line with the following one:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>var url = 'ws<strong>s:</strong>//' + window.location.host +\n</code></pre>\n\n\n\n<p>Now you will be explicitly connecting to a secure WebSocket.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>You have&nbsp;configured NGINX to use secure connections through SSL/TLS. You need to change&nbsp;ws&nbsp;(WebSocket) connections to use the&nbsp;wss&nbsp;(WebSocket Secure) protocol now, in the same way that HTTP connections are now being served through HTTPS. Edit the&nbsp;chat/room.html&nbsp;template of the&nbsp;chat&nbsp;application and find the following line in the&nbsp;domready&nbsp;block: Replace that line with the following one: Now you will be&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/using-secure-connections-for-websockets/\">Continue reading <span class=\"screen-reader-text\">Using secure connections for WebSockets</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [138],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4187" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=4187"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4187/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4188,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4187/revisions/4188"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=4187"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=4187"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=4187"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 4190,
+    "date": "2022-06-29T10:31:12",
+    "date_gmt": "2022-06-29T10:31:12",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=4190" },
+    "modified": "2022-06-29T10:31:12",
+    "modified_gmt": "2022-06-29T10:31:12",
+    "slug": "including-daphne-in-the-nginx-configuration",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/including-daphne-in-the-nginx-configuration/",
+    "title": { "rendered": "Including Daphne in the NGINX configuration" },
+    "content": {
+      "rendered": "\n<p>In your&nbsp;<a></a>production setup, you will be running Daphne on a UNIX socket and using NGINX in front of it. NGINX will pass requests to Daphne based on the requested path. You will expose Daphne to NGINX through a UNIX socket interface, just like the uWSGI setup.</p>\n\n\n\n<p>Edit the&nbsp;<code>config/nginx.conf</code>&nbsp;file of the&nbsp;<code>educa</code>&nbsp;project and make it look as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code><em># the upstream components nginx needs to connect to</em>\nupstream educa {\n    server unix:/tmp/educa.sock;\n}\n<strong>upstream daphne {</strong>\n    <strong>server unix:/tmp/daphne.sock;</strong>\n<strong>}</strong>\nserver {\n    listen 80;\n    server_name www.educaproject.com educaproject.com;\n    return 301 https://educaproject.com$request_uri;\n}\nserver {\n    listen               443 ssl;\n    ssl_certificate      /home/projects/educa/ssl/educa.crt;\n    ssl_certificate_key  /home/projects/educa/ssl/educa.key;\n    \n    server_name  www.educaproject.com educaproject.com;\n    access_log   off;\n    error_log    /home/projects/educa/logs/nginx_error.log;\n    location / {\n        include     /etc/nginx/uwsgi_params;\n        uwsgi_pass  educa;\n    }\n    <strong>location /ws/ {</strong>\n        <strong>proxy_http_version  1.1;</strong>\n        <strong>proxy_set_header    Upgrade $http_upgrade;</strong>\n        <strong>proxy_set_header    Connection \"upgrade\";</strong>\n        <strong>proxy_redirect      off;</strong>\n        <strong>proxy_pass          http://daphne;</strong>\n    <strong>}</strong>\n    location /static/ {\n        alias /home/projects/educa/static/;\n    }\n    location /media/ {\n        alias /home/projects/educa/media/;\n    }\n}\n</code></pre>\n\n\n\n<p>In this configuration, you set up a new upstream named&nbsp;<code>daphne</code>, which points to a socket created by Daphne. In the&nbsp;<code>server</code>&nbsp;block, you configure the&nbsp;<code>/ws/</code>&nbsp;location to forward&nbsp;<a></a>requests to Daphne. You use the&nbsp;<code>proxy_pass</code>&nbsp;directive to pass requests to Daphne and you include some additional proxy directives.</p>\n\n\n\n<p>With this configuration, NGINX will pass any URL request that starts with the&nbsp;<code>/ws/</code>&nbsp;prefix to Daphne and the rest to uWSGI, except for files under the&nbsp;<code>/static/</code>&nbsp;or&nbsp;<code>/media/</code>&nbsp;paths, which will be served directly by NGINX.</p>\n\n\n\n<p>The production setup including Daphne now looks like this:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/B14981_14_09.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 14.9: The production environment request/response cycle, including Daphne</p>\n\n\n\n<p>NGINX runs in front of uWSGI and Daphne as a reverse proxy server. NGINX faces the Web and passes requests to the application server (uWSGI or Daphne) based on their path prefix. Besides this, NGINX also serves static files and redirects non-secure requests to secure ones. This setup reduces downtime, consumes less server resources, and provides greater performance and security.</p>\n\n\n\n<p>Stop and start uWSGI and Daphne, and then reload NGINX with the following command to keep track of the latest configuration:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>sudo nginx -s reload\n</code></pre>\n\n\n\n<p>Use your browser to create a sample course with an instructor user, log in with a user who is enrolled on the course, and open&nbsp;<code>https://educaproject.com/chat/room/1/</code>&nbsp;with&nbsp;<a></a>your browser. You should be able to send and receive messages like the following example:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/B14981_14_10.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 14.10: Course chat room messages served with NGINX and Daphne</p>\n\n\n\n<p>Daphne is working correctly and NGINX is passing requests to it. All connections are secured through SSL/TLS.</p>\n\n\n\n<p>Congratulations! You have built a custom production-ready stack using NGINX, uWSGI, and Daphne. You could do further optimization for additional performance and enhanced security through configuration settings in NGINX, uWSGI and Daphne. However, this production setup is a great start!</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>In your&nbsp;production setup, you will be running Daphne on a UNIX socket and using NGINX in front of it. NGINX will pass requests to Daphne based on the requested path. You will expose Daphne to NGINX through a UNIX socket interface, just like the uWSGI setup. Edit the&nbsp;config/nginx.conf&nbsp;file of the&nbsp;educa&nbsp;project and make it look as&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/including-daphne-in-the-nginx-configuration/\">Continue reading <span class=\"screen-reader-text\">Including Daphne in the NGINX configuration</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [138],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4190" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=4190"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4190/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4191,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4190/revisions/4191"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=4190"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=4190"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=4190"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 4192,
+    "date": "2022-06-29T10:31:59",
+    "date_gmt": "2022-06-29T10:31:59",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=4192" },
+    "modified": "2022-06-29T10:31:59",
+    "modified_gmt": "2022-06-29T10:31:59",
+    "slug": "creating-a-custom-middleware",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/creating-a-custom-middleware/",
+    "title": { "rendered": "Creating a custom middleware" },
+    "content": {
+      "rendered": "\n<p>You already know the&nbsp;<code>MIDDLEWARE</code>&nbsp;setting, which contains the middleware for your project. You&nbsp;<a></a>can think of it as a low-level plugin system, allowing you to implement hooks that get executed in the request/response process. Each middleware is responsible for some specific action that will be executed for all HTTP requests or responses.</p>\n\n\n\n<p>Avoid adding expensive processing to middleware, since they are executed in every single request.</p>\n\n\n\n<p>When an HTTP request is received, middleware are executed in order of appearance in the&nbsp;<code>MIDDLEWARE</code>&nbsp;setting. When an HTTP response has been generated by Django, the response passes through all middleware back in reverse order.</p>\n\n\n\n<p>A middleware&nbsp;<a></a>can be written as a function, as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>def my_middleware(get_response):\n    def middleware(request):\n        <em># Code executed for each request before</em>\n        <em># the view (and later middleware) are called.</em>\n        response = get_response(request)\n        <em># Code executed for each request/response after</em>\n        <em># the view is called.</em>\n        return response\n    return middleware\n</code></pre>\n\n\n\n<p>A middleware factory is a callable that takes a&nbsp;<code>get_response</code>&nbsp;callable and returns a&nbsp;middleware. A middleware is a callable that takes a request and returns a response, just like a view. The&nbsp;<code>get_response</code>&nbsp;callable might be the next middleware in the chain or the actual view in the case of the last listed middleware.</p>\n\n\n\n<p>If any middleware returns a response without calling its&nbsp;<code>get_response</code>&nbsp;callable, it&nbsp;short circuits the process; no further middleware get executed (also not the view), and the response returns through the same layers that the request passed in through.</p>\n\n\n\n<p>The order of middleware in the&nbsp;<code>MIDDLEWARE</code>&nbsp;setting is very important because a middleware can depend on data set in the request by other middleware that have been executed previously.</p>\n\n\n\n<p>When adding a new middleware to the&nbsp;<code>MIDDLEWARE</code>&nbsp;setting, make sure to place it in the right position. Middleware are executed in order of appearance in the setting during the request phase, and in reverse order for responses.</p>\n\n\n\n<p>You can find more information about middleware at https://docs.djangoproject.com/en/3.0/topics/http/middleware/.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>You already know the&nbsp;MIDDLEWARE&nbsp;setting, which contains the middleware for your project. You&nbsp;can think of it as a low-level plugin system, allowing you to implement hooks that get executed in the request/response process. Each middleware is responsible for some specific action that will be executed for all HTTP requests or responses. Avoid adding expensive processing to&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/creating-a-custom-middleware/\">Continue reading <span class=\"screen-reader-text\">Creating a custom middleware</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [138],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4192" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=4192"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4192/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4193,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4192/revisions/4193"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=4192"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=4192"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=4192"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 4195,
+    "date": "2022-06-29T10:32:34",
+    "date_gmt": "2022-06-29T10:32:34",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=4195" },
+    "modified": "2022-06-29T10:32:34",
+    "modified_gmt": "2022-06-29T10:32:34",
+    "slug": "creating-a-subdomain-middleware",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/creating-a-subdomain-middleware/",
+    "title": { "rendered": "Creating a subdomain middleware" },
+    "content": {
+      "rendered": "\n<p>You are&nbsp;<a></a>going to create a custom middleware to allow courses to be accessible through a custom subdomain. Each course detail URL, which looks like&nbsp;<code>https://educaproject.com/course/django/</code>, will also be accessible through the subdomain that makes use of the course slug, such as&nbsp;<code>https://django.educaproject.com/</code>. Users will be able to use the subdomain as a shortcut to access the course details. Any requests to subdomains will be redirected to each corresponding course detail URL.</p>\n\n\n\n<p>Middleware can reside anywhere within your project. However, it&#8217;s recommended to&nbsp;create a&nbsp;<code>middleware.py</code>&nbsp;file in your application directory.</p>\n\n\n\n<p>Create a new file inside the&nbsp;<code>courses</code>&nbsp;application directory and name it&nbsp;<code>middleware.py</code>. Add the following code to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>from django.urls import reverse\nfrom django.shortcuts import get_object_or_404, redirect\nfrom .models import Course\ndef subdomain_course_middleware(get_response):\n    \"\"\"\n    Subdomains for courses\n    \"\"\"\n    def middleware(request):\n        host_parts = request.get_host().split('.')\n        if len(host_parts) &gt; 2 and host_parts&#91;0] != 'www':\n            <em># get course for the given subdomain</em>\n            course = get_object_or_404(Course, slug=host_parts&#91;0])\n            course_url = reverse('course_detail',\n                                 args=&#91;course.slug])\n            <em># redirect current request to the course_detail view</em>\n            url = '{}://{}{}'.format(request.scheme,\n                                     '.'.join(host_parts&#91;1:]),\n                                     course_url)\n            return redirect(url)\n        response = get_response(request)\n        return response\n    return middleware\n</code></pre>\n\n\n\n<p>When an HTTP request is received, you perform the following tasks:</p>\n\n\n\n<ol><li>You get the hostname that is being used in the request and divide it into parts. For example, if the user is accessing&nbsp;<code>mycourse.educaproject.com</code>, you generate the list&nbsp;<code>['mycourse', 'educaproject', 'com']</code>.</li><li>You check whether the hostname includes a subdomain by checking whether the split generated more than two elements. If the hostname includes a subdomain, and this is not&nbsp;<code>www</code>, you try to get the course with the slug provided in the subdomain.</li><li>If a course is not found, you raise an HTTP&nbsp;<code>404</code>&nbsp;exception. Otherwise, you redirect the browser to the course detail URL.</li></ol>\n\n\n\n<p>Edit the&nbsp;<code>settings/base.py</code>&nbsp;file of the project and add&nbsp;<code>'courses.middleware.SubdomainCourseMiddleware'</code>&nbsp;at the bottom of the&nbsp;<code>MIDDLEWARE</code>&nbsp;list, as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>MIDDLEWARE = &#91;\n    <em># ...</em>\n    <strong>'courses.middleware.subdomain_course_middleware',</strong>\n]\n</code></pre>\n\n\n\n<p>The middleware&nbsp;<a></a>will now be executed in every request.</p>\n\n\n\n<p>Remember that the hostnames allowed to serve your Django project are specified in the&nbsp;<code>ALLOWED_HOSTS</code>&nbsp;setting. Let&#8217;s change this setting so that any possible subdomain of&nbsp;<code>educaproject.com</code>&nbsp;is allowed to serve your application.</p>\n\n\n\n<p>Edit the&nbsp;<code>settings/pro.py</code>&nbsp;file and modify the&nbsp;<code>ALLOWED_HOSTS</code>&nbsp;setting, as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>ALLOWED_HOSTS = &#91;<strong>'.educaproject.com'</strong>]\n</code></pre>\n\n\n\n<p>A value that begins with a period is used as a subdomain wildcard;&nbsp;<code>'.educaproject.com'</code>&nbsp;will match&nbsp;<code>educaproject.com</code>&nbsp;and any subdomain for this domain, for example&nbsp;<code>course.educaproject.com</code>&nbsp;and&nbsp;<code>django.educaproject.com</code>.</p>\n\n\n\n<h3 id=\"_idParaDest-333\">Serving multiple subdomains with NGINX</h3>\n\n\n\n<p>You need&nbsp;<a></a>NGINX to be able to serve your site with any possible subdomain. Edit the&nbsp;<code>config/nginx.conf</code>&nbsp;file of the&nbsp;<code>educa</code>&nbsp;project and replace the two occurrences of the following line:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>server_name  www.educaproject.com educaproject.com;\n</code></pre>\n\n\n\n<p>with the following one:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>server_name  <strong>*</strong>.educaproject.com educaproject.com;\n</code></pre>\n\n\n\n<p>By using the asterisk, this rule applies to all subdomains of&nbsp;<code>educaproject.com</code>. In&nbsp;order to test your middleware locally, you need to add any subdomains you want&nbsp;to test to&nbsp;<code>/etc/hosts</code>. For testing the middleware with a&nbsp;<code>Course</code>&nbsp;object with the slug&nbsp;<code>django</code>, add the following line to your&nbsp;<code>/etc/hosts</code>&nbsp;file:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>127.0.0.1  django.educaproject.com\n</code></pre>\n\n\n\n<p>Stop and start uWSGI again, and reload&nbsp;<a></a>NGINX with the following command to keep track of the latest configuration:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>sudo nginx -s reload\n</code></pre>\n\n\n\n<p>Then, open&nbsp;<code>https://django.educaproject.com/</code>&nbsp;in your browser. The middleware will find the course by the subdomain and redirect your browser to&nbsp;<code>https://educaproject.com/course/django/</code>.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>You are&nbsp;going to create a custom middleware to allow courses to be accessible through a custom subdomain. Each course detail URL, which looks like&nbsp;https://educaproject.com/course/django/, will also be accessible through the subdomain that makes use of the course slug, such as&nbsp;https://django.educaproject.com/. Users will be able to use the subdomain as a shortcut to access the course&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/creating-a-subdomain-middleware/\">Continue reading <span class=\"screen-reader-text\">Creating a subdomain middleware</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [138],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4195" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=4195"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4195/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4196,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4195/revisions/4196"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=4195"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=4195"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=4195"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 4197,
+    "date": "2022-06-29T10:34:24",
+    "date_gmt": "2022-06-29T10:34:24",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=4197" },
+    "modified": "2022-06-29T10:34:24",
+    "modified_gmt": "2022-06-29T10:34:24",
+    "slug": "implementing-custom-management-commands",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/implementing-custom-management-commands/",
+    "title": { "rendered": "Implementing custom management commands" },
+    "content": {
+      "rendered": "\n<p>Django allows your applications to register custom management commands for the <code>manage.py</code> utility. For example, you used the management commands <code>makemessages</code> and <code>compilemessages</code> <em>Extending Your Shop</em>, to create and compile translation files.</p>\n\n\n\n<p>A management command consists of a Python module containing a&nbsp;<code>Command</code>&nbsp;class that inherits from&nbsp;<code>django.core.management.base.BaseCommand</code>&nbsp;or one of its subclasses. You can create simple commands or make them take positional and optional arguments as input.</p>\n\n\n\n<p>Django looks for management commands in the&nbsp;<code>management/commands/</code>&nbsp;directory for each active application in the&nbsp;<code>INSTALLED_APPS</code>&nbsp;setting. Each module found is registered as a management command named after it.</p>\n\n\n\n<p>You can learn more about custom management commands at https://docs.djangoproject.com/en/3.0/howto/custom-management-commands/.</p>\n\n\n\n<p>You are going to create a custom management command to remind students to enroll at least on one course. The command will send an email reminder to users who&nbsp;have been registered for longer than a specified period who aren&#8217;t enrolled on any course yet.</p>\n\n\n\n<p>Create the following file structure inside the&nbsp;<code>students</code>&nbsp;application directory:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>management/\n    __init__.py\n    commands/\n        __init__.py\n        enroll_reminder.py\n</code></pre>\n\n\n\n<p>Edit the&nbsp;<code>enroll_reminder.py</code>&nbsp;file and add the following code to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>import datetime\nfrom django.conf import settings\nfrom django.core.management.base import BaseCommand\nfrom django.core.mail import send_mass_mail\nfrom django.contrib.auth.models import User\nfrom django.db.models import Count\nfrom django.utils import timezone\nclass Command(BaseCommand):\n    help = 'Sends an e-mail reminder to users registered more \\\n           than N days that are not enrolled into any courses yet'\n    def add_arguments(self, parser):\n        parser.add_argument('--days', dest='days', type=int)\n    def handle(self, *args, **options):\n        emails = &#91;]\n        subject = 'Enroll in a course'\n        date_joined = timezone.now().today() - \\\n                      datetime.timedelta(days=options&#91;'days'])\n        users = User.objects.annotate(course_count=Count('courses_joined'))\\\n            .filter(course_count=0,\n                    date_joined__date__lte=date_joined)\n        for user in users:\n            message = \"\"\"Dear {},\n            We noticed that you didn't enroll in any courses yet.\n            What are you waiting for?\"\"\".format(user.first_name)\n            emails.append((subject,\n                           message,\n                           settings.DEFAULT_FROM_EMAIL,\n                           &#91;user.email]))\n        send_mass_mail(emails)\n        self.stdout.write('Sent {} reminders'.format(len(emails)))\n</code></pre>\n\n\n\n<p>This&nbsp;<a></a>is your&nbsp;<code>enroll_reminder</code>&nbsp;command. The preceding code is as follows:</p>\n\n\n\n<ul><li>The&nbsp;<code>Command</code>&nbsp;class inherits from&nbsp;<code>BaseCommand</code>.</li><li>You include a&nbsp;<code>help</code>&nbsp;attribute. This attribute provides a short description of the command that is printed if you run the command&nbsp;<code>python manage.py help enroll_reminder</code>.</li><li>You use the&nbsp;<code>add_arguments()</code>&nbsp;method to add the&nbsp;<code>--days</code>&nbsp;named argument. This argument is used to specify the minimum number of days a user has to be registered, without having enrolled on any course, in order to receive the reminder.</li><li>The&nbsp;<code>handle()</code>&nbsp;command contains the actual command. You get the&nbsp;<code>days</code>&nbsp;attribute parsed from the command line. You use the&nbsp;<code>timezone</code>&nbsp;utility provided by Django to retrieve the current timezone-aware date with&nbsp;<code>timezone.now().date()</code>. (You can set the timezone for your project with the&nbsp;<code>TIME_ZONE</code>&nbsp;setting.) You retrieve the users who have been registered for more than the specified days and are not enrolled on any courses yet. You&nbsp;achieve this by annotating the QuerySet with the total number of courses each user is enrolled on. You generate the reminder email for each user and append it to the&nbsp;<code>emails</code>&nbsp;list. Finally, you send the emails using the&nbsp;<code>send_mass_mail()</code>&nbsp;function, which is optimized to open a single SMTP connection for sending all emails, instead of opening one connection per email sent.</li></ul>\n\n\n\n<p>You have&nbsp;<a></a>created your first management command. Open the shell and run your command:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>python manage.py enroll_reminder --days=20\n</code></pre>\n\n\n\n<p>If you don&#8217;t have a local SMTP server running, <em>Enhancing Your Blog with Advanced Features</em>, where you configured SMTP settings for your first Django project. Alternatively, you can add the following setting to the <code>settings.py</code> file to make Django output emails to the standard output during development:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'\n</code></pre>\n\n\n\n<p>Let&#8217;s schedule your management command so that the server runs it every day at 8 a.m. If you are using a UNIX-based system such as Linux or macOS, open the shell and run&nbsp;<code>crontab -e</code>&nbsp;to edit your&nbsp;<code>crontab</code>. Add the following line to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>0 8 * * * python /path/to/educa/manage.py enroll_<em>reminder --days=20 --settings=educa.settings.pro</em>\n</code></pre>\n\n\n\n<p>If you are not familiar with <strong>cron</strong>, you can find an introduction to cron at http://www.unixgeeks.org/security/newbie/unix/cron-1.html.</p>\n\n\n\n<p>If you are using Windows, you can schedule tasks using the Task Scheduler. You can find more information about it at https://docs.microsoft.com/en-us/windows/win32/taskschd/task-scheduler-start-page.</p>\n\n\n\n<p>Another option for executing actions periodically is to create tasks and schedule them with Celery. Remember that you used Celery <em>Building an Online Shop</em>, to execute asynchronous tasks. Instead of creating management commands and scheduling them with cron, you can create asynchronous tasks and execute them with the Celery beat scheduler. You can learn more about scheduling periodic tasks with Celery at https://celery.readthedocs.io/en/latest/userguide/periodic-tasks.html.</p>\n\n\n\n<p>Use management commands for standalone scripts that you want to schedule with cron or the Windows scheduler control panel.</p>\n\n\n\n<p>Django also includes a utility to call management commands using Python. You can run management commands from your code as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>from django.core import management\nmanagement.call_command('enroll_reminder', days=20)\n</code></pre>\n\n\n\n<p>Congratulations! You can now create custom management commands for your applications and schedule them when needed.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Django allows your applications to register custom management commands for the manage.py utility. For example, you used the management commands makemessages and compilemessages Extending Your Shop, to create and compile translation files. A management command consists of a Python module containing a&nbsp;Command&nbsp;class that inherits from&nbsp;django.core.management.base.BaseCommand&nbsp;or one of its subclasses. You can create simple commands or make them take positional and optional arguments as&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/implementing-custom-management-commands/\">Continue reading <span class=\"screen-reader-text\">Implementing custom management commands</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [138],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4197" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=4197"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4197/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4198,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4197/revisions/4198"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=4197"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=4197"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=4197"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  }
+]

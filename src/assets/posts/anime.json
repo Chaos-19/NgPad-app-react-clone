@@ -1,0 +1,1084 @@
+[
+  {
+    "id": 4127,
+    "date": "2021-02-16T07:17:01",
+    "date_gmt": "2021-02-16T07:17:01",
+    "guid": { "rendered": "http://javascript.foobrdigital.com/?p=4127" },
+    "modified": "2021-02-16T07:17:01",
+    "modified_gmt": "2021-02-16T07:17:01",
+    "slug": "introduction-6",
+    "status": "publish",
+    "type": "post",
+    "link": "https://javascript.foobrdigital.com/introduction-6/",
+    "title": { "rendered": "Introduction" },
+    "content": {
+      "rendered": "\n<p>In this series, we will go through every detail of the anime.js animation library. How you can use it to animate elements on your web pages such as SVG shapes or even Javascript objects. You will learn how to set the staggering property to create amazing effects such as the ripple effect. You will also learn how to create animation controls, timelines, and much more.</p>\n\n\n\n<h2>What is Anime.js ?</h2>\n\n\n\n<p>Anime.js is one of the greatest animation libraries to have ever been created. This library is the biggest “competitor” to GSAP in terms of what it is capable of creating.</p>\n\n\n\n<p>In addition to that anime.js is 100% free to use whether it’s for personal or commercial use.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>In this series, we will go through every detail of the anime.js animation library. How you can use it to animate elements on your web pages such as SVG shapes or even Javascript objects. You will learn how to set the staggering property to create amazing effects such as the ripple effect. You will also [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [155],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/posts/4127"
+        }
+      ],
+      "collection": [
+        { "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        {
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/comments?post=4127"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/posts/4127/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4128,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/posts/4127/revisions/4128"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/media?parent=4127"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/categories?post=4127"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/tags?post=4127"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 4129,
+    "date": "2021-02-16T07:18:47",
+    "date_gmt": "2021-02-16T07:18:47",
+    "guid": { "rendered": "http://javascript.foobrdigital.com/?p=4129" },
+    "modified": "2021-02-16T07:18:47",
+    "modified_gmt": "2021-02-16T07:18:47",
+    "slug": "what-type-of-elements-can-we-animate-with-anime-js",
+    "status": "publish",
+    "type": "post",
+    "link": "https://javascript.foobrdigital.com/what-type-of-elements-can-we-animate-with-anime-js/",
+    "title": {
+      "rendered": "What Type Of Elements Can We Animate With Anime.js ?"
+    },
+    "content": {
+      "rendered": "\n<p>So first and foremost, to create an animation with anime.js we need to use the&nbsp;<code>anime()</code>&nbsp;function and then pass in an object as a parameter that contains a variety of configuration properties.</p>\n\n\n\n<p>The next step is to provide the&nbsp;<code>targets</code>&nbsp;property which refers to the element we want to animate. And then we need to specify the CSS property we want to change, so it creates the wanted effect.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>anime({\n    targets: value,\n    property1: value,\n    ...\n    propertyN: value\n});</code></pre>\n\n\n\n<h3>Targets</h3>\n\n\n\n<p>The value of the&nbsp;<code>targets</code>&nbsp;property could be a string that has a single CSS selector such as an id or multiple selectors separated by a comma.</p>\n\n\n\n<p>The value of&nbsp;<code>targets</code>&nbsp;can also be a DOM Node or a NodeList.</p>\n\n\n\n<p>Furthermore, we can set an array that contains all the previously mentioned values.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>//Applies the animation to every div on the page\nanime({\n    targets: 'div'\n});\n\n//Applies the animation to the element with the \"element\" id\nanime({\n    targets: '#element'\n});\n\n//Applies the animation to every element that has \"els\" as a class\nanime({\n    targets: '.els'\n});\n\n//Applies the animation to the elements with the id of \"element1\", \"element2\"\n//and every element that has the class \"els\"\nanime({\n    targets: '#element1, #element2, .els'\n});\n\n//Applies the animation to the square DOM Node\nconst square = document.getElementById('#square');\nanime({\n    targets: square\n});\n\n//Applies the animation to the squares NodeList\nconst squares = document.querySelectorAll('.squares');\nanime({\n    targets: squares\n});\n\n//Applies the animation to every element that has the class \"els\"\n//and to the NodeList squares\nconst squares = document.querySelectorAll('.squares');\nanime({\n    targets: &#91;'.els', squares]\n});</code></pre>\n\n\n\n<p>Last but not least we can animate numeric values inside objects. Therefore we need to set the object name as a value for the target property. More on this in the next section.</p>\n\n\n\n<h3>Animatable Elements</h3>\n\n\n\n<h4>CSS Properties</h4>\n\n\n\n<p>With anime.js we can animate almost any CSS property. We just have to use the&nbsp;<strong>camel case style</strong>&nbsp;when we specify the property’s name in the&nbsp;<code>anime</code>&nbsp;function.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>//Changes the background color of the #s1 element to #ffea00\n//and its border radius to 50%\nanime({\n    targets: '#s1',\n    backgroundColor: '#ffea00',\n    borderRadius: '50%'\n});</code></pre>\n\n\n\n<p>That said there’s a minor difference when it comes to CSS transforms. Here’s the list of the different transforms names if you wish to use any of them.</p>\n\n\n\n<figure class=\"wp-block-table\"><table><tbody><tr><th>CSS</th><th>ANIME.JS</th><th>DEFAULT UNIT</th></tr><tr><td>transform: translateX()</td><td>translateX</td><td>px</td></tr><tr><td>transform: translateY()</td><td>translateY</td><td>px</td></tr><tr><td>transform: translateZ()</td><td>translateZ</td><td>px</td></tr><tr><td>transform: rotate()</td><td>rotate</td><td>deg</td></tr><tr><td>transform: rotateX()</td><td>rotateX</td><td>deg</td></tr><tr><td>transform: rotateY()</td><td>rotateY</td><td>deg</td></tr><tr><td>transform: rotateZ()</td><td>rotateZ</td><td>deg</td></tr><tr><td>transform: scale()</td><td>scale</td><td>–</td></tr><tr><td>transform: scaleX()</td><td>scaleX</td><td>–</td></tr><tr><td>transform: scaleY()</td><td>scaleY</td><td>–</td></tr><tr><td>transform: scaleZ()</td><td>scaleZ</td><td>–</td></tr><tr><td>transform: skew()</td><td>skew</td><td>deg</td></tr><tr><td>transform: skewX()</td><td>skewX</td><td>deg</td></tr><tr><td>transform: skewY()</td><td>skewY</td><td>deg</td></tr><tr><td>transform: perspective()</td><td>perspective</td><td>px</td></tr></tbody></table></figure>\n\n\n\n<h4>DOM Properties</h4>\n\n\n\n<p>Alongside CSS properties, we can animate any DOM element that has a numeric attribute such as an HTML input.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;input type=\"number\" id=\"i1\" value=\"0\"&gt;</code></pre>\n\n\n\n<pre class=\"wp-block-code\"><code>anime({\n    targets: '#i1',\n    value: 10000,\n    round: 1,\n    easing: 'linear'\n  });</code></pre>\n\n\n\n<p>As you can see the input type here has a numeric attribute which is&nbsp;<code>value</code>&nbsp;initially set to 0. Then we simply make it so the number increases to reach 1000 over 1 second (by default) by adding the&nbsp;<code>value</code>&nbsp;property to the&nbsp;<code>anime</code>&nbsp;function. Don’t worry about the&nbsp;<code>round</code>&nbsp;and&nbsp;<code>easing</code>&nbsp;properties for now, I’ll back to them later.</p>\n\n\n\n<h4>Numeric Properties Within Javascript Objects</h4>\n\n\n\n<p>It’s pretty similar to the previous example. So let’s say we have an object called&nbsp;<code>person</code>&nbsp;that has an&nbsp;<code>age</code>&nbsp;property. We simply need to set the name of the object (<code>person</code>)as a value for the&nbsp;<code>targets</code>&nbsp;property. And then we need to add a new property to the&nbsp;<code>anime</code>&nbsp;function that has basically the same name as the numeric property of the object (age) and give it a value to reach. Finally, we need to print the value each time it gets increased through the&nbsp;<code>update</code>&nbsp;function.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>const person = {\n  name: 'John',\n  age: 33\n}\n\nanime({\n  targets: person,\n  age: 100,\n  round: 1,\n  easing: 'linear',\n  update: function() {\n    document.querySelector('h1').innerHTML = JSON.stringify(person);\n  }\n});</code></pre>\n\n\n\n<p>I wrote a section about callback functions such as&nbsp;<code>update</code>. But for now, just keep in mind that the&nbsp;<code>update</code>&nbsp;function is the one responsible for printing the values of the object. Same thing for&nbsp;<code>easing</code>.</p>\n\n\n\n<h4>SVG</h4>\n\n\n\n<p>Finally we can make use of anime.js to animate SVG elements in order to create some interesting effects such as morphing shapes.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;svg version=\"1.1\" id=\"Layer_1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" x=\"0px\" y=\"0px\"\n     viewBox=\"0 0 198.8 145.2\" style=\"enable-background:new 0 0 198.8 145.2;\" xml:space=\"preserve\"&gt;\n    &lt;style type=\"text/css\"&gt;\n        .st0{fill:#00BFFF;}\n    &lt;/style&gt;\n    &lt;polygon class=\"st0\" points=\"0,0 100,0 198.8,0 198.8,73.8 198.8,145.2 99.4,145.2 0,145.2 0,72.6 \"/&gt;\n&lt;/svg&gt;</code></pre>\n\n\n\n<pre class=\"wp-block-code\"><code>anime({\n  targets: 'svg polygon',\n  points: '0,0 100,25 198.8,0 135.7,73.8 198.8,145.2 99.4,123.8 0,145.2 66.7,72.6 '\n});</code></pre>\n\n\n\n<p>The SVG animation has an entire section below, just bear with me and keep reading, we’ll get into it eventually.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>So first and foremost, to create an animation with anime.js we need to use the&nbsp;anime()&nbsp;function and then pass in an object as a parameter that contains a variety of configuration properties. The next step is to provide the&nbsp;targets&nbsp;property which refers to the element we want to animate. And then we need to specify the CSS [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [155],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/posts/4129"
+        }
+      ],
+      "collection": [
+        { "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        {
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/comments?post=4129"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/posts/4129/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4131,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/posts/4129/revisions/4131"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/media?parent=4129"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/categories?post=4129"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/tags?post=4129"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 4132,
+    "date": "2021-02-16T07:20:07",
+    "date_gmt": "2021-02-16T07:20:07",
+    "guid": { "rendered": "http://javascript.foobrdigital.com/?p=4132" },
+    "modified": "2021-02-16T07:20:07",
+    "modified_gmt": "2021-02-16T07:20:07",
+    "slug": "the-anime-functions-properties",
+    "status": "publish",
+    "type": "post",
+    "link": "https://javascript.foobrdigital.com/the-anime-functions-properties/",
+    "title": { "rendered": "The anime Function’s Properties" },
+    "content": {
+      "rendered": "\n<h3>duration</h3>\n\n\n\n<p>By default, the&nbsp;<code>duration</code>&nbsp;is set to 1 second. That being said if you wish to make longer or shorter animations, you should set the value of this property in milliseconds.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>//Changes the color of the div to yellow during 3 seconds\nanime({\n  targets: '#div1',\n  backgroundColor: '#ffea00',\n  duration: 3000\n});</code></pre>\n\n\n\n<h3>delay And endDelay</h3>\n\n\n\n<p>As its name suggests, the&nbsp;<code>delay</code>&nbsp;property sets a delay before the start of the animation.</p>\n\n\n\n<p>The&nbsp;<code>endDelay</code>&nbsp;property, on the other hand, sets a delay right after the animation/an iteration of the animation’s end.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>//Sets a delay of 1 second before the animation start and another one\n//of 2 seconds after the animation's end\nanime({\n  targets: '#div1',\n  translateX: '200px',\n  delay: 1000,\n  endDelay: 2000\n});</code></pre>\n\n\n\n<h3>round</h3>\n\n\n\n<p>As you might have noticed when I tried to animate numeric values in the previous examples (objects and DOM’s properties) I used the&nbsp;<code>round</code>&nbsp;property and here’s why.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>const person = {\n   name: 'John',\n   age: 33\n }\n\n anime({\n   targets: person,\n   age: 100,\n   easing: 'linear',\n   round: 1,\n   update: function() {\n     document.querySelector('h1').innerHTML = JSON.stringify(person.age);\n   }\n });</code></pre>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://waelyasmina.com/wp-content/uploads/2020/01/without-round.gif\" alt=\"Without round property anime.js\" class=\"wp-image-1301\"/><figcaption>Without round</figcaption></figure>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://waelyasmina.com/wp-content/uploads/2020/01/with-round.gif\" alt=\"With round property anime.js\" class=\"wp-image-1302\"/><figcaption>With round</figcaption></figure>\n\n\n\n<p>Well, as you can see, using&nbsp;<code>round</code>&nbsp;makes it so the values are rounded up to decimals when they’re getting changed.</p>\n\n\n\n<h3>direction</h3>\n\n\n\n<p>The&nbsp;<code>direction</code>&nbsp;property works in the same exact way as the CSS&nbsp;<code>animation-direction</code>&nbsp;property. We can use it to reverse the animation or create an alternation of the effect.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>anime({\n  targets: \"#div1\",\n  translateX: '200px',\n  //Animates the animation and then reverse the animation\n  direction: 'alternate'\n  //Reverse the animation starting from the end point to\n  //the initial one\n  //direction: 'reverse'\n});</code></pre>\n\n\n\n<h3>loop</h3>\n\n\n\n<p>We can set the number of occurrences of an animation through the&nbsp;<code>loop</code>&nbsp;property. Thus we can specify a certain number or set it to&nbsp;<code>true</code>&nbsp;for an infinite number of iterations.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>anime({\n   targets: \"#div1\",\n   translateX: '200px',\n   //Repeats the animation 3 times\n   loop: 3\n   //Repeats the animation infinitely\n });</code></pre>\n\n\n\n<p>We can make multiple variations of animation through both of the <code>direction</code> and <code>loop</code> properties.</p>\n\n\n\n<h3>autoplay</h3>\n\n\n\n<p><code>autoplay</code>&nbsp;simply defines if the animation should automatically start or not.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>//No animation will occur\nanime({\n  targets: '#div1',\n  translateX: '500px',\n  autoplay: false\n});</code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>duration By default, the&nbsp;duration&nbsp;is set to 1 second. That being said if you wish to make longer or shorter animations, you should set the value of this property in milliseconds. delay And endDelay As its name suggests, the&nbsp;delay&nbsp;property sets a delay before the start of the animation. The&nbsp;endDelay&nbsp;property, on the other hand, sets a delay [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [155],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/posts/4132"
+        }
+      ],
+      "collection": [
+        { "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        {
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/comments?post=4132"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/posts/4132/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4133,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/posts/4132/revisions/4133"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/media?parent=4132"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/categories?post=4132"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/tags?post=4132"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 4134,
+    "date": "2021-02-16T07:21:01",
+    "date_gmt": "2021-02-16T07:21:01",
+    "guid": { "rendered": "http://javascript.foobrdigital.com/?p=4134" },
+    "modified": "2021-02-16T07:21:01",
+    "modified_gmt": "2021-02-16T07:21:01",
+    "slug": "properties-values-in-anime-js",
+    "status": "publish",
+    "type": "post",
+    "link": "https://javascript.foobrdigital.com/properties-values-in-anime-js/",
+    "title": { "rendered": "Properties Values In Anime.js" },
+    "content": {
+      "rendered": "\n<h3>Specific Property Parameters</h3>\n\n\n\n<p>We can set each property parameters on its own, its duration or delay for instance. We just need to set the parameters in an object and within it we set the&nbsp;<code>value</code>&nbsp;property which contains the actual value of the change.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>anime({\n  targets: '.squares',\n  translateX: {\n    value: '500px',\n    duration: 850\n  },\n  backgroundColor: {\n    value: '#ff1491',\n    duration: 1500\n  },\n  rotate: {\n    value: '1turn',\n    duration: 2000,\n //Delays only the rotation\n    delay: 2000\n  },\n//Delays the whole animation\n  delay: 500\n});</code></pre>\n\n\n\n<h3>Using Functions To Set Values Dynamically</h3>\n\n\n\n<p>The values of the properties can be set dynamically through functions. We can use those functions without any parameters as long as they return a value.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let x = 100;\nanime({\n  targets: '#div1',\n  translateX: function() {\n    return x * 3;\n  }\n});</code></pre>\n\n\n\n<p>Furthermore we can specify 3 parameters on which depends the value returned by the function. So let’s say we have a list of elements to animate and we want to go through them one by one.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>anime({\n  targets: '.squares',\n  translateX: function(element, index, length) {\n    //This translates every square depending on its order on the list\n    //The first element has 0 as index\n    return 100 * index\n    //This translates all the squares the same amount\n    //return 100 * length;\n  }\n});</code></pre>\n\n\n\n<p><code>element</code>&nbsp;represents the current animated element within the list.&nbsp;<code>index</code>&nbsp;represents the index of the element. And finally&nbsp;<code>length</code>&nbsp;represents the length of the list.</p>\n\n\n\n<h3>Unitless Values</h3>\n\n\n\n<p>If we don’t explicitly set a value’s unit, it will be added automatically.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>anime({\n  targets: '#div1',\n  //The div will be translated 500px since pixels are\n  //the default unit for the translation\n  translateX: 500\n});</code></pre>\n\n\n\n<h3>Unit Conversion</h3>\n\n\n\n<p>In case we have a value in a certain unit in CSS. If we use another unit in the anime function, the unit will be converted to the one used in the&nbsp;<code>anime</code>&nbsp;function.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>#div1 {\n  transform: translateX(20%);\n}</code></pre>\n\n\n\n<pre class=\"wp-block-code\"><code>anime({\n  targets: '#div1',\n  //The div will be translated 500px not 500%\n  translateX: '500px'\n});</code></pre>\n\n\n\n<h3>Colors Units</h3>\n\n\n\n<p>We have a choice between different representations to set color properties. In fact there are five representations which are&nbsp;<strong>Hexadecimal, RGB, RGBA, HSL&nbsp;</strong>and<strong>&nbsp;HSLA</strong>.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>anime({\n  targets: '#div1',\n  backgroundColor: 'rgba(255, 26, 60, 0.2)'\n  //Or\n  //backgroundColor: 'hsla(1, 26%, 60%, 5)'\n});</code></pre>\n\n\n\n<h3>Relative Values</h3>\n\n\n\n<p>We can add, subtract and multiply values relatively to the original one.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>#div1 {\n  width: 60px\n}</code></pre>\n\n\n\n<pre class=\"wp-block-code\"><code>anime({\n  targets: '#div1',\n  width: '+=200px'\n});</code></pre>\n\n\n\n<p>In this case, as you might have guessed it. The width of the square will be the original 60 pixels plus 200 pixels.</p>\n\n\n\n<h3>From-To Array</h3>\n\n\n\n<p>Setting the values within an array will force the animation to start from the first value in the array.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>anime({\n  targets: '#div1',\n  //translates the div from 50px to 300px\n  translateX: &#91;'50px', '300px']\n});</code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Specific Property Parameters We can set each property parameters on its own, its duration or delay for instance. We just need to set the parameters in an object and within it we set the&nbsp;value&nbsp;property which contains the actual value of the change. Using Functions To Set Values Dynamically The values of the properties can be [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [155],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/posts/4134"
+        }
+      ],
+      "collection": [
+        { "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        {
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/comments?post=4134"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/posts/4134/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4135,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/posts/4134/revisions/4135"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/media?parent=4134"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/categories?post=4134"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/tags?post=4134"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 4136,
+    "date": "2021-02-16T07:22:07",
+    "date_gmt": "2021-02-16T07:22:07",
+    "guid": { "rendered": "http://javascript.foobrdigital.com/?p=4136" },
+    "modified": "2021-02-16T07:22:07",
+    "modified_gmt": "2021-02-16T07:22:07",
+    "slug": "easings-in-anime-js",
+    "status": "publish",
+    "type": "post",
+    "link": "https://javascript.foobrdigital.com/easings-in-anime-js/",
+    "title": { "rendered": "Easings In Anime.js" },
+    "content": {
+      "rendered": "\n<p>The&nbsp;<code>easing</code>&nbsp;property adds realistic effects and feel to the animation. It’s basically the same as the&nbsp;<code>animation-timing-function</code>&nbsp;property in CSS.</p>\n\n\n\n<h3>linear</h3>\n\n\n\n<p>Setting the&nbsp;<code>easing</code>&nbsp;property to&nbsp;<code>linear</code>&nbsp;negates any easing effect.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>anime({\n  targets: \"#div1\",\n  translateX: '400px',\n  easing: 'linear'\n});</code></pre>\n\n\n\n<h3>steps</h3>\n\n\n\n<p>The second easing function is&nbsp;<code>steps(n)</code>where n is an integer . This easing function breaks down the whole animation into a number of steps creating a “Tetris like” animation.</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://waelyasmina.com/wp-content/uploads/2020/01/tetris.gif\" alt=\"Tetris effect anime.js\" class=\"wp-image-1348\"/><figcaption>Tetris effect</figcaption></figure>\n\n\n\n<pre class=\"wp-block-code\"><code>anime({\n  targets: \"#div1\",\n  translateX: '400px',\n  easing: 'steps(7)'\n});</code></pre>\n\n\n\n<h3>Elastic Easings And Penner’s Functions</h3>\n\n\n\n<p>To find some really interesting functions you can check&nbsp;<a rel=\"noreferrer noopener\" href=\"https://easings.net/en\" target=\"_blank\">easings.net</a>. This website has a lot of them including what’s called&nbsp;<em>Penner</em>‘s functions and elastic easing functions.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>anime({\n  targets: \"#div1\",\n  translateX: '400px',\n  easing: 'easeOutElastic'\n});</code></pre>\n\n\n\n<h3>Cubic Bezier Curves (Custom Effects)</h3>\n\n\n\n<p>We can as well create our own cubic bezier curves through some websites like&nbsp;<a href=\"https://matthewlein.com/tools/ceaser\">matthewlein.com</a>. You can choose how the overall animation should look like making use of the graph. Then just copy the code from the textbox into our code.</p>\n\n\n\n<p><strong>Make sure to convert the value into camel case style</strong>.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>anime({\n  targets: \"#div1\",\n  translateX: '400px',\n  //Incorrect\n  //easing: 'cubic-bezier(0.690, 0.460, 0.000, 0.945)'\n  //Correct\n  easing: 'cubicBezier(0.690, 0.460, 0.000, 0.945)'\n });</code></pre>\n\n\n\n<h3>Spring</h3>\n\n\n\n<p><code>spring</code>&nbsp;is a physics based easing. This function has four parameters which are&nbsp;<code>mass</code>,&nbsp;<code>stiffnes</code>,&nbsp;<code>damping</code>&nbsp;and&nbsp;<code>velocity</code>.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>easing: 'spring(mass, stiffness, damping, velocity)'</code></pre>\n\n\n\n<p>You have to keep in mind that the&nbsp;<code>duration</code>&nbsp;property&nbsp;<strong>will no longer work if you choose this easing option</strong>.</p>\n\n\n\n<h3>Custom Easings Through Functions</h3>\n\n\n\n<p>Lastly, we can create custom easing functions based on the three parameters that I talked about earlier (using functions to set values dynamically part). This time though the function must return another function instead of a value.</p>\n\n\n\n<p>The nested function has a parameter that represents the current animation’s time.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>anime({\n  targets: '.squares',\n  translateX: 500,\n  easing: function(element, index, length) {\n    return function(time) {\n      //time contains the time of the animation as a whole\n      //it starts with 0 up to 1 second in this case\n      //since I didn't set a duration and the default is\n      //1 second\n      return time * Math.sin(length / (index + 1));\n      }\n    }\n});</code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>The&nbsp;easing&nbsp;property adds realistic effects and feel to the animation. It’s basically the same as the&nbsp;animation-timing-function&nbsp;property in CSS. linear Setting the&nbsp;easing&nbsp;property to&nbsp;linear&nbsp;negates any easing effect. steps The second easing function is&nbsp;steps(n)where n is an integer . This easing function breaks down the whole animation into a number of steps creating a “Tetris like” animation. Elastic Easings [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [155],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/posts/4136"
+        }
+      ],
+      "collection": [
+        { "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        {
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/comments?post=4136"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/posts/4136/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4139,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/posts/4136/revisions/4139"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/media?parent=4136"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/categories?post=4136"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/tags?post=4136"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 4140,
+    "date": "2021-02-16T07:22:49",
+    "date_gmt": "2021-02-16T07:22:49",
+    "guid": { "rendered": "http://javascript.foobrdigital.com/?p=4140" },
+    "modified": "2021-02-16T07:22:49",
+    "modified_gmt": "2021-02-16T07:22:49",
+    "slug": "keyframes-in-anime-js",
+    "status": "publish",
+    "type": "post",
+    "link": "https://javascript.foobrdigital.com/keyframes-in-anime-js/",
+    "title": { "rendered": "Keyframes In Anime.js" },
+    "content": {
+      "rendered": "\n<p>We can chain multiple changes one after the other during the period specified with the duration property within each keyframe.</p>\n\n\n\n<p><strong>Keep in mind that if the duration is not set, each keyframe’s duration will have a value equal to the total animation’s duration divided by the number of keyframes.</strong></p>\n\n\n\n<pre class=\"wp-block-code\"><code>anime({\n  targets: '#div1',\n  keyframes: &#91;\n    //1 second\n    {translateX: 500},\n    //1 second\n    {backgroundColor: '#ff1491'},\n    //4 seconds\n    {scaleX: 2, duration: 4000},\n    //1 second\n    {translateY: 300}\n  ],\n  duration: 4000\n});</code></pre>\n\n\n\n<p>Each property can have its own set of keyframes which opens up more room for creativity. Since the changes now can overlap because each property’s keyframes have their own duration and delays.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>anime({\n  targets: '#div1',\n  translateX: &#91;\n    {value: 300, duration: 1000},\n    {value: 100, duration: 1000, delay: 1000}\n  ],\n  translateY: &#91;\n    {value: 300, duration: 1000},\n    {value: 100, duration: 1000, delay: 1000}\n  ],\n  backgroundColor: &#91;\n    {value: '#000000'},\n    {value: '#ff1491', delay: 600}\n  ]\n});</code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>We can chain multiple changes one after the other during the period specified with the duration property within each keyframe. Keep in mind that if the duration is not set, each keyframe’s duration will have a value equal to the total animation’s duration divided by the number of keyframes. Each property can have its own [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [155],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/posts/4140"
+        }
+      ],
+      "collection": [
+        { "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        {
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/comments?post=4140"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/posts/4140/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4141,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/posts/4140/revisions/4141"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/media?parent=4140"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/categories?post=4140"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/tags?post=4140"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 4142,
+    "date": "2021-02-16T07:23:58",
+    "date_gmt": "2021-02-16T07:23:58",
+    "guid": { "rendered": "http://javascript.foobrdigital.com/?p=4142" },
+    "modified": "2021-02-16T07:23:58",
+    "modified_gmt": "2021-02-16T07:23:58",
+    "slug": "staggering-in-anime-js",
+    "status": "publish",
+    "type": "post",
+    "link": "https://javascript.foobrdigital.com/staggering-in-anime-js/",
+    "title": { "rendered": "Staggering In Anime.js" },
+    "content": {
+      "rendered": "\n<p>We can use staggering to create a progression effect when it’s applied on the&nbsp;<code>delay</code>&nbsp;property. Hence each element of the list of the elements has a delay less than the one that comes after it.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>anime({\n  targets: '.squares',\n  translateX: 400,\n  delay: anime.stagger(1000)\n});</code></pre>\n\n\n\n<p>Using the&nbsp;<code>stagger</code>&nbsp;function in this example starts the animation with 0 delay for the first element then adds one second to each element’s delay that comes after it.</p>\n\n\n\n<h3>start</h3>\n\n\n\n<p>We can set a delay to the animation of the first element through the&nbsp;<code>start</code>&nbsp;property in the configuration object that we pass as a second parameter to the&nbsp;<code>stagger</code>&nbsp;function.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>anime({\n  targets: '.squares',\n  translateX: 400,\n  delay: anime.stagger(1000, {start: 1000})\n});</code></pre>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://waelyasmina.com/wp-content/uploads/2020/01/0s-delay-start.png\" alt=\"Without the start property - 0 s delay to the first element's animation\" class=\"wp-image-1364\"/><figcaption>Without the start property – 0 s delay to the first element’s animation</figcaption></figure>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://waelyasmina.com/wp-content/uploads/2020/01/1s-delay-start.png\" alt=\"With the start property - 1 s delay to the first element's animation\" class=\"wp-image-1365\"/><figcaption>With the start property – 1 s delay to the first element’s animation</figcaption></figure>\n\n\n\n<h3>direction</h3>\n\n\n\n<p>We also have the ability to reverse the animation through the&nbsp;<code>direction</code>&nbsp;property (within the object that is set as a parameter to the&nbsp;<code>stagger</code>&nbsp;function).</p>\n\n\n\n<pre class=\"wp-block-code\"><code>anime({\n  targets: '.squares',\n  translateX: 400,\n  delay: anime.stagger(1000, {direction: 'reverse'})\n });</code></pre>\n\n\n\n<h3>from</h3>\n\n\n\n<p>If set to&nbsp;<code>center</code>, the&nbsp;<code>from</code>&nbsp;property analyzes the list of the elements and animates the one that is in its middle first, then animates the rest at the same time.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>anime({\n  targets: '.squares',\n  translateX: 400,\n  delay: anime.stagger(1000, {from: 'center'})\n});</code></pre>\n\n\n\n<h3>easing</h3>\n\n\n\n<p>The&nbsp;<code>easing</code>&nbsp;property in the example below applies an easing function over the duration of the animation rather than the motion of the elements itself since it’s applied on a time-based property.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>anime({\n  targets: '.squares',\n  translateX: 400,\n  delay: anime.stagger(1000, {easing: 'easeInQuad'})\n});</code></pre>\n\n\n\n<p>Notice how the third square takes a higher delay as a result of the easing.</p>\n\n\n\n<h3>Staggering Non Temporal properties</h3>\n\n\n\n<p>We can use the stagger function to spread the amount of the effect on the elements progressively.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>anime({\n  targets: '.squares',\n  translateX: anime.stagger(&#91;0, 700])\n });</code></pre>\n\n\n\n<h3>grid</h3>\n\n\n\n<p>Anime.js provides a very powerful feature when it comes to dealing with grids.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>anime({\n  targets: '.squares',\n  scale: &#91;\n    {value: 0.1, easing: 'easeInSine', duration: 500},\n    {value: 1, easing: 'easeInOutQuad', duration: 1000},\n  ],\n  delay: anime.stagger(200, {grid: &#91;4, 5]})\n});</code></pre>\n\n\n\n<p>I created two keyframes in which I’m scaling every square to one-tenth of its size during a half of a second (first keyframe).</p>\n\n\n\n<p>At the second keyframe, I’m scaling back the squares to their original size during one full second.</p>\n\n\n\n<p>Then I set a staggering delay and initiating it with one-fifth of a second (200ms).</p>\n\n\n\n<p>Now, this is where the magic happens. The&nbsp;<code>grid</code>&nbsp;property takes an array with two values. The first one is the number of columns. The second on the other hand is the number of rows. It’s just as simple as that.</p>\n\n\n\n<p>So that done, the delay will spread all over the 20 squares following the X and Y axes creating a wave effect. Hence the animation starts from the first square then the delay increases each time we’re getting far from it.</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://waelyasmina.com/wp-content/uploads/2020/01/wave-effect.png\" alt=\"grid property anime.js\" class=\"wp-image-1373\"/><figcaption>With the grid property</figcaption></figure>\n\n\n\n<p>So that being said, we can go a step further.</p>\n\n\n\n<p>When I set the&nbsp;<code>from</code>&nbsp;property to&nbsp;<code>center</code>, the&nbsp;<code>anime</code>&nbsp;function will use the&nbsp;<code>grid</code>&nbsp;property to calculate the center of the grid in order to create the same effect. However this time the effect will be initiated it from the center instead of the upper left corner.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>delay: anime.stagger(200, {grid: &#91;4, 5], from: 'center'})</code></pre>\n\n\n\n<h3>axis</h3>\n\n\n\n<pre class=\"wp-block-code\"><code>anime({\n  targets: '.container .squares',\n  translateX: anime.stagger(10, {grid: &#91;4, 5], from: 'center', axis: 'x'}),\n  delay: anime.stagger(200, {grid: &#91;4, 5], from: 'center'})\n});</code></pre>\n\n\n\n<p>In this example, I’m using the&nbsp;<code>stagger</code>&nbsp;function in order to translate the squares gradually.</p>\n\n\n\n<p>So same as before, the translation increases from the top left corner and spreads over the X and Y axes. Then setting the&nbsp;<code>from</code>&nbsp;property to&nbsp;<code>center</code>&nbsp;will do the same except that the values of the translation increase by getting far from the center of the grid.</p>\n\n\n\n<p>And finally I set the&nbsp;<code>axis</code>&nbsp;property in order to create a sort of mirror effect. the&nbsp;<code>axis</code>&nbsp;property simply&nbsp;<strong>spreads the translation from the center of the grid over the negative and positive directions on the X-axis</strong>.</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://waelyasmina.com/wp-content/uploads/2020/01/spread-x.png\" alt=\"axis property anime.js\" class=\"wp-image-1382\"/><figcaption>axis: ‘x’</figcaption></figure>\n\n\n\n<p>The same thing can be done on the Y-axis. And furthermore, we can combine both to create a nice ripple effect.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>anime({\n  targets: '.container .squares',\n  translateX: anime.stagger(10, {grid: &#91;4, 5], from: 'center', axis: 'x'}),\n  translateY: anime.stagger(10, {grid: &#91;4, 5], from: 'center', axis: 'y'}),\n  delay: anime.stagger(200, {grid: &#91;4, 5], from: 'center'})\n});</code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>We can use staggering to create a progression effect when it’s applied on the&nbsp;delay&nbsp;property. Hence each element of the list of the elements has a delay less than the one that comes after it. Using the&nbsp;stagger&nbsp;function in this example starts the animation with 0 delay for the first element then adds one second to each [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [155],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/posts/4142"
+        }
+      ],
+      "collection": [
+        { "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        {
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/comments?post=4142"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/posts/4142/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4143,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/posts/4142/revisions/4143"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/media?parent=4142"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/categories?post=4142"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/tags?post=4142"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 4144,
+    "date": "2021-02-16T07:24:45",
+    "date_gmt": "2021-02-16T07:24:45",
+    "guid": { "rendered": "http://javascript.foobrdigital.com/?p=4144" },
+    "modified": "2021-02-16T07:24:45",
+    "modified_gmt": "2021-02-16T07:24:45",
+    "slug": "anime-js-timelines",
+    "status": "publish",
+    "type": "post",
+    "link": "https://javascript.foobrdigital.com/anime-js-timelines/",
+    "title": { "rendered": "Anime.js Timelines" },
+    "content": {
+      "rendered": "\n<p>Timelines let you synchronize multiple animations together. In addition to that, you will start to notice how useful it is to the organization of your code when the animation you want to create gets more and more complex.</p>\n\n\n\n<p>First things first we need to create a timeline and initiate it with some common parameters that will be inherited in each part of the timeline.</p>\n\n\n\n<p>To add an animation to the timeline we need to use the&nbsp;<code>add</code>&nbsp;function and set the different properties as we usually do within the&nbsp;<code>anime</code>&nbsp;function.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>const t = anime.timeline({\n  //each of the below animations will have a 1000ms duration\n  //and easeInSine easing\n  duration: 1000,\n  easing: 'easeInSine'\n});\n\nt.add({\n  targets: '#div1',\n  translateX: 500\n})\n.add({\n  targets: '#div2',\n  backgroundColor: '#ff1491'\n})\n.add({\n  targets: '#div3',\n  translateY: 500\n});</code></pre>\n\n\n\n<p>We can define the time of the start of an animation as a second parameter to the add function. It can be relative to the previous animation’s end. It can also be an absolute value which means it’s relative to the start of the whole timeline.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>const t = anime.timeline({\n  //each of the below animations will have a 1000ms duration\n  //and easeInSine easing\n  duration: 1000,\n  easing: 'easeInSine'\n});\n\nt.add({\n  targets: '#div1',\n  translateX: 500\n})\n.add({\n  targets: '#div2',\n  backgroundColor: '#ff1491'\n}, '-=400')\n.add({\n  targets: '#div3',\n  translateY: 500\n}, 200);</code></pre>\n\n\n\n<p>In this example, the animation of the second div starts -0.4 seconds after the end animation of the first div. In other words, it starts before the end of the first animation by 0.4 seconds since the value is negative.</p>\n\n\n\n<p>On the other hand, the animation of the third div starts after 0.2 seconds.</p>\n\n\n\n<p>As I have already mentioned, we can set the common parameters at the declaration of the timeline so we don’t need to repeat them in each call of the add function.</p>\n\n\n\n<p>And here’s a list of the parameters that can be inherited.</p>\n\n\n\n<figure class=\"wp-block-table\"><table><tbody><tr><th>Inheritable Parameters</th></tr><tr><td>targets</td></tr><tr><td>easing</td></tr><tr><td>duration</td></tr><tr><td>delay</td></tr><tr><td>endDelay</td></tr><tr><td>round</td></tr></tbody></table></figure>\n\n\n\n<p>You have to keep in mind though that the value of inherited property will be overlapped by the one that you redefine in the add function.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Timelines let you synchronize multiple animations together. In addition to that, you will start to notice how useful it is to the organization of your code when the animation you want to create gets more and more complex. First things first we need to create a timeline and initiate it with some common parameters that [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [155],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/posts/4144"
+        }
+      ],
+      "collection": [
+        { "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        {
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/comments?post=4144"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/posts/4144/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4145,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/posts/4144/revisions/4145"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/media?parent=4144"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/categories?post=4144"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/tags?post=4144"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 4146,
+    "date": "2021-02-16T07:25:16",
+    "date_gmt": "2021-02-16T07:25:16",
+    "guid": { "rendered": "http://javascript.foobrdigital.com/?p=4146" },
+    "modified": "2021-02-16T07:25:16",
+    "modified_gmt": "2021-02-16T07:25:16",
+    "slug": "anime-js-controls",
+    "status": "publish",
+    "type": "post",
+    "link": "https://javascript.foobrdigital.com/anime-js-controls/",
+    "title": { "rendered": "Anime.js Controls" },
+    "content": {
+      "rendered": "\n<p>We can control the animation’s behavior through a variety of functions.</p>\n\n\n\n<p>For instance, we can pause an animation before its actual end using the&nbsp;<code>pause</code>&nbsp;function. And of course, continue it from where it has been paused through the&nbsp;<code>play</code>&nbsp;function .</p>\n\n\n\n<p>We have also the ability to restart the animation through the&nbsp;<code>restart</code>&nbsp;function.</p>\n\n\n\n<p>We can also reverse the animation through the&nbsp;<code>restart</code>&nbsp;function.</p>\n\n\n\n<p>And finally, we can create a whole animation player for more control.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>const animation = anime({\n  targets: '#div1',\n  translateX: 500,\n  duration: 6000,\n  easing: 'linear'\n});\n//Pauses the animation\ndocument.getElementById('pause').onclick = animation.pause;\n//Plays the animation\ndocument.getElementById('play').onclick = animation.play;\n//Restarts the animation\ndocument.getElementById('restart').onclick = animation.restart;\n//Reverses the animation\ndocument.getElementById('reverse').onclick = animation.reverse;\n//Animation player\nconst progressBar = document.getElementById('progressBar');\nprogressBar.oninput = function() {\n  //The seek function jumps to a timestamp of the animation\n  //The animation's duration is split into 100 timestamps\n  animation.seek(animation.duration * (progressBar.value / 100));\n}</code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>We can control the animation’s behavior through a variety of functions. For instance, we can pause an animation before its actual end using the&nbsp;pause&nbsp;function. And of course, continue it from where it has been paused through the&nbsp;play&nbsp;function . We have also the ability to restart the animation through the&nbsp;restart&nbsp;function. We can also reverse the animation [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [155],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/posts/4146"
+        }
+      ],
+      "collection": [
+        { "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        {
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/comments?post=4146"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/posts/4146/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4147,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/posts/4146/revisions/4147"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/media?parent=4146"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/categories?post=4146"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/tags?post=4146"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 4148,
+    "date": "2021-02-16T07:25:57",
+    "date_gmt": "2021-02-16T07:25:57",
+    "guid": { "rendered": "http://javascript.foobrdigital.com/?p=4148" },
+    "modified": "2021-02-16T07:25:57",
+    "modified_gmt": "2021-02-16T07:25:57",
+    "slug": "anime-js-callback-functions-promises",
+    "status": "publish",
+    "type": "post",
+    "link": "https://javascript.foobrdigital.com/anime-js-callback-functions-promises/",
+    "title": { "rendered": "Anime.js Callback Functions &#038; Promises" },
+    "content": {
+      "rendered": "\n<p>We can use a variety of callback functions within the&nbsp;<code>anime</code>&nbsp;function. Each one of them executes some code depending on the event occurring before, during or after the animation.</p>\n\n\n\n<p>The first callback function to cover is&nbsp;<code>update</code>. This function executes its code on each frame of the animation’s duration.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>update: function(anim) {\n  animProgress.innerHTML = Math.round(anim.progress) + ' %';\n}</code></pre>\n\n\n\n<p>Same as any other callback function&nbsp;<code>update</code>&nbsp;takes a parameter that represents the current animation object. Hence we can use the&nbsp;<code>progress</code>&nbsp;property within this object to display the animation’s progress.</p>\n\n\n\n<p>There’s also a couple of callback functions which are&nbsp;<code>begin</code>&nbsp;and&nbsp;<code>complete</code>.&nbsp;<code>begin</code>&nbsp;executes its code the moment the animation gets started. The&nbsp;<code>began</code>&nbsp;property indicates if the animation has started by returning&nbsp;<code>true</code>.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>begin: function(anim) {\n  animBegan.innerHTML = anim.began;\n}</code></pre>\n\n\n\n<p>On the other hand,&nbsp;<code>complete</code>&nbsp;gets triggered at the animation’s end. The&nbsp;<code>completed</code>&nbsp;property indicates if the animation has finished by returning true.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>complete: function(anim) {\n  animCompleted.innerHTML = anim.completed;\n}</code></pre>\n\n\n\n<p><code>loopBegin</code>&nbsp;and&nbsp;<code>loopComplete</code>&nbsp;are another couple of callback functions that get triggered whenever an iteration of the animation is started and completed.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>loop: true,\n  loopBegin: function() {\n    lBegan++;\n    loopsBegan.innerHTML = lBegan;  \n  },\n  loopComplete: function() {\n    lCompleted++;\n    loopsCompleted.innerHTML = lCompleted;\n}</code></pre>\n\n\n\n<p>An&nbsp;<code>anime</code>&nbsp;instance returns a promise once the animation is finished.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>const animation = anime({\n  targets: '#div1',\n  translateX: 500,\n  duration: 3000\n});\nanimation.finished.then(function() {\n  window.alert('Animation has finished !');\n});</code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>We can use a variety of callback functions within the&nbsp;anime&nbsp;function. Each one of them executes some code depending on the event occurring before, during or after the animation. The first callback function to cover is&nbsp;update. This function executes its code on each frame of the animation’s duration. Same as any other callback function&nbsp;update&nbsp;takes a parameter [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [155],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/posts/4148"
+        }
+      ],
+      "collection": [
+        { "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        {
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/comments?post=4148"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/posts/4148/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4149,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/posts/4148/revisions/4149"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/media?parent=4148"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/categories?post=4148"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/tags?post=4148"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 4152,
+    "date": "2021-02-16T07:26:56",
+    "date_gmt": "2021-02-16T07:26:56",
+    "guid": { "rendered": "http://javascript.foobrdigital.com/?p=4152" },
+    "modified": "2021-02-16T07:26:56",
+    "modified_gmt": "2021-02-16T07:26:56",
+    "slug": "anime-js-helpers",
+    "status": "publish",
+    "type": "post",
+    "link": "https://javascript.foobrdigital.com/anime-js-helpers/",
+    "title": { "rendered": "Anime.js Helpers" },
+    "content": {
+      "rendered": "\n<p>We can remove the animation from a particular element through the&nbsp;<code>remove</code>&nbsp;method.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>anime({\n  targets: '.squares',\n  translateX: 500,\n  duration: 3000,\n  loop: true,\n  direction: 'alternate',\n  easing: 'linear'\n});\nstopAnim.addEventListener('click', function() {\n  anime.remove('#div2');\n});</code></pre>\n\n\n\n<p>We can also get properties’ values of an element through the&nbsp;<code>get</code>&nbsp;method. And we can furthermore specify in what unit if it’s not a unitless value.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>anime({\n  targets: '.squares',\n  translateX: 500,\n  duration: 3000,\n  loop: true,\n  direction: 'alternate',\n  easing: 'linear'\n});\nconsole.log(anime.get('#div2', 'width', 'px'));</code></pre>\n\n\n\n<p>The&nbsp;<code>set</code>&nbsp;method, sets a property’s value to a specific value so it takes place instantly without any animation.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>anime.set('#div1', {\n  translateX: 500\n});</code></pre>\n\n\n\n<p>As its name suggests, the&nbsp;<code>random</code>&nbsp;method returns an arbitrary value between a minimum and a maximum value which are specified as parameters.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>anime({\n  targets: '#div1',\n  translateX: function() {\n    return anime.random(100, 500);\n  }\n});</code></pre>\n\n\n\n<p>We can use the <code>requestAnimationFrame</code> method to create a loop of the animation without the need to use the loop property within the <code>anime</code> function. </p>\n\n\n\n<pre class=\"wp-block-code\"><code>const animation = anime({\n  targets: '#div1',\n  translateX: 500,\n  loop: true,\n  autoplay: false\n});\nfunction loop(t) {\n  animation.tick(t);\n  customRAF = requestAnimationFrame(loop);\n}</code></pre>\n\n\n\n<p>You have to keep in mind that you must set the&nbsp;<code>autoplay</code>&nbsp;property to&nbsp;<code>false</code>&nbsp;in order for the animation to work.</p>\n\n\n\n<p>Finally, we can get all the running instances of anime.js through the&nbsp;<code>running</code>&nbsp;array which contains each instance as an item.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>anime({\n  targets: '#div1',\n  translateX: 500,\n  loop: true\n});\n\n anime({\n  targets: '#div2',\n  translateY: 200,\n  loop: true\n}); \n\n anime({\n  targets: '#div3',\n  translateX: 320,\n  loop: true\n});\n\n//There are currently 3 running instances\nconsole.log('There are currently: ' + anime.running.length + ' instance');</code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>We can remove the animation from a particular element through the&nbsp;remove&nbsp;method. We can also get properties’ values of an element through the&nbsp;get&nbsp;method. And we can furthermore specify in what unit if it’s not a unitless value. The&nbsp;set&nbsp;method, sets a property’s value to a specific value so it takes place instantly without any animation. As its [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [155],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/posts/4152"
+        }
+      ],
+      "collection": [
+        { "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        {
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/comments?post=4152"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/posts/4152/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4153,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/posts/4152/revisions/4153"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/media?parent=4152"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/categories?post=4152"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/tags?post=4152"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 4154,
+    "date": "2021-02-16T07:27:42",
+    "date_gmt": "2021-02-16T07:27:42",
+    "guid": { "rendered": "http://javascript.foobrdigital.com/?p=4154" },
+    "modified": "2021-02-16T07:27:42",
+    "modified_gmt": "2021-02-16T07:27:42",
+    "slug": "anime-js-svg-capabilities",
+    "status": "publish",
+    "type": "post",
+    "link": "https://javascript.foobrdigital.com/anime-js-svg-capabilities/",
+    "title": { "rendered": "Anime.js SVG Capabilities" },
+    "content": {
+      "rendered": "\n<h3>Morphing SVG Shapes With Anime.js</h3>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://waelyasmina.com/wp-content/uploads/2020/01/morphing-effect.gif\" alt=\"Morphing SVG shapes\" class=\"wp-image-1409\"/><figcaption>Morphing effect</figcaption></figure>\n\n\n\n<p>As I mentioned at the beginning of this article, anime.js is known for its ability to animate SVG elements.</p>\n\n\n\n<p>One of the most commonly created effects is the morphing effect, which basically is the transformation of the shape of an SVG element into a new one over a certain duration.</p>\n\n\n\n<p>To do that we need to create a shape using any SVG compatible software, export it then add it to the page. Then we need to create a variation of the shape and copy the coordinates of the points and paste them as a value for the&nbsp;<code>points</code>&nbsp;property within the&nbsp;<code>anime</code>&nbsp;function.</p>\n\n\n\n<p><strong>You have to keep in mind that the first and second shape must have the same number of points</strong>.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;svg version=\"1.1\" id=\"Layer_1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" x=\"0px\" y=\"0px\"\n     viewBox=\"0 0 198.8 145.2\" style=\"enable-background:new 0 0 198.8 145.2;\" xml:space=\"preserve\"&gt;\n  &lt;style type=\"text/css\"&gt;\n    .st0{fill:#00BFFF;}\n  &lt;/style&gt;\n&lt;polygon class=\"st0\" points=\"0,0 100,0 198.8,0 198.8,73.8 198.8,145.2 99.4,145.2 0,145.2 0,72.6 \"/&gt;\n&lt;/svg&gt;</code></pre>\n\n\n\n<pre class=\"wp-block-code\"><code>anime({\n  targets: 'svg polygon',\n  points: '0,0 100,25 198.8,0 135.7,73.8 198.8,145.2 99.4,123.8 0,145.2 66.7,72.6 '\n});</code></pre>\n\n\n\n<h3>SVG Motion Path With Anime.js</h3>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://waelyasmina.com/wp-content/uploads/2020/01/svg-motion-path-effect.gif\" alt=\"SVG motion path\" class=\"wp-image-1417\"/><figcaption>SVG motion path</figcaption></figure>\n\n\n\n<p>Another cool effect that can be done through the combination of anime.js and SVG elements is the “motion path” effect. With this effect, we can move a DOM element and make it follow a particular SVG path.</p>\n\n\n\n<p>So we need to create a path first, then add it to the HTML file. Then we need to use the path&nbsp;<code>method</code>&nbsp;to take the necessary data from within the SVG path.</p>\n\n\n\n<p>That done we just simply need to translate the div on the X and Y axes and the values will be provided dynamically through&nbsp;<code>path</code>&nbsp;constant.</p>\n\n\n\n<p>The div’s movement is going to be following the same path as the SVG. However, it will need a bit of CSS tweaking to make the shape overlap the SVG element on the page.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;div class=\"container\"&gt;\n  &lt;div class=\"squares\" id=\"div1\"&gt;&lt;/div&gt;\n  &lt;svg id=\"Layer_1\" data-name=\"Layer 1\" xmlns=\"http://www.w3.org/2000/svg\" width=\"502.68\" height=\"382.05\" viewBox=\"0 0 702.68 582.05\"&gt;&lt;defs&gt;&lt;style&gt;.cls-1{fill:none;stroke:#000;stroke-miterlimit:10;}&lt;/style&gt;&lt;/defs&gt;&lt;title&gt;Untitled-1&lt;/title&gt;&lt;path class=\"cls-1\" d=\"M169.1,132.36c-73.62-169.55,330-172,395-28s-140,435-299,260c-116.72-128.47,154-288,370-241s-128,619-487,414S202.1,208.36,169.1,132.36Z\"/&gt;&lt;/svg&gt;\n&lt;/div&gt;</code></pre>\n\n\n\n<pre class=\"wp-block-code\"><code>const path = anime.path('svg path');\n anime({\n  targets: '#div1',\n  translateX: path('x'),\n  translateY: path('y'),\n  loop: true,\n  easing: 'linear',\n  duration: 5000\n});</code></pre>\n\n\n\n<p>We still can make a step further, so in order to make the square rotate when it hits a certain angle of the path we need to use the&nbsp;<code>rotate</code>&nbsp;property and same as we did with the translation we need provide the angle dynamically through the&nbsp;<code>path</code>&nbsp;constant.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>const path = anime.path('svg path');\n anime({\n  targets: '#div1',\n  translateX: path('x'),\n  translateY: path('y'),\n  rotate: path('angle'),\n  loop: true,\n  easing: 'linear',\n  duration: 5000\n});</code></pre>\n\n\n\n<h3>Line Drawing Effect With Anime.js</h3>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://waelyasmina.com/wp-content/uploads/2020/01/svg-line-drawing.gif\" alt=\"SVG line drawing\" class=\"wp-image-1423\"/><figcaption>SVG line drawing</figcaption></figure>\n\n\n\n<p>Lastly, we can make some line drawing effects to create cool animation on texts for instance. So, first of all, we need to create a text,&nbsp;<strong>convert it into a path</strong>&nbsp;with no fill and then export it and add it to the web page.</p>\n\n\n\n<p>Then we need to use the&nbsp;<code>strokeDashOffset</code>&nbsp;property, which takes an array as a value. The first part of the&nbsp;<code>setDashOffset</code>&nbsp;array creates an offset enough to hide all the path. 0 on the other hand which is the point to reach, that means that there’s no dashoffset. In other words, the path is fully visible at this point.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>anime({\n  targets: 'svg path',\n  strokeDashoffset: &#91;anime.setDashoffset, 0],\n  loop: true,\n  direction: 'alternate',\n  easing: 'linear',\n  duration: 5000\n});</code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Morphing SVG Shapes With Anime.js As I mentioned at the beginning of this article, anime.js is known for its ability to animate SVG elements. One of the most commonly created effects is the morphing effect, which basically is the transformation of the shape of an SVG element into a new one over a certain duration. [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [155],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/posts/4154"
+        }
+      ],
+      "collection": [
+        { "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        {
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/comments?post=4154"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/posts/4154/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4155,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/posts/4154/revisions/4155"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/media?parent=4154"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/categories?post=4154"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/tags?post=4154"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  }
+]

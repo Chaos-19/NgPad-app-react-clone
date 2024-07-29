@@ -1,0 +1,96 @@
+[
+  {
+    "id": 3147,
+    "date": "2020-11-28T06:08:39",
+    "date_gmt": "2020-11-28T06:08:39",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3147"
+    },
+    "modified": "2020-11-28T06:08:39",
+    "modified_gmt": "2020-11-28T06:08:39",
+    "slug": "symbol",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/symbol/",
+    "title": {
+      "rendered": "Symbol"
+    },
+    "content": {
+      "rendered": "\n<h2>Creating symbols</h2>\n\n\n\n<p>ES6 added\u00a0<code>Symbol</code>\u00a0as a new primitive type. Unlike other primitive types such as\u00a0number,\u00a0boolean,\u00a0null,\u00a0undefined, and\u00a0string, the symbol type doesn\u2019t have a literal form.</p>\n\n\n\n<p>To create a new symbol, you use the global&nbsp;<code>Symbol()</code>&nbsp;function as shown in this example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let s = Symbol('foo');</code></pre>\n\n\n\n<p>The&nbsp;<code>Symbol()</code>&nbsp;function creates a new&nbsp;<em>unique</em>&nbsp;value each time you call it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>console.log(Symbol() === Symbol()); // false</code></pre>\n\n\n\n<p>The&nbsp;<code>Symbol()</code>&nbsp;function accepts a&nbsp;<code>description</code>&nbsp;as an optional argument. The&nbsp;<code>description</code>&nbsp;argument will make your symbol more descriptive.</p>\n\n\n\n<p>The following example creates two symbols:&nbsp;<code>firstName</code>&nbsp;and&nbsp;<code>lastName</code>.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let firstName = Symbol('first name'),\n    lastName = Symbol('last name');</code></pre>\n\n\n\n<p>You can access the symbol\u2019s description property using the&nbsp;<code>toString()</code>&nbsp;method. The&nbsp;<code>console.log()</code>&nbsp;method calls the&nbsp;<code>toString()</code>&nbsp;method of the symbol implicitly as shown in the following example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>console.log(firstName); // Symbol(first name)\nconsole.log(lastName); // Symbol(last name)</code></pre>\n\n\n\n<p>Since symbols are primitive values, you can use the &nbsp;<code>typeof</code>&nbsp;operator to check whether a variable is a symbol. ES6 extended&nbsp;&nbsp;<code>typeof</code>&nbsp;to return the&nbsp;<code>symbol</code>&nbsp;string when you pass in a symbol variable:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>console.log(typeof firstName); // symbol</code></pre>\n\n\n\n<p>Since a symbol is a primitive value, if you attempt to create a symbol using the&nbsp;<code>new</code>&nbsp;operator, you will get an error:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let s = new Symbol(); // error</code></pre>\n\n\n\n<h2>Sharing symbols</h2>\n\n\n\n<p>ES6 provides you with the global symbol registry that allows you to share symbols globally. If you want to create a symbol that will be shared, you use the&nbsp;<code>Symbol.for()</code>&nbsp;method instead of calling the&nbsp;<code>Symbol()</code>&nbsp;function.</p>\n\n\n\n<p>The&nbsp;<code>Symbol.for()</code>&nbsp;method accepts a single parameter that can be used for symbol\u2019s description as shown in the following example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let ssn = Symbol.for('ssn');</code></pre>\n\n\n\n<p>The&nbsp;<code>Symbol.for()</code>&nbsp;method first searches for the symbol with the &nbsp;<code>ssn</code>&nbsp;key in the global symbol registry. It returns the existing symbol if there is one. Otherwise, the&nbsp;<code>Symbol.for()</code>&nbsp;method creates a new symbol, registers it to the global symbol registry with the specified&nbsp;key, and returns the symbol.</p>\n\n\n\n<p>Later, if you call the&nbsp;<code>Symbol.for()</code>&nbsp;method using the same key, the&nbsp;<code>Symbol.for()</code>&nbsp;method will return the existing symbol.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let citizenID = Symbol.for('ssn');\nconsole.log(ssn === citizenID); // true</code></pre>\n\n\n\n<p>In this example, we used the&nbsp;<code>Symbol.for()</code>&nbsp;method to look up the symbol with the &nbsp;<code>ssn</code>&nbsp;key. Since the global symbol registry already contained it, the&nbsp;<code>Symbol.for()</code>&nbsp;method returned the existing symbol.</p>\n\n\n\n<p>To get the key associated with a symbol, you use the&nbsp;<code>Symbol.keyFor()</code>&nbsp;method as shown in the following example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>console.log(Symbol.keyFor(citizenID)); // 'ssn'</code></pre>\n\n\n\n<p>If a symbol that does not exist in the global symbol registry, the&nbsp;<code>System.keyFor()</code>&nbsp;method returns&nbsp;<code>undefined</code>.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let systemID = Symbol('sys');\nconsole.log(Symbol.keyFor(systemID)); // undefined</code></pre>\n\n\n\n<h2>Symbol usages</h2>\n\n\n\n<h3>A) Using symbols as unique values</h3>\n\n\n\n<p>Whenever you use a string or a number in your code, you should use symbols instead. For example, you have to manage the status in the task management application. Prior to ES6, you would use strings such as&nbsp;<code>open</code>,&nbsp;<code>in progress</code>,&nbsp;<code>completed</code>,&nbsp;<code>canceled</code>, and&nbsp;<code>on hold</code>&nbsp;to represent different statuses of a task.&nbsp;In ES6, you can use symbols as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let statuses = {\n    OPEN: Symbol('Open'),\n    IN_PROGRESS: Symbol('In progress'),\n    COMPLETED: Symbol('Completed'),\n    HOLD: Symbol('On hold'),\n    CANCELED: Symbol('Canceled')\n};\n// complete a task\ntask.setStatus(statuses.COMPLETED);\n</code></pre>\n\n\n\n<h3>B) Using symbol as the computed property name of an object</h3>\n\n\n\n<p>You can use symbols as computed property names. See the following example.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let status = Symbol('status');\nlet task = {\n    &#91;status]: statuses.OPEN,\n    description: 'Learn ES6 Symbol'\n};\nconsole.log(task);</code></pre>\n\n\n\n<p>To get all the enumerable properties of an object, you use the&nbsp;<code>Object.keys()</code>&nbsp;method.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>console.log(Object.keys(task)); // &#91;\"description\"]</code></pre>\n\n\n\n<p>To get all properties of an object whether the properties are enumerable or not, you use the&nbsp;<code>Object.getOwnPropertyNames()</code>&nbsp;method.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>console.log(Object.getOwnPropertyNames(task)); // &#91;\"description\"]</code></pre>\n\n\n\n<p>To get all property symbols of an object, you use the&nbsp;<code>Object.getOwnPropertySymbols()</code>&nbsp;method, which has been added in ES6.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>console.log(Object.getOwnPropertySymbols(task)); //&#91;Symbol(status)]</code></pre>\n\n\n\n<p>The&nbsp;<code>Object.getOwnPropertySymbols()</code>&nbsp;method returns an array of own property symbols from an object.</p>\n\n\n\n<h2>Well-known symbols</h2>\n\n\n\n<p>ES6 provides predefined symbols which are called well-known symbols. The well-known symbols represent the common behaviors in JavaScript. Each well-known symbol is a static property of the&nbsp;<code>Symbol</code>&nbsp;object.</p>\n\n\n\n<h3>Symbol.hasInstance</h3>\n\n\n\n<p>The&nbsp;<code>Symbol.hasInstance</code>&nbsp;is a symbol that changes the behavior of the&nbsp;<code>instanceof</code>&nbsp;operator. Typically, when you use the&nbsp;<code>instanceof</code>&nbsp;operator:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>obj instanceof type;</code></pre>\n\n\n\n<p>JavaScript will call the&nbsp;<code>Symbol.hasIntance</code>&nbsp;method as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>type&#91;Symbol.hasInstance](obj);</code></pre>\n\n\n\n<p>It then depends on the method to determine if&nbsp;&nbsp;<code>obj</code>&nbsp;is an instance of the&nbsp;<code>type</code>&nbsp;object. See the following example.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>class Stack {\n}\nconsole.log(&#91;] instanceof Stack); // false\n</code></pre>\n\n\n\n<p>The&nbsp;<code>[]</code>&nbsp;array is not an instance of the&nbsp;<code>Stack</code>&nbsp;class, therefore, the&nbsp;<code>instanceof</code>&nbsp;operator returns&nbsp;<code>false</code>&nbsp;in this example.</p>\n\n\n\n<p>Assuming that you want the&nbsp;<code>[]</code>&nbsp;array is an instance of the&nbsp;<code>Stack</code>&nbsp;class, you can add the&nbsp;<code>Symbol.hasInstance</code>&nbsp;method as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>class Stack {\n    static &#91;Symbol.hasInstance](obj) {\n        return Array.isArray(obj);\n    }\n}\nconsole.log(&#91;] instanceof Stack); // true\n</code></pre>\n\n\n\n<h3 id=\"symbol.iterator\">Symbol.iterator</h3>\n\n\n\n<p>The&nbsp;<code>Symbol.iterator</code>&nbsp;specifies whether a function will return an iterator for an object.</p>\n\n\n\n<p>The objects that have&nbsp;<code>Symbol.iterator</code>&nbsp;property are called iterable objects.</p>\n\n\n\n<p>In ES6, all collection objects (Array,\u00a0Set\u00a0and\u00a0Map) and strings are iterable objects.</p>\n\n\n\n<p>ES6 provides the\u00a0for\u2026of\u00a0loop that works with the iterable object as in the following example.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>var numbers = &#91;1, 2, 3];\nfor (let num of numbers) {\n    console.log(num);\n}\n\n// 1\n// 2\n// 3</code></pre>\n\n\n\n<p>Internally, JavaScript engine first calls the&nbsp;<code>Symbol.iterator</code>&nbsp;method of the&nbsp;<code>numbers</code>&nbsp;array to get the iterator object. Then, it calls the&nbsp;<code>iterator.next()</code>&nbsp;method and copies the value property fo the iterator object into the&nbsp;<code>num&nbsp;</code>variable. After three iterations, the&nbsp;<code>done</code>&nbsp;property of the result object is&nbsp;<code>true</code>, the loop exits.</p>\n\n\n\n<p>You can access the default iterator object via&nbsp;<code>System.iterator</code>&nbsp;symbol as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>var iterator = numbers&#91;Symbol.iterator]();\n\nconsole.log(iterator.next()); // Object {value: 1, done: false}\nconsole.log(iterator.next()); // Object {value: 2, done: false}\nconsole.log(iterator.next()); // Object {value: 3, done: false}\nconsole.log(iterator.next()); // Object {value: undefined, done: true}</code></pre>\n\n\n\n<p>By default, a collection is not iterable. However, you can make it iterable by using the&nbsp;<code>Symbol.iterator</code>&nbsp;as shown in the following example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>class List {\n    constructor() {\n        this.elements = &#91;];\n    }\n\n    add(element) {\n        this.elements.push(element);\n        return this;\n    }\n\n    *&#91;Symbol.iterator]() {\n        for (let element of this.elements) {\n            yield  element;\n        }\n    }\n}\n\nlet chars = new List();\nchars.add('A')\n     .add('B')\n     .add('C');\n\n// because of the Symbol.iterator\nfor (let c of chars) {\n    console.log(c);\n}\n\n// A\n// B\n// C</code></pre>\n\n\n\n<h3>Symbol.isConcatSpreadable</h3>\n\n\n\n<p>To concatenate two arrays, you use the&nbsp;<code>concat()</code>&nbsp;method as shown in the following example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let odd  = &#91;1, 3],\n    even = &#91;2, 4];\nlet all = odd.concat(even);\nconsole.log(all); // &#91;1, 3, 2, 4]</code></pre>\n\n\n\n<p>In this example, the resulting array contains the single elements of both arrays. In addition, the&nbsp;<code>concat()</code>&nbsp;method also accepts a non-array argument as illustrated below.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let extras = all.concat(5);\nconsole.log(extras); // &#91;1, 3, 2, 4, 5]</code></pre>\n\n\n\n<p>The number 5 becomes the fifth element of the array.</p>\n\n\n\n<p>As you see in the above example, when we pass an array to the&nbsp;<code>concat()</code>&nbsp;method, the&nbsp;<code>concat()</code>&nbsp;method spreads the array into individual elements. However, it treats a single primitive argument differently. Prior to ES6, you could not change this behavior.</p>\n\n\n\n<p>This is why the&nbsp;<code>Symbol.isConcatSpreadable</code>&nbsp;symbol comes into play.</p>\n\n\n\n<p>The&nbsp;<code>Symbol.isConcatSpreadable</code>&nbsp;property is a Boolean value that determines whether an object is added individually to the result of the&nbsp;<code>concat()</code>&nbsp;function.</p>\n\n\n\n<p>Consider the following example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let list = {\n    0: 'JavaScript',\n    1: 'Symbol',\n    length: 2\n};\nlet message = &#91;'Learning'].concat(list);\nconsole.log(message); // &#91;\"Learning\", Object]</code></pre>\n\n\n\n<p>The list object is concatenated to the&nbsp;<code>['Learning']</code>&nbsp;array. However, its individual elements are not spreaded.</p>\n\n\n\n<p>To enable&nbsp;the elements of the&nbsp;<code>list</code>&nbsp;object added to the array individually when passing to the&nbsp;<code>concat()</code>&nbsp;method, you need to add the&nbsp;<code>Symbol.isConcatSpreadable</code>&nbsp;property to the&nbsp;<code>list</code>&nbsp;object as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let list = {\n    0: 'JavaScript',\n    1: 'Symbol',\n    length: 2,\n    &#91;Symbol.isConcatSpreadable]: true\n};\nlet message = &#91;'Learning'].concat(list);\nconsole.log(message); // &#91;\"Learning\", \"JavaScript\", \"Symbol\"]</code></pre>\n\n\n\n<p>Note that if you set the value of the&nbsp;<code>Symbol.isConcatSpreadable</code>&nbsp;to&nbsp;<code>false</code>&nbsp;and pass the&nbsp;<code>list</code>&nbsp;object to the&nbsp;<code>concat()</code>&nbsp;method, it will be concatenated to the array as the whole object.</p>\n\n\n\n<h3>Symbol.toPrimitive</h3>\n\n\n\n<p>The&nbsp;<code>Symbol.toPrimitive</code>&nbsp;method determines what should happen when an object is converted into a primitive value.</p>\n\n\n\n<p>The JavaScript engine defines the&nbsp;<code>Symbol.toPrimitive</code>&nbsp;method&nbsp;on the prototype of each standard type.</p>\n\n\n\n<p>The&nbsp;<code>Symbol.toPrimitive</code>&nbsp;method takes a&nbsp;<code>hint</code>&nbsp;argument which has one of three values: \u201cnumber\u201d, \u201cstring\u201d, and \u201cdefault\u201d. The&nbsp;<code>hint</code>&nbsp;argument specifies the type of the return value.&nbsp;The&nbsp;<code>hint</code>&nbsp;parameter is filled by the JavaScript engine based on the context in which the object is used.</p>\n\n\n\n<p>Here is an example of using the&nbsp;<code>Symbol.toPrimitive</code>&nbsp;method.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function Money(amount, currency) {\n    this.amount = amount;\n    this.currency = currency;\n}\nMoney.prototype&#91;Symbol.toPrimitive] = function(hint) {\n    var result;\n    switch (hint) {\n        case 'string':\n            result = this.amount + this.currency;\n            break;\n        case 'number':\n            result = this.amount;\n            break;\n        case 'default':\n            result = this.amount + this.currency;\n            break;\n    }\n    return result;\n}\n\nvar price = new Money(799, 'USD');\n\nconsole.log('Price is ' + price); // Price is 799USD\nconsole.log(+price + 1); // 800\nconsole.log(String(price)); // 799USD</code></pre>\n\n\n\n<p>In this tutorial, you have learned about JavaScript symbols and how to use symbols for unique values and object properties. In addition, you learned how to use the well-known symbols to modify object behaviors.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Creating symbols ES6 added\u00a0Symbol\u00a0as a new primitive type. Unlike other primitive types such as\u00a0number,\u00a0boolean,\u00a0null,\u00a0undefined, and\u00a0string, the symbol type doesn\u2019t have a literal form. To create a new symbol, you use the global&nbsp;Symbol()&nbsp;function as shown in this example: The&nbsp;Symbol()&nbsp;function creates a new&nbsp;unique&nbsp;value each time you call it: The&nbsp;Symbol()&nbsp;function accepts a&nbsp;description&nbsp;as an optional argument. The&nbsp;description&nbsp;argument will make [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [203],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3147"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=3147"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3147/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=3147"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=3147"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=3147"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  }
+]

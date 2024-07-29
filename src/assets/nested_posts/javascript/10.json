@@ -1,0 +1,96 @@
+[
+  {
+    "id": 3443,
+    "date": "2020-11-30T06:33:57",
+    "date_gmt": "2020-11-30T06:33:57",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3443"
+    },
+    "modified": "2020-11-30T06:33:57",
+    "modified_gmt": "2020-11-30T06:33:57",
+    "slug": "trycatch",
+    "status": "publish",
+    "type": "post",
+    "link": "https://computerprogramming.foobrdigital.com/trycatch/",
+    "title": {
+      "rendered": "Try…catch"
+    },
+    "content": {
+      "rendered": "\n<h2>Introduction to JavaScript&nbsp;<code>try...catch</code>&nbsp;statement</h2>\n\n\n\n<p>To handle errors in JavaScript, you use the&nbsp;<code>try...catch</code>&nbsp;statement:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>try {\n  // code may cause error\n} catch(error){\n  // code to handle error\n}\n</code></pre>\n\n\n\n<p>In this statement, you place the code that may cause errors in the&nbsp;<code>try</code>&nbsp;block and the code that handles the error in the&nbsp;<code>catch</code>&nbsp;block.</p>\n\n\n\n<p>If an error occurs, JavaScript terminates the code execution and jumps to the&nbsp;<code>catch</code>&nbsp;block.</p>\n\n\n\n<p>In the&nbsp;<code>catch</code>&nbsp;block, you can access an&nbsp;<code>error</code>&nbsp;object that contains at least the&nbsp;<code>name</code>&nbsp;of the error and&nbsp;<code>message</code>&nbsp;that explains the error in detail.</p>\n\n\n\n<p>Different web browsers may add more property to the&nbsp;<code>error</code>&nbsp;object. For example, Firefox adds&nbsp;<code>filename</code>,&nbsp;<code>lineNumber</code>, and&nbsp;<code>stack</code>&nbsp;properties to the&nbsp;<code>error</code>&nbsp;object.</p>\n\n\n\n<p>The following flowchart illustrates the flow of the&nbsp;<code>try...catch</code>&nbsp;statement:</p>\n\n\n\n\n\n\n\n<p>See the following example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>try {\n  nonExistingFunction();\n} catch(error){\n    console.log(error.name + \":\" + error.message);\n}</code></pre>\n\n\n\n<p>Output</p>\n\n\n\n<pre class=\"wp-block-code\"><code>ReferenceError:nonExistingFunction is not defined</code></pre>\n\n\n\n<p>In this example, we called the&nbsp;<code>nonExistingFunction()</code>&nbsp;function in the&nbsp;<code>try</code>&nbsp;block.</p>\n\n\n\n<p>However, the&nbsp;<code>nonExistingFunction()</code>&nbsp;function doesn’t exist, therefore, JavaScript throws an error.</p>\n\n\n\n<p>In the&nbsp;<code>catch</code>&nbsp;block, we showed the&nbsp;<code>name</code>&nbsp;and&nbsp;<code>message</code>&nbsp;properties of the error object. The name of the error is&nbsp;<code>ReferenceError</code>&nbsp;and its message is&nbsp;<code>nonExistingFunction is not defined</code>.</p>\n\n\n\n<h2>The&nbsp;<code>finally</code>&nbsp;clause</h2>\n\n\n\n<p>The&nbsp;<code>finally</code>&nbsp;clause is an optional clause of the&nbsp;<code>try...catch</code>&nbsp;statement. The code that you place in the&nbsp;<code>finally</code>&nbsp;block always executes whether the error occurs or not.</p>\n\n\n\n<p>It means that if the code in the&nbsp;<code>try</code>&nbsp;block executes entirely, the code in&nbsp;<code>finally</code>&nbsp;block executes; In case an error occurs that causes the code in the&nbsp; catch block executes, the code in the&nbsp;<code>finally</code>&nbsp;block also executes.</p>\n\n\n\n<p>The following flowchart illustrates the flow of the&nbsp;<code>try...catch...finally</code>&nbsp;statement:</p>\n\n\n\n\n\n\n\n<p>Consider the following example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function test(){\n  try {\n    return 1;\n  } catch(error) {\n    return 2;\n  } finally {\n    return 3;\n  }\n}\nconsole.log(test());</code></pre>\n\n\n\n<p>What will show in the output? 1, 2 or 3.&nbsp;The answer is 3.</p>\n\n\n\n<p>It seems that the&nbsp;<code>test()</code>&nbsp;function will return 1 because no error occurs in the&nbsp;<code>try</code>&nbsp;block and it has the&nbsp;<code>return</code>&nbsp;statement.</p>\n\n\n\n<p>However, the presence of the&nbsp;<code>finally</code>&nbsp;clause makes the&nbsp;<code>return</code>&nbsp;statement in the try block to be ignored.</p>\n\n\n\n<p>If you remove the&nbsp;<code>finally</code>&nbsp;clause, the&nbsp;<code>test()</code>&nbsp;function will return 1.</p>\n\n\n\n<p>Note that once you use the&nbsp;<code>finally</code>&nbsp;clause, the&nbsp;<code>catch</code>&nbsp;clause becomes optional.</p>\n\n\n\n<p>It means that you can use only&nbsp;<code>try...finally</code>clause:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>try {\n  // code that may cause an error\n} finally {\n  // code to cleanup resources\n}</code></pre>\n\n\n\n<p>Since the code in the&nbsp;<code>finally</code>&nbsp;always executes, it is a perfect place to put the code that releases the resources, like this:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let connection = {\n    open: function () {\n        console.log('open a connection');\n    },\n    close: function () {\n        console.log('close the connection');\n    }\n};\n\n\ntry {\n    connection.open();\n} catch (error) {\n    console.log(error.message);\n} finally {\n    connection.close();\n}</code></pre>\n\n\n\n<p>In this example, we called the&nbsp;<code>close()</code>&nbsp;method of the&nbsp;<code>connection</code>&nbsp;object in the&nbsp;<code>finally</code>&nbsp;clause to close the connection whether an error occurs or not.</p>\n\n\n\n<h2>JavaScript error types</h2>\n\n\n\n<p>JavaScript has different types of errors that may occur during the code execution:</p>\n\n\n\n<ul><li>&nbsp;<code>Error</code></li><li>&nbsp;<code>EvalError</code></li><li>&nbsp;<code>RangeError</code></li><li>&nbsp;<code>ReferenceError</code></li><li>&nbsp;<code>SyntaxError</code></li><li>&nbsp;<code>TypeError</code></li><li>&nbsp;<code>URIError</code></li></ul>\n\n\n\n<p>The&nbsp;<code>Error</code>&nbsp;type is the base type of other error types. Let’s examine in detail when JavaScript throws each type of error.</p>\n\n\n\n<h3>EvalError</h3>\n\n\n\n<p>JavaScript throws the&nbsp;<code>EvalError</code>&nbsp;when you use&nbsp;<code>eval()</code>&nbsp;as anything other than a function call, for example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let e = new eval(); </code></pre>\n\n\n\n<p>Error:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>TypeError: eval is not a constructor</code></pre>\n\n\n\n<p>However, web browsers often throw the&nbsp;<code>TypeError</code>&nbsp;instead of&nbsp;<code>EvalError</code>&nbsp;in this situation.</p>\n\n\n\n<h3>RangeError</h3>\n\n\n\n<p>The&nbsp;<code>RangeError</code>&nbsp;occurs when a number is not in its range. See the following example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>try {\n    let list = Array(Number.MAX_VALUE);\n} catch (error) {\n    console.log(error.name); // \"RangeError\"\n    console.log(error.message); // \"Invalid array length\"\n}</code></pre>\n\n\n\n<p>Error</p>\n\n\n\n<pre class=\"wp-block-code\"><code>RangeError\nInvalid array length</code></pre>\n\n\n\n<p>The code in the <code>try</code> block causes a <code>RangeError</code> because we used an invalid length to define a new array.</p>\n\n\n\n<h3>ReferenceError</h3>\n\n\n\n<p>The <code>ReferenceError</code> occurs when you reference a variable, a function, or an object that does not exist.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>try {\n    var a = a + b;\n} catch (error) {\n    console.log(error.name); // \"ReferenceError\"\n    console.log(error.message); // \"b is not defined\"\n}</code></pre>\n\n\n\n<p>Error:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>ReferenceError\nb is not defined</code></pre>\n\n\n\n<p>In this example, the variable&nbsp;<code>b</code>&nbsp;does not exist therefore it causes a&nbsp;<code>ReferenceError</code>.</p>\n\n\n\n<h3>SyntaxError</h3>\n\n\n\n<p>The&nbsp;<code>SyntaxError</code>&nbsp;occurs in a string that you pass to the&nbsp;<code>eval()</code>&nbsp;function, for example.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>try {\n    eval('a x b');\n} catch (error) {\n    console.log(error.name); // \"SyntaxError\"\n    console.log(error.message); // \"Unexpected identifier\"\n}</code></pre>\n\n\n\n<p>Error</p>\n\n\n\n<pre class=\"wp-block-code\"><code>SyntaxError\nUnexpected identifier</code></pre>\n\n\n\n<p>Outside the&nbsp;<code>eval()</code>&nbsp;function, JavaScript stops executing the code whenever it finds a&nbsp;<code>SyntaxError</code>.</p>\n\n\n\n<h3>TypeError</h3>\n\n\n\n<p>The&nbsp;<code>TypeError</code>&nbsp;occurs when a variable is of an unexpected type or access to a nonexistent method.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>try {\n  let x = new \"String\";  \n} catch(error) {\n  console.log(error.name); // \"TypeError\"\n  console.log(error.message); // \"String\" is not a constructor\"\n}\n</code></pre>\n\n\n\n<p>Error:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>TypeError\n\"String\" is not a constructor</code></pre>\n\n\n\n<p>In this example, we tried to create a new instance of a literal string which caused a&nbsp;<code>TypeError</code>&nbsp;error.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let db = {\n    host: 'localhost',\n    port: 3306,\n    user: 'root',\n    password: 'secret'\n};\n\ntry {\n    db.connect();\n} catch (error) {\n    console.log(error.name); // \"TypeError\"\n    console.log(error.message); // \"db.connect is not a function\"\n}</code></pre>\n\n\n\n<p>In this example, we tried to access the&nbsp;<code>connect()</code>&nbsp;method of the&nbsp;<code>db</code>&nbsp;object, which does not exist, therefore a&nbsp;<code>TypeError</code>&nbsp;error occurred.</p>\n\n\n\n<h3>URIError</h3>\n\n\n\n<p>The&nbsp;<code>URIError</code>&nbsp;error occurs when using the&nbsp;<code>encodeURI()</code>&nbsp;or&nbsp;<code>decodeURI()</code>&nbsp;with a malformed URI, for example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>console.log(encodeURI('\\uDFFF'));</code></pre>\n\n\n\n<h2>Throwing errors</h2>\n\n\n\n<p>To throw an error, you use the&nbsp;<code>throw</code>&nbsp;operator. For example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>throw 'ABC';\nthrow 123;\n</code></pre>\n\n\n\n<p>Whenever the JavaScript reaches the&nbsp;<code>throw</code>&nbsp;operator, it stops the execution of the code immediately. To continue the code execution, you need to use the&nbsp;<code>try...catch</code>&nbsp;statement to catch the value that was thrown. See the following example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>try {\n    throw 123;\n} catch (error) {\n    console.log(error); // 123\n}\nconsole.log('continue!'); // \"continue!\"</code></pre>\n\n\n\n<p>In practice, you should use one of the error types as mentioned earlier as an error to throw, for example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function add(a, b) {\n    if (typeof a !== 'number') {\n        throw TypeError('The first argument must be a number');\n    }\n\n    if (typeof b !== 'number') {\n        throw TypeError('The second argument must be a number');\n    }\n\n    return a + b;\n}\n\nadd('string', 1);</code></pre>\n\n\n\n<p>Error</p>\n\n\n\n<pre class=\"wp-block-code\"><code>TypeError: The first argument must be a number</code></pre>\n\n\n\n<h2>Custom Error</h2>\n\n\n\n<p>You can create a custom error that inherits from a built-in error as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function InvalidCallError(message) {\n    this.name = 'InvalidCallError';\n    this.message = message;\n}\n\nInvalidCallError.prototype = Object.create(Error.prototype);\nInvalidCallError.prototype.constructor = Error;</code></pre>\n\n\n\n<p>Then, you can throw the custom error as shown in this example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>throw new InvalidCallError('Invalid function call');</code></pre>\n\n\n\n<p>Error</p>\n\n\n\n<pre class=\"wp-block-code\"><code>\"Uncaught InvalidCallError: Invalid function call\"</code></pre>\n\n\n\n<p>In this tutorial, you have learned how to handle errors by using the JavaScript&nbsp;<code>try...catch</code>&nbsp;statement.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Introduction to JavaScript&nbsp;try&#8230;catch&nbsp;statement To handle errors in JavaScript, you use the&nbsp;try&#8230;catch&nbsp;statement: In this statement, you place the code that may cause errors in the&nbsp;try&nbsp;block and the code that handles the error in the&nbsp;catch&nbsp;block. If an error occurs, JavaScript terminates the code execution and jumps to the&nbsp;catch&nbsp;block. In the&nbsp;catch&nbsp;block, you can access an&nbsp;error&nbsp;object that contains at [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [41],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3443"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/comments?post=3443"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3443/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/media?parent=3443"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/categories?post=3443"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/tags?post=3443"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  }
+]

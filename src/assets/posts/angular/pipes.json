@@ -1,0 +1,602 @@
+[
+  {
+    "id": 3558,
+    "date": "2020-12-03T06:20:33",
+    "date_gmt": "2020-12-03T06:20:33",
+    "guid": {
+      "rendered": "http://angular.foobrdigital.com/?p=3558"
+    },
+    "modified": "2020-12-08T11:36:15",
+    "modified_gmt": "2020-12-08T11:36:15",
+    "slug": "working-with-angular-pipes",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/working-with-angular-pipes/",
+    "title": {
+      "rendered": "Working with Angular Pipes"
+    },
+    "content": {
+      "rendered": "\n<h2>Angular Pipes Syntax</h2>\n\n\n\n<p>The syntax of the pipe is as follows</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Expression | pipeOperator&#91;:pipeArguments]</code></pre>\n\n\n\n<p>Where</p>\n\n\n\n<p><code>Expression</code>: is the expression, which you want to transform<br><code>|</code>&nbsp;: is the Pipe Character<br><code>pipeOperator</code>&nbsp;: name of the Pipe<br><code>pipeArguments</code>: arguments to the Pipe</p>\n\n\n\n<h2>Pipes Example</h2>\n\n\n\n<p>In this example let use Angular built in date pipe to transform the date</p>\n\n\n\n<h5>Component class</h5>\n\n\n\n<pre class=\"wp-block-code\"><code> \nimport { Component } from '@angular/core';\nimport { FormsModule } from '@angular/forms';\n \n@Component({\n    selector: 'app-root',\n    templateUrl: `&lt;p> Unformatted date : {{toDate }} &lt;/p>\n                  &lt;p> Formatted date : {{toDate | date}} &lt;/p>` \n}) \nexport class AppComponent \n{ \n    title: string = 'pipe Example' ; \n    toDate: Date = new Date(); \n}\n </code></pre>\n\n\n\n<p>n the above example, we are taking current date and transforming it into the easily readable format using the date pipe. We have included the unformatted date format for comparison. The output is as shown below</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://www.tektutorialshub.com/wp-content/uploads/2016/11/Angular-2-Pipes-Example.png\" alt=\"Angular Pipes Example\" class=\"wp-image-4915\"/><figcaption>Example of Angular Pipes</figcaption></figure>\n\n\n\n<h2>Passing arguments to pipes</h2>\n\n\n\n<p>We can also pass optional arguments to the pipe. The arguments are added to the pipe using acolon (<code>:</code>)&nbsp;sign followed by the&nbsp;value of the argument. If there are multiple arguments separate each of them with the colon (<code>:</code>).&nbsp;For example, we can pass the&nbsp;<code>format</code>&nbsp;as the argument to the&nbsp;<code>date</code>&nbsp;pipe, which is Optional. The&nbsp;<code>medium</code>&nbsp;is one of the valid value of the format argument, which displays the date in&nbsp;<code>yMMMdjms</code>&nbsp;format. The example code is as shown below.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{{toDate | date:'medium'}}</code></pre>\n\n\n\n<p>The parameter&nbsp;<code>medium</code>&nbsp;displays the date as&nbsp;<strong>Nov 22, 2016, 10:04:10 PM</strong></p>\n\n\n\n<h2>Chaining Pipes</h2>\n\n\n\n<p>Pipes can be chained together to make use of multiple pipes in one expression. For example in the following code, the&nbsp;<code>toDate</code>&nbsp;is passed to the&nbsp;<code>Date</code>&nbsp;Pipe. The output of the&nbsp;<code>Date</code>&nbsp;pipe is then passed to the&nbsp;<code>uppercase</code>&nbsp;pipe.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>toDate | date | uppercase</code></pre>\n\n\n\n<h2>The Angular Built-in pipes</h2>\n\n\n\n<p>The Angular has several built-in pipes, which you can use in your application. You can read about them from this&nbsp;link</p>\n\n\n\n<p>Some of the important pipes are&nbsp;<code>Date Pipe</code>,&nbsp;<code>Uppercase Pipe</code>,&nbsp;<code>Lowercase Pipe</code>,&nbsp;<code>Number Pipe</code>/&nbsp;<code>Decimal Pipe</code>,&nbsp;<code>Currency Pipe</code>, and&nbsp;<code>Percent Pipe</code><strong>,</strong>&nbsp;etc</p>\n\n\n\n<h3>DatePipe</h3>\n\n\n\n<p>The&nbsp;<code>Date pipe</code>&nbsp;formats the date according to locale rules. The syntax of the date pipe is as shown below</p>\n\n\n\n<pre class=\"wp-block-code\"><code>date_expression | date&#91;:format] </code></pre>\n\n\n\n<p>Where</p>\n\n\n\n<p><strong>date_expression</strong>&nbsp;is a date object or a number</p>\n\n\n\n<p><strong>date</strong>&nbsp;is the name of the pipe</p>\n\n\n\n<p><strong>format</strong>&nbsp;is the date and time format string which indicates the format in which date/time components are displayed.</p>\n\n\n\n<p>Some of the common format strings are</p>\n\n\n\n<figure id=\"tablepress-10\" class=\"wp-block-table\"><table><thead><tr><th>Component</th><th>format</th><th>Example</th></tr></thead><tbody><tr><td>Year</td><td>y</td><td>2016</td></tr><tr><td>Year</td><td>yy</td><td>16</td></tr><tr><td>Month</td><td>M</td><td>9</td></tr><tr><td>Month</td><td>M</td><td>99</td></tr><tr><td>Month</td><td>MMM</td><td>Nov</td></tr><tr><td>Month</td><td>MMMM</td><td>November</td></tr><tr><td>Day</td><td>d</td><td>9</td></tr><tr><td>Day</td><td>dd</td><td>09</td></tr><tr><td>hour</td><td>j</td><td>9</td></tr><tr><td>hour</td><td>jj</td><td>09</td></tr><tr><td>hour</td><td>h</td><td>9 AM</td></tr><tr><td>hour</td><td>hh</td><td>09 AM</td></tr><tr><td>hour24</td><td>H</td><td>13</td></tr><tr><td>hour24</td><td>HH</td><td>13</td></tr><tr><td>minute</td><td>m</td><td>9</td></tr><tr><td>minute</td><td>mm</td><td>09</td></tr><tr><td>second</td><td>s</td><td>9</td></tr><tr><td>second</td><td>ss</td><td>99</td></tr><tr><td>Time zone</td><td>z</td><td>Pacific Standard time</td></tr><tr><td>Time zone</td><td>Z</td><td>GMT-8:00</td></tr><tr><td>Time zone</td><td>a</td><td>PM</td></tr><tr><td>era</td><td>G</td><td>AD</td></tr><tr><td>era</td><td>GGGG</td><td>Anno Domini</td></tr></tbody></table></figure>\n\n\n\n<p>Format argument also supports some predefined commonly used formats</p>\n\n\n\n<figure id=\"tablepress-11\" class=\"wp-block-table\"><table><thead><tr><th>Format Name</th><th>Equivalent Format strng</th><th>Example<br>(for en-US)</th></tr></thead><tbody><tr><td>medium</td><td>yMMMdjms</td><td>Sep 3, 2010, 12:05:08 PM</td></tr><tr><td>short</td><td>yMdjm</td><td>9/3/2010, 12:05 PM</td></tr><tr><td>fullDate</td><td>yMMMMEEEEd</td><td>Friday, September 3, 2010</td></tr><tr><td>longDate</td><td>yMMMMd</td><td>September 3, 2010</td></tr><tr><td>mediumDate</td><td>yMMMd</td><td>Sep 3, 2010</td></tr><tr><td>shortDate</td><td>yMd</td><td>9/3/2010</td></tr><tr><td>mediumTime</td><td>jms</td><td>12:05:08 PM</td></tr><tr><td>shortTime</td><td>jm</td><td>12:05 PM</td></tr></tbody></table></figure>\n\n\n\n<p>You can read about the complete list from&nbsp;link</p>\n\n\n\n<h4>Example of Datepipe</h4>\n\n\n\n<pre class=\"wp-block-code\"><code>import { Component } from '@angular/core';\r\nimport { FormsModule } from '@angular/forms';\r\n@Component({\r\n    selector: 'app-root',\r\n    template:`&lt;p>medium : {{toDate | date:'medium'}} &lt;/p>\r\n              &lt;p>short : {{toDate | date:'short'}} &lt;/p>\r\n              &lt;p>fullDate : {{toDate | date:'fullDate'}} &lt;/p>\r\n              &lt;p>longDate : {{toDate | date:'longDate'}} &lt;/p>\r\n              &lt;p>mediumDate : {{toDate | date:'mediumDate'}} &lt;/p>\r\n              &lt;p>shortDate : {{toDate | date:'shortDate'}} &lt;/p>\r\n              &lt;p>mediumTime : {{toDate | date:'mediumTime'}} &lt;/p>\r\n              &lt;p>dd-MM-y : {{toDate | date:'dd-MM-y'}} &lt;/p>\r\n              &lt;p>dd-MM-yy HH:mm : {{toDate | date:'dd-MM-yy HH:mm'}} &lt;/p>`\r\n})\r\nexport class AppComponent\r\n{\r\n    title: string = 'Angular pipes Example' ;\r\n    toDate: Date = new Date();\r\n}</code></pre>\n\n\n\n<h3>UpperCasePipe &amp; LowerCasePipe</h3>\n\n\n\n<p>As the name suggests, these pipes transform the string to Uppercase or lowercase</p>\n\n\n\n<p>Read more about&nbsp;uppercasepipe&nbsp;&amp;&nbsp;lowercasepipe</p>\n\n\n\n<h3>SlicePipe</h3>\n\n\n\n<p>Creates a new List or String containing a subset (slice) of the string or array. This Pipe uses the JavaScript API&nbsp;Array.prototype.slice()&nbsp;and&nbsp;String.prototype.slice().</p>\n\n\n\n<h4>Syntax</h4>\n\n\n\n<pre class=\"wp-block-code\"><code>array_or_string_expression | slice:start&#91;:end] </code></pre>\n\n\n\n<p>Where</p>\n\n\n\n<p><strong>array_or_string_expression</strong>&nbsp;is the string to slice</p>\n\n\n\n<p><strong>slice</strong>&nbsp;is the name of the pipe</p>\n\n\n\n<p><strong>start</strong>&nbsp;is the start position/index from where the slicing will start</p>\n\n\n\n<p><strong>end&nbsp;</strong>is the ending index/position in the array/string</p>\n\n\n\n<p>The slice pipes take&nbsp;two arguments. The first argument<strong>&nbsp;<em>start</em></strong>&nbsp;is the starting index of the string/array. The second argument&nbsp;<strong>end</strong>&nbsp;is the ending index of the string/array. If the start or end index is negative then the index is counted from end of the string/array</p>\n\n\n\n<h4>Example</h4>\n\n\n\n<pre class=\"wp-block-code\"><code> \r\nimport { Component } from '@angular/core';\r\nimport { FormsModule } from '@angular/forms';\r\n@Component({\r\n    selector: 'app-root',\r\n    template:`&lt;p>Complete String :{{msg}} &lt;/p>\r\n              &lt;p>Example 1 :{{msg | slice:11:20}} &lt;/p>\r\n              &lt;p>Example 2 :{{msg | slice:-9}} &lt;/p>`\r\n})\r\n \r\nexport class AppComponent\r\n{\r\n    title: string = 'Angular pipes Example' ;\r\n    msg: string= 'Welcome to Angular ';\r\n}</code></pre>\n\n\n\n<p>Both the above examples will display Angular. You can read more about slice from this&nbsp;link</p>\n\n\n\n<h3>DecimalPipe / NumberPipe</h3>\n\n\n\n<p>The Decimal Pipe is used to Format a number as Text. This pipe will format the number according to locale rules.</p>\n\n\n\n<h4>Syntax</h4>\n\n\n\n<pre class=\"wp-block-code\"><code>number_expression | number&#91;:digitInfo] </code></pre>\n\n\n\n<p>Where</p>\n\n\n\n<p><strong>number_expression</strong>&nbsp;is the number you want to format</p>\n\n\n\n<p><strong>number</strong>&nbsp;is the name of the pipe</p>\n\n\n\n<p><strong>digitInfo</strong>&nbsp;is a string which has the following format</p>\n\n\n\n<p><em>{minIntegerDigits}.{minFractionDigits}-{maxFractionDigits}</em></p>\n\n\n\n<p>Where</p>\n\n\n\n<p><strong>minIntegerDigits</strong>&nbsp;is the minimum number of integer digits to use. Defaults to 1.</p>\n\n\n\n<p><strong>minFractionDigits</strong>&nbsp;is the minimum number of digits after fraction. Defaults to 0.</p>\n\n\n\n<p><strong>maxFractionDigits</strong>&nbsp;is the maximum number of digits after fraction. Defaults to 3.</p>\n\n\n\n<h4>Example</h4>\n\n\n\n<pre class=\"wp-block-code\"><code> import { Component } from '@angular/core';import { FormsModule } from '@angular/forms';@Component({    selector: 'app-root',    template: `&lt;p> Unformatted :{{num}}&lt;/p>               &lt;p> Formatted :{{num | number}}&lt;/p>               &lt;p> Formatted :{{num | number:'3.1-2'}}&lt;/p>               &lt;p> Formatted :{{num | number:'7.1-5'}} &lt;/p>`}) export class AppComponent{    title: string = 'Angular pipes Example' ;    num: number= 9542.14554;} import { Component } from '@angular/core';\r\nimport { FormsModule } from '@angular/forms';\r\n@Component({\r\n    selector: 'app-root',\r\n    template: `&lt;p> Unformatted :{{num}}&lt;/p>\r\n               &lt;p> Formatted :{{num | number}}&lt;/p>\r\n               &lt;p> Formatted :{{num | number:'3.1-2'}}&lt;/p>\r\n               &lt;p> Formatted :{{num | number:'7.1-5'}} &lt;/p>`\r\n})\r\n \r\nexport class AppComponent\r\n{\r\n    title: string = 'Angular pipes Example' ;\r\n    num: number= 9542.14554;\r\n} import { Component } from '@angular/core';import { FormsModule } from '@angular/forms';@Component({    selector: 'app-root',    template: `&lt;p> Unformatted :{{num}}&lt;/p>               &lt;p> Formatted :{{num | number}}&lt;/p>               &lt;p> Formatted :{{num | number:'3.1-2'}}&lt;/p>               &lt;p> Formatted :{{num | number:'7.1-5'}} &lt;/p>`}) export class AppComponent{    title: string = 'Angular pipes Example' ;    num: number= 9542.14554;} </code></pre>\n\n\n\n<h3>PercentePipe</h3>\n\n\n\n<p>Formats the given number as a percentage according to locale rules.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> number_expression | percent&#91;:digitInfo] </code></pre>\n\n\n\n<p>Where</p>\n\n\n\n<p><strong>number_expression</strong>&nbsp;is the number you want to format</p>\n\n\n\n<p><strong>percent</strong>&nbsp;is the name of the pipe</p>\n\n\n\n<p><strong>digitInfo</strong>&nbsp;is a string which has the following format. It is similar to used in decimal pipe</p>\n\n\n\n<h4>Example code</h4>\n\n\n\n<pre class=\"wp-block-code\"><code> \r\nimport { Component } from '@angular/core';\r\nimport { FormsModule } from '@angular/forms';\r\n \r\n@Component({\r\n    selector: 'app-root',\r\n    template:`&lt;p>Unformatted :{{per}} &lt;/p>\r\n              &lt;p>Example 1 :{{per | percent }} &lt;/p>\r\n              &lt;p>Example 2 :{{per | percent:'1.2-2'}} &lt;/p>`\r\n})\r\nexport class AppComponent\r\n{\r\n    title: string = 'Angular pipes Example' ;\r\n    per: number= .7414;2';\r\n}\r\n </code></pre>\n\n\n\n<p>More about Percent pipe from the&nbsp;link</p>\n\n\n\n<h3>CurrencyPipe</h3>\n\n\n\n<p>Formats a number as currency using locale rules.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> number_expression | currency&#91;:currencyCode&#91;:symbolDisplay&#91;:digitInfo]]] </code></pre>\n\n\n\n<p>Where</p>\n\n\n\n<p><strong>number_expression</strong>&nbsp;currency to format a number as currency.</p>\n\n\n\n<p><strong>Currency</strong>&nbsp;is the name of the pipe</p>\n\n\n\n<p><strong>currencyCode</strong>&nbsp;is the ISO 4217 currency code, such as USD for the US dollar and EUR for the euro.</p>\n\n\n\n<p><strong>symbolDisplay</strong>&nbsp;is a boolean indicating whether to use the currency symbol or code. Use true to display symbol and false to use code</p>\n\n\n\n<p><strong>digitInfo</strong>&nbsp;is similar to the one used in decimal pipe</p>\n\n\n\n<h4>Example</h4>\n\n\n\n<pre class=\"wp-block-code\"><code>\r\nimport { Component } from '@angular/core';\r\nimport { FormsModule } from '@angular/forms';\r\n@Component({\r\n    selector: 'app-root',\r\n    template: `&lt;p>Unformatted :{{cur}} &lt;/p>\r\n               &lt;p>Example 1 :{{cur | currency }} &lt;/p>\r\n               &lt;p>Example 2 :{{cur | currency:'INR':true:'4.2-2'}} &lt;/p>`\r\n})\r\n \r\nexport class AppComponent\r\n{\r\n    title: string = 'Angular pipes Example' ;\r\n    cur: number= 175;\r\n}</code></pre>\n\n\n\n<p></p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Angular Pipes Syntax The syntax of the pipe is as follows Where Expression: is the expression, which you want to transform|&nbsp;: is the Pipe CharacterpipeOperator&nbsp;: name of the PipepipeArguments: arguments to the Pipe Pipes Example In this example let use Angular built in date pipe to transform the date Component class n the above example, [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [127],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3558"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=3558"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 2,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3558/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3790,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3558/revisions/3790"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=3558"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=3558"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=3558"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 3562,
+    "date": "2020-12-03T06:30:54",
+    "date_gmt": "2020-12-03T06:30:54",
+    "guid": {
+      "rendered": "http://angular.foobrdigital.com/?p=3562"
+    },
+    "modified": "2020-12-08T11:45:54",
+    "modified_gmt": "2020-12-08T11:45:54",
+    "slug": "how-to-create-custom-pipe-in-angular",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/how-to-create-custom-pipe-in-angular/",
+    "title": {
+      "rendered": "How to Create Custom Pipe in Angular"
+    },
+    "content": {
+      "rendered": "\n<h2>How to Create Custom Pipes</h2>\n\n\n\n<p>To create a Custom Pipe, first, You need to follow these steps</p>\n\n\n\n<ol><li>Create a pipe class</li><li>Decorate the class with&nbsp;<code>@pipe</code>&nbsp;decorator.</li><li>Give a name to the pipe in the&nbsp;<code>name</code>&nbsp;meta data of the&nbsp;<code>@pipe</code>&nbsp;decorator. We will use this name in the template.</li><li>The pipe class must implement the&nbsp;<code>PipeTransform</code>&nbsp;interface. The interfaces contain only one method&nbsp;<code>transform</code>.</li><li>The first parameter to the&nbsp;<code>transform</code>&nbsp;method is the value to be transferred. The&nbsp;<code>transform</code>&nbsp;method must transform the value and return the result. You can add any number of additional arguments to the&nbsp;<code>transform</code>&nbsp;method.</li><li>Declare the pipe class in the Angular Module (app.module.ts)</li><li>Use the custom pipe just as you use other pipes.</li></ol>\n\n\n\n<p>Now let us create a Temperature converter pipe, which converts temperature from Celsius to Fahrenheit and vice versa.</p>\n\n\n\n<h2>Temparature Convertor Custom Pipe Example</h2>\n\n\n\n<p>Create a new Angular application. If you are new to Angular you can refer to the tutorial&nbsp;Create Angular Application.</p>\n\n\n\n<p>We are using bootstrap 4 for styling. Hence open the&nbsp;<code>index.html</code>&nbsp;and add the following</p>\n\n\n\n<pre class=\"wp-block-code\"><code> import {Pipe, PipeTransform} from '@angular/core';\r\n \r\n@pipe({\r\n    name: 'tempConverter'\r\n})\r\nexport class TempConverterPipe implements PipeTransform {\r\n    transform(value: number, unit: string) {\r\n        if(value &amp;&amp; !isNaN(value)) {\r\n            if (unit === 'C') {\r\n                var temperature = (value - 32) /1.8 ;\r\n                return temperature.toFixed(2);\r\n            } else if (unit === 'F'){\r\n                var temperature = (value * 1.8 ) + 32\r\n                return temperature.toFixed(2);\r\n            }\r\n        }\r\n        return;\r\n    }\r\n}</code></pre>\n\n\n\n<p>Create a new file&nbsp;<code>temp-convertor.pipe.ts</code>. Under the folder&nbsp;<code>src/app</code>. Copy the following code and paste it.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> import {Pipe, PipeTransform} from '@angular/core'; @pipe({    name: 'tempConverter'})export class TempConverterPipe implements PipeTransform {    transform(value: number, unit: string) {        if(value &amp;&amp; !isNaN(value)) {            if (unit === 'C') {                var temperature = (value - 32) /1.8 ;                return temperature.toFixed(2);            } else if (unit === 'F'){                var temperature = (value * 1.8 ) + 32                return temperature.toFixed(2);            }        }        return;    }} </code></pre>\n\n\n\n<p>Let us look at the code in details</p>\n\n\n\n<p>We need to import the&nbsp;<code>Pipe</code>&nbsp;&amp;&nbsp;<code>PipeTransform</code>&nbsp;libraries from Angular. These libraries are part of the Angular Core</p>\n\n\n\n<pre class=\"wp-block-code\"><code> import {Pipe, PipeTransform} from '@angular/core'; </code></pre>\n\n\n\n<p>We decorate&nbsp;<code>TempConverterPipe</code>&nbsp;class with&nbsp;<code>@pipe</code>&nbsp;decorator. The&nbsp;@pipe decorator&nbsp;is what tells Angular that the class is a pipe. the decorator expects us to provide a name to the pipe. We have given it as&nbsp;<code>tempConverter</code>. This is the name we must use in the template to make use of this pipe.</p>\n\n\n\n<p>Our class must implement the&nbsp;<code>PipeTransform</code>&nbsp;interface.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>@pipe({    name: 'tempConverter'})export class TempConverterPipe implements PipeTransform {  } </code></pre>\n\n\n\n<p>The&nbsp;<code>PipeTransform</code>&nbsp;interface defines only one method&nbsp;<code>transform</code>. The interface definition is as follows.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> interface PipeTransform {  transform(value: any, ...args: any&#91;]): any} </code></pre>\n\n\n\n<p>The first argument value is the value, that pipe needs to transform. We can also include any number of arguments. The method must return the final transformed data.</p>\n\n\n\n<p>The following is Our implementation of the&nbsp;<code>transform</code>&nbsp;method. The first is&nbsp;<code>Value</code>&nbsp;and the second is the&nbsp;<code>Unit</code>. The&nbsp;<code>unit</code>&nbsp;expects either&nbsp;<code>C</code>&nbsp;(Convert to Celsius) or&nbsp;<code>F</code>&nbsp;( convert to Fahrenheit). It converts the value received to either to Celsius or to Fahrenheit based on the Unit.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>  \r\nexport class TempConverterPipe implements PipeTransform {\r\n \r\n    transform(value: number, unit: string) {\r\n        if(value &amp;&amp; !isNaN(value)) {\r\n            if (unit === 'C') {\r\n               var temperature = (value - 32) /1.8 ;\r\n               return temperature.toFixed(2);\r\n            } else if (unit === 'F'){\r\n               var temperature = (value * 1.8 ) + 32\r\n               return temperature.toFixed(2);\r\n            }\r\n        }\r\n        return;\r\n    }\r\n \r\n}\r\n </code></pre>\n\n\n\n<h3>Declare the Pipe</h3>\n\n\n\n<p>Before using our pipe, we need&nbsp;to tell our component, where to find it. This is done by first by importing it and then including it in declarations array of the&nbsp;<code>AppModule</code>.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> import { BrowserModule } from '@angular/platform-browser';\r\nimport { NgModule } from '@angular/core';\r\nimport { FormsModule } from '@angular/forms';\r\nimport { HttpModule } from '@angular/http';\r\n \r\nimport { AppComponent } from './app.component';\r\n \r\nimport {TempConverterPipe} from './temp-convertor.pipe';\r\n \r\n@NgModule({\r\n    declarations: &#91;AppComponent,TempConverterPipe],\r\n    imports: &#91;BrowserModule,FormsModule,HttpModule],\r\n    bootstrap: &#91;AppComponent]\r\n})\r\nexport class AppModule { }</code></pre>\n\n\n\n<h3>Using the Custom Pipe</h3>\n\n\n\n<p>The custom pipes are used in the same as the Angular built-in pipes are used. Add the following HTML code to your&nbsp;<code>app.component.html</code>&nbsp;file</p>\n\n\n\n<pre class=\"wp-block-code\"><code> &lt;div class='card'>\r\n  &lt;div class='card-header'>\r\n    &lt;p>{{title}} &lt;/p>\r\n  &lt;/div>\r\n  &lt;div class=\"card-body\">\r\n \r\n    &lt;div class=\"row\">\r\n      &lt;h3>Fahrenheit to Celsius &lt;/h3>\r\n    &lt;/div>\r\n    &lt;div class=\"row\">\r\n      &lt;p> Fahrenheit : &lt;input type=\"text\" &#91;(ngModel)]=\"Fahrenheit\" /> \r\n      Celsius : {{Fahrenheit | tempConverter:'C'}} &lt;/p>\r\n    &lt;/div>\r\n \r\n    &lt;div class=\"row\">\r\n      &lt;h3>Celsius to Fahrenheit &lt;/h3>\r\n    &lt;/div>\r\n    &lt;div class=\"row\">\r\n      &lt;p> celsius : &lt;input type=\"text\" &#91;(ngModel)]=\"celcius\" /> \r\n       Fahrenheit : {{celcius | tempConverter:'F'}} &lt;/p>\r\n    &lt;/div>\r\n  &lt;/div>\r\n&lt;/div></code></pre>\n\n\n\n<p>We use our pipe as follows.&nbsp;<code>Fahrenheit</code>&nbsp;is sent to the&nbsp;<code>tempConverter</code>&nbsp;as the first argument&nbsp;<code>value</code>. We use the&nbsp;<code>|</code>&nbsp;to indicate that the&nbsp;<code>tempConverter</code>&nbsp;is a pipe to angular. The&nbsp;<code>C</code>&nbsp;after the colon is the first argument. You can pass more than argument to the pipe by separating each argument by a&nbsp;<code>:</code>&nbsp;colon.</p>\n\n\n\n<figure class=\"wp-block-table\"><table><tbody><tr><td>123</td><td>&nbsp;{{Fahrenheit | tempConverter:&#8217;C&#8217;}}&nbsp;</td></tr></tbody></table></figure>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://www.tektutorialshub.com/wp-content/uploads/2016/11/Using-the-TempConverter-Pipe-in-Template.png\" alt=\"Using the TempConverter Pipe in Template\" class=\"wp-image-18990\"/><figcaption>Using the TempConverter Pipe in Template</figcaption></figure>\n\n\n\n<p><code>app.component</code>&nbsp;code</p>\n\n\n\n<pre class=\"wp-block-code\"><code>import { Component } from '@angular/core';\r\nimport { FormsModule } from '@angular/forms';\r\n \r\n \r\n@Component({\r\n  selector: 'app-root',\r\n  templateUrl: './app.component.html',\r\n  styleUrls: &#91;'./app.component.css']\r\n})\r\n \r\n \r\nexport class AppComponent\r\n{\r\n    title: string = 'Angular Custom Pipe Example' ;\r\n    celcius: number;\r\n    Fahrenheit: number;   \r\n}</code></pre>\n\n\n\n<p>Run the application and test it. I</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://www.tektutorialshub.com/wp-content/uploads/2016/11/Angular-Custom-Pipe-Example.gif\" alt=\"Angular Custom Pipe Example\" class=\"wp-image-18985\"/><figcaption>Angular Custom Pipe Example</figcaption></figure>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>How to Create Custom Pipes To create a Custom Pipe, first, You need to follow these steps Create a pipe class Decorate the class with&nbsp;@pipe&nbsp;decorator. Give a name to the pipe in the&nbsp;name&nbsp;meta data of the&nbsp;@pipe&nbsp;decorator. We will use this name in the template. The pipe class must implement the&nbsp;PipeTransform&nbsp;interface. The interfaces contain only one [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [127],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3562"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=3562"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 3,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3562/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3793,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3562/revisions/3793"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=3562"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=3562"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=3562"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 3564,
+    "date": "2020-12-03T06:33:29",
+    "date_gmt": "2020-12-03T06:33:29",
+    "guid": {
+      "rendered": "http://angular.foobrdigital.com/?p=3564"
+    },
+    "modified": "2020-12-08T11:48:16",
+    "modified_gmt": "2020-12-08T11:48:16",
+    "slug": "formatting-dates-with-angular-date-pipe",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/formatting-dates-with-angular-date-pipe/",
+    "title": {
+      "rendered": "Formatting Dates with Angular Date Pipe"
+    },
+    "content": {
+      "rendered": "\n<h2>Using Date Pipe</h2>\n\n\n\n<p>The Date uses the&nbsp;<code>pipe</code>&nbsp;operator i.e&nbsp;<code>|</code>. Specify the&nbsp;<code>date_expression</code>, which you want to format in the left side of the&nbsp;<code>|</code>. On the right side specify&nbsp;<code>date</code>&nbsp;followed by the arguments. It accepts three arguments&nbsp;<code>format</code>,&nbsp;<code>timezone</code>&nbsp;&amp;&nbsp;<code>locale</code></p>\n\n\n\n<pre class=\"wp-block-code\"><code> {{ date_expression | date &#91; : format &#91; : timezone &#91; : locale ] ] ] }} </code></pre>\n\n\n\n<h2>Date Pipe Example</h2>\n\n\n\n<p>The following is the example of a date pipe it its simplest form.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;h3>Using Date Pipe &lt;/h3>\r\n&lt;p>Unformatted date : {{toDate }} &lt;/p>     //Without pipe\r\n&lt;p>Formatted date : {{toDate | date}} &lt;/p>   //With Date Pipe\r\n </code></pre>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://www.tektutorialshub.com/wp-content/uploads/2020/05/Date-Pipe-Example.png\" alt=\"Date Pipe Example\" class=\"wp-image-19049\"/><figcaption>Date Pipe Example</figcaption></figure>\n\n\n\n<h2>Date Expression</h2>\n\n\n\n<p>The Date Expression can be anything that evaluates to date. For example it can be a <code>Date</code> object, a number (milliseconds since UTC epoch), or an ISO string</p>\n\n\n\n<pre class=\"wp-block-code\"><code> \r\n//Component\r\ntoDate: Date = new Date();\r\nnumDate=1590319189931;\r\nstrDate=\"Sun May 24 2020 19:16:23\";\r\n \n</code></pre>\n\n\n\n<pre class=\"wp-block-code\"><code> \r\n&lt;h3>Date Expression &lt;/h3>\r\n&lt;p>Date Object : {{toDate | date}} &lt;/p>       //May 24, 2020\r\n&lt;p>Number Date : {{numDate | date}} &lt;/p>      //May 24, 2020\r\n&lt;p>ISO Date : {{strDate | date}} &lt;/p>         //May 24, 2020\r\n </code></pre>\n\n\n\n<h2>Parameters to Date Pipe</h2>\n\n\n\n<p>The Date pipe accepts three arguments&nbsp;<code>format</code>,&nbsp;<code>timezone</code>&nbsp;&amp;&nbsp;<code>locale</code></p>\n\n\n\n<figure id=\"tablepress-95\" class=\"wp-block-table\"><table><thead><tr><th>Parameter</th><th>Data Type</th><th>Particulars</th></tr></thead><tbody><tr><td><code>format</code></td><td><code>string</code></td><td>There are two types of format.<br>1. predefined formats<br>2. Custom format string<br><br>Default:&nbsp;<code>mediumDate</code>.</td></tr><tr><td><code>timezone</code></td><td><code>string</code></td><td>UseA timezone offset (such as &#8216;+0430&#8217;)Standard UTC/GMTcontinental timezone abbreviation.Default: End-users local system timezone</td></tr><tr><td><code>locale</code></td><td><code>string</code></td><td>A locale code for the locale format rules to use.<br>Default: The value of LOCALE_ID ( which is en-US)<br>How to Change LOCALE_ID</td></tr></tbody></table></figure>\n\n\n\n<h2>Date Format</h2>\n\n\n\n<p>There are two types formats options available</p>\n\n\n\n<ol><li>Pre defined Format</li><li>Custom Format string</li></ol>\n\n\n\n<h3>Pre defined formats</h3>\n\n\n\n<p>The following are the Pre defined formats that you can use. We have also mentioned the corresponding custom formats next to it.</p>\n\n\n\n<figure id=\"tablepress-96\" class=\"wp-block-table\"><table><thead><tr><th>Format</th><th>Equivalent Custom Format</th><th>Example</th><th>Result</th></tr></thead><tbody><tr><td>short</td><td>&#8216;M/d/yy, h:mm a&#8217;</td><td>{{toDate | date:&#8217;short&#8217;}}</td><td>5/24/20, 3:40 PM</td></tr><tr><td>medium</td><td>&#8216;MMM d, y, h:mm:ss a&#8217;</td><td>{{toDate | date:&#8217;medium&#8217;}}</td><td>May 24, 2020, 3:42:17 PM</td></tr><tr><td>long</td><td>&#8216;MMMM d, y, h:mm:ss a z&#8217;</td><td>{{toDate | date:&#8217;long&#8217;}}</td><td>May 24, 2020 at 3:42:17 PM GMT+5</td></tr><tr><td>full</td><td>&#8216;EEEE, MMMM d, y, h:mm:ss a zzzz&#8217;</td><td>{{toDate | date:&#8217;full&#8217;}}</td><td>Sunday, May 24, 2020 at 3:42:17 PM GMT+05:30</td></tr><tr><td>shortDate</td><td>&#8216;M/d/yy&#8217;</td><td>{{toDate | date:&#8217;shortDate&#8217;}}</td><td>5/24/20</td></tr><tr><td>mediumDate</td><td>&#8216;MMM d, y&#8217;</td><td>{{toDate | date:&#8217;mediumDate&#8217;}}</td><td>May 24, 2020</td></tr><tr><td>longDate</td><td>&#8216;MMMM d, y&#8217;</td><td>{{toDate | date:&#8217;longDate&#8217;}}</td><td>May 24, 2020</td></tr><tr><td>fullDate</td><td>&#8216;EEEE, MMMM d, y&#8217;</td><td>{{toDate | date:&#8217;fullDate&#8217;}}</td><td>Sunday, May 24, 2020</td></tr><tr><td>shortTime</td><td>&#8216;h:mm a&#8217;</td><td>{{toDate | date:&#8217;shortTime&#8217;}}</td><td>3:42 PM</td></tr><tr><td>mediumTime</td><td>&#8216;h:mm:ss a&#8217;</td><td>{{toDate | date:&#8217;mediumTime&#8217;}}</td><td>3:42:17 PM</td></tr><tr><td>longTime</td><td>&#8216;h:mm:ss a z&#8217;</td><td>{{toDate | date:&#8217;longTime&#8217;}}</td><td>3:42:17 PM GMT+5</td></tr><tr><td>fullTime</td><td>&#8216;h:mm:ss a zzzz&#8217;</td><td>{{toDate | date:&#8217;fullTime&#8217;}}</td><td>3:42:17 PM GMT+05:30</td></tr></tbody></table></figure>\n\n\n\n<h3>Custom Format string</h3>\n\n\n\n<p>The following is the complete list of custom formats that are available</p>\n\n\n\n<figure id=\"tablepress-97\" class=\"wp-block-table\"><table><thead><tr><th>Field type</th><th>Format</th><th>Description</th><th>Example Value</th></tr></thead><tbody><tr><td>Era</td><td>G, GG &amp; GGG</td><td>Abbreviated</td><td>AD</td></tr><tr><td>GGGG</td><td>Wide</td><td>Anno Domini</td></tr><tr><td>GGGGG</td><td>Narrow</td><td>A</td></tr><tr><td>Year</td><td>y</td><td>Numeric: minimum digits</td><td>2, 20, 201, 2017, 20173</td></tr><tr><td>yy</td><td>umeric: 2 digits + zero padded</td><td>02, 20, 01, 17, 73</td></tr><tr><td>yyy</td><td>Numeric: 3 digits + zero padded</td><td>002, 020, 201, 2017, 20173</td></tr><tr><td>yyyy</td><td>Numeric: 4 digits or more + zero padded</td><td>0002, 0020, 0201, 2017, 20173</td></tr><tr><td>Month</td><td>M</td><td>Numeric: 1 digit</td><td>9, 12</td></tr><tr><td>MM</td><td>Numeric: 2 digits + zero padded</td><td>09, 12</td></tr><tr><td>MMM</td><td>Abbreviated</td><td>Sep</td></tr><tr><td>MMMM</td><td>Wide</td><td>September</td></tr><tr><td>MMMMM</td><td>Narrow</td><td>S</td></tr><tr><td>Month standalone</td><td>L</td><td>Numeric: 1 digit</td><td>9, 12</td></tr><tr><td>LL</td><td>Numeric: 2 digits + zero padded</td><td>09, 12</td></tr><tr><td>LLL</td><td>Abbreviated</td><td>Sep</td></tr><tr><td>LLLL</td><td>Wide</td><td>September</td></tr><tr><td>LLLLL</td><td>Narrow</td><td>S</td></tr><tr><td>Week of year</td><td>w</td><td>Numeric: minimum digits</td><td>1&#8230; 53</td></tr><tr><td>ww</td><td>Numeric: 2 digits + zero padded</td><td>01&#8230; 53</td></tr><tr><td>Week of month</td><td>W</td><td>Numeric: 1 digit</td><td>1&#8230; 5</td></tr><tr><td>Day of month</td><td>d</td><td>Numeric: minimum digits</td><td>1</td></tr><tr><td>dd</td><td>Numeric: 2 digits + zero padded</td><td>01</td></tr><tr><td>Week day</td><td>E, EE &amp; EEE</td><td>Abbreviated</td><td>Tue</td></tr><tr><td>EEEE</td><td>Wide</td><td>Tuesday</td></tr><tr><td>EEEEE</td><td>Narrow</td><td>T</td></tr><tr><td>EEEEEE</td><td>Short</td><td>Tu</td></tr><tr><td>Period</td><td>a, aa &amp; aaa</td><td>Abbreviated</td><td>am/pm or AM/PM</td></tr><tr><td>aaaa</td><td>Wide (fallback to a when missing)</td><td>ante meridiem/post meridiem</td></tr><tr><td>aaaaa</td><td>Narrow</td><td>a/p</td></tr><tr><td>Period*</td><td>B, BB &amp; BBB</td><td>Abbreviated</td><td>mid</td></tr><tr><td>BBBB</td><td>Wide</td><td>am, pm, midnight, noon, morning, afternoon, evening, night</td></tr><tr><td>BBBBB</td><td>Narrow</td><td>md.</td></tr><tr><td>Period standalone*</td><td>b, bb &amp; bbb</td><td>Abbreviated</td><td>mid.</td></tr><tr><td>bbbb</td><td>Wide</td><td>am, pm, midnight, noon, morning, afternoon, evening, night</td></tr><tr><td>bbbbb</td><td>Narrow</td><td>md</td></tr><tr><td>Hour 1-12</td><td>h</td><td>Numeric: minimum digits</td><td>1, 12</td></tr><tr><td>hh</td><td>Numeric: 2 digits + zero padded</td><td>01, 12</td></tr><tr><td>Hour 0-23</td><td>H</td><td>Numeric: minimum digits</td><td>0, 23</td></tr><tr><td>HH</td><td>Numeric: 2 digits + zero padded</td><td>00, 23</td></tr><tr><td>Minute</td><td>m</td><td>Numeric: minimum digits</td><td>8, 59</td></tr><tr><td>mm</td><td>Numeric: 2 digits + zero padded</td><td>08, 59</td></tr><tr><td>Second</td><td>s</td><td>Numeric: minimum digits</td><td>0&#8230; 59</td></tr><tr><td>ss</td><td>Numeric: 2 digits + zero padded</td><td>00&#8230; 59</td></tr><tr><td>Fractional seconds</td><td>S</td><td>Numeric: 1 digit</td><td>0&#8230; 9</td></tr><tr><td>SS</td><td>Numeric: 2 digits + zero padded</td><td>00&#8230; 99</td></tr><tr><td>SSS</td><td>Numeric: 3 digits + zero padded (= milliseconds)</td><td>000&#8230; 999</td></tr><tr><td>Zone</td><td>z, zz &amp; zzz</td><td>Short specific non location format (fallback to O)</td><td>GMT-8</td></tr><tr><td>zzzz</td><td>Long specific non location format (fallback to OOOO)</td><td>GMT-08:00</td></tr><tr><td>Z, ZZ &amp; ZZZ</td><td>ISO8601 basic format</td><td>-0800</td></tr><tr><td>ZZZZ</td><td>Long localized GMT format</td><td>GMT-8:00</td></tr><tr><td>ZZZZZ</td><td>ISO8601 extended format + Z indicator for offset 0 (= XXXXX)</td><td>-08:00</td></tr><tr><td>O, OO &amp; OOO</td><td>Short localized GMT format</td><td>GMT-8</td></tr><tr><td>OOOO</td><td>Long localized GMT format</td><td>GMT-08:00</td></tr></tbody></table></figure>\n\n\n\n<h4>Custom Format example</h4>\n\n\n\n<pre class=\"wp-block-code\"><code> {{toDate | date:'dd/MM/y'}}                //24/05/2020 {{toDate | date:'dd/MM/yy HH:mm'}}         //May 24, 2020, 7:17:26 PM </code></pre>\n\n\n\n<h2>Timezone Example</h2>\n\n\n\n<p>The following examples, shows how to use time zones</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Date in India (IST Time Zone)  : {{toDate | date:'short':'IST'}}     //Date in India (IST Time Zone) : 5/24/20, 7:32 PM Date  in USA (CDT Time Zone)   : {{toDate | date:'short':'CDT'}}    //Date in Date in India (IST Time Zone)  : {{toDate | date:'short':'IST'}}     //Date in India (IST Time Zone) : 5/24/20, 7:32 PM\r\n \r\nDate  in USA (CDT Time Zone)   : {{toDate | date:'short':'CDT'}}    //Date in USA (CDT Time Zone) : 5/24/20, 9:02 AM\r\n \r\nDate in India (+0530)     : {{toDate | date:'short':'+0530'}}     //Date in India (+0530) : 5/24/20, 7:32 PM\r\n \r\nDate in USA (-0700)     : {{toDate | date:'short':'-0500'}}    //Date in USA (-0700) : 5/24/20, 9:02 AM\r\n \r\nAM </code></pre>\n\n\n\n<h2>Country Locale Example</h2>\n\n\n\n<p>The Country Locale is the third argument.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> British date time is {{toDate | date:'dd/MM/yy HH:mm':'GMT':'en-GB'}} \n  //British date time is 24/05/20 14:26 </code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Using Date Pipe The Date uses the&nbsp;pipe&nbsp;operator i.e&nbsp;|. Specify the&nbsp;date_expression, which you want to format in the left side of the&nbsp;|. On the right side specify&nbsp;date&nbsp;followed by the arguments. It accepts three arguments&nbsp;format,&nbsp;timezone&nbsp;&amp;&nbsp;locale Date Pipe Example The following is the example of a date pipe it its simplest form. Date Expression The Date Expression can [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [127],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3564"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=3564"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 2,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3564/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3794,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3564/revisions/3794"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=3564"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=3564"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=3564"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 3566,
+    "date": "2020-12-03T06:38:52",
+    "date_gmt": "2020-12-03T06:38:52",
+    "guid": {
+      "rendered": "http://angular.foobrdigital.com/?p=3566"
+    },
+    "modified": "2020-12-08T11:51:36",
+    "modified_gmt": "2020-12-08T11:51:36",
+    "slug": "using-angular-async-pipe-with-ngif-ngfor",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/using-angular-async-pipe-with-ngif-ngfor/",
+    "title": {
+      "rendered": "Using Angular Async Pipe with ngIf &#038; ngFor"
+    },
+    "content": {
+      "rendered": "\n<h2>Syntax of Async Pipe</h2>\n\n\n\n<p>The following is the syntax of the&nbsp;<code>async</code>&nbsp;pipe.&nbsp;<code>expression</code>&nbsp;must return an observable or promise. It is followed by&nbsp;<code>|</code>&nbsp;(pipe character) and the keyword&nbsp;<code>async</code>. We are using the async pipe with&nbsp;interpolation&nbsp;syntax.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> {{expression | async}} </code></pre>\n\n\n\n<h2>Async Pipe Example with Observables</h2>\n\n\n\n<p>The following example&nbsp;creates an observable. It returns&nbsp;<code>1000</code>&nbsp;after an delay. The&nbsp;<code>obsValue</code>&nbsp;variable stores the observable.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>   obsValue = new Observable((observer) => {\r\n    console.log(\"Observable starts\")\r\n    setTimeout(() => { observer.next(\"90000\") }, 1000);\r\n  })\r\n </code></pre>\n\n\n\n<p>We can use it in the template as shown below.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> {{ obsValue | async}} </code></pre>\n\n\n\n<p>When the components load, the angular automatically subscribes to the&nbsp;<code>obsValue</code>&nbsp;observable.</p>\n\n\n\n<p>The observable returns the value 1000 after a delay. When the value arrives,&nbsp;<code>async</code>&nbsp;pipe automatically triggers change detection. Hence you will see the return value on the screen.</p>\n\n\n\n<p>The observable is automatically unsubscribed when the component is destroyed. Thus avoiding any potential memory leaks</p>\n\n\n\n<h2>Use the async pipe with&nbsp;<code>ngIf</code></h2>\n\n\n\n<p>We above example uses the&nbsp;<code>async</code>&nbsp;pipe with&nbsp;interpolation. We can also use it with the&nbsp;<code>ngIf</code>&nbsp;or&nbsp;<code>ngFor</code>&nbsp;etc.</p>\n\n\n\n<p>The following example shows how&nbsp;<strong>NOT</strong>&nbsp;to use the observable with&nbsp;ngIf&nbsp;directive.</p>\n\n\n\n<p>The condition&nbsp;<code>(obsValue | async)</code>&nbsp;becomes&nbsp;<code>true</code>, when the observable returns a value. Until then the&nbsp;<code>elseBlock</code>&nbsp;is shown, which we use to display the loading indicator. In the example, it displays the message&nbsp;<code>Observable is loading. Please wait</code>.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> &lt;div *ngIf=\"(obsValue | async); else elseBlock\">  {{ obsValue | async}}&lt;/div> &lt;ng-template #elseBlock>  Observable is loading. Please wait &lt;/ng-template> </code></pre>\n\n\n\n<p>When the observable returns with a value the&nbsp;ngIf&nbsp;condition becomes&nbsp;<code>true</code>&nbsp;and the&nbsp;<code>pipe</code>&nbsp;displays the returned value.</p>\n\n\n\n<p>You can see it from the following image.</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://www.tektutorialshub.com/wp-content/uploads/2020/05/Angular-Async-Pipe-with-ngIf.gif\" alt=\"\" class=\"wp-image-19072\"/></figure>\n\n\n\n<p>As you can see from the above image, you can see that the observable fires twice.</p>\n\n\n\n<p>i.e because we are using the&nbsp;<code>async</code>&nbsp;pipe twice. one in&nbsp;<code>if condition</code>&nbsp;and the other inside the&nbsp;<code>if block</code></p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;div *ngIf=\"(obsValue | async); else elseBlock\">\r\n  {{ obsValue | async}}\r\n&lt;/div>\r\n \r\n&lt;ng-template #elseBlock>\r\n  Observable is loading. Please wait \r\n&lt;/ng-template>\r\n </code></pre>\n\n\n\n<p>There are two ways in whcih you can solve this problem. One is using the&nbsp;<code>ShareReplay</code>&nbsp;<code>rxjs</code>&nbsp;operator</p>\n\n\n\n<h3>ShareReplay</h3>\n\n\n\n<p>We use the&nbsp;<code>shareReplay</code>&nbsp;when you want subscribers to share the observable and access previously emitted values. i.e. the observable is subscribed only once and for every subsequent subscription, the previously received value is used.</p>\n\n\n\n<p>The updated observable, with&nbsp;<code>shareReplay</code>&nbsp;is as shown below. We need to use the&nbsp;<code>pipe</code>&nbsp;operator</p>\n\n\n\n<pre class=\"wp-block-code\"><code>   obsValue = new Observable((observer) => {\r\n    console.log(\"Observable starts\")\r\n    setTimeout(() => { \r\n      console.log(\"Returns value\")\r\n      observer.next(\"1000\") \r\n    }, 5000);\r\n  }).pipe(shareReplay());</code></pre>\n\n\n\n<p>There is no need to make any changes in component code. But for this example, we have one more&nbsp;<code>if</code>&nbsp;block. making the total&nbsp;<code>async</code>&nbsp;pipe to three</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;div *ngIf=\"(obsValue | async); else elseBlock\">\r\n  {{ obsValue | async}}\r\n&lt;/div>\r\n \r\n&lt;ng-template #elseBlock>\r\n  Observable is loading. Please wait\r\n&lt;/ng-template>\r\n \r\n&lt;div *ngIf=\"(obsValue | async);\">\r\n  observable has recevied data\r\n&lt;/div></code></pre>\n\n\n\n<p>As you can see from the following, in spite of having three subscriptions, the observable is subscribed only once.</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://www.tektutorialshub.com/wp-content/uploads/2020/05/Using-ShareReplay-in-Async-pipe.gif\" alt=\"\" class=\"wp-image-19074\"/></figure>\n\n\n\n<h3>Using ngIf “as” syntax</h3>\n\n\n\n<p>We can use the&nbsp;<code>as</code>&nbsp;keyword to store the result in a&nbsp;template local variable. Once we assign the result to a variable, then we can use it anywhere inside the&nbsp;<code>ngIf</code>&nbsp;block as shown below.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> &lt;div *ngIf=\"(obsValue | async) as value; else elseBlock\">\r\n  {{ value}}      //works only inside the If Block\r\n&lt;/div>\r\n \r\n&lt;ng-template #elseBlock>\r\n  Observable is loading. Please wait\r\n&lt;/ng-template>\r\n \r\n{{ value}}   // will not work \n </code></pre>\n\n\n\n<p>Remove the&nbsp;<code>shareReplay</code>&nbsp;from the&nbsp;<code>observable</code>&nbsp;and check it.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>  obsValue = new Observable((observer) => {\r\n    console.log(\"Observable starts\")\r\n    setTimeout(() => { \r\n      console.log(\"Returns value\")\r\n      observer.next(\"1000\") \r\n    }, 5000);\r\n  });</code></pre>\n\n\n\n<h2>Use the async pipe with&nbsp;<code>ngfor</code></h2>\n\n\n\n<p>Now we will see how to use the&nbsp;<code>async</code>&nbsp;pipe with&nbsp;<code>ngFor</code>. For this example, we will make use of&nbsp;<code>httpclient</code>&nbsp;library to make&nbsp;HTTP get&nbsp;request and display the results using the&nbsp;<code>ngFor</code></p>\n\n\n\n<p>For this example, let use the free HTTP end point&nbsp;<code>https://dog.ceo/dog-api/documentation/</code>. It returns the array of&nbsp;<code>hound</code>&nbsp;breeds as shown below (in the&nbsp;<code>message</code>&nbsp;array)</p>\n\n\n\n<pre class=\"wp-block-code\"><code> {\"message\":&#91;\"afghan\",\"basset\",\"blood\",\"english\",\"ibizan\",\"plott\",\"walker\"],\"status\":\"success\"} </code></pre>\n\n\n\n<pre class=\"wp-block-code\"><code> \r\n3\r\n4\r\n5\r\n6\r\n7\r\n \r\nhounds: Observable&lt;any> = this.getHoundList();\r\n \r\ngetHoundList(): Observable&lt;any> {\r\n  return this.http.get&lt;any>(\"https://dog.ceo/api/breed/hound/list\")\r\n}</code></pre>\n\n\n\n<p>In the template use the&nbsp;<code>(hounds | async)</code>&nbsp;to subscribe to the&nbsp;<code>hounds</code>&nbsp;observable. We are using a safe navigation operator&nbsp;<code>?</code>&nbsp;before the property name&nbsp;<code>message</code>. i.e because initially, it is null until the result arrives and without&nbsp;<code>?</code>&nbsp;you will see errors in your console</p>\n\n\n\n<pre class=\"wp-block-code\"><code> &lt;ul>  &lt;li *ngFor=\"let breed of (hounds | async)?.message\">{{breed}}&lt;/li>&lt;/ul> </code></pre>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://www.tektutorialshub.com/wp-content/uploads/2020/05/async-pipe-example-using-ngFor.png\" alt=\"async pipe example using ngFor\" class=\"wp-image-19083\"/><figcaption>async pipe example using ngFor</figcaption></figure>\n\n\n\n<p>You can also make use of combination of&nbsp;<code>ngIf</code>&nbsp;&amp;&nbsp;<code>ngFor</code>&nbsp;and using the&nbsp;<code>as</code>&nbsp;to store the result in&nbsp;<code>breeds</code>.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;div *ngIf=\"(hounds | async) as breeds\">  &lt;ul>    &lt;li *ngFor=\"let breed of breeds.message\">{{breed}}&lt;/li>  &lt;/ul> &lt;/div> </code></pre>\n\n\n\n<p>The following code displays the a random image of the dog using&nbsp;<code>ngIf</code></p>\n\n\n\n<pre class=\"wp-block-code\"><code> //component randomPic: Observable&lt;any> = this.getRandom(); getRandom(): Observable&lt;any> {  return this.http.get&lt;any>(\"https://dog.ceo/api/breeds/image/random\")} </code></pre>\n\n\n\n<pre class=\"wp-block-code\"><code>//Template &lt;img src=\"{{ (randomPic | async)?.message}}\"></code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Syntax of Async Pipe The following is the syntax of the&nbsp;async&nbsp;pipe.&nbsp;expression&nbsp;must return an observable or promise. It is followed by&nbsp;|&nbsp;(pipe character) and the keyword&nbsp;async. We are using the async pipe with&nbsp;interpolation&nbsp;syntax. Async Pipe Example with Observables The following example&nbsp;creates an observable. It returns&nbsp;1000&nbsp;after an delay. The&nbsp;obsValue&nbsp;variable stores the observable. We can use it in the [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [127],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3566"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=3566"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 2,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3566/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3795,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3566/revisions/3795"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=3566"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=3566"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=3566"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 3568,
+    "date": "2020-12-03T06:42:15",
+    "date_gmt": "2020-12-03T06:42:15",
+    "guid": {
+      "rendered": "http://angular.foobrdigital.com/?p=3568"
+    },
+    "modified": "2020-12-08T11:53:57",
+    "modified_gmt": "2020-12-08T11:53:57",
+    "slug": "angular-keyvalue-pipe",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/angular-keyvalue-pipe/",
+    "title": {
+      "rendered": "Angular KeyValue Pipe"
+    },
+    "content": {
+      "rendered": "\n<h2>How it works</h2>\n\n\n\n<p>Consider, that you have the following object and a map object. It has property&nbsp;<code>a</code>,<code>b</code>&nbsp;&amp;&nbsp;<code>c</code>. We cannot use ngFor to iterate over it as it requires an array. This is where the&nbsp;<code>KeyValue</code>&nbsp;pipe comes into play. It will convert them to an array of key-value pair</p>\n\n\n\n<pre class=\"wp-block-code\"><code>obj = {\r\n  c: 123,\r\n  b: 456,\r\n  a: 789,\r\n};\r\n \r\n \r\nmapObj = new Map(&#91;\r\n   &#91;'c', 123],\r\n   &#91;'b', 446],\r\n   &#91;'a', 789],\r\n]);</code></pre>\n\n\n\n<p>We use&nbsp;<code>keyvalue</code>&nbsp;just like any other&nbsp;pipes in Angular&nbsp;and as shown below</p>\n\n\n\n<pre class=\"wp-block-code\"><code> \r\n3\r\n4\r\n5\r\n \r\nobj | keyvalue\r\n \r\nmapObj | keyvalue</code></pre>\n\n\n\n<p>The&nbsp;<code>keyValue</code>&nbsp;converts them and returns in the following format. each property of the object&nbsp;<code>a: 789</code>&nbsp;is converted to an object with name as&nbsp;<code>key</code>&nbsp;and value as&nbsp;<code>value</code>&nbsp;<code>{ key:a, value:789 }</code>. It creates array of such objects and returns it.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>  obj = &#91;    { key:a, value:789 },    { key:b, value:446 },    { key:c, value:123 },  ]; </code></pre>\n\n\n\n<p>Now we can use the&nbsp;<code>ngFor</code>&nbsp;to loop through it and display the content.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> &lt;ul>\r\n  &lt;li *ngFor=\"let item of obj | keyvalue\">\r\n    {{item.key}} ---> {{item.value}}&lt;/li>\r\n&lt;/ul>\r\n \r\n//output\r\n \r\na ---> 789\r\nb ---> 456\r\nc ---> 123</code></pre>\n\n\n\n<h2>Default Sorting</h2>\n\n\n\n<p><code>KeyValue</code>&nbsp;pipe uses the&nbsp;<code>key</code>&nbsp;to sort the results array. You can see it from the above example. Even though our object was&nbsp;<code>c</code>,<code>b</code>&nbsp;&amp;&nbsp;<code>a</code>&nbsp;it was sorts it as&nbsp;<code>a</code>,<code>b</code>,<code>c</code>. The keyValue pipe uses the&nbsp;<code>defaultComparator</code>&nbsp;to sort the result. It uses</p>\n\n\n\n<ol><li>Ascending Order if the keys are number</li><li>Alphabetical Order if keys are strings</li><li>if keys are are of different types. then covert them to to their string values and use Alphabetical Order</li><li>If key is a either Null or undefined, put then at the end of the sort.</li></ol>\n\n\n\n<h2>Custom Sorting</h2>\n\n\n\n<p>You can customize it by providing a custom sort function (<code>compareFn</code>) as the first argument to the&nbsp;<code>keyValue</code>&nbsp;pipe</p>\n\n\n\n<p>The syntax for the&nbsp;<code>compareFn</code>&nbsp;as shown below. It accepts first &amp; second&nbsp;<code>keyValue</code>&nbsp;and must return a number. The number must be a zero if values are equivalent else either a negative number or positive number</p>\n\n\n\n<pre class=\"wp-block-code\"><code> compareFn (a: KeyValue, b: KeyValue) => number  </code></pre>\n\n\n\n<p>The following are three&nbsp;<code>compareFn</code></p>\n\n\n\n<pre class=\"wp-block-code\"><code> orderOriginal = (a: KeyValue&lt;number,string>, b: KeyValue&lt;number,string>): number => {\r\n  return 0\r\n}\r\n  \r\norderbyValueAsc = (a: KeyValue&lt;number,string>, b: KeyValue&lt;number,string>): number => {\r\n   return a.value > b.value ? -1 : (a.value > b.value) ? 0 : 1  \r\n}\r\n \r\norderbyValueDsc = (a: KeyValue&lt;number,string>, b: KeyValue&lt;number,string>): number => {\r\n  return a.value > b.value ? 1 : (a.value > b.value) ? 0 : -1  \r\n}</code></pre>\n\n\n\n<pre class=\"wp-block-code\"><code> &lt;ul>\r\n  &lt;li *ngFor=\"let item of obj | keyvalue\">\r\n    {{item.key}} ---> {{item.value}}&lt;/li>\r\n&lt;/ul>\r\n \r\n//Output\r\na ---> 789\r\nb ---> 456\r\nc ---> 123\r\n \r\n \r\n&lt;ul>\r\n  &lt;li *ngFor=\"let item of obj | keyvalue : orderOriginal\">\r\n    {{item.key}} ---> {{item.value}}&lt;/li>\r\n&lt;/ul>\r\n \r\n//Output\r\nb ---> 456\r\nc ---> 123\r\na ---> 78\r\n \r\n \r\n&lt;ul>\r\n  &lt;li *ngFor=\"let item of obj | keyvalue : orderbyValueAsc \">\r\n    {{item.key}} ---> {{item.value}}&lt;/li>\r\n&lt;/ul>\r\n \r\n//Output\r\na ---> 789\r\nb ---> 456\r\nc ---> 123\r\n \r\n \r\n&lt;ul>\r\n  &lt;li *ngFor=\"let item of obj | keyvalue : orderbyValueDsc \">\r\n    {{item.key}} ---> {{item.value}}&lt;/li>\r\n&lt;/ul>\r\n \r\n//Output\r\nc ---> 123\r\nb ---> 456\r\na ---> 789\r\n </code></pre>\n\n\n\n<h2>KeyValue Pipe Example</h2>\n\n\n\n<p>Consider the following breeds of dogs. The example sorts the list based on the number of sub breeds. The final code is as shown below.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> breeds=\r\n    {\r\n      \"corgi\": &#91;\"cardigan\"],\r\n      \"deerhound\": &#91;\"scottish\"],\r\n      \"bulldog\": &#91;\"boston\", \"english\", \"french\"],\r\n      \"mastiff\": &#91;\"bull\", \"english\", \"tibetan\"],\r\n      \"australian\": &#91;\"shepherd\"],\r\n      \"greyhound\": &#91;\"italian\"],\r\n      \"buhund\": &#91;\"norwegian\"],\r\n      \"hound\": &#91;\"afghan\", \"basset\", \"blood\", \"english\", \"ibizan\", \"plott\", \"walker\"],\r\n      \"bullterrier\": &#91;\"staffordshire\"],\r\n    }</code></pre>\n\n\n\n<p><code>CompareFn</code></p>\n\n\n\n<pre class=\"wp-block-code\"><code>   orderClause = (a: KeyValue&lt;number,&#91;string]>, b: KeyValue&lt;number,&#91;string]>): number => {    return a.value.length > b.value.length ? -1 : (a.value.length > b.value.length) ? 0 : 1    } </code></pre>\n\n\n\n<p>Template</p>\n\n\n\n<pre class=\"wp-block-code\"><code> &lt;ul>  &lt;li *ngFor=\"let item of breeds | keyvalue : orderClause \">    {{item.key}} ---> {{item.value}}&lt;/li>&lt;/ul></code></pre>\n\n\n\n<p>The output</p>\n\n\n\n<pre class=\"wp-block-code\"><code>hound ---> afghan,basset,blood,english,ibizan,plott,walker\r\nbulldog ---> boston,english,french\r\nmastiff ---> bull,english,tibetan\r\ncorgi ---> cardigan\r\ndeerhound ---> scottish\r\naustralian ---> shepherd\r\ngreyhound ---> italian\r\nbuhund ---> norwegian\r\nbullterrier ---> staffordshire</code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>How it works Consider, that you have the following object and a map object. It has property&nbsp;a,b&nbsp;&amp;&nbsp;c. We cannot use ngFor to iterate over it as it requires an array. This is where the&nbsp;KeyValue&nbsp;pipe comes into play. It will convert them to an array of key-value pair We use&nbsp;keyvalue&nbsp;just like any other&nbsp;pipes in Angular&nbsp;and as [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [127],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3568"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=3568"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 2,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3568/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3796,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3568/revisions/3796"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=3568"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=3568"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=3568"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 3570,
+    "date": "2020-12-03T06:49:37",
+    "date_gmt": "2020-12-03T06:49:37",
+    "guid": {
+      "rendered": "http://angular.foobrdigital.com/?p=3570"
+    },
+    "modified": "2020-12-08T11:55:21",
+    "modified_gmt": "2020-12-08T11:55:21",
+    "slug": "using-angular-pipes-in-components-or-services",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/using-angular-pipes-in-components-or-services/",
+    "title": {
+      "rendered": "Using Angular Pipes in Components or Services"
+    },
+    "content": {
+      "rendered": "\n<h2>Using Date pipe in Components &amp; Services</h2>\n\n\n\n<p>First import the&nbsp;<code>DatePipe</code>&nbsp;from&nbsp;<code>@angular/common</code>. Add it in the&nbsp;Angular Provider&nbsp;metadata&nbsp;<code>providers: [ DatePipe ],</code>.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>import { BrowserModule } from '@angular/platform-browser';\r\nimport { NgModule } from '@angular/core';\r\n \r\nimport { DatePipe } from '@angular/common';\r\n \r\nimport { AppRoutingModule } from './app-routing.module';\r\nimport { AppComponent } from './app.component';\r\n \r\n@NgModule({\r\n  declarations: &#91;\r\n    AppComponent\r\n  ],\r\n  imports: &#91;\r\n    BrowserModule,\r\n    AppRoutingModule\r\n  ],\r\n  providers: &#91;\r\n    DatePipe\r\n  ],\r\n  bootstrap: &#91;AppComponent]\r\n})\r\nexport class AppModule { }\r\n </code></pre>\n\n\n\n<p>Open the&nbsp;<code>app.component.html</code>&nbsp;and&nbsp;inject&nbsp;the&nbsp;<code>DatePipe</code>&nbsp;in the constructor..</p>\n\n\n\n<pre class=\"wp-block-code\"><code>   constructor(private datePipe:DatePipe) {  } </code></pre>\n\n\n\n<p>You can use it in component as shown below.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>this.toDate = this.datePipe.transform(new Date()); </code></pre>\n\n\n\n<p>The transform method accepts the date as the first argument. You can supply additional&nbsp;Parameters to DatePipe&nbsp;like&nbsp;<code>format</code>,&nbsp;<code>timezone</code>&nbsp;&amp;&nbsp;<code>locale</code>.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> this.toDate = this.datePipe.transform(new Date(),'dd/MM/yy HH:mm'); </code></pre>\n\n\n\n<p>The complete component code is as below.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>import { Component, OnInit } from '@angular/core';\r\nimport { DatePipe } from '@angular/common';\r\n \r\n@Component({\r\n  selector: 'app-root',\r\n  template: `\r\n    {{toDate}}\r\n  `,\r\n  styleUrls: &#91;'./app.component.css']\r\n})\r\nexport class AppComponent implements OnInit {\r\n  title = 'pipesInService';\r\n \r\n  toDate\r\n \r\n  constructor(private datePipe:DatePipe) {\r\n  }\r\n \r\n  ngOnInit() {\r\n \r\n    this.toDate = this.datePipe.transform(new Date());\r\n  }\r\n}\r</code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Using Date pipe in Components &amp; Services First import the&nbsp;DatePipe&nbsp;from&nbsp;@angular/common. Add it in the&nbsp;Angular Provider&nbsp;metadata&nbsp;providers: [ DatePipe ],. Open the&nbsp;app.component.html&nbsp;and&nbsp;inject&nbsp;the&nbsp;DatePipe&nbsp;in the constructor.. You can use it in component as shown below. The transform method accepts the date as the first argument. You can supply additional&nbsp;Parameters to DatePipe&nbsp;like&nbsp;format,&nbsp;timezone&nbsp;&amp;&nbsp;locale. The complete component code is as below.</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [127],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3570"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=3570"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 3,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3570/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3798,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3570/revisions/3798"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=3570"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=3570"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=3570"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  }
+]

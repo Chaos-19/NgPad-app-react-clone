@@ -1,0 +1,190 @@
+[
+  {
+    "id": 3165,
+    "date": "2020-11-28T06:22:31",
+    "date_gmt": "2020-11-28T06:22:31",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3165"
+    },
+    "modified": "2020-11-28T06:22:31",
+    "modified_gmt": "2020-11-28T06:22:31",
+    "slug": "map-3",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/map-3/",
+    "title": {
+      "rendered": "Map"
+    },
+    "content": {
+      "rendered": "\n<h2>Introduction to JavaScript&nbsp;<code>Map</code>&nbsp;object</h2>\n\n\n\n<p>Prior to ES6, when you need to map keys to values, you often use an\u00a0object, because an object allows you to map a key to a value of any type.</p>\n\n\n\n<p>However, using an object as a map has some side effects:</p>\n\n\n\n<ol><li>An object always has a default key like the\u00a0prototype.</li><li>A key of an object must be a\u00a0string\u00a0or a\u00a0symbol, you cannot use an object as a key.</li><li>An object does not have a property that represents the size of the map.</li></ol>\n\n\n\n<p>ES6 provides a new collection type called&nbsp;<code>Map</code>&nbsp;that addresses these deficiencies.</p>\n\n\n\n<p>By definition, a&nbsp;<code>Map</code>&nbsp;object holds key-value pairs where values of any type can be used as either keys or values. In addition, a&nbsp;<code>Map</code>&nbsp;object remembers the original insertion order of the keys.</p>\n\n\n\n<p>To create a new&nbsp;<code>Map</code>, you use the following syntax:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let map = new Map(&#91;iterable]);\n</code></pre>\n\n\n\n<p>The\u00a0<code>Map()</code>\u00a0accepts an optional\u00a0iterable\u00a0object whose elements are key-value pairs.</p>\n\n\n\n<h2>Useful JavaScript&nbsp;<code>Map()</code>&nbsp;methods</h2>\n\n\n\n<ul><li><code>clear()</code>&nbsp;\u2013 removes all elements from the map object.</li><li>&nbsp;<code>delete(key)</code>&nbsp;\u2013 removes an element specified by the key. It returns if the element is in the map, or false if it does not.</li><li>&nbsp;<code>entries()</code>&nbsp;\u2013 returns a new Iterator object that contains an array of&nbsp;<code>[key, value]</code>&nbsp;for each element in the map object. The order of objects in the map is the same as the insertion order.</li><li>&nbsp;<code>forEach(callback[, thisArg])</code>&nbsp;\u2013 invokes a callback for each key-value pair in the map in the insertion order. The optional thisArg parameter sets the this value for each callback.</li><li>&nbsp;<code>get(key)</code>&nbsp;\u2013 returns the value associated with the key. If the key does not exist, it returns undefined.</li><li>&nbsp;<code>has(key)</code>&nbsp;\u2013 returns true if a value associated with the key exists, otherwise, return false.</li><li>&nbsp;<code>keys()</code>&nbsp;\u2013 returns a new Iterator that contains the keys for elements in insertion order.</li><li>&nbsp;<code>set(key, value)</code>&nbsp;\u2013 sets the value for the key in the map object. It returns the map object itself therefore you can chain this method with other methods.</li><li>&nbsp;<code>values()</code>&nbsp;returns a new iterator object that contains values for each element in insertion order.</li></ul>\n\n\n\n<h2>JavaScript&nbsp;<code>Map</code>&nbsp;examples</h2>\n\n\n\n<h3>Create a new Map object</h3>\n\n\n\n<p>Suppose you have a list of user objects as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let john = {name: 'John Doe'},\n    lily = {name: 'Lily Bush'},\n    peter = {name: 'Peter Drucker'};</code></pre>\n\n\n\n<p>Assuming that you have to create a map of users and roles. In this case, you use the following code:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let userRoles = new Map();</code></pre>\n\n\n\n<p>The&nbsp;<code>userRoles</code>&nbsp;is an instance of the&nbsp;<code>Map</code>&nbsp;object and its type is an object as illustrated in the following example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>console.log(typeof(userRoles)); // object\nconsole.log(userRoles instanceof Map); // true</code></pre>\n\n\n\n<h3>Add elements to a Map</h3>\n\n\n\n<p>To assign a role to a user, you use the&nbsp;<code>set()</code>&nbsp;method:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>userRoles.set(john, 'admin');</code></pre>\n\n\n\n<p>The&nbsp;<code>set()</code>&nbsp;method maps user&nbsp;<code>john</code>&nbsp;with the&nbsp;<code>admin</code>&nbsp;role. Since the&nbsp;<code>set()</code>&nbsp;method is chainable, you can save some typings as shown in this example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>userRoles.set(lily, 'editor')\n          .set(peter, 'subscriber');\n</code></pre>\n\n\n\n<h3>Initialize a map with an iterable object</h3>\n\n\n\n<p>As mentioned earlier, you can pass an iterable object to the&nbsp;<code>Map()</code>&nbsp;constructor:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let userRoles = new Map(&#91;\n    &#91;john, 'admin'],\n    &#91;lily, 'editor'],\n    </code></pre>\n\n\n<p>[peter, <span class=\"hljs-string\" style=\"color: rgb(184, 187, 38);\">&#8216;subscriber&#8217;</span>]</p>\n\n\n\n<p>]);</p>\n\n\n\n<h3>Get an element from a map by key</h3>\n\n\n\n<p>If you want to see the roles of&nbsp;<code>John</code>&nbsp;, you use the&nbsp;<code>get()</code>&nbsp;method:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>userRoles.get(john); // admin</code></pre>\n\n\n\n<p>If you pass a key that is not in the map, the&nbsp;<code>get()</code>&nbsp;method will return&nbsp;<code>undefined</code>.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let foo = {name: 'Foo'};\nuserRoles.get(foo); //undefined</code></pre>\n\n\n\n<h3>Check the existence of an element by key</h3>\n\n\n\n<p>To check if a key exists in the map, you use the&nbsp;<code>has()</code>&nbsp;method.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>userRoles.has(foo); // false\nuserRoles.has(lily); // true</code></pre>\n\n\n\n<h3>Get the number of elements in the map</h3>\n\n\n\n<p>The&nbsp;<code>size</code>&nbsp;property returns the number of entries in the map.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>console.log(userRoles.size); // 3</code></pre>\n\n\n\n<h3>Iterate over map keys</h3>\n\n\n\n<p>To get the keys of a\u00a0<code>Map</code>\u00a0object, you use the\u00a0<code>keys()</code>\u00a0method. The\u00a0<code>keys()</code>\u00a0returns a new\u00a0iterator\u00a0object that contains the keys of elements in the map.</p>\n\n\n\n<p>The following example displays the username of the users in the&nbsp;<code>userRoles</code>&nbsp;map object.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>for (let user of userRoles.keys()) {\n    console.log(user.name);\n}\n// John Doe\n// Lily Bush\n// Peter Drucker</code></pre>\n\n\n\n<h3>Iterate over map values</h3>\n\n\n\n<p>Similarly, you can use the&nbsp;<code>values()</code>&nbsp;method to get an iterator object that contains values for all the elements in the map:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>for (let role of userRoles.values()) {\n    console.log(role);\n}\n// admin\n// editor\n// subscriber</code></pre>\n\n\n\n<h3>Iterate over map elements</h3>\n\n\n\n<p>Also, the&nbsp;<code>entries()</code>&nbsp;method returns an iterator object that contains an array of&nbsp;<code>[key,value]</code>&nbsp;of each element in the&nbsp;<code>Map</code>&nbsp;object:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>for (let elem of userRoles.entries()) {\n    console.log(`${elem&#91;0].name}: ${elem&#91;1]}`);\n}\n\n// John Doe: admin\n// Lily Bush: editor\n// Peter Drucker: subscriber</code></pre>\n\n\n\n<p>To make the iteration more natural, you can use\u00a0destructuring\u00a0as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>for (let &#91;user,role] of userRoles.entries()) {\n    console.log(`${user.name}: ${role}`);\n}</code></pre>\n\n\n\n<p>In addition to\u00a0<code>for...of</code>\u00a0loop, you can use the\u00a0<code>forEach()</code>\u00a0method of the map object:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>userRoles.forEach((role, user) =>\n    console.log(`${user.name}: ${role}`)\n);</code></pre>\n\n\n\n<h3>Convert map keys or values to a array</h3>\n\n\n\n<p>Sometimes, you want to work with an array instead of an iterable object, in this case, you can use the\u00a0spread operator. For example:</p>\n\n\n\n<p>The following example converts keys for each element into an array of keys:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>var keys = &#91;...userRoles.keys()];\nconsole.log(keys);</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&#91; { name: 'John Doe' },\n  { name: 'Lily Bush' },\n  { name: 'Peter Drucker' } ]</code></pre>\n\n\n\n<p>And the following converts the values of elements to an array:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>var roles = &#91;...userRoles.values()];\nconsole.log(roles);</code></pre>\n\n\n\n<p>Output</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&#91; 'admin', 'editor', 'subscriber' ]</code></pre>\n\n\n\n<h3>Delete an element by key</h3>\n\n\n\n<p>To delete an entry in the map, you use the&nbsp;<code>delete()</code>&nbsp;method.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>userRoles.delete(john);</code></pre>\n\n\n\n<h3>Delete all elements in the map</h3>\n\n\n\n<p>To delete all entries in the&nbsp;<code>Map</code>&nbsp;object, you use the&nbsp;<code>clear()</code>&nbsp;method:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>userRoles.clear();</code></pre>\n\n\n\n<p>Hence, the size of the map now is zero.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>console.log(userRoles.size); // 0</code></pre>\n\n\n\n<h2>WeakMap</h2>\n\n\n\n<p>A&nbsp;<code>WeakMap</code>&nbsp;is similar to a&nbsp;<code>Map</code>&nbsp;except the keys of a&nbsp;<code>WeakMap</code>&nbsp;must be objects. It means that when a reference to a key (an object) is out of scope, the corresponding value is automatically released from the memory.</p>\n\n\n\n<p>A&nbsp;<code>WeakMap</code>&nbsp;only has subset methods of a&nbsp;<code>Map</code>&nbsp;object:</p>\n\n\n\n<ul><li>&nbsp;<code>get(key)</code></li><li>&nbsp;<code>set(key, value)</code></li><li>&nbsp;<code>has(key)</code></li><li>&nbsp;<code>delete(key)</code></li></ul>\n\n\n\n<p>Here are the main difference between a&nbsp;<code>Map</code>&nbsp;and a&nbsp;<code>WeekMap</code>:</p>\n\n\n\n<ul><li>Elements of a WeakMap cannot be iterated.</li><li>Cannot clear all elements at once.</li><li>Cannot check the size of a WeakMap.</li></ul>\n\n\n\n<p>In this tutorial, you have learned how to work with the JavaScript Map object and its useful methods to manipulate entries in the map.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Introduction to JavaScript&nbsp;Map&nbsp;object Prior to ES6, when you need to map keys to values, you often use an\u00a0object, because an object allows you to map a key to a value of any type. However, using an object as a map has some side effects: An object always has a default key like the\u00a0prototype. A key [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [206],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3165"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=3165"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3165/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=3165"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=3165"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=3165"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 3167,
+    "date": "2020-11-28T06:23:37",
+    "date_gmt": "2020-11-28T06:23:37",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3167"
+    },
+    "modified": "2020-11-28T06:23:37",
+    "modified_gmt": "2020-11-28T06:23:37",
+    "slug": "set-2",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/set-2/",
+    "title": {
+      "rendered": "Set"
+    },
+    "content": {
+      "rendered": "\n<h2>Introduction to the JavaScript&nbsp;<code>Set</code>&nbsp;object</h2>\n\n\n\n<p>ES6 provides a new type named&nbsp;<code>Set</code>&nbsp;that stores a collection of unique values of any type. To create a new empty&nbsp;<code>Set</code>, you use the following syntax:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let setObject = new Set();</code></pre>\n\n\n\n<p>The\u00a0<code>Set</code>\u00a0constructor also accepts an optional\u00a0iterable object. If you pass an iterable object to the\u00a0<code>Set</code>\u00a0constructor, all the elements of the iterable object will be added to the new set:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let setObject = new Set(iterableObject);</code></pre>\n\n\n\n<h2>Useful&nbsp;<code>Set</code>&nbsp;methods</h2>\n\n\n\n<p>The&nbsp;<code>Set</code>&nbsp;object provides the following useful methods:</p>\n\n\n\n<ul><li><code>add(value)</code>\u00a0\u2013 appends a new element with a specified value to the set. It returns the\u00a0<code>Set</code>\u00a0object, therefore, you can chain this method with another\u00a0<code>Set</code>\u00a0method.</li><li><code>clear()</code>\u00a0 \u2013 removes all elements from the\u00a0<code>Set</code>\u00a0object.</li><li><code>delete(value)</code>\u00a0\u2013 deletes an element specified by the value.</li><li><code>entries()</code>\u2013 returns a new\u00a0<code>Iterator</code>\u00a0that contains an array of\u00a0\u00a0<code>[value, value]</code>\u00a0.</li><li><code>forEach(callback [, thisArg])</code>\u00a0\u2013 invokes a\u00a0callback\u00a0on each element of the\u00a0<code>Set</code>\u00a0with the\u00a0<code>this</code>\u00a0value sets to\u00a0<code>thisArg</code>\u00a0in each call.</li><li><code>has(value)</code>\u00a0\u2013 returns\u00a0<code>true</code>\u00a0if an element with a given value is in the set, or\u00a0<code>false</code>\u00a0if it is not.</li><li><code>keys()</code>\u00a0\u2013 is the same as\u00a0<code>values()</code>\u00a0function.</li><li><code>[@@iterator]</code>\u00a0\u2013 returns a new\u00a0<code>Iterator</code>\u00a0object that contains values of all elements stored in the insertion order.</li></ul>\n\n\n\n<h2>JavaScript&nbsp;<code>Set</code>&nbsp;examples</h2>\n\n\n\n<h3>Create a new Set from an Array</h3>\n\n\n\n<p>The following example shows how to create a new Set from an\u00a0array.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let chars = new Set(&#91;'a', 'a', 'b', 'c', 'c']);</code></pre>\n\n\n\n<p>All elements in the set must be unique therefore the &nbsp;<code>chars</code>&nbsp;only contains 3 distinct elements&nbsp;<code>a</code>,&nbsp;<code>b</code>&nbsp;and&nbsp;<code>c</code>.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>console.log(chars);</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Set { 'a', 'b', 'c' }</code></pre>\n\n\n\n<p>When you use the&nbsp;&nbsp;<code>typeof</code>&nbsp;operator to the&nbsp;<code>chars</code>, it returns&nbsp;<code>object</code>.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>console.log(typeof(chars));</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>object</code></pre>\n\n\n\n<p>The&nbsp;<code>chars</code>&nbsp;set is an instance of the&nbsp;<code>Set</code>&nbsp;type so the following statement returns&nbsp;<code>true</code>.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let result = chars instanceof Set;\nconsole.log(result);</code></pre>\n\n\n\n<h3>Get the size of a Set</h3>\n\n\n\n<p>To get the number of elements that the set holds, you use the&nbsp;<code>size</code>&nbsp;property of the&nbsp;<code>Set</code>&nbsp;object:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let size = chars.size;\nconsole.log(size);//  3\n</code></pre>\n\n\n\n<h3>Add elements to a Set</h3>\n\n\n\n<p>To add an element to the set, you use the&nbsp;<code>add()</code>&nbsp;method:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>chars.add('d');\nconsole.log(chars);</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Set { 'a', 'b', 'c', 'd' }</code></pre>\n\n\n\n<p>Since the&nbsp;<code>add()</code>&nbsp;method is chainable, you can add multiple items to a set using a chain statement:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>chars.add('e')\n     .add('f');\n</code></pre>\n\n\n\n<h3>Check if a value is in the Set</h3>\n\n\n\n<p>To check if a set has a specific element, you use the&nbsp;<code>has()</code>&nbsp;method. The&nbsp;<code>has()</code>&nbsp;method returns&nbsp;<code>true</code>&nbsp;if the set contains the element, otherwise, it returns&nbsp;<code>false</code>. Since the &nbsp;<code>chars</code>&nbsp;set contains&nbsp;<code>'a'</code>, the following statement returns&nbsp;<code>true</code>:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let exist = chars.has('a');\nconsole.log(exist);// true\n</code></pre>\n\n\n\n<p>The following statement returns&nbsp;<code>false</code>&nbsp;because the &nbsp;<code>chars</code>&nbsp;set does not contain the&nbsp;<code>'z'</code>&nbsp;value.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>exist = chars.has('z');\nconsole.log(exist); // false</code></pre>\n\n\n\n<h3>Remove elements from a set</h3>\n\n\n\n<p>To delete a specified element from a set, you use the&nbsp;<code>delete()</code>&nbsp;method. The following statement deletes the&nbsp;<code>'f'</code>&nbsp;value from the &nbsp;<code>chars</code>&nbsp;set.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>chars.delete('f');\nconsole.log(chars); // Set {\"a\", \"b\", \"c\", \"d\", \"e\"}</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Set { 'a', 'b', 'c', 'd', 'e' }</code></pre>\n\n\n\n<p>The&nbsp;<code>delete()</code>&nbsp;method returns&nbsp;<code>true</code>&nbsp;indicating that the element has been removed successfully. To delete all elements of a set, you use the&nbsp;<code>clear()</code>&nbsp;method:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>chars.clear();\nconsole.log(chars); // Set{}</code></pre>\n\n\n\n<h3>Looping the&nbsp;elements of a&nbsp;JavaScript Set</h3>\n\n\n\n<p>A Set object maintains the insertion order of its elements, therefore, when you iterate over its elements, the order of the elements is the same as the inserted order. Suppose you have a set of user roles as follows.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let roles = new Set();\nroles.add('admin')\n    .add('editor')\n    .add('subscriber');\n</code></pre>\n\n\n\n<p>The following example uses the\u00a0for\u2026of loop\u00a0to iterate over the chars set.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>for (let role of roles) {\n    console.log(role);\n}</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>admin\neditor\nsubscriber</code></pre>\n\n\n\n<p>The\u00a0<code>Set</code>\u00a0also provides the\u00a0<code>keys(),</code>\u00a0<code>values(),</code>\u00a0and\u00a0<code>entries()</code>\u00a0methods like the\u00a0Map. However, keys and values in the\u00a0<code>Set</code>\u00a0are identical. For example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>for (let &#91;key, value] of roles.entries()) {\n    console.log(key === value);\n}</code></pre>\n\n\n\n<p>Output</p>\n\n\n\n<pre class=\"wp-block-code\"><code>true\ntrue\ntrue</code></pre>\n\n\n\n<h3>Invoke a callback function on each element of a set</h3>\n\n\n\n<p>If you want to invoke a\u00a0callback\u00a0on every element of a set, you can use the\u00a0<code>forEach()</code>\u00a0method.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>roles.forEach(role => console.log(role.toUpperCase()));</code></pre>\n\n\n\n<h2>WeakSets</h2>\n\n\n\n<p>A&nbsp;<code>WeakSet</code>&nbsp;is similar to a&nbsp;<code>Set</code>&nbsp;except that it contains only objects. Since objects in a&nbsp;<code>WeakSet</code>&nbsp;may be automatically garbage-collected, a&nbsp;<code>WeakSet</code>&nbsp;does not have&nbsp;<code>size</code>&nbsp;property. Like a&nbsp;<code>WeakMap</code>, you cannot iterate elements of a&nbsp;<code>WeakSet</code>, therefore, you will find that WeakSet is rarely used in practice. In fact, you only use&nbsp;a&nbsp;<code>WeakSet</code>&nbsp;to check if a specified value is in the set. Here is an example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let computer = {type: 'laptop'};\nlet server = {type: 'server'};\nlet equipment = new WeakSet(&#91;computer, server]);\n\nif (equipment.has(server)) {\n    console.log('We have a server');\n}</code></pre>\n\n\n\n<p>Output</p>\n\n\n\n<pre class=\"wp-block-code\"><code>We have a server</code></pre>\n\n\n\n<p>In this tutorial, you have learned about the JavaScript&nbsp;<code>Set</code>&nbsp;object and how to manipulate its elements.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Introduction to the JavaScript&nbsp;Set&nbsp;object ES6 provides a new type named&nbsp;Set&nbsp;that stores a collection of unique values of any type. To create a new empty&nbsp;Set, you use the following syntax: The\u00a0Set\u00a0constructor also accepts an optional\u00a0iterable object. If you pass an iterable object to the\u00a0Set\u00a0constructor, all the elements of the iterable object will be added to the [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [206],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3167"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=3167"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3167/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=3167"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=3167"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=3167"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  }
+]

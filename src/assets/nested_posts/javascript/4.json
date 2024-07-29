@@ -1,0 +1,702 @@
+[
+  {
+    "id": 5322,
+    "date": "2022-01-26T05:45:08",
+    "date_gmt": "2022-01-26T05:45:08",
+    "guid": {
+      "rendered": "https://python3.foobrdigital.com/?p=5322"
+    },
+    "modified": "2022-01-26T05:45:08",
+    "modified_gmt": "2022-01-26T05:45:08",
+    "slug": "comparison-and-logical-operators",
+    "status": "publish",
+    "type": "post",
+    "link": "https://python3.foobrdigital.com/comparison-and-logical-operators/",
+    "title": {
+      "rendered": "Comparison and Logical Operators"
+    },
+    "content": {
+      "rendered": "\n<p>In this tutorial, you will learn about the Comparison operators and Logical operators with the help of examples.</p>\n\n\n\n<h2 id=\"comparison\">JavaScript Comparison Operators</h2>\n\n\n\n<p>Comparison operators compare two values and give back a boolean value: either&nbsp;<code>true</code>&nbsp;or&nbsp;<code>false</code>. Comparison operators are used in&nbsp;decision making&nbsp;and&nbsp;loops.</p>\n\n\n\n<h2>==</h2>\n\n\n\n<ul><li><strong>Equal to</strong>: <code>true</code> if the operands are equal</li><li>5==5; //true</li></ul>\n\n\n\n<h2>!=</h2>\n\n\n\n<ul><li><strong>Not equal to</strong>: <code>true</code> if the operands are not equal</li><li>5!=5; //false</li></ul>\n\n\n\n<h2>===</h2>\n\n\n\n<ul><li><strong>Strict equal to</strong>: <code>true</code> if the operands are equal and of the same type</li></ul>\n\n\n\n<h2>!==</h2>\n\n\n\n<ul><li><strong>Strict not equal to</strong>: <code>true</code> if the operands are equal but of different type or not equal at all</li><li>5!==&#8217;5&#8242;; //true</li></ul>\n\n\n\n<h2>&gt;</h2>\n\n\n\n<ul><li><strong>Greater than</strong>: <code>true</code> if the left operand is greater than the right operand</li><li>3&gt;2; //true</li></ul>\n\n\n\n<h2>&gt;=</h2>\n\n\n\n<ul><li><strong>Greater than or equal to</strong>: <code>true</code> if the left operand is greater than or equal to the right operand</li><li>3&gt;=3; //true</li></ul>\n\n\n\n<h2>&lt;</h2>\n\n\n\n<ul><li><strong>Less than</strong>: <code>true</code> if the left operand is less than the right operand</li><li>3&lt;2; //false</li></ul>\n\n\n\n<h2>&lt;=</h2>\n\n\n\n<ul><li><strong>Less than or equal to</strong>: <code>true</code> if the left operand is less than or equal to the right operand</li><li>2&lt;=2; //true</li></ul>\n\n\n\n<h3>Example 1: Equal to Operator</h3>\n\n\n\n<pre class=\"wp-block-code\"><code>const a = 5, b = 2, c = 'hello';\n\n// equal to operator\nconsole.log(a == 5);     // true\nconsole.log(b == '2');   // true\nconsole.log(c == 'Hello');  // false</code></pre>\n\n\n\n<p><code>==</code>&nbsp;evaluates to&nbsp;<code>true</code>&nbsp;if the operands are equal.</p>\n\n\n\n<h3>Example 2: Not Equal to Operator</h3>\n\n\n\n<pre class=\"wp-block-code\"><code>const a = 3, b = 'hello';\n\n// not equal operator\nconsole.log(a != 2); // true\nconsole.log(b != 'Hello'); // true</code></pre>\n\n\n\n<p><code>!=</code>&nbsp;evaluates to&nbsp;<code>true</code>&nbsp;if the operands are not equal.</p>\n\n\n\n<h3>Example 3: Strict Equal to Operator</h3>\n\n\n\n<pre class=\"wp-block-code\"><code>const a = 2;\n\n// strict equal operator\nconsole.log(a === 2); // true\nconsole.log(a === '2'); // false</code></pre>\n\n\n\n<p><code>===</code>&nbsp;evaluates to<code>true</code>&nbsp;if the operands are equal and of the same type. Here&nbsp;<strong>2</strong>&nbsp;and&nbsp;<strong>&#8216;2&#8217;</strong>&nbsp;are the same numbers but the data type is different. And&nbsp;<code>===</code>&nbsp;also checks for the data type while comparing.</p>\n\n\n\n<h3>Example 4: Strict Not Equal to Operator</h3>\n\n\n\n<pre class=\"wp-block-code\"><code> const a = 2, b = 'hello';\n\n// strict not equal operator\nconsole.log(a !== 2); // false\nconsole.log(a !== '2'); // true\nconsole.log(b !== 'Hello'); // true</code></pre>\n\n\n\n<p><code>!==</code>&nbsp;evaluates to&nbsp;<code>true</code>&nbsp;if the operands are strictly not equal. It&#8217;s the complete opposite of strictly equal&nbsp;<code>===</code>.</p>\n\n\n\n<p>In the above example,&nbsp;<code>2 != '2'</code>&nbsp;gives&nbsp;<code>true</code>. It&#8217;s because their types are different even though they have the same value.</p>\n\n\n\n<h3>Example 5: Greater than Operator</h3>\n\n\n\n<pre class=\"wp-block-code\"><code>const a = 3;\n\n// greater than operator\nconsole.log(a &gt; 2); // true</code></pre>\n\n\n\n<p><code>></code> evaluates to <code>true</code> if the left operand is greater than the right operand.</p>\n\n\n\n<h3>Example 6: Greater than or Equal to Operator</h3>\n\n\n\n<pre class=\"wp-block-code\"><code>const a = 3;\n\n// greater than or equal operator\nconsole.log(a &gt;= 3); //true</code></pre>\n\n\n\n<p><code>&gt;=</code>&nbsp;evaluates to&nbsp;<code>true</code>&nbsp;if the left operand is greater than or equal to the right operand.</p>\n\n\n\n<h3>Example 7: Less than Operator</h3>\n\n\n\n<pre class=\"wp-block-code\"><code>const a = 3, b = 2;\n\n// less than operator\nconsole.log(a &lt; 2); // false\nconsole.log(b &lt; 3); // true</code></pre>\n\n\n\n<p><code>&lt;</code>&nbsp;evaluates to&nbsp;<code>true</code>&nbsp;if the left operand is less than the right operand.</p>\n\n\n\n<h3>Example 8: Less than or Equal to Operator</h3>\n\n\n\n<pre class=\"wp-block-code\"><code>const a = 2;\n\n// less than or equal operator\nconsole.log(a &lt;= 3) // true\nconsole.log(a &lt;= 2); // true</code></pre>\n\n\n\n<p><code>&lt;=</code>&nbsp;evaluates to&nbsp;<code>true</code>&nbsp;if the left operand is less than or equal to the right operand.</p>\n\n\n\n<h2 id=\"logic\">JavaScript Logical Operators</h2>\n\n\n\n<p>Logical operators perform logical operations: <strong>AND</strong>, <strong>OR</strong> and <strong>NOT</strong>.</p>\n\n\n\n<h2>&amp;&amp;</h2>\n\n\n\n<ul><li><strong>Logical AND</strong>: <code>true</code> if both the operands/boolean values are true, else evaluates to <code>false</code></li><li>true &amp;&amp; false; // false</li></ul>\n\n\n\n<h2>||</h2>\n\n\n\n<ul><li><strong>Logical OR</strong>: <code>true</code> if either of the operands/boolean values is <code>true</code>. evaluates to <code>false</code> if both are <code>false</code></li><li>true || false; // true</li></ul>\n\n\n\n<h2>!</h2>\n\n\n\n<ul><li><strong>Logical NOT</strong>: <code>true</code> if the operand is <code>false</code> and vice-versa.</li><li>!true; // false</li></ul>\n\n\n\n<h3>Example 9: Logical AND Operator</h3>\n\n\n\n<pre class=\"wp-block-code\"><code>const a = true, b = false;\nconst c = 4;\n\n// logical AND\nconsole.log(a &amp;&amp; a); // true\nconsole.log(a &amp;&amp; b);  // false\n\nconsole.log((c &gt; 2) &amp;&amp; (c &lt; 2)); // false</code></pre>\n\n\n\n<p><code>&amp;&amp;</code> evaluates to <code>true</code> if both the operands are <code>true</code>, else evaluates to <code>false</code>.</p>\n\n\n\n<h3>Example 10: Logical OR Operator</h3>\n\n\n\n<pre class=\"wp-block-code\"><code>const a = true, b = false, c = 4;\n\n\n// logical OR\nconsole.log(a || b); // true\nconsole.log(b || b); // false\nconsole.log((c&gt;2) || (c&lt;2)); // true</code></pre>\n\n\n\n<p><code>||</code>&nbsp;evaluates to&nbsp;<code>true</code>&nbsp;if either of the operands is&nbsp;<code>true</code>. If both operands are&nbsp;<code>false</code>, the result is&nbsp;<code>false</code>.</p>\n\n\n\n<h3>Example 11: Logical NOT Operator</h3>\n\n\n\n<pre class=\"wp-block-code\"><code>const a = true, b = false;\n\n// logical NOT\nconsole.log(!a); // false\nconsole.log(!b); // true</code></pre>\n\n\n\n<p><code>!</code>&nbsp;evaluates to&nbsp;<code>true</code>&nbsp;if the operand is&nbsp;<code>false</code>&nbsp;and vice-versa.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>In this tutorial, you will learn about the Comparison operators and Logical operators with the help of examples. JavaScript Comparison Operators Comparison operators compare two values and give back a boolean value: either&nbsp;true&nbsp;or&nbsp;false. Comparison operators are used in&nbsp;decision making&nbsp;and&nbsp;loops. == Equal to: true if the operands are equal 5==5; //true != Not equal to: true&hellip; <a class=\"more-link\" href=\"https://python3.foobrdigital.com/comparison-and-logical-operators/\">Continue reading <span class=\"screen-reader-text\">Comparison and Logical Operators</span></a></p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [226],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/posts/5322"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/comments?post=5322"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/posts/5322/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 5323,
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/posts/5322/revisions/5323"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/media?parent=5322"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/categories?post=5322"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/tags?post=5322"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 5328,
+    "date": "2022-01-26T05:52:03",
+    "date_gmt": "2022-01-26T05:52:03",
+    "guid": {
+      "rendered": "https://python3.foobrdigital.com/?p=5328"
+    },
+    "modified": "2022-01-26T05:52:03",
+    "modified_gmt": "2022-01-26T05:52:03",
+    "slug": "if-else-statement",
+    "status": "publish",
+    "type": "post",
+    "link": "https://python3.foobrdigital.com/if-else-statement/",
+    "title": {
+      "rendered": "if&#8230;else Statement"
+    },
+    "content": {
+      "rendered": "\n<p>In this tutorial, you will learn about the if&#8230;else statement to create decision making programs with the help of examples.</p>\n\n\n\n<p>In computer programming, there may arise situations where you have to run a block of code among more than one alternatives. For example, assigning grades&nbsp;<strong>A</strong>,&nbsp;<strong>B</strong>&nbsp;or&nbsp;<strong>C</strong>&nbsp;based on marks obtained by a student.</p>\n\n\n\n<p>In such situations, you can use the JavaScript&nbsp;<code>if...else</code>&nbsp;statement to create a program that can make decisions.</p>\n\n\n\n<p>In JavaScript, there are three forms of the&nbsp;<code>if...else</code>&nbsp;statement.</p>\n\n\n\n<ol><li><strong>if</strong>&nbsp;statement</li><li><strong>if&#8230;else</strong>&nbsp;statement</li><li><strong>if&#8230;else if&#8230;else</strong>&nbsp;statement</li></ol>\n\n\n\n<h2 id=\"if\">JavaScript if Statement</h2>\n\n\n\n<p>The syntax of the&nbsp;<code>if</code>&nbsp;statement is:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>if (condition) {\n    // the body of if\n}</code></pre>\n\n\n\n<p>The&nbsp;<code>if</code>&nbsp;statement evaluates the condition inside the parenthesis&nbsp;<code>()</code>.</p>\n\n\n\n<ol><li>If the condition is evaluated to&nbsp;<code>true</code>, the code inside the body of&nbsp;<code>if</code>&nbsp;is executed.</li><li>If the condition is evaluated to&nbsp;<code>false</code>, the code inside the body of&nbsp;<code>if</code>&nbsp;is skipped.</li></ol>\n\n\n\n<h3 id=\"example-1-if-statement\">Example 1: if Statement</h3>\n\n\n\n<pre class=\"wp-block-code\"><code>// check if the number is positive\n\nconst number = prompt(\"Enter a number: \");\n\n// check if number is greater than 0\nif (number &gt; 0) {\n // the body of the if statement\n  console.log(\"The number is positive\");\n}\n\nconsole.log(\"The if statement is easy\");</code></pre>\n\n\n\n<p><strong>Output 1</strong></p>\n\n\n\n<pre class=\"wp-block-code\"><code><samp>Enter a number: 2\nThe number is positive\nThe if statement is easy</samp></code></pre>\n\n\n\n<p>Suppose the user entered&nbsp;<strong>2</strong>. In this case, the condition&nbsp;<code>number &gt; 0</code>&nbsp;evaluates to&nbsp;<code>true</code>. And, the body of the&nbsp;<code>if</code>&nbsp;statement is executed.</p>\n\n\n\n<p><strong>Output 2</strong></p>\n\n\n\n<pre class=\"wp-block-code\"><code><samp>Enter a number: -1\nThe if statement is easy</samp></code></pre>\n\n\n\n<p>Suppose the user entered&nbsp;<strong>-1</strong>. In this case, the condition&nbsp;<code>number &gt; 0</code>&nbsp;evaluates to&nbsp;<code>false</code>. Hence, the body of the&nbsp;<code>if</code>&nbsp;statement is skipped.</p>\n\n\n\n<p>Since&nbsp;<code>console.log(\"The if statement is easy\");</code>&nbsp;is outside the body of the&nbsp;<code>if</code>&nbsp;statement, it is always executed.</p>\n\n\n\n<p>Comparison and logical operators are used in conditions. So to learn more about comparison and logical operators, you can visit JavaScript Comparison and Logical Operators.</p>\n\n\n\n<h2 id=\"if-else\">JavaScript if&#8230;else statement</h2>\n\n\n\n<p>An&nbsp;<code>if</code>&nbsp;statement can have an optional&nbsp;<code>else</code>&nbsp;clause. The syntax of the&nbsp;<code>if...else</code>&nbsp;statement is:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>if (condition) {\n    // block of code if condition is true\n} else {\n   // block of code if condition is false\n}</code></pre>\n\n\n\n<p>The&nbsp;<code>if..else</code>&nbsp;statement evaluates the&nbsp;<strong>condition</strong>&nbsp;inside the parenthesis.</p>\n\n\n\n<p>If the condition is evaluated to&nbsp;<code>true</code>,</p>\n\n\n\n<ol><li>the code inside the body of&nbsp;<code>if</code>&nbsp;is executed</li><li>the code inside the body of&nbsp;<code>else</code>&nbsp;is skipped from execution</li></ol>\n\n\n\n<p><br>If the condition is evaluated to&nbsp;<code>false</code>,</p>\n\n\n\n<ol><li>the code inside the body of&nbsp;<code>else</code>&nbsp;is executed</li><li>the code inside the body of&nbsp;<code>if</code>&nbsp;is skipped from execution</li></ol>\n\n\n\n<h3 id=\"example-2-if-else-statement\">Example 2: if…else Statement</h3>\n\n\n\n<pre class=\"wp-block-code\"><code>// check if the number is positive or negative/zero\n\nconst number = prompt(\"Enter a number: \");\n\n// check if number is greater than 0\nif (number &gt; 0) {\n  console.log(\"The number is positive\");\n}\n// if number is not greater than 0\nelse {\n  console.log(\"The number is either a negative number or 0\");\n}\n\nconsole.log(\"The if...else statement is easy\");</code></pre>\n\n\n\n<p><strong>Output 1</strong></p>\n\n\n\n<pre class=\"wp-block-code\"><code><samp>Enter a number: 2\nThe number is positive\nThe if...else statement is easy</samp></code></pre>\n\n\n\n<p>Suppose the user entered&nbsp;<strong>2</strong>. In this case, the condition&nbsp;<code>number &gt; 0</code>&nbsp;evaluates to&nbsp;<code>true</code>. Hence, the body of the&nbsp;<code>if</code>&nbsp;statement is executed and the body of the&nbsp;<code>else</code>&nbsp;statement is skipped.</p>\n\n\n\n<p><strong>Output 2</strong></p>\n\n\n\n<pre class=\"wp-block-code\"><code><samp>Enter a number: -1\nThe number is either a negative number or 0\nThe if...else statement is easy</samp></code></pre>\n\n\n\n<p>Suppose the user entered <strong>-1</strong>. In this case, the condition <code>number > 0</code> evaluates to <code>false</code>. Hence, the body of the <code>else</code> statement is executed and the body of the <code>if</code> statement is skipped.</p>\n\n\n\n<h2 id=\"else-if\">JavaScript if&#8230;else if statement</h2>\n\n\n\n<p>The&nbsp;<code>if...else</code>&nbsp;statement is used to execute a block of code among two alternatives. However, if you need to make a choice between more than two alternatives,&nbsp;<code>if...else if...else</code>&nbsp;can be used.</p>\n\n\n\n<p>The syntax of the&nbsp;<code>if...else if...else</code>&nbsp;statement is:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>if (condition1) {\n    // code block 1\n} else if (condition2){\n    // code block 2\n} else {\n    // code block 3\n}</code></pre>\n\n\n\n<ul><li>If&nbsp;<strong>condition1</strong>&nbsp;evaluates to&nbsp;<code>true</code>, the&nbsp;<strong>code block 1</strong>&nbsp;is executed.</li><li>If&nbsp;<strong>condition1</strong>&nbsp;evaluates to&nbsp;<code>false</code>, then&nbsp;<strong>condition2</strong>&nbsp;is evaluated.<ul><li>If the&nbsp;<strong>condition2</strong>&nbsp;is&nbsp;<code>true</code>, the&nbsp;<strong>code block 2</strong>&nbsp;is executed.</li><li>If the&nbsp;<strong>condition2</strong>&nbsp;is&nbsp;<code>false</code>, the&nbsp;<strong>code block 3</strong>&nbsp;is executed.</li></ul></li></ul>\n\n\n\n<h3 id=\"example-3-if-else-if-statement\">Example 3: if&#8230;else if Statement</h3>\n\n\n\n<pre class=\"wp-block-code\"><code>// check if the number if positive, negative or zero\nconst number = prompt(\"Enter a number: \");\n\n\n// check if number is greater than 0\nif (number &gt; 0) {\n    console.log(\"The number is positive\");\n}\n// check if number is 0\nelse if (number == 0) {\n  console.log(\"The number is 0\");\n}\n// if number is neither greater than 0, nor zero\nelse {\n    console.log(\"The number is negative\");\n}\n\nconsole.log(\"The if...else if...else statement is easy\");</code></pre>\n\n\n\n<p><strong>Output</strong></p>\n\n\n\n<pre class=\"wp-block-preformatted\"><samp>Enter a number: 0\nThe number is 0\nThe if...else if...else statement is easy</samp></pre>\n\n\n\n<p>Suppose the user entered&nbsp;<strong>0</strong>, then the first test condition&nbsp;<code>number &gt; 0</code>&nbsp;evaluates to&nbsp;<code>false</code>. Then, the second test condition&nbsp;<code>number == 0</code>&nbsp;evaluates to&nbsp;<code>true</code>&nbsp;and its corresponding block is executed.</p>\n\n\n\n<h2 id=\"nested\">Nested if&#8230;else Statement</h2>\n\n\n\n<p>You can also use an&nbsp;<code>if...else</code>&nbsp;statement inside of an&nbsp;<code>if...else</code>&nbsp;statement. This is known as&nbsp;<strong>nested if&#8230;else</strong>&nbsp;statement.</p>\n\n\n\n<h3 id=\"example-4-nested-if-else-statement\">Example 4: Nested if&#8230;else Statement</h3>\n\n\n\n<pre class=\"wp-block-code\"><code>// check if the number is positive, negative or zero\nconst number = prompt(\"Enter a number: \");\n\nif (number &gt;= 0) {\n    if (number == 0) {\n        console.log(\"You entered number 0\");\n    } else {\n        console.log(\"You entered a positive number\");\n    }\n} else {\n    console.log(\"You entered a negative number\");\n}</code></pre>\n\n\n\n<p><strong>Output</strong></p>\n\n\n\n<pre class=\"wp-block-code\"><code><samp>Enter a number: 5\nYou entered a positive number</samp></code></pre>\n\n\n\n<p>Suppose the user entered&nbsp;<strong>5</strong>. In this case, the condition&nbsp;<code>number &gt;= 0</code>&nbsp;evaluates to&nbsp;<code>true</code>, and the control of the program goes inside the outer&nbsp;<code>if</code>&nbsp;statement.</p>\n\n\n\n<p>Then, the test condition, <code>number == 0</code>, of the inner <code>if</code> statement is evaluated. Since it&#8217;s false, the <code>else</code> clause of the inner <code>if</code> statement is executed.</p>\n\n\n\n<h2 id=\"body-of-if-else-with-only-one-statement\">Body of if&#8230;else With Only One Statement</h2>\n\n\n\n<p>If the body of&nbsp;<code>if...else</code>&nbsp;has only one statement, we can omit&nbsp;<code>{ }</code>&nbsp;in our programs. For example, you can replace</p>\n\n\n\n<pre class=\"wp-block-code\"><code>const number = 2;\nif (number &gt; 0) {\n    console.log(\"The number is positive.\");\n} else {\n   console.log(\"The number is negative or zero.\");\n}</code></pre>\n\n\n\n<p>with</p>\n\n\n\n<pre class=\"wp-block-code\"><code>const number = 2;\nif (number &gt; 0)\n    console.log(\"The number is positive.\");\n else \n   console.log(\"The number is negative or zero.\");</code></pre>\n\n\n\n<p><strong>Output</strong></p>\n\n\n\n<pre class=\"wp-block-code\"><code><samp>The number is positive.</samp></code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>In this tutorial, you will learn about the if&#8230;else statement to create decision making programs with the help of examples. In computer programming, there may arise situations where you have to run a block of code among more than one alternatives. For example, assigning grades&nbsp;A,&nbsp;B&nbsp;or&nbsp;C&nbsp;based on marks obtained by a student. In such situations, you&hellip; <a class=\"more-link\" href=\"https://python3.foobrdigital.com/if-else-statement/\">Continue reading <span class=\"screen-reader-text\">if&#8230;else Statement</span></a></p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [226],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/posts/5328"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/comments?post=5328"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/posts/5328/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 5329,
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/posts/5328/revisions/5329"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/media?parent=5328"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/categories?post=5328"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/tags?post=5328"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 5333,
+    "date": "2022-01-26T06:00:27",
+    "date_gmt": "2022-01-26T06:00:27",
+    "guid": {
+      "rendered": "https://python3.foobrdigital.com/?p=5333"
+    },
+    "modified": "2022-01-26T06:00:27",
+    "modified_gmt": "2022-01-26T06:00:27",
+    "slug": "for-loop-2",
+    "status": "publish",
+    "type": "post",
+    "link": "https://python3.foobrdigital.com/for-loop-2/",
+    "title": {
+      "rendered": "For Loop"
+    },
+    "content": {
+      "rendered": "\n<p>In this tutorial, you will learn about the loops and about for loops in JavaScript with the help of examples.</p>\n\n\n\n<p id=\"introduction\">In programming, loops are used to repeat a block of code.</p>\n\n\n\n<p>For example, if you want to show a message 100 times, then you can use a loop. It&#8217;s just a simple example; you can achieve much more with loops.</p>\n\n\n\n<p>This tutorial focuses on JavaScript&nbsp;<code>for</code>&nbsp;loop. You will learn about the other type of loops in the upcoming tutorials.</p>\n\n\n\n<h2 id=\"for-loop\">JavaScript for loop</h2>\n\n\n\n<p>The syntax of the&nbsp;<code>for</code>&nbsp;loop is:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>\nfor (initialExpression; condition; updateExpression) {\n    // for loop body\n}</code></pre>\n\n\n\n<p>Here,</p>\n\n\n\n<ol><li>The&nbsp;<strong>initialExpression</strong>&nbsp;initializes and/or declares variables and executes only once.</li><li>The&nbsp;<strong>condition</strong>&nbsp;is evaluated.<ul><li>If the condition is&nbsp;<code>false</code>, the&nbsp;<code>for</code>&nbsp;loop is terminated.</li><li>If the condition is&nbsp;<code>true</code>, the block of code inside of the&nbsp;<code>for</code>&nbsp;loop is executed.</li></ul></li><li>The&nbsp;<strong>updateExpression</strong>&nbsp;updates the value of&nbsp;<strong>initialExpression</strong>&nbsp;when the condition is&nbsp;<code>true</code>.</li><li>The&nbsp;<strong>condition</strong>&nbsp;is evaluated again. This process continues until the condition is&nbsp;<code>false</code>.</li></ol>\n\n\n\n<p>To learn more about the <strong>conditions</strong>, visit JavaScript Comparison and Logical Operators.</p>\n\n\n\n<h3 id=\"example-1-display-a-text-five-times\">Example 1: Display a Text Five Times</h3>\n\n\n\n<pre class=\"wp-block-code\"><code>// program to display text 5 times\nconst n = 5;\n\n// looping from i = 1 to 5\nfor (let i = 1; i &lt;= n; i++) {\n    console.log(`I love JavaScript.`);\n}</code></pre>\n\n\n\n<p><strong>Output</strong></p>\n\n\n\n<pre class=\"wp-block-code\"><code><samp>I love JavaScript.\nI love JavaScript.\nI love JavaScript.\nI love JavaScript.\nI love JavaScript.</samp></code></pre>\n\n\n\n<p>Here is how this program works.</p>\n\n\n\n<h2 id=\"1st\">1st</h2>\n\n\n\n<ul><li><code>i = 1</code> <code>n = 5</code></li><li>true</li><li><samp>I love JavaScript.</samp> is printed.</li><li><var>i</var> is increased to <strong>2</strong>.</li></ul>\n\n\n\n<h2 id=\"2nd\">2nd</h2>\n\n\n\n<ul><li><code>i = 2</code> <code>n = 5</code></li><li>true</li><li><samp>I love JavaScript.</samp> is printed.</li><li><var>i</var> is increased to <strong>3</strong>.</li></ul>\n\n\n\n<h2 id=\"3rd\">3rd</h2>\n\n\n\n<ul><li><code>i = 3</code> <code>n = 5</code></li><li>true</li><li><samp>I love JavaScript.</samp> is printed.</li><li> <var>i</var> is increased to <strong>4</strong>.</li></ul>\n\n\n\n<h2 id=\"4th\">4th</h2>\n\n\n\n<ul><li><code>i = 4</code> <code>n = 5</code></li><li>true</li><li><samp>I love JavaScript.</samp> is printed.</li><li><var>i</var> is increased to <strong>5</strong>.</li></ul>\n\n\n\n<h2 id=\"5th\">5th</h2>\n\n\n\n<ul><li><code>i = 5</code> <code>n = 5</code></li><li>true</li><li><samp>I love JavaScript.</samp> is printed.</li><li><var>i</var> is increased to <strong>6</strong>.</li></ul>\n\n\n\n<h2 id=\"6th\">6th</h2>\n\n\n\n<ul><li><code>i = 6</code> <code>n = 5</code></li><li>false</li><li>The loop is terminated.</li></ul>\n\n\n\n<h3 id=\"example-2-display-numbers-from-1-to-5\">Example 2: Display Numbers from 1 to 5</h3>\n\n\n\n<pre class=\"wp-block-code\"><code>// program to display numbers from 1 to 5\nconst n = 5;\n\n// looping from i = 1 to 5\n// in each iteration, i is increased by 1\nfor (let i = 1; i &lt;= n; i++) {\n    console.log(i);     // printing the value of i\n}</code></pre>\n\n\n\n<p><strong>Output</strong></p>\n\n\n\n<pre class=\"wp-block-code\"><code><samp>1\n2\n3\n4\n5</samp></code></pre>\n\n\n\n<h3 id=\"example-3-display-sum-of-n-natural-numbers\">Example 3: Display Sum of n Natural Numbers</h3>\n\n\n\n<pre class=\"wp-block-code\"><code>// program to display the sum of natural numbers\nlet sum = 0;\nconst n = 100\n\n// looping from i = 1 to n\n// in each iteration, i is increased by 1\nfor (let i = 1; i &lt;= n; i++) {\n    sum += i;  // sum = sum + i\n}\n\nconsole.log('sum:', sum);</code></pre>\n\n\n\n<p><strong>Output</strong></p>\n\n\n\n<pre class=\"wp-block-code\"><code><samp>sum: 5050</samp></code></pre>\n\n\n\n<p>Here, the value of&nbsp;<var>sum</var>&nbsp;is&nbsp;<strong>0</strong>&nbsp;initially. Then, a&nbsp;<code>for</code>&nbsp;loop is iterated from&nbsp;<code>i = 1 to 100</code>. In each iteration,&nbsp;<var>i</var>&nbsp;is added to&nbsp;<var>sum</var>&nbsp;and its value is increased by&nbsp;<strong>1</strong>.</p>\n\n\n\n<p>When&nbsp;<var>i</var>&nbsp;becomes&nbsp;<strong>101</strong>, the test condition is&nbsp;<code>false</code>&nbsp;and&nbsp;<var>sum</var>&nbsp;will be equal to&nbsp;<samp>0 + 1 + 2 + &#8230; + 100</samp>.</p>\n\n\n\n<p>The above program to add sum of natural numbers can also be written as</p>\n\n\n\n<pre class=\"wp-block-code\"><code>// program to display the sum of n natural numbers\nlet sum = 0;\nconst n = 100;\n\n// looping from i = n to 1\n// in each iteration, i is decreased by 1\nfor(let i = n; i &gt;= 1; i-- ) {\n    // adding i to sum in each iteration\n    sum += i; // sum = sum + i\n}\n\nconsole.log('sum:',sum);</code></pre>\n\n\n\n<p>This program also gives the same output as the&nbsp;<strong>Example 3</strong>. You can accomplish the same task in many different ways in programming; programming is all about logic.</p>\n\n\n\n<p>Although both ways are correct, you should try to make your code more readable.</p>\n\n\n\n<h3 id=\"infinite-loop\">JavaScript Infinite for loop</h3>\n\n\n\n<p>If the test condition in a&nbsp;<code>for</code>&nbsp;loop is always&nbsp;<code>true</code>, it runs forever (until memory is full). For example,</p>\n\n\n\n<pre class=\"wp-block-code\"><code>// infinite for loop\nfor(let i = 1; i &gt; 0; i++) {\n    // block of code\n}</code></pre>\n\n\n\n<p>In the above program, the condition is always&nbsp;<code>true</code>&nbsp;which will then run the code for infinite times.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>In this tutorial, you will learn about the loops and about for loops in JavaScript with the help of examples. In programming, loops are used to repeat a block of code. For example, if you want to show a message 100 times, then you can use a loop. It&#8217;s just a simple example; you can&hellip; <a class=\"more-link\" href=\"https://python3.foobrdigital.com/for-loop-2/\">Continue reading <span class=\"screen-reader-text\">For Loop</span></a></p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [226],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/posts/5333"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/comments?post=5333"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/posts/5333/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 5334,
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/posts/5333/revisions/5334"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/media?parent=5333"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/categories?post=5333"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/tags?post=5333"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 5335,
+    "date": "2022-01-26T06:10:26",
+    "date_gmt": "2022-01-26T06:10:26",
+    "guid": {
+      "rendered": "https://python3.foobrdigital.com/?p=5335"
+    },
+    "modified": "2022-01-26T06:10:26",
+    "modified_gmt": "2022-01-26T06:10:26",
+    "slug": "while-and-do-while-loop",
+    "status": "publish",
+    "type": "post",
+    "link": "https://python3.foobrdigital.com/while-and-do-while-loop/",
+    "title": {
+      "rendered": "While and Do&#8230;While Loop"
+    },
+    "content": {
+      "rendered": "\n<p>In this tutorial, you will learn about while loop and do&#8230;while loop with the help of examples.</p>\n\n\n\n<p>In programming, loops are used to repeat a block of code. For example, if you want to show a message 100 times, then you can use a loop. It&#8217;s just a simple example; you can achieve much more with loops.</p>\n\n\n\n<p>In the previous tutorial, you learned about the JavaScript for loop. Here, you are going to learn about <code>while</code> and <code>do...while</code> loops.</p>\n\n\n\n<h2 id=\"while\">JavaScript while Loop</h2>\n\n\n\n<p>The syntax of the&nbsp;<code>while</code>&nbsp;loop is:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>while (condition) {\n    // body of loop\n}</code></pre>\n\n\n\n<p>Here,</p>\n\n\n\n<ol><li>A <code>while</code> loop evaluates the <strong>condition</strong> inside the parenthesis <code>()</code>.</li><li>If the <strong>condition</strong> evaluates to <code>true</code>, the code inside the <code>while</code> loop is executed.</li><li>The <strong>condition</strong> is evaluated again.</li><li>This process continues until the <strong>condition</strong> is <code>false</code>.</li><li>ΩWhen the <strong>condition</strong> evaluates to <code>false</code>, the loop stops.</li></ol>\n\n\n\n<h3 id=\"example-1-display-numbers-from-1-to-5\">Example 1: Display Numbers from 1 to 5</h3>\n\n\n\n<pre class=\"wp-block-code\"><code>// program to display numbers from 1 to 5\n// initialize the variable\nlet i = 1, n = 5;\n\n// while loop from i = 1 to 5\nwhile (i &lt;= n) {\n    console.log(i);\n    i += 1;\n}</code></pre>\n\n\n\n<p><strong>Output</strong></p>\n\n\n\n<pre class=\"wp-block-code\"><code><samp>1\n2\n3\n4\n5</samp></code></pre>\n\n\n\n<p>Here is how this program works.</p>\n\n\n\n<h2 id=\"1st\">1st</h2>\n\n\n\n<ul><li><code>i = 1</code> <code>n = 5</code></li><li>true</li><li><samp>1</samp> is printed. <var>i</var> is increased to <strong>2</strong>.</li></ul>\n\n\n\n<h2 id=\"2nd\">2nd</h2>\n\n\n\n<ul><li><code>i = 2</code> <code>n = 5</code></li><li>true</li><li><samp>2</samp> is printed. <var>i</var> is increased to <strong>3</strong>.</li></ul>\n\n\n\n<h2 id=\"4th\">4th</h2>\n\n\n\n<ul><li><code>i = 4</code> <code>n = 5</code></li><li>true</li><li><samp>4</samp> is printed. <var>i</var> is increased to <strong>5</strong>.</li></ul>\n\n\n\n<h2 id=\"5th\">5th</h2>\n\n\n\n<ul><li><code>i = 5</code> <code>n = 5</code></li><li>true</li><li><samp>5</samp> is printed. <var>i</var> is increased to <strong>6</strong>.</li></ul>\n\n\n\n<h2 id=\"6th\">6th</h2>\n\n\n\n<ul><li><code>i = 6</code> <code>n = 5</code></li><li>false</li><li>The loop is terminated</li></ul>\n\n\n\n<h3 id=\"example-2-sum-of-positive-numbers-only\">Example 2: Sum of Positive Numbers Only</h3>\n\n\n\n<pre class=\"wp-block-code\"><code>// program to find the sum of positive numbers\n// if the user enters a negative numbers, the loop ends\n// the negative number entered is not added to sum\n\nlet sum = 0;\n\n// take input from the user\nlet number = parseInt(prompt('Enter a number: '));\n\nwhile(number &gt;= 0) {\n\n    // add all positive numbers\n    sum += number;\n\n    // take input again if the number is positive\n    number = parseInt(prompt('Enter a number: '));\n}\n\n// display the sum\nconsole.log(`The sum is ${sum}.`);</code></pre>\n\n\n\n<p><strong>Output</strong></p>\n\n\n\n<pre class=\"wp-block-code\"><code><samp>Enter a number: 2\nEnter a number: 5\nEnter a number: 7\nEnter a number: 0\nEnter a number: -3\nThe sum is 14.</samp></code></pre>\n\n\n\n<p>In the above program, the user is prompted to enter a number.</p>\n\n\n\n<p>Here,&nbsp;<code>parseInt()</code>&nbsp;is used because&nbsp;<code>prompt()</code>&nbsp;takes input from the user as a string. And when numeric strings are added, it behaves as a string. For example,&nbsp;<code>'2' + '3' = '23'</code>. So&nbsp;<code>parseInt()</code>&nbsp;converts a numeric string to number.</p>\n\n\n\n<p>The&nbsp;<code>while</code>&nbsp;loop continues until the user enters a negative number. During each iteration, the number entered by the user is added to the&nbsp;<code>sum</code>&nbsp;variable.</p>\n\n\n\n<p>When the user enters a negative number, the loop terminates. Finally, the total sum is displayed.</p>\n\n\n\n<h2 id=\"do-while\">JavaScript do&#8230;while Loop</h2>\n\n\n\n<p>The syntax of&nbsp;<code>do...while</code>&nbsp;loop is:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>do {\n    // body of loop\n} while(condition)</code></pre>\n\n\n\n<p>Here,</p>\n\n\n\n<ol><li>The body of the loop is executed at first. Then the&nbsp;<strong>condition</strong>&nbsp;is evaluated.</li><li>If the&nbsp;<strong>condition</strong>&nbsp;evaluates to&nbsp;<code>true</code>, the body of the loop inside the&nbsp;<code>do</code>&nbsp;statement is executed again.</li><li>The&nbsp;<strong>condition</strong>&nbsp;is evaluated once again.</li><li>If the&nbsp;<strong>condition</strong>&nbsp;evaluates to&nbsp;<code>true</code>, the body of the loop inside the&nbsp;<code>do</code>&nbsp;statement is executed again.</li><li>This process continues until the&nbsp;<strong>condition</strong>&nbsp;evaluates to&nbsp;<code>false</code>. Then the loop stops.</li></ol>\n\n\n\n<h3 id=\"example-3-display-numbers-from-1-to-5\">Example 3: Display Numbers from 1 to 5</h3>\n\n\n\n<pre class=\"wp-block-code\"><code>// program to display numbers\nlet i = 1;\nconst n = 5;\n\n// do...while loop from 1 to 5\ndo {\n    console.log(i);\n    i++;\n} while(i &lt;= n);</code></pre>\n\n\n\n<p><strong>Output</strong></p>\n\n\n\n<pre class=\"wp-block-code\"><code><samp>1\n2\n3\n4\n5</samp></code></pre>\n\n\n\n<h3 id=\"example-4-sum-of-positive-numbers\">Example 4: Sum of Positive Numbers</h3>\n\n\n\n<pre class=\"wp-block-code\"><code>// to find the sum of positive numbers\n// if the user enters negative number, the loop terminates\n// negative number is not added to sum\n\nlet sum = 0;\nlet number = 0;\n\ndo {\n    sum += number;\n    number = parseInt(prompt('Enter a number: '));\n} while(number &gt;= 0)\n\nconsole.log(`The sum is ${sum}.`);</code></pre>\n\n\n\n<p><strong>Output 1</strong></p>\n\n\n\n<pre class=\"wp-block-code\"><code><samp>Enter a number: 2\nEnter a number: 4\nEnter a number: -500\nThe sum is 6.</samp></code></pre>\n\n\n\n<p>Here, the&nbsp;<code>do...while</code>&nbsp;loop continues until the user enters a negative number. When the number is negative, the loop terminates; the negative number is not added to the&nbsp;<var>sum</var>&nbsp;variable.</p>\n\n\n\n<p><strong>Output 2</strong></p>\n\n\n\n<pre class=\"wp-block-code\"><code><samp>Enter a number: -80\nThe sum is 0.</samp></code></pre>\n\n\n\n<p>The body of the&nbsp;<code>do...while</code>&nbsp;loop runs only once if the user enters a negative number.</p>\n\n\n\n<h3 id=\"infinite-while-loop\">Infinite while Loop</h3>\n\n\n\n<p>If&nbsp;<strong>the condition</strong>&nbsp;of a loop is always&nbsp;<code>true</code>, the loop runs for infinite times (until the memory is full). For example,</p>\n\n\n\n<pre class=\"wp-block-code\"><code>// infinite while loop\nwhile(true){\n    // body of loop\n}</code></pre>\n\n\n\n<p>Here is an example of an infinite&nbsp;<code>do...while</code>&nbsp;loop.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>// infinite do...while loop\nconst count = 1;\ndo {\n   // body of loop\n} while(count == 1)</code></pre>\n\n\n\n<p>In the above programs, the&nbsp;<strong>condition</strong>&nbsp;is always&nbsp;<code>true</code>. Hence, the loop body will run for infinite times.</p>\n\n\n\n<h2 id=\"for-vs-while-loop\">for Vs while Loop</h2>\n\n\n\n<p>A&nbsp;<code>for</code>&nbsp;loop is usually used when the number of iterations is known. For example,</p>\n\n\n\n<pre class=\"wp-block-code\"><code>// this loop is iterated 5 times\nfor (let i = 1; i &lt;=5; ++i) {\n   // body of loop\n}</code></pre>\n\n\n\n<p>And&nbsp;<code>while</code>&nbsp;and&nbsp;<code>do...while</code>&nbsp;loops are usually used when the number of iterations are unknown. For example,</p>\n\n\n\n<pre class=\"wp-block-code\"><code>while (condition) {\n    // body of loop\n}</code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>In this tutorial, you will learn about while loop and do&#8230;while loop with the help of examples. In programming, loops are used to repeat a block of code. For example, if you want to show a message 100 times, then you can use a loop. It&#8217;s just a simple example; you can achieve much more&hellip; <a class=\"more-link\" href=\"https://python3.foobrdigital.com/while-and-do-while-loop/\">Continue reading <span class=\"screen-reader-text\">While and Do&#8230;While Loop</span></a></p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [226],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/posts/5335"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/comments?post=5335"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/posts/5335/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 5336,
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/posts/5335/revisions/5336"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/media?parent=5335"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/categories?post=5335"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/tags?post=5335"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 5337,
+    "date": "2022-01-26T06:13:16",
+    "date_gmt": "2022-01-26T06:13:16",
+    "guid": {
+      "rendered": "https://python3.foobrdigital.com/?p=5337"
+    },
+    "modified": "2022-01-26T06:13:16",
+    "modified_gmt": "2022-01-26T06:13:16",
+    "slug": "break-statement%ef%bf%bc",
+    "status": "publish",
+    "type": "post",
+    "link": "https://python3.foobrdigital.com/break-statement%ef%bf%bc/",
+    "title": {
+      "rendered": "Break Statement￼"
+    },
+    "content": {
+      "rendered": "\n<p>In this tutorial, you will learn about the break statement with the help of examples.</p>\n\n\n\n<p id=\"introduction\">The&nbsp;<code>break</code>&nbsp;statement is used to terminate the loop immediately when it is encountered.</p>\n\n\n\n<p>The syntax of the&nbsp;<code>break</code>&nbsp;statement is:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>break &#91;label];</code></pre>\n\n\n\n<h2 id=\"example-1-break-with-for-loop\">Example 1: break with for Loop</h2>\n\n\n\n<pre class=\"wp-block-code\"><code>// program to print the value of i\nfor (let i = 1; i &lt;= 5; i++) {\n    // break condition     \n    if (i == 3) {\n        break;\n    }\n    console.log(i);\n}</code></pre>\n\n\n\n<p><strong>Output</strong></p>\n\n\n\n<pre class=\"wp-block-code\"><code><samp>1\n2</samp></code></pre>\n\n\n\n<p>In the above program, the&nbsp;<code>for</code>&nbsp;loop is used to print the value of&nbsp;<var>i</var>&nbsp;in each iteration. The&nbsp;<code>break</code>&nbsp;statement is used as:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>if(i == 3) {\n    break;\n}</code></pre>\n\n\n\n<p>This means, when <var>i</var> is equal to <strong>3</strong>, the <code>break</code> statement terminates the loop. Hence, the output doesn&#8217;t include values greater than or equal to 3.</p>\n\n\n\n<h2 id=\"example-2-break-with-while-loop\">Example 2: break with while Loop</h2>\n\n\n\n<pre class=\"wp-block-code\"><code>// program to find the sum of positive numbers\n// if the user enters a negative numbers, break ends the loop\n// the negative number entered is not added to sum\n\nlet sum = 0, number;\n\nwhile(true) {\n\n    // take input again if the number is positive\n    number = parseInt(prompt('Enter a number: '));\n\n    // break condition\n    if(number &lt; 0) {\n        break;\n    }\n\n    // add all positive numbers\n    sum += number;\n\n}\n\n// display the sum\nconsole.log(`The sum is ${sum}.`);</code></pre>\n\n\n\n<p><strong>Output</strong></p>\n\n\n\n<pre class=\"wp-block-code\"><code><samp>Enter a number: 1\nEnter a number: 2\nEnter a number: 3\nEnter a number: -5\nThe sum is 6. </samp></code></pre>\n\n\n\n<p>In the above program, the user enters a number. The&nbsp;<code>while</code>&nbsp;loop is used to print the total sum of numbers entered by the user.</p>\n\n\n\n<p>Here the&nbsp;<code>break</code>&nbsp;statement is used as:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>if(number &lt; 0) {\n    break;\n}</code></pre>\n\n\n\n<p>When the user enters a negative number, here&nbsp;<samp>-5</samp>, the&nbsp;<code>break</code>&nbsp;statement terminates the loop and the control flow of the program goes outside the loop.</p>\n\n\n\n<p>Thus, the <code>while</code> loop continues until the user enters a negative number.</p>\n\n\n\n<h2 id=\"nested\">break with Nested Loop</h2>\n\n\n\n<p>When&nbsp;<code>break</code>&nbsp;is used inside of two nested loops,&nbsp;<code>break</code>&nbsp;terminates the inner loop. For example,</p>\n\n\n\n<pre class=\"wp-block-code\"><code>// nested for loops\n\n// first loop\nfor (let i = 1; i &lt;= 3; i++) {\n\n    // second loop\n    for (let j = 1; j &lt;= 3; j++) {\n        if (i == 2) {\n          break;\n        }\n        console.log(`i = ${i}, j = ${j}`);\n    }\n}</code></pre>\n\n\n\n<p><strong>Output</strong></p>\n\n\n\n<pre class=\"wp-block-code\"><code><samp>i = 1, j = 1\ni = 1, j = 2\ni = 1, j = 3\ni = 3, j = 1\ni = 3, j = 2\ni = 3, j = 3</samp></code></pre>\n\n\n\n<p>In the above program, when&nbsp;<code>i == 2</code>,&nbsp;<code>break</code>&nbsp;statement executes. It terminates the inner loop and control flow of the program moves to the outer loop.</p>\n\n\n\n<p>Hence, the value of&nbsp;<samp>i = 2</samp>&nbsp;is never displayed in the output.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>In this tutorial, you will learn about the break statement with the help of examples. The&nbsp;break&nbsp;statement is used to terminate the loop immediately when it is encountered. The syntax of the&nbsp;break&nbsp;statement is: Example 1: break with for Loop Output In the above program, the&nbsp;for&nbsp;loop is used to print the value of&nbsp;i&nbsp;in each iteration. The&nbsp;break&nbsp;statement is&hellip; <a class=\"more-link\" href=\"https://python3.foobrdigital.com/break-statement%ef%bf%bc/\">Continue reading <span class=\"screen-reader-text\">Break Statement￼</span></a></p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [226],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/posts/5337"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/comments?post=5337"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/posts/5337/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 5338,
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/posts/5337/revisions/5338"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/media?parent=5337"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/categories?post=5337"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/tags?post=5337"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 5339,
+    "date": "2022-01-26T06:15:35",
+    "date_gmt": "2022-01-26T06:15:35",
+    "guid": {
+      "rendered": "https://python3.foobrdigital.com/?p=5339"
+    },
+    "modified": "2022-01-26T06:15:35",
+    "modified_gmt": "2022-01-26T06:15:35",
+    "slug": "continue-statement-2",
+    "status": "publish",
+    "type": "post",
+    "link": "https://python3.foobrdigital.com/continue-statement-2/",
+    "title": {
+      "rendered": "Continue Statement"
+    },
+    "content": {
+      "rendered": "\n<p>In this tutorial, you will learn about the continue statement with the help of examples.</p>\n\n\n\n<p id=\"introduction\">The&nbsp;<code>continue</code>&nbsp;statement is used to skip the current iteration of the loop and the control flow of the program goes to the next iteration.</p>\n\n\n\n<p>The syntax of the&nbsp;<code>continue</code>&nbsp;statement is:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>continue &#91;label];</code></pre>\n\n\n\n<h2 id=\"continue-for\">continue with for Loop</h2>\n\n\n\n<p>In a&nbsp;<code>for</code>&nbsp;loop,&nbsp;<code>continue</code>&nbsp;skips the current iteration and control flow jumps to the&nbsp;<strong>updateExpression</strong>.</p>\n\n\n\n<h3 id=\"example-1-print-the-value-of-i\">Example 1: Print the Value of i</h3>\n\n\n\n<pre class=\"wp-block-code\"><code>// program to print the value of i\nfor (let i = 1; i &lt;= 5; i++) {\n\n    // condition to continue    \n    if (i == 3) {\n        continue;\n    }\n\n    console.log(i);\n}</code></pre>\n\n\n\n<p><strong>Output</strong></p>\n\n\n\n<pre class=\"wp-block-code\"><code><samp>1\n2\n4\n5</samp></code></pre>\n\n\n\n<p>In the above program,&nbsp;<code>for</code>&nbsp;loop is used to print the value of&nbsp;<var>i</var>&nbsp;in each iteration.</p>\n\n\n\n<p>Notice the&nbsp;<code>continue</code>&nbsp;statement inside the loop.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>if(i == 3) {\n    continue;\n}</code></pre>\n\n\n\n<p>This means</p>\n\n\n\n<ul><li>When&nbsp;<var>i</var>&nbsp;is equal to&nbsp;<strong>3</strong>, the&nbsp;<code>continue</code>&nbsp;statement skips the third iteration.</li><li>Then,&nbsp;<code>i</code>&nbsp;becomes&nbsp;<strong>4</strong>&nbsp;and the test&nbsp;<strong>condition</strong>&nbsp;and&nbsp;<code>continue</code>&nbsp;statement is evaluated again.</li><li>Hence,&nbsp;<strong>4</strong>&nbsp;and&nbsp;<strong>5</strong>&nbsp;are printed in the next two iterations.</li></ul>\n\n\n\n<h2 id=\"continue-while\">Continue with while Loop</h2>\n\n\n\n<p>In a&nbsp;<code>while</code>&nbsp;loop,&nbsp;<code>continue</code>&nbsp;skips the current iteration and control flow of the program jumps back to the&nbsp;<code>while</code>&nbsp;condition.</p>\n\n\n\n<p>The&nbsp;<code>continue</code>&nbsp;statement works in the same way for&nbsp;<code>while</code>&nbsp;and&nbsp;<code>do...while</code>&nbsp;loops.</p>\n\n\n\n<h3 id=\"example-2-calculate-positive-number\">Example 2: Calculate Positive Number</h3>\n\n\n\n<pre class=\"wp-block-code\"><code>// program to calculate positive numbers only\n// if the user enters a negative number, that number is skipped from calculation\n\n// negative number -&gt; loop terminate\n// non-numeric character -&gt; skip iteration\n\nlet sum = 0;\nlet number = 0;\n\nwhile (number &gt;= 0) {\n\n    // add all positive numbers\n    sum += number;\n\n    // take input from the user\n    number = parseInt(prompt('Enter a number: '));\n\n    // continue condition\n    if (isNaN(number)) {\n        console.log('You entered a string.');\n        number = 0; // the value of number is made 0 again\n        continue;\n    }\n\n}\n\n// display the sum\nconsole.log(`The sum is ${sum}.`);</code></pre>\n\n\n\n<p><strong>Output</strong></p>\n\n\n\n<pre class=\"wp-block-code\"><code><samp>Enter a number: 1\nEnter a number: 2\nEnter a number: hello\nYou entered a string.\nEnter a number: 5\nEnter a number: -2\nThe sum is 8. </samp></code></pre>\n\n\n\n<p>In the above program, the user enters a number. The&nbsp;<code>while</code>&nbsp;loop is used to print the total sum of positive numbers entered by the user.</p>\n\n\n\n<p>Notice the use of the&nbsp;<code>continue</code>&nbsp;statement.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>if (isNaN(number)) {\n    continue;\n}</code></pre>\n\n\n\n<ul><li>When the user enters a non-numeric number/string, the&nbsp;<code>continue</code>&nbsp;statement skips the current iteration. Then the control flow of the program goes to the&nbsp;<strong>condition</strong>&nbsp;of&nbsp;<code>while</code>&nbsp;loop.</li><li>When the user enters a number less than&nbsp;<strong>0</strong>, the loop terminates.</li></ul>\n\n\n\n<p>In the above program,&nbsp;<code>isNaN()</code>&nbsp;is used to check if the value entered by a user is a number or not.</p>\n\n\n\n<p>To learn more about the <code>while</code> loop, visit JavaScript while loop.</p>\n\n\n\n<h2 id=\"nested\">Continue with Nested Loop</h2>\n\n\n\n<p>When&nbsp;<code>continue</code>&nbsp;is used inside of two nested loops,&nbsp;<code>continue</code>&nbsp;skips the current iteration of the inner loop. For example,</p>\n\n\n\n<pre class=\"wp-block-code\"><code>// nested for loops\n\n// first loop\nfor (let i = 1; i &lt;= 3; i++) {\n\n    // second loop\n    for (let j = 1; j &lt;= 3; j++) {\n        if (j == 2) {\n          continue;\n        }\n        console.log(`i = ${i}, j = ${j}`);\n    }\n}</code></pre>\n\n\n\n<p><strong>Output</strong></p>\n\n\n\n<pre class=\"wp-block-code\"><code><samp>i = 1, j = 1\ni = 1, j = 3\ni = 2, j = 1\ni = 2, j = 3\ni = 3, j = 1\ni = 3, j = 3</samp></code></pre>\n\n\n\n<p>In the above program, when the&nbsp;<code>continue</code>&nbsp;statement executes, it skips the current iteration in the inner loop and control flow of the program moves to the&nbsp;<strong>updateExpression</strong>&nbsp;of the inner loop.</p>\n\n\n\n<p>Hence, the value of&nbsp;<samp>j = 2</samp>&nbsp;is never displayed in the output.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>In this tutorial, you will learn about the continue statement with the help of examples. The&nbsp;continue&nbsp;statement is used to skip the current iteration of the loop and the control flow of the program goes to the next iteration. The syntax of the&nbsp;continue&nbsp;statement is: continue with for Loop In a&nbsp;for&nbsp;loop,&nbsp;continue&nbsp;skips the current iteration and control flow&hellip; <a class=\"more-link\" href=\"https://python3.foobrdigital.com/continue-statement-2/\">Continue reading <span class=\"screen-reader-text\">Continue Statement</span></a></p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [226],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/posts/5339"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/comments?post=5339"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/posts/5339/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 5340,
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/posts/5339/revisions/5340"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/media?parent=5339"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/categories?post=5339"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/tags?post=5339"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 5341,
+    "date": "2022-01-26T06:17:28",
+    "date_gmt": "2022-01-26T06:17:28",
+    "guid": {
+      "rendered": "https://python3.foobrdigital.com/?p=5341"
+    },
+    "modified": "2022-01-26T06:17:28",
+    "modified_gmt": "2022-01-26T06:17:28",
+    "slug": "switch-statement",
+    "status": "publish",
+    "type": "post",
+    "link": "https://python3.foobrdigital.com/switch-statement/",
+    "title": {
+      "rendered": "Switch Statement"
+    },
+    "content": {
+      "rendered": "\n<p>In this tutorial, you will learn about the JavaScript switch statement with the help of examples.</p>\n\n\n\n<p id=\"introduction\">The JavaScript&nbsp;<code>switch</code>&nbsp;statement is used in decision making.</p>\n\n\n\n<p>The&nbsp;<code>switch</code>&nbsp;statement evaluates an expression and executes the corresponding body that matches the expression&#8217;s result.</p>\n\n\n\n<p>The syntax of the&nbsp;<code>switch</code>&nbsp;statement is:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>switch(variable/expression) {\n    case value1:  \n        // body of case 1\n        break;\n\n    case value2:  \n        // body of case 2\n        break;\n\n    case valueN:\n        // body of case N\n        break;\n\n    default:\n        // body of default\n}</code></pre>\n\n\n\n<p>The&nbsp;<code>switch</code>&nbsp;statement evaluates a variable/expression inside parentheses&nbsp;<code>()</code>.</p>\n\n\n\n<ul><li>If the result of the expression is equal to&nbsp;<code>value1</code>, its body is executed.</li><li>If the result of the expression is equal to&nbsp;<code>value2</code>, its body is executed.</li><li>This process goes on. If there is no matching case, the&nbsp;<code>default</code>&nbsp;body executes.</li></ul>\n\n\n\n<h3 id=\"example-1-simple-program-using-switch-statement\">Example 1: Simple Program Using switch Statement</h3>\n\n\n\n<pre class=\"wp-block-code\"><code>// program using switch statement\nlet a = 2;\n\nswitch (a) {\n\n    case 1:\n        a = 'one';\n        break;\n    case 2:\n        a = 'two';\n        break;\n    default:\n        a = 'not found';\n        break;\n}\nconsole.log(`The value is ${a}`);</code></pre>\n\n\n\n<p><strong>Output</strong></p>\n\n\n\n<pre class=\"wp-block-code\"><code><samp>The value is two.</samp></code></pre>\n\n\n\n<p>In the above program, an expression&nbsp;<code>a = 2</code>&nbsp;is evaluated with a&nbsp;<code>switch</code>&nbsp;statement.</p>\n\n\n\n<ul><li>The&nbsp;<strong>expression&#8217;s</strong>&nbsp;result is evaluated with&nbsp;<code>case 1</code>&nbsp;which results in&nbsp;<code>false</code>.</li><li>Then the&nbsp;<code>switch</code>&nbsp;statement goes to the second case. Here, the&nbsp;<strong>expression&#8217;s</strong>&nbsp;result matches with&nbsp;<code>case 2</code>. So&nbsp;<samp>The value is two</samp>&nbsp;is displayed.</li><li>The&nbsp;<code>break</code>&nbsp;statement terminates the block and control flow of the program jumps to outside of the&nbsp;<code>switch</code>&nbsp;block.</li></ul>\n\n\n\n<h3 id=\"example-2-type-checking-in-switch-statement\">Example 2: Type Checking in switch Statement</h3>\n\n\n\n<pre class=\"wp-block-code\"><code>// program using switch statement\nlet a = 1;\n\nswitch (a) {\n    case \"1\":\n        a = 1;\n        break;\n    case 1:\n        a = 'one';\n        break;\n    case 2:\n        a = 'two';\n        break;\n\n    default:\n        a = 'not found';\n        break;\n}\nconsole.log(`The value is ${a}`);</code></pre>\n\n\n\n<p><strong>Output</strong></p>\n\n\n\n<pre class=\"wp-block-code\"><code><samp>The value is one.</samp></code></pre>\n\n\n\n<p>In the above program, an expression&nbsp;<code>a = 1</code>&nbsp;is evaluated with a&nbsp;<code>switch</code>&nbsp;statement.</p>\n\n\n\n<ul><li>In JavaScript, the switch statement checks the value strictly. So the expression&#8217;s result does not match with&nbsp;<code>case \"1\"</code>.</li><li>Then the&nbsp;<code>switch</code>&nbsp;statement goes to the second case. Here, the expressions&#8217;s result matches with&nbsp;<code>case 1</code>. So&nbsp;<samp>The value is one</samp>&nbsp;is displayed.</li><li>The&nbsp;<code>break</code>&nbsp;statement terminates the block and control flow of the program jumps to outside of the&nbsp;<code>switch</code>&nbsp;block.</li></ul>\n\n\n\n<h3 id=\"example\">Example 3: Simple Calculator</h3>\n\n\n\n<pre class=\"wp-block-code\"><code>// program for a simple calculator\nlet result;\n\n// take the operator input\nconst operator = prompt('Enter operator ( either +, -, * or / ): ');\n\n// take the operand input\nconst number1 = parseFloat(prompt('Enter first number: '));\nconst number2 = parseFloat(prompt('Enter second number: '));\n\nswitch(operator) {\n    case '+':\n        result = number1 + number2;\n        console.log(`${number1} + ${number2} = ${result}`);\n        break;\n    case '-':\n        result = number1 - number2;\n        console.log(`${number1} - ${number2} = ${result}`);\n        break;\n    case '*':\n        result = number1 * number2;\n        console.log(`${number1} * ${number2} = ${result}`);\n        break;\n    case '/':\n        result = number1 / number2;\n        console.log(`${number1} / ${number2} = ${result}`);\n        break;\n\n    default:\n        console.log('Invalid operator');\n        break;\n}</code></pre>\n\n\n\n<p><strong>Output</strong></p>\n\n\n\n<pre class=\"wp-block-code\"><code><samp>Enter operator: +\nEnter first number: 4\nEnter second number: 5\n4 + 5 = 9</samp></code></pre>\n\n\n\n<p>In above program, the user is asked to enter either&nbsp;<strong>+</strong>,&nbsp;<strong>&#8211;</strong>,&nbsp;<strong>*</strong>&nbsp;or /, and two operands. Then, the&nbsp;<code>switch</code>&nbsp;statement executes cases based on the user input.</p>\n\n\n\n<h2 id=\"multiple\">JavaScript&nbsp;switch With Multiple Case</h2>\n\n\n\n<p>In a JavaScript switch statement, cases can be grouped to share the same code.</p>\n\n\n\n<h3 id=\"example-4-switch-with-multiple-case\">Example 4: switch With Multiple Case</h3>\n\n\n\n<pre class=\"wp-block-code\"><code>// multiple case switch program\nlet fruit = 'apple';\nswitch(fruit) {\n    case 'apple':\n    case 'mango':\n    case 'pineapple':\n        console.log(`${fruit} is a fruit.`);\n        break;\n    default:\n        console.log(`${fruit} is not a fruit.`);\n        break;\n}</code></pre>\n\n\n\n<p><strong>Output</strong></p>\n\n\n\n<pre class=\"wp-block-code\"><code><samp>apple is a fruit.</samp></code></pre>\n\n\n\n<p>In the above program, multiple cases are grouped. All the grouped cases share the same code.</p>\n\n\n\n<p>If the value of the&nbsp;<var>fruit</var>&nbsp;variable had value&nbsp;<code>mango</code>&nbsp;or&nbsp;<code>pineapple</code>, the output would have been the same.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>In this tutorial, you will learn about the JavaScript switch statement with the help of examples. The JavaScript&nbsp;switch&nbsp;statement is used in decision making. The&nbsp;switch&nbsp;statement evaluates an expression and executes the corresponding body that matches the expression&#8217;s result. The syntax of the&nbsp;switch&nbsp;statement is: The&nbsp;switch&nbsp;statement evaluates a variable/expression inside parentheses&nbsp;(). If the result of the expression is&hellip; <a class=\"more-link\" href=\"https://python3.foobrdigital.com/switch-statement/\">Continue reading <span class=\"screen-reader-text\">Switch Statement</span></a></p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [226],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/posts/5341"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/comments?post=5341"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/posts/5341/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 5342,
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/posts/5341/revisions/5342"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/media?parent=5341"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/categories?post=5341"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/tags?post=5341"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  }
+]

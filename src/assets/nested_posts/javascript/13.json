@@ -1,0 +1,472 @@
+[
+  {
+    "id": 3465,
+    "date": "2020-11-30T06:44:31",
+    "date_gmt": "2020-11-30T06:44:31",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3465"
+    },
+    "modified": "2020-11-30T06:44:31",
+    "modified_gmt": "2020-11-30T06:44:31",
+    "slug": "execution-context",
+    "status": "publish",
+    "type": "post",
+    "link": "https://computerprogramming.foobrdigital.com/execution-context/",
+    "title": {
+      "rendered": "Execution Context"
+    },
+    "content": {
+      "rendered": "\n<p>Consider the following code:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let x = 10;\n\nfunction timesTen(a){\n    return a * 10;\n}\n\nlet y = timesTen(x);\n\nconsole.log(y); // 100\n</code></pre>\n\n\n\n<p>In this code:</p>\n\n\n\n<ul><li>First, assign <code>10</code> to the <code>x</code> variable.</li><li>Second, declare a function <code>timesTen()</code> that multiplies its argument with <code>10</code>.</li><li>Third, call the <code>timesTen()</code> function by passing in <code>x</code> as a parameter and store the return value in the variable <code>y</code>.</li><li>Finally, output the variable <code>y</code> to the Console.</li></ul>\n\n\n\n<p>The code is straightforward. However, behind the scene, JavaScript does many things. In this tutorial, we will focus on the execution contexts.</p>\n\n\n\n<p>When a JavaScript engine executes a script, it creates execution contexts. Each execution context has two phases: the creation phase and the execution phase.</p>\n\n\n\n<h2>The creation phase</h2>\n\n\n\n<p>When a script executes for the first time, the JavaScript engine creates a Global Execution Context. During this creation phase, it performs the following tasks:</p>\n\n\n\n<ul><li>Create a global object i.e., <code>window</code> in the web browser or <code>global</code> in Node.js.</li><li>Create a <code>this</code> object binding which points to the global object above.</li><li>Setup a memory heap for storing variables and function references.</li><li>Store the function declarations in the memory heap and variables within the global execution context with the initial values as <code>undefined</code>.</li></ul>\n\n\n\n<p>In our example, during the creation phase, the JavaScript engine stores the variables&nbsp;<code>x</code>&nbsp;and&nbsp;<code>y</code>&nbsp;and the function declaration&nbsp;<code>timesTen()</code>&nbsp;in the Global Execution Context. Besides, it initializes the variables&nbsp;<code>x</code>&nbsp;and&nbsp;<code>y</code>&nbsp;to&nbsp;<code>undefined</code>.</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://cdn.javascripttutorial.net/wp-content/uploads/2019/12/javascript-execution-context-global-execution-context-in-creation-phase.png\" alt=\"javascript execution context - global execution context in creation phase\" class=\"wp-image-84599\"/></figure>\n\n\n\n<p>After the creation phase, the global execution context moves to the execution phase.</p>\n\n\n\n<h2>The execution phase</h2>\n\n\n\n<p>During the execution phase, the JavaScript engine executes the code line by line. In this phase, it assigns values to variables and executes the function calls.</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://cdn.javascripttutorial.net/wp-content/uploads/2019/12/javascript-execution-context-global-execution-context-in-execution-phase.png\" alt=\"javascript execution context - global execution context in execution phase\" class=\"wp-image-84600\"/></figure>\n\n\n\n<p>For every function call, the JavaScript engine creates a new&nbsp;<strong>Function Execution Context</strong>. The Function Execution Context is similar to the Global Execution Context, but instead of creating the global object, it creates the&nbsp;<code>arguments</code>&nbsp;object that contains a reference to all the parameters passed into the function:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://cdn.javascripttutorial.net/wp-content/uploads/2019/12/javascript-execution-context-function-execution-context-in-creation-phase.png\" alt=\"javascript execution context - function execution context in creation phase\" class=\"wp-image-84601\"/></figure>\n\n\n\n<p>In our example, the function execution context creates the&nbsp;<code>arguments</code>&nbsp;object that references all parameters passed into the function, sets&nbsp;<code>this</code>&nbsp;value to the global object, and initializes the&nbsp;<code>a</code>&nbsp;parameter to&nbsp;<code>undefined</code>.</p>\n\n\n\n<p>During the execution phase of the function execution context, it assigns 10 to the parameter&nbsp;<code>a</code>&nbsp;and returns the result (100) to the Global Execution Context:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://cdn.javascripttutorial.net/wp-content/uploads/2019/12/javascript-execution-context-function-execution-context-in-execution-phase.png\" alt=\"javascript execution context - function execution context in execution phase\" class=\"wp-image-84602\"/></figure>\n\n\n\n<p>To keep track of all the execution contexts including the Global Execution Context and Function Execution Contexts, the JavaScript engine uses a data structure named call stack which you will learn in the next tutorial.</p>\n\n\n\n<p>In this tutorial, you have learned about the JavaScript execution contexts including the Global Execution Context and Function Execution Contexts.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Consider the following code: In this code: First, assign 10 to the x variable. Second, declare a function timesTen() that multiplies its argument with 10. Third, call the timesTen() function by passing in x as a parameter and store the return value in the variable y. Finally, output the variable y to the Console. The code is straightforward. However, behind the scene, JavaScript does many things. In this tutorial, we [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [44],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3465"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/comments?post=3465"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3465/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/media?parent=3465"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/categories?post=3465"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/tags?post=3465"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 3467,
+    "date": "2020-11-30T06:45:26",
+    "date_gmt": "2020-11-30T06:45:26",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3467"
+    },
+    "modified": "2020-11-30T06:45:26",
+    "modified_gmt": "2020-11-30T06:45:26",
+    "slug": "call-stack",
+    "status": "publish",
+    "type": "post",
+    "link": "https://computerprogramming.foobrdigital.com/call-stack/",
+    "title": {
+      "rendered": "Call Stack"
+    },
+    "content": {
+      "rendered": "\n<h2>Introduction to JavaScript Call Stack</h2>\n\n\n\n<p>JavaScript engine uses a <strong>call stack</strong> to manage execution contexts: the Global Execution Context and Function Execution Contexts.</p>\n\n\n\n<p>The call stack works based on the LIFO principle i.e., last-in-first-out.</p>\n\n\n\n<p>When you execute a script, the JavaScript engine creates a Global Execution Context and pushes it on top of the call stack.</p>\n\n\n\n<p>Whenever a function is called, the JavaScript engine creates a Function Execution Context for the function, pushes it on top of the Call Stack, and starts executing the function.</p>\n\n\n\n<p>If a function calls another function, the JavaScript engine creates a new Function Execution Context for the function that is being called and pushes it on top of the call stack.</p>\n\n\n\n<p>When the current function completes, the JavaScript engine pops it off the call stack and resumes the execution where it left off in the last code listing.</p>\n\n\n\n<p>The script will stop when the call stack is empty.</p>\n\n\n\n<h2>JavaScript call stack example</h2>\n\n\n\n<p>See the following script:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function add(a, b) {\n    return a + b;\n}\n\nfunction average(a, b) {\n    return add(a, b) / 2;\n}\n\nlet x = average(10, 20);\n</code></pre>\n\n\n\n<p>When the script runs, the JavaScript engine places the global execution context (denoted by&nbsp;<code>main()</code>&nbsp;or&nbsp;<code>global()</code>&nbsp;function on the call stack.</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://cdn.javascripttutorial.net/wp-content/uploads/2019/12/JavaScript-Call-Stack-main.png\" alt=\"JavaScript Call Stack - main\" class=\"wp-image-84606\"/></figure>\n\n\n\n<p>The global execution context enters the creation phase and moves to the execution phase.</p>\n\n\n\n<p>The JavaScript engine executes the call to the&nbsp;<code>average(10, 20)</code>&nbsp;function and creates a function execution context for the&nbsp;<code>average()</code>&nbsp;function and pushes it on top of the call stack:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://cdn.javascripttutorial.net/wp-content/uploads/2019/12/JavaScript-Call-Stack-step-2.png\" alt=\"JavaScript Call Stack - step 2\" class=\"wp-image-84607\"/></figure>\n\n\n\n<p>The JavaScript engine starts executing the&nbsp;<code>average()</code>&nbsp;since it is at the top of the call stack.</p>\n\n\n\n<p>The&nbsp;<code>average()</code>&nbsp;function calls&nbsp;<code>add()</code>&nbsp;function. At this point, the JavaScript engine creates another function execution context for the&nbsp;<code>add()</code>&nbsp;function and places it on the top of the call stack:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://cdn.javascripttutorial.net/wp-content/uploads/2019/12/JavaScript-Call-Stack-step-3.png\" alt=\"JavaScript Call Stack - step 3\" class=\"wp-image-84608\"/></figure>\n\n\n\n<p>JavaScript engine executes the&nbsp;<code>add()</code>&nbsp;function and pops it off the call stack:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://cdn.javascripttutorial.net/wp-content/uploads/2019/12/JavaScript-Call-Stack-step-4.png\" alt=\"JavaScript Call Stack - step 4\" class=\"wp-image-84609\"/></figure>\n\n\n\n<p>At this point, the&nbsp;<code>average()</code>&nbsp;function is on top of the call stack, JavaScript engine executes it and pops it off the call stack.</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://cdn.javascripttutorial.net/wp-content/uploads/2019/12/JavaScript-Call-Stack-step-5.png\" alt=\"JavaScript Call Stack - step 5\" class=\"wp-image-84610\"/></figure>\n\n\n\n<p>Now, the call stack is empty so the script stops executing:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://cdn.javascripttutorial.net/wp-content/uploads/2019/12/JavaScript-Call-Stack-empty-stack.png\" alt=\"JavaScript Call Stack - empty stack\" class=\"wp-image-84611\"/></figure>\n\n\n\n<p>The following picture illustrates the overall status of the Call Stack in all steps:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://cdn.javascripttutorial.net/wp-content/uploads/2019/12/JavaScript-Call-Stack.png\" alt=\"JavaScript Call Stack\" class=\"wp-image-84613\" title=\"JavaScript Call Stack\"/></figure>\n\n\n\n<h2>Stack overflow</h2>\n\n\n\n<p>The call stack has a fixed size, depending on the implementation of the host environment, either the web browser or Node.js.</p>\n\n\n\n<p>If the number of the execution contexts exceeds the size of the stack, a stack overflow will occur.</p>\n\n\n\n<p>For example, when you execute a recursive function that has no exit condition, it will result in a stack overflow error:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function foo() {\n    foo();\n}\n\nfoo(); // stack overflow</code></pre>\n\n\n\n<h2>Asynchronous JavaScript</h2>\n\n\n\n<p>JavaScript is the single-threaded programming language. The JavaScript engine has only one call stack so that it only can do one thing at a time.</p>\n\n\n\n<p>When executing a script, the JavaScript engine executes code from top to bottom, line by line. In other words, it is synchronous.</p>\n\n\n\n<p>Asynchronous is the opposite of synchronous, which means happening at the same time. So how does JavaScript carry asynchronous tasks such as callbacks, promises, and async/await? This is where the event loop comes into the picture that we will cover in the next tutorial.</p>\n\n\n\n<p>In this tutorial, you have learned about the JavaScript call stack that helps keep track of the execution contexts or function calls.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Introduction to JavaScript Call Stack JavaScript engine uses a call stack to manage execution contexts: the Global Execution Context and Function Execution Contexts. The call stack works based on the LIFO principle i.e., last-in-first-out. When you execute a script, the JavaScript engine creates a Global Execution Context and pushes it on top of the call stack. Whenever a [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [44],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3467"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/comments?post=3467"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3467/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/media?parent=3467"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/categories?post=3467"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/tags?post=3467"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 3469,
+    "date": "2020-11-30T06:46:26",
+    "date_gmt": "2020-11-30T06:46:26",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3469"
+    },
+    "modified": "2020-11-30T06:46:26",
+    "modified_gmt": "2020-11-30T06:46:26",
+    "slug": "event-loop",
+    "status": "publish",
+    "type": "post",
+    "link": "https://computerprogramming.foobrdigital.com/event-loop/",
+    "title": {
+      "rendered": "Event Loop"
+    },
+    "content": {
+      "rendered": "\n<h2>JavaScript single-threaded model</h2>\n\n\n\n<p>JavaScript is a single-threaded programming language. In other words, it can do only one thing at a time.</p>\n\n\n\n<p>JavaScript engine executes a script from the top and works its way down creating execution contexts and pushing and popping functions onto and off the call stack.</p>\n\n\n\n<p>If you have a function that takes a long time to execute, then you cannot do anything on the web browser during the function’s execution. The webpage just hangs.</p>\n\n\n\n<p>A function that takes a long time to execute is known as a blocking function. Technically, the blocking functions block all the interactions with the webpage such as mouse click.</p>\n\n\n\n<p>Some examples of blocking functions are the functions that download files from a remote server or functions that call an API from an external server.</p>\n\n\n\n<p>Consider the following script:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function task(message) {\n    // emulate time consuming task\n    let n = 10000000000;\n    while (n > 0){\n        n--;\n    }\n    console.log(message);\n}\n\nconsole.log('Start script...');\ntask('Download a file.');\nconsole.log('Done!');\n</code></pre>\n\n\n\n<p>In this example, we have a big&nbsp;<code><a href=\"https://www.javascripttutorial.net/javascript-while-loop/\">while</a></code>&nbsp;loop inside the&nbsp;<code>task()</code>&nbsp;function that emulates a time-consuming task. The&nbsp;<code>task()</code>&nbsp;function is a blocking function.</p>\n\n\n\n<p>The script just hangs for a few seconds (depending on how fast the computer is) and issues the following output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Start script...\nDownload a file.\nDone!\n</code></pre>\n\n\n\n<p>To execute the script, the JavaScript engine places the first call to the&nbsp;<code>console.log()</code>&nbsp;on top of the stack and execute it. Then, JavaScript places the&nbsp;<code>task()</code>&nbsp;function on top of the call stack and executes the function.</p>\n\n\n\n<p>However, it will take a while to complete the&nbsp;<code>task()</code>&nbsp;function. Therefore, you will see the message&nbsp;<code>'Download a file.'</code>&nbsp;a little time later. After the&nbsp;<code>task()</code>&nbsp;function completes, the JavaScript engine pops it off the call stack.</p>\n\n\n\n<p>Finally, the JavaScript engine places the last call to the&nbsp;<code>console.log('Done!')</code>&nbsp;function and executes it, which will be very fast.</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://cdn.javascripttutorial.net/wp-content/uploads/2019/12/javascript-event-loop-callstack.png\" alt=\"javascript event loop - callstack\" class=\"wp-image-84629\"/></figure>\n\n\n\n<h2>Callbacks to the rescue</h2>\n\n\n\n<p>To prevent blocking functions from blocking other activities, you typically wrap them in callback functions which can be executed later. For example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>console.log('Start script...');\n\nsetTimeout(() => {\n    task('Download a file.');\n}, 1000);\n\nconsole.log('Done!');\n</code></pre>\n\n\n\n<p>In this example, you will see the message&nbsp;<code>'Start script...'</code>&nbsp;and&nbsp;<code>'Done!'</code>&nbsp;immediately. And after a while, you will see the message&nbsp;<code>'Download a file'</code>.</p>\n\n\n\n<p>Here is the output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Start script...\nDone!\nDownload a file.\n</code></pre>\n\n\n\n<p>As mentioned earlier that JavaScript can do only one thing at a time. However, it’s more precise to say that the JavaScript runtime can do one thing at a time.</p>\n\n\n\n<p>The web browser also has other components, not just the JavaScript engine. When you make a call to the&nbsp;<code>setTimeout()</code>&nbsp;function, an AJAX call, or click a button, the web browser is capable of doing these activities concurrently and asynchronously.</p>\n\n\n\n<p>The <code>setTimeout()</code>, AJAX calls, and DOM events are parts of Web APIs of the web browser.</p>\n\n\n\n<p>In our example, when&nbsp;<code>setTimeout()</code>&nbsp;function is called, it is placed on the call stack and the Web API creates a timer that will expire in 1 second.</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://cdn.javascripttutorial.net/wp-content/uploads/2019/12/javascript-event-loop-step-1.png\" alt=\"javascript event loop - step 1\" class=\"wp-image-84631\"/></figure>\n\n\n\n<p>Then the&nbsp;<code>task()</code>&nbsp;function is then placed into a queue called callback queue or task queue:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://cdn.javascripttutorial.net/wp-content/uploads/2019/12/javascript-event-loop-step-2.png\" alt=\"javascript event loop - step 2\" class=\"wp-image-84632\"/></figure>\n\n\n\n<p>The event loop is a constantly running process that monitors both the callback queue and the call stack.</p>\n\n\n\n<p>If the call stack is not empty, the event loop waits until it is empty and places the next function from the callback queue to the call stack. If the callback queue is empty, nothing will happen:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://cdn.javascripttutorial.net/wp-content/uploads/2019/12/javascript-event-loop-step-3.png\" alt=\"javascript event loop - step 3\" class=\"wp-image-84633\"/></figure>\n\n\n\n<p>See another example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>console.log('Hi!');\n\nsetTimeout(() => {\n    console.log('Execute immediately.');\n}, 0);\n\nconsole.log('Bye!');\n</code></pre>\n\n\n\n<p>In this example, the timeout is 0 second so the message&nbsp;<code>'Execute immediately.'</code>&nbsp;should appear before the message&nbsp;<code>'Bye!'</code>. However, it is not the case.</p>\n\n\n\n<p>The following call</p>\n\n\n\n<pre class=\"wp-block-code\"><code>console.log('Execute immediately.');\n</code></pre>\n\n\n\n<p>is placed on the callback queue and executed only when the call stack is empty. In other words, it is executed only after the&nbsp;<code>console.log('Bye!')</code>&nbsp;is completed.</p>\n\n\n\n<p>Here is the output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Hi!\nBye!\nExecute immediately.\n</code></pre>\n\n\n\n<p>The following picture illustrates JavaScript runtime, Web API, Call stack, and Event loop:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://cdn.javascripttutorial.net/wp-content/uploads/2019/12/javascript-event-loop.png\" alt=\"javascript event loop\" class=\"wp-image-84634\"/></figure>\n\n\n\n<p>In this tutorial, you have learned about the JavaScript event loop which is a constantly running process that coordinates the tasks between the call stack and callback queue to achieve the concurrency.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>JavaScript single-threaded model JavaScript is a single-threaded programming language. In other words, it can do only one thing at a time. JavaScript engine executes a script from the top and works its way down creating execution contexts and pushing and popping functions onto and off the call stack. If you have a function that takes a long time to execute, [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [44],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3469"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/comments?post=3469"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3469/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/media?parent=3469"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/categories?post=3469"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/tags?post=3469"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 3471,
+    "date": "2020-11-30T06:47:23",
+    "date_gmt": "2020-11-30T06:47:23",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3471"
+    },
+    "modified": "2020-11-30T06:47:23",
+    "modified_gmt": "2020-11-30T06:47:23",
+    "slug": "hoisting",
+    "status": "publish",
+    "type": "post",
+    "link": "https://computerprogramming.foobrdigital.com/hoisting/",
+    "title": {
+      "rendered": "Hoisting"
+    },
+    "content": {
+      "rendered": "\n<h2>Introduction to the JavaScript hoisting</h2>\n\n\n\n<p>When you execute a piece of JavaScript code, the JavaScript engine creates the global execution context.</p>\n\n\n\n<p>The global execution context has two phases: creation and execution.</p>\n\n\n\n<p>During the creation phase, the JavaScript engine moves the variable and function declarations to the top of your code. This feature is known as hoisting in JavaScript.</p>\n\n\n\n<h2>Variable hoisting</h2>\n\n\n\n<p>Variable hoisting means the JavaScript engine moves the variable declarations to the top of the script. The following example declares the <code>counter</code> variable and sets its value to 1:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>console.log(counter); // undefined\nvar counter = 1;\n</code></pre>\n\n\n\n<p>However, the first line of code doesn’t cause an error because the JavaScript engine moves the variable declaration to the top of the script. Technically, the code looks like the following in the execution phase:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>var counter;\n\nconsole.log(counter); // undefined\ncounter = 1;\n</code></pre>\n\n\n\n<p>Technically speaking, during the creation phase of the global execution context, the JavaScript engine places the variable&nbsp;<code>counter</code>&nbsp;in the memory and initializes its value to undefined.</p>\n\n\n\n<h3>The&nbsp;<code>let</code>&nbsp;keyword</h3>\n\n\n\n<p>The following declares the variable <code>counter</code> with the <code>let</code> keyword:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>console.log(counter);\nlet counter = 1;\n</code></pre>\n\n\n\n<p>The JavaScript issues the following error:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>\"ReferenceError: Cannot access 'counter' before initialization\n</code></pre>\n\n\n\n<p>The error message explains that the&nbsp;<code>counter</code>&nbsp;variable is already in the heap memory. However, it hasn’t initialized.</p>\n\n\n\n<p>Behind the scenes, the JavaScript engine hoists the variable declarations that use the&nbsp;<code>let</code>&nbsp;keyword. However, it doesn’t initialize those variables. Notice that if you access a variable that doesn’t exist, the JavaScript will throw a different error:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>console.log(alien);\nlet counter = 1;\n</code></pre>\n\n\n\n<p>Here is the error:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>\"ReferenceError: alien is not defined\n</code></pre>\n\n\n\n<h2>Function hoisting</h2>\n\n\n\n<p>Like variables, the JavaScript engine also hoists the function declarations. It moves the function declarations to the top of the script. For example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let x = 20,\n    y = 10;\n\nlet result = add(x,y);\nconsole.log(result);\n\nfunction add(a, b){\nreturn a + b;\n}\n</code></pre>\n\n\n\n<p>In this example, we called the&nbsp;<code>add()</code>&nbsp;function before defining it. The above code is equivalent to the following:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function add(a, b){\n    return a + b;\n}\n\nlet x = 20,\n    y = 10;\n\nlet result = add(x,y);\nconsole.log(result);\n</code></pre>\n\n\n\n<p>During the creation phase of the execution context, the JavaScript engine places the <code>add()</code> function declaration in the heap memory. To be precise, the JavaScript engine creates an object of the <code>Function</code> type and a function reference called <code>add</code> that refers to the function object.</p>\n\n\n\n<h3>Function expressions</h3>\n\n\n\n<p>The following example changes the&nbsp;<code>add</code>&nbsp;from a regular function to a function expression:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let x = 20,\n    y = 10;\n\nlet result = add(x,y);\nconsole.log(result);\n\nvar add = function(x, y) {\nreturn x + y;\n}\n</code></pre>\n\n\n\n<p>If you execute the code, the following error will occur:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>\"TypeError: add is not a function   \n</code></pre>\n\n\n\n<p>During the creation phase of the global execution context, the JavaScript Engine creates the&nbsp;<code>add</code>&nbsp;variable in the memory and initializes its value to&nbsp;<code>undefined</code>. When executing the following code, the&nbsp;<code>add</code>&nbsp;is&nbsp;<code>undefined</code>, hence, it isn’t a function:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let result = add(x,y);\n</code></pre>\n\n\n\n<p>The&nbsp;<code>add</code>&nbsp;variable is assigned to an anonymous function only during the execution phase of the global execution context.</p>\n\n\n\n<h3>Arrow functions</h3>\n\n\n\n<p>The following example changes the <code>add</code> function expression to the arrow function:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let x = 20,\n    y = 10;\n\nlet result = add(x,y);\nconsole.log(result);\n\nvar add = (x, y) => x + y;\n</code></pre>\n\n\n\n<p>The code also issues the same error as the function expression example because arrow functions are syntactic sugar for defining function expressions.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>\"TypeError: add is not a function\n</code></pre>\n\n\n\n<p>Similar to the functions expressions, the arrow functions aren’t hoisted.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Introduction to the JavaScript hoisting When you execute a piece of JavaScript code, the JavaScript engine creates the global execution context. The global execution context has two phases: creation and execution. During the creation phase, the JavaScript engine moves the variable and function declarations to the top of your code. This feature is known as hoisting [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [44],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3471"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/comments?post=3471"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3471/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/media?parent=3471"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/categories?post=3471"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/tags?post=3471"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 3473,
+    "date": "2020-11-30T06:48:49",
+    "date_gmt": "2020-11-30T06:48:49",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3473"
+    },
+    "modified": "2020-11-30T06:48:49",
+    "modified_gmt": "2020-11-30T06:48:49",
+    "slug": "variable-scopes",
+    "status": "publish",
+    "type": "post",
+    "link": "https://computerprogramming.foobrdigital.com/variable-scopes/",
+    "title": {
+      "rendered": "Variable Scopes"
+    },
+    "content": {
+      "rendered": "\n<h2>What is variable scope</h2>\n\n\n\n<p>Scope determines the visibility and accessibility of a variable. JavaScript has three scopes: global scope, local scope, and block scope.</p>\n\n\n\n<h2>Global scope</h2>\n\n\n\n<p>When you execute a script, the JavaScript engine creates a global execution context.</p>\n\n\n\n<p>It also assigns variables that you declare outside of functions to the global execution context. These variables are in the global scope. They are also known as global variables.</p>\n\n\n\n<p>See the following example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>var message = 'Hi';\n</code></pre>\n\n\n\n<p>The variable&nbsp;<code>message</code>&nbsp;is global scoped. It can be accessible everywhere in the script.</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://cdn.javascripttutorial.net/wp-content/uploads/2019/12/JavaScript-Global-Variables.png\" alt=\"JavaScript Global Variables\" class=\"wp-image-84674\"/></figure>\n\n\n\n<h2>Local scope</h2>\n\n\n\n<p>Variables that you declare inside a function are local to the function. They are called local variables. For example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>var message = 'Hi';\n\nfunction say() {\n    var message = 'Hello';\n    console.log('message');\n}\n\nsay();\nconsole.log(message);\n</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Hello\nHi\n</code></pre>\n\n\n\n<p>When the JavaScript engine executes the&nbsp;<code>say()</code>&nbsp;function, it creates a function execution context. The variable&nbsp;<code>message</code>&nbsp;that declares inside the&nbsp;<code>say()</code>&nbsp;function is bound to the function execution context of&nbsp;<code>say()</code>&nbsp;function, not the global execution context.</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://cdn.javascripttutorial.net/wp-content/uploads/2019/12/JavaScript-Local-Variables.png\" alt=\"JavaScript Local Variables\" class=\"wp-image-84675\"/></figure>\n\n\n\n<h2>Scope chain</h2>\n\n\n\n<p>Consider the following example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>var message = 'Hi';\n\nfunction say() {\n    console.log(message);\n}\n\nsay();\n</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Hi\n</code></pre>\n\n\n\n<p>In this example, we reference the variable&nbsp;<code>message</code>&nbsp;inside the&nbsp;<code>say()</code>&nbsp;function. Behind the scenes, JavaScript performs the following:</p>\n\n\n\n<ul><li>Look up the variable&nbsp;<code>message</code>&nbsp;in the current context (function execution context) of the&nbsp;<code>say()</code>&nbsp;function. It cannot find any.</li><li>Find the variable&nbsp;<code>message</code>&nbsp;in the outer execution context which is the global execution context. It finds the variable&nbsp;<code>message</code>.</li></ul>\n\n\n\n<p>The way that JavaScript resolves a variable by looking it in its current scope, if it cannot find the variable, it goes up to the outer scope, is called the scope chain.</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://cdn.javascripttutorial.net/wp-content/uploads/2019/12/JavaScript-Scope-Chain.png\" alt=\"JavaScript Scope Chain\" class=\"wp-image-84676\"/></figure>\n\n\n\n<h3>More scope chain example</h3>\n\n\n\n<p>Consider the following example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>var y = 20;\n\nfunction bar() {\n    var y = 200;\n\n    function baz() {  \n        console.log(y);\n    }\n\n    baz();\n}\n\nbar();\n</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>200\n</code></pre>\n\n\n\n<p>In this example:</p>\n\n\n\n<ul><li>First, the JavaScript engine finds the variable y in the scope of the&nbsp;<code>baz()</code>&nbsp;function. It cannot find any. So it goes out of this scope.</li><li>Then, the JavaScript engine finds the variable y in the&nbsp;<code>bar()</code>&nbsp;function. It can find the variable y in the scope of the&nbsp;<code>bar()</code>&nbsp;function so it stops searching.</li></ul>\n\n\n\n<h2>Global variable leaks: the weird part of JavaScript</h2>\n\n\n\n<p>See the following example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function getCounter() {\n    counter = 10;\n    return counter;\n}\n\nconsole.log(getCounter());</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>10</code></pre>\n\n\n\n<p>In this example, we assigned 10 to the&nbsp;<code>counter</code>&nbsp;variable without the&nbsp;<code>var</code>,&nbsp;<code>let</code>, or&nbsp;<code>const</code>&nbsp;keyword and then returned it.</p>\n\n\n\n<p>Outside the function, we called the&nbsp;<code>getCounter()</code>&nbsp;function and showed the result in the console.</p>\n\n\n\n<p>This issue is known as the leaks of the global variables.</p>\n\n\n\n<p>Under the hood, the JavaScript engine first looks up the&nbsp;<code>counter</code>&nbsp;variable in the local scope of the&nbsp;<code>getCounter()</code>&nbsp;function. Because there is no&nbsp;<code>var</code>,&nbsp;<code>let</code>, or&nbsp;<code>const</code>&nbsp;keyword, the&nbsp;<code>counter</code>&nbsp;variable is not available in the local scope. It hasn’t been created.</p>\n\n\n\n<p>Then, the JavaScript engine follows the scope chain and looks up the&nbsp;<code>counter</code>&nbsp;variable in the global scope. The global scope also doesn’t have the&nbsp;<code>counter</code>&nbsp;variable, so the JavaScript engine creates the&nbsp;<code>counter</code>&nbsp;variable in the global scope.</p>\n\n\n\n<p>To fix this “weird” behavior, you use the&nbsp;<code>'use strict'</code>&nbsp;at the top of the script or at the top of the function:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>'use strict'\n\nfunction getCounter() {\n    counter = 10;\n    return counter;\n}\n\nconsole.log(getCounter());</code></pre>\n\n\n\n<p>Now, the code throws an error:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>ReferenceError: counter is not defined</code></pre>\n\n\n\n<p>The following shows how to use the&nbsp;<code>'use strict'</code>&nbsp;in the function:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function getCounter() {\n    'use strict'\n    counter = 10;\n    return counter;\n}\n\nconsole.log(getCounter());</code></pre>\n\n\n\n<h2>Block scope</h2>\n\n\n\n<p>ES6 provides the <code>let</code> and <code>const</code> keywords that allow you to declare variables in block scope.</p>\n\n\n\n<p>Generally, whenever you see curly brackets <code>{}</code>, it is a block. It can be the area within the <code>if</code>, <code>else</code>, <code>switch</code> conditions or <code>for</code>, <code>do while</code>, and <code>while</code> loops.</p>\n\n\n\n<p>See the following example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function say(message) {\n    if(!message) {\n        let greeting = 'Hello'; // block scope\n        console.log(greeting);\n    }\n    // say it again ?\n    console.log(greeting); // ReferenceError\n}\n\nsay();</code></pre>\n\n\n\n<p>In this example, we reference the variable&nbsp;<code>greeting</code>&nbsp;outside the&nbsp;<code>if</code>&nbsp;block that results in an error.</p>\n\n\n\n<p>In this tutorial, you have learned about the JavaScript variable scopes including function scope, global scope, and block scope.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>What is variable scope Scope determines the visibility and accessibility of a variable. JavaScript has three scopes: global scope, local scope, and block scope. Global scope When you execute a script, the JavaScript engine creates a global execution context. It also assigns variables that you declare outside of functions to the global execution context. These variables are [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [44],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3473"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/comments?post=3473"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3473/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/media?parent=3473"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/categories?post=3473"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/tags?post=3473"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  }
+]

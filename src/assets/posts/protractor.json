@@ -1,0 +1,1042 @@
+[
+    {
+        "id": 2879,
+        "date": "2020-09-15T11:40:48",
+        "date_gmt": "2020-09-15T11:40:48",
+        "guid": {
+            "rendered": "http:\/\/angular.foobrdigital.com\/?p=2879"
+        },
+        "modified": "2020-12-25T19:04:58",
+        "modified_gmt": "2020-12-25T19:04:58",
+        "slug": "introduction-12",
+        "status": "publish",
+        "type": "post",
+        "link": "https:\/\/angular.foobrdigital.com\/introduction-12\/",
+        "title": {
+            "rendered": "Introduction"
+        },
+        "content": {
+            "rendered": "\n<h2>What is Protractor?<\/h2>\n\n\n\n<p>Protractor is an open source end-to-end testing framework for Angular and AngularJS applications. It was built by Google on the top of WebDriver. It also serves as a replacement for the existing AngularJS E2E testing framework called \u201cAngular Scenario Runner\u201d.<\/p>\n\n\n\n<p>It also works as a solution integrator that combines powerful technologies such as NodeJS, Selenium, Jasmine, WebDriver, Cucumber, Mocha etc. Along with testing of AngularJS application, it also writes automated regression tests for normal web applications. It allows us to test our application just like a real user because it runs the test using an actual browser.<\/p>\n\n\n\n<p>The following diagram will give a brief overview of Protractor \u2212<\/p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https:\/\/www.tutorialspoint.com\/protractor\/images\/overview_of_protractor.jpg\" alt=\"Overview of Protractor\"\/><\/figure>\n\n\n\n<p>Observe that in the above diagram, we have \u2212<\/p>\n\n\n\n<ul><li><strong>Protractor<\/strong>&nbsp;\u2212 As discussed earlier, it is a wrapper over WebDriver JS especially designed for angular apps.<\/li><li><strong>Jasmine<\/strong>&nbsp;\u2212 It is basically a behavior-driven development framework for testing the JavaScript code. We can write the tests easily with Jasmine.<\/li><li><strong>WebDriver JS<\/strong>&nbsp;\u2212 It is a Node JS bindings implementation for selenium 2.0\/WebDriver.<\/li><li><strong>Selenium<\/strong>&nbsp;\u2212 It simply automates the browser.<\/li><\/ul>\n\n\n\n<h2>Origin<\/h2>\n\n\n\n<p>As said earlier, Protractor is a replacement for the existing AngularJS E2E testing framework called \u201cAngular Scenario Runner\u201d. Basically, the origin of Protractor starts with the end of Scenario Runner. A question that arises here is why do we need to build Protractor? To understand this, we first need to check about its predecessor &#8211; Scenario Runner.<\/p>\n\n\n\n<h3>Protractor\u2019s Inception<\/h3>\n\n\n\n<p>Julie Ralph, the prime contributor to the development of Protractor, had the following experience with Angular Scenario Runner on other project within Google. This further became the motivation to build Protractor, specially to fill the gaps \u2212<\/p>\n\n\n\n<p><em>\u201cWe tried using Scenario Runner and we found that it really just couldn\u2019t do the things that we needed to test. We needed to test things like logging in. Your login page is not an Angular page, and the Scenario Runner couldn\u2019t deal with that. And it couldn\u2019t deal with things like popups and multiple windows, navigating the browser history, stuff like that.\u201d<\/em><\/p>\n\n\n\n<p>The biggest advantage to the Protractor was the maturity of Selenium project and it wraps up its methods so that it can be easily used for Angular projects. The design of Protractor is built in such a way that it tests all layers such that web UI, backend services, persistence layer and so on of an application.<\/p>\n\n\n\n<h2>Why Protractor?<\/h2>\n\n\n\n<p>As we know that almost all the applications are using JavaScript for development. The task of testers becomes difficult when JavaScript increases in size and becomes complex for applications due to the increasing number of the applications itself. Most of the times it becomes very difficult to capture the web elements in AngularJS applications, uses extended HTML syntax to express web application components, by using JUnit or Selenium WebDriver.<\/p>\n\n\n\n<p>The question here is that why Selenium Web Driver is not able to find AngularJS web elements? The reason is because AngularJS applications are having some extended HTML attributes like ng-repeater, ng-controller and ng-model etc. which are not included in Selenium locators.<\/p>\n\n\n\n<p>Here, the importance of Protractor comes into existence because Protractor on the top of Selenium can handle and control those extended HTML elements in AngularJS web applications. That is why we can say that most of the frameworks focus on conducting unit tests for AngularJS applications, Protractor used to do testing of the actual functionality of an application.<\/p>\n\n\n\n<h2>Working of Protractor<\/h2>\n\n\n\n<p>Protractor, the testing framework, works in conjunction with Selenium to provide an automated test infrastructure for simulating a user\u2019s interaction with an AngularJS application that is running in browser or mobile device.<\/p>\n\n\n\n<p>The working of Protractor can be understood with the help of following steps \u2212<\/p>\n\n\n\n<ul><li><strong>Step 1<\/strong>&nbsp;\u2212 In the first step, we need to write the tests. It can be done with the help of Jasmine or Mocha or Cucumber.<\/li><li><strong>Step 2<\/strong>&nbsp;\u2212 Now, we need to run the test which can be done with the help of Protractor. It is also called test runner.<\/li><li><strong>Step 3<\/strong>&nbsp;\u2212 In this step, Selenium server will help to manage the browsers.<\/li><li><strong>Step 4<\/strong>&nbsp;\u2212 At last, the browser APIs are invoked with the help of Selenium WebDriver.<\/li><\/ul>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https:\/\/www.tutorialspoint.com\/protractor\/images\/working_of_protractor.jpg\" alt=\"Working of Protractor\"\/><\/figure>\n\n\n\n<h2>Advantages<\/h2>\n\n\n\n<p>This open source end-to-end testing framework offers the following advantages \u2212<\/p>\n\n\n\n<ul><li>An open source tool, Protractor is very easy to install and setup.<\/li><li>Works well with Jasmine framework to create the test.<\/li><li>Supports test driven development (TDD).<\/li><li>Contains automatic waits which means we do not need to explicitly add waits and sleeps to our test.<\/li><li>Offers all the advantages of Selenium WebDriver.<\/li><li>Supports parallel testing through multiple browsers.<\/li><li>Provides the benefit of auto-synchronization.<\/li><li>Has excellent testing speed.<\/li><\/ul>\n\n\n\n<h2>Limitations<\/h2>\n\n\n\n<p>This open source end-to-end testing framework possesses the following limitations \u2212<\/p>\n\n\n\n<ul><li>Does not uncover any verticals in browser automation because it is a wrapper for WebDriver JS.<\/li><li>Knowledge of JavaScript is essential for the user, because it is available only for JavaScript.<\/li><li>Only provides front-end testing because it is a UI driven testing tool.<\/li><\/ul>\n",
+            "protected": false
+        },
+        "excerpt": {
+            "rendered": "<p>What is Protractor? Protractor is an open source end-to-end testing framework for Angular and AngularJS applications. It was built by Google on the top of WebDriver. It also serves as a replacement for the existing AngularJS E2E testing framework called \u201cAngular Scenario Runner\u201d. It also works as a solution integrator that combines powerful technologies such [&hellip;]<\/p>\n",
+            "protected": false
+        },
+        "author": 2,
+        "featured_media": 0,
+        "comment_status": "open",
+        "ping_status": "open",
+        "sticky": false,
+        "template": "",
+        "format": "standard",
+        "meta": [],
+        "categories": [
+            90,
+            118,
+            178
+        ],
+        "tags": [],
+        "_links": {
+            "self": [
+                {
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/posts\/2879"
+                }
+            ],
+            "collection": [
+                {
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/posts"
+                }
+            ],
+            "about": [
+                {
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/types\/post"
+                }
+            ],
+            "author": [
+                {
+                    "embeddable": true,
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/users\/2"
+                }
+            ],
+            "replies": [
+                {
+                    "embeddable": true,
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/comments?post=2879"
+                }
+            ],
+            "version-history": [
+                {
+                    "count": 1,
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/posts\/2879\/revisions"
+                }
+            ],
+            "predecessor-version": [
+                {
+                    "id": 2880,
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/posts\/2879\/revisions\/2880"
+                }
+            ],
+            "wp:attachment": [
+                {
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/media?parent=2879"
+                }
+            ],
+            "wp:term": [
+                {
+                    "taxonomy": "category",
+                    "embeddable": true,
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/categories?post=2879"
+                },
+                {
+                    "taxonomy": "post_tag",
+                    "embeddable": true,
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/tags?post=2879"
+                }
+            ],
+            "curies": [
+                {
+                    "name": "wp",
+                    "href": "https:\/\/api.w.org\/{rel}",
+                    "templated": true
+                }
+            ]
+        }
+    },
+    {
+        "id": 2878,
+        "date": "2020-09-15T11:41:05",
+        "date_gmt": "2020-09-15T11:41:05",
+        "guid": {
+            "rendered": "http:\/\/angular.foobrdigital.com\/?p=2878"
+        },
+        "modified": "2020-12-25T19:04:58",
+        "modified_gmt": "2020-12-25T19:04:58",
+        "slug": "concepts-of-javascript-testing",
+        "status": "publish",
+        "type": "post",
+        "link": "https:\/\/angular.foobrdigital.com\/concepts-of-javascript-testing\/",
+        "title": {
+            "rendered": "Concepts of Javascript Testing"
+        },
+        "content": {
+            "rendered": "\n<p>Since the knowledge of JavaScript is essential for working with Protractor, in this chapter, let us understand the concepts of JavaScript testing in detail.<\/p>\n\n\n\n<h2>JavaScript Testing and Automation<\/h2>\n\n\n\n<p>JavaScript is the most popular dynamically typed and interpreted scripting language, but the most challenging task is to test the code. It is because, unlike other compiled languages like JAVA, and C++, there are no compilation steps in JavaScript that can help the tester to figure out errors. Besides, browser-based testing is very time consuming; hence there is a necessity for tools that support automated testing for JavaScript.<\/p>\n\n\n\n<h2>Concepts of Automated Testing<\/h2>\n\n\n\n<p>It is always a good practice to write the test because it makes the code better; the issue with manual testing is that it is a bit time consuming and error prone. The process of manual testing is quite boring for programmer too as they need to repeat the process, writing test specs, change the code and refresh the browser several times. Besides, manual testing also slows down the development process.<\/p>\n\n\n\n<p>Due to the above reasons, it is always useful to have some tools that can automate these tests and help programmers to get rid of these repetitive and boring steps. What should a developer do to make the testing process automated?<\/p>\n\n\n\n<p>Basically, a developer can implement the tool set in the CLI (Command Line Interpreter) or in the development IDE (Integrated development environment). Then, these tests will run continuously in a separate process even without the input from the developer. Automated testing of JavaScript is also not new and lots of tools like Karma, Protractor, CasperJS etc. have been developed.<\/p>\n\n\n\n<h2>Types of Testing for JavaScript<\/h2>\n\n\n\n<p>There can be different tests for different purposes. For example, some tests are written to check the behavior of functions in a program, while some other are written to test the flow of a module or feature. Thus, we have the following two types of testing \u2212<\/p>\n\n\n\n<h3>Unit Testing<\/h3>\n\n\n\n<p>The testing is done on the smallest testable part of the program called unit. The unit is basically tested in isolation without any kind of dependency of that unit on the other parts. In case of JavaScript, the individual method or function having a specific behavior can be a unit of code and these units of code must be tested in an isolated way.<\/p>\n\n\n\n<p>One of the advantages of unit testing is that the testing of units can be done in any order because the units are independent of each other. Another advantage of unit testing which really counts is that it can run the test at any time as follows \u2212<\/p>\n\n\n\n<ul><li>From the very beginning of the development process.<\/li><li>After completing the development of any module\/feature.<\/li><li>After modifying any module\/feature.<\/li><li>After adding any new feature in the existing application.<\/li><\/ul>\n\n\n\n<p>For automated unit testing of JavaScript applications, we can choose from many testing tools and frameworks such as Mocha, Jasmine and QUnit.<\/p>\n\n\n\n<h3>End-to-End Testing<\/h3>\n\n\n\n<p>It may be defined as the testing methodology used to test whether the flow of the application from start to finish (from one end to another end) is working fine as per design.<\/p>\n\n\n\n<p>End-to-end testing is also called function\/flow testing. Unlike unit testing, end-to-end testing tests how individual components work together as an application. This is the main difference between unit testing and end-to-end testing.<\/p>\n\n\n\n<p>For example, suppose if we have a registration module where the user needs to provide some valid information to complete the registration then the E2E testing for that particular module will follow following steps to complete the testing \u2212<\/p>\n\n\n\n<ul><li>First, it will load\/compile the form or module.<\/li><li>Now, it will get the DOM (Document object model) of the form\u2019s elements.<\/li><li>Next, trigger the click event of the submit button for checking if it is working or not.<\/li><li>Now, for validation purpose collect the value from the input fields.<\/li><li>Next, the input fields should be validated.<\/li><li>For testing purpose, call a fake API to store the data.<\/li><\/ul>\n\n\n\n<p>Every step gives its own results which will be compared with the expected result set.<\/p>\n\n\n\n<p>Now, the question that arises is, while this kind of E2E or functional testing can be performed manually also, why we need automation for this? The main reason is that automation will make this test process easy. Some of the available tools that can be easily integrate with any application, for this purpose are Selenium, PhantomJS and Protractor.<\/p>\n\n\n\n<h2>Testing Tools &amp; Frameworks<\/h2>\n\n\n\n<p>We have various testing tools and frameworks for Angular testing. The following are some of the well-known tools and frameworks \u2212<\/p>\n\n\n\n<h2>Karma<\/h2>\n\n\n\n<p>Karma, created by Vojta Jina, is a test runner. Originally this project was called Testacular. It is not a test framework, which means that it gives us the ability to easily and automatically run JavaScript unit tests on real browsers. Karma was built for AngularJS because before Karma there was no automated testing tool for web-based JavaScript developers. On the other hand, with the automation provided by Karma, developers can run a simple single command and determine whether an entire test suite has passed or failed.<\/p>\n\n\n\n<h3>Pros of using Karma<\/h3>\n\n\n\n<p>The following are some pros of using Karma in comparison to the manual process \u2212<\/p>\n\n\n\n<ul><li>Automates tests in multiple browsers as well as devices.<\/li><li>Monitors files for errors and fixes them.<\/li><li>Provides online support and documentation.<\/li><li>Eases the integration with a continuous integration server.<\/li><\/ul>\n\n\n\n<h3>Cons of Using Karma<\/h3>\n\n\n\n<p>The followings are some cons of using Karma \u2212<\/p>\n\n\n\n<p>The main disadvantage of using Karma is that it requires an additional tool to configure and maintain.<\/p>\n\n\n\n<p>If you are using Karma test runner with Jasmine, then less documentation is available for finding information about setting up your CSS in the case of having multiple ids for one element.<\/p>\n\n\n\n<h2>Jasmine<\/h2>\n\n\n\n<p>Jasmine, a behavior-driven development framework for testing JavaScript code, is developed at Pivotal Labs. Before the active development of Jasmine framework, a similar unit testing framework named JsUnit was also developed by Pivotal Labs, which has an inbuilt test runner. The browsers tests can be run through Jasmine tests by including SpecRunner.html file or by using it as a command line test runner also. It can be used with or without Karma also.<\/p>\n\n\n\n<h3>Pros of Using Jasmine<\/h3>\n\n\n\n<p>The followings are some pros of using Jasmine \u2212<\/p>\n\n\n\n<ul><li>A framework independent of browser, platform and language.<\/li><li>Supports test driven development (TDD) along with behavioral driven development.<\/li><li>Has default integration with Karma.<\/li><li>Easy to understand syntax.<\/li><li>Provides test spies, fakes and pass-through functionalities which assist with testing as additional functions.<\/li><\/ul>\n\n\n\n<h3>Cons of Using Jasmine<\/h3>\n\n\n\n<p>The following is a con of using Jasmine \u2212<\/p>\n\n\n\n<ul><li>The tests must be return by the user as they change because there is no file-watching feature available in Jasmine while running test.<\/li><\/ul>\n\n\n\n<h2>Mocha<\/h2>\n\n\n\n<p>Mocha, written for Node.js applications, is a testing framework but it also supports browser testing. It is quite like Jasmine but the major difference between them is that Mocha needs some plugin and library because it cannot run standalone as a test framework. On the other hand, Jasmine is standalone. However, Mocha is more flexible to use than Jasmine.<\/p>\n\n\n\n<h3>Pros of using Mocha<\/h3>\n\n\n\n<p>The following are some pros of using Mocha \u2212<\/p>\n\n\n\n<ul><li>Mocha is very easy to install and configure.<\/li><li>User-friendly and simple documentation.<\/li><li>Contains plugins with several node projects.<\/li><\/ul>\n\n\n\n<h3>Cons of using Mocha<\/h3>\n\n\n\n<p>The following are some cons of using Mocha \u2212<\/p>\n\n\n\n<ul><li>It needs separate modules for assertions, spies etc.<\/li><li>It also requires additional configuration for using with Karma.<\/li><\/ul>\n\n\n\n<h2>QUnit<\/h2>\n\n\n\n<p>QUint, originally developed by John Resig in 2008 as part of jQuery, is a powerful yet easy-to-use JavaScript unit test suite. It can be used to test any generic JavaScript code. Although it focuses on testing JavaScript in the browser, yet it is very convenient to use by the developer.<\/p>\n\n\n\n<h3>Pros of using QUnit<\/h3>\n\n\n\n<p>The following are some pros of using QUnit \u2212<\/p>\n\n\n\n<ul><li>Easy to install and configure.<\/li><li>User-friendly and simple documentation.<\/li><\/ul>\n\n\n\n<h3>Cons of using QUnit<\/h3>\n\n\n\n<p>The following is a con of using QUnit \u2212<\/p>\n\n\n\n<ul><li>It was mainly developed for jQuery and hence not so good for use with other frameworks.<\/li><\/ul>\n\n\n\n<h2>Selenium<\/h2>\n\n\n\n<p>Selenium, originally developed by Jason Huggins in 2004 as an internal tool at ThoughtWorks, is an open source testing automation tool. Selenium defines itself as \u201cSelenium automates browsers. That\u2019s it!\u201d. Automation of browsers means that the developers can interact with the browsers very easily.<\/p>\n\n\n\n<h3>Pros of using Selenium<\/h3>\n\n\n\n<p>The following are some pros of using Selenium \u2212<\/p>\n\n\n\n<ul><li>Contains large feature set.<\/li><li>Supports distributed testing.<\/li><li>Has SaaS support through services such as Sauce Labs.<\/li><li>Easy to use with simple documentations and rich resources available.<\/li><\/ul>\n\n\n\n<h3>Cons of using Selenium<\/h3>\n\n\n\n<p>The followings are some cons of using Selenium \u2212<\/p>\n\n\n\n<ul><li>A main disadvantage of using Selenium is that it must be run as a separate process.<\/li><li>Configuration is a bit cumbersome as the developer needs to follow several steps.<\/li><\/ul>\n",
+            "protected": false
+        },
+        "excerpt": {
+            "rendered": "<p>Since the knowledge of JavaScript is essential for working with Protractor, in this chapter, let us understand the concepts of JavaScript testing in detail. JavaScript Testing and Automation JavaScript is the most popular dynamically typed and interpreted scripting language, but the most challenging task is to test the code. It is because, unlike other compiled [&hellip;]<\/p>\n",
+            "protected": false
+        },
+        "author": 2,
+        "featured_media": 0,
+        "comment_status": "open",
+        "ping_status": "open",
+        "sticky": false,
+        "template": "",
+        "format": "standard",
+        "meta": [],
+        "categories": [
+            90,
+            118,
+            178
+        ],
+        "tags": [],
+        "_links": {
+            "self": [
+                {
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/posts\/2878"
+                }
+            ],
+            "collection": [
+                {
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/posts"
+                }
+            ],
+            "about": [
+                {
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/types\/post"
+                }
+            ],
+            "author": [
+                {
+                    "embeddable": true,
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/users\/2"
+                }
+            ],
+            "replies": [
+                {
+                    "embeddable": true,
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/comments?post=2878"
+                }
+            ],
+            "version-history": [
+                {
+                    "count": 1,
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/posts\/2878\/revisions"
+                }
+            ],
+            "predecessor-version": [
+                {
+                    "id": 2881,
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/posts\/2878\/revisions\/2881"
+                }
+            ],
+            "wp:attachment": [
+                {
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/media?parent=2878"
+                }
+            ],
+            "wp:term": [
+                {
+                    "taxonomy": "category",
+                    "embeddable": true,
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/categories?post=2878"
+                },
+                {
+                    "taxonomy": "post_tag",
+                    "embeddable": true,
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/tags?post=2878"
+                }
+            ],
+            "curies": [
+                {
+                    "name": "wp",
+                    "href": "https:\/\/api.w.org\/{rel}",
+                    "templated": true
+                }
+            ]
+        }
+    },
+    {
+        "id": 2877,
+        "date": "2020-09-15T11:42:03",
+        "date_gmt": "2020-09-15T11:42:03",
+        "guid": {
+            "rendered": "http:\/\/angular.foobrdigital.com\/?p=2877"
+        },
+        "modified": "2020-12-25T19:04:58",
+        "modified_gmt": "2020-12-25T19:04:58",
+        "slug": "getting-started",
+        "status": "publish",
+        "type": "post",
+        "link": "https:\/\/angular.foobrdigital.com\/getting-started\/",
+        "title": {
+            "rendered": "Getting Started"
+        },
+        "content": {
+            "rendered": "\n<p>In the previous chapters, we have learnt the basics of Protractor. In this chapter, let us learn how to install and configure it.<\/p>\n\n\n\n<h2>Prerequisites<\/h2>\n\n\n\n<p>We need to satisfy the following prerequisites before installing Protractor on your computer \u2212<\/p>\n\n\n\n<h3>Node.js<\/h3>\n\n\n\n<p>Protractor is a Node.js module, hence the very important prerequisite is that we must have Node.js installed on our computer. We are going to install Protractor package using npm (a JavaScript package manager), that comes with Node.js.<\/p>\n\n\n\n<p>For installing Node.js please follow the official link \u2212\u00a0https:\/\/nodejs.org\/en\/download\/. After installing Node.js, you can check the version of Node.js and npm by writing the command\u00a0<strong>node &#8211;version<\/strong>\u00a0and\u00a0<strong>npm &#8211;version<\/strong>\u00a0in the command prompt as shown below \u2212<\/p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https:\/\/www.tutorialspoint.com\/protractor\/images\/prerequisites.jpg\" alt=\"Prerequisites\"\/><\/figure>\n\n\n\n<h3>Chrome<\/h3>\n\n\n\n<p>Google Chrome, a web browser built by Google, will be used to run end-to-end tests in Protractor without the need for a Selenium server. You can download chrome by clicking on the link \u2212\u00a0https:\/\/www.google.com\/chrome\/.<\/p>\n\n\n\n<h3>Selenium WebDriver for Chrome<\/h3>\n\n\n\n<p>This tool is provided with the Protractor npm module and allows us to interact with web applications.<\/p>\n\n\n\n<h2>Installing Protractor<\/h2>\n\n\n\n<p>After installing Node.js on our computer, we can install Protractor with the help of following command \u2212<\/p>\n\n\n\n<pre class=\"wp-block-code\"><code>npm install -g protractor\r\n<\/code><\/pre>\n\n\n\n<p>Once protractor is successfully installed, we can check its version by writing&nbsp;<strong>protractor &#8211;version<\/strong>&nbsp;command in the command prompt as shown below \u2212<\/p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https:\/\/www.tutorialspoint.com\/protractor\/images\/installing_protractor.jpg\" alt=\"Installing Protractor\"\/><\/figure>\n\n\n\n<h2>Installing WebDriver for Chrome<\/h2>\n\n\n\n<p>After installing Protractor, we need to install Selenium WebDriver for Chrome. It can be installed with the help of following command \u2212<\/p>\n\n\n\n<pre class=\"wp-block-code\"><code>webdriver-manager update\r\n<\/code><\/pre>\n\n\n\n<p>The above command will create a Selenium directory which contains the required Chrome driver used in the project.<\/p>\n\n\n\n<h2>Confirming Installation &amp; Configuration<\/h2>\n\n\n\n<p>We can confirm the installation and configurati on of Protractor by doing a slightly changing the conf.js provided in the example after installing Protractor. You can find this conf.js file in the root directory&nbsp;<strong>node_modules\/Protractor\/example<\/strong>.<\/p>\n\n\n\n<p>For this, first create a new file named testingconfig.js in the same directory i.e.&nbsp;<strong>node_modules\/Protractor\/example<\/strong>.<\/p>\n\n\n\n<p>Now, in the conf.js file, under the source file declaration parameter, write testingconfig.js.<\/p>\n\n\n\n<p>Next, save and close all the files and open command prompt. Run the conf.js file as shown in the screenshot given below.<\/p>\n\n\n\n<p>The configuration and installation of Protractor is successful if you got the output as shown below \u2212<\/p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https:\/\/www.tutorialspoint.com\/protractor\/images\/configuration_protractor.jpg\" alt=\"Configuration Protractor\"\/><\/figure>\n\n\n\n<p>The above output shows that there is no specification because we provided the empty file at source file declaration parameter in conf.js file. But from the above output, we can see that both protractor and WebDriver are running successfully.<\/p>\n\n\n\n<h2>Issues in installation &amp; configuration<\/h2>\n\n\n\n<p>While installing and configuring Protractor and WebDriver, we might come across the following common issues \u2212<\/p>\n\n\n\n<h3>Selenium not installed correctly<\/h3>\n\n\n\n<p>It is the most common issue while installing WebDriver. This issue arises if you do not update the WebDriver. Note that we must update WebDriver, otherwise we would not be able to reference it to Protractor installation.<\/p>\n\n\n\n<h3>Not able to find tests<\/h3>\n\n\n\n<p>Another common issue is that after running Protractor, it shows that unable to find tests. For this,we must have to ensure that the relative paths, filenames or extensions are correct. We also need to write conf.js file very carefully because it starts with configuration file itself.<\/p>\n",
+            "protected": false
+        },
+        "excerpt": {
+            "rendered": "<p>In the previous chapters, we have learnt the basics of Protractor. In this chapter, let us learn how to install and configure it. Prerequisites We need to satisfy the following prerequisites before installing Protractor on your computer \u2212 Node.js Protractor is a Node.js module, hence the very important prerequisite is that we must have Node.js [&hellip;]<\/p>\n",
+            "protected": false
+        },
+        "author": 2,
+        "featured_media": 0,
+        "comment_status": "open",
+        "ping_status": "open",
+        "sticky": false,
+        "template": "",
+        "format": "standard",
+        "meta": [],
+        "categories": [
+            90,
+            118,
+            178
+        ],
+        "tags": [],
+        "_links": {
+            "self": [
+                {
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/posts\/2877"
+                }
+            ],
+            "collection": [
+                {
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/posts"
+                }
+            ],
+            "about": [
+                {
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/types\/post"
+                }
+            ],
+            "author": [
+                {
+                    "embeddable": true,
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/users\/2"
+                }
+            ],
+            "replies": [
+                {
+                    "embeddable": true,
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/comments?post=2877"
+                }
+            ],
+            "version-history": [
+                {
+                    "count": 1,
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/posts\/2877\/revisions"
+                }
+            ],
+            "predecessor-version": [
+                {
+                    "id": 2882,
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/posts\/2877\/revisions\/2882"
+                }
+            ],
+            "wp:attachment": [
+                {
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/media?parent=2877"
+                }
+            ],
+            "wp:term": [
+                {
+                    "taxonomy": "category",
+                    "embeddable": true,
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/categories?post=2877"
+                },
+                {
+                    "taxonomy": "post_tag",
+                    "embeddable": true,
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/tags?post=2877"
+                }
+            ],
+            "curies": [
+                {
+                    "name": "wp",
+                    "href": "https:\/\/api.w.org\/{rel}",
+                    "templated": true
+                }
+            ]
+        }
+    },
+    {
+        "id": 2876,
+        "date": "2020-09-15T11:46:19",
+        "date_gmt": "2020-09-15T11:46:19",
+        "guid": {
+            "rendered": "http:\/\/angular.foobrdigital.com\/?p=2876"
+        },
+        "modified": "2020-12-25T19:04:58",
+        "modified_gmt": "2020-12-25T19:04:58",
+        "slug": "protractor-and-selenium-server",
+        "status": "publish",
+        "type": "post",
+        "link": "https:\/\/angular.foobrdigital.com\/protractor-and-selenium-server\/",
+        "title": {
+            "rendered": "Protractor And Selenium Server"
+        },
+        "content": {
+            "rendered": "\n<p>As discussed earlier, Protractor is an open source, end-to-end testing framework for Angular and AngularJS applications. It is Node.js program. On the other hand, Selenium is a browser automation framework that includes the Selenium Server, the WebDriver APIs and the WebDriver browser drivers.<\/p>\n\n\n\n<h2>Protractor with Selenium<\/h2>\n\n\n\n<p>If we talk about the conjunction of Protractor and Selenium, Protractor can work with Selenium server to provide an automated test infrastructure. The infrastructure can simulate user\u2019s interaction with an angular application that is running in a browser or on mobile device. The conjunction of Protractor and Selenium can be divided into three partitions namely test, server and Browser, as shown in the following diagram \u2212<\/p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https:\/\/www.tutorialspoint.com\/protractor\/images\/protractor_with_selenium.jpg\" alt=\"Protractor with Selenium\"\/><\/figure>\n\n\n\n<h2>Selenium WebDriver Processes<\/h2>\n\n\n\n<p>As we have seen in the above diagram, a test using Selenium WebDriver involves the following three processes \u2212<\/p>\n\n\n\n<ul><li>The test scripts<\/li><li>The server<\/li><li>The browser<\/li><\/ul>\n\n\n\n<p>In this section, let us discuss the communication between these three processes.<\/p>\n\n\n\n<h3>Communication between Test Scripts &amp; Server<\/h3>\n\n\n\n<p>The communication between the first two processes &#8211; the test scripts and the server depends upon the working of Selenium Server. In other words, we can say that the way Selenium server is running will give the shape to the communication process between test scripts and server.<\/p>\n\n\n\n<p>Selenium server can run locally on our machine as standalone Selenium Server (selenium-server-standalone.jar) or it can run remotely via a service (Sauce Labs). In case of standalone Selenium server, there would be an http communication between Node.js and selenium server.<\/p>\n\n\n\n<h3>Communication between the server and the browser<\/h3>\n\n\n\n<p>As we know that the server is responsible for forwarding commands to the browser after interpreting the same from the test scripts. That is why server and the browser also require a communication medium and here the communication is done with the help of&nbsp;<strong>JSON WebDriver Wire Protocol<\/strong>. The browser extended with Browser Driver that is used to interpret the commands.<\/p>\n\n\n\n<p>The above concept about Selenium WebDriver processes and their communication can be understood with the help of following diagram \u2212<\/p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https:\/\/www.tutorialspoint.com\/protractor\/images\/web_driver_processes.jpg\" alt=\"Web Driver processes\"\/><\/figure>\n\n\n\n<p>While working with Protractor, the very first process, that is test script is run using Node.js but before performing any action on the browser it will send an extra command to make it sure that the application being tested is stabilized.<\/p>\n\n\n\n<h2>Setting up Selenium Server<\/h2>\n\n\n\n<p>Selenium Server acts like a proxy server in between our test script and the browser driver. It basically forwards the command from our test script to the WebDriver and returns the responses from the WebDriver to our test script. There are following options for setting up the Selenium server which are included in&nbsp;<strong>conf.js<\/strong>&nbsp;file of test script \u2212<\/p>\n\n\n\n<h3>Standalone Selenium Server<\/h3>\n\n\n\n<p>If we want to run the server on our local machine, we need to install standalone selenium server. The prerequisite to install standalone selenium server is JDK (Java Development Kit). We must have JDK installed on our local machine. We can check it by running the following command from command line \u2212<\/p>\n\n\n\n<pre class=\"wp-block-code\"><code>java -version\r\n<\/code><\/pre>\n\n\n\n<p>Now, we have the option to install and start Selenium Server manually or from test script.<\/p>\n\n\n\n<h2>Installing and starting Selenium server manually<\/h2>\n\n\n\n<p>For installing and starting Selenium server manually, we need to use WebDriver-Manager command line tool that comes with Protractor. The steps for installing and starting Selenium server are as follows \u2212<\/p>\n\n\n\n<p><strong>Step 1<\/strong>\u00a0\u2212 The first step is to install the Selenium server and ChromeDriver. It can be done with the help of running following command \u2212<\/p>\n\n\n\n<pre class=\"wp-block-code\"><code>webdriver-manager update\r\n<\/code><\/pre>\n\n\n\n<p><strong>Step 2<\/strong>\u00a0\u2212 Next, we need to start the server. It can be done with the help of running following command \u2212<\/p>\n\n\n\n<pre class=\"wp-block-code\"><code>webdriver-manager start\r\n<\/code><\/pre>\n\n\n\n<p><strong>Step 3<\/strong>&nbsp;\u2212 At last we need to set seleniumAddress in config file to the address of the running server. The default address would be&nbsp;<strong>http:\/\/localhost:4444\/wd\/hub<\/strong>.<\/p>\n\n\n\n<h2>Starting Selenium server from a Test Script<\/h2>\n\n\n\n<p>For starting Selenium server from a Test Script, we need to set the following options in our config file \u2212<\/p>\n\n\n\n<ul><li><strong>Location of jar file<\/strong>&nbsp;\u2212 We need to set the location of jar file for standalone Selenium server in config file by setting seleniumServerJar.<\/li><li><strong>Specifying the port<\/strong>&nbsp;\u2212 We also need to specify the port to use to start the standalone Selenium Server. It can be specified in config file by setting seleniumPort. The default port is 4444.<\/li><li><strong>Array of command line options<\/strong>&nbsp;\u2212 We also need to set the array of command line options to pass to the server. It can be specified in config file by setting seleniumArgs. If you need full list of array of commands, then start the server with the&nbsp;<strong>-help<\/strong>&nbsp;flag.<\/li><\/ul>\n\n\n\n<h2>Working with Remote Selenium Server<\/h2>\n\n\n\n<p>Another option for running our test is to use Selenium server remotely. The prerequisite for using server remotely is that we must have an account with a service that hosts the server. While working with Protractor we have the built-in support for the following services hosting the server \u2212<\/p>\n\n\n\n<h3>TestObject<\/h3>\n\n\n\n<p>For using TestObject as the remote Selenium Server, we need to set the testobjectUser, the user name of our TestObject account and testobjectKey, the API key of our TestObject account.<\/p>\n\n\n\n<h3>BrowserStack<\/h3>\n\n\n\n<p>For using BrowserStack as the remote Selenium Server, we need to set the browserstackUser, the user name of our BrowserStack account and browserstackKey, the API key of our BrowserStack account.<\/p>\n\n\n\n<h3>Sauce Labs<\/h3>\n\n\n\n<p>For using Sauce Labs as the remote Selenium Server, we need to set the sauceUser, the user name of our Sauce Labs account and SauceKey, the API key of our Sauce Labs account.<\/p>\n\n\n\n<h3>Kobiton<\/h3>\n\n\n\n<p>For using Kobiton as the remote Selenium Server we need to set the kobitonUser, the user name of our Kobiton account and kobitonKey, the API key of our Kobiton account.<\/p>\n\n\n\n<h2>Directly connecting to Browser Driver without using Selenium Server<\/h2>\n\n\n\n<p>One more option for running our test is to connect to the Browser Driver directly without using Selenium server. Protractor can test directly, without the use of Selenium Server, against Chrome and Firefox by setting directConnect: true in config file.<\/p>\n\n\n\n<h2>Setting up the Browser<\/h2>\n\n\n\n<p>Before configuring and setting up the browser, we need to know which browsers are supported by Protractor. The following is the list of browsers supported by Protractor \u2212<\/p>\n\n\n\n<ul><li>ChromeDriver<\/li><li>FirefoxDriver<\/li><li>SafariDriver<\/li><li>IEDriver<\/li><li>Appium-iOS\/Safari<\/li><li>Appium-Android\/Chrome<\/li><li>Selendroid<\/li><li>PhantomJS<\/li><\/ul>\n\n\n\n<p>For setting and configuring the browser, we need to move to config file of Protractor because the browser setup is done within the capabilities object of config file.<\/p>\n\n\n\n<h3>Setting up Chrome<\/h3>\n\n\n\n<p>For setting up the Chrome Browser, we need to set the capabilities object as follows<\/p>\n\n\n\n<pre class=\"wp-block-code\"><code>capabilities: {\r\n   'browserName': 'chrome'\r\n}<\/code><\/pre>\n\n\n\n<p>We can also add Chrome-Specific options which are nested in the chromeOptions and its full list can be seen at\u00a0https:\/\/sites.google.com\/a\/chromium.org\/chromedriver\/capabilities.<\/p>\n\n\n\n<p>For example, if you want to add FPS-counter in the upper right, then it can be done as follows in the config file \u2212<\/p>\n\n\n\n<pre class=\"wp-block-code\"><code>capabilities: {\r\n   'browserName': 'chrome',\r\n   'chromeOptions': {\r\n      'args': &#91;'show-fps-counter=true']\r\n   }\r\n},<\/code><\/pre>\n\n\n\n<h3>Setting up Firefox<\/h3>\n\n\n\n<p>For setting up the Firefox browser, we need to set the capabilities object as follows \u2212<\/p>\n\n\n\n<pre class=\"wp-block-code\"><code>capabilities: {\r\n   'browserName': 'firefox'\r\n}<\/code><\/pre>\n\n\n\n<p>We can also add Firefox-Specific options which are nested in the moz:firefoxOptions object and its full list can be seen at\u00a0https:\/\/github.com\/mozilla\/geckodriver#firefox-capabilities.<\/p>\n\n\n\n<p>For example, if you want to run your test on Firefox in safe mode then it can be done as follows in the config file \u2212<\/p>\n\n\n\n<pre class=\"wp-block-code\"><code>capabilities: {\r\n   'browserName': 'firefox',\r\n   'moz:firefoxOptions': {\r\n     'args': &#91;'\u2014safe-mode']\r\n   }\r\n},<\/code><\/pre>\n\n\n\n<h3>Setting up other browser<\/h3>\n\n\n\n<p>For setting up any other browser than Chrome or Firefox, we need to install a separate binary from\u00a0https:\/\/docs.seleniumhq.org\/download\/.<\/p>\n\n\n\n<h3>Setting up PhantonJS<\/h3>\n\n\n\n<p>Actually, PhantomJS is no longer supported because of its crashing issues. Instead of that it is recommended to use headless Chrome or headless Firefox. They can be set up as follows \u2212<\/p>\n\n\n\n<p>For setting up headless Chrome, we need to start Chrome with the \u2013headless flag as follows \u2212<\/p>\n\n\n\n<pre class=\"wp-block-code\"><code>capabilities: {\r\n   'browserName': 'chrome',\r\n   'chromeOptions': {\r\n      'args': &#91;\u201c--headless\u201d, \u201c--disable-gpu\u201d, \u201c--window-size=800,600\u201d]\r\n   }\r\n},<\/code><\/pre>\n\n\n\n<p>For setting up headless Firefox, we need to start Firefox with the\u00a0<strong>\u2013headless<\/strong>\u00a0flag as follows \u2212<\/p>\n\n\n\n<pre class=\"wp-block-code\"><code>capabilities: {\r\n   'browserName': 'firefox',\r\n   'moz:firefoxOptions': {\r\n      'args': &#91;\u201c--headless\u201d]\r\n   }\r\n},<\/code><\/pre>\n\n\n\n<h3>Setting up multiple browsers for testing<\/h3>\n\n\n\n<p>We can also test against multiple browsers. For this we need to use multiCapabilities configuration option as follows \u2212<\/p>\n\n\n\n<pre class=\"wp-block-code\"><code>multiCapabilities: &#91;{\r\n   'browserName': 'chrome'\r\n},{\r\n   'browserName': 'firefox'\r\n}]<\/code><\/pre>\n\n\n\n<h2>Which Framework?<\/h2>\n\n\n\n<p>Two BDD (Behavior driven development) test frameworks, Jasmine and Mocha are supported by Protractor. Both frameworks are based on JavaScript and Node.js. The syntax, report and scaffolding, required for writing and managing the tests, are provided by these frameworks.<\/p>\n\n\n\n<p>Next, we see how we can install various frameworks \u2212<\/p>\n\n\n\n<h3>Jasmine framework<\/h3>\n\n\n\n<p>It is the default test framework for Protractor. When you install Protractor, you will get Jasmine 2.x version with it. We do not need to get it installed separately.<\/p>\n\n\n\n<h3>Mocha framework<\/h3>\n\n\n\n<p>Mocha is another JavaScript test framework basically running on Node.js. For using Mocha as our test framework, we need to use the BDD (Behavior driven development) interface and Chai assertions with Chai As Promised. The installation can be done with the help of following commands \u2212<\/p>\n\n\n\n<pre class=\"wp-block-code\"><code>npm install -g mocha\r\nnpm install chai\r\nnpm install chai-as-promised<\/code><\/pre>\n\n\n\n<p>As you can see, -g option is used while installing mocha, it is because we have installed Protractor globally using the -g option. After installing it, we need to require and set up Chai inside our test files. It can be done as follows \u2212<\/p>\n\n\n\n<pre class=\"wp-block-code\"><code>var chai = require('chai');\r\nvar chaiAsPromised = require('chai-as-promised');\r\nchai.use(chaiAsPromised);\r\nvar expect = chai.expect;<\/code><\/pre>\n\n\n\n<p>After this, we can use Chai As Promised as such \u2212<\/p>\n\n\n\n<pre class=\"wp-block-code\"><code>expect(myElement.getText()).to.eventually.equal('some text');\r\n<\/code><\/pre>\n\n\n\n<p>Now, we need to set the framework property to mocha of config file by adding framework: \u2018mocha\u2019. The options like \u2018reporter\u2019 and \u2018slow\u2019 for mocha can be added in config file as follows \u2212<\/p>\n\n\n\n<pre class=\"wp-block-code\"><code>mochaOpts: {\r\n   reporter: \"spec\", slow: 3000\r\n}\r\n<\/code><\/pre>\n\n\n\n<h3>Cucumber Framework<\/h3>\n\n\n\n<p>For using Cucumber as our test framework, we need to integrate it with Protractor with framework option\u00a0<strong><em>custom<\/em><\/strong>. The installation can be done with the help of following commands<\/p>\n\n\n\n<pre class=\"wp-block-code\"><code>npm install -g cucumber\r\nnpm install --save-dev protractor-cucumber-framework<\/code><\/pre>\n\n\n\n<p>As you can see, -g option is used while installing Cucumber, it is because we have installed Protractor globally i.e. with -g option. Next, we need to set the framework property to&nbsp;<strong>custom<\/strong>&nbsp;of config file by adding framework: \u2018custom\u2019 and frameworkPath: \u2018Protractor-cucumber-framework\u2019 to the config file named cucumberConf.js.<\/p>\n\n\n\n<p>The sample code shown below is a basic cucumberConf.js file which can be used to run cucumber feature files with Protractor \u2212<\/p>\n\n\n\n<pre class=\"wp-block-code\"><code>exports.config = {\r\n   seleniumAddress: 'http:\/\/localhost:4444\/wd\/hub',\r\n\r\n   baseUrl: 'https:\/\/angularjs.org\/',\r\n\r\n   capabilities: {\r\n      browserName:'Firefox'\r\n   },\r\n\r\n   framework: 'custom',\r\n\r\n   frameworkPath: require.resolve('protractor-cucumber-framework'),\r\n\r\n   specs: &#91;\r\n      '.\/cucumber\/*.feature'\r\n   ],\r\n\r\n   \/\/ cucumber command line options\r\n   cucumberOpts: {\r\n      require: &#91;'.\/cucumber\/*.js'],\r\n      tags: &#91;],\r\n      strict: true,\r\n      format: &#91;\"pretty\"],\r\n      'dry-run': false,\r\n      compiler: &#91;]\r\n   },\r\n   onPrepare: function () {\r\n      browser.manage().window().maximize();\r\n   }\r\n};<\/code><\/pre>\n",
+            "protected": false
+        },
+        "excerpt": {
+            "rendered": "<p>As discussed earlier, Protractor is an open source, end-to-end testing framework for Angular and AngularJS applications. It is Node.js program. On the other hand, Selenium is a browser automation framework that includes the Selenium Server, the WebDriver APIs and the WebDriver browser drivers. Protractor with Selenium If we talk about the conjunction of Protractor and [&hellip;]<\/p>\n",
+            "protected": false
+        },
+        "author": 2,
+        "featured_media": 0,
+        "comment_status": "open",
+        "ping_status": "open",
+        "sticky": false,
+        "template": "",
+        "format": "standard",
+        "meta": [],
+        "categories": [
+            90,
+            118,
+            178
+        ],
+        "tags": [],
+        "_links": {
+            "self": [
+                {
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/posts\/2876"
+                }
+            ],
+            "collection": [
+                {
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/posts"
+                }
+            ],
+            "about": [
+                {
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/types\/post"
+                }
+            ],
+            "author": [
+                {
+                    "embeddable": true,
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/users\/2"
+                }
+            ],
+            "replies": [
+                {
+                    "embeddable": true,
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/comments?post=2876"
+                }
+            ],
+            "version-history": [
+                {
+                    "count": 1,
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/posts\/2876\/revisions"
+                }
+            ],
+            "predecessor-version": [
+                {
+                    "id": 2883,
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/posts\/2876\/revisions\/2883"
+                }
+            ],
+            "wp:attachment": [
+                {
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/media?parent=2876"
+                }
+            ],
+            "wp:term": [
+                {
+                    "taxonomy": "category",
+                    "embeddable": true,
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/categories?post=2876"
+                },
+                {
+                    "taxonomy": "post_tag",
+                    "embeddable": true,
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/tags?post=2876"
+                }
+            ],
+            "curies": [
+                {
+                    "name": "wp",
+                    "href": "https:\/\/api.w.org\/{rel}",
+                    "templated": true
+                }
+            ]
+        }
+    },
+    {
+        "id": 2875,
+        "date": "2020-09-15T11:48:42",
+        "date_gmt": "2020-09-15T11:48:42",
+        "guid": {
+            "rendered": "http:\/\/angular.foobrdigital.com\/?p=2875"
+        },
+        "modified": "2020-12-25T19:04:58",
+        "modified_gmt": "2020-12-25T19:04:58",
+        "slug": "writing-the-first-test",
+        "status": "publish",
+        "type": "post",
+        "link": "https:\/\/angular.foobrdigital.com\/writing-the-first-test\/",
+        "title": {
+            "rendered": "Writing the First Test"
+        },
+        "content": {
+            "rendered": "\n<p>In this chapter, let us understand how to write the first test in Protractor.<\/p>\n\n\n\n<h2>Files required by Protractor<\/h2>\n\n\n\n<p>Protractor needs the following two files to run \u2212<\/p>\n\n\n\n<h3>Spec or test file<\/h3>\n\n\n\n<p>It is one of the important files to run Protractor. In this file, we will write our actual test code. The test code is written by using the syntax of our testing framework.<\/p>\n\n\n\n<p>For example, if we are using&nbsp;<strong>Jasmine<\/strong>&nbsp;framework, then the test code will be written by using the syntax of&nbsp;<strong>Jasmine<\/strong>. This file will contain all the functional flows and assertions of the test.<\/p>\n\n\n\n<p>In simple words, we can say that this file contains the logic and locators to interact with the application.<\/p>\n\n\n\n<h3>Example<\/h3>\n\n\n\n<p>The following is a simple script, TestSpecification.js, having the test case to navigate to an URL and check for the page title \u2212<\/p>\n\n\n\n<pre class=\"wp-block-code\"><code>\/\/TestSpecification.js\ndescribe('Protractor Demo', function() {\n   it('to check the page title', function() {\n      browser.ignoreSynchronization = true;\n      browser.get('https:\/\/www.codemeals.com\/tutorialslibrary.htm');\n      browser.driver.getTitle().then(function(pageTitle) {\n         expect(pageTitle).toEqual('Free Online Tutorials and Courses');\n      });\n   });\n});<\/code><\/pre>\n\n\n\n<h2>Code Explanation<\/h2>\n\n\n\n<p>The code of above specification file can be explained as follows \u2212<\/p>\n\n\n\n<h3>Browser<\/h3>\n\n\n\n<p>It is the global variable created by Protractor to handle all the browser level commands. It is basically a wrapper around an instance of WebDriver. browser.get() is a simple Selenium method that will tell Protractor to load a particular page.<\/p>\n\n\n\n<ul><li><strong>describe<\/strong>&nbsp;and&nbsp;<strong>it<\/strong>&nbsp;\u2212 Both are the syntaxes of Jasmine test framework. The&nbsp;<strong>\u2019Describe\u2019<\/strong>&nbsp;is used to contain the end to end flow of our test case whereas&nbsp;<strong>\u2018it\u2019<\/strong>&nbsp;contains some of the test scenarios. We can have multiple&nbsp;<strong>\u2018it\u2019<\/strong>&nbsp;blocks in our test case program.<\/li><li><strong>Expect<\/strong>&nbsp;\u2212 It is an assertion where we are comparing the web page title with some predefined data.<\/li><li><strong>ignoreSynchronization<\/strong>&nbsp;\u2212 It is a tag of browser which is used when we will try to test non-angular websites. Protractor expects to work with angular websites only but if we want to work with non-angular websites, then this tag must be set to&nbsp;<strong>\u201ctrue\u201d<\/strong>.<\/li><\/ul>\n\n\n\n<h2>Configuration File<\/h2>\n\n\n\n<p>As the name suggests, this file provides explanations for all the Protractor configuration options. It basically tells Protractor the following \u2212<\/p>\n\n\n\n<ul><li>Where to find the test or specs files<\/li><li>Which browser to pick<\/li><li>Which testing framework to use<\/li><li>Where to talk with the Selenium Server<\/li><\/ul>\n\n\n\n<h3>Example<\/h3>\n\n\n\n<p>The following is the simple script, config.js, having the test<\/p>\n\n\n\n<pre class=\"wp-block-code\"><code>\/\/ config.js\nexports.config = {\n   directConnect: true,\n\n   \/\/ Capabilities to be passed to the webdriver instance.\n   capabilities: {\n      'browserName': 'chrome'\n   },\n\n   \/\/ Framework to use. Jasmine is recommended.\n   framework: 'jasmine',\n\n   \/\/ Spec patterns are relative to the current working directory when\n   \/\/ protractor is called.\n   specs: &#91;'TestSpecification.js'],<\/code><\/pre>\n\n\n\n<h2>Code Explanation<\/h2>\n\n\n\n<p>The code of above configuration file having three basic parameters, can be explained as follows \u2212<\/p>\n\n\n\n<h3>Capabilities Parameter<\/h3>\n\n\n\n<p>This parameter is used to specify the name of the browser. It can be seen in the following code block of conf.js file \u2212<\/p>\n\n\n\n<pre class=\"wp-block-code\"><code>exports.config = {\n   directConnect: true,\n\n   \/\/ Capabilities to be passed to the webdriver instance.\n   capabilities: {\n      'browserName': 'chrome'\n},<\/code><\/pre>\n\n\n\n<p>As seen above, the name of the browser given here is \u2018chrome\u2019 which is by default browser for Protractor. We can also change the name of the browser.<\/p>\n\n\n\n<h3>Framework Parameter<\/h3>\n\n\n\n<p>This parameter is used to specify the name of the testing framework. It can be seen in the following code block of config.js file \u2212<\/p>\n\n\n\n<pre class=\"wp-block-code\"><code>exports.config = {\n   directConnect: true,\n\n   \/\/ Framework to use. Jasmine is recommended.\n   framework: 'jasmine',<\/code><\/pre>\n\n\n\n<p>Here we are using \u2018jasmine\u2019 test framework.<\/p>\n\n\n\n<h2>Source File Declaration Parameter<\/h2>\n\n\n\n<p>This parameter is used to specify the name of the source file declaration. It can be seen in the following code block of conf.js file \u2212<\/p>\n\n\n\n<pre class=\"wp-block-code\"><code>exports.config = {\n   directConnect: true,\n   \/\/ Spec patterns are relative to the current working \n   directory when protractor is called.\n   specs: &#91;'TsetSpecification.js'],<\/code><\/pre>\n\n\n\n<p>As seen above, the name of the source file declaration given here is&nbsp;<strong>\u2018TestSpecification.js\u2019<\/strong>. It is because, for this example we have created the specification file with name&nbsp;<strong>TestSpecification.js<\/strong>.<\/p>\n\n\n\n<h2>Executing the code<\/h2>\n\n\n\n<p>As we have got basic understanding about the necessary files and their coding for running Protractor, let us try to run the example. We can follow the following steps to execute this example \u2212<\/p>\n\n\n\n<ul><li><strong>Step 1<\/strong>&nbsp;\u2212 First, open command prompt.<\/li><li><strong>Step 2<\/strong>&nbsp;\u2212 Next, we need go to the directory where we have saved our files namely config.js and&nbsp;<strong>TestSpecification.js<\/strong>.<\/li><li><strong>Step 3<\/strong>&nbsp;\u2212 Now, execute the config.js file by running the command Protrcator config.js.<\/li><\/ul>\n\n\n\n<p>The screen shot shown below will explain the above steps for executing the example \u2212<\/p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https:\/\/www.tutorialspoint.com\/protractor\/images\/executing_code.jpg\" alt=\"Executing code\"\/><\/figure>\n\n\n\n<p>It is seen in the screen shot that the test has been passed.<\/p>\n\n\n\n<p>Now, suppose if we are testing non-angular websites and not putting the ignoreSynchronization tag to true then after executing the code we will get the error\u201d Angular could not be found on the page\u201d.<\/p>\n\n\n\n<p>It can be seen in the following screen shot \u2212<\/p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https:\/\/www.tutorialspoint.com\/protractor\/images\/ignore_synchronization.jpg\" alt=\"Ignore Synchronization\"\/><\/figure>\n\n\n\n<h2>Report Generation<\/h2>\n\n\n\n<p>Till now, we have discussed about the necessary files and their coding for running test cases. Protractor is also able to generate the report for test cases. For this purpose, it supports Jasmine. JunitXMLReporter can be used to generate test execution reports automatically.<\/p>\n\n\n\n<p>But before that, we need to install Jasmine reporter with the help of following command \u2212<\/p>\n\n\n\n<pre class=\"wp-block-code\"><code>npm install -g jasmine-reporters\n<\/code><\/pre>\n\n\n\n<p>As you can see, -g option is used while installing Jasmine Reporters, it is because we have installed Protractor globally, with -g option.<\/p>\n\n\n\n<p>After successfully installing jasmine-reporters, we need to add the following code into our previously used config.js file \u2212<\/p>\n\n\n\n<pre class=\"wp-block-code\"><code>onPrepare: function(){ \/\/configure junit xml report\n\n   var jasmineReporters = require('jasmine-reporters');\n   jasmine.getEnv().addReporter(new jasmineReporters.JUnitXmlReporter({\n      consolidateAll: true,\n      filePrefix: 'guitest-xmloutput',\n      savePath: 'test\/reports'\n   }));<\/code><\/pre>\n\n\n\n<p>Now, our new config.js file would be as follows \u2212<\/p>\n\n\n\n<pre class=\"wp-block-code\"><code>\/\/ An example configuration file.\nexports.config = {\n   directConnect: true,\n\n   \/\/ Capabilities to be passed to the webdriver instance.\n   capabilities: {\n      'browserName': 'chrome'\n   },\n\n   \/\/ Framework to use. Jasmine is recommended.\n   framework: 'jasmine',\n\n   \/\/ Spec patterns are relative to the current working directory when\n   \/\/ protractor is called.\n   specs: &#91;'TestSpecification.js'],\n   \/\/framework: \"jasmine2\", \/\/must set it if you use JUnitXmlReporter\n\n   onPrepare: function(){ \/\/configure junit xml report\n\n      var jasmineReporters = require('jasmine-reporters');\n      jasmine.getEnv().addReporter(new jasmineReporters.JUnitXmlReporter({\n         consolidateAll: true,\n         filePrefix: 'guitest-xmloutput',\n         savePath: 'reports'\n      }));\n   },\n};<\/code><\/pre>\n\n\n\n<p>After running the above config file in the same way, we have run previously, it will generate an XML file containing the report under the root directory in&nbsp;<strong>reports<\/strong>&nbsp;folder. If the test got successful, the report will look like below \u2212<\/p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https:\/\/www.tutorialspoint.com\/protractor\/images\/report_generation.jpg\" alt=\"Report Generation\"\/><\/figure>\n\n\n\n<p>But, if the test failed, the report will look as shown below \u2212<\/p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https:\/\/www.tutorialspoint.com\/protractor\/images\/report_generation_failed.jpg\" alt=\"Report Generation failed\"\/><\/figure>\n",
+            "protected": false
+        },
+        "excerpt": {
+            "rendered": "<p>In this chapter, let us understand how to write the first test in Protractor. Files required by Protractor Protractor needs the following two files to run \u2212 Spec or test file It is one of the important files to run Protractor. In this file, we will write our actual test code. The test code is [&hellip;]<\/p>\n",
+            "protected": false
+        },
+        "author": 2,
+        "featured_media": 0,
+        "comment_status": "open",
+        "ping_status": "open",
+        "sticky": false,
+        "template": "",
+        "format": "standard",
+        "meta": [],
+        "categories": [
+            90,
+            118,
+            178
+        ],
+        "tags": [],
+        "_links": {
+            "self": [
+                {
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/posts\/2875"
+                }
+            ],
+            "collection": [
+                {
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/posts"
+                }
+            ],
+            "about": [
+                {
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/types\/post"
+                }
+            ],
+            "author": [
+                {
+                    "embeddable": true,
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/users\/2"
+                }
+            ],
+            "replies": [
+                {
+                    "embeddable": true,
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/comments?post=2875"
+                }
+            ],
+            "version-history": [
+                {
+                    "count": 2,
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/posts\/2875\/revisions"
+                }
+            ],
+            "predecessor-version": [
+                {
+                    "id": 2921,
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/posts\/2875\/revisions\/2921"
+                }
+            ],
+            "wp:attachment": [
+                {
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/media?parent=2875"
+                }
+            ],
+            "wp:term": [
+                {
+                    "taxonomy": "category",
+                    "embeddable": true,
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/categories?post=2875"
+                },
+                {
+                    "taxonomy": "post_tag",
+                    "embeddable": true,
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/tags?post=2875"
+                }
+            ],
+            "curies": [
+                {
+                    "name": "wp",
+                    "href": "https:\/\/api.w.org\/{rel}",
+                    "templated": true
+                }
+            ]
+        }
+    },
+    {
+        "id": 2874,
+        "date": "2020-09-15T11:50:49",
+        "date_gmt": "2020-09-15T11:50:49",
+        "guid": {
+            "rendered": "http:\/\/angular.foobrdigital.com\/?p=2874"
+        },
+        "modified": "2020-12-25T19:04:57",
+        "modified_gmt": "2020-12-25T19:04:57",
+        "slug": "core-apis",
+        "status": "publish",
+        "type": "post",
+        "link": "https:\/\/angular.foobrdigital.com\/core-apis\/",
+        "title": {
+            "rendered": "Core APIS"
+        },
+        "content": {
+            "rendered": "\n<p>This chapter lets you understand various core APIs that are key to the functioning of protractor.<\/p>\n\n\n\n<h2>Importance of Protractor APIs<\/h2>\n\n\n\n<p>Protractor provides us a wide range of APIs which are very important in order to perform the following actions for getting the current state of the website \u2212<\/p>\n\n\n\n<ul><li>Getting the DOM elements of the web page we are going to test.<\/li><li>Interacting with the DOM elements.<\/li><li>Assigning actions to them.<\/li><li>Sharing information to them.<\/li><\/ul>\n\n\n\n<p>To perform the above tasks, it is very important to understand Protractor APIs.<\/p>\n\n\n\n<h2>Various Protractor APIs<\/h2>\n\n\n\n<p>As we know that Protractor is a wrapper around Selenium-WebDriver which is the WebDriver bindings for Node.js. Protractor has the following APIs \u2212<\/p>\n\n\n\n<h3>Browser<\/h3>\n\n\n\n<p>It is a wrapper around an instance of WebDriver which is used to handle browser level commands such as navigation, page-wide information etc. For example, the browser.get method loads a page.<\/p>\n\n\n\n<h3>Element<\/h3>\n\n\n\n<p>It is used to search and interact with DOM element on the page we are testing. For this purpose, it requires one parameter for locating the element.<\/p>\n\n\n\n<h3>Locators (by)<\/h3>\n\n\n\n<p>It is a collection of element locator strategies. The elements, for example, can be found by CSS selector, by ID or by any other attribute they are bound to with ng-model.<\/p>\n\n\n\n<p>Next, we are going to discuss in detail about these APIs and their functions.<\/p>\n\n\n\n<h2>Browser API<\/h2>\n\n\n\n<p>As discussed above, it is a wrapper around an instance of WebDriver for handling browser level commands. It performs various functions as follows \u2212<\/p>\n\n\n\n<h3>Functions and Their Descriptions<\/h3>\n\n\n\n<p>The functions of ProtractorBrowser API are as follows\u2212<\/p>\n\n\n\n<p><strong>browser.angularAppRoot<\/strong><\/p>\n\n\n\n<p>This function of Browser API sets the CSS selector for an element on which we are going to find Angular. Usually, this function is in \u2018body\u2019, but in case if our ng-app, it is on a sub-section of the page; it may be a sub-element also.<\/p>\n\n\n\n<p><strong>browser.waitForAngularEnabled<\/strong><\/p>\n\n\n\n<p>This function of Browser API can be set to true or false. As the name suggests, if this function is set for false then Protractor will not wait for Angular $http and $timeout tasks to complete before interacting with the browser. We can also read the current state without changing it by calling waitForAngularEnabled() without passing a value.<\/p>\n\n\n\n<p><strong>browser.getProcessedConfig<\/strong><\/p>\n\n\n\n<p>With the help of this browser APIs function we can get the processed configuration object, including specification &amp; capabilities, that is currently being run.<\/p>\n\n\n\n<p><strong>browser.forkNewDriverInstance<\/strong><\/p>\n\n\n\n<p>As the name suggests this function will fork another instance of browser to be used in interactive tests. It can be run with control flow enabled and disabled. Example is given below for both the cases \u2212<\/p>\n\n\n\n<p><strong>Example 1<\/strong><\/p>\n\n\n\n<p>Running\u00a0<strong>browser.forkNewDriverInstance()<\/strong>\u00a0with control flow enabled \u2212<\/p>\n\n\n\n<pre class=\"wp-block-code\"><code>var fork = browser.forkNewDriverInstance();\r\nfork.get(\u2018page1\u2019);<\/code><\/pre>\n\n\n\n<p><strong>Example 2<\/strong><\/p>\n\n\n\n<p>Running\u00a0<strong>browser.forkNewDriverInstance()<\/strong>\u00a0with control flow disabled \u2212<\/p>\n\n\n\n<pre class=\"wp-block-code\"><code>var fork = await browser.forkNewDriverInstance().ready;\r\nawait forked.get(\u2018page1\u2019);<\/code><\/pre>\n\n\n\n<p><strong>browser.restart<\/strong><\/p>\n\n\n\n<p>As the name suggests, it will restart the browser by closing browser instance and creating new one. It can also run with control flow enabled and disabled. Example is given below for both the cases \u2212<\/p>\n\n\n\n<p><strong>Example 1<\/strong>\u00a0\u2212 Running\u00a0<strong>browser.restart()<\/strong>\u00a0with control flow enabled \u2212<\/p>\n\n\n\n<pre class=\"wp-block-code\"><code>browser.get(\u2018page1\u2019);\r\nbrowser.restart();\r\nbrowser.get(\u2018page2\u2019);<\/code><\/pre>\n\n\n\n<p><strong>Example 2<\/strong>\u00a0\u2212 Running\u00a0<strong>browser.forkNewDriverInstance()<\/strong>\u00a0with control flow disabled \u2212<\/p>\n\n\n\n<pre class=\"wp-block-code\"><code>await browser.get(\u2018page1\u2019);\r\nawait browser.restart();\r\nawait browser.get(\u2018page2\u2019);<\/code><\/pre>\n\n\n\n<h3>browser.restartSync<\/h3>\n\n\n\n<p>It is similar to browser.restart() function. The only difference is that it returns the new browser instance directly rather than returning a promise resolving to the new browser instance. It can only run when the control flow is enabled.<\/p>\n\n\n\n<p><strong>Example\u00a0<\/strong>\u2212 Running\u00a0<strong>browser.restartSync()<\/strong>\u00a0with control flow enabled \u2212<\/p>\n\n\n\n<pre class=\"wp-block-code\"><code>browser.get(\u2018page1\u2019);\r\nbrowser.restartSync();\r\nbrowser.get(\u2018page2\u2019);<\/code><\/pre>\n\n\n\n<p><strong>browser.useAllAngular2AppRoots<\/strong><\/p>\n\n\n\n<p>As the name suggests, it is compatible with Angular2 only. It will search through all the angular apps available on the page while finding elements or waiting for stability.<\/p>\n\n\n\n<p><strong>browser.waitForAngular<\/strong><\/p>\n\n\n\n<p>This browser API function instructs the WebDriver to wait until Angular has finished rendering and has no outstanding $http or $timeout calls before continuing.<\/p>\n\n\n\n<p><strong>browser.findElement<\/strong><\/p>\n\n\n\n<p>As the name suggests, this browser API function waits for Angular to finish rendering before searching for element.<\/p>\n\n\n\n<p><strong>browser.isElementPresent<\/strong><\/p>\n\n\n\n<p>As the name suggests, this browser API function will test for the for the element to be present on the page or not.<\/p>\n\n\n\n<p><strong>browser.addMockModule<\/strong><\/p>\n\n\n\n<p>It will add a module to load before Angular every time Protractor.get method is called.<\/p>\n\n\n\n<p><strong>Example<\/strong><\/p>\n\n\n\n<pre class=\"wp-block-code\"><code>browser.addMockModule('modName', function() {\r\n   angular.module('modName', &#91;]).value('foo', 'bar');\r\n});<\/code><\/pre>\n\n\n\n<p><strong>browser.clearMockModules<\/strong><\/p>\n\n\n\n<p>unlike browser.addMockModule, it will clear the list of registered mock modules.<\/p>\n\n\n\n<p><strong>browser.removeMockModule<\/strong><\/p>\n\n\n\n<p>As the name suggests, it will remove a register mock modules. Example: browser.removeMockModule(\u2018modName\u2019);<\/p>\n\n\n\n<p><strong>browser.getRegisteredMockModules<\/strong><\/p>\n\n\n\n<p>Opposite to browser.clearMockModule, it will get the list of registered mock modules.<\/p>\n\n\n\n<p><strong>browser.get<\/strong><\/p>\n\n\n\n<p>We can use browser.get() to navigate the browser to a particular web address and load the mock modules for that page before the Angular load.<\/p>\n\n\n\n<p><strong>Example<\/strong><\/p>\n\n\n\n<pre class=\"wp-block-code\"><code>browser.get(url);\r\nbrowser.get('http:\/\/localhost:3000'); \r\n\/\/ This will navigate to the localhost:3000 and will load mock module if needed<\/code><\/pre>\n\n\n\n<p><strong>browser.refresh<\/strong><\/p>\n\n\n\n<p>As the name suggests, this will reload the current page and loads mock modules before Angular.<\/p>\n\n\n\n<p><strong>browser.navigate<\/strong><\/p>\n\n\n\n<p>As the name suggests, it is used to mix navigation methods back into the navigation object so that they are invoked as before. Example: driver.navigate().refresh().<\/p>\n\n\n\n<p><strong>browser.setLocation<\/strong><\/p>\n\n\n\n<p>It is use to browse to another page using in-page navigation.<\/p>\n\n\n\n<p><strong>Example<\/strong><\/p>\n\n\n\n<pre class=\"wp-block-code\"><code>browser.get('url\/ABC');\r\nbrowser.setLocation('DEF');\r\nexpect(browser.getCurrentUrl())\r\n   .toBe('url\/DEF');<\/code><\/pre>\n\n\n\n<p>It will navigate from ABC to DEF page.<\/p>\n\n\n\n<p><strong>browser.debugger<\/strong><\/p>\n\n\n\n<p>As the name suggests, this must be used with protractor debug. This function basically adds a task to the control flow to pause the test and inject helper functions into the browser so that debugging can be done in browser console.<\/p>\n\n\n\n<p><strong>browser.pause<\/strong><\/p>\n\n\n\n<p>It is used for debugging WebDriver tests. We can use&nbsp;<strong>browser.pause()<\/strong>&nbsp;in our test to enter the protractor debugger from that point in the control flow.<\/p>\n\n\n\n<p><strong>Example<\/strong><\/p>\n\n\n\n<pre class=\"wp-block-code\"><code>element(by.id('foo')).click();\r\nbrowser.pause();\r\n\/\/ Execution will stop before the next click action.\r\nelement(by.id('bar')).click();<\/code><\/pre>\n\n\n\n<p><strong>browser.controlFlowEnabled<\/strong><\/p>\n\n\n\n<p>It is used to determine whether the control flow is enabled or not.<\/p>\n",
+            "protected": false
+        },
+        "excerpt": {
+            "rendered": "<p>This chapter lets you understand various core APIs that are key to the functioning of protractor. Importance of Protractor APIs Protractor provides us a wide range of APIs which are very important in order to perform the following actions for getting the current state of the website \u2212 Getting the DOM elements of the web [&hellip;]<\/p>\n",
+            "protected": false
+        },
+        "author": 2,
+        "featured_media": 0,
+        "comment_status": "open",
+        "ping_status": "open",
+        "sticky": false,
+        "template": "",
+        "format": "standard",
+        "meta": [],
+        "categories": [
+            90,
+            118,
+            178
+        ],
+        "tags": [],
+        "_links": {
+            "self": [
+                {
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/posts\/2874"
+                }
+            ],
+            "collection": [
+                {
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/posts"
+                }
+            ],
+            "about": [
+                {
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/types\/post"
+                }
+            ],
+            "author": [
+                {
+                    "embeddable": true,
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/users\/2"
+                }
+            ],
+            "replies": [
+                {
+                    "embeddable": true,
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/comments?post=2874"
+                }
+            ],
+            "version-history": [
+                {
+                    "count": 1,
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/posts\/2874\/revisions"
+                }
+            ],
+            "predecessor-version": [
+                {
+                    "id": 2885,
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/posts\/2874\/revisions\/2885"
+                }
+            ],
+            "wp:attachment": [
+                {
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/media?parent=2874"
+                }
+            ],
+            "wp:term": [
+                {
+                    "taxonomy": "category",
+                    "embeddable": true,
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/categories?post=2874"
+                },
+                {
+                    "taxonomy": "post_tag",
+                    "embeddable": true,
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/tags?post=2874"
+                }
+            ],
+            "curies": [
+                {
+                    "name": "wp",
+                    "href": "https:\/\/api.w.org\/{rel}",
+                    "templated": true
+                }
+            ]
+        }
+    },
+    {
+        "id": 2873,
+        "date": "2020-09-16T05:55:58",
+        "date_gmt": "2020-09-16T05:55:58",
+        "guid": {
+            "rendered": "http:\/\/angular.foobrdigital.com\/?p=2873"
+        },
+        "modified": "2020-12-25T19:04:57",
+        "modified_gmt": "2020-12-25T19:04:57",
+        "slug": "core-apiscontd",
+        "status": "publish",
+        "type": "post",
+        "link": "https:\/\/angular.foobrdigital.com\/core-apiscontd\/",
+        "title": {
+            "rendered": "Core APIS(CONTD\u2026)"
+        },
+        "content": {
+            "rendered": "\n<p>In this chapter, let us learn some more core APIs of Protractor.<\/p>\n\n\n\n<h2>Elements API<\/h2>\n\n\n\n<p>Element is one of the global functions exposed by protractor. This function takes a locater and returns the following \u2212<\/p>\n\n\n\n<ul><li>ElementFinder, that finds a single element based on the locator.<\/li><li>ElementArrayFinder, that finds an array of elements based on the locator.<\/li><\/ul>\n\n\n\n<p>Both the above support chaining methods as discussed below.<\/p>\n\n\n\n<h2>Chaining functions of ElementArrayFinder and their descriptions<\/h2>\n\n\n\n<p>The Followings are the functions of ElementArrayFinder \u2212<\/p>\n\n\n\n<p><strong>element.all(locator).clone<\/strong><\/p>\n\n\n\n<p>As the name suggests, this function will create a shallow copy of the array of the elements i.e. ElementArrayFinder.<\/p>\n\n\n\n<p><strong>element.all(locator).all(locator)<\/strong><\/p>\n\n\n\n<p>This function basically returns a new ElementArrayFinder which could be empty or contain the children elements. It can be used for selecting multiple elements as an array as follows<\/p>\n\n\n\n<p><strong>Example<\/strong><\/p>\n\n\n\n<pre class=\"wp-block-code\"><code>element.all(locator).all(locator)\r\nelementArr.all(by.css(\u2018.childselector\u2019));\r\n\/\/ it will return another ElementFindArray as child element based on child locator.<\/code><\/pre>\n\n\n\n<p><strong>element.all(locator).filter(filterFn)<\/strong><\/p>\n\n\n\n<p>As the name suggests, after applying filter function to each element within ElementArrayFinder, it returns a new ElementArrayFinder with all elements that pass the filter function. It is basically having two arguments, first is ElementFinder and second is index. It can also be used in page objects.<\/p>\n\n\n\n<p><strong>Example<\/strong><\/p>\n\n\n\n<p><strong>View<\/strong><\/p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;ul class = \"items\">\r\n   &lt;li class = \"one\">First&lt;\/li>\r\n   &lt;li class = \"two\">Second&lt;\/li>\r\n   &lt;li class = \"three\">Third&lt;\/li>\r\n&lt;\/ul><\/code><\/pre>\n\n\n\n<p><strong>Code<\/strong><\/p>\n\n\n\n<pre class=\"wp-block-code\"><code>element.all(by.css('.items li')).filter(function(elem, index) {\r\n   return elem.getText().then(function(text) {\r\n      return text === 'Third';\r\n   });\r\n}).first().click();<\/code><\/pre>\n\n\n\n<p><strong>element.all(locator).get(index)<\/strong><\/p>\n\n\n\n<p>With the help of this, we can get an element within the ElementArrayFinder by index. Note that the index starts at 0 and negative indices are wrapped.<\/p>\n\n\n\n<p><strong>Example<\/strong><\/p>\n\n\n\n<p><strong>View<\/strong><\/p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;ul class = \"items\">\r\n   &lt;li>First&lt;\/li>\r\n   &lt;li>Second&lt;\/li>\r\n   &lt;li>Third&lt;\/li>\r\n&lt;\/ul><\/code><\/pre>\n\n\n\n<p><strong>Code<\/strong><\/p>\n\n\n\n<pre class=\"wp-block-code\"><code>let list = element.all(by.css('.items li'));\r\nexpect(list.get(0).getText()).toBe('First');\r\nexpect(list.get(1).getText()).toBe('Second');<\/code><\/pre>\n\n\n\n<p><strong>element.all(locator).first()<\/strong><\/p>\n\n\n\n<p>As the name suggests, this will get the first element for ElementArrayFinder. It will not retrieve the underlying element.<\/p>\n\n\n\n<p><strong>Example<\/strong><\/p>\n\n\n\n<p><strong>View<\/strong><\/p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;ul class = \"items\">\r\n   &lt;li>First&lt;\/li>\r\n   &lt;li>Second&lt;\/li>\r\n   &lt;li>Third&lt;\/li>\r\n&lt;\/ul><\/code><\/pre>\n\n\n\n<p><strong>Code<\/strong><\/p>\n\n\n\n<pre class=\"wp-block-code\"><code>let first = element.all(by.css('.items li')).first();\r\nexpect(first.getText()).toBe('First');<\/code><\/pre>\n\n\n\n<p><strong>element.all(locator).last()<\/strong><\/p>\n\n\n\n<p>As name suggest, this will get the last element for ElementArrayFinder. It will not retrieve the underlying element.<\/p>\n\n\n\n<p><strong>Example<\/strong><\/p>\n\n\n\n<p><strong>View<\/strong><\/p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;ul class = \"items\">\r\n   &lt;li>First&lt;\/li>\r\n   &lt;li>Second&lt;\/li>\r\n   &lt;li>Third&lt;\/li>\r\n&lt;\/ul><\/code><\/pre>\n\n\n\n<p><strong>Code<\/strong><\/p>\n\n\n\n<pre class=\"wp-block-code\"><code>let first = element.all(by.css('.items li')).last();\r\nexpect(last.getText()).toBe('Third');<\/code><\/pre>\n\n\n\n<p><strong>element.all(locator).all(selector)<\/strong><\/p>\n\n\n\n<p>It is used to find an array of elements within a parent when calls to $$ may be chained.<\/p>\n\n\n\n<p><strong>Example<\/strong><\/p>\n\n\n\n<p><strong>View<\/strong><\/p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;div class = \"parent\">\r\n   &lt;ul>\r\n      &lt;li class = \"one\">First&lt;\/li>\r\n      &lt;li class = \"two\">Second&lt;\/li>\r\n      &lt;li class = \"three\">Third&lt;\/li>\r\n   &lt;\/ul>\r\n&lt;\/div><\/code><\/pre>\n\n\n\n<p><strong>Code<\/strong><\/p>\n\n\n\n<pre class=\"wp-block-code\"><code>let items = element(by.css('.parent')).$$('li');<\/code><\/pre>\n\n\n\n<p><strong>element.all(locator).count()<\/strong><\/p>\n\n\n\n<p>As the name suggests, this will count the number of elements represented by ElementArrayFinder. It will not retrieve the underlying element.<\/p>\n\n\n\n<p><strong>Example<\/strong><\/p>\n\n\n\n<p><strong>View<\/strong><\/p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;ul class = \"items\">\r\n   &lt;li>First&lt;\/li>\r\n   &lt;li>Second&lt;\/li>\r\n   &lt;li>Third&lt;\/li>\r\n&lt;\/ul><\/code><\/pre>\n\n\n\n<p><strong>Code<\/strong><\/p>\n\n\n\n<pre class=\"wp-block-code\"><code>let list = element.all(by.css('.items li'));\r\nexpect(list.count()).toBe(3);<\/code><\/pre>\n\n\n\n<p><strong>element.all(locator).isPresent()<\/strong><\/p>\n\n\n\n<p>It will match the elements with the finder. It can return true or false. True, if there are any elements present that match the finder and False otherwise.<\/p>\n\n\n\n<p><strong>Example<\/strong><\/p>\n\n\n\n<pre class=\"wp-block-code\"><code>expect($('.item').isPresent()).toBeTruthy();<\/code><\/pre>\n\n\n\n<p><strong>element.all(locator).locator<\/strong><\/p>\n\n\n\n<p>As the name suggests, it will return the most relevant locator.<\/p>\n\n\n\n<p><strong>Example<\/strong><\/p>\n\n\n\n<pre class=\"wp-block-code\"><code>$('#ID1').locator();\r\n\/\/ returns by.css('#ID1')\r\n$('#ID1').$('#ID2').locator();\r\n\/\/ returns by.css('#ID2')\r\n$$('#ID1').filter(filterFn).get(0).click().locator();\r\n\/\/ returns by.css('#ID1')<\/code><\/pre>\n\n\n\n<p><strong>element.all(locator).then(thenFunction)<\/strong><\/p>\n\n\n\n<p>It will retrieve the elements represented by the ElementArrayFinder.<\/p>\n\n\n\n<p><strong>Example<\/strong><\/p>\n\n\n\n<p><strong>View<\/strong><\/p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;ul class = \"items\">\r\n   &lt;li>First&lt;\/li>\r\n   &lt;li>Second&lt;\/li>\r\n   &lt;li>Third&lt;\/li>\r\n&lt;\/ul><\/code><\/pre>\n\n\n\n<p><strong>Code<\/strong><\/p>\n\n\n\n<pre class=\"wp-block-code\"><code>element.all(by.css('.items li')).then(function(arr) {\r\n   expect(arr.length).toEqual(3);\r\n});<\/code><\/pre>\n\n\n\n<p><strong>element.all(locator).each(eachFunction)<\/strong><\/p>\n\n\n\n<p>As the name suggests, it will call the input function on each ElementFinder represented by the ElementArrayFinder.<\/p>\n\n\n\n<p><strong>Example<\/strong><\/p>\n\n\n\n<p><strong>View<\/strong><\/p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;ul class = \"items\">\r\n   &lt;li>First&lt;\/li>\r\n   &lt;li>Second&lt;\/li>\r\n   &lt;li>Third&lt;\/li>\r\n&lt;\/ul><\/code><\/pre>\n\n\n\n<p><strong>Code<\/strong><\/p>\n\n\n\n<pre class=\"wp-block-code\"><code>element.all(by.css('.items li')).each(function(element, index) {\r\n   \/\/ It will print First 0, Second 1 and Third 2.\r\n   element.getText().then(function (text) {\r\n      console.log(index, text);\r\n   });\r\n});<\/code><\/pre>\n\n\n\n<p><strong>element.all(locator).map(mapFunction)<\/strong><\/p>\n\n\n\n<p>As name suggest, it will apply a map function on each element within the ElementArrayFinder. It is having two arguments. First would be the ElementFinder and second would be the index.<\/p>\n\n\n\n<p><strong>Example<\/strong><\/p>\n\n\n\n<p><strong>View<\/strong><\/p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;ul class = \"items\">\r\n   &lt;li>First&lt;\/li>\r\n   &lt;li>Second&lt;\/li>\r\n   &lt;li>Third&lt;\/li>\r\n&lt;\/ul><\/code><\/pre>\n\n\n\n<p><strong>Code<\/strong><\/p>\n\n\n\n<pre class=\"wp-block-code\"><code>let items = element.all(by.css('.items li')).map(function(elm, index) {\r\n   return {\r\n      index: index,\r\n      text: elm.getText(),\r\n      class: elm.getAttribute('class')\r\n   };\r\n});\r\nexpect(items).toEqual(&#91;\r\n   {index: 0, text: 'First', class: 'one'},\r\n   {index: 1, text: 'Second', class: 'two'},\r\n   {index: 2, text: 'Third', class: 'three'}\r\n]);<\/code><\/pre>\n\n\n\n<p><strong>element.all(locator).reduce(reduceFn)<\/strong><\/p>\n\n\n\n<p>As the name suggests, it will apply a reduce function against an accumulator and every element found using the locator. This function will reduce every element into a single value.<\/p>\n\n\n\n<p><strong>Example<\/strong><\/p>\n\n\n\n<p><strong>View<\/strong><\/p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;ul class = \"items\">\r\n   &lt;li>First&lt;\/li>\r\n   &lt;li>Second&lt;\/li>\r\n   &lt;li>Third&lt;\/li>\r\n&lt;\/ul><\/code><\/pre>\n\n\n\n<p><strong>Code<\/strong><\/p>\n\n\n\n<pre class=\"wp-block-code\"><code>let value = element.all(by.css('.items li')).reduce(function(acc, elem) {\r\n   return elem.getText().then(function(text) {\r\n      return acc + text + ' ';\r\n   });\r\n}, '');\r\n\r\nexpect(value).toEqual('First Second Third ');<\/code><\/pre>\n\n\n\n<p><strong>element.all(locator).evaluate<\/strong><\/p>\n\n\n\n<p>As the name suggests, it will evaluate the input whether it is in the scope of the current underlying elements or not.<\/p>\n\n\n\n<p><strong>Example<\/strong><\/p>\n\n\n\n<p><strong>View<\/strong><\/p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;span class = \"foo\">{{letiableInScope}}&lt;\/span><\/code><\/pre>\n\n\n\n<p><strong>Code<\/strong><\/p>\n\n\n\n<pre class=\"wp-block-code\"><code>let value = \r\nelement.all(by.css('.foo')).evaluate('letiableInScope');<\/code><\/pre>\n\n\n\n<p><strong>element.all(locator).allowAnimations<\/strong><\/p>\n\n\n\n<p>As name suggest, it will determine whether the animation is allowed on the current underlying elements or not.<\/p>\n\n\n\n<p><strong>Example<\/strong><\/p>\n\n\n\n<pre class=\"wp-block-code\"><code>element(by.css('body')).allowAnimations(false);<\/code><\/pre>\n\n\n\n<h2>Chaining functions of ElementFinder and their descriptions<\/h2>\n\n\n\n<p>Chaining functions of ElementFinder and their descriptions \u2212<\/p>\n\n\n\n<p><strong>element(locator).clone<\/strong><\/p>\n\n\n\n<p>As the name suggests, this function will create a shallow copy of the ElementFinder.<\/p>\n\n\n\n<p><strong>element(locator).getWebElement()<\/strong><\/p>\n\n\n\n<p>It will return the WebElement represented by this ElementFinder and a WebDriver error will be thrown if the element does not exist.<\/p>\n\n\n\n<p><strong>Example<\/strong><\/p>\n\n\n\n<p><strong>View<\/strong><\/p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;div class=\"parent\">\r\n   some text\r\n&lt;\/div><\/code><\/pre>\n\n\n\n<p><strong>Code<\/strong><\/p>\n\n\n\n<pre class=\"wp-block-code\"><code>\/\/ All the four following expressions are equivalent.\r\n$('.parent').getWebElement();\r\nelement(by.css('.parent')).getWebElement();\r\nbrowser.driver.findElement(by.css('.parent'));\r\nbrowser.findElement(by.css('.parent'));<\/code><\/pre>\n\n\n\n<p><strong>element(locator).all(locator)<\/strong><\/p>\n\n\n\n<p>It will find an array of elements within a parent.<\/p>\n\n\n\n<p><strong>Example<\/strong><\/p>\n\n\n\n<p><strong>View<\/strong><\/p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;div class = \"parent\">\r\n   &lt;ul>\r\n      &lt;li class = \"one\">First&lt;\/li>\r\n      &lt;li class = \"two\">Second&lt;\/li>\r\n      &lt;li class = \"three\">Third&lt;\/li>\r\n   &lt;\/ul>\r\n&lt;\/div><\/code><\/pre>\n\n\n\n<p><strong>Code<\/strong><\/p>\n\n\n\n<pre class=\"wp-block-code\"><code>let items = element(by.css('.parent')).all(by.tagName('li'));<\/code><\/pre>\n\n\n\n<p><strong>element(locator).element(locator)<\/strong><\/p>\n\n\n\n<p>It will find elements within a parent.<\/p>\n\n\n\n<p><strong>Example<\/strong><\/p>\n\n\n\n<p><strong>View<\/strong><\/p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;div class = \"parent\">\r\n   &lt;div class = \"child\">\r\n      Child text\r\n      &lt;div>{{person.phone}}&lt;\/div>\r\n   &lt;\/div>\r\n&lt;\/div><\/code><\/pre>\n\n\n\n<p><strong>Code<\/strong><\/p>\n\n\n\n<pre class=\"wp-block-code\"><code>\/\/ Calls Chain 2 element.\r\nlet child = element(by.css('.parent')).\r\n   element(by.css('.child'));\r\nexpect(child.getText()).toBe('Child text\\n981-000-568');\r\n\r\n\/\/ Calls Chain 3 element.\r\nlet triple = element(by.css('.parent')).\r\n   element(by.css('.child')).\r\n   element(by.binding('person.phone'));\r\nexpect(triple.getText()).toBe('981-000-568');<\/code><\/pre>\n\n\n\n<p><strong>element(locator).all(selector)<\/strong><\/p>\n\n\n\n<p>It will find an array of elements within a parent when calls to $$ may be chained.<\/p>\n\n\n\n<p><strong>Example<\/strong><\/p>\n\n\n\n<p><strong>View<\/strong><\/p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;div class = \"parent\">\r\n   &lt;ul>\r\n      &lt;li class = \"one\">First&lt;\/li>\r\n      &lt;li class = \"two\">Second&lt;\/li>\r\n      &lt;li class = \"three\">Third&lt;\/li>\r\n   &lt;\/ul>\r\n&lt;\/div><\/code><\/pre>\n\n\n\n<p><strong>Code<\/strong><\/p>\n\n\n\n<pre class=\"wp-block-code\"><code>let items = element(by.css('.parent')).$$('li'));<\/code><\/pre>\n\n\n\n<p><strong>element(locator).$(locator)<\/strong><\/p>\n\n\n\n<p>It will find elements within a parent when calls to $ may be chained.<\/p>\n\n\n\n<p><strong>Example<\/strong><\/p>\n\n\n\n<p><strong>View<\/strong><\/p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;div class = \"parent\">\r\n   &lt;div class = \"child\">\r\n      Child text\r\n      &lt;div>{{person.phone}}&lt;\/div>\r\n  &lt;\/div>\r\n&lt;\/div><\/code><\/pre>\n\n\n\n<p><strong>Code<\/strong><\/p>\n\n\n\n<pre class=\"wp-block-code\"><code>\/\/ Calls Chain 2 element.\r\nlet child = element(by.css('.parent')).\r\n   $('.child'));\r\nexpect(child.getText()).toBe('Child text\\n981-000-568');\r\n\r\n\/\/ Calls Chain 3 element.\r\nlet triple = element(by.css('.parent')).\r\n   $('.child')).\r\n   element(by.binding('person.phone'));\r\nexpect(triple.getText()).toBe('981-000-568');<\/code><\/pre>\n\n\n\n<p><strong>element(locator).isPresent()<\/strong><\/p>\n\n\n\n<p>It will determine whether the element is presented on page or not.<\/p>\n\n\n\n<p><strong>Example<\/strong><\/p>\n\n\n\n<p><strong>View<\/strong><\/p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;span>{{person.name}}&lt;\/span><\/code><\/pre>\n\n\n\n<p><strong>Code<\/strong><\/p>\n\n\n\n<pre class=\"wp-block-code\"><code>expect(element(by.binding('person.name')).isPresent()).toBe(true);\r\n\/\/ will check for the existence of element\r\n\r\nexpect(element(by.binding('notPresent')).isPresent()).toBe(false); \r\n\/\/ will check for the non-existence of element<\/code><\/pre>\n\n\n\n<p><strong>element(locator).isElementPresent()<\/strong><\/p>\n\n\n\n<p>It is same as element(locator).isPresent(). The only difference is that it will check whether the element identified by sublocator is present rather than the current element finder.<\/p>\n\n\n\n<p><strong>element.all(locator).evaluate<\/strong><\/p>\n\n\n\n<p>As the name suggests, it will evaluate the input whether it is on the scope of the current underlying elements or not.<\/p>\n\n\n\n<p><strong>Example<\/strong><\/p>\n\n\n\n<p><strong>View<\/strong><\/p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;span id = \"foo\">{{letiableInScope}}&lt;\/span>\r\n<\/code><\/pre>\n\n\n\n<p><strong>Code<\/strong><\/p>\n\n\n\n<pre class=\"wp-block-code\"><code>let value = element(by.id('.foo')).evaluate('letiableInScope');<\/code><\/pre>\n\n\n\n<p><strong>element(locator).allowAnimations<\/strong><\/p>\n\n\n\n<p>As the name suggests, it will determine whether the animation is allowed on the current underlying elements or not.<\/p>\n\n\n\n<p><strong>Example<\/strong><\/p>\n\n\n\n<pre class=\"wp-block-code\"><code>element(by.css('body')).allowAnimations(false);\r\n<\/code><\/pre>\n\n\n\n<p><strong>element(locator).equals<\/strong><\/p>\n\n\n\n<p>As the name suggests, it will compare an element for equality.<\/p>\n\n\n\n<h2>Locators(by) API<\/h2>\n\n\n\n<p>It is basically a collection of element locator strategies that provides ways of finding elements in Angular applications by binding, model etc.<\/p>\n\n\n\n<p><strong>Functions and their descriptions<\/strong><\/p>\n\n\n\n<p>The functions of ProtractorLocators API are as follows \u2212<\/p>\n\n\n\n<p><strong>by.addLocator(locatorName,fuctionOrScript)<\/strong><\/p>\n\n\n\n<p>It will add a locator to this instance of ProtrcatorBy which further can be used with element(by.locatorName(args)).<\/p>\n\n\n\n<p><strong>Example<\/strong><\/p>\n\n\n\n<p><strong>View<\/strong><\/p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;button ng-click = \"doAddition()\">Go!&lt;\/button><\/code><\/pre>\n\n\n\n<p><strong>Code<\/strong><\/p>\n\n\n\n<pre class=\"wp-block-code\"><code>\/\/ Adding the custom locator.\nby.addLocator('buttonTextSimple', function(buttonText, opt_parentElement, opt_rootSelector) {\n   var using = opt_parentElement || document,\n   buttons = using.querySelectorAll('button');\n   return Array.prototype.filter.call(buttons, function(button) {\n      return button.textContent === buttonText;\n   });\n});\nelement(by.buttonTextSimple('Go!')).click();\/\/ Using the custom locator.<\/code><\/pre>\n\n\n\n<p><strong>by.binding<\/strong><\/p>\n\n\n\n<p>As the name suggests, it will find an element by text binding. A partial match will be done so that any elements bound to the variables containing the input string will be returned.<\/p>\n\n\n\n<p><strong>Example<\/strong><\/p>\n\n\n\n<p><strong>View<\/strong><\/p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;span>{{person.name}}&lt;\/span>\n&lt;span ng-bind = \"person.email\">&lt;\/span><\/code><\/pre>\n\n\n\n<p><strong>Code<\/strong><\/p>\n\n\n\n<pre class=\"wp-block-code\"><code>var span1 = element(by.binding('person.name'));\nexpect(span1.getText()).toBe('Foo');\n\nvar span2 = element(by.binding('person.email'));\nexpect(span2.getText()).toBe('foo@bar.com');<\/code><\/pre>\n\n\n\n<p><strong>by.exactbinding<\/strong><\/p>\n\n\n\n<p>As the name suggests, it will find an element by exact binding.<\/p>\n\n\n\n<p><strong>Example<\/strong><\/p>\n\n\n\n<p><strong>View<\/strong><\/p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;spangt;{{ person.name }}&lt;\/spangt;\n&lt;span ng-bind = \"person-email\"gt;&lt;\/spangt;\n&lt;spangt;{{person_phone|uppercase}}&lt;\/span><\/code><\/pre>\n\n\n\n<p><strong>Code<\/strong><\/p>\n\n\n\n<pre class=\"wp-block-code\"><code>expect(element(by.exactBinding('person.name')).isPresent()).toBe(true);\nexpect(element(by.exactBinding('person-email')).isPresent()).toBe(true);\nexpect(element(by.exactBinding('person')).isPresent()).toBe(false);\nexpect(element(by.exactBinding('person_phone')).isPresent()).toBe(true);\nexpect(element(by.exactBinding('person_phone|uppercase')).isPresent()).toBe(true);\nexpect(element(by.exactBinding('phone')).isPresent()).toBe(false);<\/code><\/pre>\n\n\n\n<p><strong>by.model(modelName)<\/strong><\/p>\n\n\n\n<p>As the name suggests, it will find an element by ng-model expression.<\/p>\n\n\n\n<p><strong>Example<\/strong><\/p>\n\n\n\n<p><strong>View<\/strong><\/p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;input type = \"text\" ng-model = \"person.name\"><\/code><\/pre>\n\n\n\n<p><strong>Code<\/strong><\/p>\n\n\n\n<pre class=\"wp-block-code\"><code>var input = element(by.model('person.name'));\ninput.sendKeys('123');\nexpect(input.getAttribute('value')).toBe('Foo123');<\/code><\/pre>\n\n\n\n<p><strong>by.buttonText<\/strong><\/p>\n\n\n\n<p>As the name suggests, it will find a button by text.<\/p>\n\n\n\n<p><strong>Example<\/strong><\/p>\n\n\n\n<p><strong>View<\/strong><\/p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;button>Save&lt;\/button>\n<\/code><\/pre>\n\n\n\n<p><strong>Code<\/strong><\/p>\n\n\n\n<pre class=\"wp-block-code\"><code>element(by.buttonText('Save'));<\/code><\/pre>\n\n\n\n<p><strong>by.partialButtonText<\/strong><\/p>\n\n\n\n<p>As the name suggests, it will find a button by partial text.<\/p>\n\n\n\n<p><strong>Example<\/strong><\/p>\n\n\n\n<p><strong>View<\/strong><\/p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;button>Save my file&lt;\/button><\/code><\/pre>\n\n\n\n<p><strong>Code<\/strong><\/p>\n\n\n\n<pre class=\"wp-block-code\"><code>element(by.partialButtonText('Save'));<\/code><\/pre>\n\n\n\n<p><strong>by.repeater<\/strong><\/p>\n\n\n\n<p>As the name suggests, it will find an element inside an ng-repeat.<\/p>\n\n\n\n<p><strong>Example<\/strong><\/p>\n\n\n\n<p><strong>View<\/strong><\/p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;div ng-repeat = \"cat in pets\">\n   &lt;span>{{cat.name}}&lt;\/span>\n   &lt;span>{{cat.age}}&lt;\/span>\n&lt;&lt;\/div>\n&lt;div class = \"book-img\" ng-repeat-start=\"book in library\">\n   &lt;span>{{$index}}&lt;\/span>\n&lt;\/div>\n&lt;div class = \"book-info\" ng-repeat-end>\n   &lt;h4>{{book.name}}&lt;\/h4>\n   &lt;p>{{book.blurb}}&lt;\/p>\n&lt;\/div><\/code><\/pre>\n\n\n\n<p><strong>Code<\/strong><\/p>\n\n\n\n<pre class=\"wp-block-code\"><code>var secondCat = element(by.repeater('cat in \npets').row(1)); \/\/ It will return the DIV for the second cat.\nvar firstCatName = element(by.repeater('cat in pets').\n   row(0).column('cat.name')); \/\/ It will return the SPAN for the first cat's name.<\/code><\/pre>\n\n\n\n<p><strong>by.exactRepeater<\/strong><\/p>\n\n\n\n<p>As the name suggests, it will find an element by exact repeater.<\/p>\n\n\n\n<p><strong>Example<\/strong><\/p>\n\n\n\n<p><strong>View<\/strong><\/p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;li ng-repeat = \"person in peopleWithRedHair\">&lt;\/li>\n&lt;li ng-repeat = \"car in cars | orderBy:year\">&lt;\/li><\/code><\/pre>\n\n\n\n<p><strong>Code<\/strong><\/p>\n\n\n\n<pre class=\"wp-block-code\"><code>expect(element(by.exactRepeater('person in\npeopleWithRedHair')).isPresent())\n   .toBe(true);\nexpect(element(by.exactRepeater('person in\npeople')).isPresent()).toBe(false);\nexpect(element(by.exactRepeater('car in cars')).isPresent()).toBe(true);<\/code><\/pre>\n\n\n\n<p><strong>by.cssContainingText<\/strong><\/p>\n\n\n\n<p>As name suggest, it will find the elements, containing exact string, by CSS<\/p>\n\n\n\n<p><strong>Example<\/strong><\/p>\n\n\n\n<p><strong>View<\/strong><\/p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;ul>\n&lt;li class = \"pet\">Dog&lt;\/li>\n&lt;li class = \"pet\">Cat&lt;\/li>\n&lt;\/ul><\/code><\/pre>\n\n\n\n<p><strong>Code<\/strong><\/p>\n\n\n\n<pre class=\"wp-block-code\"><code>var dog = element(by.cssContainingText('.pet', 'Dog')); \n\/\/ It will return the li for the dog, but not for the cat.<\/code><\/pre>\n\n\n\n<p><strong>by.options(optionsDescriptor)<\/strong><\/p>\n\n\n\n<p>As the name suggests, it will find an element by ng-options expression.<\/p>\n\n\n\n<p><strong>Example<\/strong><\/p>\n\n\n\n<p><strong>View<\/strong><\/p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;select ng-model = \"color\" ng-options = \"c for c in colors\">\n   &lt;option value = \"0\" selected = \"selected\">red&lt;\/option>\n   &lt;option value = \"1\">green&lt;\/option>\n&lt;\/select><\/code><\/pre>\n\n\n\n<p><strong>Code<\/strong><\/p>\n\n\n\n<pre class=\"wp-block-code\"><code>var allOptions = element.all(by.options('c for c in colors'));\nexpect(allOptions.count()).toEqual(2);\nvar firstOption = allOptions.first();\nexpect(firstOption.getText()).toEqual('red');<\/code><\/pre>\n\n\n\n<p><strong>by.deepCSS(selector)<\/strong><\/p>\n\n\n\n<p>As name suggest, it will find an element by CSS selector within the shadow DOM.<\/p>\n\n\n\n<p><strong>Example<\/strong><\/p>\n\n\n\n<p><strong>View<\/strong><\/p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;div>\n   &lt;span id = \"outerspan\">\n      &lt;\"shadow tree\">\n         &lt;span id = \"span1\">&lt;\/span>\n      &lt;\"shadow tree\">\n      &lt;span id = \"span2\">&lt;\/span>\n   &lt;\/>\n   &lt;\/>\n&lt;\/div><\/code><\/pre>\n\n\n\n<p><strong>Code<\/strong><\/p>\n\n\n\n<pre class=\"wp-block-code\"><code>var spans = element.all(by.deepCss('span'));\nexpect(spans.count()).toEqual(3);<\/code><\/pre>\n",
+            "protected": false
+        },
+        "excerpt": {
+            "rendered": "<p>In this chapter, let us learn some more core APIs of Protractor. Elements API Element is one of the global functions exposed by protractor. This function takes a locater and returns the following \u2212 ElementFinder, that finds a single element based on the locator. ElementArrayFinder, that finds an array of elements based on the locator. [&hellip;]<\/p>\n",
+            "protected": false
+        },
+        "author": 2,
+        "featured_media": 0,
+        "comment_status": "open",
+        "ping_status": "open",
+        "sticky": false,
+        "template": "",
+        "format": "standard",
+        "meta": [],
+        "categories": [
+            90,
+            118,
+            178
+        ],
+        "tags": [],
+        "_links": {
+            "self": [
+                {
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/posts\/2873"
+                }
+            ],
+            "collection": [
+                {
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/posts"
+                }
+            ],
+            "about": [
+                {
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/types\/post"
+                }
+            ],
+            "author": [
+                {
+                    "embeddable": true,
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/users\/2"
+                }
+            ],
+            "replies": [
+                {
+                    "embeddable": true,
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/comments?post=2873"
+                }
+            ],
+            "version-history": [
+                {
+                    "count": 2,
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/posts\/2873\/revisions"
+                }
+            ],
+            "predecessor-version": [
+                {
+                    "id": 2913,
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/posts\/2873\/revisions\/2913"
+                }
+            ],
+            "wp:attachment": [
+                {
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/media?parent=2873"
+                }
+            ],
+            "wp:term": [
+                {
+                    "taxonomy": "category",
+                    "embeddable": true,
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/categories?post=2873"
+                },
+                {
+                    "taxonomy": "post_tag",
+                    "embeddable": true,
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/tags?post=2873"
+                }
+            ],
+            "curies": [
+                {
+                    "name": "wp",
+                    "href": "https:\/\/api.w.org\/{rel}",
+                    "templated": true
+                }
+            ]
+        }
+    },
+    {
+        "id": 2917,
+        "date": "2020-09-16T05:59:32",
+        "date_gmt": "2020-09-16T05:59:32",
+        "guid": {
+            "rendered": "http:\/\/angular.foobrdigital.com\/?p=2917"
+        },
+        "modified": "2020-12-25T19:04:57",
+        "modified_gmt": "2020-12-25T19:04:57",
+        "slug": "objects",
+        "status": "publish",
+        "type": "post",
+        "link": "https:\/\/angular.foobrdigital.com\/objects\/",
+        "title": {
+            "rendered": "Objects"
+        },
+        "content": {
+            "rendered": "\n<h2>What are Page Objects?<\/h2>\n\n\n\n<p>Page object is a design pattern which has become popular for writing e2e tests in order to enhance the test maintenance and reducing the code duplication. It may be defined as an object-oriented class serving as an interface to a page of your AUT (application under test). But, before diving deep into page objects, we must have to understand the challenges with automated UI testing and the ways to handle them.<\/p>\n\n\n\n<h2>Challenges with automated UI testing<\/h2>\n\n\n\n<p>Followings are some common challenges with automates UI testing \u2212<\/p>\n\n\n\n<h3>UI Changes<\/h3>\n\n\n\n<p>The very common issues while working with UI testing is the changes happens in UI. For example, it happens most of the time that buttons or textboxes etc. usually got change and creates issues for UI testing.<\/p>\n\n\n\n<h3>Lack of DSL(Domain Specific Language) support<\/h3>\n\n\n\n<p>Another issue with UI testing is the lack of DSL support. With this issue, it becomes very hard to understand what is being tested.<\/p>\n\n\n\n<h3>Lots of repetition\/Code duplication<\/h3>\n\n\n\n<p>The next common problem in UI testing is that there is lots of repetition or code duplication. It can be understood with the help of following lines of code \u2212<\/p>\n\n\n\n<pre class=\"wp-block-code\"><code>element(by.model(\u2018event.name\u2019)).sendKeys(\u2018An Event\u2019);\r\nelement(by.model(\u2018event.name\u2019)).sendKeys(\u2018Module 3\u2019);\r\nelement(by.model(\u2018event.name\u2019));<\/code><\/pre>\n\n\n\n<h3>Tough maintenance<\/h3>\n\n\n\n<p>Due to the above challenges, it becomes headache for maintenance. It is because we have to find all the instances, replace with the new name, selector &amp; other code. We also need to spend lots of time to keep tests in line with refactoring.<\/p>\n\n\n\n<h3>Broken tests<\/h3>\n\n\n\n<p>Another challenge in UI testing is the happening of lots of failures in tests.<\/p>\n\n\n\n<h2>Ways to Handle Challenges<\/h2>\n\n\n\n<p>We have seen some common challenges of UI testing. Some of the ways to handle such challenges are as follows \u2212<\/p>\n\n\n\n<h3>Updating References Manually<\/h3>\n\n\n\n<p>The very first option for handling the above challenges is to update the references manually. The problem with this option is that we must do the manual change in the code as well as our tests. This can be done when you have one or two tests files but what if you have hundreds of tests files in a project?<\/p>\n\n\n\n<h3>Using Page Objects<\/h3>\n\n\n\n<p>Another option for handling above challenges is to use page objects. A page object is basically a plain JavaScript that encapsulates the properties of an Angular template. For example, the following specification file is written without and with page objects to understand the difference \u2212<\/p>\n\n\n\n<p><strong>Without Page Objects<\/strong><\/p>\n\n\n\n<pre class=\"wp-block-code\"><code>describe('angularjs homepage', function() {\r\n   it('should greet the named user', function() {\r\n      browser.get('http:\/\/www.angularjs.org');\r\n      element(by.model('yourName')).sendKeys('Julie');\r\n      var greeting = element(by.binding('yourName'));\r\n      expect(greeting.getText()).toEqual('Hello Julie!');\r\n   });\r\n});<\/code><\/pre>\n\n\n\n<p><strong>With Page Objects<\/strong><\/p>\n\n\n\n<p>For writing the code with Page Objects, the first thing we need to do is to create a Page Object. Hence, a Page Object for the above example could look like this \u2212<\/p>\n\n\n\n<pre class=\"wp-block-code\"><code>var AngularHomepage = function() {\r\n   var nameInput = element(by.model('yourName'));\r\n   var greeting = element(by.binding('yourName'));\r\n\r\n   this.get = function() {\r\n      browser.get('http:\/\/www.angularjs.org');\r\n   };\r\n\r\n   this.setName = function(name) {\r\n      nameInput.sendKeys(name);\r\n   };\r\n   \r\n   this.getGreetingText = function() {\r\n      return greeting.getText();\r\n   };\r\n};\r\nmodule.exports = new AngularHomepage();<\/code><\/pre>\n\n\n\n<h2>Using Page Objects to Organize Tests<\/h2>\n\n\n\n<p>We have seen the use of page objects in the above example to handle the challenges of UI testing. Next, we are going to discuss how we can use them to organize the tests. For this we need to modify the test script without modifying the functionality of the test script.<\/p>\n\n\n\n<h3>Example<\/h3>\n\n\n\n<p>To understand this concept we are taking the above configuration file with page objects. We need to modify the test script as follows \u2212<\/p>\n\n\n\n<pre class=\"wp-block-code\"><code>var angularHomepage = require('.\/AngularHomepage');\r\ndescribe('angularjs homepage', function() {\r\n   it('should greet the named user', function() {\r\n      angularHomepage.get();\r\n\r\n      angularHomepage.setName('Julie');\r\n   \r\n      expect(angularHomepage.getGreetingText()).toEqual\r\n      ('Hello Julie!');\r\n   });\r\n});<\/code><\/pre>\n\n\n\n<p>Here, note that the path to the page object will be relative to your specification.<\/p>\n\n\n\n<p>On the same note, we can also separate our test suite into various test suites. The configuration file then can be changed as follows<\/p>\n\n\n\n<pre class=\"wp-block-code\"><code>exports.config = {\r\n   \/\/ The address of a running selenium server.\r\n   seleniumAddress: 'http:\/\/localhost:4444\/wd\/hub',\r\n\r\n   \/\/ Capabilities to be passed to the webdriver instance.\r\n   capabilities: {\r\n      'browserName': 'chrome'\r\n   },\r\n   \/\/ Spec patterns are relative to the location of the spec file. They may\r\n   \/\/ include glob patterns.\r\n   suites: {\r\n      homepage: 'tests\/e2e\/homepage\/**\/*Spec.js',\r\n      search: &#91;'tests\/e2e\/contact_search\/**\/*Spec.js',\r\n         'tests\/e2e\/venue_search\/**\/*Spec.js']\r\n   },\r\n\r\n   \/\/ Options to be passed to Jasmine-node.\r\n   jasmineNodeOpts: {\r\n      showColors: true, \/\/ Use colors in the command line report.\r\n   }\r\n};<\/code><\/pre>\n\n\n\n<p>Now, we can easily switch between running one or the other suite of tests. The following command will run only the homepage section of the test \u2212<\/p>\n\n\n\n<pre class=\"wp-block-code\"><code>protractor protractor.conf.js --suite homepage\r\n<\/code><\/pre>\n\n\n\n<p>Similarly, we can run specific suites of tests with the command as follows \u2212<\/p>\n\n\n\n<pre class=\"wp-block-code\"><code>protractor protractor.conf.js --suite homepage,search<\/code><\/pre>\n",
+            "protected": false
+        },
+        "excerpt": {
+            "rendered": "<p>What are Page Objects? Page object is a design pattern which has become popular for writing e2e tests in order to enhance the test maintenance and reducing the code duplication. It may be defined as an object-oriented class serving as an interface to a page of your AUT (application under test). But, before diving deep [&hellip;]<\/p>\n",
+            "protected": false
+        },
+        "author": 2,
+        "featured_media": 0,
+        "comment_status": "open",
+        "ping_status": "open",
+        "sticky": false,
+        "template": "",
+        "format": "standard",
+        "meta": [],
+        "categories": [
+            90,
+            118,
+            178
+        ],
+        "tags": [],
+        "_links": {
+            "self": [
+                {
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/posts\/2917"
+                }
+            ],
+            "collection": [
+                {
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/posts"
+                }
+            ],
+            "about": [
+                {
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/types\/post"
+                }
+            ],
+            "author": [
+                {
+                    "embeddable": true,
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/users\/2"
+                }
+            ],
+            "replies": [
+                {
+                    "embeddable": true,
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/comments?post=2917"
+                }
+            ],
+            "version-history": [
+                {
+                    "count": 1,
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/posts\/2917\/revisions"
+                }
+            ],
+            "predecessor-version": [
+                {
+                    "id": 2918,
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/posts\/2917\/revisions\/2918"
+                }
+            ],
+            "wp:attachment": [
+                {
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/media?parent=2917"
+                }
+            ],
+            "wp:term": [
+                {
+                    "taxonomy": "category",
+                    "embeddable": true,
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/categories?post=2917"
+                },
+                {
+                    "taxonomy": "post_tag",
+                    "embeddable": true,
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/tags?post=2917"
+                }
+            ],
+            "curies": [
+                {
+                    "name": "wp",
+                    "href": "https:\/\/api.w.org\/{rel}",
+                    "templated": true
+                }
+            ]
+        }
+    },
+    {
+        "id": 2916,
+        "date": "2020-09-16T06:01:27",
+        "date_gmt": "2020-09-16T06:01:27",
+        "guid": {
+            "rendered": "http:\/\/angular.foobrdigital.com\/?p=2916"
+        },
+        "modified": "2020-12-25T19:04:57",
+        "modified_gmt": "2020-12-25T19:04:57",
+        "slug": "debugging-3",
+        "status": "publish",
+        "type": "post",
+        "link": "https:\/\/angular.foobrdigital.com\/debugging-3\/",
+        "title": {
+            "rendered": "Debugging"
+        },
+        "content": {
+            "rendered": "\n<p>Now that we have seen all the concepts of Protractor in the previous chapters, let us understand the debugging concepts in detail in this chapter.<\/p>\n\n\n\n<h2>Introduction<\/h2>\n\n\n\n<p>End-to-end (e2e) tests are very difficult to debug because they depend on the whole ecosystem of that application. We have seen that they depend upon various actions or particularly we can say that on prior actions like login and sometimes they depend on the permission. Another difficulty in debugging e2e tests is its dependency on WebDriver because it acts differently with different operating systems and browsers. Finally, debugging e2e tests also generates long error messages and makes it difficult to separate browser related issues and test process errors.<\/p>\n\n\n\n<h2>Types of Failure<\/h2>\n\n\n\n<p>There can be various reasons for the failure of test suites and followings are some well-known failure types \u2212<\/p>\n\n\n\n<h3>WebDriver failure<\/h3>\n\n\n\n<p>When a command cannot be completed, an error is thrown by WebDriver. For example, a browser cannot get the defined address, or an element is not found as expected.<\/p>\n\n\n\n<h3>WebDriver unexpected failure<\/h3>\n\n\n\n<p>An unexpected browser and OS-related failure happens when it fails to update the web driver manager.<\/p>\n\n\n\n<h3>Protractor failure for Angular<\/h3>\n\n\n\n<p>The failure of Protractor for Angular happens when Protractor didn\u2019t find Angular in the library as expected.<\/p>\n\n\n\n<h3>Protractor Angular2 failure<\/h3>\n\n\n\n<p>In this kind of failure, Protractor will fail when the useAllAngular2AppRoots parameter is not found in the configuration. It happens because, without this, the test process will look at one single root element while expecting more than one element in the process.<\/p>\n\n\n\n<h3>Protractor failure for timeout<\/h3>\n\n\n\n<p>This kind of failure happens when the test specification hit a loop or a long pool and fails to return the data in time.<\/p>\n\n\n\n<h3>Expectation failure<\/h3>\n\n\n\n<p>One of the most common test failures that shows what a normal expectation failure looks like.<\/p>\n\n\n\n<h2>Why debugging is important in Protractor?<\/h2>\n\n\n\n<p>Suppose, if you have written test cases and they got failed then it is very important to know how to debug those test cases because it would be very hard to find the exact place where the error has occurred. While working with Protractor, you will get some long errors in red color font in the command line.<\/p>\n\n\n\n<h2>Pausing and Debugging the Test<\/h2>\n\n\n\n<p>The ways to debug in Protractor are explained here &amp;miuns;<\/p>\n\n\n\n<h3>Pause Method<\/h3>\n\n\n\n<p>Using the pause method to debug the test cases in Protractor is one of the easiest ways. We can type the following command at the place we want to pause our test code &amp;miuns;<\/p>\n\n\n\n<pre class=\"wp-block-code\"><code>browser.pause();\r\n<\/code><\/pre>\n\n\n\n<p>When the running codes hits the above command, it will pause the running program at that point. After that we can give the following commands according to our preference \u2212<\/p>\n\n\n\n<h3>Type C for Moving Forward<\/h3>\n\n\n\n<p>Whenever a command has exhausted, we must type C to move forward. If you will not type C, the test will not run the full code and it will fail due to Jasmine time out error.<\/p>\n\n\n\n<h3>Type repl for entering interactive mode<\/h3>\n\n\n\n<p>The benefit of interactive mode is that we can send the WebDriver commands to our browser. If we want to enter into the interactive mode, then type&nbsp;<strong>repl<\/strong>.<\/p>\n\n\n\n<h3>Type Ctrl-C for exiting and continuing the tests<\/h3>\n\n\n\n<p>For exiting the test from pause state and continuing the test from where it has stopped, we need to type Ctrl-C.<\/p>\n\n\n\n<h3>Example<\/h3>\n\n\n\n<p>In this example, we are having the below specification file named\u00a0<strong>example_debug.js<\/strong>, protractor tries to identify an element with locator\u00a0<strong>by.binding<\/strong>(\u2018mmmm\u2019) but the URL(https:\/\/angularjs.org\/\u00a0page has no element with specified locator.<\/p>\n\n\n\n<pre class=\"wp-block-code\"><code>describe('Suite for protractor debugger',function(){\r\n   it('Failing spec',function(){\r\n      browser.get(\"http:\/\/angularjs.org\");\r\n      element(by.model('yourName')).sendKeys('Vijay');\r\n         \/\/Element doesn't exist\r\n         var welcomeText = \r\n         element(by.binding('mmmm')).getText();\r\n         expect('Hello '+welcomeText+'!').toEqual('Hello Ram!')\r\n   });\r\n});<\/code><\/pre>\n\n\n\n<p>Now, for executing the above test we need to add browser.pause() code, where you want to pause the test, in the above specification file. It will look as follows \u2212<\/p>\n\n\n\n<pre class=\"wp-block-code\"><code>describe('Suite for protractor debugger',function(){\r\n   it('Failing spec',function(){\r\n      browser.get(\"http:\/\/angularjs.org\");\r\n      browser.pause();\r\n      element(by.model('yourName')).sendKeys('Vijay');\r\n      \/\/Element doesn't exist\r\n      var welcomeText = \r\n      element(by.binding('mmmm')).getText();\r\n      expect('Hello '+welcomeText+'!').toEqual('Hello Ram!')\r\n   });\r\n});<\/code><\/pre>\n\n\n\n<p>But before executing, we need to do some changes in the configuration file also. We are doing the following changes in earlier used configuration file, named\u00a0<strong>example_configuration.js<\/strong>\u00a0in previous chapter \u2212<\/p>\n\n\n\n<pre class=\"wp-block-code\"><code>\/\/ An example configuration file.\r\nexports.config = {\r\n   directConnect: true,\r\n\r\n   \/\/ Capabilities to be passed to the webdriver instance.\r\n   capabilities: {\r\n      'browserName': 'chrome'\r\n   },\r\n\r\n   \/\/ Framework to use. Jasmine is recommended.\r\n   framework: 'jasmine',\r\n\r\n   \/\/ Spec patterns are relative to the current working directory when\r\n\r\n   \/\/ protractor is called.\r\n   specs: &#91;'example_debug.js'],\r\n      allScriptsTimeout: 999999,\r\n      jasmineNodeOpts: {\r\n      defaultTimeoutInterval: 999999\r\n   },\r\n   onPrepare: function () {\r\n      browser.manage().window().maximize();\r\n      browser.manage().timeouts().implicitlyWait(5000);\r\n   }\r\n};<\/code><\/pre>\n\n\n\n<p>Now, run the following command \u2212<\/p>\n\n\n\n<pre class=\"wp-block-code\"><code>protractor example_configuration.js\r\n<\/code><\/pre>\n\n\n\n<p>The debugger will start after the above command.<\/p>\n\n\n\n<h3>Debugger Method<\/h3>\n\n\n\n<p>Using the pause method to debug the test cases in Protractor is a bit advanced way. We can type the following command at the place we want to break our test code \u2212<\/p>\n\n\n\n<pre class=\"wp-block-code\"><code>browser.debugger();\r\n<\/code><\/pre>\n\n\n\n<p>It uses the node debugger to debug the test code. For running the above command, we must type the following command in a separate command prompt which has opened from the test project location \u2212<\/p>\n\n\n\n<pre class=\"wp-block-code\"><code>protractor debug protractor.conf.js\r\n<\/code><\/pre>\n\n\n\n<p>In this method, we also need to type C in the terminal for continuing the test code. But opposite to pause method, in this method it is to be typed for only one time.<\/p>\n\n\n\n<h3>Example<\/h3>\n\n\n\n<p>In this example, we are using the same specification file named b<strong>example_debug.js<\/strong>, used above. The only difference is that instead of\u00a0<strong>browser.pause()<\/strong>, we need to use\u00a0<strong>browser.debugger()<\/strong>\u00a0where we want to break the test code. It will look as follows \u2212<\/p>\n\n\n\n<pre class=\"wp-block-code\"><code>describe('Suite for protractor debugger',function(){\r\n   it('Failing spec',function(){\r\n      browser.get(\"http:\/\/angularjs.org\");\r\n      browser.debugger();\r\n      element(by.model('yourName')).sendKeys('Vijay');\r\n      \/\/Element doesn't exist\r\n      var welcomeText = element(by.binding('mmmm')).getText();\r\n      expect('Hello '+welcomeText+'!').toEqual('Hello Ram!')\r\n   });\r\n});<\/code><\/pre>\n\n\n\n<p>We are using the same configuration file,&nbsp;<strong>example_configuration.js<\/strong>, used in above example.<\/p>\n\n\n\n<p>Now, run the protractor test with following debug command line option<\/p>\n\n\n\n<pre class=\"wp-block-code\"><code>protractor debug example_configuration.js\r\n<\/code><\/pre>\n\n\n\n<p>The debugger will start after the above command.<\/p>\n",
+            "protected": false
+        },
+        "excerpt": {
+            "rendered": "<p>Now that we have seen all the concepts of Protractor in the previous chapters, let us understand the debugging concepts in detail in this chapter. Introduction End-to-end (e2e) tests are very difficult to debug because they depend on the whole ecosystem of that application. We have seen that they depend upon various actions or particularly [&hellip;]<\/p>\n",
+            "protected": false
+        },
+        "author": 2,
+        "featured_media": 0,
+        "comment_status": "open",
+        "ping_status": "open",
+        "sticky": false,
+        "template": "",
+        "format": "standard",
+        "meta": [],
+        "categories": [
+            90,
+            118,
+            178
+        ],
+        "tags": [],
+        "_links": {
+            "self": [
+                {
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/posts\/2916"
+                }
+            ],
+            "collection": [
+                {
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/posts"
+                }
+            ],
+            "about": [
+                {
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/types\/post"
+                }
+            ],
+            "author": [
+                {
+                    "embeddable": true,
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/users\/2"
+                }
+            ],
+            "replies": [
+                {
+                    "embeddable": true,
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/comments?post=2916"
+                }
+            ],
+            "version-history": [
+                {
+                    "count": 1,
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/posts\/2916\/revisions"
+                }
+            ],
+            "predecessor-version": [
+                {
+                    "id": 2919,
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/posts\/2916\/revisions\/2919"
+                }
+            ],
+            "wp:attachment": [
+                {
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/media?parent=2916"
+                }
+            ],
+            "wp:term": [
+                {
+                    "taxonomy": "category",
+                    "embeddable": true,
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/categories?post=2916"
+                },
+                {
+                    "taxonomy": "post_tag",
+                    "embeddable": true,
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/tags?post=2916"
+                }
+            ],
+            "curies": [
+                {
+                    "name": "wp",
+                    "href": "https:\/\/api.w.org\/{rel}",
+                    "templated": true
+                }
+            ]
+        }
+    },
+    {
+        "id": 2915,
+        "date": "2020-09-16T06:03:27",
+        "date_gmt": "2020-09-16T06:03:27",
+        "guid": {
+            "rendered": "http:\/\/angular.foobrdigital.com\/?p=2915"
+        },
+        "modified": "2020-12-25T19:04:57",
+        "modified_gmt": "2020-12-25T19:04:57",
+        "slug": "style-guide",
+        "status": "publish",
+        "type": "post",
+        "link": "https:\/\/angular.foobrdigital.com\/style-guide\/",
+        "title": {
+            "rendered": "Style Guide"
+        },
+        "content": {
+            "rendered": "\n<h2>Introduction<\/h2>\n\n\n\n<p>The style guide was created by two software engineers named,&nbsp;<strong>Carmen Popoviciu<\/strong>, front-end engineer at ING and&nbsp;<strong>Andres Dominguez<\/strong>, software engineer at Google. Hence, this style guide is also called Carmen Popoviciu and Google\u2019s style guide for protractor.<\/p>\n\n\n\n<p>This style guide can be divided into the following five keypoints \u2212<\/p>\n\n\n\n<ul><li>Generic rules<\/li><li>Project Structure<\/li><li>Locator strategies<\/li><li>Page Objects<\/li><li>Test suites<\/li><\/ul>\n\n\n\n<h2>Generic Rules<\/h2>\n\n\n\n<p>The following are some generic rules that must be taken care while using protractor for testing \u2212<\/p>\n\n\n\n<h3>Do not end-to-end test what has been already unit tested<\/h3>\n\n\n\n<p>This is the very first generic rule given by Carmen and Andres. They suggested that we must not perform e2e test on the code that already been unit tested. The main reason behind it is that the unit tests are much faster than e2e tests. Another reason is that we must have to avoid duplicate tests (don\u2019t perform both unit and e2e testing) for saving our time.<\/p>\n\n\n\n<h3>Use only one configuration file<\/h3>\n\n\n\n<p>Another important point recommended is that we must have to use only one configuration file. Do not create configuration file for each environment you are testing. You can use&nbsp;<strong>grunt-protractor-coverage<\/strong>&nbsp;in order to set up different environments.<\/p>\n\n\n\n<h3>Avoid using logic to your test<\/h3>\n\n\n\n<p>We must have to avoid using IF statements or FOR loops in our test cases because if we do so then the test may pass without testing anything or it may run very slow.<\/p>\n\n\n\n<h3>Make the test independent at file level<\/h3>\n\n\n\n<p>Protractor can run the test parallelly when sharing is enabled. These files are then executed across different browsers as and when they become available. Carmen and Andres recommended to make the test independent at least at file level because the order in which they will be run by protractor is uncertain and moreover it is quite easy to run a test in isolation.<\/p>\n\n\n\n<h2>Project Structure<\/h2>\n\n\n\n<p>Another important key point regarding the style guide of Protractor is the structure of your project. The following is the recommendation about project structure \u2212<\/p>\n\n\n\n<h3>Groping e2e test in a sensible structure<\/h3>\n\n\n\n<p>Carmen and Andres recommended that we must group our e2e tests in a structure that makes sense to the structure of your project. The reason behind this recommendation is that the finding of files would become easy and the folder structure would be more readable. This step will also separate e2e tests from unit tests. They recommended that the following kind of structure should be avoided \u2212<\/p>\n\n\n\n<pre class=\"wp-block-code\"><code>|-- project-folder\r\n   |-- app\r\n      |-- css\r\n      |-- img\r\n      |-- partials\r\n         home.html\r\n         profile.html\r\n         contacts.html\r\n      |-- js\r\n         |-- controllers\r\n         |-- directives\r\n         |-- services\r\n         app.js\r\n         ...\r\n      index.html\r\n   |-- test\r\n      |-- unit\r\n      |-- e2e\r\n         home-page.js\r\n         home-spec.js\r\n         profile-page.js\r\n         profile-spec.js\r\n         contacts-page.js\r\n         contacts-spec.js<\/code><\/pre>\n\n\n\n<p>On the other hand, they recommended the following kind of structure \u2212<\/p>\n\n\n\n<pre class=\"wp-block-code\"><code>|-- project-folder\r\n   |-- app\r\n      |-- css\r\n      |-- img\r\n      |-- partials\r\n         home.html\r\n         profile.html\r\n         contacts.html\r\n      |-- js\r\n         |-- controllers\r\n         |-- directives\r\n         |-- services\r\n         app.js\r\n         ...\r\n      index.html\r\n   |-- test\r\n      |-- unit\r\n      |-- e2e\r\n         |-- page-objects\r\n            home-page.js\r\n            profile-page.js\r\n            contacts-page.js\r\n         home-spec.js\r\n         profile-spec.js\r\n         contacts-spec.js<\/code><\/pre>\n\n\n\n<h2>Locator Strategies<\/h2>\n\n\n\n<p>The following are some locator strategies that must be taken care while using protractor for testing \u2212<\/p>\n\n\n\n<h3>Never use XPATH<\/h3>\n\n\n\n<p>This is the first locator strategies that is recommended in protractor style guide. The reasons behind the same is that XPath is requires lots of maintenance because markup is very easily subject to change. Moreover, XPath expressions are the slowest and very hard to debug.<\/p>\n\n\n\n<h3>Always prefer protractor-specific locators such as by.model and by.binding<\/h3>\n\n\n\n<p>Protractor-specific locators such as by.model and by.binding are short, specific and easy to read. With the help of them it is very easy to write our locator also.<\/p>\n\n\n\n<h3>Example<\/h3>\n\n\n\n<p><strong>View<\/strong><\/p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;ul class = \"red\">\r\n   &lt;li>{{color.name}}&lt;\/li>\r\n   &lt;li>{{color.shade}}&lt;\/li>\r\n   &lt;li>{{color.code}}&lt;\/li>\r\n&lt;\/ul>\r\n\r\n&lt;div class = \"details\">\r\n   &lt;div class = \"personal\">\r\n      &lt;input ng-model = \"person.name\">\r\n   &lt;\/div>\r\n&lt;\/div><\/code><\/pre>\n\n\n\n<p>For the above code, it is recommended to avoid the following \u2212<\/p>\n\n\n\n<pre class=\"wp-block-code\"><code>var nameElement = element.all(by.css('.red li')).get(0);\r\nvar personName = element(by.css('.details .personal input'));<\/code><\/pre>\n\n\n\n<p>On the other hand, the following is recommended to use \u2212<\/p>\n\n\n\n<pre class=\"wp-block-code\"><code>var nameElement = element.all(by.css('.red li')).get(0);\r\nvar personName = element(by.css('.details .personal input'));\r\n\r\nvar nameElement = element(by.binding('color.name'));\r\nvar personName = element(by.model('person.name'));<\/code><\/pre>\n\n\n\n<p>When no Protractor locators are available, then it is recommended to prefer by.id and by.css.<\/p>\n\n\n\n<h3>Always avoid text locators for frequently changing text<\/h3>\n\n\n\n<p>We must have to avoid text-based locators such as by.linkText, by.buttonText and by.cssContaningText because text for buttons, links and labels frequently change over time.<\/p>\n\n\n\n<h2>Page Objects<\/h2>\n\n\n\n<p>As discussed earlier, page objects encapsulate information about the elements on our application page and due to this help us write cleaner test cases. A very useful advantage of page objects is that they can be reused across multiple tests and in case if the template of our application has been changed, we only need to update the page object. Followings are some recommendations for page objects that must be taken care while using protractor for testing \u2212<\/p>\n\n\n\n<h3>To interact with page under test, use page objects<\/h3>\n\n\n\n<p>It is recommended to use page objects to interact with the page under test because they can encapsulate information about the element on the page under test and they can be reused also.<\/p>\n\n\n\n<h3>Always declare one-page object per file<\/h3>\n\n\n\n<p>We should define each page object in its own file because it keeps the code clean and finding of things becomes easy.<\/p>\n\n\n\n<h3>At the end of page object file always uses a single module.exports<\/h3>\n\n\n\n<p>It is recommended that each page object should declare a single class so that we only need to export one class. For example, the following use of object file should be avoided \u2212<\/p>\n\n\n\n<pre class=\"wp-block-code\"><code>var UserProfilePage = function() {};\r\nvar UserSettingsPage = function() {};\r\nmodule.exports = UserPropertiesPage;\r\nmodule.exports = UserSettingsPage;<\/code><\/pre>\n\n\n\n<p>But on the other hand, following is recommended to use \u2212<\/p>\n\n\n\n<pre class=\"wp-block-code\"><code>\/** @constructor *\/\r\nvar UserPropertiesPage = function() {};\r\n\r\nmodule.exports = UserPropertiesPage;<\/code><\/pre>\n\n\n\n<h3>Declare all the required modules at the top<\/h3>\n\n\n\n<p>We should declare all the required modules at the top of the page object because it makes module dependencies clear and easy to find.<\/p>\n\n\n\n<h3>Instantiate all page objects at the beginning of the test suite<\/h3>\n\n\n\n<p>It is recommended to instantiate all the page objects at the beginning of the test suite because this will separate dependencies from the test code as well as makes the dependencies available to all the specifications of the suite.<\/p>\n\n\n\n<h3>Do not use expect() in page objects<\/h3>\n\n\n\n<p>We should not use expect() in page objects i.e. we should not make any assertions in our page objects because all the assertions must be done in test cases.<\/p>\n\n\n\n<p>Another reason is that the reader of the test should be able to understand the behavior of the application by reading the test cases only.<\/p>\n",
+            "protected": false
+        },
+        "excerpt": {
+            "rendered": "<p>Introduction The style guide was created by two software engineers named,&nbsp;Carmen Popoviciu, front-end engineer at ING and&nbsp;Andres Dominguez, software engineer at Google. Hence, this style guide is also called Carmen Popoviciu and Google\u2019s style guide for protractor. This style guide can be divided into the following five keypoints \u2212 Generic rules Project Structure Locator strategies [&hellip;]<\/p>\n",
+            "protected": false
+        },
+        "author": 2,
+        "featured_media": 0,
+        "comment_status": "open",
+        "ping_status": "open",
+        "sticky": false,
+        "template": "",
+        "format": "standard",
+        "meta": [],
+        "categories": [
+            90,
+            118,
+            178
+        ],
+        "tags": [],
+        "_links": {
+            "self": [
+                {
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/posts\/2915"
+                }
+            ],
+            "collection": [
+                {
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/posts"
+                }
+            ],
+            "about": [
+                {
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/types\/post"
+                }
+            ],
+            "author": [
+                {
+                    "embeddable": true,
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/users\/2"
+                }
+            ],
+            "replies": [
+                {
+                    "embeddable": true,
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/comments?post=2915"
+                }
+            ],
+            "version-history": [
+                {
+                    "count": 1,
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/posts\/2915\/revisions"
+                }
+            ],
+            "predecessor-version": [
+                {
+                    "id": 2920,
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/posts\/2915\/revisions\/2920"
+                }
+            ],
+            "wp:attachment": [
+                {
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/media?parent=2915"
+                }
+            ],
+            "wp:term": [
+                {
+                    "taxonomy": "category",
+                    "embeddable": true,
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/categories?post=2915"
+                },
+                {
+                    "taxonomy": "post_tag",
+                    "embeddable": true,
+                    "href": "https:\/\/angular.foobrdigital.com\/wp-json\/wp\/v2\/tags?post=2915"
+                }
+            ],
+            "curies": [
+                {
+                    "name": "wp",
+                    "href": "https:\/\/api.w.org\/{rel}",
+                    "templated": true
+                }
+            ]
+        }
+    }
+]

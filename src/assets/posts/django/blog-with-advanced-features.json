@@ -1,0 +1,1034 @@
+[
+  {
+    "id": 3639,
+    "date": "2022-06-27T10:54:32",
+    "date_gmt": "2022-06-27T10:54:32",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3639" },
+    "modified": "2022-06-27T10:54:32",
+    "modified_gmt": "2022-06-27T10:54:32",
+    "slug": "sharing-posts-by-email",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/sharing-posts-by-email/",
+    "title": { "rendered": "Sharing posts by email" },
+    "content": {
+      "rendered": "\n<p>First, let&#8217;s allow users to share posts by sending them via email. Take a minute to think about how&nbsp;<a></a>you could use&nbsp;<em>views</em>,&nbsp;<em>URLs</em>, and&nbsp;<em>templates</em>&nbsp;to create this functionality using what you learned in the preceding chapter. In order to allow your users to share posts via email, you will need to do the following things:</p>\n\n\n\n<ul><li>Create a form for users to fill in their name, their email, the email recipient, and optional comments</li><li>Create a view in the&nbsp;<code>views.py</code>&nbsp;file that handles the posted data and sends the&nbsp;email</li><li>Add a URL pattern for the new view in the&nbsp;<code>urls.py</code>&nbsp;file of the blog application</li><li>Create a template to display the form</li></ul>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>First, let&#8217;s allow users to share posts by sending them via email. Take a minute to think about how&nbsp;you could use&nbsp;views,&nbsp;URLs, and&nbsp;templates&nbsp;to create this functionality using what you learned in the preceding chapter. In order to allow your users to share posts via email, you will need to do the following things: Create a form&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/sharing-posts-by-email/\">Continue reading <span class=\"screen-reader-text\">Sharing posts by email</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [126],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3639" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3639"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3639/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3640,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3639/revisions/3640"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3639"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3639"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3639"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3641,
+    "date": "2022-06-27T10:55:34",
+    "date_gmt": "2022-06-27T10:55:34",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3641" },
+    "modified": "2022-06-27T10:55:34",
+    "modified_gmt": "2022-06-27T10:55:34",
+    "slug": "creating-forms-with-django",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/creating-forms-with-django/",
+    "title": { "rendered": "Creating forms with Django" },
+    "content": {
+      "rendered": "\n<p>Let&#8217;s start by building the form to share posts. Django has a built-in forms framework that allows&nbsp;<a></a>you to create forms in an easy manner. The forms framework makes it simple to define the fields of your form, specify how&nbsp;<a></a>they have to be displayed, and indicate how they&nbsp;<a></a>have to validate input data. The Django forms framework offers a&nbsp;flexible way to render forms and handle data.</p>\n\n\n\n<p>Django comes with two base classes to build forms:</p>\n\n\n\n<ul><li><code>Form</code>: Allows you&nbsp;<a></a>to build standard forms</li><li><code>ModelForm</code>: Allows you&nbsp;<a></a>to build forms tied to model instances</li></ul>\n\n\n\n<p>First, create a&nbsp;<code>forms.py</code>&nbsp;file inside the directory of your&nbsp;<code>blog</code>&nbsp;application and make it&nbsp;look like this:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>from django import forms\nclass EmailPostForm(forms.Form):\n    name = forms.CharField(max_length=25)\n    email = forms.EmailField()\n    to = forms.EmailField()\n    comments = forms.CharField(required=False,\n                               widget=forms.Textarea)\n</code></pre>\n\n\n\n<p>This is your first Django form. Take a look at the code. You have created a form by&nbsp;inheriting the base&nbsp;<code>Form</code>&nbsp;class. You use different field types for Django to validate fields accordingly.</p>\n\n\n\n<p>Forms can reside anywhere in your Django project. The convention is to place them inside a&nbsp;<code>forms.py</code>&nbsp;file for each application.</p>\n\n\n\n<p>The&nbsp;<code>name</code>&nbsp;field is&nbsp;<code>CharField</code>. This type of field is rendered as an&nbsp;<code>&lt;input type=\"text\"&gt;</code>&nbsp;HTML element. Each field type has a default widget that determines how the field is rendered in HTML. The default widget can be overridden with the&nbsp;<code>widget</code>&nbsp;attribute. In the&nbsp;<code>comments</code>&nbsp;field, you use a&nbsp;<code>Textarea</code>&nbsp;widget to display it&nbsp;as a&nbsp;<code>&lt;textarea&gt;</code>&nbsp;HTML element instead of the default&nbsp;<code>&lt;input&gt;</code>&nbsp;element.</p>\n\n\n\n<p>Field validation also depends on the field type. For example, the <code>email</code> and <code>to</code> fields are <code>EmailField</code> fields. Both fields require a valid email address; the field validation will otherwise raise a <code>forms.ValidationError</code> exception and the form will not validate. Other parameters are also taken into account for form validation: you define a maximum length of 25 characters for the <code>name</code> field and make the <code>comments</code> field optional with <code>required=False</code>. All of this is also taken into account for field validation. The field types used in this form are only a part of Django form fields. For a list of all form fields available, you can visit https://docs.djangoproject.com/en/3.0/ref/forms/fields/.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Let&#8217;s start by building the form to share posts. Django has a built-in forms framework that allows&nbsp;you to create forms in an easy manner. The forms framework makes it simple to define the fields of your form, specify how&nbsp;they have to be displayed, and indicate how they&nbsp;have to validate input data. The Django forms framework&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/creating-forms-with-django/\">Continue reading <span class=\"screen-reader-text\">Creating forms with Django</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [126],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3641" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3641"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3641/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3642,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3641/revisions/3642"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3641"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3641"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3641"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3643,
+    "date": "2022-06-27T11:14:55",
+    "date_gmt": "2022-06-27T11:14:55",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3643" },
+    "modified": "2022-06-27T11:14:55",
+    "modified_gmt": "2022-06-27T11:14:55",
+    "slug": "handling-forms-in-views",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/handling-forms-in-views/",
+    "title": { "rendered": "Handling forms in views" },
+    "content": {
+      "rendered": "\n<p>You need to&nbsp;<a></a>create a new view that handles the&nbsp;<a></a>form and sends an email when it&#8217;s successfully submitted. Edit the&nbsp;<code>views.py</code>&nbsp;file of your&nbsp;<code>blog</code>&nbsp;application and add the&nbsp;following&nbsp;<a></a>code to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>from .forms import EmailPostForm\ndef post_share(request, post_id):\n    # Retrieve post by id\n    post = get_object_or_404(Post, id=post_id, status='published')\n    if request.method == 'POST':\n        # Form was submitted\n        form = EmailPostForm(request.POST)\n        if form.is_valid():\n            # Form fields passed validation\n            cd = form.cleaned_data\n            # ... send email\n    else:\n        form = EmailPostForm()\n    return render(request, 'blog/post/share.html', {'post': post,\n                                                    'form': form})\n</code></pre>\n\n\n\n<p>This view works as follows:</p>\n\n\n\n<ul><li>You define the&nbsp;<code>post_share</code>&nbsp;view that takes the&nbsp;<code>request</code>&nbsp;object and the&nbsp;<code>post_id</code>&nbsp;variable as parameters.</li><li>You use the&nbsp;<code>get_object_or_404()</code>&nbsp;shortcut to retrieve the post by ID and make sure that the retrieved post has a&nbsp;<code>published</code>&nbsp;status.</li><li>You use the same view for both displaying the initial form and processing the submitted data. You differentiate whether the form was submitted or not&nbsp;based on the&nbsp;<code>request</code>&nbsp;method and submit the form using&nbsp;<code>POST</code>. You assume that if you get a&nbsp;<code>GET</code>&nbsp;request, an empty form has to be displayed, and&nbsp;if you get a&nbsp;<code>POST</code>&nbsp;request, the form is submitted and needs to be processed. Therefore, you use&nbsp;<code>request.method == 'POST'</code>&nbsp;to distinguish between the two scenarios.</li></ul>\n\n\n\n<p>The following&nbsp;<a></a>is the process to display and&nbsp;<a></a>handle the form:</p>\n\n\n\n<ol><li>When the&nbsp;<a></a>view is loaded initially with a&nbsp;<code>GET</code>&nbsp;request, you create a new&nbsp;<code>form</code>&nbsp;instance that will be used to display the empty form in the template:<code>form = EmailPostForm()</code></li><li>The user fills in the form and submits it via&nbsp;<code>POST</code>. Then, you create a form instance using the submitted data that is contained in&nbsp;<code>request.POST</code>:<code>if request.method == 'POST': # Form was submitted form = EmailPostForm(request.POST)</code></li><li>After this, you validate the submitted data using the form&#8217;s&nbsp;<code>is_valid()</code>&nbsp;method. This method validates the data introduced in the form and returns&nbsp;<code>True</code>&nbsp;if all fields contain valid data. If any field contains invalid data, then&nbsp;<code>is_valid()</code>&nbsp;returns&nbsp;<code>False</code>. You can see a list of validation errors by accessing&nbsp;<code>form.errors</code>.</li><li>If the form is not valid, you render the form in the template again with the submitted data. You will display validation errors in the template.</li><li>If the form is valid, you retrieve the validated data by accessing&nbsp;<code>form.cleaned_data</code>. This attribute is a dictionary of form fields and their values.</li></ol>\n\n\n\n<p>If your form data does not validate,&nbsp;<code>cleaned_data</code>&nbsp;will contain only the valid fields.</p>\n\n\n\n<p>Now, let&#8217;s explore how to send emails using Django to put everything together.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>You need to&nbsp;create a new view that handles the&nbsp;form and sends an email when it&#8217;s successfully submitted. Edit the&nbsp;views.py&nbsp;file of your&nbsp;blog&nbsp;application and add the&nbsp;following&nbsp;code to it: This view works as follows: You define the&nbsp;post_share&nbsp;view that takes the&nbsp;request&nbsp;object and the&nbsp;post_id&nbsp;variable as parameters. You use the&nbsp;get_object_or_404()&nbsp;shortcut to retrieve the post by ID and make sure that the&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/handling-forms-in-views/\">Continue reading <span class=\"screen-reader-text\">Handling forms in views</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [126],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3643" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3643"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3643/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3644,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3643/revisions/3644"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3643"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3643"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3643"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3645,
+    "date": "2022-06-27T11:37:43",
+    "date_gmt": "2022-06-27T11:37:43",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3645" },
+    "modified": "2022-06-27T11:37:43",
+    "modified_gmt": "2022-06-27T11:37:43",
+    "slug": "sending-emails-with-django",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/sending-emails-with-django/",
+    "title": { "rendered": "Sending emails with Django" },
+    "content": {
+      "rendered": "\n<p>Sending emails&nbsp;<a></a>with Django is pretty straightforward. First, you need to have a local&nbsp;<strong>Simple Mail Transfer Protocol</strong>&nbsp;(<strong>SMTP</strong>) server, or you&nbsp;<a></a>need to define the configuration&nbsp;<a></a>of an external SMTP server by adding the following&nbsp;<a></a>settings to the&nbsp;<code>settings.py</code>&nbsp;file of your project:</p>\n\n\n\n<ul><li><code>EMAIL_HOST</code>: The SMTP server host; the default is&nbsp;<code>localhost</code></li><li><code>EMAIL_PORT</code>: The SMTP port; the default is&nbsp;<code>25</code></li><li><code>EMAIL_HOST_USER</code>: The username for the SMTP server</li><li><code>EMAIL_HOST_PASSWORD</code>: The password for the SMTP server</li><li><code>EMAIL_USE_TLS</code>: Whether&nbsp;<a></a>to use a&nbsp;<strong>Transport Layer Security</strong>&nbsp;(<strong>TLS</strong>) secure connection</li><li><code>EMAIL_USE_SSL</code>: Whether to use an implicit TLS secure connection</li></ul>\n\n\n\n<p>If you can&#8217;t use an SMTP server, you can tell Django to write emails to the console by&nbsp;adding the following setting to the&nbsp;<code>settings.py</code>&nbsp;file:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'\n</code></pre>\n\n\n\n<p>By using this setting, Django will output all emails to the shell. This is very useful for&nbsp;testing your application without an SMTP server.</p>\n\n\n\n<p>If you want to send emails but you don&#8217;t have a local SMTP server, you can probably use the SMTP server of your email service provider. The following sample configuration is valid for sending emails via Gmail servers using a Google account:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>EMAIL_HOST = 'smtp.gmail.com'\nEMAIL_HOST_USER = 'your_account@gmail.com'\nEMAIL_HOST_PASSWORD = 'your_password'\nEMAIL_PORT = 587\nEMAIL_USE_TLS = True\n</code></pre>\n\n\n\n<p>Run the&nbsp;<code>python manage.py shell</code>&nbsp;command to open the Python shell and send an&nbsp;email, as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&gt;&gt;&gt; from django.core.mail import send_mail\n&gt;&gt;&gt; send_mail('Django mail', 'This e-mail was sent with Django.', 'your_account@gmail.com', &#91;'your_account@gmail.com'], fail_silently=False)\n</code></pre>\n\n\n\n<p>The&nbsp;<code>send_mail()</code>&nbsp;function takes the subject, message, sender, and list of recipients as&nbsp;required arguments. By setting the optional argument&nbsp;<code>fail_silently=False</code>, you are telling it to&nbsp;<a></a>raise an exception if the email&nbsp;<a></a>couldn&#8217;t be sent correctly. If the output you see is&nbsp;<code>1</code>, then your&nbsp;<a></a>email was successfully sent.</p>\n\n\n\n<p>If you are sending emails using Gmail with the preceding configuration, you will have to enable access for less secure applications at https://myaccount.google.com/lesssecureapps, as follows:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/14981_02_01.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 2.1: The Google less secure application access screen</p>\n\n\n\n<p>In some cases, you may also have to disable Gmail captcha at https://accounts.google.com/displayunlockcaptcha in order to send emails with Django.</p>\n\n\n\n<p>Edit the&nbsp;<code>post_share</code>&nbsp;view in the&nbsp;<code>views.py</code>&nbsp;file of the&nbsp;<code>blog</code>&nbsp;application, as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code><strong>from django.core.mail import send_mail</strong>\ndef post_share(request, post_id):\n    <em># Retrieve post by id</em>\n    post = get_object_or_404(Post, id=post_id, status='published')\n<strong>    sent = False</strong>\n    if request.method == 'POST':\n        <em># Form was submitted</em>\n        form = EmailPostForm(request.POST)\n        if form.is_valid():\n            <em># Form fields passed validation</em>\n            cd = form.cleaned_data\n            <strong>post_url = request.build_absolute_uri(</strong>\n                <strong>post.get_absolute_url())</strong>\n            <strong>subject = f\"{cd&#91;'name']} recommends you read \" \\</strong>\n                      <strong>f\"{post.title}\"</strong>\n            <strong>message = f\"Read {post.title} at {post_url}\\n\\n\" \\</strong>\n                      <strong>f\"{cd&#91;'name']}\\'s comments: {cd&#91;'comments']}\"</strong>\n            <strong>send_mail(subject, message, 'admin@myblog.com',</strong>\n                      <strong>&#91;cd&#91;'to']])</strong>\n            <strong>sent = True</strong>\n    else:\n        form = EmailPostForm()\n    return render(request, 'blog/post/share.html', {'post': post,\n                                                    'form': form,\n                                                    <strong>'sent': sent})</strong>\n</code></pre>\n\n\n\n<p>Replace&nbsp;<code>admin@myblog.com</code>&nbsp;with your real email account if you are using an SMTP server instead of the console&nbsp;<code>EmailBackend</code>.</p>\n\n\n\n<p>In the code above you declare a&nbsp;<code>sent</code>&nbsp;variable and set it to&nbsp;<code>True</code>&nbsp;when the&nbsp;<a></a>post was sent. You will use that variable&nbsp;<a></a>later in the template to display a success&nbsp;<a></a>message when the form is successfully submitted.</p>\n\n\n\n<p>Since you have to include a link to the post in the email, you retrieve the absolute path of the post using its&nbsp;<code>get_absolute_url()</code>&nbsp;method. You use this path as an input for&nbsp;<code>request.build_absolute_uri()</code>&nbsp;to build a complete URL, including the HTTP schema and hostname. You build the subject and the message body of the email using the&nbsp;cleaned data of the validated form and, finally, send the email to the email address contained in the&nbsp;<code>to</code>&nbsp;field of the form.</p>\n\n\n\n<p>Now that your view is complete, remember to add a new URL pattern for it. Open the&nbsp;<code>urls.py</code>&nbsp;file of your&nbsp;<code>blog</code>&nbsp;application and add the&nbsp;<code>post_share</code>&nbsp;URL pattern, as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>urlpatterns = &#91;\n    <em># ...</em>\n    <strong>path('&lt;int:post_id&gt;/share/',</strong>\n         <strong>views.post_share, name='post_share'),</strong>\n]\n</code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Sending emails&nbsp;with Django is pretty straightforward. First, you need to have a local&nbsp;Simple Mail Transfer Protocol&nbsp;(SMTP) server, or you&nbsp;need to define the configuration&nbsp;of an external SMTP server by adding the following&nbsp;settings to the&nbsp;settings.py&nbsp;file of your project: EMAIL_HOST: The SMTP server host; the default is&nbsp;localhost EMAIL_PORT: The SMTP port; the default is&nbsp;25 EMAIL_HOST_USER: The username for&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/sending-emails-with-django/\">Continue reading <span class=\"screen-reader-text\">Sending emails with Django</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [126],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3645" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3645"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3645/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3646,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3645/revisions/3646"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3645"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3645"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3645"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3648,
+    "date": "2022-06-27T11:38:32",
+    "date_gmt": "2022-06-27T11:38:32",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3648" },
+    "modified": "2022-06-27T11:38:32",
+    "modified_gmt": "2022-06-27T11:38:32",
+    "slug": "rendering-forms-in-templates",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/rendering-forms-in-templates/",
+    "title": { "rendered": "Rendering forms in templates" },
+    "content": {
+      "rendered": "\n<p>After creating&nbsp;<a></a>the form, programming&nbsp;<a></a>the view, and adding the URL pattern, you are&nbsp;<a></a>only missing the template for this view. Create a new file in the&nbsp;<code>blog/templates/blog/post/</code>&nbsp;directory and name it&nbsp;<code>share.html</code>. Add the following code&nbsp;to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{% extends \"blog/base.html\" %}\n{% block title %}Share a post{% endblock %}\n{% block content %}\n  {% if sent %}\n    &lt;h1&gt;E-mail successfully sent&lt;/h1&gt;\n    &lt;p&gt;\n      \"{{ post.title }}\" was successfully sent to {{ form.cleaned_data.to }}.\n    &lt;/p&gt;\n  {% else %}\n    &lt;h1&gt;Share \"{{ post.title }}\" by e-mail&lt;/h1&gt;\n    &lt;form method=\"post\"&gt;\n      {{ form.as_p }}\n      {% csrf_token %}\n      &lt;input type=\"submit\" value=\"Send e-mail\"&gt;\n    &lt;/form&gt;\n  {% endif %}\n{% endblock %}\n</code></pre>\n\n\n\n<p>This is the&nbsp;<a></a>template to display the form or&nbsp;<a></a>a success message when it&#8217;s sent. As you will notice, you create the HTML form element, indicating that it has to be submitted by the&nbsp;<code>POST</code>&nbsp;method:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;form method=\"post\"&gt;\n</code></pre>\n\n\n\n<p>Then, you include the&nbsp;<a></a>actual form instance. You tell Django to render its fields in HTML paragraph&nbsp;<code>&lt;p&gt;</code>&nbsp;elements with the&nbsp;<code>as_p</code>&nbsp;method. You can also render the form as an unordered list with&nbsp;<code>as_ul</code>&nbsp;or as an HTML table with&nbsp;<code>as_table</code>. If you want to render each field, you can iterate through the fields, instead of using&nbsp;<code>{{ form.as_p }}</code>&nbsp;as in the following example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{% for field in form %}\n  &lt;div&gt;\n    {{ field.errors }}\n    {{ field.label_tag }} {{ field }}\n  &lt;/div&gt;\n{% endfor %}\n</code></pre>\n\n\n\n<p>The <code>{% csrf_token %}</code> template tag introduces a hidden field with an autogenerated token to avoid <strong>cross-site request forgery</strong> (<strong>CSRF</strong>) attacks. These attacks consist of a malicious website or program performing an unwanted action for a user on your site. You can find more information about this at https://owasp.org/www-community/attacks/csrf.</p>\n\n\n\n<p>The preceding tag generates a hidden field that looks like this:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;input type='hidden' name='csrfmiddlewaretoken' value='26JjKo2lcEtYkGoV9z4XmJIEHLXN5LDR' /&gt;\n</code></pre>\n\n\n\n<p>By default, Django checks for the CSRF token in all&nbsp;<code>POST</code>&nbsp;requests. Remember to include the&nbsp;<code>csrf_token</code>&nbsp;tag in all forms that are submitted via&nbsp;<code>POST</code>.</p>\n\n\n\n<p>Edit the&nbsp;<code>blog/post/detail.html</code>&nbsp;template and add the following link to the share&nbsp;post URL after the&nbsp;<code>{{ post.body|linebreaks }}</code>&nbsp;variable:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;p&gt;\n  &lt;a href=\"{% url \"blog:post_share\" post.id %}\"&gt;\n    Share this post\n  &lt;/a&gt;\n&lt;/p&gt;\n</code></pre>\n\n\n\n<p>Remember that&nbsp;<a></a>you are building the URL dynamically using the&nbsp;<code>{% url %}</code>&nbsp;template tag provided by Django. You are using the namespace called&nbsp;<code>blog</code>&nbsp;and the URL named&nbsp;<code>post_share</code>, and you are passing the post ID as a parameter&nbsp;<a></a>to build the absolute URL.</p>\n\n\n\n<p>Now, start the&nbsp;<a></a>development server with the&nbsp;<code>python manage.py runserver</code>&nbsp;command and open&nbsp;<code>http://127.0.0.1:8000/blog/</code>&nbsp;in your browser. Click on any post title to view its detail page. Under the post body, you should see the link that you just added, as shown in the following screenshot:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/14981_02_02.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 2.2: The post detail page, including a link to share the post</p>\n\n\n\n<p>Click on&nbsp;<strong>Share this post</strong>, and you should see the page, including the form to share this post&nbsp;by email, as follows:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/14981_02_03.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 2.3: The page to share a post via email</p>\n\n\n\n<p>CSS styles for&nbsp;<a></a>the form are included in&nbsp;<a></a>the example code in the&nbsp;<code>static/css/blog.css</code>&nbsp;file. When you click on the&nbsp;<strong>SEND E-MAIL</strong>&nbsp;button, the form is submitted&nbsp;<a></a>and validated. If all fields contain valid data, you get a success message, as follows:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/14981_02_04.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 2.4: A success message for a post shared via email</p>\n\n\n\n<p>If you input invalid data, the form is rendered again, including all validation errors:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/14981_02_05.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 2.5: The share post form displaying invalid data errors</p>\n\n\n\n<p>Note that&nbsp;<a></a>some modern browsers will prevent you from submitting a form with empty or erroneous fields. This is because of form&nbsp;<a></a>validation done by the browser based on field types and restrictions per field. In this case, the form won&#8217;t be submitted and the browser will&nbsp;<a></a>display an error message for the fields that are wrong.</p>\n\n\n\n<p>Your form for sharing posts by email is now complete. Let&#8217;s now create a comment system for your blog.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>After creating&nbsp;the form, programming&nbsp;the view, and adding the URL pattern, you are&nbsp;only missing the template for this view. Create a new file in the&nbsp;blog/templates/blog/post/&nbsp;directory and name it&nbsp;share.html. Add the following code&nbsp;to it: This is the&nbsp;template to display the form or&nbsp;a success message when it&#8217;s sent. As you will notice, you create the HTML form element,&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/rendering-forms-in-templates/\">Continue reading <span class=\"screen-reader-text\">Rendering forms in templates</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [126],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3648" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3648"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3648/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3649,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3648/revisions/3649"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3648"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3648"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3648"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3650,
+    "date": "2022-06-27T11:39:00",
+    "date_gmt": "2022-06-27T11:39:00",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3650" },
+    "modified": "2022-06-27T11:39:00",
+    "modified_gmt": "2022-06-27T11:39:00",
+    "slug": "creating-a-comment-system",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/creating-a-comment-system/",
+    "title": { "rendered": "Creating a comment system" },
+    "content": {
+      "rendered": "\n<p>You will&nbsp;<a></a>build a comment system wherein users will be able to comment on posts. To build the comment system, you need to do the following:</p>\n\n\n\n<ol><li>Create a model to save comments</li><li>Create a form to submit comments and validate the input data</li><li>Add a view that processes the form and saves a new comment to the database</li><li>Edit the&nbsp;<a></a>post detail template to display the list of comments and the form to&nbsp;add a new comment</li></ol>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>You will&nbsp;build a comment system wherein users will be able to comment on posts. To build the comment system, you need to do the following: Create a model to save comments Create a form to submit comments and validate the input data Add a view that processes the form and saves a new comment to&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/creating-a-comment-system/\">Continue reading <span class=\"screen-reader-text\">Creating a comment system</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [126],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3650" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3650"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3650/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3651,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3650/revisions/3651"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3650"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3650"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3650"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3652,
+    "date": "2022-06-27T12:02:53",
+    "date_gmt": "2022-06-27T12:02:53",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3652" },
+    "modified": "2022-06-27T12:02:53",
+    "modified_gmt": "2022-06-27T12:02:53",
+    "slug": "building-a-model",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/building-a-model/",
+    "title": { "rendered": "Building a model" },
+    "content": {
+      "rendered": "\n<p>First, let&#8217;s build&nbsp;<a></a>a model to store comments. Open the&nbsp;<code>models.py</code>&nbsp;file of your&nbsp;<code>blog</code>&nbsp;application and add the following code:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>class Comment(models.Model):\n    post = models.ForeignKey(Post,\n                             on_delete=models.CASCADE,\n                             related_name='comments')\n    name = models.CharField(max_length=80)\n    email = models.EmailField()\n    body = models.TextField()\n    created = models.DateTimeField(auto_now_add=True)\n    updated = models.DateTimeField(auto_now=True)\n    active = models.BooleanField(default=True)\n    class Meta:\n        ordering = ('created',)\n    def __str__(self):\n        return f'Comment by {self.name} on {self.post}'\n</code></pre>\n\n\n\n<p>This is your&nbsp;<code>Comment</code>&nbsp;model. It contains a&nbsp;<code>ForeignKey</code>&nbsp;to associate a comment with a single post. This many-to-one relationship is defined in the&nbsp;<code>Comment</code>&nbsp;model because each comment will be made on one post, and each post may have multiple comments.</p>\n\n\n\n<p>The&nbsp;<code>related_name</code>&nbsp;attribute allows you to name the attribute that you use for the relationship from the related object back to this one. After defining this, you can&nbsp;retrieve the post of a comment object using&nbsp;<code>comment.post</code>&nbsp;and retrieve all comments of a post using&nbsp;<code>post.comments.all()</code>. If you don&#8217;t define the&nbsp;<code>related_name</code>&nbsp;attribute, Django will use the name of the model in lowercase, followed by&nbsp;<code>_set</code>&nbsp;(that is,&nbsp;<code>comment_set</code>) to name the relationship of the related object to the object of the model, where this relationship has been defined.</p>\n\n\n\n<p>You can learn more about many-to-one relationships at https://docs.djangoproject.com/en/3.0/topics/db/examples/many_to_one/.</p>\n\n\n\n<p>You have included an&nbsp;<code>active</code>&nbsp;Boolean field that you will use to manually deactivate inappropriate comments. You use the&nbsp;<code>created</code>&nbsp;field to sort comments in a chronological order by default.</p>\n\n\n\n<p>The new&nbsp;<code>Comment</code>&nbsp;model that you just created is not yet synchronized into the database. Run the following command to generate a new migration that reflects the&nbsp;creation of the new model:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>python manage.py makemigrations blog\n</code></pre>\n\n\n\n<p>You should see the following output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Migrations for 'blog':\n  blog/migrations/0002_comment.py\n    - Create model Comment\n</code></pre>\n\n\n\n<p>Django has generated a&nbsp;<code>0002_comment.py</code>&nbsp;file inside the&nbsp;<code>migrations/</code>&nbsp;directory of the&nbsp;<code>blog</code>&nbsp;application. Now, you need to create the related database schema and apply the changes to&nbsp;<a></a>the database. Run the following command to apply existing migrations:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>python manage.py migrate\n</code></pre>\n\n\n\n<p>You will get an output that includes the following line:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Applying blog.0002_comment... OK\n</code></pre>\n\n\n\n<p>The migration that you just created has been applied; now a&nbsp;<code>blog_comment</code>&nbsp;table exists in the database.</p>\n\n\n\n<p>Next, you can add your new model to the administration site in order to manage comments through a simple interface. Open the&nbsp;<code>admin.py</code>&nbsp;file of the&nbsp;<code>blog</code>&nbsp;application, import the&nbsp;<code>Comment</code>&nbsp;model, and add the following&nbsp;<code>ModelAdmin</code>&nbsp;class:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>from .models import Post, <strong>Comment</strong>\n<strong>@admin.register(Comment)</strong>\n<strong>class CommentAdmin(admin.ModelAdmin):</strong>\n    <strong>list_display = ('name', 'email', 'post', 'created', 'active')</strong>\n    <strong>list_filter = ('active', 'created', 'updated')</strong>\n    <strong>search_fields = ('name', 'email', 'body')</strong>\n</code></pre>\n\n\n\n<p>Start the development server with the&nbsp;<code>python manage.py runserver</code>&nbsp;command and&nbsp;open&nbsp;<code>http://127.0.0.1:8000/admin/</code>&nbsp;in your browser. You should see the new model included in the&nbsp;<strong>BLOG</strong>&nbsp;section, as shown in the following screenshot:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/14981_02_06.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 2.6: Blog application models on the Django administration index page</p>\n\n\n\n<p>The model&nbsp;<a></a>is now registered in the administration site, and you can manage&nbsp;<code>Comment</code>&nbsp;instances using a simple interface.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>First, let&#8217;s build&nbsp;a model to store comments. Open the&nbsp;models.py&nbsp;file of your&nbsp;blog&nbsp;application and add the following code: This is your&nbsp;Comment&nbsp;model. It contains a&nbsp;ForeignKey&nbsp;to associate a comment with a single post. This many-to-one relationship is defined in the&nbsp;Comment&nbsp;model because each comment will be made on one post, and each post may have multiple comments. The&nbsp;related_name&nbsp;attribute allows you&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/building-a-model/\">Continue reading <span class=\"screen-reader-text\">Building a model</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [126],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3652" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3652"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3652/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3653,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3652/revisions/3653"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3652"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3652"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3652"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3654,
+    "date": "2022-06-27T12:14:11",
+    "date_gmt": "2022-06-27T12:14:11",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3654" },
+    "modified": "2022-06-27T12:14:11",
+    "modified_gmt": "2022-06-27T12:14:11",
+    "slug": "creating-forms-from-models",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/creating-forms-from-models/",
+    "title": { "rendered": "Creating forms from models" },
+    "content": {
+      "rendered": "\n<p>You still need to build a form to let your users comment on blog posts. Remember that Django has&nbsp;<a></a>two base classes to build forms:&nbsp;<code>Form</code>&nbsp;and&nbsp;<code>ModelForm</code>. You used the first one previously to let your users share posts by email. In the present case, you will need to use&nbsp;<code>ModelForm</code>&nbsp;because you have to build a form dynamically from your&nbsp;<code>Comment</code>&nbsp;model. Edit the&nbsp;<code>forms.py</code>&nbsp;file of your&nbsp;<code>blog</code>&nbsp;application and add&nbsp;the&nbsp;following lines:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>from .models import Comment\nclass CommentForm(forms.ModelForm):\n    class Meta:\n        model = Comment\n        fields = ('name', 'email', 'body')\n</code></pre>\n\n\n\n<p>To create a form from a model, you just need to indicate which model to use to&nbsp;build the form in the&nbsp;<code>Meta</code>&nbsp;class of the form. Django introspects the model and&nbsp;builds the form dynamically for you.</p>\n\n\n\n<p>Each model field type has a corresponding default form field type. The way that you&nbsp;define your model fields is taken into account for form validation. By default, Django builds a form field for each field contained in the model. However, you can explicitly tell the framework which fields you want to include in your form using a&nbsp;<code>fields</code>&nbsp;list, or define which fields you want to exclude using an&nbsp;<code>exclude</code>&nbsp;list of fields. For your&nbsp;<code>CommentForm</code>&nbsp;form, you will just use the&nbsp;<code>name</code>,&nbsp;<code>email</code>, and&nbsp;<code>body</code>&nbsp;fields, because those are the only fields that your users will be able to fill in.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>You still need to build a form to let your users comment on blog posts. Remember that Django has&nbsp;two base classes to build forms:&nbsp;Form&nbsp;and&nbsp;ModelForm. You used the first one previously to let your users share posts by email. In the present case, you will need to use&nbsp;ModelForm&nbsp;because you have to build a form dynamically from&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/creating-forms-from-models/\">Continue reading <span class=\"screen-reader-text\">Creating forms from models</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [126],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3654" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3654"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3654/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3655,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3654/revisions/3655"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3654"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3654"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3654"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3656,
+    "date": "2022-06-27T12:14:56",
+    "date_gmt": "2022-06-27T12:14:56",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3656" },
+    "modified": "2022-06-27T12:14:56",
+    "modified_gmt": "2022-06-27T12:14:56",
+    "slug": "handling-modelforms-in-views",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/handling-modelforms-in-views/",
+    "title": { "rendered": "Handling ModelForms in views" },
+    "content": {
+      "rendered": "\n<p>You will use the&nbsp;<a></a>post detail view to instantiate the form and process it, in order to keep it simple. Edit the&nbsp;<code>views.py</code>&nbsp;file, add imports for the&nbsp;<code>Comment</code>&nbsp;model and the&nbsp;<code>CommentForm</code>&nbsp;form, and modify the&nbsp;<code>post_detail</code>&nbsp;view to make it look like the following:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>from .models import Post, <strong>Comment</strong>\nfrom .forms import EmailPostForm, <strong>CommentForm</strong>\ndef post_detail(request, year, month, day, post):\n    post = get_object_or_404(Post, slug=post,\n                                   status='published',\n                                   publish__year=year,\n                                   publish__month=month,\n                                   publish__day=day)\n    <strong><em># List of active comments for this post</em></strong>\n    <strong>comments = post.comments.filter(active=True)</strong>\n    <strong>new_comment = None</strong>\n    <strong>if request.method == 'POST':</strong>\n        <strong><em># A comment was posted</em></strong>\n        <strong>comment_form = CommentForm(data=request.POST)</strong>\n        <strong>if comment_form.is_valid():</strong>\n            <strong><em># Create Comment object but don't save to database yet</em></strong>\n            <strong>new_comment = comment_form.save(commit=False)</strong>\n           <strong> <em># Assign the current post to the comment</em></strong>\n            <strong>new_comment.post = post</strong>\n            <strong><em># Save the comment to the database</em></strong>\n            <strong>new_comment.save()</strong>\n    <strong>else:</strong>\n        <strong>comment_form = CommentForm()</strong>\n    return render(request,\n                  'blog/post/detail.html',\n                  {'post': post,\n                   <strong>'comments': comments,</strong>\n                  <strong> 'new_comment': new_comment,</strong>\n                   <strong>'comment_form': comment_form</strong>})\n</code></pre>\n\n\n\n<p>Let&#8217;s review what you have added to your view. You used the&nbsp;<code>post_detail</code>&nbsp;view to display the post and its comments. You added a QuerySet to retrieve all active comments for this post, as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>comments = post.comments.filter(active=True)\n</code></pre>\n\n\n\n<p>You build this QuerySet, starting from the&nbsp;<code>post</code>&nbsp;object. Instead of building a QuerySet for&nbsp;the&nbsp;<code>Comment</code>&nbsp;model directly, you leverage the&nbsp;<code>post</code>&nbsp;object to retrieve the related&nbsp;<code>Comment</code>&nbsp;objects. You use the manager for the related objects that you defined as&nbsp;<code>comments</code>&nbsp;using the&nbsp;<code>related_name</code>&nbsp;attribute of the relationship in the&nbsp;<code>Comment</code>&nbsp;model. You use the same view to let your users add a new comment. You initialize the&nbsp;<code>new_comment</code>&nbsp;variable by setting it to&nbsp;<code>None</code>. You will use this variable when a new&nbsp;comment is created.</p>\n\n\n\n<p>You&nbsp;<a></a>build a form instance with&nbsp;<code>comment_form = CommentForm()</code>&nbsp;if the view is called by a&nbsp;<code>GET</code>&nbsp;request. If the request is done via&nbsp;<code>POST</code>, you instantiate the form using the submitted data and validate it using the&nbsp;<code>is_valid()</code>&nbsp;method. If the form is&nbsp;invalid, you render the template with the validation errors. If the form is valid, you take the&nbsp;following actions:</p>\n\n\n\n<ol><li>You create a new&nbsp;<code>Comment</code>&nbsp;object by calling the form&#8217;s&nbsp;<code>save()</code>&nbsp;method and assign&nbsp;it to the&nbsp;<code>new_comment</code>&nbsp;variable, as follows:<code>new_comment = comment_form.save(commit=False) </code>The&nbsp;<code>save()</code>&nbsp;method creates an instance of the model that the form is linked to and saves it to the database. If you call it using&nbsp;<code>commit=False</code>, you create the model instance, but don&#8217;t save it to the database yet. This comes in&nbsp;handy when you want to modify the object before finally saving it, which&nbsp;is what you will do next.The&nbsp;<code>save()</code>&nbsp;method is available for&nbsp;<code>ModelForm</code>&nbsp;but not for&nbsp;<code>Form</code>&nbsp;instances, since they are not linked to any model.</li><li>You assign the current post to the comment you just created:<code>new_comment.post = post </code>By doing this, you specify that the new comment belongs to this post.</li><li>Finally, you save the new comment to the database by calling its&nbsp;<code>save()</code>&nbsp;method:<code>new_comment.save()</code></li></ol>\n\n\n\n<p>Your view is now ready to display and process new comments.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>You will use the&nbsp;post detail view to instantiate the form and process it, in order to keep it simple. Edit the&nbsp;views.py&nbsp;file, add imports for the&nbsp;Comment&nbsp;model and the&nbsp;CommentForm&nbsp;form, and modify the&nbsp;post_detail&nbsp;view to make it look like the following: Let&#8217;s review what you have added to your view. You used the&nbsp;post_detail&nbsp;view to display the post and its&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/handling-modelforms-in-views/\">Continue reading <span class=\"screen-reader-text\">Handling ModelForms in views</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [126],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3656" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3656"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3656/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3657,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3656/revisions/3657"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3656"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3656"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3656"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3658,
+    "date": "2022-06-27T12:15:57",
+    "date_gmt": "2022-06-27T12:15:57",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3658" },
+    "modified": "2022-06-27T12:15:57",
+    "modified_gmt": "2022-06-27T12:15:57",
+    "slug": "adding-comments-to-the-post-detail-template",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/adding-comments-to-the-post-detail-template/",
+    "title": { "rendered": "Adding comments to the post detail template" },
+    "content": {
+      "rendered": "\n<p>You have&nbsp;<a></a>created the functionality&nbsp;<a></a>to manage comments for a post. Now you need to&nbsp;adapt your&nbsp;<code>post/detail.html</code>&nbsp;template to do the following things:</p>\n\n\n\n<ul><li>Display the total number of comments for a post</li><li>Display the list of comments</li><li>Display a form for users to add a new comment</li></ul>\n\n\n\n<p>First, you will add the total comments. Open the&nbsp;<code>post/detail.html</code>&nbsp;template and append the following code to the&nbsp;<code>content</code>&nbsp;block:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{% with comments.count as total_comments %}\n  &lt;h2&gt;\n    {{ total_comments }} comment{{ total_comments|pluralize }}\n  &lt;/h2&gt;\n{% endwith %}\n</code></pre>\n\n\n\n<p>You are using the Django ORM in the template, executing the QuerySet&nbsp;<code>comments.count()</code>. Note that the Django template language doesn&#8217;t use parentheses for calling methods. The&nbsp;<code>{% with %}</code>&nbsp;tag allows you to assign a value to a new variable that will be available to be used until the&nbsp;<code>{% endwith %}</code>&nbsp;tag.</p>\n\n\n\n<p>The&nbsp;<code>{% with %}</code>&nbsp;template tag is useful for avoiding hitting the database or accessing expensive methods multiple times.</p>\n\n\n\n<p>You use the <code>pluralize</code> template filter to display a plural suffix for the word &#8220;comment,&#8221; depending on the <code>total_comments</code> value. Template filters take the value of the variable they are applied to as their input and return a computed value.  <em>Extending Your Blog Application</em>.</p>\n\n\n\n<p>The&nbsp;<code>pluralize</code>&nbsp;template filter returns a string with the letter &#8220;s&#8221; if the value is different from&nbsp;<code>1</code>. The preceding text will be rendered as&nbsp;<em>0 comments</em>,&nbsp;<em>1 comment</em>, or&nbsp;<em>N comments</em>. Django includes plenty of template tags and filters that can help you to&nbsp;display information in the way that you want.</p>\n\n\n\n<p>Now, let&#8217;s include the list of comments. Append the following lines to the&nbsp;<code>post/detail.html</code>&nbsp;template below the preceding code:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{% for comment in comments %}\n  &lt;div class=\"comment\"&gt;\n    &lt;p class=\"info\"&gt;\n      Comment {{ forloop.counter }} by {{ comment.name }}\n      {{ comment.created }}\n    &lt;/p&gt;\n    {{ comment.body|linebreaks }}\n  &lt;/div&gt;\n{% empty %}\n  &lt;p&gt;There are no comments yet.&lt;/p&gt;\n{% endfor %}\n</code></pre>\n\n\n\n<p>You use the&nbsp;<code>{% for %}</code>&nbsp;template tag to loop through comments. You display a default message if the&nbsp;<code>comments</code>&nbsp;list is empty, informing your users that there are no comments on this post yet. You enumerate comments with the&nbsp;<code>{{ forloop.counter }}</code>&nbsp;variable, which contains the loop counter in each iteration. Then, you display the name of&nbsp;the user who posted the comment, the date, and the body of the comment.</p>\n\n\n\n<p>Finally, you need to render the form or display a success message instead when it is successfully submitted. Add the following lines just below the preceding code:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{% if new_comment %}\n  &lt;h2&gt;Your comment has been added.&lt;/h2&gt;\n{% else %}\n  &lt;h2&gt;Add a new comment&lt;/h2&gt;\n  &lt;form method=\"post\"&gt;\n    {{ comment_form.as_p }}\n    {% csrf_token %}\n    &lt;p&gt;&lt;input type=\"submit\" value=\"Add comment\"&gt;&lt;/p&gt;\n  &lt;/form&gt;\n{% endif %}\n</code></pre>\n\n\n\n<p>The code is pretty straightforward: if the&nbsp;<code>new_comment</code>&nbsp;object exists, you display a success&nbsp;<a></a>message because the&nbsp;<a></a>comment was successfully created. Otherwise, you render the form with a paragraph,&nbsp;<code>&lt;p&gt;</code>, element for each field and include the CSRF token required for&nbsp;<code>POST</code>&nbsp;requests.</p>\n\n\n\n<p>Open&nbsp;<code>http://127.0.0.1:8000/blog/</code>&nbsp;in your browser and click on a post title to take a look at its detail page. You will see something like the following screenshot:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/14981_02_07.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 2.7: The post detail page, including the form to add a comment</p>\n\n\n\n<p>Add a couple of comments using the form. They should appear under your post in chronological order, as follows:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/14981_02_08.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 2.8: The comment list on the post detail page</p>\n\n\n\n<p>Open&nbsp;<code>http://127.0.0.1:8000/admin/blog/comment/</code>&nbsp;in your browser. You will&nbsp;see the administration page with the list of comments you created. Click on the name of one of them&nbsp;<a></a>to edit it, uncheck the&nbsp;<strong>Active</strong>&nbsp;checkbox, and click on the&nbsp;<strong>Save</strong>&nbsp;button. You will be redirected to the list&nbsp;<a></a>of comments again, and the&nbsp;<strong>ACTIVE</strong>&nbsp;column will display an inactive icon for the comment. It should look like the first comment in the following screenshot:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/14981_02_09.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 2.9: Active/inactive comments on the Django administration site</p>\n\n\n\n<p>If you return to the post detail view, you will note that the inactive comment is not displayed&nbsp;<a></a>anymore; neither is it counted for the&nbsp;<a></a>total number of comments. Thanks to the&nbsp;<code>active</code>&nbsp;field, you can deactivate inappropriate comments and avoid showing them on your posts.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>You have&nbsp;created the functionality&nbsp;to manage comments for a post. Now you need to&nbsp;adapt your&nbsp;post/detail.html&nbsp;template to do the following things: Display the total number of comments for a post Display the list of comments Display a form for users to add a new comment First, you will add the total comments. Open the&nbsp;post/detail.html&nbsp;template and append the&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/adding-comments-to-the-post-detail-template/\">Continue reading <span class=\"screen-reader-text\">Adding comments to the post detail template</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [126],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3658" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3658"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3658/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3659,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3658/revisions/3659"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3658"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3658"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3658"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3660,
+    "date": "2022-06-27T12:17:42",
+    "date_gmt": "2022-06-27T12:17:42",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3660" },
+    "modified": "2022-06-27T12:17:42",
+    "modified_gmt": "2022-06-27T12:17:42",
+    "slug": "adding-the-tagging-functionality",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/adding-the-tagging-functionality/",
+    "title": { "rendered": "Adding the tagging functionality" },
+    "content": {
+      "rendered": "\n<p>After implementing your comment system, you need to create a way to tag your posts. You will do this by integrating a third-party Django tagging application into your project. <code>django-taggit</code> is a reusable application that primarily offers you a <code>Tag</code> model and a manager to easily add tags to any model. You can take a look at its source code at https://github.com/jazzband/django-taggit.</p>\n\n\n\n<p>First, you need to install&nbsp;<code>django-taggit</code>&nbsp;via&nbsp;<code>pip</code>&nbsp;by running the following command:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>pip install django_taggit==1.2.0\n</code></pre>\n\n\n\n<p>Then, open the&nbsp;<code>settings.py</code>&nbsp;file of the&nbsp;<code>mysite</code>&nbsp;project and add&nbsp;<code>taggit</code>&nbsp;to your&nbsp;<code>INSTALLED_APPS</code>&nbsp;setting, as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>INSTALLED_APPS = &#91;\n    <em># ...</em>\n    'blog.apps.BlogConfig',\n    <strong>'taggit',</strong>\n]\n</code></pre>\n\n\n\n<p>Open the&nbsp;<code>models.py</code>&nbsp;file of your&nbsp;<code>blog</code>&nbsp;application and add the&nbsp;<code>TaggableManager</code>&nbsp;manager provided by&nbsp;<code>django-taggit</code>&nbsp;to the&nbsp;<code>Post</code>&nbsp;model using the following code:</p>\n\n\n\n<pre class=\"wp-block-code\"><code><strong>from taggit.managers import TaggableManager</strong>\nclass Post(models.Model):\n    # ...\n<strong>    tags = TaggableManager()</strong>\n</code></pre>\n\n\n\n<p>The&nbsp;<code>tags</code>&nbsp;manager will allow you to add, retrieve, and remove tags from&nbsp;<code>Post</code>&nbsp;objects.</p>\n\n\n\n<p>Run the following command to create a migration for your model changes:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>python manage.py makemigrations blog\n</code></pre>\n\n\n\n<p>You should get the following output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Migrations for 'blog':\n  blog/migrations/0003_post_tags.py\n    - Add field tags to post\n</code></pre>\n\n\n\n<p>Now, run the following command to create the required database tables for&nbsp;<code>django-taggit</code>&nbsp;models and to synchronize your model changes:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>python manage.py migrate\n</code></pre>\n\n\n\n<p>You will see an output indicating that migrations have been applied, as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Applying taggit.0001_initial... OK\nApplying taggit.0002_auto_20150616_2121... OK\nApplying taggit.0003_taggeditem_add_unique_index... OK\nApplying blog.0003_post_tags... OK\n</code></pre>\n\n\n\n<p>Your database is now ready to use&nbsp;<code>django-taggit</code>&nbsp;models.</p>\n\n\n\n<p>Let&#8217;s explore how to use the&nbsp;<code>tags</code>&nbsp;manager. Open the terminal with the&nbsp;<code>python manage.py shell</code>&nbsp;command and enter the following code. First, you will retrieve one of your posts (the one with the&nbsp;<code>1</code>&nbsp;ID):</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&gt;&gt;&gt; from blog.models import Post\n&gt;&gt;&gt; post = Post.objects.get(id=1)\n</code></pre>\n\n\n\n<p>Then, add some&nbsp;<a></a>tags to it and retrieve its tags to check whether they were successfully added:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&gt;&gt;&gt; post.tags.add('music', 'jazz', 'django')\n&gt;&gt;&gt; post.tags.all()\n&lt;QuerySet &#91;&lt;Tag: jazz&gt;, &lt;Tag: music&gt;, &lt;Tag: django&gt;]&gt;\n</code></pre>\n\n\n\n<p>Finally, remove a tag and check the list of tags again:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&gt;&gt;&gt; post.tags.remove('django')\n&gt;&gt;&gt; post.tags.all()\n&lt;QuerySet &#91;&lt;Tag: jazz&gt;, &lt;Tag: music&gt;]&gt;\n</code></pre>\n\n\n\n<p>That was easy, right? Run the&nbsp;<code>python manage.py runserver</code>&nbsp;command to start the development server again and open&nbsp;<code>http://127.0.0.1:8000/admin/taggit/tag/</code>&nbsp;in your browser.</p>\n\n\n\n<p>You will see the administration page with the list of&nbsp;<code>Tag</code>&nbsp;objects of the&nbsp;<code>taggit</code>&nbsp;application:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/14981_02_10.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 2.10: The tag change list view on the Django administration site</p>\n\n\n\n<p>Navigate to&nbsp;<code>http://127.0.0.1:8000/admin/blog/post/</code>&nbsp;and click on a post to edit&nbsp;it. You will see that posts now include a new&nbsp;<strong>Tags</strong>&nbsp;field, as follows, where you can easily edit tags:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/14981_02_11.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 2.11: The related tags field of a Post object</p>\n\n\n\n<p>Now, you&nbsp;<a></a>need to edit your blog posts to display tags. Open the&nbsp;<code>blog/post/list.html</code>&nbsp;template and add the following HTML code below the post title:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;p class=\"tags\"&gt;Tags: {{ post.tags.all|join:\", \" }}&lt;/p&gt;\n</code></pre>\n\n\n\n<p>The&nbsp;<code>join</code>&nbsp;template filter works the same as the Python string&nbsp;<code>join()</code>&nbsp;method to concatenate elements with the given string. Open&nbsp;<code>http://127.0.0.1:8000/blog/</code>&nbsp;in your browser. You should be able to see the list of tags under each post title:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/14981_02_12.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 2.12: The Post list item, including related tags</p>\n\n\n\n<p>Next, you will edit the&nbsp;<code>post_list</code>&nbsp;view to let users list all posts tagged with a specific tag. Open the&nbsp;<code>views.py</code>&nbsp;file of your&nbsp;<code>blog</code>&nbsp;application, import the&nbsp;<code>Tag</code>&nbsp;model form&nbsp;<code>django-taggit</code>, and change the&nbsp;<code>post_list</code>&nbsp;view to optionally filter posts by a&nbsp;tag, as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code><strong>from taggit.models import Tag</strong>\ndef post_list(request, <strong>tag_slug=None</strong>):\n    object_list = Post.published.all()\n    <strong>tag = None</strong>\n    <strong>if tag_slug:</strong>\n        <strong>tag = get_object_or_404(Tag, slug=tag_slug)</strong>\n        <strong>object_list = object_list.filter(tags__in=&#91;tag])</strong>\n    paginator = Paginator(object_list, 3) # 3 posts in each page\n    # ...\n</code></pre>\n\n\n\n<p>The&nbsp;<code>post_list</code>&nbsp;view&nbsp;<a></a>now works as follows:</p>\n\n\n\n<ol><li>It takes an optional <code>tag_slug</code> parameter that has a <code>None</code> default value. This parameter will be passed in the URL.</li><li>Inside the view, you build the initial QuerySet, retrieving all published posts, and if there is a given tag slug, you get the <code>Tag</code> object with the given slug using the <code>get_object_or_404()</code> shortcut.</li><li>Then, you filter the list of posts by the ones that contain the given tag. Since this is a many-to-many relationship, you have to filter posts by tags contained in a given list, which, in your case, contains only one element. You use the <code>__in</code> field lookup. Many-to-many relationships occur when multiple objects of a model are associated with multiple objects of another model. In your application, a post can have multiple tags and a tag can be related to multiple posts. You will learn how to create many-to-many relationships, <em>Sharing Content on Your Website</em>. You can discover more about many-to-many relationships at https://docs.djangoproject.com/en/3.0/topics/db/examples/many_to_many/.</li></ol>\n\n\n\n<p>Remember that QuerySets are lazy. The QuerySets to retrieve posts will only be evaluated when you loop over the post list when rendering the template.</p>\n\n\n\n<p>Finally, modify the&nbsp;<code>render()</code>&nbsp;function at the bottom of the view to pass the&nbsp;<code>tag</code>&nbsp;variable to the template. The view should look like this:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>def post_list(request, tag_slug=None):\n    object_list = Post.published.all()\n    tag = None\n    if tag_slug:\n        tag = get_object_or_404(Tag, slug=tag_slug)\n        object_list = object_list.filter(tags__in=&#91;tag])\n    paginator = Paginator(object_list, 3) # 3 posts in each page\n    page = request.GET.get('page')\n    try:\n        posts = paginator.page(page)\n    except PageNotAnInteger:\n        # If page is not an integer deliver the first page\n        posts = paginator.page(1)\n    except EmptyPage:\n        # If page is out of range deliver last page of results\n        posts = paginator.page(paginator.num_pages)\n    return render(request, 'blog/post/list.html', {'page': page,\n                                                   'posts': posts,\n                                                   <strong>'tag': tag</strong>})\n</code></pre>\n\n\n\n<p>Open the&nbsp;<code>urls.py</code>&nbsp;file of your&nbsp;<code>blog</code>&nbsp;application, comment out the class-based&nbsp;<code>PostListView</code>&nbsp;URL pattern, and uncomment the&nbsp;<code>post_list</code>&nbsp;view, like this:</p>\n\n\n\n<pre class=\"wp-block-code\"><code><strong>path('', views.post_list, name='post_list'),</strong>\n<strong>#</strong> path('', views.PostListView.as_view(), name='post_list'),\n</code></pre>\n\n\n\n<p>Add the following additional URL pattern to list posts by tag:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>path('tag/&lt;slug:tag_slug&gt;/',\n     views.post_list, name='post_list_by_tag'),\n</code></pre>\n\n\n\n<p>As you can see, both patterns point to the same view, but you are naming them differently. The first&nbsp;<a></a>pattern will call the&nbsp;<code>post_list</code>&nbsp;view without any optional parameters, whereas the second pattern will call the view with the&nbsp;<code>tag_slug</code>&nbsp;parameter. You use a&nbsp;<code>slug</code>&nbsp;path converter to match the parameter as a lowercase string with ASCII letters or numbers, plus the hyphen and underscore characters.</p>\n\n\n\n<p>Since you are using the&nbsp;<code>post_list</code>&nbsp;view, edit the&nbsp;<code>blog/post/list.html</code>&nbsp;template and modify the pagination to use the&nbsp;<code>posts</code>&nbsp;object:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{% include \"pagination.html\" with <strong>page=posts</strong> %}\n</code></pre>\n\n\n\n<p>Add the following lines above the&nbsp;<code>{% for %}</code>&nbsp;loop:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{% if tag %}\n  &lt;h2&gt;Posts tagged with \"{{ tag.name }}\"&lt;/h2&gt;\n{% endif %}\n</code></pre>\n\n\n\n<p>If a user is accessing the blog, they will see the list of all posts. If they filter by posts tagged with a specific tag, they will see the tag that they are filtering by.</p>\n\n\n\n<p>Now, change the way tags are displayed, as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;p class=\"tags\"&gt;\n  Tags:\n  <strong>{% for tag in post.tags.all %}</strong>\n    <strong>&lt;a href=\"{% url \"blog:post_list_by_tag\" tag.slug %}\"&gt;</strong>\n      <strong>{{ tag.name }}</strong>\n    <strong>&lt;/a&gt;</strong>\n    <strong>{% if not forloop.last %}, {% endif %}</strong>\n  <strong>{% endfor %}</strong>\n&lt;/p&gt;\n</code></pre>\n\n\n\n<p>In the code above, you loop through&nbsp;<a></a>all the tags of a post displaying a custom link to the URL to filter&nbsp;posts by that tag. You build the URL with&nbsp;<code>{% url \"blog:post_list_by_tag\" tag.slug %}</code>, using the name of the URL and the&nbsp;<code>slug</code>&nbsp;tag as its parameter. You separate&nbsp;the tags by commas.</p>\n\n\n\n<p>Open&nbsp;<code>http://127.0.0.1:8000/blog/</code>&nbsp;in your browser and click on any tag link. You will see the list of posts filtered by that tag, like this:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/14981_02_13.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 2.13: A post filtered by the tag &#8220;jazz&#8221;</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>After implementing your comment system, you need to create a way to tag your posts. You will do this by integrating a third-party Django tagging application into your project. django-taggit is a reusable application that primarily offers you a Tag model and a manager to easily add tags to any model. You can take a look at its source code at https://github.com/jazzband/django-taggit.&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/adding-the-tagging-functionality/\">Continue reading <span class=\"screen-reader-text\">Adding the tagging functionality</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [126],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3660" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3660"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3660/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3661,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3660/revisions/3661"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3660"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3660"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3660"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3662,
+    "date": "2022-06-28T09:33:01",
+    "date_gmt": "2022-06-28T09:33:01",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3662" },
+    "modified": "2022-06-28T09:33:01",
+    "modified_gmt": "2022-06-28T09:33:01",
+    "slug": "retrieving-posts-by-similarity",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/retrieving-posts-by-similarity/",
+    "title": { "rendered": "Retrieving posts by similarity" },
+    "content": {
+      "rendered": "\n<p>Now that you have implemented tagging for your blog posts, you can do many interesting things with tags. Tags allow you to categorize posts in a non-hierarchical manner. Posts about&nbsp;<a></a>similar topics will have several tags in common. You will build a functionality to display similar posts by the number of tags they share. In this way, when a user reads a post, you can suggest to them that they read other related posts.</p>\n\n\n\n<p>In order to retrieve similar posts for a specific post, you need to perform the following steps:</p>\n\n\n\n<ol><li>Retrieve all tags for the current post</li><li>Get all posts that are tagged with any of those tags</li><li>Exclude the current post from that list to avoid recommending the same post</li><li>Order the results by the number of tags shared with the current post</li><li>In the case of two or more posts with the same number of tags, recommend the most recent post</li><li>Limit the query to the number of posts you want to recommend</li></ol>\n\n\n\n<p>These steps are translated into a complex QuerySet that you will include in your&nbsp;<code>post_detail</code>&nbsp;view.</p>\n\n\n\n<p>Open the&nbsp;<code>views.py</code>&nbsp;file of your&nbsp;<code>blog</code>&nbsp;application and add the following import at the top of it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>from django.db.models import Count\n</code></pre>\n\n\n\n<p>This is the&nbsp;<code>Count</code>&nbsp;aggregation function of the Django ORM. This function will allow you to perform aggregated counts of tags.&nbsp;<code>django.db.models</code>&nbsp;includes the following aggregation functions:</p>\n\n\n\n<ul><li><code>Avg</code>: The&nbsp;<a></a>mean value</li><li><code>Max</code>: The&nbsp;<a></a>maximum value</li><li><code>Min</code>: The&nbsp;<a></a>minimum value</li><li><code>Count</code>: The&nbsp;<a></a>total number of objects</li></ul>\n\n\n\n<p>You can learn about aggregation at https://docs.djangoproject.com/en/3.0/topics/db/aggregation/.</p>\n\n\n\n<p>Add the following lines inside the&nbsp;<code>post_detail</code>&nbsp;view before the&nbsp;<code>render()</code>&nbsp;function, with the same indentation level:</p>\n\n\n\n<pre class=\"wp-block-code\"><code><em># List of similar posts</em>\npost_tags_ids = post.tags.values_list('id', flat=True)\nsimilar_posts = Post.published.filter(tags__in=post_tags_ids)\\\n                              .exclude(id=post.id)\nsimilar_posts = similar_posts.annotate(same_tags=Count('tags'))\\\n                            .order_by('-same_tags','-publish')&#91;:4]\n</code></pre>\n\n\n\n<p>The preceding&nbsp;<a></a>code is as follows:</p>\n\n\n\n<ol><li>You retrieve a Python list of IDs for the tags of the current post. The&nbsp;<code>values_list()</code>&nbsp;QuerySet returns tuples with the values for the given fields. You pass&nbsp;<code>flat=True</code>&nbsp;to it to get single values such as&nbsp;<code>[1, 2, 3, ...]</code>&nbsp;instead of&nbsp;one-tuples such as&nbsp;<code>[(1,), (2,), (3,) ...].</code></li><li>You get all posts that contain any of these tags, excluding the current post itself.</li><li>You use the&nbsp;<code>Count</code>&nbsp;aggregation function to generate a calculated field—<code>same_tags</code>—that contains the number of tags shared with all the tags queried.</li><li>You order the result by the number of shared tags (descending order) and by&nbsp;<code>publish</code>&nbsp;to display recent posts first for the posts with the same number of shared tags. You slice the result to retrieve only the first four posts.</li></ol>\n\n\n\n<p>Add the&nbsp;<code>similar_posts</code>&nbsp;object to the context dictionary for the&nbsp;<code>render()</code>&nbsp;function, as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>return render(request,\n              'blog/post/detail.html',\n              {'post': post,\n               'comments': comments,\n               'new_comment': new_comment,\n               'comment_form': comment_form,\n               <strong>'similar_posts': similar_posts</strong>})\n</code></pre>\n\n\n\n<p>Now, edit the&nbsp;<code>blog/post/detail.html</code>&nbsp;template and add the following code before the post comment list:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;h2&gt;Similar posts&lt;/h2&gt;\n{% for post in similar_posts %}\n  &lt;p&gt;\n    &lt;a href=\"{{ post.get_absolute_url }}\"&gt;{{ post.title }}&lt;/a&gt;\n  &lt;/p&gt;\n{% empty %}\n  There are no similar posts yet.\n{% endfor %}\n</code></pre>\n\n\n\n<p>The post&nbsp;<a></a>detail page should look like this:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/14981_02_14.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 2.14: The post detail page, including a list of similar posts</p>\n\n\n\n<p>You are now able to successfully recommend similar posts to your users. <code>django-taggit</code> also includes a <code>similar_objects()</code> manager that you can use to retrieve objects by shared tags. You can take a look at all <code>django-taggit</code> managers at https://django-taggit.readthedocs.io/en/latest/api.html.</p>\n\n\n\n<p>You can also add the list of tags to your post detail template in the same way as you&nbsp;did in the&nbsp;<code>blog/post/list.html</code>&nbsp;template.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Now that you have implemented tagging for your blog posts, you can do many interesting things with tags. Tags allow you to categorize posts in a non-hierarchical manner. Posts about&nbsp;similar topics will have several tags in common. You will build a functionality to display similar posts by the number of tags they share. In this&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/retrieving-posts-by-similarity/\">Continue reading <span class=\"screen-reader-text\">Retrieving posts by similarity</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [126],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3662" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3662"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3662/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3663,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3662/revisions/3663"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3662"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3662"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3662"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  }
+]

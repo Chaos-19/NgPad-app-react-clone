@@ -1,0 +1,1830 @@
+[
+  {
+    "id": 5889,
+    "date": "2022-10-18T10:16:53",
+    "date_gmt": "2022-10-18T10:16:53",
+    "guid": { "rendered": "https://cplusplus.foobrdigital.com/?p=5889" },
+    "modified": "2022-10-18T10:37:21",
+    "modified_gmt": "2022-10-18T10:37:21",
+    "slug": "how-is-knn-different-from-k-means",
+    "status": "publish",
+    "type": "post",
+    "link": "https://cplusplus.foobrdigital.com/how-is-knn-different-from-k-means/",
+    "title": { "rendered": "How is KNN different from K-means?" },
+    "content": {
+      "rendered": "\n<ul><li>K-Nearest Neighbors is a supervised classification algorithm, while k-means clustering is an unsupervised clustering algorithm. While the mechanisms may seem similar at first, what this really means is that in order for K-Nearest Neighbors to work, you need labelled data you want to classify an unlabeled point into (thus the nearest neighbour part)</li><li>K-Nearest Neighbour is a simple algorithm that stores all available cases and predicts the target based on a similarity measure.</li><li></li></ul>\n\n\n\n<p><strong>#&nbsp;</strong>Example: K-Nearest Neighbors (K-NN)</p>\n\n\n\n<pre class=\"wp-block-code\"><code># Importing the libraries\nimport numpy as np\nimport matplotlib.pyplot as plt\nimport pandas as pd\n&nbsp;\n# Importing the dataset\ndataset = pd.read_csv('Social_Network_Ads.csv')\nX = dataset.iloc&#91;:, &#91;2, 3]].values\ny = dataset.iloc&#91;:, 4].values\n&nbsp;\n# Splitting the dataset into the Training set and Test set\nfrom sklearn.cross_validation import train_test_split\nX_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.25, random_state = 0)\n&nbsp;\n# Feature Scaling\nfrom sklearn.preprocessing import StandardScaler\nsc = StandardScaler()\nX_train = sc.fit_transform(X_train)\nX_test = sc.transform(X_test)\n&nbsp;\n# Fitting K-NN to the Training set\nfrom sklearn.neighbors import KNeighborsClassifier\nclassifier = KNeighborsClassifier(n_neighbors = 5, metric = 'minkowski', p = 2)\nclassifier.fit(X_train, y_train)\n&nbsp;\n# Predicting the Test set results\ny_pred = classifier.predict(X_test)</code></pre>\n\n\n\n<p>K-means clustering requires only a set of unlabeled points and a threshold: the algorithm will take unlabeled points and gradually learn how to cluster them into groups by computing the centroid of the distance between different points.&nbsp;</p>\n\n\n\n<p>In total there are 4 related decisions that need to be taken for the approach :&nbsp;</p>\n\n\n\n<ol><li>Initialize the set of means (centroid of clusters you want to find)&nbsp;</li><li>Assign the factor the nearest mean&nbsp;</li><li>Once, this is done we compute the centroids of the clusters that are found and make them the new means&nbsp;</li><li>Repeat steps 2,3 until they don’t change anymore.&nbsp;</li></ol>\n\n\n\n<p>Sooner or later k-Means converge when the clusters no longer will change. (In our case we stop after a number of iterations)</p>\n\n\n\n<p>The critical difference here is that KNN needs labelled points and is thus supervised learning, while k-means doesn’t and is thus unsupervised learning.</p>\n\n\n\n<p># Example: K-means</p>\n\n\n\n<pre class=\"wp-block-code\"><code># Importing the libraries\nimport numpy as np\nimport matplotlib.pyplot as plt\nimport pandas as pd\n&nbsp;\n# Importing the dataset\ndataset = pd.read_csv('Mall_Customers.csv')\nX = dataset.iloc&#91;:, &#91;3, 4]].values\n&nbsp;\n# Using the elbow method to find the optimal number of clusters\nfrom sklearn.cluster import KMeans\nwcss = &#91;]\nfor i in range(1, 11):\n&nbsp; &nbsp; kmeans = KMeans(n_clusters = i, init = 'k-means++', random_state = 42)\n&nbsp; &nbsp; kmeans.fit(X)\n&nbsp; &nbsp; wcss.append(kmeans.inertia_)\nplt.plot(range(1, 11), wcss)\nplt.title('The Elbow Method')\nplt.xlabel('Number of clusters')\nplt.ylabel('WCSS')\nplt.show()\n&nbsp;\n# Fitting K-Means to the dataset\nkmeans = KMeans(n_clusters = 5, init = 'k-means++', random_state = 42)\ny_kmeans = kmeans.fit_predict(X)</code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>K-Nearest Neighbors is a supervised classification algorithm, while k-means clustering is an unsupervised clustering algorithm. While the mechanisms may seem similar at first, what this really means is that in order for K-Nearest Neighbors to work, you need labelled data you want to classify an unlabeled point into (thus the nearest neighbour part) K-Nearest Neighbour [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [231],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/posts/5889"
+        }
+      ],
+      "collection": [
+        { "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        {
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/comments?post=5889"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/posts/5889/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 5900,
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/posts/5889/revisions/5900"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/media?parent=5889"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/categories?post=5889"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/tags?post=5889"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 5901,
+    "date": "2022-10-18T10:26:39",
+    "date_gmt": "2022-10-18T10:26:39",
+    "guid": { "rendered": "https://cplusplus.foobrdigital.com/?p=5901" },
+    "modified": "2022-10-18T10:37:25",
+    "modified_gmt": "2022-10-18T10:37:25",
+    "slug": "how-is-a-decision-tree-pruned",
+    "status": "publish",
+    "type": "post",
+    "link": "https://cplusplus.foobrdigital.com/how-is-a-decision-tree-pruned/",
+    "title": { "rendered": "How is a decision tree pruned?" },
+    "content": {
+      "rendered": "\n<p>Pruning is what happens in decision trees when branches that have weak predictive power are removed in order to reduce the complexity of the model and increase the predictive accuracy of a decision tree model. You prune it by replacing each node and keep pruning unless predictive accuracy is decreased.</p>\n\n\n\n<p><strong>#Example:</strong></p>\n\n\n\n<p>If the training set accuracy is 100%, then we are likely to be overfitting. To reduce this overfitting, we could either apply stronger pre-pruning by limiting the maximum depth or tune the learning rate.</p>\n\n\n\n<p><strong># Example:</strong></p>\n\n\n\n<pre class=\"wp-block-code\"><code>from sklearn.tree import DecisionTreeClassifier\ntree = DecisionTreeClassifier (max_depth=4, random_state=0)\ntree.fit(X_train, y_train)</code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Pruning is what happens in decision trees when branches that have weak predictive power are removed in order to reduce the complexity of the model and increase the predictive accuracy of a decision tree model. You prune it by replacing each node and keep pruning unless predictive accuracy is decreased. #Example: If the training set [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [231],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/posts/5901"
+        }
+      ],
+      "collection": [
+        { "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        {
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/comments?post=5901"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/posts/5901/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 5913,
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/posts/5901/revisions/5913"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/media?parent=5901"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/categories?post=5901"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/tags?post=5901"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 5902,
+    "date": "2022-10-18T10:26:48",
+    "date_gmt": "2022-10-18T10:26:48",
+    "guid": { "rendered": "https://cplusplus.foobrdigital.com/?p=5902" },
+    "modified": "2022-10-18T10:37:34",
+    "modified_gmt": "2022-10-18T10:37:34",
+    "slug": "when-do-we-use-l1-and-l2-norm-in-machine-learning",
+    "status": "publish",
+    "type": "post",
+    "link": "https://cplusplus.foobrdigital.com/when-do-we-use-l1-and-l2-norm-in-machine-learning/",
+    "title": {
+      "rendered": "When do we use L1 and L2 norm in Machine Learning?"
+    },
+    "content": {
+      "rendered": "\n<p>A regression model that uses L1 regularization technique is called Lasso Regression and model which uses L2 is called Ridge Regression. The key difference between these two is the penalty term.</p>\n\n\n\n<p><strong>Ridge regression</strong>&nbsp;adds “squared magnitude” of coefficient as penalty term to the loss function. Here the highlighted part represents L2 regularization element.</p>\n\n\n\n<p>Here, if&nbsp;lambda&nbsp;is zero then you can imagine we get back OLS. However, if&nbsp;lambda&nbsp;is very large then it will add too much weight and it will lead to under-fitting. Having said that it’s important how&nbsp;lambda&nbsp;is chosen. This technique works very well to avoid over-fitting issue.</p>\n\n\n\n<p><strong>Lasso Regression</strong>&nbsp;(Least Absolute Shrinkage and Selection Operator) adds “absolute value of magnitude” of coefficient as penalty term to the loss function.</p>\n\n\n\n<p>Again, if lambda is zero then we will get back OLS whereas very large value will make coefficients zero hence it will under-fit.&nbsp;</p>\n\n\n\n<p>#Example: Below is an implementation for ‘L1’ regularization paramter</p>\n\n\n\n<pre class=\"wp-block-code\"><code>from sklearn.svm import LinearSVC\nfrom sklearn.datasets import load_iris\nfrom sklearn.feature_selection import SelectFromModel\niris = load_iris()\nX, y = iris.data, iris.target\n&nbsp;\nlsvc = LinearSVC(C=0.01, penalty=\"l1\", dual=False).fit(X, y)\nmodel = SelectFromModel(lsvc, prefit=True)\n&nbsp;X_new = model.transform(X)</code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>A regression model that uses L1 regularization technique is called Lasso Regression and model which uses L2 is called Ridge Regression. The key difference between these two is the penalty term. Ridge regression&nbsp;adds “squared magnitude” of coefficient as penalty term to the loss function. Here the highlighted part represents L2 regularization element. Here, if&nbsp;lambda&nbsp;is zero [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [231],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/posts/5902"
+        }
+      ],
+      "collection": [
+        { "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        {
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/comments?post=5902"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/posts/5902/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 5915,
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/posts/5902/revisions/5915"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/media?parent=5902"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/categories?post=5902"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/tags?post=5902"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 5903,
+    "date": "2022-10-18T10:26:44",
+    "date_gmt": "2022-10-18T10:26:44",
+    "guid": { "rendered": "https://cplusplus.foobrdigital.com/?p=5903" },
+    "modified": "2022-10-18T10:37:30",
+    "modified_gmt": "2022-10-18T10:37:30",
+    "slug": "accuracy-paradox-what-is-more-important-model-accuracy-or-model-performance",
+    "status": "publish",
+    "type": "post",
+    "link": "https://cplusplus.foobrdigital.com/accuracy-paradox-what-is-more-important-model-accuracy-or-model-performance/",
+    "title": {
+      "rendered": "Accuracy Paradox!! What is more important – model accuracy or model performance?"
+    },
+    "content": {
+      "rendered": "\n<p>Model accuracy is a subset of model performance. &nbsp;So there’s no right answer to it. For example, if you wanted to detect fraud in a massive dataset with a sample of millions, a more accurate model would most likely predict no fraud at all if only a vast minority of cases were fraud. However, this would be useless for a predictive model — a model designed to find fraud that asserted there was no fraud at all.</p>\n\n\n\n<p>#Example: Below is an example of calculating classification accuracy.</p>\n\n\n\n<pre class=\"wp-block-code\"><code># Cross Validation Classification Accuracy\nimport pandas as pd\nfrom sklearn import model_selection\nfrom sklearn.linear_model import LogisticRegression\ndataframe = pd.read_csv(data.csv)\narray = dataframe.values\nX = Predictors\nY = Response variable\nkfold = model_selection.KFold(n_splits=10, random_state=4)\nmodel = LogisticRegression()\nscoring = 'accuracy'\nresults = model_selection.cross_val_score(model, X, Y, cv=kfold, scoring=scoring)\nprint(\"Accuracy: %.3f (%.3f)\") % (results.mean(), results.std())</code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Model accuracy is a subset of model performance. &nbsp;So there’s no right answer to it. For example, if you wanted to detect fraud in a massive dataset with a sample of millions, a more accurate model would most likely predict no fraud at all if only a vast minority of cases were fraud. However, this [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [231],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/posts/5903"
+        }
+      ],
+      "collection": [
+        { "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        {
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/comments?post=5903"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/posts/5903/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 5914,
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/posts/5903/revisions/5914"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/media?parent=5903"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/categories?post=5903"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/tags?post=5903"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 5904,
+    "date": "2022-10-18T10:26:54",
+    "date_gmt": "2022-10-18T10:26:54",
+    "guid": { "rendered": "https://cplusplus.foobrdigital.com/?p=5904" },
+    "modified": "2022-10-18T10:37:43",
+    "modified_gmt": "2022-10-18T10:37:43",
+    "slug": "precision-and-recall-with-an-example",
+    "status": "publish",
+    "type": "post",
+    "link": "https://cplusplus.foobrdigital.com/precision-and-recall-with-an-example/",
+    "title": { "rendered": "Precision and recall with an example?" },
+    "content": {
+      "rendered": "\n<p><strong>Recall</strong>&nbsp;is also known as the true positive rate: the number of positives your model claims compared to the actual number of positives there are throughout the data.&nbsp;</p>\n\n\n\n<p>Recall: TP / (TP + FN)</p>\n\n\n\n<p><strong>Precision</strong>&nbsp;is also known as the positive predictive value, and it is a measure of the number of accurate positives your model claims compared to the number of positives it actually claims.</p>\n\n\n\n<p>Precision: TP / (TP + FP)</p>\n\n\n\n<p>#Example:&nbsp;</p>\n\n\n\n<p>Suppose you’ve predicted that there were 10 apples and 5 oranges in a case of 10 apples. You’d have perfect recall (there are actually 10 apples, and you predicted there would be 10) but 66.7% precision because out of the 15 events you predicted, only 10 (the apples) are correct.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>from sklearn import metrics\n&nbsp;\n‘Precision Score': metrics.precision_score(y_test, y_pred)\n'Recall Score': &nbsp; &nbsp;metrics.recall_score(y_test, y_pred)</code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Recall&nbsp;is also known as the true positive rate: the number of positives your model claims compared to the actual number of positives there are throughout the data.&nbsp; Recall: TP / (TP + FN) Precision&nbsp;is also known as the positive predictive value, and it is a measure of the number of accurate positives your model claims [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [231],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/posts/5904"
+        }
+      ],
+      "collection": [
+        { "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        {
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/comments?post=5904"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/posts/5904/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 5917,
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/posts/5904/revisions/5917"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/media?parent=5904"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/categories?post=5904"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/tags?post=5904"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 5905,
+    "date": "2022-10-18T10:26:51",
+    "date_gmt": "2022-10-18T10:26:51",
+    "guid": { "rendered": "https://cplusplus.foobrdigital.com/?p=5905" },
+    "modified": "2022-10-18T10:37:40",
+    "modified_gmt": "2022-10-18T10:37:40",
+    "slug": "what-is-the-difference-between-the-training-set-and-the-test-set-why-do-we-split-on-the-dependent-variable-only",
+    "status": "publish",
+    "type": "post",
+    "link": "https://cplusplus.foobrdigital.com/what-is-the-difference-between-the-training-set-and-the-test-set-why-do-we-split-on-the-dependent-variable-only/",
+    "title": {
+      "rendered": "What is the difference between the training set and the test set?  Why do we split on the dependent variable only?"
+    },
+    "content": {
+      "rendered": "\n<ul><li>The training set is a subset of your data on which your model will learn how to predict the dependent variable with the independent variables. The test set is the complementary subset from the training set, on which you will evaluate your model to see if it manages to predict correctly the dependent variable with the independent variables.</li><li>&nbsp;We split on the dependent variable because we want to have well-distributed values of the dependent variable in the training and test set. For example, if we only had the same value of the dependent variable in the training set, our model wouldn’t be able to learn any correlation between the independent and dependent variables.</li></ul>\n\n\n\n<pre class=\"wp-block-code\"><code>import numpy as np\nfrom sklearn.model_selection import train_test_split\nfrom sklearn import datasets\nfrom sklearn import svm\n&nbsp;\niris = datasets.load_iris()\nX_train, X_test, y_train, y_test = train_test_split( iris.data, iris.target, test_size=0.4, random_state=0)\n&nbsp;\nclf = svm.SVC(kernel='linear', C=1).fit(X_train, y_train)\nclf.score(X_test, y_test) </code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>The training set is a subset of your data on which your model will learn how to predict the dependent variable with the independent variables. The test set is the complementary subset from the training set, on which you will evaluate your model to see if it manages to predict correctly the dependent variable with [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [231],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/posts/5905"
+        }
+      ],
+      "collection": [
+        { "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        {
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/comments?post=5905"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/posts/5905/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 5916,
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/posts/5905/revisions/5916"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/media?parent=5905"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/categories?post=5905"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/tags?post=5905"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 5906,
+    "date": "2022-10-18T10:26:57",
+    "date_gmt": "2022-10-18T10:26:57",
+    "guid": { "rendered": "https://cplusplus.foobrdigital.com/?p=5906" },
+    "modified": "2022-10-18T10:37:47",
+    "modified_gmt": "2022-10-18T10:37:47",
+    "slug": "how-would-you-handle-an-imbalance-dataset",
+    "status": "publish",
+    "type": "post",
+    "link": "https://cplusplus.foobrdigital.com/how-would-you-handle-an-imbalance-dataset/",
+    "title": { "rendered": "How would you handle an imbalance dataset?" },
+    "content": {
+      "rendered": "\n<ul><li>Collect more data to even the imbalances in the dataset,&nbsp;</li><li>Resample the dataset to correct for imbalances (Undersampling/ Oversampling),&nbsp;</li><li>Try a different algorithm altogether on your dataset (Bagging or boosting classifiers),&nbsp;</li><li>Generate synthetic samples (S.M.O.T.E)</li></ul>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Collect more data to even the imbalances in the dataset,&nbsp; Resample the dataset to correct for imbalances (Undersampling/ Oversampling),&nbsp; Try a different algorithm altogether on your dataset (Bagging or boosting classifiers),&nbsp; Generate synthetic samples (S.M.O.T.E)</p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [231],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/posts/5906"
+        }
+      ],
+      "collection": [
+        { "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        {
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/comments?post=5906"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/posts/5906/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 5918,
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/posts/5906/revisions/5918"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/media?parent=5906"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/categories?post=5906"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/tags?post=5906"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 5907,
+    "date": "2022-10-18T10:27:00",
+    "date_gmt": "2022-10-18T10:27:00",
+    "guid": { "rendered": "https://cplusplus.foobrdigital.com/?p=5907" },
+    "modified": "2022-10-18T10:37:51",
+    "modified_gmt": "2022-10-18T10:37:51",
+    "slug": "can-you-explain-the-mesh-grid-method-and-contourf-method-in-more-detail-and-some-of-its-uses",
+    "status": "publish",
+    "type": "post",
+    "link": "https://cplusplus.foobrdigital.com/can-you-explain-the-mesh-grid-method-and-contourf-method-in-more-detail-and-some-of-its-uses/",
+    "title": {
+      "rendered": "Can you explain the mesh grid method () and contourf () method in more detail and some of its uses?"
+    },
+    "content": {
+      "rendered": "\n<p>a) In the meshgrid() method, you input two arguments:</p>\n\n\n\n<p>The first argument is the range values of the x-coordinates in your grid.</p>\n\n\n\n<p>Second is the range values of the y-coordinates in your grid.&nbsp;</p>\n\n\n\n<p>So let’s say that these 1st and 2nd arguments are respectively [-1,+1] and [0,10], then you will get a grid where the values will go from [-1,+1] on the x-axis and [0,10] on the y-axis.</p>\n\n\n\n<p>b) Before using the contourf method, you need to build a meshgrid. Then, the contourf() method takes several arguments such as:</p>\n\n\n\n<ol><li>&nbsp;The range values of the x-coordinates of your grid,</li><li>&nbsp;The range values of the y-coordinates of your grid,</li><li>&nbsp;A fitting line (or curve) that will be plotted in this grid (we plot this fitting line using the predict function because this line are the continuous predictions of our model),</li><li>&nbsp;Then the rest are optional arguments like the colours to plot regions of different colours.</li></ol>\n\n\n\n<p>The regions will be separated by this fitting line, that is, in fact, the contour line.</p>\n\n\n\n<p>#Example – &nbsp;Below is an implementation of the following visual methods:</p>\n\n\n\n<pre class=\"wp-block-code\"><code># Logistic Regression\n&nbsp;\n# Importing the libraries\nimport numpy as np\nimport matplotlib.pyplot as plt\nimport pandas as pd\n&nbsp;\n# Importing the dataset\ndataset = pd.read_csv('Social_Network_Ads.csv')\nX = dataset.iloc&#91;:, &#91;2, 3]].values\ny = dataset.iloc&#91;:, 4].values\n&nbsp;\n# Splitting the dataset into the Training set and Test set\nfrom sklearn.cross_validation import train_test_split\nX_train, X_test, y_train, y_test = train_test_split(X, y, test_size = 0.25, random_state = 0)\n&nbsp;\n# Feature Scaling\nfrom sklearn.preprocessing import StandardScaler\nsc = StandardScaler()\nX_train = sc.fit_transform(X_train)\nX_test = sc.transform(X_test)\n&nbsp;\n# Fitting Logistic Regression to the Training set\nfrom sklearn.linear_model import LogisticRegression\nclassifier = LogisticRegression(random_state = 0)\nclassifier.fit(X_train, y_train)\n&nbsp;\n# Predicting the Test set results\ny_pred = classifier.predict(X_test)\n&nbsp;\n# Visualising the Training set results\nfrom matplotlib.colors import ListedColormap\nX_set, y_set = X_train, y_train\nX1, X2 = np.meshgrid(np.arange(start = X_set&#91;:, 0].min() - 1, stop = X_set&#91;:, 0].max() + 1, step = 0.01),np.arange(start = X_set&#91;:, 1].min() - 1, stop = X_set&#91;:, 1].max() + 1, step = 0.01))\n&nbsp;\n&nbsp;\nplt.contourf(X1, X2, classifier.predict(np.array(&#91;X1.ravel(), X2.ravel()]).T).reshape(X1.shape),\n&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;alpha = 0.75, cmap = ListedColormap(('red', 'green')))\nplt.xlim(X1.min(), X1.max())\nplt.ylim(X2.min(), X2.max())\n&nbsp;\nfor i, j in enumerate(np.unique(y_set)):\n&nbsp; &nbsp; plt.scatter(X_set&#91;y_set == j, 0], X_set&#91;y_set == j, 1],\n&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; c = ListedColormap(('red', 'green'))(i), label = j)\nplt.title('Logistic Regression (Training set)')\nplt.xlabel('Age')\nplt.ylabel('Estimated Salary')\nplt.legend()\nplt.show()</code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>a) In the meshgrid() method, you input two arguments: The first argument is the range values of the x-coordinates in your grid. Second is the range values of the y-coordinates in your grid.&nbsp; So let’s say that these 1st and 2nd arguments are respectively [-1,+1] and [0,10], then you will get a grid where the [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [231],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/posts/5907"
+        }
+      ],
+      "collection": [
+        { "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        {
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/comments?post=5907"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/posts/5907/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 5919,
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/posts/5907/revisions/5919"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/media?parent=5907"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/categories?post=5907"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/tags?post=5907"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 5908,
+    "date": "2022-10-18T10:27:03",
+    "date_gmt": "2022-10-18T10:27:03",
+    "guid": { "rendered": "https://cplusplus.foobrdigital.com/?p=5908" },
+    "modified": "2022-10-18T10:37:55",
+    "modified_gmt": "2022-10-18T10:37:55",
+    "slug": "what-is-the-loss-function-the-svm-tries-to-minimize",
+    "status": "publish",
+    "type": "post",
+    "link": "https://cplusplus.foobrdigital.com/what-is-the-loss-function-the-svm-tries-to-minimize/",
+    "title": {
+      "rendered": "What is the loss function the SVM tries to minimize?"
+    },
+    "content": {
+      "rendered": "\n<p>SVM uses hinge loss function:&nbsp;</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://d6vdma9166ldh.cloudfront.net/media/images/1553574057810-What-is-the-loss-function-the-SVM-tries-to-minimize.jpg\" alt=\"\"/></figure>\n\n\n\n<p>Where w^2 is the regularize and is the loss function.&nbsp;</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://d6vdma9166ldh.cloudfront.net/media/images/1553574071091-What-is-the-loss-function-the-SVM-tries-to-minimize1.jpg\" alt=\"\"/></figure>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>SVM uses hinge loss function:&nbsp; Where w^2 is the regularize and is the loss function.&nbsp;</p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [231],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/posts/5908"
+        }
+      ],
+      "collection": [
+        { "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        {
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/comments?post=5908"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/posts/5908/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 5920,
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/posts/5908/revisions/5920"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/media?parent=5908"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/categories?post=5908"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/tags?post=5908"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 5909,
+    "date": "2022-10-18T10:27:06",
+    "date_gmt": "2022-10-18T10:27:06",
+    "guid": { "rendered": "https://cplusplus.foobrdigital.com/?p=5909" },
+    "modified": "2022-10-18T10:38:01",
+    "modified_gmt": "2022-10-18T10:38:01",
+    "slug": "discuss-some-of-the-pre-processing-techniques-used-to-prepare-the-data-in-python",
+    "status": "publish",
+    "type": "post",
+    "link": "https://cplusplus.foobrdigital.com/discuss-some-of-the-pre-processing-techniques-used-to-prepare-the-data-in-python/",
+    "title": {
+      "rendered": "Discuss some of the pre-processing techniques used to prepare the data in python?"
+    },
+    "content": {
+      "rendered": "\n<ul><li><strong>Mean removal&nbsp;</strong>&#8211; It involves removing the mean from each feature so that it is centred on zero. Mean removal helps in removing any bias from the features.</li><li><strong>Feature scaling&nbsp;</strong>&#8211; The values of every feature in a data point can vary between random values. So, it is important to scale them so that this matches specified rules.</li><li><strong>Normalization</strong>&nbsp;&#8211; Normalization involves adjusting the values in the feature vector so as to measure them on a common scale. Here, the values of a feature vector are adjusted so that they sum up to 1.</li><li><strong>Binarization&nbsp;</strong>&#8211; Binarization is used to convert a numerical feature vector into a Boolean vector.</li></ul>\n\n\n\n<p>#Example: &nbsp;</p>\n\n\n\n<p><strong>Standardization</strong></p>\n\n\n\n<pre class=\"wp-block-code\"><code>import numpy as np\nfrom sklearn import preprocessing\nX_scaled = preprocessing.MinmaxScaler(feature_range = (0,1))\nData = X_scaled.fit_transform(df) (where df is the Input data.)&nbsp;</code></pre>\n\n\n\n<p><strong>Normalization</strong></p>\n\n\n\n<pre class=\"wp-block-code\"><code>import numpy as np\nfrom sklearn import preprocessing\nX_normalized = preprocessing.normalize(X, norm = ‘l2’)</code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Mean removal&nbsp;&#8211; It involves removing the mean from each feature so that it is centred on zero. Mean removal helps in removing any bias from the features. Feature scaling&nbsp;&#8211; The values of every feature in a data point can vary between random values. So, it is important to scale them so that this matches specified [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [231],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/posts/5909"
+        }
+      ],
+      "collection": [
+        { "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        {
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/comments?post=5909"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/posts/5909/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 5921,
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/posts/5909/revisions/5921"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/media?parent=5909"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/categories?post=5909"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/tags?post=5909"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 5910,
+    "date": "2022-10-18T10:27:12",
+    "date_gmt": "2022-10-18T10:27:12",
+    "guid": { "rendered": "https://cplusplus.foobrdigital.com/?p=5910" },
+    "modified": "2022-10-18T10:38:09",
+    "modified_gmt": "2022-10-18T10:38:09",
+    "slug": "what-are-the-key-hyperparams-required-for-the-random-forest-classifier",
+    "status": "publish",
+    "type": "post",
+    "link": "https://cplusplus.foobrdigital.com/what-are-the-key-hyperparams-required-for-the-random-forest-classifier/",
+    "title": {
+      "rendered": "What are the key hyperparams required for the Random Forest classifier?"
+    },
+    "content": {
+      "rendered": "\n<p>There are 4 key hyperparams required for RF:</p>\n\n\n\n<ol><li>N_estimators – Number of trees in the forest</li><li>Max_features – No of features to consider at each split. By default: It takes the square root of the total number of features.</li><li>Max_depth – Max_depth of the trees represent the number of nodes</li><li>Min_samples_leaf – Min number of samples required to be at a leaf node/ bottom of a tree (min_samples_leaf)</li></ol>\n\n\n\n<p># Example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>import pandas as pd\nfrom sklearn.model_selection import KFold\nfrom sklearn.model_selection import cross_val_score\nfrom sklearn.ensemble import RandomForestClassifier\ndataframe = pd.read_csv(data.csv)\narray = dataframe.values\nX = Predictors\nY = Response variable\nn_trees = 100\nmax_features = 3\nkfold = KFold(n_splits=10, random_state=4)\nmodel = RandomForestClassifier(n_estimators = n_trees, max_features = max_features)\nresults = cross_val_score(model, X, Y, cv=kfold)</code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>There are 4 key hyperparams required for RF: N_estimators – Number of trees in the forest Max_features – No of features to consider at each split. By default: It takes the square root of the total number of features. Max_depth – Max_depth of the trees represent the number of nodes Min_samples_leaf – Min number of [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [231],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/posts/5910"
+        }
+      ],
+      "collection": [
+        { "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        {
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/comments?post=5910"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/posts/5910/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 5923,
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/posts/5910/revisions/5923"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/media?parent=5910"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/categories?post=5910"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/tags?post=5910"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 5911,
+    "date": "2022-10-18T10:27:09",
+    "date_gmt": "2022-10-18T10:27:09",
+    "guid": { "rendered": "https://cplusplus.foobrdigital.com/?p=5911" },
+    "modified": "2022-10-18T10:38:06",
+    "modified_gmt": "2022-10-18T10:38:06",
+    "slug": "list-down-some-of-the-ways-to-visualize-the-data",
+    "status": "publish",
+    "type": "post",
+    "link": "https://cplusplus.foobrdigital.com/list-down-some-of-the-ways-to-visualize-the-data/",
+    "title": {
+      "rendered": "List down some of the ways to visualize the data?"
+    },
+    "content": {
+      "rendered": "\n<p>We can visualize the data using 2 types of plots :</p>\n\n\n\n<ol><li>Univariate plots for each individual variable such as Box plot, histogram&nbsp;</li><li>Multivariate plots such as Scatterplot matrix to understand structured relationship/interactions b/w the variables.</li></ol>\n\n\n\n<p>#Example &nbsp;</p>\n\n\n\n<p><strong>-Univariate Plots</strong></p>\n\n\n\n<pre class=\"wp-block-code\"><code>import pandas\nimport matplotlib.pyplot as plt\ndata = 'iris_df.csv'\nnames = &#91;'sepal-length', 'sepal-width', 'petal-length', 'petal-width', 'class']\ndataset = pandas.read_csv(data, names=names)\ndataset.plot(kind='box', subplots=True, layout=(2,2), sharex=False, sharey=False)\nplt.show()</code></pre>\n\n\n\n<p><strong>-Multivariate Plots</strong></p>\n\n\n\n<pre class=\"wp-block-code\"><code>from pandas.plotting import scatter_matrix\n&nbsp;\nscatter_matrix(dataset)\nplt.show()</code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>We can visualize the data using 2 types of plots : Univariate plots for each individual variable such as Box plot, histogram&nbsp; Multivariate plots such as Scatterplot matrix to understand structured relationship/interactions b/w the variables. #Example &nbsp; -Univariate Plots -Multivariate Plots</p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [231],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/posts/5911"
+        }
+      ],
+      "collection": [
+        { "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        {
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/comments?post=5911"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/posts/5911/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 5922,
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/posts/5911/revisions/5922"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/media?parent=5911"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/categories?post=5911"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/tags?post=5911"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 5912,
+    "date": "2022-10-18T10:27:15",
+    "date_gmt": "2022-10-18T10:27:15",
+    "guid": { "rendered": "https://cplusplus.foobrdigital.com/?p=5912" },
+    "modified": "2022-10-18T10:38:14",
+    "modified_gmt": "2022-10-18T10:38:14",
+    "slug": "how-to-implement-automatic-backward-elimination-in-python",
+    "status": "publish",
+    "type": "post",
+    "link": "https://cplusplus.foobrdigital.com/how-to-implement-automatic-backward-elimination-in-python/",
+    "title": {
+      "rendered": "How to implement automatic Backward Elimination in python?"
+    },
+    "content": {
+      "rendered": "\n<p>It can be implemented this way:&nbsp;</p>\n\n\n\n<pre class=\"wp-block-code\"><code>import statsmodels.formula.api as sm\ndef backwardElimination(x, sl):\nnumVars = len(x&#91;0])\nfor i in range(0, numVars):\nregressor_OLS = sm.OLS(y, x).fit()\nmaxVar = max(regressor_OLS.pvalues).astype(float)\nif maxVar &gt; sl:\nfor j in range(0, numVars - i):\nif (regressor_OLS.pvalues&#91;j].astype(float) == maxVar):\nx = np.delete(x, j, 1)\nregressor_OLS.summary()\nreturn x\nSL = 0.05\nX_opt = &nbsp;X&#91;:, &#91;0, 1, 2, 3, 4, 5]]\nX_Modeled = backwardElimination(X_opt, SL)</code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>It can be implemented this way:&nbsp;</p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [231],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/posts/5912"
+        }
+      ],
+      "collection": [
+        { "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        {
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/comments?post=5912"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/posts/5912/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 5924,
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/posts/5912/revisions/5924"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/media?parent=5912"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/categories?post=5912"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/tags?post=5912"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 5925,
+    "date": "2022-10-18T10:30:06",
+    "date_gmt": "2022-10-18T10:30:06",
+    "guid": { "rendered": "https://cplusplus.foobrdigital.com/?p=5925" },
+    "modified": "2022-10-18T10:38:19",
+    "modified_gmt": "2022-10-18T10:38:19",
+    "slug": "what-do-you-mean-by-boosting-and-how-does-boosting-identifies-the-weak-learners",
+    "status": "publish",
+    "type": "post",
+    "link": "https://cplusplus.foobrdigital.com/what-do-you-mean-by-boosting-and-how-does-boosting-identifies-the-weak-learners/",
+    "title": {
+      "rendered": "What do you mean by Boosting and how does Boosting identifies the weak learners?"
+    },
+    "content": {
+      "rendered": "\n<ul><li>&nbsp;The term ‘Boosting’ refers to a family of algorithms which converts weak learner to strong learners. It is a sequential process, where each subsequent model attempts to correct the errors&nbsp; &nbsp; &nbsp;of&nbsp; the previous model.</li></ul>\n\n\n\n<p>It is an ensemble algorithm that is focused on reducing bias, makes the boosting algorithms prone to overfitting.</p>\n\n\n\n<p>To avoid overfitting, parameter tuning plays an important role in boosting algorithms. Some examples of boosting are XGBoost, GBM, ADABOOST, etc.</p>\n\n\n\n<ul><li>&nbsp;To find weak learners, we apply base learning (ML) algorithms with a different distribution. Each time base learning algorithm is applied, it generates a new weak prediction rule. This is an&nbsp; &nbsp;iterative process&nbsp;</li></ul>\n\n\n\n<p>After many iterations, the boosting algorithm combines these weak rules into a single strong prediction rule</p>\n\n\n\n<p>#Example: &nbsp;</p>\n\n\n\n<p>Below is an implementation of ADABOOST Classifier with 100 trees and learning rate equals 1</p>\n\n\n\n<pre class=\"wp-block-code\"><code>#Importing necessary packages/Lib\nimport pandas as pd\nimport numpy as np\nfrom sklearn.ensemble import AdaBoostClassifier\nfrom sklearn.model_selection import train_test_split\n&nbsp;\n# Read the Dataset\ndf_breastcancer = pd.read_csv(\"breastcancer.csv\")\n#create feature &amp; response variables\nX = df_breastcancer.iloc&#91;:,2:31] &nbsp;# drop the response var and id column as it'll not make any sense to the analysis\nY = df_breastcancer.iloc&#91;:,0] #Target\n&nbsp;\n# Create train &amp; test sets\nX_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.30, random_state=1, stratify= Y)\n&nbsp;\n#AdaBoost Implementation\nAdaBoost = AdaBoostClassifier(n_estimators=100,base_estimator=dtree,learning_rate=1,algorithm='SAMME')\nAdaBoost.fit(X_train, Y_train)</code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>&nbsp;The term ‘Boosting’ refers to a family of algorithms which converts weak learner to strong learners. It is a sequential process, where each subsequent model attempts to correct the errors&nbsp; &nbsp; &nbsp;of&nbsp; the previous model. It is an ensemble algorithm that is focused on reducing bias, makes the boosting algorithms prone to overfitting. To avoid [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [231],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/posts/5925"
+        }
+      ],
+      "collection": [
+        { "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        {
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/comments?post=5925"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 2,
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/posts/5925/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 5942,
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/posts/5925/revisions/5942"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/media?parent=5925"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/categories?post=5925"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/tags?post=5925"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 5926,
+    "date": "2022-10-18T10:30:46",
+    "date_gmt": "2022-10-18T10:30:46",
+    "guid": { "rendered": "https://cplusplus.foobrdigital.com/?p=5926" },
+    "modified": "2022-10-18T10:38:27",
+    "modified_gmt": "2022-10-18T10:38:27",
+    "slug": "what-is-information-gain-entropy-in-decision-trees-regression-how-does-it-work",
+    "status": "publish",
+    "type": "post",
+    "link": "https://cplusplus.foobrdigital.com/what-is-information-gain-entropy-in-decision-trees-regression-how-does-it-work/",
+    "title": {
+      "rendered": "What is Information Gain &amp; Entropy in Decision Trees Regression? How does it work?"
+    },
+    "content": {
+      "rendered": "\n<ul><li>The Information Gain in Decision Tree Regression is exactly the Standard Deviation Reduction we are looking to reach. We calculate by how much the Standard Deviation decreases after each split. Because the more the Standard Deviation is decreased after a split, the more homogeneous the child nodes will be.</li><li> The Entropy measures the disorder in a set, here in a part resulting from a split. So the more homogeneous is your data in a part, the lower will be the entropy. The more you have split, the more you have the chance to find parts in which your data is homogeneous, and therefore the lower will be the entropy (close to 0) in these parts. However you might still find some nodes where the data is not homogeneous, and therefore the entropy would not be that small.</li><li>#Example:</li></ul>\n\n\n\n<pre class=\"wp-block-code\"><code>from sklearn import tree\r\nX = &#91;&#91;0, 0], &#91;2, 2]]\r\ny = &#91;0.5, 2.5]\r\nclf = tree.DecisionTreeRegressor()\r\nclf = clf.fit(X, y)\r\nclf.predict(&#91;&#91;1, 1]])</code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>The Information Gain in Decision Tree Regression is exactly the Standard Deviation Reduction we are looking to reach. We calculate by how much the Standard Deviation decreases after each split. Because the more the Standard Deviation is decreased after a split, the more homogeneous the child nodes will be.  The Entropy measures the disorder in [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [231],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/posts/5926"
+        }
+      ],
+      "collection": [
+        { "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        {
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/comments?post=5926"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 2,
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/posts/5926/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 5943,
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/posts/5926/revisions/5943"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/media?parent=5926"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/categories?post=5926"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/tags?post=5926"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 5927,
+    "date": "2022-10-18T10:30:54",
+    "date_gmt": "2022-10-18T10:30:54",
+    "guid": { "rendered": "https://cplusplus.foobrdigital.com/?p=5927" },
+    "modified": "2022-10-18T10:38:23",
+    "modified_gmt": "2022-10-18T10:38:23",
+    "slug": "how-to-handle-the-non-stationarity-in-time-series-data",
+    "status": "publish",
+    "type": "post",
+    "link": "https://cplusplus.foobrdigital.com/how-to-handle-the-non-stationarity-in-time-series-data/",
+    "title": {
+      "rendered": "How to handle the Non-stationarity in Time series data?"
+    },
+    "content": {
+      "rendered": "\n<p>Differencing can help stabilize the mean of a time series by removing changes in the level of a time series, and so eliminating trend and seasonality.</p>\n\n\n\n<p>#Example:&nbsp;</p>\n\n\n\n<pre class=\"wp-block-code\"><code>differenced_data = timeseriesdata. diff( ) </code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Differencing can help stabilize the mean of a time series by removing changes in the level of a time series, and so eliminating trend and seasonality. #Example:&nbsp;</p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [231],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/posts/5927"
+        }
+      ],
+      "collection": [
+        { "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        {
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/comments?post=5927"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 2,
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/posts/5927/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 5948,
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/posts/5927/revisions/5948"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/media?parent=5927"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/categories?post=5927"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/tags?post=5927"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 5928,
+    "date": "2022-10-18T10:32:40",
+    "date_gmt": "2022-10-18T10:32:40",
+    "guid": { "rendered": "https://cplusplus.foobrdigital.com/?p=5928" },
+    "modified": "2022-10-18T10:38:32",
+    "modified_gmt": "2022-10-18T10:38:32",
+    "slug": "what-is-gini-coefficient-how-do-you-calculate-one",
+    "status": "publish",
+    "type": "post",
+    "link": "https://cplusplus.foobrdigital.com/what-is-gini-coefficient-how-do-you-calculate-one/",
+    "title": {
+      "rendered": "What is GINI coefficient &amp; how do you calculate one?"
+    },
+    "content": {
+      "rendered": "\n<p>Gini coefficient, also known as the normalized Gini Index is nothing but the ratio between area between the ROC curve and the diagonal line &amp; the area of the above triangle. It is a measure of statistical dispersion which is sometimes used in classification problems &amp; can be straight away derived from the AUC ROC number.&nbsp;</p>\n\n\n\n<pre class=\"wp-block-code\"><code>GINI = 2* AUC – 1, where Gini above 60% is a ‘good model’ </code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Gini coefficient, also known as the normalized Gini Index is nothing but the ratio between area between the ROC curve and the diagonal line &amp; the area of the above triangle. It is a measure of statistical dispersion which is sometimes used in classification problems &amp; can be straight away derived from the AUC ROC [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [231],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/posts/5928"
+        }
+      ],
+      "collection": [
+        { "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        {
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/comments?post=5928"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 2,
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/posts/5928/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 5947,
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/posts/5928/revisions/5947"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/media?parent=5928"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/categories?post=5928"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/tags?post=5928"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 5929,
+    "date": "2022-10-18T10:32:43",
+    "date_gmt": "2022-10-18T10:32:43",
+    "guid": { "rendered": "https://cplusplus.foobrdigital.com/?p=5929" },
+    "modified": "2022-10-18T10:38:36",
+    "modified_gmt": "2022-10-18T10:38:36",
+    "slug": "what-does-pca-do",
+    "status": "publish",
+    "type": "post",
+    "link": "https://cplusplus.foobrdigital.com/what-does-pca-do/",
+    "title": { "rendered": "What does PCA do?" },
+    "content": {
+      "rendered": "\n<p>PCA is a dimensionality reduction algorithm: PCA takes the data and decomposes it using transformations into principal components (PC). It is a statistical procedure that uses an orthogonal transformation to convert a set of observations of possibly correlated variables (entities each of which takes on various numerical values) into a set of values of linearly uncorrelated variables called&nbsp;principal components.</p>\n\n\n\n<p># Example: Below is an implementation of PCA</p>\n\n\n\n<pre class=\"wp-block-code\"><code>import numpy as np\nimport pandas as pd\nfrom sklearn.datasets import load_breast_cancer\n&nbsp;\n# Breast cancer dataset\ncancer = load_breast_cancer()\n(X_cancer, y_cancer) = load_breast_cancer(return_X_y = True)\n&nbsp;\n# Dimensionality Reduction and Manifold Learning\n# Principal Components Analysis (PCA)\n# Using PCA to find the first two principal components of the breast cancer dataset\n&nbsp;\nfrom sklearn.preprocessing import StandardScaler\nfrom sklearn.decomposition import PCA\nfrom sklearn.datasets import load_breast_cancer\n&nbsp;\ncancer = load_breast_cancer()\n(X_cancer, y_cancer) = load_breast_cancer(return_X_y = True)\n&nbsp;\n# Before applying PCA, each feature should be centered (zero mean) and with unit variance\nX_normalized = StandardScaler().fit(X_cancer).transform(X_cancer) &nbsp;\n&nbsp;\npca = PCA(n_components = 2).fit(X_normalized)\n&nbsp;\nX_pca = pca.transform(X_normalized)\nprint(X_cancer.shape, X_pca.shape)</code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>PCA is a dimensionality reduction algorithm: PCA takes the data and decomposes it using transformations into principal components (PC). It is a statistical procedure that uses an orthogonal transformation to convert a set of observations of possibly correlated variables (entities each of which takes on various numerical values) into a set of values of linearly [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [231],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/posts/5929"
+        }
+      ],
+      "collection": [
+        { "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        {
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/comments?post=5929"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 2,
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/posts/5929/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 5946,
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/posts/5929/revisions/5946"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/media?parent=5929"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/categories?post=5929"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/tags?post=5929"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 5930,
+    "date": "2022-10-18T10:32:51",
+    "date_gmt": "2022-10-18T10:32:51",
+    "guid": { "rendered": "https://cplusplus.foobrdigital.com/?p=5930" },
+    "modified": "2022-10-18T10:37:15",
+    "modified_gmt": "2022-10-18T10:37:15",
+    "slug": "what-is-multi-dimensional-scaling",
+    "status": "publish",
+    "type": "post",
+    "link": "https://cplusplus.foobrdigital.com/what-is-multi-dimensional-scaling/",
+    "title": { "rendered": "What is Multi-Dimensional Scaling?" },
+    "content": {
+      "rendered": "\n<p>It is a decompositional approach that uses perceptual mapping to present the dimensions. The purpose of the MDS is to transform consumer judgements into distances represented in the multi-dimensional space.&nbsp;</p>\n\n\n\n<p>As an exploratory technique, it is useful in examining the unrecognized dimensions about the products and uncovering the comparative evaluation of the products when the basis of comparison is unknown.</p>\n\n\n\n<p># Example: Below is an implementation of MDS on the breast cancer dataset.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>from sklearn.preprocessing import StandardScaler\nfrom sklearn.manifold import MDS\nfrom sklearn.datasets import load_breast_cancer\n&nbsp;\ncancer = load_breast_cancer()\n(X_cancer, y_cancer) = load_breast_cancer(return_X_y = True)\n# each feature should be centered (zero mean) and with unit variance\nX_normalized = StandardScaler().fit(X_cancer).transform(X_cancer) &nbsp;\n&nbsp;\n&nbsp;\nmds = MDS(n_components = 2)\n&nbsp;\nX_mds = mds.fit_transform(X_normalized)</code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>It is a decompositional approach that uses perceptual mapping to present the dimensions. The purpose of the MDS is to transform consumer judgements into distances represented in the multi-dimensional space.&nbsp; As an exploratory technique, it is useful in examining the unrecognized dimensions about the products and uncovering the comparative evaluation of the products when the [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [231],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/posts/5930"
+        }
+      ],
+      "collection": [
+        { "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        {
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/comments?post=5930"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 2,
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/posts/5930/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 5945,
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/posts/5930/revisions/5945"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/media?parent=5930"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/categories?post=5930"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/tags?post=5930"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 5931,
+    "date": "2022-10-18T10:33:38",
+    "date_gmt": "2022-10-18T10:33:38",
+    "guid": { "rendered": "https://cplusplus.foobrdigital.com/?p=5931" },
+    "modified": "2022-10-18T10:37:10",
+    "modified_gmt": "2022-10-18T10:37:10",
+    "slug": "how-can-we-detect-heteroscedasticity-in-a-simple-regression-model",
+    "status": "publish",
+    "type": "post",
+    "link": "https://cplusplus.foobrdigital.com/how-can-we-detect-heteroscedasticity-in-a-simple-regression-model/",
+    "title": {
+      "rendered": "How can we detect heteroscedasticity in a simple regression model?"
+    },
+    "content": {
+      "rendered": "\n<p>One of the important assumptions of linear regression is that there should be no heteroscedasticity of residuals. In simpler terms, this means that the variance of residuals should not increase with fitted values of the response variable.</p>\n\n\n\n<p>The reason being, we check if the model thus built is unable to explain some pattern in the response variable&nbsp;that eventually shows up in the residuals. This would result in an inefficient and unstable regression model that could yield bizarre predictions later on. i.e. having falsified/inflated standard error will also disturb the T-value, and as a result, can lead us to accept the P-value which may not be the case sometime.</p>\n\n\n\n<p># Example: Below is the implementation of Breusch pragan test to detect the heteroscedasticity in the linear regression model, where&nbsp;<em>Null hypothesis states that there is no heteroscedasticity.</em></p>\n\n\n\n<pre class=\"wp-block-code\"><code>from statsmodels.compat import lzip\nimport statsmodels\nimport numpy as np\nimport pandas as pd\nimport statsmodels.formula.api as smf\nimport statsmodels.stats.api as sms\n&nbsp;\n# Load data&nbsp;\ndata = pd.read_csv(data.csv)\nresults = smf.ols('Response_var ~ Predictors’, data = data).fit()\n&nbsp;\n# Implenting Breusch pragan Test\nname = &#91;'Lagrange multiplier statistic', 'p-value', 'f-value', 'f p-value']\ntest = sms.het_breushpagan(results.resid, results.model.exog)\nlzip(name, test)</code></pre>\n\n\n\n<p><strong># Where Lagrange multiplier is &#8211;&nbsp;</strong></p>\n\n\n\n<ul><li>It helps to find an optimal point for a constrained optimization problem</li><li>It can deal with both equality and inequality constraints</li><li>It helps to convert an optimization problem into a system of equations.</li><li>It is the rate of change of the objective function with respect to constant (c) in the constraint (right-hand side of a constraint) at any c equals the Lagrange multiplier at that point.</li></ul>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>One of the important assumptions of linear regression is that there should be no heteroscedasticity of residuals. In simpler terms, this means that the variance of residuals should not increase with fitted values of the response variable. The reason being, we check if the model thus built is unable to explain some pattern in the [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [231],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/posts/5931"
+        }
+      ],
+      "collection": [
+        { "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        {
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/comments?post=5931"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 2,
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/posts/5931/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 5944,
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/posts/5931/revisions/5944"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/media?parent=5931"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/categories?post=5931"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://cplusplus.foobrdigital.com/wp-json/wp/v2/tags?post=5931"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  }
+]

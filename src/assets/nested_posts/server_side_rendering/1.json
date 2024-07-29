@@ -1,0 +1,202 @@
+[
+  {
+    "id": 4683,
+    "date": "2021-02-27T08:50:28",
+    "date_gmt": "2021-02-27T08:50:28",
+    "guid": {
+      "rendered": "http://angular.foobrdigital.com/?p=4683"
+    },
+    "modified": "2021-02-27T08:50:28",
+    "modified_gmt": "2021-02-27T08:50:28",
+    "slug": "introduction-16",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/introduction-16/",
+    "title": {
+      "rendered": "Introduction"
+    },
+    "content": {
+      "rendered": "\n<p>This guide describes&nbsp;<strong>Angular Universal</strong>, a technology that renders Angular applications on the server.</p>\n\n\n\n<p>A normal Angular application executes in the&nbsp;<em>browser</em>, rendering pages in the DOM in response to user actions. Angular Universal executes on the&nbsp;<em>server</em>, generating&nbsp;<em>static</em>&nbsp;application pages that later get bootstrapped on the client. This means that the application generally renders more quickly, giving users a chance to view the application layout before it becomes fully interactive.</p>\n\n\n\n<p>For a more detailed look at different techniques and concepts surrounding SSR, please check out this&nbsp;<a href=\"https://developers.google.com/web/updates/2019/02/rendering-on-the-web\">article</a>.</p>\n\n\n\n<p>You can easily prepare an app for server-side rendering using the&nbsp;<a href=\"https://angular.io/guide/glossary#cli\">Angular CLI</a>. The CLI schematic&nbsp;<code>@nguniversal/express-engine</code>&nbsp;performs the required steps, as described below.</p>\n\n\n\n<p><strong>Note:</strong>&nbsp;<a href=\"https://angular.io/generated/zips/universal/universal.zip\">Download the finished sample code</a>, which runs in a&nbsp;<a href=\"https://expressjs.com/\">Node.js\u00ae Express</a>&nbsp;server.</p>\n\n\n\n<h2 id=\"universal-tutorial\">Universal tutorial</h2>\n\n\n\n<p>The&nbsp;<a href=\"https://angular.io/tutorial\">Tour of Heroes tutorial</a>&nbsp;is the foundation for this walkthrough.</p>\n\n\n\n<p>In this example, the Angular CLI compiles and bundles the Universal version of the app with the&nbsp;<a href=\"https://angular.io/guide/aot-compiler\">Ahead-of-Time (AOT) compiler</a>. A Node.js Express web server compiles HTML pages with Universal based on client requests.</p>\n\n\n\n<p>To create the server-side app module,&nbsp;<code>app.server.module.ts</code>, run the following CLI command.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>content_copy<code>ng add @nguniversal/express-engine</code></code></pre>\n\n\n\n<p>The command creates the following folder structure.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>content_copy<code>src/\n  index.html                 <em>app web page</em>\n  main.ts                    <em>bootstrapper for client app</em>\n  main.server.ts             <em>* bootstrapper for server app</em>\n  style.css                  <em>styles for the app</em>\n  app/ ...                   <em>application code</em>\n    app.server.module.ts     <em>* server-side application module</em>\nserver.ts                    <em>* express web server</em>\ntsconfig.json                <em>TypeScript base configuration</em>\ntsconfig.app.json            <em>TypeScript browser application configuration</em>\ntsconfig.server.json         <em>TypeScript server application configuration</em>\ntsconfig.spec.json           <em>TypeScript tests configuration</em></code></code></pre>\n\n\n\n<p>The files marked with&nbsp;<code>*</code>&nbsp;are new and not in the original tutorial sample.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>This guide describes&nbsp;Angular Universal, a technology that renders Angular applications on the server. A normal Angular application executes in the&nbsp;browser, rendering pages in the DOM in response to user actions. Angular Universal executes on the&nbsp;server, generating&nbsp;static&nbsp;application pages that later get bootstrapped on the client. This means that the application generally renders more quickly, giving users [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [253],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4683"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=4683"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4683/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4691,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4683/revisions/4691"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=4683"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=4683"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=4683"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 4684,
+    "date": "2021-02-27T08:50:52",
+    "date_gmt": "2021-02-27T08:50:52",
+    "guid": {
+      "rendered": "http://angular.foobrdigital.com/?p=4684"
+    },
+    "modified": "2021-02-27T08:50:52",
+    "modified_gmt": "2021-02-27T08:50:52",
+    "slug": "universal-in-action",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/universal-in-action/",
+    "title": {
+      "rendered": "Universal in action"
+    },
+    "content": {
+      "rendered": "\n<p>To start rendering your app with Universal on your local system, use the following command.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>content_copy<code>npm run dev:ssr</code></code></pre>\n\n\n\n<p>Open a browser and navigate to\u00a0http://localhost:4200/. You should see the familiar Tour of Heroes dashboard page.</p>\n\n\n\n<p>Navigation via&nbsp;<code>routerLinks</code>&nbsp;works correctly because they use the native anchor (<code>&lt;a&gt;</code>) tags. You can go from the Dashboard to the Heroes page and back. You can click a hero on the Dashboard page to display its Details page.</p>\n\n\n\n<p>If you throttle your network speed so that the client-side scripts take longer to download (instructions below), you&#8217;ll notice:</p>\n\n\n\n<ul><li>Clicking a hero on the Heroes page does nothing.</li><li>You can&#8217;t add or delete a hero.</li><li>The search box on the Dashboard page is ignored.</li><li>The&nbsp;<em>Back</em>&nbsp;and&nbsp;<em>Save</em>&nbsp;buttons on the Details page don&#8217;t work.</li></ul>\n\n\n\n<p>User events other than&nbsp;<code><a href=\"https://angular.io/api/router/RouterLink\">routerLink</a></code>&nbsp;clicks aren&#8217;t supported. You must wait for the full client app to bootstrap and run, or buffer the events using libraries like&nbsp;<a href=\"https://github.com/angular/preboot\">preboot</a>, which allow you to replay these events once the client-side scripts load.</p>\n\n\n\n<p>The transition from the server-rendered app to the client app happens quickly on a development machine, but you should always test your apps in real-world scenarios.</p>\n\n\n\n<p>You can simulate a slower network to see the transition more clearly as follows:</p>\n\n\n\n<ol><li>Open the Chrome Dev Tools and go to the Network tab.</li><li>Find the\u00a0Network Throttling\u00a0dropdown on the far right of the menu bar.</li><li>Try one of the &#8220;3G&#8221; speeds.</li></ol>\n\n\n\n<p>The server-rendered app still launches quickly but the full client app may take seconds to load.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>To start rendering your app with Universal on your local system, use the following command. Open a browser and navigate to\u00a0http://localhost:4200/. You should see the familiar Tour of Heroes dashboard page. Navigation via&nbsp;routerLinks&nbsp;works correctly because they use the native anchor (&lt;a&gt;) tags. You can go from the Dashboard to the Heroes page and back. You [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [253],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4684"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=4684"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4684/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4692,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4684/revisions/4692"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=4684"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=4684"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=4684"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  }
+]

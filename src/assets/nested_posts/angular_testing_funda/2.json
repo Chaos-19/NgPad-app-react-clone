@@ -1,0 +1,202 @@
+[
+  {
+    "id": 4526,
+    "date": "2021-02-25T10:56:03",
+    "date_gmt": "2021-02-25T10:56:03",
+    "guid": {
+      "rendered": "http://angular.foobrdigital.com/?p=4526"
+    },
+    "modified": "2021-02-25T10:56:03",
+    "modified_gmt": "2021-02-25T10:56:03",
+    "slug": "intro",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/intro/",
+    "title": {
+      "rendered": "Intro"
+    },
+    "content": {
+      "rendered": "\n<p>The CLI can run unit tests and create code coverage reports. Code coverage reports show you any parts of your code base that may not be properly tested by your unit tests.</p>\n\n\n\n<p>For the sample app that the testing guides describe, see the&nbsp;<a target=\"_blank\" href=\"https://angular.io/generated/live-examples/testing/stackblitz.html\" rel=\"noreferrer noopener\">sample app</a>.</p>\n\n\n\n<p>For the tests features in the testing guides, see&nbsp;<a target=\"_blank\" href=\"https://angular.io/generated/live-examples/testing/specs.stackblitz.html\" rel=\"noreferrer noopener\">tests</a>.</p>\n\n\n\n<p>To generate a coverage report run the following command in the root of your project.</p>\n\n\n\n<div class=\"wp-block-columns\">\n<div class=\"wp-block-column\" style=\"flex-basis:100%\">\n<div class=\"wp-block-group\"><div class=\"wp-block-group__inner-container\">\n<pre class=\"wp-block-code\"><code>content_copy<code>ng test --no-watch --code-coverage</code></code></pre>\n</div></div>\n</div>\n</div>\n\n\n\n<p>When the tests are complete, the command creates a new&nbsp;<code>/coverage</code>&nbsp;folder in the project. Open the&nbsp;<code>index.html</code>&nbsp;file to see a report with your source code and code coverage values.</p>\n\n\n\n<p>If you want to create code-coverage reports every time you test, you can set the following option in the CLI configuration file,&nbsp;<code>angular.json</code>:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>content_copy<code>\"test\": {\n  \"options\": {\n    \"codeCoverage\": true\n  }\n}</code></code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>The CLI can run unit tests and create code coverage reports. Code coverage reports show you any parts of your code base that may not be properly tested by your unit tests. For the sample app that the testing guides describe, see the&nbsp;sample app. For the tests features in the testing guides, see&nbsp;tests. To generate [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [241],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4526"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=4526"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4526/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4547,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4526/revisions/4547"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=4526"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=4526"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=4526"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 4525,
+    "date": "2021-02-25T10:56:27",
+    "date_gmt": "2021-02-25T10:56:27",
+    "guid": {
+      "rendered": "http://angular.foobrdigital.com/?p=4525"
+    },
+    "modified": "2021-02-25T10:56:27",
+    "modified_gmt": "2021-02-25T10:56:27",
+    "slug": "code-coverage-enforcement",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/code-coverage-enforcement/",
+    "title": {
+      "rendered": "Code coverage enforcement"
+    },
+    "content": {
+      "rendered": "\n<p>The code coverage percentages let you estimate how much of your code is tested. If your team decides on a set minimum amount to be unit tested, you can enforce this minimum with the Angular CLI.</p>\n\n\n\n<p>For example, suppose you want the code base to have a minimum of 80% code coverage. To enable this, open the&nbsp;<a href=\"https://karma-runner.github.io/\">Karma</a>&nbsp;test platform configuration file,&nbsp;<code>karma.conf.js</code>, and add the following in the&nbsp;<code>coverageIstanbulReporter:</code>&nbsp;key.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>content_copy<code>coverageIstanbulReporter: {\n  reports: &#91; 'html', 'lcovonly' ],\n  fixWebpackSourcePaths: true,\n  thresholds: {\n    statements: 80,\n    lines: 80,\n    branches: 80,\n    functions: 80\n  }\n}</code></code></pre>\n\n\n\n<p>The&nbsp;<code>thresholds</code>&nbsp;property causes the tool to enforce a minimum of 80% code coverage when the unit tests are run in the project.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>The code coverage percentages let you estimate how much of your code is tested. If your team decides on a set minimum amount to be unit tested, you can enforce this minimum with the Angular CLI. For example, suppose you want the code base to have a minimum of 80% code coverage. To enable this, [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [241],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4525"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=4525"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4525/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4548,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4525/revisions/4548"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=4525"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=4525"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=4525"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  }
+]

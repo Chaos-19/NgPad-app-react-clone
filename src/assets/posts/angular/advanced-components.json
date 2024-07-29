@@ -1,0 +1,1040 @@
+[
+  {
+    "id": 3729,
+    "date": "2020-12-08T06:44:15",
+    "date_gmt": "2020-12-08T06:44:15",
+    "guid": { "rendered": "http://angular.foobrdigital.com/?p=3729" },
+    "modified": "2020-12-09T08:07:06",
+    "modified_gmt": "2020-12-09T08:07:06",
+    "slug": "ng-content-content-projection-in-angular",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/ng-content-content-projection-in-angular/",
+    "title": { "rendered": "Ng-Content &#038; Content Projection in Angular" },
+    "content": {
+      "rendered": "\n<h2>What is ng-content</h2>\n\n\n\n<p>The&nbsp;<code>ng-content</code>&nbsp;tag acts as a placeholder for inserting external or dynamic content. The Parent component passes the external content to the child component. When Angular parses the template, it inserts the external content where&nbsp;<code>ng-content</code>&nbsp;appears in the child component’s template</p>\n\n\n\n<p>We can use content projection to create a reusable component. The components that have similar logic &amp; layout and can be used in many places in the application.</p>\n\n\n\n<p>Take an example of a card component. It has a&nbsp;<code>header</code>&nbsp;section,&nbsp;<code>footer</code>&nbsp;section &amp;&nbsp;<code>body</code>&nbsp;section. The contents of these sections will vary. The&nbsp;<code>ng-content</code>&nbsp;will allow us to pass these sections to the card component from the parent component. This enables us to use the card component at many places in the app.</p>\n\n\n\n<h2>Without ng-content</h2>\n\n\n\n<p>To understand how content projection using&nbsp;<code>ng-content</code>&nbsp;works, first let us build a simple button component without&nbsp;<code>ng-content</code>.</p>\n\n\n\n<p>Create a new Angular application. Add a new component&nbsp;<code>btn.component.ts</code>.It is a simple component, which displays a button with the caption&nbsp;<code>Click Me</code></p>\n\n\n\n<pre class=\"wp-block-code\"><code>import { Component } from '@angular/core';\r\n \r\n@Component({\r\n selector: 'app-btn',\r\n template: `&lt;button>\r\n       Click Me\r\n     &lt;/button>`\r\n})\r\nexport class BtnComponent {\r\n}</code></pre>\n\n\n\n<p>Now go to the app.component.html.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>h2>Simple Button Demo&lt;/h2>\r\n&lt;app-btn>&lt;/app-btn>\r\n&lt;app-btn>&lt;/app-btn></code></pre>\n\n\n\n<p>In the code above, we have two buttons with the caption&nbsp;<code><strong>Click Me</strong></code>&nbsp;show up on the screen as expected.</p>\n\n\n\n<p>What if we want to change the caption from the parent. We can do that using the&nbsp;@saqibkhan property. But using&nbsp;@input, we can only set the caption of the button. But we cannot change the look and appearance of the caption.</p>\n\n\n\n<h2>ng-content Example</h2>\n\n\n\n<p>Create a new component&nbsp;<code>FancyBtnComponent</code>. Copy all the codes from&nbsp;<code>BtnComponent</code>&nbsp;except for one change. Remove&nbsp;<code>Click Me</code>&nbsp;and add&nbsp;<code>&lt;ng-content&gt; &lt;/ng-content&gt;</code>&nbsp;instead. This tag acts as a placeholder. You can also think of it as an argument to the component. The parent component must supply the argument</p>\n\n\n\n<pre class=\"wp-block-code\"><code> import { Component, Output, EventEmitter } from '@angular/core';\r\n \r\n@Component({\r\n selector: 'app-fancybtn',\r\n template: `\r\n     &lt;button>\r\n       &lt;ng-content>&lt;/ng-content>\r\n     &lt;/button> `\r\n})\r\nexport class FancyBtnComponent {\r\n}</code></pre>\n\n\n\n<p>Now open the app.component.html</p>\n\n\n\n<pre class=\"wp-block-code\"><code> &lt;h2>Button Demo With ng-content&lt;/h2>\r\n&lt;app-fancybtn>Click Me&lt;/app-fancybtn></code></pre>\n\n\n\n<p>The content between&nbsp;<code>&lt;app-fancybtn&gt; &lt;/app-fancybtn&gt;</code>&nbsp;is passed to our&nbsp;<code>FancyBtnComponent</code>. The component displays it in place of&nbsp;<code>ng-content</code>.</p>\n\n\n\n<p>The advantage of such a solution is that you can pass any HTML content.</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://www.tektutorialshub.com/wp-content/uploads/2020/03/ng-content-example-in-angular.png\" alt=\"ng-content Example\" class=\"wp-image-17014\"/></figure>\n\n\n\n<h3>Events</h3>\n\n\n\n<p>The events like&nbsp;<code>click</code>,&nbsp;<code>input</code>, etc bubble up. Hence can be captured in the parent as shown below</p>\n\n\n\n<pre class=\"wp-block-code\"><code>\r\n**app.component.html**\r\n \r\n&lt;h2>Button with click event&lt;/h2>\r\n&lt;app-fancybtn (click)=\"btnClicked($event)\">&lt;b>Submit&lt;/b>&lt;/app-fancybtn>\r\n \r\n \r\n** App.component.ts ***\r\n \r\n btnClicked($event) {\r\n   console.log($event)\r\n   alert('button clicked')\r\n }\r\n </code></pre>\n\n\n\n<p>But if you have more than one button, then you may have to inspect the&nbsp;<code>$event</code>&nbsp;argument to check, which button responsible for the event.</p>\n\n\n\n<h3>Custom Events</h3>\n\n\n\n<p>You can create custom events using the&nbsp;<code>@output</code>&nbsp;as shown in below</p>\n\n\n\n<pre class=\"wp-block-code\"><code>\r\n@Output() someEvent:EventEmitter =new EventEmitter();\r\n \r\nraiseSomeEvent() {\r\n this.someEvent.emit(args);\r\n}</code></pre>\n\n\n\n<p>In parent component</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;app-fancybtn (someEvent)=”DoSomething($event)”>&lt;b>Submit&lt;/b>&lt;/app-fancybtn></code></pre>\n\n\n\n<h2>Multiple Projections using ng-content</h2>\n\n\n\n<p>The button example is a very simple example. The&nbsp;<code>ng-content</code>&nbsp;is much more powerful than that. It allows us to create multiple slots in the template. Each slot must define a&nbsp;<code>selector</code>. You can think this as a multiple arguments to the component</p>\n\n\n\n<p>In the parent component we can create different contents and each of those contents can be projected into any of those slots depending on their selector. To implement this we make use of the&nbsp;<strong>ng-content Select attribute</strong>. The select attribute is a CSS Selector</p>\n\n\n\n<h3>Example of ng-content select attribute</h3>\n\n\n\n<p>For Example, create a new component&nbsp;<code>card.component.ts</code></p>\n\n\n\n<pre class=\"wp-block-code\"><code>import { Component } from '@angular/core';\r\n \r\n \r\n@Component({\r\n  selector: 'app-card',\r\n  template: `\r\n    &lt;div class=\"card\">\r\n    &lt;div class=\"header\">\r\n      &lt;ng-content select=\"header\" >&lt;/ng-content>\r\n    &lt;/div>\r\n    &lt;div class=\"content\">\r\n      &lt;ng-content select=\"content\" >&lt;/ng-content>\r\n    &lt;/div>\r\n    &lt;div class=\"footer\">\r\n      &lt;ng-content select=\"footer\" >&lt;/ng-content>\r\n    &lt;/div>\r\n    &lt;/div>\r\n  `,\r\n  styles: &#91;\r\n    ` .card { min- width: 280px;  margin: 5px;  float:left  } \r\n      .header { color: blue}\r\n    `\r\n  ]\r\n})\r\nexport class CardComponent {\r\n}</code></pre>\n\n\n\n<p>In the above example, we have three ng-content slots, each have a selector&nbsp;<code>header</code>,<code>content</code>&nbsp;&amp;&nbsp;<code>footer</code></p>\n\n\n\n<p>Now open the&nbsp;<code>app.component.html</code>&nbsp;add the following code</p>\n\n\n\n<pre class=\"wp-block-code\"><code> \r\n&lt;app-card>\r\n &lt;header>&lt;h1>Angular&lt;/h1>&lt;/header>\r\n &lt;content>One framework. Mobile &amp; desktop.&lt;/content>\r\n &lt;footer>&lt;b>Super-powered by Google &lt;/b>&lt;/footer>\r\n&lt;/app-card>\r\n  \r\n&lt;app-card>\r\n &lt;header>&lt;h1 style=\"color:red;\">React&lt;/h1>&lt;/header>\r\n &lt;content>A JavaScript library for building user interfaces&lt;/content>\r\n &lt;footer>&lt;b>Facebook Open Source &lt;/b>&lt;/footer>\r\n&lt;/app-card></code></pre>\n\n\n\n<h3>Select attribute is a CSS selector</h3>\n\n\n\n<p>You can use any CSS selector as the select attribute. Like class, element, id attributes, etc. For Example, the above card component using the CSS class</p>\n\n\n\n<pre class=\"wp-block-code\"><code>import { Component } from '@angular/core';\r\n \r\n@Component({\r\n  selector: 'card',\r\n  template: `\r\n    &lt;div class=\"card\">\r\n    &lt;div class=\"header\">\r\n      &lt;ng-content select=\".header\" >&lt;/ng-content>\r\n    &lt;/div>\r\n    &lt;div class=\"content\">\r\n      &lt;ng-content select=\".content\" >&lt;/ng-content>\r\n    &lt;/div>\r\n    &lt;div class=\"footer\">\r\n      &lt;ng-content select=\".footer\" >&lt;/ng-content>\r\n    &lt;/div>\r\n    &lt;/div>\r\n  `,\r\n  styles: &#91;\r\n    ` .card { width: 280px;  margin: 5px;  float:left; border-width:1px; border-style:solid ; } \r\n      .header { color: blue}\r\n    `\r\n  ]\r\n})\r\nexport class CardComponent {</code></pre>\n\n\n\n<p>And in the component, we use it as</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;card>\r\n  &lt;div class=\"header\">\r\n    &lt;h1>Angular&lt;/h1>\r\n  &lt;/div>\r\n  &lt;div class=\"content\">One framework. Mobile &amp; desktop.&lt;/div>\r\n  &lt;div class=\"footer\">&lt;b>Super-powered by Google &lt;/b>&lt;/div>\r\n&lt;/card>\r\n \r\n&lt;card>\r\n  &lt;div class=\"header\">\r\n    &lt;h1 style=\"color:red;\">React&lt;/h1>\r\n  &lt;/div>\r\n  &lt;div class=\"content\">A JavaScript library for building user interfaces&lt;/div>\r\n  &lt;div class=\"footer\">&lt;b>Facebook Open Source &lt;/b>&lt;/div>\r\n&lt;/card></code></pre>\n\n\n\n<p>Similarly, you can use the various CSS Selectors as shown below</p>\n\n\n\n<pre class=\"wp-block-code\"><code> \r\n &lt;ng-content select=\"custom-element\" >&lt;/ng-content>\r\n &lt;ng-content select=\".custom-class\" >&lt;/ng-content>\r\n &lt;ng-content select=\"&#91;custom-attribute]\" >&lt;/ng-content>\r\n </code></pre>\n\n\n\n<h3>ng-content without selector catches all</h3>\n\n\n\n<p>Now, in the following example, the last paragraph does not belong to any&nbsp;<code>ng-content</code>&nbsp;slots. Hence&nbsp;<code>ng-content</code>&nbsp;will not project the last para as it cannot determine where to add.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;card>\r\n  &lt;div class=\"header\">&lt;h1>Typescript&lt;/h1>&lt;/div>\r\n  &lt;div class=\"content\">Typescript is a javascript for any scale&lt;/div>\r\n  &lt;div class=\"footer\">&lt;b>Microsoft &lt;/b>&lt;/div>\r\n  &lt;p>This text will not be shown&lt;/p>\r\n&lt;/card></code></pre>\n\n\n\n<p>To solve the above issue, we can include&nbsp;<code>ng-content</code>&nbsp;without any&nbsp;<code>selector</code>. It will display all the content, which cannot be projected into any other slots.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>import { Component } from '@angular/core';\r\n \r\n \r\n@Component({\r\n  selector: 'app-card',\r\n  template: `\r\n    &lt;div class=\"card\">\r\n    &lt;div class=\"header\">\r\n      &lt;ng-content select=\"header\" >&lt;/ng-content>\r\n    &lt;/div>\r\n    &lt;div class=\"content\">\r\n      &lt;ng-content select=\"content\" >&lt;/ng-content>\r\n    &lt;/div>\r\n    &lt;div class=\"footer\">\r\n      &lt;ng-content select=\"footer\" >&lt;/ng-content>\r\n    &lt;/div>\r\n    &lt;ng-content>&lt;/ng-content>                      \r\n    &lt;/div>\r\n  `,\r\n  styles: &#91;\r\n    ` .card { min- width: 280px;  margin: 5px;  float:left  } \r\n      .header { color: blue}\r\n    `\r\n  ]\r\n})\r\nexport class CardComponent {\r\n}\r\n</code></pre>\n\n\n\n<h2>ngProjectAs</h2>\n\n\n\n<p>Sometimes it becomes necessary to wrap the component using the <code>ng-container</code>. Most of the time when you use a structural directive like <code>ngIf</code> or <code>ngSwitch</code>.</p>\n\n\n\n<p>In the following example, we enclosed the header inside the&nbsp;ng-container.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>\r\n&lt;card>\r\n  &lt;ng-container>\r\n    &lt;div class=\"header\">\r\n      &lt;h1 style=\"color:red;\">React&lt;/h1>\r\n    &lt;/div>\r\n  &lt;/ng-container>\r\n  &lt;div class=\"content\">A JavaScript library for building user interfaces&lt;/div>\r\n  &lt;div class=\"footer\">&lt;b>Facebook Open Source &lt;/b>&lt;/div>\r\n&lt;/card></code></pre>\n\n\n\n<p>Because of the&nbsp;ng-container, the header section is not projected to the header slot. Instead, it is projected to the&nbsp;<code>ng-content</code>&nbsp;slot which does not have a&nbsp;<code>selector</code>&nbsp;set.</p>\n\n\n\n<p>To help in such a scenario, you can make use of&nbsp;<code>ngProjectAs</code>&nbsp;attribute as shown below.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;card>\r\n  &lt;ng-container ngProjectAs=\"header\">\r\n    &lt;div>\r\n      &lt;h1 style=\"color:red;\">React&lt;/h1>\r\n    &lt;/div>\r\n  &lt;/ng-container>\r\n  &lt;div class=\"content\">A JavaScript library for building user interfaces&lt;/div>\r\n  &lt;div class=\"footer\">&lt;b>Facebook Open Source &lt;/b>&lt;/div>\r\n&lt;/card>\r\n </code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>What is ng-content The&nbsp;ng-content&nbsp;tag acts as a placeholder for inserting external or dynamic content. The Parent component passes the external content to the child component. When Angular parses the template, it inserts the external content where&nbsp;ng-content&nbsp;appears in the child component’s template We can use content projection to create a reusable component. The components that have [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [136],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3729" }
+      ],
+      "collection": [
+        { "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=3729"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 2,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3729/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3868,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3729/revisions/3868"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=3729"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=3729"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=3729"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3731,
+    "date": "2020-12-08T06:49:02",
+    "date_gmt": "2020-12-08T06:49:02",
+    "guid": { "rendered": "http://angular.foobrdigital.com/?p=3731" },
+    "modified": "2020-12-09T08:09:24",
+    "modified_gmt": "2020-12-09T08:09:24",
+    "slug": "angular-input-output-eventemitter",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/angular-input-output-eventemitter/",
+    "title": { "rendered": "Angular @input, @output &#038; EventEmitter" },
+    "content": {
+      "rendered": "\n<h2>@input, @output &amp; Eventemitter</h2>\n\n\n\n<h3>@input</h3>\n\n\n\n<p><code>Input</code>&nbsp;decorator marks the property as the input property. I.e it can receive data from the parent component. The parent component uses the&nbsp;property binding&nbsp;to bind it to a component property. Whenever the value in the parent component changes angular updates the value in the child component.</p>\n\n\n\n<p><strong>Example</strong></p>\n\n\n\n<p>Consider the following component class</p>\n\n\n\n<pre class=\"wp-block-code\"><code>\r\n@Component({\r\n  selector: 'app-customer-detail',\r\n  templateUrl: './customer-detail.component.html',\r\n  styleUrls: &#91;'./customer-detail.component.css']\r\n})\r\nexport class CustomerDetailComponent implements OnInit {\r\n  @Input() customer:Customer;\r\n}</code></pre>\n\n\n\n<p>We have&nbsp;<code>Input</code>&nbsp;decorator on the&nbsp;<code>customer</code>&nbsp;property. The component expects that the parent component will supply its value.</p>\n\n\n\n<p>The parent component supplies the&nbsp;<code>customer</code>&nbsp;object using the&nbsp;property binding&nbsp;syntax. We add a square bracket around the&nbsp;<code>customer</code>&nbsp;property. Assign template expression (<code>selectedCustomer</code>) to it, which is a property in the parent component.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;app-customer-detail &#91;customer]=\"selectedCustomer\">&lt;/app-customer-detail>\r\n</code></pre>\n\n\n\n<h3>@output</h3>\n\n\n\n<p><code>Output</code>&nbsp;decorates the property as the output property. We initialize it as an&nbsp;<code>EventEmitter</code>. The child component raises the event and passes the data as the argument to the event. The parent component listens to events using&nbsp;event binding&nbsp;and reads the data.</p>\n\n\n\n<p><strong>Example</strong></p>\n\n\n\n<pre class=\"wp-block-code\"><code>//Declare the property\r\n@Output() customerChange:EventEmitter&lt;Customer> =new EventEmitter&lt;Customer>();\r\n \r\n//Raise the event to send the data back to parent\r\nupdate() {\r\n  this.customerChange.emit(this.customer);</code></pre>\n\n\n\n<p>The&nbsp;<code>customerChange</code>&nbsp;is the Output property and is of type&nbsp;<code>EventEmitter</code>.</p>\n\n\n\n<p>In the parent component, we subscribe to the event using the&nbsp;event binding&nbsp;syntax. Use the&nbsp;<code>()</code>&nbsp;around the event name (<code>customerChange</code>) and assign a template statement (<code>update($event)</code>) to it. It receives the data in the&nbsp;<code>$event</code>&nbsp;argument.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> &lt;app-customer-detail &#91;customer]=\"selectedCustomer\" (customerChange)=\"update($event)\">&lt;/app-customer-detail> </code></pre>\n\n\n\n<p>Remember you must use the argument name as&nbsp;<code>$event</code>.</p>\n\n\n\n<h3>EventEmitter</h3>\n\n\n\n<p><code>EventEmitter</code>&nbsp;is responsible for raising the event. The&nbsp;<code>@output</code>&nbsp;property normally is of type&nbsp;<code>EventEmitter</code>. The child component will use the&nbsp;<code>emit()</code>&nbsp;method to emit an event along with the data.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>//Define  output property\r\n@Output() customerChange:EventEmitter&lt;Customer> =new EventEmitter&lt;Customer>(); \r\n \r\n//Raise the event using the emit method.\r\nupdate() {\r\n  this.customerChange.emit(this.customer);\r\n}</code></pre>\n\n\n\n<p>Now let us build an app to learn how to use&nbsp;<code>Input</code>,&nbsp;<code>output</code>&nbsp;&amp;&nbsp;<code>EventEmitter</code></p>\n\n\n\n<h2>@input, @output &amp; Eventemitter Example</h2>\n\n\n\n<p>The app we build has two components. The parent component shows a list of customers. The user has the option to click on the edit button, which results in a child component displaying the customer form Once the user updates the records, the child component raises the event. The parent captures the event. The parent then updates the list with the new data.</p>\n\n\n\n<p>Create a new application using the following command</p>\n\n\n\n<pre class=\"wp-block-code\"><code> ng new InputOutputExample </code></pre>\n\n\n\n<p>Create the&nbsp;<code>customerList</code>&nbsp;&amp;&nbsp;<code>customerDetail</code>&nbsp;components. Also, create the&nbsp;<code>customer</code>&nbsp;class</p>\n\n\n\n<pre class=\"wp-block-code\"><code> ng n c customerListng g c customerDetailng g class customer </code></pre>\n\n\n\n<p><strong>Customer</strong></p>\n\n\n\n<pre class=\"wp-block-code\"><code>export class Customer {\r\n \r\n  customerNo: number;\r\n  name: string;\r\n  address: string;\r\n  city: string;\r\n  state: string;\r\n  country: string;\r\n \r\n}</code></pre>\n\n\n\n<p><strong>app.module.ts</strong></p>\n\n\n\n<p>The&nbsp;<code>ngModel</code>&nbsp;needs the&nbsp;<code>FormsModule</code>. Hence import it and add it in import metadata.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> \r\nimport { BrowserModule } from '@angular/platform-browser';\r\nimport { NgModule } from '@angular/core';\r\nimport { FormsModule } from '@angular/forms'\r\n \r\nimport { AppRoutingModule } from './app-routing.module';\r\nimport { AppComponent } from './app.component';\r\nimport { CustomerListComponent } from './customer-list/customer-list.component';\r\nimport { CustomerDetailComponent } from './customer-detail/customer-detail.component';\r\n \r\n@NgModule({\r\n  declarations: &#91;\r\n    AppComponent,\r\n    CustomerListComponent,\r\n    CustomerDetailComponent\r\n  ],\r\n  imports: &#91;\r\n    BrowserModule,\r\n    AppRoutingModule,\r\n    FormsModule\r\n  ],\r\n  providers: &#91;],\r\n  bootstrap: &#91;AppComponent],\r\n})\r\nexport class AppModule { }</code></pre>\n\n\n\n<h3>Child Component</h3>\n\n\n\n<p>The child component gets an instance of the customer in its input property&nbsp;<code>customer</code>. The parent needs to set it using the&nbsp;property binding</p>\n\n\n\n<p>Users can edit the customer. Once finished they will click the update button. The update method raises the&nbsp;<code>customerChange</code>&nbsp;event. We pass the&nbsp;<code>customer</code>&nbsp;as the argument to the event. The parent component listens to the event and receives the data.</p>\n\n\n\n<p>The following is the complete code of the&nbsp;<code>CustomerDetailComponent</code>.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>import { Component, OnInit, Input, Output,EventEmitter } from '@angular/core';\r\nimport { Customer } from '../customer';\r\n \r\n@Component({\r\n  selector: 'app-customer-detail',\r\n  templateUrl: './customer-detail.component.html',\r\n  styleUrls: &#91;'./customer-detail.component.css']\r\n})\r\nexport class CustomerDetailComponent implements OnInit {\r\n \r\n  @Input() customer:Customer;\r\n  @Output() customerChange:EventEmitter&lt;Customer> =new EventEmitter&lt;Customer>(); \r\n    \r\n  constructor() { }\r\n \r\n  ngOnInit() {\r\n  }\r\n \r\n  update() {\r\n    this.customerChange.emit(this.customer);\r\n  }\r\n \r\n}</code></pre>\n\n\n\n<p><code>'app-customer-detail'</code>&nbsp;is the name of the selector for this component.</p>\n\n\n\n<p>The&nbsp;<code>customer</code>&nbsp;property is the input property decorated with&nbsp;<code>Input</code>.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> @Input() customer:Customer; </code></pre>\n\n\n\n<p><code>customerChange</code>&nbsp;is decorated as the&nbsp;<code>output</code>&nbsp;property of type&nbsp;<code>EventEmitter</code></p>\n\n\n\n<pre class=\"wp-block-code\"><code> @Output() customerChange:EventEmitter&lt;Customer> =new EventEmitter&lt;Customer>();  </code></pre>\n\n\n\n<p>Whenever the user updates the&nbsp;<code>customer</code>, we raise the event&nbsp;<code>customerChange.</code>&nbsp;We pass the updated&nbsp;<code>customer</code>&nbsp;as the argument to it.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>update() {  this.customerChange.emit(this.customer);} </code></pre>\n\n\n\n<p>The&nbsp;<code>customer-detail.component.html</code>is as follows.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;p>Customer No : {{customer.customerNo}}&lt;/p>\r\n&lt;p>Name        : &lt;input &#91;(ngModel)]=\"customer.name\">&lt;/p>\r\n&lt;p>Address     : &lt;input &#91;(ngModel)]=\"customer.address\">&lt;/p>\r\n&lt;p>city     : &lt;input &#91;(ngModel)]=\"customer.city\">&lt;/p>\r\n&lt;p>state     : &lt;input &#91;(ngModel)]=\"customer.state\">&lt;/p>\r\n&lt;p>country     : &lt;input &#91;(ngModel)]=\"customer.country\">&lt;/p>\r\n \r\n&lt;button (click)=\"update()\">Update&lt;/button></code></pre>\n\n\n\n<p>The&nbsp;ngModel&nbsp;binds the&nbsp;<code>customer</code>&nbsp;to the input element. It is a&nbsp;two-way binding. The&nbsp;<code>click</code>&nbsp;event of the button is bound to&nbsp;<code>update()</code>&nbsp;method in the component.</p>\n\n\n\n<h3>Parent Component</h3>\n\n\n\n<p>The job of the parent component is to display a list of customers. When the user clicks on the edit button pass the selected customer to the child component. Then wait for the&nbsp;<code>customerChange</code>&nbsp;event. Update the customer’s list on receipt of data from the child.</p>\n\n\n\n<p>The following is the&nbsp;<code>customer-list.component.html</code></p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;h2>List of Customers&lt;/h2>\r\n \r\n&lt;table class='table'>\r\n  &lt;thead>\r\n    &lt;tr>\r\n      &lt;th>No&lt;/th>\r\n      &lt;th>Name&lt;/th>\r\n      &lt;th>Address&lt;/th>\r\n      &lt;th>City&lt;/th>\r\n      &lt;th>State&lt;/th>\r\n      &lt;th>Country&lt;/th>\r\n      &lt;th>Edit&lt;/th>\r\n    &lt;/tr>\r\n  &lt;/thead>\r\n  &lt;tbody>\r\n    &lt;tr *ngFor=\"let customer of customers;\">\r\n      &lt;td>{{customer.customerNo}}&lt;/td>\r\n      &lt;td>{{customer.name}}&lt;/td>\r\n      &lt;td>{{customer.address}}&lt;/td>\r\n      &lt;td>{{customer.city}}&lt;/td>\r\n      &lt;td>{{customer.state}}&lt;/td>\r\n      &lt;td>{{customer.country}}&lt;/td>\r\n      &lt;td>&lt;button (click)=\"showDetails(customer)\">Edit&lt;/button>&lt;/td>\r\n    &lt;/tr>\r\n  &lt;/tbody>\r\n&lt;/table>\r\n \r\n&lt;h3>Details&lt;/h3>\r\n&lt;app-customer-detail &#91;customer]=\"selectedCustomer\" (customerChange)=\"update($event)\">&lt;/app-customer-detail></code></pre>\n\n\n\n<p>Use the&nbsp;ngFor directive&nbsp;to loop through the customer list and display the customer details.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>  &lt;tr *ngFor=\"let customer of customers;\"> </code></pre>\n\n\n\n<p>The event binding to capture the&nbsp;<code>click</code>&nbsp;event. We pass the customer object to the&nbsp;<code>showDetails</code>&nbsp;method</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;td>&lt;button (click)=\"showDetails(customer)\">Edit&lt;/button>&lt;/td> </code></pre>\n\n\n\n<p><code>app-customer-detail is</code>&nbsp;the selector for the&nbsp;<code>CustomerDetailComponent.</code>&nbsp;We use the&nbsp;property binding&nbsp;to send the&nbsp;<code>selectedCustomer</code>&nbsp;to the child component. The child component raises the&nbsp;<code>customerChange</code>&nbsp;event, which we listen to using the&nbsp;event binding&nbsp;and call the&nbsp;<code>update</code>&nbsp;method.</p>\n\n\n\n<p><code><strong>Customer-list.component.ts</strong></code></p>\n\n\n\n<p>The component code of the parent component. It has two method showDetails &amp; update</p>\n\n\n\n<pre class=\"wp-block-code\"><code> \r\nimport { Component, OnInit } from '@angular/core';\r\nimport { Customer } from '../customer';\r\nimport { element } from 'protractor';\r\nimport { ObjectUnsubscribedError } from 'rxjs';\r\n \r\n@Component({\r\n  selector: 'app-customer-list',\r\n  templateUrl: './customer-list.component.html',\r\n  styleUrls: &#91;'./customer-list.component.css']\r\n})\r\nexport class CustomerListComponent implements OnInit {\r\n \r\n  customers: Customer&#91;] = &#91;\r\n \r\n    {customerNo: 1, name: 'Rahuld Dravid', address: '', city: 'Banglaore', state: 'Karnataka', country: 'India'},\r\n    {customerNo: 2, name: 'Sachin Tendulkar', address: '', city: 'Mumbai', state: 'Maharastra', country: 'India'},\r\n    {customerNo: 3, name: 'Saurrav Ganguly', address: '', city: 'Kolkata', state: 'West Bengal', country: 'India'},\r\n    {customerNo: 4, name: 'Mahendra Singh Dhoni', address: '', city: 'Ranchi', state: 'Bihar', country: 'India'},\r\n    {customerNo: 5, name: 'Virat Kohli', address: '', city: 'Delhi', state: 'Delhi', country: 'India'},\r\n \r\n  ]\r\n \r\n  selectedCustomer:Customer;\r\n \r\n  constructor() { }\r\n \r\n  ngOnInit() {\r\n  }\r\n \r\n  showDetails(customer:Customer) {\r\n    this.selectedCustomer=Object.assign({},customer)\r\n  }\r\n  \r\n  update(customer:Customer) {\r\n    console.log(customer)\r\n    var cust=this.customers.find(e => e.customerNo==customer.customerNo)\r\n    Object.assign(cust,customer)\r\n    alert(\"Customer Saved\")\r\n  }\r\n}</code></pre>\n\n\n\n<p>The&nbsp;<code>showDetails</code>&nbsp;method gets the customer as its argument. We clone it &amp; assign it to&nbsp;<code>selectedCustomer</code></p>\n\n\n\n<p>Since the customer is an object it is&nbsp;<code><strong>Passed by Reference</strong></code>. When you make any modification to the&nbsp;<code>customer</code>&nbsp;it will also be reflected in the customer’s collection. We want the update the customer’s only when we get the data from the child. Hence we clone the customer and send it to the child component.</p>\n\n\n\n<p>If you are passing primitive data types like numbers are&nbsp;<code><strong>Passed by Value</strong></code>.</p>\n\n\n\n<p>Run the app</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://www.tektutorialshub.com/wp-content/uploads/2020/03/Angular-Input-output-EventEmitter-Example.gif\" alt=\"Angular @input, @output &amp; EventEmitter Example\" class=\"wp-image-16989\"/></figure>\n\n\n\n<h2>Notes on @Input &amp; @Output</h2>\n\n\n\n<h3>You can also pass the optional name</h3>\n\n\n\n<p><code>Input</code>&nbsp;decorator allows us to pass an option name, which you can use it while binding in the parent</p>\n\n\n\n<p>For Example</p>\n\n\n\n<pre class=\"wp-block-code\"><code> @Input(‘customerData’) customer:Customer; </code></pre>\n\n\n\n<h3>Intercept input property changes with a setter</h3>\n\n\n\n<p>You can also create a setter property</p>\n\n\n\n<pre class=\"wp-block-code\"><code>private _customerData = '';\r\n  @Input()\r\n  set customer(customer: Customer) {\r\n    //You can add some custom logic here\r\n    this._customerData = customer;\r\n    console.log(this._customerData)\r\n  }\r\n  get customer(): string { return this._customerData; }</code></pre>\n\n\n\n<h3>Subscribe to @Input changes using ngChanges</h3>\n\n\n\n<p>You can also subscribe to the changes using&nbsp;ngOnChanges&nbsp;life cycle hook.</p>\n\n\n\n<h3>EventEmitters are observable</h3>\n\n\n\n<p><code>EventEmitters</code>&nbsp;are RxJs Subjects. Hence you can make use of RxJs operators to manipulate them. Read more about it from this&nbsp;link.</p>\n\n\n\n<h3>Pass by reference</h3>\n\n\n\n<p>The objects are&nbsp;<strong><code>passed by reference</code></strong>. Hence if you modify the object, you are updating the original object. The primitive data types like numbers are&nbsp;<code><strong>Passed by Value</strong></code>.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>@input, @output &amp; Eventemitter @input Input&nbsp;decorator marks the property as the input property. I.e it can receive data from the parent component. The parent component uses the&nbsp;property binding&nbsp;to bind it to a component property. Whenever the value in the parent component changes angular updates the value in the child component. Example Consider the following component [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [136],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3731" }
+      ],
+      "collection": [
+        { "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=3731"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 2,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3731/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3869,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3731/revisions/3869"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=3731"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=3731"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=3731"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3733,
+    "date": "2020-12-08T06:52:41",
+    "date_gmt": "2020-12-08T06:52:41",
+    "guid": { "rendered": "http://angular.foobrdigital.com/?p=3733" },
+    "modified": "2020-12-09T08:11:37",
+    "modified_gmt": "2020-12-09T08:11:37",
+    "slug": "template-reference-variable-in-angular",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/template-reference-variable-in-angular/",
+    "title": { "rendered": "Template Reference Variable in Angular" },
+    "content": {
+      "rendered": "\n<h2>Template Reference Variable</h2>\n\n\n\n<p>The Template reference variable is a reference to any DOM element,&nbsp;component&nbsp;or a&nbsp;directive&nbsp;in the Template. We can use it elsewhere in the template. We can also pass it to a method in the component. It can contain a reference to elements like&nbsp;<code>h1</code>,&nbsp;<code>div</code>, etc</p>\n\n\n\n<h2>Defining Template Reference variable</h2>\n\n\n\n<p>We declare Template reference variables using&nbsp;<code>#</code>&nbsp;followed by the name of the variable (&nbsp;<code>#variable</code>). We can also declare them using&nbsp;<code>#variable=\"customer\"</code>&nbsp;when the component/directive defines a customer as the&nbsp;<code>exportAs</code>&nbsp;Property.</p>\n\n\n\n<p>For Example</p>\n\n\n\n<p><strong>HTML Element</strong></p>\n\n\n\n<pre class=\"wp-block-code\"><code> &lt;input type=\"text\" #firstName> </code></pre>\n\n\n\n<p><strong>Component/Directive</strong></p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;app-customer #customerList=”customer”>&lt;/app-customer> </code></pre>\n\n\n\n<h2>Template Reference variable Example</h2>\n\n\n\n<p>Now let us create a simple sample application to learn how to use a template reference variable</p>\n\n\n\n<p>Create a new application</p>\n\n\n\n<pre class=\"wp-block-code\"><code>ng new templateVariable </code></pre>\n\n\n\n<h3>HTML Element</h3>\n\n\n\n<p>The following Example code defines the&nbsp;<code>#firstName</code>&nbsp;&amp;&nbsp;<code>#lastName</code>&nbsp;template reference variables. They both contain the reference to the input HTML Element.</p>\n\n\n\n<p>The input elements contain the&nbsp;<code>value</code>&nbsp;property. Hence we can use it to display the welcome message as shown below.</p>\n\n\n\n<p><strong>app.component.html</strong></p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;h1>{{title}}&lt;/h1>\r\n \r\n&lt;p>\r\n &lt;label for=\"firstName\">First Name&lt;/label>\r\n &lt;input (keyup)=\"0\" type=\"text\" #firstName id=\"firstName\">\r\n&lt;/p>\r\n \r\n&lt;p>\r\n &lt;label for=\"lastName\">Last Name&lt;/label>\r\n &lt;input (keyup)=\"0\" type=\"text\" #lastName id=\"lastName\">\r\n&lt;/p>\r\n \r\n&lt;b>Welcome {{firstName.value}} {{lastName.value}} &lt;/b>\r\n </code></pre>\n\n\n\n<p>We have used&nbsp;<code>(keyup)=\"0\"</code>&nbsp;on the&nbsp;<code>input</code>&nbsp;element. It does nothing but it forces the angular to run the change detection. change detection, in turn, updates the view.</p>\n\n\n\n<p>The Angular updates the view, when it runs the change detection. The change detection runs only in response to asynchronous events, such as the arrival of HTTP responses, raising of events, etc. In the example above whenever you type on the input box, it raises the&nbsp;<code>keyup</code>&nbsp;event. It forces the angular to run the change detection, hence the view gets the latest values.</p>\n\n\n\n<h3>Pass Variable to Component class</h3>\n\n\n\n<p>You can also pass the variables to the component as shown below. Add this code app.component.html</p>\n\n\n\n<pre class=\"wp-block-code\"><code> &lt;p>\n&lt;button (click)=\"sayHello(firstName, lastName)\"> Say Hello&lt;/button>\n&lt;/p>  </code></pre>\n\n\n\n<p>Add this to app.component.ts</p>\n\n\n\n<pre class=\"wp-block-code\"><code>sayHello(firstName, lastName) {  alert('Hello '+firstName.value+' '+ lastName.value)} </code></pre>\n\n\n\n<h3>Component/Directive</h3>\n\n\n\n<p>You can get a reference to the component or directive. Refer to the tutorial on&nbsp;How to create child/nested component in Angular</p>\n\n\n\n<p>Create a new component&nbsp;<code>customer-list.component.ts</code></p>\n\n\n\n<pre class=\"wp-block-code\"><code> \r\nimport { Component } from '@angular/core';\r\nimport { Customer } from './customer';\r\n \r\n@Component({\r\n  selector: 'app-customer-list',\r\n  templateUrl: './customer-list.component.html',\r\n  exportAs:'customerList'\r\n})\r\nexport class CustomerListComponent {\r\n \r\n  selectedCustomer\r\n \r\n  customers: Customer&#91;] = &#91;\r\n \r\n    {customerNo: 1, name: 'Rahuld Dravid', address: '', city: 'Banglaore', state: 'Karnataka', country: 'India'},\r\n    {customerNo: 2, name: 'Sachin Tendulkar', address: '', city: 'Mumbai', state: 'Maharastra', country: 'India'},\r\n    {customerNo: 3, name: 'Saurrav Ganguly', address: '', city: 'Kolkata', state: 'West Bengal', country: 'India'},\r\n    {customerNo: 4, name: 'Mahendra Singh Dhoni', address: '', city: 'Ranchi', state: 'Bihar', country: 'India'},\r\n    {customerNo: 5, name: 'Virat Kohli', address: '', city: 'Delhi', state: 'Delhi', country: 'India'},\r\n \r\n  ]\r\n}</code></pre>\n\n\n\n<p><strong>customer-list.component.html</strong></p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;h2>List of Customers&lt;/h2>\r\n \r\n&lt;table class='table'>\r\n  &lt;thead>\r\n    &lt;tr>\r\n      &lt;th>No&lt;/th>\r\n      &lt;th>Name&lt;/th>\r\n      &lt;th>Address&lt;/th>\r\n      &lt;th>City&lt;/th>\r\n      &lt;th>State&lt;/th>\r\n      &lt;th>Select&lt;/th>\r\n    &lt;/tr>\r\n  &lt;/thead>\r\n  &lt;tbody>\r\n    &lt;tr *ngFor=\"let customer of customers;\">\r\n      &lt;td>{{customer.customerNo}}&lt;/td>\r\n      &lt;td>{{customer.name}}&lt;/td>\r\n      &lt;td>{{customer.address}}&lt;/td>\r\n      &lt;td>{{customer.city}}&lt;/td>\r\n      &lt;td>{{customer.state}}&lt;/td>\r\n      &lt;button (click)=\"selectedCustomer=customer\">Select&lt;/button>\r\n    &lt;/tr>\r\n  &lt;/tbody>\r\n&lt;/table>\r\n </code></pre>\n\n\n\n<p><strong>customer.ts</strong></p>\n\n\n\n<pre class=\"wp-block-code\"><code>export class Customer {\r\n \r\n  customerNo: number;\r\n  name:string ;\r\n  address:string;\r\n  city:string;\r\n  state:string;\r\n  country:string;\r\n \r\n}</code></pre>\n\n\n\n<p><strong>app.component.html</strong></p>\n\n\n\n<pre class=\"wp-block-code\"><code>You have selected {{customerListComponent.selectedCustomer?.name}}\r\n&lt;app-customer-list #customerListComponent>&lt;/app-customer-list></code></pre>\n\n\n\n<h2>ExportAs</h2>\n\n\n\n<p>Sometimes there could be more than one directive on a DOM Element.</p>\n\n\n\n<p>For Example in the following code has two directives. In such a case, we need to specify which directive to use for&nbsp;<code>#variable</code>.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;a-directive b-directive #variable /> </code></pre>\n\n\n\n<p>The components or directives can use&nbsp;<code>exportAs</code>&nbsp;to export the component/directive in a different name.</p>\n\n\n\n<p>For Example, open the&nbsp;<code>customer-list.component</code>&nbsp;and add the&nbsp;<code>exportAs:'customerList'</code>&nbsp;under the&nbsp;<code>@Component</code>&nbsp;metadata</p>\n\n\n\n<pre class=\"wp-block-code\"><code> \r\n@Component({\r\n selector: 'app-customer-list',\r\n templateUrl: './customer-list.component.html',\r\n exportAs:'customerList'\r\n})</code></pre>\n\n\n\n<p>Now you can use it a</p>\n\n\n\n<pre class=\"wp-block-code\"><code>You have selected {{customerList.selectedCustomer?.name}}\r\n&lt;app-customer-list #customerList=\"customerList\">&lt;/app-customer-list></code></pre>\n\n\n\n<h2>The safe navigation operator ( ? )</h2>\n\n\n\n<p>The&nbsp;<code>selectedCustomer</code>&nbsp;is null when the app starts for the first time. It gets its value only when the user clicks on the select button. Hence we use&nbsp;<code>?</code>&nbsp;or a safe navigation operator to guard against null or undefined value.</p>\n\n\n\n<p>Without&nbsp;<code>?</code>&nbsp;the app will throw error and stops</p>\n\n\n\n<h2>Template Driven Forms</h2>\n\n\n\n<p>The&nbsp;<code>ngForm</code>&nbsp;directive uses the&nbsp;<code>exportAs</code>&nbsp;to export an instance of itself using the name&nbsp;<code>ngForm</code>. We use this in the&nbsp;template-driven forms&nbsp;in Angular.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> &lt;form #contactForm=\"ngForm\" (ngSubmit)=\"onSubmit(contactForm)\"> </code></pre>\n\n\n\n<p>Now, you can check value and validate the status of the form within the template</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;pre>Value : {{contactForm.value | json }} &lt;/pre>\r\n&lt;pre>Valid : {{contactForm.valid}} &lt;/pre>\r\n&lt;pre>Touched : {{contactForm.touched  }} &lt;/pre>\r\n&lt;pre>Submitted : {{contactForm.submitted  }} &lt;/pre></code></pre>\n\n\n\n<h2>Template Input Variable</h2>\n\n\n\n<p>The Template reference variable must not be confused with the Template input variable, which we define using the let keyword in the template.</p>\n\n\n\n<p>For Example, check the&nbsp;ngFor&nbsp;loop in the&nbsp;<code>customer-list.component.html</code>. The variable customer is a template input variable</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;tr *ngFor=\"let customer of customers;\">\r\n     &lt;td>{{customer.customerNo}}&lt;/td>\r\n     &lt;td>{{customer.name}}&lt;/td>\r\n     &lt;td>{{customer.address}}&lt;/td>\r\n     &lt;td>{{customer.city}}&lt;/td>\r\n     &lt;td>{{customer.state}}&lt;/td>\r\n     &lt;button (click)=\"selectedCustomer=customer\">Select&lt;/button>\r\n   &lt;/tr>\r\n </code></pre>\n\n\n\n<h2>Variable Scope</h2>\n\n\n\n<p>The scope of the template reference variable is the template within which it is declared. You cannot access it outside the template.</p>\n\n\n\n<p>Hence any variable declared in&nbsp;<code>CustomerListComponent</code>&nbsp;cannot be accessed from the app component although we render the customer list within the app component.</p>\n\n\n\n<h3>Child scope</h3>\n\n\n\n<p>Also, note that we can create a new child template scope (nested scope) by using the directive&nbsp;<code>ng-template</code>&nbsp;. Also the structural directive like&nbsp;ngIf,&nbsp;ngFor, etc also creates their own child scope.</p>\n\n\n\n<p>The following is an example of the&nbsp;<code>&lt;ng-template&gt;</code>&nbsp;directive. The address variable defined inside the&nbsp;<code>ng-template</code>&nbsp;is not accessible outside it.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> &lt;h2>Variable Scope&lt;/h2>\r\n \r\n&lt;div *ngIf=\"false else addressTemplate\">&lt;/div>\r\n \r\n&lt;ng-template #addressTemplate>\r\n &lt;p>\r\n   &lt;label for=\"address\">Address&lt;/label>\r\n   &lt;input (keyup)=\"0\" type=\"text\" #address id=\"address\">\r\n &lt;/p>\r\n &lt;p>The address of {{firstName.value}} {{lastName.value}} Entered {{address.value}} &lt;/p>\r\n \r\n&lt;/ng-template>\r\n \r\n&lt;!-- address is not accessible here -->\r\n&lt;p>\r\nYou Entered {{address?.value}}\r\n&lt;/p>\r\n </code></pre>\n\n\n\n<p><code>ngIf</code>&nbsp;Example</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;div *ngIf=\"true\">\r\n  &lt;app-customer-list #variable>&lt;/app-customer-list\r\n  //variable is accessible from here\r\n&lt;/div>\r\n \r\n//variable is not accessible from here\r\n </code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Template Reference Variable The Template reference variable is a reference to any DOM element,&nbsp;component&nbsp;or a&nbsp;directive&nbsp;in the Template. We can use it elsewhere in the template. We can also pass it to a method in the component. It can contain a reference to elements like&nbsp;h1,&nbsp;div, etc Defining Template Reference variable We declare Template reference variables using&nbsp;#&nbsp;followed [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [136],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3733" }
+      ],
+      "collection": [
+        { "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=3733"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 2,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3733/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3870,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3733/revisions/3870"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=3733"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=3733"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=3733"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3735,
+    "date": "2020-12-08T06:55:05",
+    "date_gmt": "2020-12-08T06:55:05",
+    "guid": { "rendered": "http://angular.foobrdigital.com/?p=3735" },
+    "modified": "2020-12-09T10:14:33",
+    "modified_gmt": "2020-12-09T10:14:33",
+    "slug": "ng-container-in-angular",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/ng-container-in-angular/",
+    "title": { "rendered": "ng-container in Angular" },
+    "content": {
+      "rendered": "\n<h2>What is ng-container ?</h2>\n\n\n\n<p>ng-container allows us to create a division or section in a template without introducing a new HTML element. The ng-container does not render in the DOM, but content inside it is rendered. ng-container is not a directive, component, class, or interface, but just a syntax element.</p>\n\n\n\n<p>For Example</p>\n\n\n\n<p>The following template</p>\n\n\n\n<pre class=\"wp-block-code\"><code>  \r\n&lt;h1> ng-Container&lt;/h2>\r\n&lt;p>Hello  world! &lt;/p>\r\n&lt;ng-container>               //This is removed from the final HTML\r\n Container's content.\r\n&lt;/ng-container></code></pre>\n\n\n\n<p>Renders as</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;h1> ng-Container&lt;/h2>\r\n&lt;p>Hello  world! &lt;/p>\r\nContainer's content.\r\n </code></pre>\n\n\n\n<p>You can see that the element is absent in the final HTML</p>\n\n\n\n<h2>Uses of ng-container</h2>\n\n\n\n<p>It is a very useful directive. Especially when working with structural directives like&nbsp;ngIf,&nbsp;ngFor, etc.</p>\n\n\n\n<h3>ng-Container with ngFor</h3>\n\n\n\n<p>For Example, consider the following items. We want to display the items as a list, but only the active items. This requires two directives&nbsp;ngFor&nbsp;to loop through the items and&nbsp;ngIf&nbsp;to check if the items are&nbsp;<code>active</code></p>\n\n\n\n<pre class=\"wp-block-code\"><code>items= &#91;\r\n   { name:'Angular', active:true},\r\n   { name:'React', active:true},\r\n   { name:'Typescript', active:true},\r\n   { name:'FoxPro', active:false},\r\n   { name:'Javascript', active:true},\r\n   { name:'ASP.NET Core', active:true},\r\n   { name:'DBase', active:false}\r\n ]\r\n </code></pre>\n\n\n\n<p>Without&nbsp;<code>ng-content</code>, the only way to achieve this is by using the&nbsp;<code>span</code>&nbsp;element as shown. This adds the unnecessary DOM element. and it may also cause issues with the CSS.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> \r\n&lt;ul>\r\n &lt;span *ngFor=\"let item of items;\">\r\n   &lt;li *ngIf=\"item.active\">\r\n     {{item.name}}\r\n   &lt;/li>\r\n &lt;/span>\r\n&lt;/ul></code></pre>\n\n\n\n<pre class=\"wp-block-code\"><code> \r\n&lt;ul>\r\n &lt;ng-container *ngFor=\"let item of items;\">\r\n   &lt;li *ngIf=\"item.active\">\r\n     {{item.name}}\r\n   &lt;/li>\r\n &lt;/ng-container>\r\n&lt;/ul></code></pre>\n\n\n\n<h2>ng-container examples</h2>\n\n\n\n<h3>ng-container with ngIf</h3>\n\n\n\n<p><strong>The&nbsp;<code>div</code>&nbsp;of the&nbsp;<code>ngIf</code>&nbsp;is not necessary here.</strong></p>\n\n\n\n<pre class=\"wp-block-code\"><code>\r\n&lt;div *ngIf=\"items1\">          //Replace the div with ng-container as shown below\r\n &lt;div *ngFor=\"let item of items1;\">\r\n   {{item.name}}\r\n &lt;/div>\r\n&lt;/div>\r\n </code></pre>\n\n\n\n<pre class=\"wp-block-code\"><code>\r\n&lt;div *ngIf=\"items1\">          //Replace the div with ng-container as shown below\r\n &lt;div *ngFor=\"let item of items1;\">\r\n   {{item.name}}\r\n &lt;/div>\r\n&lt;/div>\r\n </code></pre>\n\n\n\n<h3>ngSwitch with/without ng-content</h3>\n\n\n\n<pre class=\"wp-block-code\"><code> \r\n&lt;div &#91;ngSwitch]=\"value\">\r\n &lt;span *ngSwitchCase=\"0\">Text one&lt;/span>\r\n &lt;span *ngSwitchCase=\"1\">Text two&lt;/span>\r\n&lt;/div>\r\n \r\n&lt;div &#91;ngSwitch]=\"value\">\r\n &lt;ng-container *ngSwitchCase=\"0\">Text one&lt;/ng-container>\r\n &lt;ng-container *ngSwitchCase=\"1\">Text two&lt;/ng-container>\r\n&lt;/div></code></pre>\n\n\n\n<h2>ngTemplateOutlet</h2>\n\n\n\n<p>The container is also used as a placeholder for injecting a dynamic template using the&nbsp;<code>ngTemplateOutlet</code>.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;ng-container *ngTemplateOutlet=\"loading\">&lt;/ng-container>\r</code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>What is ng-container ? ng-container allows us to create a division or section in a template without introducing a new HTML element. The ng-container does not render in the DOM, but content inside it is rendered. ng-container is not a directive, component, class, or interface, but just a syntax element. For Example The following template [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [136],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3735" }
+      ],
+      "collection": [
+        { "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=3735"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 2,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3735/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3871,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3735/revisions/3871"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=3735"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=3735"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=3735"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3737,
+    "date": "2020-12-08T07:02:44",
+    "date_gmt": "2020-12-08T07:02:44",
+    "guid": { "rendered": "http://angular.foobrdigital.com/?p=3737" },
+    "modified": "2020-12-09T10:19:25",
+    "modified_gmt": "2020-12-09T10:19:25",
+    "slug": "how-to-use-ng-template-templateref-in-angular",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/how-to-use-ng-template-templateref-in-angular/",
+    "title": {
+      "rendered": "How to use ng-template &#038; TemplateRef in Angular"
+    },
+    "content": {
+      "rendered": "\n<h2>What is ng-Template?</h2>\n\n\n\n<p>The&nbsp;<code>&lt;ng-template&gt;</code>&nbsp;is an Angular element, which contains the template. A&nbsp;template&nbsp;is an HTML snippet.&nbsp;The template does not render itself on DOM.</p>\n\n\n\n<p>To understand let us&nbsp;create a new Angular Application&nbsp;and copy the following code to&nbsp;<code>app.component.html</code></p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;h2>Defining a Template using ng-Template&lt;/h2>\r\n \r\n&lt;ng-template>\r\n  &lt;p> Say Hello&lt;/p>\r\n&lt;/ng-template>\r\n </code></pre>\n\n\n\n<p>The above code generates the following output. The Angular does not render&nbsp;<code>Say Hello</code>. You won’t even find it as a hidden element in the DOM.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> \r\n//output\r\n \r\nDefining a Template using ng-Template</code></pre>\n\n\n\n<p>i.e because&nbsp;<code>ng-template</code>&nbsp;only defines a template. It is our job to tell angular where &amp; when to display it.</p>\n\n\n\n<p>There are few ways you can display the template.</p>\n\n\n\n<ol><li>Using the&nbsp;<code>ngTemplateOutlet</code>&nbsp;directive.</li><li>Using the&nbsp;<code>TemplateRef</code>&nbsp;&amp;&nbsp;<code>ViewContainerRef</code></li></ol>\n\n\n\n<h2>Displaying the Template</h2>\n\n\n\n<h3>ngTemplateOutlet</h3>\n\n\n\n<p>The&nbsp;ngTemplateOutlet, is a structural directive, which renders the template.</p>\n\n\n\n<p>To use this directive, first, we need to create the template and assign it to a&nbsp;template reference variable&nbsp;(<code>sayHelloTemplate</code>&nbsp;in the following template).</p>\n\n\n\n<pre class=\"wp-block-code\"><code>  \r\n&lt;h1>ng-template &amp; TemplateRef&lt;/h1>\r\n \r\n&lt;h2>Using the ngTemplateOutlet&lt;/h2>\r\n \r\n \r\n&lt;ng-template #sayHelloTemplate>\r\n  &lt;p> Say Hello&lt;/p>\r\n&lt;/ng-template></code></pre>\n\n\n\n<p>We use the&nbsp;<code>ngTemplateOutlet</code>&nbsp;in the DOM, where we want to render the template.</p>\n\n\n\n<p>The following code assigns the Template variable&nbsp;<code>sayHelloTemplate</code>&nbsp;to the&nbsp;<code>ngTemplateOutlet</code>&nbsp;directive using the&nbsp;Property Binding.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>\r\n&lt;ng-container *ngTemplateOutlet=\"sayHelloTemplate\">\r\n  This text is not displayed\r\n&lt;/ng-container> \r\n \r\n \r\n \r\n//Output\r\nng-template &amp; TemplateRef\r\nUsing the ngTemplateOutlet\r\nSay Hello</code></pre>\n\n\n\n<h4>What is TemplateRef?</h4>\n\n\n\n<p><code>TemplateRef</code>is a class and the way to reference the&nbsp;<code>ng-template</code>&nbsp;in the component or directive class. Using the TemplateRef we can manipulate the template from component code.</p>\n\n\n\n<p>Remember&nbsp;<code>ng-template</code>&nbsp;is a bunch of HTML tags enclosed in a HTML element&nbsp;<code>&lt;ng-template&gt;</code></p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;ng-template>\n  &lt;p> Say Hello&lt;/p>\n&lt;/ng-template> </code></pre>\n\n\n\n<p>To access the above&nbsp;<code>ng-template</code>&nbsp;in the component or directive, first, we need to assign a&nbsp;template reference variable.&nbsp;<code>#sayHelloTemplate</code>&nbsp;is that variable in the code below.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> &lt;ng-template\n #sayHelloTemplate>  \n&lt;p> Say Hello&lt;/p>&lt;/ng-template> </code></pre>\n\n\n\n<p>Now, we can use the&nbsp;<code>ViewChild</code>&nbsp;query to inject the&nbsp;<code>sayHelloTemplate</code>&nbsp;into our component as an instance of the class&nbsp;<code>TemplateRef</code>.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> @ViewChild('sayHelloTemplate', \n{ read: TemplateRef }) sayHelloTemplate:TemplateRef&lt;any>; </code></pre>\n\n\n\n<p>Now, we need to tell Angular where to render it. The way to do is to use the&nbsp;<code>ViewContainerRef</code>.</p>\n\n\n\n<p>The ViewContainerRef is also similar to TemplateRef. Both hold the reference to part of the view.</p>\n\n\n\n<ul><li>The TemplateRef holds the reference template defined by ng-template.</li><li>ViewContainerRef, when injected to via DI holds the reference to the host element, that hosts the component (or directive).</li></ul>\n\n\n\n<p>Once, we have ViewContainerRef, we can use the&nbsp;<code>createEmbeddedView</code>&nbsp;method to add the template to the component.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>   \r\n  constructor(private vref:ViewContainerRef) {\r\n  }\r\n \r\n  ngAfterViewInit() {\r\n    this.vref.createEmbeddedView(this.sayHelloTemplate);\r\n  }</code></pre>\n\n\n\n<p>The template is appended at the bottom.</p>\n\n\n\n<p>Angular makes use of&nbsp;<code>ngTemplate</code>&nbsp;extensively in its structural directives. But it hides its complexities from us.</p>\n\n\n\n<h2>ng-template with ngIf</h2>\n\n\n\n<p>You might have used&nbsp;ngIf&nbsp;a lot of times. Here is how we use it. We use an&nbsp;<code>*</code>&nbsp;before&nbsp;<code>ngIf</code></p>\n\n\n\n<pre class=\"wp-block-code\"><code>\r\n&lt;label>\r\n  &lt;input &#91;(ngModel)]=\"selected\" type=\"checkbox\">Select Me\r\n&lt;/label>\r\n \r\n&lt;div *ngIf=\"selected\">\r\n  &lt;p>You are selected&lt;/p>\r\n&lt;/div></code></pre>\n\n\n\n<p>There is another way to write the above code. That is using the&nbsp;<code>ng-template</code>&nbsp;syntax. To do that follow these steps</p>\n\n\n\n<ol><li>Create a new element&nbsp;<code>ng-template</code>&nbsp;and bind&nbsp;ngIf&nbsp;to it</li><li>Use the&nbsp;property binding&nbsp;syntax&nbsp;<code>[ngIf]=\"selected\"</code>&nbsp;instead of&nbsp;<code>*ngIf=\"selected\"</code></li><li>Move the&nbsp;<code>div</code>&nbsp;element on which&nbsp;<code>ngIf</code>&nbsp;is attached inside the&nbsp;<code>ng-templete</code></li></ol>\n\n\n\n<pre class=\"wp-block-code\"><code>\r\n&lt;label>\r\n  &lt;input &#91;(ngModel)]=\"selected\" type=\"checkbox\">Select Me\r\n&lt;/label>\r\n \r\n&lt;ng-template &#91;ngIf]=\"selected\">\r\n  &lt;div>\r\n    &lt;p>You are selected&lt;/p>\r\n  &lt;/div>\r\n&lt;/ng-template></code></pre>\n\n\n\n<p>The code works just like a normal&nbsp;<code>*ngIf</code>&nbsp;would do.</p>\n\n\n\n<p>Behind the scenes, Angular converts every&nbsp;<code>*ngIf</code>&nbsp;to&nbsp;<code>ng-template</code>&nbsp;Syntax. In fact, it does so every structural directive like&nbsp;<code>ngFor</code>,&nbsp;<code>ngSwitch</code>,&nbsp;<code>ngTemplateOutlet</code>, etc</p>\n\n\n\n<h3>How it works</h3>\n\n\n\n<p>To understand how structural directives using&nbsp;<code>ng-template</code>&nbsp;works let us look at&nbsp;<code>ttIf</code>&nbsp;directive which we built in the tutorial&nbsp;custom structural directive. The&nbsp;<code>ttIf</code>&nbsp;directive is a simplified clone of&nbsp;<code>*ngIf</code>.</p>\n\n\n\n<p>Create&nbsp;<code>tt-if.directive.ts</code>&nbsp;and add the following code. Also, remember to declare the&nbsp;<code>ttIfDirective</code>&nbsp;in&nbsp;<code>app.module.ts</code></p>\n\n\n\n<pre class=\"wp-block-code\"><code> \r\nimport { Directive, ViewContainerRef, TemplateRef, Input } from '@angular/core';\r\n \r\n@Directive({ \r\n  selector: '&#91;ttIf]' \r\n})\r\nexport class ttIfDirective  {\r\n \r\n  _ttif: boolean;\r\n \r\n  constructor(private _viewContainer: ViewContainerRef,\r\n              private templateRef: TemplateRef&lt;any>) {\r\n  }\r\n \r\n \r\n  @Input()\r\n  set ttIf(condition) {\r\n    this._ttif = condition\r\n    this._updateView();\r\n  }\r\n \r\n  _updateView() {\r\n    if (this._ttif) {\r\n      this._viewContainer.createEmbeddedView(this.templateRef);\r\n    }\r\n    else {\r\n      this._viewContainer.clear();\r\n    }\r\n  }\r\n \r\n}</code></pre>\n\n\n\n<p>Open the&nbsp;<code>app.component.html</code>. You can use both&nbsp;<code>&lt;div *ttIf=\"selected\"&gt;</code>&nbsp;and<code>&lt;ng-template [ttIf]=\"selected\"&gt;</code>&nbsp;syntax.</p>\n\n\n\n<p><strong>app.component.ts</strong></p>\n\n\n\n<pre class=\"wp-block-code\"><code> \r\nShow/hide \r\n&lt;input type=\"checkbox\" &#91;(ngModel)]=\"selected\">\r\n \r\n&lt;div *ttIf=\"selected\">\r\n  Using the ttIf directive via *ttIf\r\n&lt;/div>\r\n \r\n \r\n&lt;ng-template &#91;ttIf]=\"selected\">\r\n  &lt;div>\r\n    &lt;p>Using the ttIf directive via ng-template&lt;/p>\r\n  &lt;/div>\r\n&lt;/ng-template>\r\n </code></pre>\n\n\n\n<p><strong>app.component.ts</strong></p>\n\n\n\n<pre class=\"wp-block-code\"><code> \r\nimport { Component } from '@angular/core';\r\n \r\n@Component({\r\n  selector: 'my-app',\r\n  templateUrl: './app.component.html',\r\n  styleUrls: &#91; './app.component.css' ]\r\n})\r\nexport class AppComponent  {\r\n  selected=false;\r\n}\r\n </code></pre>\n\n\n\n<p>Now let us look at the directive code. We are injecting&nbsp;<code>ViewContainerRef</code>&nbsp;and&nbsp;<code>TemplateRef</code>&nbsp;instances in the constructor</p>\n\n\n\n<pre class=\"wp-block-code\"><code>\r\n constructor(private _viewContainer: ViewContainerRef,\r\n             private templateRef: TemplateRef&lt;any>) {\r\n  }</code></pre>\n\n\n\n<p>We looked at&nbsp;<code>ViewContainerRef</code>&nbsp;in the previous section. It contains the reference to the host element that hosts our directive.</p>\n\n\n\n<p>In the previous example, we used the&nbsp;<code>ViewChild</code>&nbsp;to get the reference to the template. But it is not possible here. Hence we use the&nbsp;Angular Dependency Injection&nbsp;to&nbsp;inject&nbsp;the template into our directive using the&nbsp;<code>TemplateRef</code>&nbsp;DI token.</p>\n\n\n\n<p>We use the&nbsp;<code>*</code>notation to tell Angular that we have a structural directive and we will be manipulating the DOM. It basically tells angular to inject the&nbsp;<code>TemplateRef</code>. When we attach our directive to an&nbsp;<code>ng-template</code>, and ask for the&nbsp;<code>TemplateRef</code>&nbsp;in the constructor, the Angular injects the reference to the template enclosed by the&nbsp;<code>ng-template</code>.</p>\n\n\n\n<p>The Template is inserted into the DOM when the condition is true. We do that using the&nbsp;<code>createEmbeddedView</code>&nbsp;method of the&nbsp;<code>ViewContainerRef</code>. The&nbsp;<code>clear</code>&nbsp;removes the template from the DOM</p>\n\n\n\n<pre class=\"wp-block-code\"><code> this._viewContainer.createEmbeddedView(this.templateRef); </code></pre>\n\n\n\n<h2>Multiple Structural Directives</h2>\n\n\n\n<p>You cannot assign multiple Structural Directives on a single&nbsp;<code>ng-template</code>.</p>\n\n\n\n<p>For Example, the&nbsp;<code>ngIf</code>&nbsp;&amp;&nbsp;<code>ngFor</code>&nbsp;on same&nbsp;<code>div</code>, will result in an an&nbsp;<code>Template parse errors</code></p>\n\n\n\n<pre class=\"wp-block-code\"><code>\r\n&lt;div *ngIf=\"selected\"\r\n     *ngFor=\"let item of items\">\r\n        {{item.name}}\r\n&lt;/div></code></pre>\n\n\n\n<pre class=\"wp-block-code\"><code>\r\nUncaught Error: Template parse errors:\r\n \r\nCan't have multiple template bindings on one element. \r\nUse only one attribute named 'template' or prefixed with *\r\n </code></pre>\n\n\n\n<p>You can use&nbsp;<code>ng-container</code>&nbsp;to move one directive to enclose the other as shown below.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>\r\n&lt;ng-container *ngIf=\"selected\">\r\n  &lt;div *ngFor=\"let item of items\">\r\n       {{item.name}}\r\n  &lt;/div>\r\n&lt;/ng-container></code></pre>\n\n\n\n<h2>ng-template&nbsp;with&nbsp;ngIf, then &amp; else</h2>\n\n\n\n<p>The following code shows the&nbsp;<code>ng-template</code>&nbsp;using the&nbsp;ngIf, then &amp; else&nbsp;example.</p>\n\n\n\n<p>Here we use the&nbsp;<code>ng-template</code>&nbsp;specify the template for the&nbsp;<code>then</code>&nbsp;&amp;&nbsp;<code>else</code>&nbsp;clause. We use the&nbsp;template reference variable&nbsp;to get the reference to those blocks.</p>\n\n\n\n<p>In the&nbsp;<code>*ngIf</code>&nbsp;condition we specify the template to render by pointing to the&nbsp;template variable&nbsp;to the&nbsp;<code>then</code>&nbsp;&amp;&nbsp;<code>else</code>&nbsp;condition.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>\r\n \r\n&lt;h2>Using ngTemplate with ngIf then &amp; else&lt;/h2>\r\n \r\n&lt;div *ngIf=\"selected; then thenBlock1 else elseBlock1\">\r\n  &lt;p>This content is not shown&lt;/p>\r\n&lt;/div>\r\n \r\n&lt;ng-template #thenBlock1>\r\n  &lt;p>content to render when the selected is true.&lt;/p>\r\n&lt;/ng-template>\r\n \r\n&lt;ng-template #elseBlock1>\r\n  &lt;p>content to render when selected is false.&lt;/p>\r\n&lt;/ng-template>\r\n </code></pre>\n\n\n\n<p>The above&nbsp;<code>ngif</code>&nbsp;can be written using the&nbsp;<code>ng-template</code>&nbsp;syntax.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>\r\n&lt;ng-template &#91;ngIf]=\"selected\" &#91;ngIfThen]=\"thenBlock2\" &#91;ngIfElse]=\"elseBlock2\">\r\n  &lt;div>\r\n    &lt;p>This content is not shown&lt;/p>\r\n  &lt;/div>\r\n&lt;/ng-template>\r\n \r\n&lt;ng-template #thenBlock2>\r\n  &lt;p>content to render when the selected is true.&lt;/p>\r\n&lt;/ng-template>\r\n \r\n&lt;ng-template #elseBlock2>\r\n  &lt;p>content to render when selected is false.&lt;/p>\r\n&lt;/ng-template></code></pre>\n\n\n\n<h2>ng-template&nbsp;with&nbsp;ngFor</h2>\n\n\n\n<p>The following&nbsp;ngFor&nbsp;Directive.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>\r\n&lt;ul>\r\n   &lt;li *ngFor=\"let movie of movies; let i=index; let even=even;trackBy: trackById\">\r\n     {{ movie.title }} - {{movie.director}}\r\n   &lt;/li>\r\n&lt;/ul></code></pre>\n\n\n\n<p>Is written as follows using the&nbsp;<code>ng-template</code>&nbsp;syntax</p>\n\n\n\n<pre class=\"wp-block-code\"><code>\r\n&lt;ul>\r\n&lt;ng-template \r\n   ngFor let-movie &#91;ngForOf]=\"movies\" \r\n   let-i=\"index\" \r\n   let-even=\"even\"\r\n   &#91;ngForTrackBy]=\"trackById\">\r\n \r\n   &lt;li>\r\n     {{ movie.title }} - {{movie.director}}\r\n   &lt;/li>\r\n \r\n&lt;/ng-template>\r\n&lt;/ul></code></pre>\n\n\n\n<h2>ng-template&nbsp;with&nbsp;ngSwitch</h2>\n\n\n\n<p>The following is the example of&nbsp;ngSwitch.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>\r\n&lt;input type=\"text\" &#91;(ngModel)]=\"num\">\r\n \r\n&lt;div &#91;ngSwitch]=\"num\">\r\n  &lt;div *ngSwitchCase=\"'1'\">One&lt;/div>\r\n  &lt;div *ngSwitchCase=\"'2'\">Two&lt;/div>\r\n  &lt;div *ngSwitchCase=\"'3'\">Three&lt;/div>\r\n  &lt;div *ngSwitchCase=\"'4'\">Four&lt;/div>\r\n  &lt;div *ngSwitchCase=\"'5'\">Five&lt;/div>\r\n  &lt;div *ngSwitchDefault>This is Default&lt;/div>\r\n&lt;/div></code></pre>\n\n\n\n<p>The above example using the&nbsp;<code>ng-template</code>&nbsp;with&nbsp;ngSwitch. Note that ngSwitch is not a structural directive but&nbsp;<code>ngSwitchCase</code>&nbsp;&amp;&nbsp;<code>ngSwitchDefault</code>&nbsp;are.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>\r\n&lt;div &#91;ngSwitch]=\"num\">\r\n  &lt;ng-template &#91;ngSwitchCase]=\"'1'\">\r\n    &lt;div>One&lt;/div>\r\n  &lt;/ng-template>\r\n  &lt;ng-template &#91;ngSwitchCase]=\"'2'\">\r\n    &lt;div>Two&lt;/div>\r\n  &lt;/ng-template>\r\n  &lt;ng-template &#91;ngSwitchCase]=\"'3'\">\r\n    &lt;div>Three&lt;/div>\r\n  &lt;/ng-template>\r\n  &lt;ng-template &#91;ngSwitchCase]=\"'4'\">\r\n    &lt;div>Four&lt;/div>\r\n  &lt;/ng-template>\r\n  &lt;ng-template &#91;ngSwitchCase]=\"'5'\">\r\n    &lt;div>Five&lt;/div>\r\n  &lt;/ng-template>\r\n  &lt;ng-template ngSwitchDefault>\r\n    &lt;div>This is default&lt;/div>\r\n  &lt;/ng-template>\r\n&lt;/div></code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>What is ng-Template? The&nbsp;&lt;ng-template&gt;&nbsp;is an Angular element, which contains the template. A&nbsp;template&nbsp;is an HTML snippet.&nbsp;The template does not render itself on DOM. To understand let us&nbsp;create a new Angular Application&nbsp;and copy the following code to&nbsp;app.component.html The above code generates the following output. The Angular does not render&nbsp;Say Hello. You won’t even find it as a [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [136],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3737" }
+      ],
+      "collection": [
+        { "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=3737"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 2,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3737/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3872,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3737/revisions/3872"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=3737"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=3737"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=3737"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3739,
+    "date": "2020-12-08T07:17:31",
+    "date_gmt": "2020-12-08T07:17:31",
+    "guid": { "rendered": "http://angular.foobrdigital.com/?p=3739" },
+    "modified": "2020-12-09T10:36:11",
+    "modified_gmt": "2020-12-09T10:36:11",
+    "slug": "how-to-use-ngtemplateoutlet-in-angular",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/how-to-use-ngtemplateoutlet-in-angular/",
+    "title": { "rendered": "How to Use ngTemplateOutlet in Angular" },
+    "content": {
+      "rendered": "\n<h2>What is ngTemplateOutlet?</h2>\n\n\n\n<p><code>ngTemplateOutlet</code>&nbsp;is a structural directive. We use it to insert a template (created by&nbsp;<code>ngTemplate</code>) in various sections of our DOM. For example, you can define a few templates to display an item and use them display at several places in the View and also swap that template as per the user’s choice.</p>\n\n\n\n<h2>How to use ngTemplateOutlet</h2>\n\n\n\n<p>First let us see a very simple example of&nbsp;<code>ngTemplateOutlet</code>.</p>\n\n\n\n<p>In the following code, we have a template defined using the&nbsp;<code>ng-template</code>. The&nbsp;Template reference variable&nbsp;holds the reference the template. (<code>TemplateRef</code>).</p>\n\n\n\n<p>The template does not render itself. We must use a structural directive to render it. That is what&nbsp;<code>ngTemplateOutlet</code>&nbsp;does</p>\n\n\n\n<p>We pass the Template Reference to the&nbsp;<code>ngTemplateOutlet</code>&nbsp;directive. It renders the template. Any inner content that&nbsp;<code>ngTemplateOutlet</code>&nbsp;encloses will not be rendered.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> \r\n&lt;h3>Example 1&lt;/h3>\r\n \r\n&lt;!--  This is our template. template1 is the template reference variable holds the reference to the Template\r\n  template1 is of type TemplateRef This won't be rendered here -->\r\n \r\n \r\n&lt;ng-template #template1>  \r\n  &lt;p>This is our template. It will be displayed on the div *ngTemplateOutlet=\"myTemplateRef\"&lt;/p>\r\n&lt;/ng-template>\r\n \r\n&lt;p>The Template appears after this&lt;/p>\r\n \r\n \r\n&lt;!-- \r\n  We want to render the above template here.\r\n  Hence we use the ngTemplateOutlet directive \r\n  Assign template1 to ngTemplateOutlet\r\n-->\r\n \r\n \r\n&lt;ng-container *ngTemplateOutlet=\"template1\">\r\n  This text is not displayed\r\n&lt;/ng-container> \r\n \r\n \r\n&lt;!-- \r\n  Use can use any element. \r\n  Here we use div instead of ng-container\r\n  Div is not rendered \r\n-->\r\n \r\n \r\n&lt;div *ngTemplateOutlet=\"template1\">\r\n&lt;/div> \r\n </code></pre>\n\n\n\n<p>The following code does not render the div.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;div *ngTemplateOutlet=\"template1\">&lt;/div>  </code></pre>\n\n\n\n<p>i.e because the angular converts the above into the following&nbsp;<code>ng-template</code>&nbsp;syntax. The&nbsp;<code>ngTemplateOutlet</code>&nbsp;replaces everything inside the&nbsp;<code>ng-template</code>&nbsp;element and renders the template pointed by&nbsp;<code>template1</code></p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;ng-template &#91;ngTemplateOutlet]=\"template1\">\r\n  &lt;div>&lt;/div>\r\n&lt;/ng-template></code></pre>\n\n\n\n<p>The above use case is a simple one. You can achieve the same using a&nbsp;<code>ngIf</code>&nbsp;or&nbsp;<code>ngSwitch</code>&nbsp;directives. You can also make use of&nbsp;content projection using the ngContent.</p>\n\n\n\n<h2>Passing data to ngTemplateOutlet</h2>\n\n\n\n<p>We can also pass data to the using its second property&nbsp;<code>ngTemplateOutletContext</code>.</p>\n\n\n\n<p>The following code creates a template. We name it as&nbsp;<code>messageTemplate</code>. The&nbsp;<code>let-value</code>&nbsp;creates a local variable with the name&nbsp;<code>value</code></p>\n\n\n\n<pre class=\"wp-block-code\"><code>\r\n&lt;ng-template let-value=\"value\" #messageTemplate>  \r\n    &lt;p>Value Received from the Parent is  {{value}}&lt;/p>\r\n&lt;/ng-template></code></pre>\n\n\n\n<p>We can pass any value to the&nbsp;<code>value</code>&nbsp;using the&nbsp;<code>ngTemplateOutletContext</code>property</p>\n\n\n\n<pre class=\"wp-block-code\"><code> &lt;ng-container &#91;ngTemplateOutlet]=\"messageTemplate\"        &#91;ngTemplateOutletContext] =\"{value:'1000'}\">&lt;/ng-container> </code></pre>\n\n\n\n<p>Alternatively you can also use the following syntax.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> \r\n&lt;ng-container &#91;ngTemplateOutlet]=\"messageTemplate\" \r\n       &#91;ngTemplateOutletContext] =\"{value:'1000'}\">\r\n&lt;/ng-container></code></pre>\n\n\n\n<p><strong>Pass more than one value.</strong></p>\n\n\n\n<pre class=\"wp-block-code\"><code>\r\n&lt;ng-template let-name=\"nameVar\" let-message=\"messageVar\" #template3>  \r\n  &lt;p>Dear {{name}} , {{message}} &lt;/p>\r\n&lt;/ng-template>\r\n \r\n \r\n&lt;ng-container &#91;ngTemplateOutlet]=\"templates\" \r\n          &#91;ngTemplateOutletContext] =\"{nameVar:'Guest',messageVar:'Welcome to our site'}\">\r\n&lt;/ng-container> </code></pre>\n\n\n\n<p><strong>Pass an object.</strong></p>\n\n\n\n<pre class=\"wp-block-code\"><code>\r\n&lt;ng-template let-person=\"person\"  #template4>  \r\n  &lt;p>Dear {{person.name}} , {{person.message}} &lt;/p>\r\n&lt;/ng-template>\r\n \r\n \r\n&lt;ng-container &#91;ngTemplateOutlet]=\"templates\" \r\n           &#91;ngTemplateOutletContext] =\"{ person:{name:'Guest',message:'Welcome to our site'} }\">\r\n&lt;/ng-container> </code></pre>\n\n\n\n<h3>Using $implicit</h3>\n\n\n\n<p>If you use the key&nbsp;<code>$implicit</code>&nbsp;in the context object will set its value as default for all the local variables.</p>\n\n\n\n<p>For Example we have not assigned anything to the&nbsp;<code>let-name</code>&nbsp;so it will take the value from the&nbsp;<code>$implicit</code>, which is&nbsp;<code>Guest</code>.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> \r\n&lt;ng-template let-name let-message=\"message\" #template3>  \r\n  &lt;p>Dear {{name}} , {{message}} &lt;/p>\r\n&lt;/ng-template>\r\n \r\n&lt;ng-container &#91;ngTemplateOutlet]=\"templates\" \r\n              &#91;ngTemplateOutletContext] =\"{$implicit:'Guest',message:'Welcome to our site'}\">\r\n&lt;/ng-container> </code></pre>\n\n\n\n<p>And in the following code, both&nbsp;<code>name</code>&nbsp;&amp;&nbsp;<code>message</code>&nbsp;gets the value from the&nbsp;<code>$implicit</code>&nbsp;i.e&nbsp;<code>Guest</code></p>\n\n\n\n<pre class=\"wp-block-code\"><code> \r\n&lt;ng-template let-name let-message #template3>  \r\n  &lt;p>Dear {{name}} , {{message}} &lt;/p>\r\n&lt;/ng-template>\r\n \r\n \r\n&lt;ng-container &#91;ngTemplateOutlet]=\"template3\" \r\n      &#91;ngTemplateOutletContext] =\"{$implicit:'Guest',message:'Welcome to our site'}\">\r\n&lt;/ng-container> </code></pre>\n\n\n\n<h2>Passing Template to a Child Component</h2>\n\n\n\n<p>We can pass the entire template to a child component from the parent component. The technique is similar to&nbsp;passing data from parent to child component.</p>\n\n\n\n<p>Create a parent component. Add a&nbsp;<code>ng-template</code>&nbsp;and name it as&nbsp;<code>#parentTemplate</code>.</p>\n\n\n\n<p>Pass the&nbsp;<code>parentTemplate</code>&nbsp;to the child component using the&nbsp;property binding. (&nbsp;<code>&lt;child [customTemplate] = \"parentTemplate\" &gt; &lt;/child&gt;</code>&nbsp;)</p>\n\n\n\n<pre class=\"wp-block-code\"><code>\r\nimport { Component, TemplateRef, Input } from '@angular/core';\r\n \r\n@Component({\r\n  selector: 'parent',\r\n  template: `\r\n  \r\n  &lt;h1>Parent component&lt;/h1>\r\n  &lt;ng-template #parentTemplate>  \r\n    &lt;p>\r\n      This Template is defined in Parent. \r\n      We will send it to child component\r\n    &lt;/p>\r\n  &lt;/ng-template>\r\n \r\n  &lt;child &#91;customTemplate]=\"parentTemplate\">&lt;/child>\r\n  `\r\n})\r\nexport class ParentComponent {\r\n  \r\n}</code></pre>\n\n\n\n<p>In the Child, component receive the&nbsp;<code>parentTemplate</code>&nbsp;using the&nbsp;<code>@Input()</code>. And then pass it to&nbsp;<code>ngTemplateOutlet</code>.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>\r\n@Component({\r\n  selector: 'child',\r\n  template: `\r\n  &lt;h2>Child component&lt;/h2>\r\n \r\n  &lt;ng-container *ngTemplateOutlet=\"customTemplate\">\r\n  &lt;/ng-container> \r\n  `\r\n})\r\nexport class ChildComponent {\r\n \r\n  @Input() customTemplate: TemplateRef&lt;HTMLElement>;\r\n \r\n}</code></pre>\n\n\n\n<h2>Using&nbsp;ViewChild to Access the template</h2>\n\n\n\n<p>Use the&nbsp;<code>ViewChild</code>&nbsp;to get the access to the&nbsp;<code>parentTemplate</code>&nbsp;in the component.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> \r\nimport { Component, TemplateRef, Input, OnInit, ViewChild, AfterViewInit } from '@angular/core';\r\n \r\n@Component({\r\n  selector: 'parent',\r\n  template: `\r\n  \r\n  &lt;h1>Parent component&lt;/h1>\r\n  &lt;ng-template #parentTemplate>  \r\n    &lt;p>\r\n      This Template is defined in Parent. \r\n      We will send it to child component\r\n    &lt;/p>\r\n  &lt;/ng-template>\r\n \r\n  &lt;child &#91;customTemplate]=\"parentTemplate\">&lt;/child>\r\n  \r\n  `\r\n})\r\nexport class ParentComponent implements OnInit, AfterViewInit {\r\n \r\n  @ViewChild('parentTemplate',null) myTemplate:TemplateRef&lt;HTMLElement>;\r\n  \r\n  ngAfterViewInit() {\r\n    console.log(this.myTemplate)\r\n  }\r\n \r\n}</code></pre>\n\n\n\n<h2>Content Projection and ngTemplate</h2>\n\n\n\n<p>The&nbsp;content projection&nbsp;and&nbsp;<code>ngTemplate</code>&nbsp;can be used together.</p>\n\n\n\n<p>The following is the Parent component, which uses the content projection to pass a template to the child.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>\r\nimport { Component, TemplateRef, Input, OnInit, ViewChild, AfterViewInit } from '@angular/core';\r\n \r\n@Component({\r\n  selector: 'parent1',\r\n  template: `\r\n  \r\n  &lt;h1>Parent Component &lt;/h1>\r\n \r\n  &lt;child1> \r\n    &lt;p>This Template is Projected to the Child&lt;/p>\r\n  &lt;/child1>\r\n  `\r\n})\r\nexport class Parent1Component {\r\n}</code></pre>\n\n\n\n<p>In the child, we add it into a <code>ngTemplate</code>.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>import { Component, TemplateRef, Input, OnInit, ViewChild, AfterViewInit } from '@angular/core';\r\n \r\n@Component({\r\n  selector: 'child1',\r\n  template: `\r\n \r\n  &lt;h1>Child Component &lt;/h1>\r\n \r\n  &lt;ng-template #parentTemplate>\r\n    &lt;ng-content>&lt;/ng-content>\r\n  &lt;/ng-template>\r\n \r\n  &lt;ng-template &#91;ngTemplateOutlet]=\"parentTemplate\">&lt;/ng-template>\r\n \r\n  `\r\n})\r\nexport class Child1Component {\r\n}</code></pre>\n\n\n\n<h2>ngTemplateOutlet Example</h2>\n\n\n\n<p>The application we are going to build will display items either in card or list format.</p>\n\n\n\n<p>Create a new application. Open the&nbsp;<code>app.component.html</code></p>\n\n\n\n<p>First, we ask the user Display Mode. He has to choose from the card &amp; list using the select option dropdown.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>\r\n&lt;label for=\"mode\">Display Mode:&lt;/label>\r\n&lt;select &#91;(ngModel)]=\"mode\">\r\n  &lt;option *ngFor=\"let item of modeOptions\" &#91;ngValue]=\"item.mode\">{{item.mode}}&lt;/option>\r\n&lt;/select>\r\n \r\n </code></pre>\n\n\n\n<p>Next, create a template for the card display. Name it as&nbsp;<code>cardTemplate</code>. The template takes&nbsp;<code>items</code>&nbsp;as input. Loop items collection using the&nbsp;<code>ngFor</code>&nbsp;to display the item header and content in the card format.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> \r\n&lt;ng-template let-items #cardTemplate>\r\n  &lt;div *ngFor=\"let item of items\">\r\n    &lt;h1>{{item.header}}&lt;/h1>\r\n    &lt;p>{{item.content}}&lt;/p>\r\n  &lt;/div>\r\n&lt;/ng-template></code></pre>\n\n\n\n<p>The&nbsp;<code>listTemplate</code>&nbsp;uses the&nbsp;<code>ul</code>&nbsp;to display the items in list format.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>\r\n&lt;ng-template let-items #listTemplate>  \r\n  &lt;ul>\r\n    &lt;li *ngFor=\"let item of items\">\r\n      &lt;strong>{{item.header}} &lt;/strong> ( {{item.content}} )\r\n    &lt;/li>\r\n  &lt;/ul>\r\n&lt;/ng-template>\r\n </code></pre>\n\n\n\n<p>We finally pass the&nbsp;<code>items</code>&nbsp;to the item-view component. We also pass the&nbsp;<code>template</code>&nbsp;to it.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>\r\n&lt;item-view &#91;itemTemplate]=\"template\" &#91;items]=\"items\">\r\n&lt;/item-view></code></pre>\n\n\n\n<p>Now open the app.component.ts</p>\n\n\n\n<p>First, get the reference to both the template using the&nbsp;<code>ViewChild</code>.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>\r\n  \r\n  @ViewChild('cardTemplate',null) cardTemplate:TemplateRef&lt;HTMLElement>;\r\n  @ViewChild('listTemplate',null) listTemplate:TemplateRef&lt;HTMLElement>;</code></pre>\n\n\n\n<p>Define items , mode &amp; modeOptions</p>\n\n\n\n<pre class=\"wp-block-code\"><code>mode =\"card\"\r\n \r\n  items = &#91;\r\n    {\r\n      header: 'Angular Tutorial',\r\n      content: 'The Angular Tutorial for Beginners &amp; Professionals'\r\n    },\r\n    {\r\n      header: 'Typescript Tutorial',\r\n      content: 'The Complete Guide to Typescript'\r\n    },\r\n    {\r\n      header: 'Entity Framework Code Tutorial',\r\n      content: 'Learn Everything about Entity Framework Core'\r\n    },\r\n  ];\r\n \r\n  modeOptions = &#91;\r\n    { mode: \"card\" },\r\n    { mode: \"list\" },\r\n  ];</code></pre>\n\n\n\n<p>the&nbsp;<code>template</code>&nbsp;returns either&nbsp;<code>listTemplate</code>&nbsp;or&nbsp;<code>cardTemplate</code>&nbsp;depending on the value of&nbsp;<code>mode</code>.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>\r\n  get template() {\r\n \r\n    if(this.mode==\"list\") return this.listTemplate\r\n    return this.cardTemplate\r\n  }</code></pre>\n\n\n\n<p>The ItemViewComponent recives the&nbsp;<code>items</code>&nbsp;to display and&nbsp;<code>itemTemplate</code>&nbsp;to use from the parent component.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>\r\n  @Input() items: any&#91;] = &#91;];\r\n  @Input() itemTemplate: TemplateRef&lt;HTMLElement>;\r\n </code></pre>\n\n\n\n<p>Pass the&nbsp;<code>itemTemplate</code>&nbsp;to the&nbsp;<code>ngTemplateOutlet</code>&nbsp;to display the item. Use the&nbsp;<code>ngTemplateOutletContext</code>&nbsp;to pass the&nbsp;<code>items</code>&nbsp;collection.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>\r\n  &lt;ng-container &#91;ngTemplateOutlet]=\"itemTemplate\" &#91;ngTemplateOutletContext]=\"{$implicit:items}\">\r\n  &lt;/ng-container> </code></pre>\n\n\n\n<h3>Complete Source code</h3>\n\n\n\n<p><strong>app.component.ts</strong></p>\n\n\n\n<pre class=\"wp-block-code\"><code> \r\nimport { Component, TemplateRef, ViewChild } from '@angular/core';\r\n \r\n@Component({\r\n  selector: 'app-root',\r\n  templateUrl: './app.component.html',\r\n  styleUrls: &#91;'./app.component.css']\r\n})\r\nexport class AppComponent {\r\n  title = 'ngTemplateOutlet Example';\r\n \r\n  @ViewChild('cardTemplate',null) cardTemplate:TemplateRef&lt;HTMLElement>;\r\n  @ViewChild('listTemplate',null) listTemplate:TemplateRef&lt;HTMLElement>;\r\n \r\n  mode =\"card\"\r\n \r\n  items = &#91;\r\n    {\r\n      header: 'Angular Tutorial',\r\n      content: 'The Angular Tutorial for Beginners &amp; Professionals'\r\n    },\r\n    {\r\n      header: 'Typescript Tutorial',\r\n      content: 'The Complete Guide to Typescript'\r\n    },\r\n    {\r\n      header: 'Entity Framework Code Tutorial',\r\n      content: 'Learn Everything about Entity Framework Core'\r\n    },\r\n  ];\r\n \r\n  modeOptions = &#91;\r\n    { mode: \"card\" },\r\n    { mode: \"list\" },\r\n  ];\r\n \r\n  get template() {\r\n \r\n    if(this.mode==\"list\") return this.listTemplate\r\n    return this.cardTemplate\r\n  }\r\n \r\n}\r\n </code></pre>\n\n\n\n<p><strong>app.component.html</strong></p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;h1>ngTemplateOutlet Example&lt;/h1>\r\n \r\n&lt;label for=\"mode\">Display Mode:&lt;/label>\r\n&lt;select &#91;(ngModel)]=\"mode\">\r\n  &lt;option *ngFor=\"let item of modeOptions\" &#91;ngValue]=\"item.mode\">{{item.mode}}&lt;/option>\r\n&lt;/select>\r\n \r\n&lt;ng-template let-items #cardTemplate>\r\n  &lt;div *ngFor=\"let item of items\">\r\n    &lt;h1>{{item.header}}&lt;/h1>\r\n    &lt;p>{{item.content}}&lt;/p>\r\n  &lt;/div>\r\n&lt;/ng-template>\r\n \r\n&lt;ng-template let-items #listTemplate>  \r\n  &lt;ul>\r\n    &lt;li *ngFor=\"let item of items\">\r\n      &lt;strong>{{item.header}} &lt;/strong> ( {{item.content}} )\r\n    &lt;/li>\r\n  &lt;/ul>\r\n&lt;/ng-template>\r\n \r\n&lt;item-view &#91;itemTemplate]=\"template\" &#91;items]=\"items\">\r\n&lt;/item-view></code></pre>\n\n\n\n<p><strong>item-view.component.ts</strong></p>\n\n\n\n<pre class=\"wp-block-code\"><code> \r\nimport { Component, Input, TemplateRef } from '@angular/core';\r\n \r\n \r\n@Component({\r\n  selector: 'item-view',\r\n  template: `\r\n  &lt;h2>Item View&lt;/h2>\r\n \r\n  &lt;ng-container &#91;ngTemplateOutlet]=\"itemTemplate\" &#91;ngTemplateOutletContext]=\"{$implicit:items}\">\r\n  &lt;/ng-container> \r\n  `\r\n})\r\nexport class ItemViewComponent {\r\n \r\n  @Input() items: any&#91;] = &#91;];\r\n  @Input() itemTemplate: TemplateRef&lt;HTMLElement>;\r\n \r\n}</code></pre>\n\n\n\n<p><strong>app.module.ts</strong></p>\n\n\n\n<pre class=\"wp-block-code\"><code> \r\nimport { BrowserModule } from '@angular/platform-browser';\r\nimport { NgModule } from '@angular/core';\r\nimport { FormsModule} from '@angular/forms';\r\n \r\nimport { AppComponent } from './app.component';\r\nimport { ItemViewComponent } from './item-view.component';\r\n \r\n@NgModule({\r\n  declarations: &#91;\r\n    AppComponent,\r\n    ItemViewComponent\r\n  ],\r\n  imports: &#91;\r\n    BrowserModule,FormsModule\r\n  ],\r\n  providers: &#91;],\r\n  bootstrap: &#91;AppComponent]\r\n})\r\nexport class AppModule { }\r\n </code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>What is ngTemplateOutlet? ngTemplateOutlet&nbsp;is a structural directive. We use it to insert a template (created by&nbsp;ngTemplate) in various sections of our DOM. For example, you can define a few templates to display an item and use them display at several places in the View and also swap that template as per the user’s choice. How [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [136],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3739" }
+      ],
+      "collection": [
+        { "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=3739"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 2,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3739/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3873,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3739/revisions/3873"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=3739"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=3739"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=3739"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3741,
+    "date": "2020-12-08T07:20:15",
+    "date_gmt": "2020-12-08T07:20:15",
+    "guid": { "rendered": "http://angular.foobrdigital.com/?p=3741" },
+    "modified": "2020-12-09T10:38:21",
+    "modified_gmt": "2020-12-09T10:38:21",
+    "slug": "hostbinding-and-hostlistener-in-angular",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/hostbinding-and-hostlistener-in-angular/",
+    "title": { "rendered": "@HostBinding and @HostListener in Angular" },
+    "content": {
+      "rendered": "\n<h2>Host Element</h2>\n\n\n\n<p>The host element is the element on which we attach our&nbsp;directive&nbsp;or&nbsp;component. Remember components are directives with a view (template).</p>\n\n\n\n<p>For Example</p>\n\n\n\n<p>Consider the following&nbsp;<code>ttToggle</code>&nbsp;directive. We built this directive in our tutorial&nbsp;custom directive in Angular. We attach it to a&nbsp;<code>button</code>&nbsp;element. Here the&nbsp;<code>button</code>&nbsp;element is the host element.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> &lt;button ttToggle>Click To Toggle&lt;/button> </code></pre>\n\n\n\n<p>In the following example for the&nbsp;<code>apphighlight</code>&nbsp;directive,&nbsp;<code>p</code>&nbsp;element is the host element</p>\n\n\n\n<pre class=\"wp-block-code\"><code> \r\n&lt;div>\r\n  &lt;p apphighlight>\r\n    &lt;div>This text will be highlighted&lt;/div>\r\n  &lt;/p>\r\n&lt;/div>\r\n </code></pre>\n\n\n\n<h2>HostBinding</h2>\n\n\n\n<p>Host Binding binds a Host element property to a variable in the directive or component</p>\n\n\n\n<h3>HostBinding Example</h3>\n\n\n\n<p>The following&nbsp;<code>appHighLight</code>&nbsp;directive, uses the&nbsp;<code>HostBinding</code>&nbsp;on&nbsp;<code>style.border</code>&nbsp;property of the parent element to the&nbsp;<code>border</code>&nbsp;property.</p>\n\n\n\n<p>Whenever we change the value of the&nbsp;<code>border</code>, the angular will update the&nbsp;<code>border</code>&nbsp;property of the host element.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> \r\nimport { Directive, HostBinding, OnInit } from '@angular/core'\r\n \r\n@Directive({\r\n  selector: '&#91;appHighLight]',\r\n})\r\nexport class HighLightDirective implements OnInit {\r\n \r\n  @HostBinding('style.border') border: string;\r\n \r\n  ngOnInit() {\r\n    this.border=\"5px solid blue\"\r\n  }\r\n \r\n}\r\n </code></pre>\n\n\n\n<p>We apply&nbsp;<code>appHighLight</code>&nbsp;directive to a host element (&nbsp;<code>p</code>&nbsp;in the example) as shown below.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>\r\n&lt;div>\r\n  &lt;h2>appHighLight Directive&lt;/h2>\r\n  &lt;p appHighLight>\r\n    This Text has blue Border\r\n  &lt;/p>\r\n&lt;/div></code></pre>\n\n\n\n<h2>HostListener</h2>\n\n\n\n<p>HostListener Decorator listens to the DOM event on the host element. It also provides a handler method to run when that event occurs.</p>\n\n\n\n<h3>HostListener Example</h3>\n\n\n\n<p>For example, in the following code&nbsp;<code>HostListener</code>&nbsp;listens to the&nbsp;<code>mouseover</code>&nbsp;&amp;&nbsp;<code>mouseleave</code>&nbsp;event. We use the HostListner decorator to decorate functions&nbsp;<code>onMouseOver</code>&nbsp;&amp;&nbsp;<code>onMouseLeave</code>.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>\r\nimport { Directive, HostBinding, OnInit, HostListener } from '@angular/core'\r\n \r\n@Directive({\r\n  selector: '&#91;appHighLight]',\r\n})\r\nexport class HighLightDirective implements OnInit {\r\n \r\n  @HostBinding('style.border') border: string;\r\n \r\n  ngOnInit() {\r\n  }\r\n \r\n  @HostListener('mouseover') \r\n  onMouseOver() {\r\n    this.border = '5px solid green';\r\n    console.log(\"Mouse over\")\r\n  }\r\n \r\n  @HostListener('mouseleave') \r\n  onMouseLeave() {\r\n    this.border = '';\r\n    console.log(\"Mouse Leave\")\r\n  }\r\n \r\n}</code></pre>\n\n\n\n<p>We apply the directive on a host element (&nbsp;<code>p</code>&nbsp;in the example) as shown below.</p>\n\n\n\n<p>Whenever the mouse is moved over the&nbsp;<code>p</code>&nbsp;element, the&nbsp;<code>mouseover</code>&nbsp;event is captured by the HostListener. It runs the&nbsp;<code>onMouseOver</code>&nbsp;method which we have attached to it. This method adds a green border to the&nbsp;<code>p</code>&nbsp;element using the HostBinding.</p>\n\n\n\n<p>Similarly, on&nbsp;<code>mouseleave</code>&nbsp;event, the border is removed.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;div>\r\n  &lt;h2>appHighLight Directive&lt;/h2>\r\n  &lt;p appHighLight>\r\n    This Text has blue Border\r\n  &lt;/p>\r\n&lt;/div></code></pre>\n\n\n\n<h2>Attaching Classes using HostBinding</h2>\n\n\n\n<p>Attaching a class to the host element is one of the common use cases of the HostBinding decorator.</p>\n\n\n\n<p>For Example the following example adds the&nbsp;<code>highlight</code>&nbsp;&amp;&nbsp;<code>box</code>&nbsp;class to the host element</p>\n\n\n\n<pre class=\"wp-block-code\"><code>@HostBinding('class') class: string;\r\n \r\n  ngOnInit() {\r\n    this.class=\"highlight box\"\r\n  }</code></pre>\n\n\n\n<p>You can also Use the&nbsp;<code>getter</code>&nbsp;method.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>  @HostBinding('class')  get class() {  return \"highlight box\"  } </code></pre>\n\n\n\n<p>Another example</p>\n\n\n\n<pre class=\"wp-block-code\"><code>\r\n  @HostBinding('class.highlight') get hasHighlight () { return true; } \r\n  @HostBinding('class.box') get hasBox () { return false }</code></pre>\n\n\n\n<p>The Classes that HostBinding&nbsp;adds must exist in the scope of the host. i.e. both&nbsp;<code>highlight</code>&nbsp;&amp;&nbsp;<code>box</code>&nbsp;must exist in the&nbsp;global styles&nbsp;or in the Component where we add the directive.</p>\n\n\n\n<h2>HostBinding &amp; HostListner in Components</h2>\n\n\n\n<p>The components are nothing but directives with a template. Hence we can make use of both HostBinding &amp; HostListner in components also.</p>\n\n\n\n<p>The following is a&nbsp;<code>BoxComponent</code>, which applies the&nbsp;<code>highlight</code>&nbsp;&amp;&nbsp;<code>box</code>&nbsp;classes to the host element. The classes&nbsp;<code>highlight</code>&nbsp;&amp;&nbsp;<code>box</code>&nbsp;are defined in the component.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>import { Component, HostBinding, HostListener } from '@angular/core';\r\n \r\n@Component({\r\n  selector: 'app-box',\r\n  template: `\r\n    &lt;h2> This is Box Component&lt;/h2> `,\r\n  styles: &#91;\r\n    `\r\n    .highlight {\r\n      color:green;\r\n      display: block;\r\n    } \r\n    \r\n    .box {\r\n      border: 1px dashed green;\r\n    }\r\n    `\r\n  ],\r\n \r\n \r\n})\r\nexport class BoxComponent {\r\n  title = 'hostBinding';\r\n \r\n  @HostBinding('class.highlight') get hasHighlight() { return true; }\r\n  @HostBinding('class.box') get hasBox() { return true }\r\n}</code></pre>\n\n\n\n<p>Now, open the&nbsp;<code>app.component.ts</code>&nbsp;and insert the above component.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;app-box>&lt;/app-box> </code></pre>\n\n\n\n<p>Run the app and&nbsp;<em>you will not see any border neither the text is highlighted</em>. i.e. because the host element exists in the parent components (<code>AppComponent</code>) scope and not in the&nbsp;<code>BoxComponent</code>&nbsp;scope. So any CSS styles in the BoxComponent will have no effect</p>\n\n\n\n<p>Open the&nbsp;<code>app.component.css</code>&nbsp;and add the styles. These styles are now applied correctly.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> .highlight {\r\n  color:blue;\r\n  display: block;\r\n} \r\n \r\n.box {\r\n  border: 1px solid red;\r\n} </code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Host Element The host element is the element on which we attach our&nbsp;directive&nbsp;or&nbsp;component. Remember components are directives with a view (template). For Example Consider the following&nbsp;ttToggle&nbsp;directive. We built this directive in our tutorial&nbsp;custom directive in Angular. We attach it to a&nbsp;button&nbsp;element. Here the&nbsp;button&nbsp;element is the host element. In the following example for the&nbsp;apphighlight&nbsp;directive,&nbsp;p&nbsp;element is the [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [136],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3741" }
+      ],
+      "collection": [
+        { "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=3741"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 2,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3741/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3874,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3741/revisions/3874"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=3741"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=3741"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=3741"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3743,
+    "date": "2020-12-08T07:25:43",
+    "date_gmt": "2020-12-08T07:25:43",
+    "guid": { "rendered": "http://angular.foobrdigital.com/?p=3743" },
+    "modified": "2020-12-09T10:41:35",
+    "modified_gmt": "2020-12-09T10:41:35",
+    "slug": "understanding-viewchild-viewchildren-querylist-in-angular",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/understanding-viewchild-viewchildren-querylist-in-angular/",
+    "title": {
+      "rendered": "Understanding ViewChild, ViewChildren &#038; Querylist in Angular"
+    },
+    "content": {
+      "rendered": "\n<h2>ViewChild</h2>\n\n\n\n<p>The&nbsp;<code>ViewChild</code>&nbsp;query returns the first matching element from the DOM and updates the component variable on which we apply it.</p>\n\n\n\n<h3>Syntax</h3>\n\n\n\n<p>The Syntax of the&nbsp;<code>viewChild</code>&nbsp;is as shown below.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> ViewChild(selector: string | Function | Type&lt;any>, opts: { read?: any; static: boolean; }): any </code></pre>\n\n\n\n<p>We apply the&nbsp;<code>viewChild</code>&nbsp;decorator on a&nbsp;<strong>Component Property</strong>. It takes two arguments. A&nbsp;<code>selector</code>&nbsp;and&nbsp;<code>opts</code>.</p>\n\n\n\n<p><code><strong>selector</strong>:</code>&nbsp;can be a string, a type or a function that returns a string or type. The change detector looks for the first element that matches the selector and updates the component property with the reference to the element. If the DOM changes and a new element matches the selector, the change detector updates the component property.</p>\n\n\n\n<p><code><strong>opts</strong>:</code>&nbsp;has two options.</p>\n\n\n\n<p><code><strong>static</strong></code>&nbsp;Determines when the query is resolved.&nbsp;<code>True</code>&nbsp;is when the view is initialized (before the first change detection) for the first time.&nbsp;<code>False</code>&nbsp;if you want it to be resolved after every change detection</p>\n\n\n\n<p><code><strong>read</strong>:</code>&nbsp;Use it to read the different token from the queried elements.</p>\n\n\n\n<h3>ViewChild Examples</h3>\n\n\n\n<p>Now, let us learn&nbsp;<code>ViewChild</code>&nbsp;using few examples.</p>\n\n\n\n<h3>Injecting Component or Directive Reference</h3>\n\n\n\n<p>One of the use cases of&nbsp;<code>ViewChild</code>&nbsp;is to get the reference of the Child Component in the Parent Component and manipulate its properties. This is one of the ways by which the&nbsp;Parent can communicate with the child components.</p>\n\n\n\n<p>For Example consider the following&nbsp;<code>ChildComponent</code>. It has two methods.&nbsp;<code>Increment</code>&nbsp;&amp;&nbsp;<code>Decrement</code>.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> \r\nimport { Component } from '@angular/core';\r\n \r\n@Component({\r\n  selector: 'child-component',\r\n  template: `&lt;h2>Child Component&lt;/h2>\r\n            current count is {{ count }}\r\n    `\r\n})\r\nexport class ChildComponent {\r\n  count = 0;\r\n \r\n  increment() {\r\n    this.count++;\r\n  }\r\n  decrement() {\r\n    this.count--;\r\n  }\r\n}</code></pre>\n\n\n\n<p>We can use the&nbsp;<code>ViewChild</code>&nbsp;in the parent component to get the reference to the&nbsp;<code>ChildComponent</code></p>\n\n\n\n<pre class=\"wp-block-code\"><code>@ViewChild(ChildComponent, {static:true}) child: ChildComponent;</code></pre>\n\n\n\n<p>In the code above, the&nbsp;<code>ViewChild</code>&nbsp;looks for the first occurrence of the&nbsp;<code>ChildComponent</code>&nbsp;in the view and updates the&nbsp;<code>child</code>&nbsp;variable. Now we can invoke the methods&nbsp;<code>Increment</code>&nbsp;&amp;&nbsp;<code>Decrement</code>&nbsp;of the&nbsp;<code>ChildComponent</code>&nbsp;from the Parent.</p>\n\n\n\n<p>The complete code is as shown below.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>import { Component, ViewChild } from '@angular/core';\r\nimport { ChildComponent } from './child.component';\r\n \r\n@Component({\r\n  selector: 'app-root',\r\n  template: `\r\n        &lt;h1>{{title}}&lt;/h1>\r\n        &lt;p> current count is {{child.count}} &lt;/p>\r\n        &lt;button (click)=\"increment()\">Increment&lt;/button>\r\n        &lt;button (click)=\"decrement()\">decrement&lt;/button>\r\n        &lt;child-component>&lt;/child-component>\r\n        ` ,\r\n  styleUrls: &#91;'./app.component.css']\r\n})\r\nexport class AppComponent {\r\n  title = 'Parent calls an @ViewChild()';\r\n  \r\n  @ViewChild(ChildComponent, {static:true}) child: ChildComponent;\r\n \r\n  increment() {\r\n    this.child.increment();\r\n  }\r\n \r\n  decrement() {\r\n    this.child.decrement();\r\n  }\r\n \r\n}</code></pre>\n\n\n\n<h3>Using Template Reference Variable</h3>\n\n\n\n<p>You can make use of Template Reference Variable instead of the component type.</p>\n\n\n\n<p>For Example, you can assign a Template Reference Variable to a component.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> &lt;child-component #child>&lt;/child-component> </code></pre>\n\n\n\n<p>and then use it in the ViewChild query to get the reference to the component.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> @ViewChild(\"child\", { static: true }) child: ChildComponent; </code></pre>\n\n\n\n<h3>Injecting HTML Element Using ElementRef</h3>\n\n\n\n<p>The&nbsp;<code>Viewchild</code>&nbsp;can also be used to query HTML elements.</p>\n\n\n\n<p>First, assign a Template variable (<code>#para</code>&nbsp;in the example below) to the HTML element. You can then use the&nbsp;<code>ViewChild</code>&nbsp;to query the element.</p>\n\n\n\n<p><code>ViewChild</code>&nbsp;returns a&nbsp;<code>ElementRef</code>, which is nothing but a wrapper around the native HTML element.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>import {AfterViewInit, Component, ElementRef, ViewChild} from '@angular/core';\r\n \r\n@Component({\r\n    selector: 'htmlelement',\r\n    template: `\r\n      &lt;p #para>Some text&lt;/p>\r\n    `,\r\n})\r\nexport class HTMLElementComponent implements AfterViewInit {\r\n \r\n    @ViewChild('para',{static:false}) para: ElementRef;\r\n \r\n    ngAfterViewInit() {\r\n      console.log(this.para.nativeElement.innerHTML);\r\n      this.para.nativeElement.innerHTML=\"new text\"\r\n    }\r\n} </code></pre>\n\n\n\n<h3>Multiple Instances</h3>\n\n\n\n<p>There could be multiple instances of the same component or element in the Template.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;child-component>&lt;/child-component>\r\n&lt;child-component>&lt;/child-component></code></pre>\n\n\n\n<p>The&nbsp;<code>ViewChild</code>&nbsp;always returns the first component.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> @ViewChild(ChildComponent, {static:true}) child: ChildComponent; </code></pre>\n\n\n\n<p>To get all the instances of the Child Component, we can make use of the&nbsp;<code>ViewChildren</code>, which we cover later in this tutorial.</p>\n\n\n\n<h3>ViewChild returns Undefined</h3>\n\n\n\n<p><strong>ViewChild Returning undefined</strong>&nbsp;is one of the common errors, we encounter when we use them.</p>\n\n\n\n<p>The error is due to the fact that we try to use the value, before the&nbsp;<code>ViewChild</code>&nbsp;initializes it.</p>\n\n\n\n<p>For Example, the code below results in&nbsp;<code>Cannot read property 'increment' of undefined</code>. i.e. the component’s view is not yet initialized when the&nbsp;<code>constructor</code>&nbsp;is run. Hence, the Angular yet to update&nbsp;<code>child</code>&nbsp;variable with the reference to the&nbsp;<code>ChildComponet</code>.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> export class AppComponent {\r\n  title = 'Parent calls an @ViewChild()';\r\n  \r\n  @ViewChild(ChildComponent, {static:true}) child: ChildComponent;\r\n \r\n  constructor() {\r\n    this.child.increment()\r\n  } \r\n \r\n}\r\n \r\n//\r\nCannot read property 'increment' of undefined</code></pre>\n\n\n\n<p>The solution is to wait until the Angular Initializes the View. Angular raises the&nbsp;<code>AfterViewInit</code>&nbsp;life cycle hook&nbsp;once it completes the View Initialization. So we can use the&nbsp;<code>ngAfterViewInit</code>&nbsp;to access the&nbsp;<code>child</code>&nbsp;variable.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> ngAfterViewInit() {    this.child.increment()  } </code></pre>\n\n\n\n<p>Now, the code does not give any errors.</p>\n\n\n\n<p>The above code will also work with the&nbsp;<code>ngOnInit</code>&nbsp;Life cycle hook. But it is not guaranteed to work all the time as the Angular might not initialize all parts of the view, before raising the&nbsp;<code>ngOnInit</code>&nbsp;hook. Hence it is always better to use the&nbsp;<code>ngAfterViewInit</code>&nbsp;hook.</p>\n\n\n\n<p>Also, when&nbsp;<code>ViewChild</code>&nbsp;updates the values also depends on the&nbsp;<code>static</code>&nbsp;option</p>\n\n\n\n<h3>Using Static Option in ViewChild</h3>\n\n\n\n<p>We used the&nbsp;<code>{static:true}</code>&nbsp;in the above code.</p>\n\n\n\n<p>The&nbsp;<code>static</code>&nbsp;option determines the timing of the&nbsp;<code>ViewChild</code>&nbsp;query resolution.</p>\n\n\n\n<ul><li><code>static:true</code>&nbsp;will resolves&nbsp;<code>ViewChild</code>&nbsp;<strong><em>before</em>&nbsp;any</strong>&nbsp;change detection is run.</li><li><code>static:false</code>&nbsp;will resolves it&nbsp;<strong><em>after</em>&nbsp;every</strong>&nbsp;change detection run.</li></ul>\n\n\n\n<p>The value of the&nbsp;<code>static</code>&nbsp;becomes important when the child is rendered dynamically. For Example inside a&nbsp;<code>ngIf</code>&nbsp;or&nbsp;<code>ngSwitch</code>&nbsp;etc.</p>\n\n\n\n<p>For Example consider the following code, where we have moved the&nbsp;<code>child-component</code>&nbsp;inside the&nbsp;<code>ngIf</code>.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> //child.component.html\r\n \r\n&lt;h1>ViewChild Example&lt;/h1>\r\n \r\n&lt;input type=\"checkbox\" id=\"showCounter\" name=\"showCounter\" &#91;(ngModel)]=\"showCounter\">\r\n \r\n&lt;ng-container  *ngIf=\"showCounter\">\r\n \r\n  &lt;p> current count is {{child?.count}} &lt;/p>\r\n \r\n  &lt;button (click)=\"increment()\">Increment&lt;/button>\r\n  &lt;button (click)=\"decrement()\">decrement&lt;/button>\r\n \r\n  &lt;child-component>&lt;/child-component>\r\n \r\n&lt;/ng-container></code></pre>\n\n\n\n<pre class=\"wp-block-code\"><code> //child.component.ts\r\n \r\nimport { Component, ViewChild, AfterViewInit, OnInit, ChangeDetectorRef } from '@angular/core';\r\nimport { ChildComponent } from './child.component';\r\n \r\n@Component({\r\n  selector: 'app-root',\r\n  templateUrl: 'app.component.html' ,\r\n  styleUrls: &#91;'./app.component.css']\r\n})\r\nexport class AppComponent {\r\n  title = 'ViewChild Example)';\r\n \r\n  showCounter: boolean = true\r\n \r\n  @ViewChild(ChildComponent, { static: true }) child: ChildComponent;\r\n \r\n  increment() {\r\n    this.child.increment();\r\n  }\r\n \r\n  decrement() {\r\n    this.child.decrement();\r\n  }\r\n \r\n}</code></pre>\n\n\n\n<p>The above code results in a&nbsp;<code>TypeError: Cannot read property 'increment' of undefined</code>. The error occurs even if we assign&nbsp;<code>true</code>&nbsp;to&nbsp;<code>showCounter</code></p>\n\n\n\n<p>Because in the above case Angular does not render the child component immediately. But after the first change detection which detects the value of&nbsp;<code>showCounter</code>&nbsp;and renders the child component.</p>\n\n\n\n<p>Since we used&nbsp;<code>static: true</code>, the angular will try to resolve the&nbsp;<code>ViewChild</code>&nbsp;before the first change detection is run. Hence the child variable always will be&nbsp;<code>undefined</code>.</p>\n\n\n\n<p>Now, change the&nbsp;<code>static: false</code>. Now the code will work correctly. I.e because after every change detection the Angular updates the&nbsp;<code>ViewChild</code>.</p>\n\n\n\n<h3>Using the Read Option in ViewChild</h3>\n\n\n\n<p>A Single element can be associated with multiple types.</p>\n\n\n\n<p>For Example, consider the following code.&nbsp;<code>#nameInput</code>&nbsp;template variable is now associated with both&nbsp;<code>input</code>&nbsp;&amp;&nbsp;<code>ngModel</code></p>\n\n\n\n<pre class=\"wp-block-code\"><code> &lt;input #nameInput &#91;(ngModel)]=\"name\"> </code></pre>\n\n\n\n<p>The&nbsp;<code>viewChild</code>&nbsp;code below, returns the instance of the&nbsp;<code>input</code>&nbsp;element as&nbsp;<code>elementRef</code>.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>@ViewChild('nameInput',{static:false}) nameVar; </code></pre>\n\n\n\n<p>If we want to get the instance of the&nbsp;<code>ngModel</code>, then we use the&nbsp;<code>Read</code>&nbsp;token and ask for the type.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>@ViewChild('nameInput',{static:false, read: NgModel}) inRef;\r\n \r\n@ViewChild('nameInput',{static:false, read: ElementRef}) elRef;\r\n@ViewChild('nameInput', {static:false, read: ViewContainerRef }) vcRef;</code></pre>\n\n\n\n<p>Every element in Angular is always has a&nbsp;<code>ElementRef</code>&nbsp;and&nbsp;<code>ViewContainerRef</code>&nbsp;associated with it. If the element is a component or directive then there is always a component or directive instance. You can also apply more than one directive to an element.</p>\n\n\n\n<p>The&nbsp;<code>ViewChild</code>&nbsp;without&nbsp;<code>read</code>&nbsp;token always returns the component instance if it is a component. If not it returns the&nbsp;<code>elementRef</code>.</p>\n\n\n\n<h3>Injecting a Provider from the Child Component</h3>\n\n\n\n<p>You can also inject the services provided in the child component.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>import { ViewChild, Component } from '@angular/core';\r\n \r\n@Component({\r\n  selector: 'app-child',\r\n  template: `&lt;h1>Child With Provider&lt;/h1>`,\r\n  providers: &#91;{ provide: 'Token', useValue: 'Value' }]\r\n})\r\n \r\nexport class ChildComponent{\r\n}</code></pre>\n\n\n\n<p>And in the Parent component, you can access the provider using the&nbsp;<code>read</code>&nbsp;property.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>  \r\nimport { ViewChild, Component } from '@angular/core';\r\n \r\n@Component({\r\n  selector: 'app-root',\r\n  template: `&lt;app-child>&lt;/app-child>`,\r\n})\r\n \r\nexport class AppComponent{\r\n    @ViewChild(ChildComponent , { read:'Token', static:false } ) childToken: string;\r\n}\r\n </code></pre>\n\n\n\n<h3>Injecting TemplateRef</h3>\n\n\n\n<p>You can access the&nbsp;<code>TemplateRef</code>&nbsp;as shown below</p>\n\n\n\n<pre class=\"wp-block-code\"><code> &lt;ng-template #sayHelloTemplate>\r\n  &lt;p> Say Hello&lt;/p>\r\n&lt;/ng-template></code></pre>\n\n\n\n<p>Component code</p>\n\n\n\n<pre class=\"wp-block-code\"><code>@ViewChild(\"sayHelloTemplate\", { static: false }) tempRef: TemplateRef; </code></pre>\n\n\n\n<p>Component code</p>\n\n\n\n<h2>ViewChildren</h2>\n\n\n\n<p><code>ViewChildren</code>&nbsp;decorator is used to getting the&nbsp;<strong>list of element references</strong>&nbsp;from the View.</p>\n\n\n\n<p><code>ViewChildren</code>&nbsp;is different from the&nbsp;<code>ViewChild</code>.&nbsp;<code>ViewChild</code>&nbsp;always returns the reference to a single element. If there are multiple elements the&nbsp;<code>ViewChild</code>&nbsp;returns the first matching element,</p>\n\n\n\n<p><code>ViewChildren</code>&nbsp;always returns all the elements as a&nbsp;QueryList. You can iterate through the list and access each element.</p>\n\n\n\n<h3>Syntax</h3>\n\n\n\n<p>The Syntax of the&nbsp;<code>viewChildren</code>&nbsp;is as shown below. It is very much similar to syntax of&nbsp;<code>viewChild</code>&nbsp;except for the&nbsp;<code>static</code>&nbsp;option.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> ViewChildren(selector: string | Function | Type&lt;any>, opts: { read?: any; }): any </code></pre>\n\n\n\n<p>The&nbsp;<code>ViewChildren</code>&nbsp;is always resolved after the change detection is run. i.e why it does not have&nbsp;<code>static</code>&nbsp;option. And also you cannot refer to it in the&nbsp;<code>ngOnInit</code>&nbsp;hook as it is yet to initialize.</p>\n\n\n\n<h3 id=\"3caa\">QueryList</h3>\n\n\n\n<p>The&nbsp;<code>QueryList</code>&nbsp;is the return type of&nbsp;<code>ViewChildren</code>&nbsp;and&nbsp;<code>contentChildren</code>&nbsp;.&nbsp;</p>\n\n\n\n<p><code>QueryList</code>&nbsp;stores the items returned by the&nbsp;<code>viewChildren</code>&nbsp;or&nbsp;<code>contentChildren</code>&nbsp;in a list.</p>\n\n\n\n<p>The Angular updates this list, whenever the state of the application change. It does it on each change detection.</p>\n\n\n\n<p>The&nbsp;<code>QueryList</code>&nbsp;also Implements an&nbsp;<code>iterable</code>&nbsp;interface. Which means you can iterate over it using &nbsp;<code>for (var i of items)</code>&nbsp;or use it with&nbsp;<code>ngFor</code>&nbsp;in template&nbsp;<code>*ngFor=\"let i of items\"</code>.</p>\n\n\n\n<p>Changes can be observed by subscribing to the changes&nbsp;<code>Observable</code>.</p>\n\n\n\n<p>You can use the following methods &amp; properties.</p>\n\n\n\n<ul><li><code>first:</code>&nbsp;returns the first item in the list.</li><li><code>last:</code>&nbsp;get the last item in the list.</li><li><code>length:</code>&nbsp;get the length of the items.</li><li><code>changes:</code>&nbsp;Is an observable. It emits a new value, whenever the Angular adds, removes or moves the child elements.</li></ul>\n\n\n\n<p>It also supports JavaScript array methods like&nbsp;<code>map()</code>,&nbsp;<code>filter()</code>&nbsp;,&nbsp;<code>find()</code>,&nbsp;<code>reduce()</code>,&nbsp;<code>forEach()</code>,&nbsp;<code>some().</code>&nbsp;etc</p>\n\n\n\n<h3>ViewChildren Example</h3>\n\n\n\n<p>In the example below, we have three input elements all using the&nbsp;ngModel&nbsp;directive</p>\n\n\n\n<p>We use the&nbsp;<code>ViewChildren</code>&nbsp;to get the&nbsp;<code>QueryList</code>&nbsp;of all input elements</p>\n\n\n\n<p>Finally, we can use the&nbsp;<code>this.modelRefList.forEach</code>&nbsp;to loop through the&nbsp;<code>QueryList</code>&nbsp;and access each element.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>import { ViewChild, Component, ViewChildren, QueryList, AfterViewInit } from '@angular/core';\r\nimport { NgModel } from '@angular/forms';\r\n \r\n@Component({\r\n  selector: 'app-viewchildren1',\r\n  template: `\r\n      &lt;h1>ViewChildren Example&lt;/h1>\r\n \r\n      &lt;input name=\"firstName\" &#91;(ngModel)]=\"firstName\">\r\n      &lt;input name=\"midlleName\" &#91;(ngModel)]=\"middleName\">\r\n      &lt;input name=\"lastName\" &#91;(ngModel)]=\"lastName\">\r\n \r\n      &lt;button (click)=\"show()\">Show&lt;/button>\r\n  \r\n  `,\r\n})\r\n \r\nexport class ViewChildrenExample1Component {\r\n \r\n  firstName;\r\n  middleName;\r\n  lastName;\r\n \r\n  @ViewChildren(NgModel) modelRefList: QueryList&lt;NgModel>;\r\n  \r\n  show() {\r\n \r\n    this.modelRefList.forEach(element => {\r\n      console.log(element)\r\n      //console.log(element.value)\r\n    });\r\n  }\r\n}</code></pre>\n\n\n\n<h3>Listening for QueryList Changes</h3>\n\n\n\n<p>We can subscribe to the changes observable to find if any new elements are added/removed or moved.</p>\n\n\n\n<p>In the example below, we have included&nbsp;<code>ngIf</code>&nbsp;directive to hide/show the input elements.</p>\n\n\n\n<p>We subscribe to the&nbsp;<code>changes</code>&nbsp;observable in the component class. Every time we use the&nbsp;<code>ngIf</code>&nbsp;to hide or add the component, the&nbsp;<code>changes</code>&nbsp;observable emits the latest&nbsp;<code>QueryList</code>.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>import { ViewChild, Component, ViewChildren, QueryList, AfterViewInit } from '@angular/core';\r\nimport { NgModel } from '@angular/forms';\r\n \r\n@Component({\r\n  selector: 'app-viewchildren2',\r\n  template: `\r\n      &lt;h1>ViewChildren Example&lt;/h1>\r\n \r\n      &lt;input *ngIf=\"showFirstName\" name=\"firstName\" &#91;(ngModel)]=\"firstName\">\r\n      &lt;input *ngIf=\"showMiddleName\" name=\"midlleName\" &#91;(ngModel)]=\"middleName\">\r\n      &lt;input *ngIf=\"showlastName\" name=\"lastName\" &#91;(ngModel)]=\"lastName\">\r\n \r\n \r\n      &lt;input type=\"checkbox\" id=\"showFirstName\" name=\"showFirstName\" &#91;(ngModel)]=\"showFirstName\">\r\n      &lt;input type=\"checkbox\" id=\"showMiddleName\" name=\"showMiddleName\" &#91;(ngModel)]=\"showMiddleName\">\r\n      &lt;input type=\"checkbox\" id=\"showlastName\" name=\"showlastName\" &#91;(ngModel)]=\"showlastName\">\r\n \r\n      &lt;button (click)=\"show()\">Show&lt;/button>\r\n  \r\n  `,\r\n \r\n})\r\n \r\nexport class ViewChildrenExample2Component implements AfterViewInit {\r\n \r\n  firstName;\r\n  middleName;\r\n  lastName;\r\n \r\n  showFirstName=true;\r\n  showMiddleName=true;\r\n  showlastName=true;\r\n \r\n  @ViewChildren(NgModel) modelRefList: QueryList&lt;NgModel>;\r\n \r\n  ngAfterViewInit() {\r\n \r\n    this,this.modelRefList.changes\r\n      .subscribe(data => {\r\n        console.log(data)\r\n      }\r\n    )\r\n  }\r\n  \r\n \r\n  show() {\r\n    this.modelRefList.forEach(element => {\r\n      console.log(element)\r\n      //console.log(element.value)\r\n    });\r\n \r\n  }\r\n}</code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>ViewChild The&nbsp;ViewChild&nbsp;query returns the first matching element from the DOM and updates the component variable on which we apply it. Syntax The Syntax of the&nbsp;viewChild&nbsp;is as shown below. We apply the&nbsp;viewChild&nbsp;decorator on a&nbsp;Component Property. It takes two arguments. A&nbsp;selector&nbsp;and&nbsp;opts. selector:&nbsp;can be a string, a type or a function that returns a string or type. The [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [136],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3743" }
+      ],
+      "collection": [
+        { "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=3743"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 2,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3743/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3875,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3743/revisions/3875"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=3743"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=3743"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=3743"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3745,
+    "date": "2020-12-08T07:29:09",
+    "date_gmt": "2020-12-08T07:29:09",
+    "guid": { "rendered": "http://angular.foobrdigital.com/?p=3745" },
+    "modified": "2020-12-09T10:42:26",
+    "modified_gmt": "2020-12-09T10:42:26",
+    "slug": "elementref-in-angular",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/elementref-in-angular/",
+    "title": { "rendered": "ElementRef in Angular" },
+    "content": {
+      "rendered": "\n<h2>ElementRef</h2>\n\n\n\n<p>The&nbsp;DOM&nbsp;objects are created and maintained by the Browser. They represent the structure and content of the Document. In a Vanilla JavaScript code, we access these DOM objects to manipulate the View. We can create and build documents, navigate their structure, and add, modify, or delete elements and content.</p>\n\n\n\n<p>Angular provides a lot of tools &amp; techniques to manipulate the DOM. We can add/remove components. It provides a lot of directives like&nbsp;Class Directive&nbsp;or&nbsp;Style directive. to Manipulate their styles etc.</p>\n\n\n\n<p>We may still need to access the DOM element on some occasions. This is where the ElementRef comes into the picture.</p>\n\n\n\n<h2>Getting ElementRef in Component Class</h2>\n\n\n\n<p>To manipulate the DOM using the&nbsp;<code>ElementRef</code>, we need to get the reference to the DOM element in the&nbsp;component/directive.</p>\n\n\n\n<p>To get the reference to DOM elements in the component</p>\n\n\n\n<ol><li>Create a&nbsp;template reference variable&nbsp;for the element in the component/directive.</li><li>Use the template variable to inject the element into component class using the&nbsp;ViewChild&nbsp;or&nbsp;ViewChildren.</li></ol>\n\n\n\n<p>To get the DOM element hosting the component/directive</p>\n\n\n\n<ol><li>Ask for&nbsp;<code>ElementRef</code>&nbsp;in the constructor (Angular Dependency injection), the Angular will inject the reference element hosting the component/directive.</li></ol>\n\n\n\n<p>or Example, in the following code, the variable hello refers to the HTML element&nbsp;<code>div</code>.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;div #hello>Hello Angular&lt;/div> </code></pre>\n\n\n\n<p><code>hello</code>&nbsp;is the&nbsp;Template Reference variable, which we can use in the Template.</p>\n\n\n\n<p>In the Component class, we use the&nbsp;<code>ViewChild</code>&nbsp;to inject the&nbsp;<code>hello</code>&nbsp;element. The Angular injects the&nbsp;<code>hello</code>&nbsp;as a type of&nbsp;<code>ElementRef</code>.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> @ViewChild('hello', { static: false }) divHello: ElementRef; </code></pre>\n\n\n\n<h3>Read&nbsp;token</h3>\n\n\n\n<p>Consider the following example</p>\n\n\n\n<pre class=\"wp-block-code\"><code> &lt;input #nameInput &#91;(ngModel)]=\"name\"> </code></pre>\n\n\n\n<p>The&nbsp;<code>nameInput</code>&nbsp;Template Reference Variable&nbsp;now binds to the&nbsp;<code>input</code>&nbsp;element. But at the same time, we have&nbsp;<code>ngModel</code>&nbsp;directive applied to it.</p>\n\n\n\n<p>Under such circumstance, we can use the&nbsp;<code>read</code>&nbsp;token to let angular know that we need&nbsp;<code>ElementRef</code>&nbsp;reference as shown below</p>\n\n\n\n<pre class=\"wp-block-code\"><code>\r\n//ViewChild returns ElementRef i.e. input HTML Element\r\n \r\n@ViewChild('nameInput',{static:false, read: ElementRef}) elRef;\r\n \r\n \r\n//ViewChild returns NgModel associated with the nameInput\r\n@ViewChild('nameInput',{static:false, read: NgModel}) inRef;</code></pre>\n\n\n\n<h2>ElementRef Example</h2>\n\n\n\n<p>Once we have the&nbsp;<code>ElementRef</code>&nbsp;, we can use the&nbsp;<code>nativeElement</code>&nbsp;property to manipulate the DOM as shown below.</p>\n\n\n\n<p>We need to wait for Angular to Initializes the View, before accessing the&nbsp;<code>ViewChild</code>&nbsp;variables. Hence we wait until the&nbsp;<code>AfterViewInit</code>&nbsp;life cycle hook, to start making use of the variable.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> \r\nimport { Component,ElementRef, ViewChild, AfterViewInit } from '@angular/core';\r\n \r\n@Component({\r\n  selector: 'app-root',\r\n  template:  '&lt;div #hello>Hello&lt;/div>'\r\n  styleUrls: &#91;'./app.component.css']\r\n})\r\nexport class AppComponent implements AfterViewInit {\r\n \r\n @ViewChild('hello', { static: false }) divHello: ElementRef;\r\n \r\n ngAfterViewInit() {\r\n   this.divHello.nativeElement.innerHTML = \"Hello Angular\";\r\n }\r\n \r\n}</code></pre>\n\n\n\n<p>You can manipulate the DOM very easily.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>ngAfterViewInit() {\r\n    this.divHello.nativeElement.innerHTML = \"Hello Angular\";\r\n    this.divHello.nativeElement.className=\"someClass\";\r\n    this.divHello.nativeElement.style.backgroundColor=\"red\";\r\n  }\r\n </code></pre>\n\n\n\n<h2>ElementRef in Custom Directive</h2>\n\n\n\n<p>One of the use case for&nbsp;<code>ElementRef</code>&nbsp;is the&nbsp;Angular directive. We learned how to create a&nbsp;custom directive in Angular. The following is the code for the&nbsp;<code>ttClass</code>&nbsp;custom attribute directive.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>import { Directive, ElementRef, Input, OnInit } from '@angular/core'\r\n \r\n@Directive({\r\n  selector: '&#91;ttClass]',\r\n})\r\nexport class ttClassDirective implements OnInit {\r\n \r\n  @Input() ttClass: string;\r\n \r\n  constructor(private el: ElementRef) {\r\n  }\r\n \r\n  ngOnInit() {\r\n    this.el.nativeElement.classList.add(this.ttClass);\r\n  }\r\n \r\n}</code></pre>\n\n\n\n<p>Note that we are injecting the&nbsp;<code>ElementRef</code>&nbsp;in the constructor. Whenever we ask for the&nbsp;<code>ElementRef</code>&nbsp;in the constructor, the Angular will inject the reference to the host DOM element of the directive.</p>\n\n\n\n<h2>Use with caution</h2>\n\n\n\n<p>[From the Angular Documents]</p>\n\n\n\n<p>Use this API as the last resort when direct access to DOM is needed. Use templating and data-binding provided by Angular instead. Alternatively, you can take a look at&nbsp;<code>Renderer2</code>&nbsp;which provides API that can safely be used even when direct access to native elements is not supported.</p>\n\n\n\n<p>Relying on direct DOM access creates tight coupling between your application and rendering layers which will make it impossible to separate the two and deploy your application into a web worker.</p>\n\n\n\n<h2>ElementRef &amp; XSS Injection Attack</h2>\n\n\n\n<p>Improper use of&nbsp;<code>ElementRef</code>&nbsp;can result in an XSS Injection attack. For Example in the following code, we are injecting a script using the&nbsp;<code>elementRef</code>. When the component containing such code runs, the script is executed</p>\n\n\n\n<pre class=\"wp-block-code\"><code>constructor(private elementRef: ElementRef) {\r\n    const s = document.createElement('script');\r\n    s.type = 'text/javascript';\r\n    s.textContent = 'alert(\"Hello World\")';\r\n    this.elementRef.nativeElement.appendChild(s);\r\n }\r\n </code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>ElementRef The&nbsp;DOM&nbsp;objects are created and maintained by the Browser. They represent the structure and content of the Document. In a Vanilla JavaScript code, we access these DOM objects to manipulate the View. We can create and build documents, navigate their structure, and add, modify, or delete elements and content. Angular provides a lot of tools [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [136],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3745" }
+      ],
+      "collection": [
+        { "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=3745"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 2,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3745/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3876,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3745/revisions/3876"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=3745"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=3745"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=3745"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3747,
+    "date": "2020-12-08T07:37:00",
+    "date_gmt": "2020-12-08T07:37:00",
+    "guid": { "rendered": "http://angular.foobrdigital.com/?p=3747" },
+    "modified": "2020-12-09T10:47:06",
+    "modified_gmt": "2020-12-09T10:47:06",
+    "slug": "renderer2-example-manipulating-dom-in-angular",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/renderer2-example-manipulating-dom-in-angular/",
+    "title": { "rendered": "Renderer2 Example: Manipulating DOM in Angular" },
+    "content": {
+      "rendered": "\n<h2>Why not ElementRef?</h2>\n\n\n\n<p>We can use the&nbsp;<code>nativeElement</code>&nbsp;property of the&nbsp;<code>ElelemtRef</code>&nbsp;to manipulate the DOM. We learned this in our last tutorial on&nbsp;<code>ElementRef</code>. The&nbsp;<code>nativeElement</code>&nbsp;Property contains the reference to the underlying DOM object. This gives us direct access to the DOM, bypassing the Angular. There is nothing wrong with using it, but it is not advisable for the following reasons.</p>\n\n\n\n<ol><li>Angular keeps the Component &amp; the view in Sync using Templates, data binding &amp; change detection, etc. All of them are bypassed when we update the DOM Directly.</li><li>DOM Manipulation works only in Browser. You will not able to use the App in other platforms like in a web worker, in Server (Server-side rendering), or in a Desktop, or in the mobile app, etc where there is no browser.</li><li>The DOM APIs do not sanitize the data. Hence it is possible to inject a script, thereby, opening our app an easy target for the XSS injection attack.</li></ol>\n\n\n\n<h2>Using Renderer2</h2>\n\n\n\n<p>First import it from the&nbsp;<code>@angular/core</code></p>\n\n\n\n<pre class=\"wp-block-code\"><code> import {Component, Renderer2, ElementRef, ViewChild, AfterViewInit } from '@angular/core'; </code></pre>\n\n\n\n<p>inject it into the component</p>\n\n\n\n<pre class=\"wp-block-code\"><code> constructor(private renderer:Renderer2) {} </code></pre>\n\n\n\n<p>Use&nbsp;<code>ElementRef</code>&nbsp;&amp;&nbsp;<code>ViewChild</code>&nbsp;to get the reference to the DOM element, which you want to manipulate.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> @ViewChild('hello', { static: false }) divHello: ElementRef; </code></pre>\n\n\n\n<p>Use the methods like&nbsp;<code>setProperty</code>&nbsp;,&nbsp;<code>setStyle</code>&nbsp;etc to change the property, styles of the element as shown below.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> this.renderer.setProperty(this.divHello.nativeElement,'innerHTML',\"Hello Angular\")\r\n \r\nthis.renderer.setStyle(this.divHello.nativeElement, 'color', 'red');</code></pre>\n\n\n\n<p>Code Example</p>\n\n\n\n<h2>Setting &amp; Removing Styles (setStyle &amp; removeStyle)</h2>\n\n\n\n<p>Use the&nbsp;<code>setStyle</code>&nbsp;&amp;&nbsp;<code>RemoveStyle</code>&nbsp;to add or remove the styles. It accepts four argument.</p>\n\n\n\n<p>The first argument is the element to which we want to apply the style. name of the styles is the second argument. The value of the style is the third argument. The last argument is Flags for style variations</p>\n\n\n\n<pre class=\"wp-block-code\"><code> \r\nabstract setStyle(el: any, style: string, value: any, flags?: RendererStyleFlags2): void\r\n \r\nabstract removeStyle(el: any, style: string, flags?: RendererStyleFlags2): void</code></pre>\n\n\n\n<p>Example</p>\n\n\n\n<pre class=\"wp-block-code\"><code> //Template\r\n \r\n&lt;div #hello>Hello !&lt;/div>\r\n \r\n \r\n//Component\r\n@ViewChild('hello', { static: false }) divHello: ElementRef;\r\n \r\n \r\nsetStyle() {\r\n  this.renderer.setStyle(this.divHello.nativeElement, 'color', 'blue');\r\n}\r\n \r\n \r\nremoveStyle() {\r\n  this.renderer.removeStyle(this.divHello.nativeElement, 'color');\r\n}</code></pre>\n\n\n\n<h2>Adding / Removing CSS Classes (addClass &amp; removeClass)</h2>\n\n\n\n<p>Use the methods&nbsp;<code>addClass</code>&nbsp;/&nbsp;<code>removeClass</code>&nbsp;to add or remove classes.</p>\n\n\n\n<p>Syntax</p>\n\n\n\n<pre class=\"wp-block-code\"><code>\r\nabstract addClass(el: any, name: string): void\r\n \r\n \r\nabstract removeClass(el: any, name: string): void</code></pre>\n\n\n\n<p>Example</p>\n\n\n\n<pre class=\"wp-block-code\"><code>  \r\n//Template\r\n \r\n&lt;div #hello>Hello !&lt;/div>\r\n \r\n \r\n \r\n//Component\r\n@ViewChild('hello', { static: false }) divHello: ElementRef;\r\n \r\naddClass() {\r\n  this.renderer.addClass(this.divHello.nativeElement, 'blackborder' );\r\n}\r\n \r\nremoveClass() {\r\n  this.renderer.removeClass(this.divHello.nativeElement, 'blackborder');\r\n}</code></pre>\n\n\n\n<h2>Setting or Remove Attributes (setAttribute &amp; removeAttribute)</h2>\n\n\n\n<p>We can add remove attributes using the&nbsp;<code>setAttribute</code>&nbsp;&amp;&nbsp;<code>removeAttribute</code></p>\n\n\n\n<pre class=\"wp-block-code\"><code> \r\nsetAttribute(el: any, name: string, value: string, namespace?: string): void\r\n \r\nremoveAttribute(el: any, name: string, namespace?: string): void</code></pre>\n\n\n\n<p>Example</p>\n\n\n\n<pre class=\"wp-block-code\"><code>//Template\r\n \r\n&lt;h2>Add/ Remove Attributes &lt;/h2>\r\n&lt;input #inputElement type='text'>\r\n&lt;button (click)=\"addAttribute()\">Set Attribute&lt;/button>\r\n&lt;button (click)=\"removeAttribute()\">Remove Attribute&lt;/button>\r\n \r\n \r\n \r\n//Component\r\n \r\n@ViewChild('inputElement', { static: false }) inputElement: ElementRef;\r\n \r\n \r\naddAttribute() {\r\n  this.renderer.setAttribute(this.inputElement.nativeElement, 'value', 'name' );\r\n}\r\n \r\n \r\nremoveAttribute() {\r\n  this.renderer.removeAttribute(this.inputElement.nativeElement, 'value');\r\n}\r\n </code></pre>\n\n\n\n<h2>Setting Property (setProperty)</h2>\n\n\n\n<p>Set any property of a DOM element using the&nbsp;<code>setProperty</code>&nbsp;method.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> setProperty(el: any, name: string, value: any): void </code></pre>\n\n\n\n<pre class=\"wp-block-code\"><code>setProperty() {\r\n  this.renderer.setProperty(this.divHello.nativeElement,'innerHTML',\"Hello Angular\")\r\n}</code></pre>\n\n\n\n<h2>AppendChild</h2>\n\n\n\n<p>Use the&nbsp;<code>appendChild</code>&nbsp;to append a new element (child element) to any existing element (parent element).</p>\n\n\n\n<pre class=\"wp-block-code\"><code> appendChild(parent: any, newChild: any): void </code></pre>\n\n\n\n<p>It accepts two arguments. The first argument is the parent node, where we want to append a new child node. The second argument is the child node, which you want to add.</p>\n\n\n\n<p>The next two examples, shows how to use&nbsp;<code>appendChild</code>.</p>\n\n\n\n<h2>Insert Text Element (CreateText &amp; appendChild)</h2>\n\n\n\n<p><code>CreateText</code>&nbsp;allow us to add text to the DOM.</p>\n\n\n\n<p>Example</p>\n\n\n\n<p>The following template has a empty&nbsp;<code>div</code>&nbsp;(&nbsp;<code>#divCreateText</code>)</p>\n\n\n\n<pre class=\"wp-block-code\"><code>//Template\r\n \r\n&lt;h2>Create Text Example&lt;/h2>\r\n&lt;div #divCreateText> &lt;/div>\r\n&lt;button (click)=\"createText()\">Create Text&lt;/button></code></pre>\n\n\n\n<p>Use the&nbsp;ViewChild&nbsp;to inject the reference to the&nbsp;<code>divCreateText</code>&nbsp;in the component.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> @ViewChild('divCreateText', { static: false }) divCreateText: ElementRef; </code></pre>\n\n\n\n<p>Use the&nbsp;<code>createText</code>&nbsp;method the create text node. At this point it is not added to the DOM.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>const text = this.renderer.createText('Example of Create Text');</code></pre>\n\n\n\n<p>Use the&nbsp;<code>appendChild</code>&nbsp;method to add it to an existing element (<code>divCreateText</code>).</p>\n\n\n\n<pre class=\"wp-block-code\"><code> this.renderer.appendChild(this.divCreateText.nativeElement, text); </code></pre>\n\n\n\n<h2>Creating new Element (createElement &amp; appendChild)</h2>\n\n\n\n<p>We can easily create a new element using the&nbsp;<code>createElement</code>&nbsp;&amp;&nbsp;<code>appendChild</code>.</p>\n\n\n\n<p><code>createElement</code>&nbsp;creates a new element, but does not insert it into the DOM. To insert into the DOM, we need to add it to an element, which already exists in the DOM using&nbsp;<code>appendChild</code>&nbsp;method.</p>\n\n\n\n<p>The following example shows how to create a new element and append to the DOM.</p>\n\n\n\n<p>First, we inject&nbsp;<code>ElementRef</code>&nbsp;in the constructor. This will inject the DOM element hosting the component/directive.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> constructor(private el: ElementRef, \r\n              private renderer:Renderer2) {\r\n  }</code></pre>\n\n\n\n<p>Create a new&nbsp;<code>div</code>&nbsp;element using the method&nbsp;<code>createElement('div')</code>. It is not yet added to the DOM.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> const div = this.renderer.createElement('div'); </code></pre>\n\n\n\n<p>Make use of the&nbsp;<code>createText('Inserted at bottom')</code>&nbsp;to create a new text node.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> const text = this.renderer.createText('Inserted at bottom'); </code></pre>\n\n\n\n<p>Use&nbsp;<code>appendChild</code>&nbsp;to append the newly created text node to the&nbsp;<code>div</code>&nbsp;element. Note that&nbsp;<code>div</code>&nbsp;is not yet added to the DOM.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>this.renderer.appendChild(div, text); </code></pre>\n\n\n\n<p>Finally, we add the&nbsp;<code>div</code>&nbsp;element to an existing DOM element i.e. host element.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> this.renderer.appendChild(this.div.nativeElement, div);</code></pre>\n\n\n\n<p>The complete code as under. The&nbsp;<code>createElement2</code>&nbsp;appends the new child node a another&nbsp;<code>div</code>.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>\r\nimport { Component, Renderer2, OnInit, ElementRef, ViewChild, AfterViewInit, VERSION } from '@angular/core';\r\n \r\n@Component({\r\n  selector: 'app-create-element',\r\n  templateUrl: './create-element.component.html',\r\n  styleUrls: &#91;'./create-element.component.css']\r\n})\r\nexport class CreateElementComponent  {\r\n \r\n \r\n  @ViewChild('div', { static: false }) div: ElementRef;\r\n \r\n \r\n  constructor(private el: ElementRef, \r\n              private renderer:Renderer2) {\r\n  }\r\n \r\n  \r\n  createElement() {\r\n    const div = this.renderer.createElement('div');\r\n    const text = this.renderer.createText('Inserted at bottom');\r\n \r\n    this.renderer.appendChild(div, text);\r\n    this.renderer.appendChild(this.el.nativeElement, div);\r\n  }\r\n \r\n \r\n  createElement2() {\r\n    const div = this.renderer.createElement('div');\r\n    const text = this.renderer.createText('Inserted inside div');\r\n \r\n    this.renderer.appendChild(div, text);\r\n    this.renderer.appendChild(this.div.nativeElement, div);\r\n  }\r\n \r\n}</code></pre>\n\n\n\n<pre class=\"wp-block-code\"><code> \r\n&lt;h2>Renderer2 Create Element&lt;/h2>\r\n \r\n&lt;div #div style=\"border: 1px solid black;\">\r\n    This is a div\r\n&lt;/div>\r\n \r\n&lt;button (click)=\"createElement()\">Create Element&lt;/button>\r\n&lt;button (click)=\"createElement2()\">Create Element&lt;/button></code></pre>\n\n\n\n<h2>InsertBefore</h2>\n\n\n\n<p>We can also insert the new element, before an element in the DOM element using the&nbsp;<code>insertBefore</code>&nbsp;method. The syntax of&nbsp;<code>insertBefore</code>&nbsp;as shown below.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> insertBefore(parent: any, newChild: any, refChild: any): void </code></pre>\n\n\n\n<p><code>parent</code>&nbsp;is the parent node.&nbsp;<code>newChild</code>&nbsp;is the new node, which you want to insert.&nbsp;<code>refChild</code>&nbsp;is the existing child node before which&nbsp;<code>newChild</code>&nbsp;is inserted.</p>\n\n\n\n<p>The following Example inserts a new element before&nbsp;<code>div1</code>.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;h1>Angular Renderer2 InsertBefore Example&lt;/h1>\r\n \r\n \r\n&lt;div #div1>\r\n  This is div 1\r\n&lt;/div>\r\n \r\n&lt;div #div2>\r\n  This is div 2\r\n \r\n  &lt;div #div3>\r\n    This is div 3\r\n  &lt;/div>\r\n \r\n&lt;/div>\r\n \r\n \r\n \r\n&lt;button (click)=\"insertBeforeDiv1()\" >Insert Before Div1&lt;/button>\r\n \r\n&lt;button (click)=\"insertBeforeDiv2()\" >Insert Before Div2&lt;/button>\r\n \r\n&lt;button (click)=\"insertBeforeDiv3()\" >Insert Before Div3&lt;/button></code></pre>\n\n\n\n<p>First, use the&nbsp;<code>ViewChild</code>&nbsp;to get the reference to the&nbsp;<code>div1</code>. Inject&nbsp;<code>ElementRef</code>, which gives us the reference to the Host DOM element.</p>\n\n\n\n<p>Create a new&nbsp;<code>div</code>&nbsp;element using&nbsp;<code>createElement</code>. Add a&nbsp;<code>text</code>&nbsp;node to it using&nbsp;<code>createText</code>&nbsp;and append it to the&nbsp;<code>div</code></p>\n\n\n\n<p>Use the&nbsp;<code>insertBefore</code>&nbsp;method to add the&nbsp;<code>div</code>&nbsp;element</p>\n\n\n\n<pre class=\"wp-block-code\"><code> \r\nimport { Component, OnInit, ViewChild, ElementRef, Renderer2 } from '@angular/core';\r\n \r\n@Component({\r\n  selector: 'app-insert-before',\r\n  templateUrl: './insert-before.component.html',\r\n  styleUrls: &#91;'./insert-before.component.css']\r\n})\r\nexport class InsertBeforeComponent {\r\n \r\n  @ViewChild('div1', { static: false }) div1: ElementRef;\r\n  @ViewChild('div2', { static: false }) div2: ElementRef;\r\n  @ViewChild('div3', { static: false }) div3: ElementRef;\r\n \r\n \r\n  constructor(private renderer:Renderer2, private el:ElementRef) { }\r\n \r\n \r\n \r\n  insertBeforeDiv1() {\r\n    const div = this.renderer.createElement('div');\r\n    const text = this.renderer.createText('This Text is Inserted before the div1');\r\n    this.renderer.appendChild(div, text);\r\n \r\n    this.renderer.insertBefore(this.el.nativeElement,div,this.div1.nativeElement);\r\n  }\r\n \r\n \r\n \r\n  insertBeforeDiv2() {\r\n    const div = this.renderer.createElement('div');\r\n    const text = this.renderer.createText('This Text is Inserted before the div2');\r\n    this.renderer.appendChild(div, text);\r\n \r\n    this.renderer.insertBefore(this.el.nativeElement,div,this.div2.nativeElement);\r\n  }\r\n \r\n \r\n \r\n \r\n  insertBeforeDiv3() {\r\n    const div = this.renderer.createElement('div');\r\n    const text = this.renderer.createText('This Text is Inserted before the div3');\r\n    this.renderer.appendChild(div, text);\r\n \r\n    //Using parentNode to retrieve the Parent Node\r\n    this.renderer.insertBefore( this.renderer.parentNode(this.div3.nativeElement),div,this.div3.nativeElement);\r\n  }\r\n \r\n \r\n}</code></pre>\n\n\n\n<h2>Insert Comment</h2>\n\n\n\n<p><code>createComment</code>&nbsp;creates comment node. It accepts comment as the argument. You can then use the&nbsp;<code>appendChild</code>&nbsp;or&nbsp;<code>insertBefore</code>&nbsp;to insert it anywhere in the DOM.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> createComment(value: string): any </code></pre>\n\n\n\n<h2>ParentNode &amp; NextSibling</h2>\n\n\n\n<p><code>ParentNode</code>&nbsp;method returns the parent of a given node in the host element’s DOM.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>//Returns the parent Node of div3this.renderer.parentNode(this.div3.nativeElement); </code></pre>\n\n\n\n<p><code>nextSibling</code>&nbsp;method returns the next sibling node of a given node in the host element’s DOM.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> //Returns the next Sibling node of div2this.renderer.nextSibling(this.div2.nativeElement); </code></pre>\n\n\n\n<h2>SelectRootElement</h2>\n\n\n\n<p>We can also use the&nbsp;<code>selectRoomElement</code>&nbsp;to select a node element based on a selector.</p>\n\n\n\n<p>Syntax</p>\n\n\n\n<pre class=\"wp-block-code\"><code> selectRootElement(selectorOrNode: any, preserveContent?: boolean) </code></pre>\n\n\n\n<p>The first argument is the selector or node. The Renderer2 uses the selector to search for the DOM element and returns it.</p>\n\n\n\n<p>The second argument is&nbsp;<code>preserveContent</code>. If&nbsp;<code>no</code>&nbsp;or&nbsp;<code>undefined</code>, the renderer2 will remove all the child nodes. If yes the child nodes are not removed.</p>\n\n\n\n<p>Example, consider the following template</p>\n\n\n\n<pre class=\"wp-block-code\"><code>\r\n&lt;h1>Renderer2 selectRootElement Example&lt;/h1>\r\n \r\n&lt;div class=\"outerDiv\" style=\"border: 1px solid black; padding :5px;\"> \r\n \r\n  &lt;div class=\"div1\" style=\"border: 1px solid black; margin :5px;\">This is Div1&lt;/div>\r\n  &lt;div class=\"div2\" style=\"border: 1px solid black; margin :5px;\">This is Div2&lt;/div>\r\n  &lt;div class=\"div3\" class=\"div3class\" style=\"border: 1px solid black; margin :5px;\">This is Div3&lt;/div>\r\n \r\n&lt;/div>\r\n </code></pre>\n\n\n\n<p>The&nbsp;<code>selectRootElement</code>&nbsp;in the following example returns the element&nbsp;<code>div1</code>&nbsp;, but it removes all the content it holds. Because the second argument is false. Change&nbsp;<code>false</code>&nbsp;to&nbsp;<code>true</code>, then the renderer2 will not remove the content.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> exampleDiv1() {     const e = this.renderer.selectRootElement('.div1',false);      } </code></pre>\n\n\n\n<p>Examples.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>exampleDiv2() {\r\n     //Conent is always replaced. becuase preserveContent is false\r\n     const e = this.renderer.selectRootElement('.div2',false);    \r\n     const t = this.renderer.createText('Content added to div2');\r\n     this.renderer.appendChild(e, t);\r\n \r\n   }\r\n \r\n   exampleDiv3() {\r\n     //Conent is always appended. becuase preserveContent is true\r\n     const e = this.renderer.selectRootElement('.div3',true);    \r\n     const t = this.renderer.createText('Content added to div3');\r\n     this.renderer.appendChild(e, t);\r\n   }</code></pre>\n\n\n\n<h2>Listen&nbsp;to DOM events</h2>\n\n\n\n<p>You can also, listen to DOM events using the&nbsp;<code>listen</code>&nbsp;method.</p>\n\n\n\n<p>The listen method accepts three arguments. the first argument is the DOM element (<code>target</code>). The second argument is the name of the event (<code>eventName</code>) and the third argument is the&nbsp;<code>callback</code></p>\n\n\n\n<pre class=\"wp-block-code\"><code> abstract listen(target: any, eventName: string, callback: (event: any) => boolean | void): () => void </code></pre>\n\n\n\n<p>In the following example, we listen to the&nbsp;<code>click</code>&nbsp;event of a button.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> \r\n//Component\r\n \r\nimport { Component, OnInit, ViewChild, ElementRef, Renderer2, AfterViewInit } from '@angular/core';\r\n \r\n@Component({\r\n  selector: 'app-listen-events',\r\n  templateUrl: './listen-events.component.html',\r\n  styleUrls: &#91;'./listen-events.component.css']\r\n})\r\nexport class ListenEventsComponent implements AfterViewInit {\r\n \r\n  @ViewChild('hello', { static: false }) divHello: ElementRef;\r\n \r\n  Count=0\r\n  constructor(private renderer:Renderer2) { }\r\n \r\n  ngAfterViewInit() {\r\n \r\n    let simple = this.renderer.listen(this.divHello.nativeElement, 'click', (evt) => {\r\n     this.Count++;\r\n    });\r\n \r\n  }\r\n \r\n}\r\n </code></pre>\n\n\n\n<pre class=\"wp-block-code\"><code>//Template\r\n \r\n&lt;h1>Renderer2 Listen Events Example&lt;/h1>\r\n \r\n \r\n&lt;button #hello>hello&lt;/button>\r\n \r\nClick Count {{Count}}</code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Why not ElementRef? We can use the&nbsp;nativeElement&nbsp;property of the&nbsp;ElelemtRef&nbsp;to manipulate the DOM. We learned this in our last tutorial on&nbsp;ElementRef. The&nbsp;nativeElement&nbsp;Property contains the reference to the underlying DOM object. This gives us direct access to the DOM, bypassing the Angular. There is nothing wrong with using it, but it is not advisable for the following [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [136],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3747" }
+      ],
+      "collection": [
+        { "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=3747"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 2,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3747/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3877,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3747/revisions/3877"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=3747"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=3747"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=3747"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3749,
+    "date": "2020-12-08T07:40:21",
+    "date_gmt": "2020-12-08T07:40:21",
+    "guid": { "rendered": "http://angular.foobrdigital.com/?p=3749" },
+    "modified": "2020-12-09T10:48:40",
+    "modified_gmt": "2020-12-09T10:48:40",
+    "slug": "contentchild-and-contentchildren-in-angular",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/contentchild-and-contentchildren-in-angular/",
+    "title": { "rendered": "ContentChild and ContentChildren in Angular" },
+    "content": {
+      "rendered": "\n<h2>Content Projection recap</h2>\n\n\n\n<p><code>Content projection</code>&nbsp;is a way to pass the HTML content from the parent component to the child component. The child component will display the template in a designated spot. We use the&nbsp;<code>ng-content</code>&nbsp;element to designate a spot for the template in the template of the child component. The&nbsp;<code>ng-content</code>&nbsp;also allows us to create multiple slots using the&nbsp;<code>selector</code>&nbsp;attribute. The parent can send different content to each of those slots.</p>\n\n\n\n<h2>ContentChild and ContentChildren Example</h2>\n\n\n\n<p>To Understand how ContentChild &amp; ContentChildren works, let us create a simple card application. The application has a CardComponent, which displays a single Card</p>\n\n\n\n<pre class=\"wp-block-code\"><code>import { Component} from '@angular/core';\r\n \r\n \r\n@Component({\r\n  selector: 'card',\r\n  template: `\r\n \r\n    &lt;div class=\"card\">\r\n      &lt;ng-content select=\"header\">&lt;/ng-content>\r\n      &lt;ng-content select=\"content\">&lt;/ng-content>\r\n      &lt;ng-content select=\"footer\">&lt;/ng-content>\r\n    &lt;/div> \r\n   \r\n  `,\r\n  styles: &#91;\r\n    ` .card { min- width: 280px;  margin: 5px;  float:left  } \r\n    `\r\n  ]\r\n})\r\nexport class CardComponent {\r\n \r\n}</code></pre>\n\n\n\n<p>The component defines three&nbsp;ng-content&nbsp;slots. The slots are given names&nbsp;<code>header</code>,&nbsp;<code>content</code>&nbsp;&amp;&nbsp;<code>footer</code>. The users of the card component can send content to any or all of these three slots.</p>\n\n\n\n<p>The following code is from the Card List Component.</p>\n\n\n\n<p>The Card List Component instantiates three Card Components. Sends content for header, content &amp; footer.</p>\n\n\n\n<p>Also, note that we have&nbsp;<code>#header</code>&nbsp;template reference variable&nbsp;on&nbsp;<code>h1</code>&nbsp;tag on&nbsp;<code>header</code>&nbsp;content. Now let us access the&nbsp;<code>h1</code>&nbsp;element using the&nbsp;<code>ContentChild</code>&nbsp;query in the Card Component.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>import { Component } from '@angular/core';\r\n \r\n@Component({\r\n  selector: 'card-list',\r\n  template: `\r\n  \r\n  &lt;h1> Card List&lt;/h1>\r\n \r\n      &lt;card>\r\n        &lt;header>&lt;h1 #header>Angular&lt;/h1>&lt;/header>\r\n        &lt;content>One framework. Mobile &amp; desktop.&lt;/content>\r\n        &lt;footer>&lt;b>Super-powered by Google &lt;/b>&lt;/footer>\r\n      &lt;/card>\r\n        \r\n      &lt;card>\r\n        &lt;header>&lt;h1 #header style=\"color:red;\">React&lt;/h1>&lt;/header>\r\n        &lt;content>A JavaScript library for building user interfaces&lt;/content>\r\n        &lt;footer>&lt;b>Facebook Open Source &lt;/b>&lt;/footer>\r\n      &lt;/card>\r\n \r\n      &lt;card>\r\n        &lt;header> &lt;h1 #header>Typescript&lt;/h1> &lt;/header>\r\n        &lt;content>&lt;a href=\"https://www.tektutorialshub.com/typescript-tutorial/\"> Typescript&lt;/a> is a javascript for any scale&lt;/content>\r\n        &lt;footer>&lt;i>Microsoft &lt;/i>&lt;/footer>\r\n      &lt;/card>\r\n \r\n  `,\r\n})\r\nexport class CardListComponent {\r\n \r\n}</code></pre>\n\n\n\n<h3>Using ContentChild and ContentChildren</h3>\n\n\n\n<p>Now, let us go back to the Card Component.</p>\n\n\n\n<p>To use&nbsp;<code>ContentChild</code>, we need to import it first from the&nbsp;<code>@angular/core</code>.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> import { Component, ContentChild, ContentChildren, ElementRef, Renderer2,  ViewChild } from '@angular/core';  </code></pre>\n\n\n\n<p>Then use it to query the&nbsp;<code>header</code>&nbsp;from the projected content.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> @ContentChild(\"header\") cardContentHeader: ElementRef; </code></pre>\n\n\n\n<p>Here,&nbsp;<code>cardContentHeader</code>&nbsp;is the variable. We apply the&nbsp;<code>@ContentChild</code>&nbsp;decorator on that variable. The&nbsp;<code>header</code>&nbsp;is the&nbsp;template variable, that we want to read. Since it is applied on&nbsp;<code>h1</code>&nbsp;tag, it is going to return the&nbsp;<code>ElementRef</code>.</p>\n\n\n\n<p>The&nbsp;<code>cardContentHeader</code>&nbsp;will not be available to use immediately. i.e because of&nbsp;Component lifecycle hooks.&nbsp;The angular initializes the component first. It then raises the&nbsp;ngOnChanges,&nbsp;ngOnInit&nbsp;&amp;&nbsp;ngDoCheck&nbsp;hooks. The projected components are initialized next. And then Angular raises the&nbsp;<code>AfterContentInit</code>&nbsp;&amp;&nbsp;<code>AfterContentChecked</code>&nbsp;hooks. Hence the&nbsp;<code>cardContentHeader</code>&nbsp;is available to use only after the&nbsp;<code>AfterContentInit</code>&nbsp;hook.</p>\n\n\n\n<p>Once, we have reference to the DOM Element, we can use the&nbsp;<code>renderor2</code>&nbsp;to manipulate its styles etc.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> ngAfterContentInit() {\r\n   \r\n    this.renderor.setStyle(this.cardContentHeader.nativeElement,\"font-size\",\"20px\")\r\n \r\n}</code></pre>\n\n\n\n<h2>ViewChild Vs ContentChild</h2>\n\n\n\n<p>ViewChild or ViewChildren&nbsp;can access any DOM element, component, or directive. But it cannot be used to access the projected content. While ContentChild or ContentChildren can access only the projected content, but cannot be used to access any other content.</p>\n\n\n\n<p>For Example, in the card component, use the&nbsp;ViewChild&nbsp;query to read the header element. You will find out that the&nbsp;<code>cardViewHeader</code>&nbsp;will be&nbsp;<code>undefined</code></p>\n\n\n\n<pre class=\"wp-block-code\"><code> @ViewChild(\"header\") cardViewHeader: ElementRef; </code></pre>\n\n\n\n<h2>ContentChild Syntax</h2>\n\n\n\n<p>The&nbsp;<code>ContentChild</code>&nbsp;query returns the first matching element from the DOM and updates the component variable on which we apply it.</p>\n\n\n\n<h3>Syntax</h3>\n\n\n\n<p>The Syntax of the&nbsp;<code>ContentChild</code>&nbsp;is as shown below.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> ContentChild(selector: string | Function | Type&lt;any>, opts: { read?: any; static: boolean; }): any </code></pre>\n\n\n\n<p>We apply the&nbsp;<code>contentChild</code>&nbsp;decorator on a&nbsp;<strong>Component Property</strong>. It takes two arguments. A&nbsp;<code>selector</code>&nbsp;and&nbsp;<code>opts</code>.</p>\n\n\n\n<p><code><strong>selector</strong>&nbsp;(Query Selector):</code>&nbsp;The directive type or the name used for querying</p>\n\n\n\n<p><code><strong>opts</strong>:</code>&nbsp;has two options.</p>\n\n\n\n<p><code><strong>static</strong></code>&nbsp;True to resolve query results before change detection runs, false to resolve after change detection. Defaults to false.</p>\n\n\n\n<p><code><strong>read</strong>:</code>&nbsp;Use it to read the different token from the queried elements.</p>\n\n\n\n<h3>Selector or Query Selector</h3>\n\n\n\n<p>The change detector looks for the first element that matches the selector and updates the component property with the reference to the element. If the DOM changes and a new element matches the selector, the change detector updates the component property</p>\n\n\n\n<p>The query selector can be a string, a type, or a function that returns a string or type. The following selectors are supported.</p>\n\n\n\n<ul><li>Any Component or directive class type</li><li>A template reference variable as a string</li></ul>\n\n\n\n<pre class=\"wp-block-code\"><code> //Using a Template Reference Variable\r\n@ContentChild(\"header\") cardContentHeader: ElementRef;</code></pre>\n\n\n\n<pre class=\"wp-block-code\"><code> //Using component/directive as type@ContentChild(childComponent) cardChildComponent: childComponent; </code></pre>\n\n\n\n<h3>Static</h3>\n\n\n\n<p>Determines when the query is resolved.&nbsp;<code>True</code>&nbsp;is when the view is initialized&nbsp;<strong>(before the first change detection</strong>) for the first time.&nbsp;<code>False</code>&nbsp;if you want it to be resolved&nbsp;<strong>after every change detection</strong></p>\n\n\n\n<h3>Read Token</h3>\n\n\n\n<p>Use it to read the different token from the queried elements.</p>\n\n\n\n<p>For Example, consider the following projected content. The&nbsp;<code>nameInput</code>&nbsp;can be either a input element or a ngModel directive.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;input #nameInput &#91;(ngModel)]=\"name\"> </code></pre>\n\n\n\n<p>The ContentChild in the following code, returns the&nbsp;<code>input</code>&nbsp;element as&nbsp;<code>elementRef</code>.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>@ContentChild('nameInput',{static:false}) nameVar; </code></pre>\n\n\n\n<p>You can make use of the read token, to ask ContentChild to return the correct type.</p>\n\n\n\n<p>For Example&nbsp;<code>read: NgModel</code>&nbsp;returns the&nbsp;<code>nameInput</code>&nbsp;as of type&nbsp;<code>NgModel</code></p>\n\n\n\n<pre class=\"wp-block-code\"><code>@ContentChild('nameInput',{static:false, read: NgModel}) nameVarAsNgModel;\r\n@ContentChild('nameInput',{static:false, read: ElementRef}) nameVarAsElementRef;\r\n@ContentChild('nameInput', {static:false, read: ViewContainerRef }) nameVarAsViewContainerRef;</code></pre>\n\n\n\n<h2>ContentChildren</h2>\n\n\n\n<p>Use the&nbsp;<code>ContentChildren</code>&nbsp;decorator to get the&nbsp;<strong>list of element references</strong>&nbsp;from the projected content.</p>\n\n\n\n<p><code>ContentChildren</code>&nbsp;is different from the&nbsp;<code>ContentChild</code>.&nbsp;<code>ContentChild</code>&nbsp;always returns the reference to a single element. If there are multiple elements the&nbsp;<code>ContentChild</code>&nbsp;returns the first matching element,</p>\n\n\n\n<p><code>ContentChildren</code>&nbsp;always returns all the matching elements as a&nbsp;QueryList. You can iterate through the list and access each element.</p>\n\n\n\n<h3>Syntax</h3>\n\n\n\n<p>The Syntax of the&nbsp;<code>contentChildren</code>&nbsp;is as shown below. It is very much similar to the syntax of&nbsp;<code>contentChild</code>.&nbsp;It does not have the&nbsp;<code>static</code>&nbsp;option but has the&nbsp;<code>descendants</code>&nbsp;option</p>\n\n\n\n<pre class=\"wp-block-code\"><code> ContentChildren(selector: string | Function | Type&lt;any>, \nopts: {descendants?:boolean, read?: any; }): any </code></pre>\n\n\n\n<p>Make&nbsp;<code>descendants</code>&nbsp;True to include all descendants, otherwise include only direct children.</p>\n\n\n\n<p>The&nbsp;<code>ContentChildren</code>&nbsp;is always resolved after the change detection is run. i.e why it does not have&nbsp;<code>static</code>&nbsp;option. And also you cannot refer to it in the&nbsp;<code>ngOnInit</code>&nbsp;hook as it is yet to initialize.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Content Projection recap Content projection&nbsp;is a way to pass the HTML content from the parent component to the child component. The child component will display the template in a designated spot. We use the&nbsp;ng-content&nbsp;element to designate a spot for the template in the template of the child component. The&nbsp;ng-content&nbsp;also allows us to create multiple slots [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [136],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3749" }
+      ],
+      "collection": [
+        { "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=3749"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 2,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3749/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3878,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3749/revisions/3878"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=3749"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=3749"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=3749"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3751,
+    "date": "2020-12-08T07:43:30",
+    "date_gmt": "2020-12-08T07:43:30",
+    "guid": { "rendered": "http://angular.foobrdigital.com/?p=3751" },
+    "modified": "2020-12-09T10:49:45",
+    "modified_gmt": "2020-12-09T10:49:45",
+    "slug": "afterviewinit-afterviewchecked-aftercontentinit-aftercontentchecked-in-angular",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/afterviewinit-afterviewchecked-aftercontentinit-aftercontentchecked-in-angular/",
+    "title": {
+      "rendered": "AfterViewInit, AfterViewChecked, AfterContentInit &#038; AfterContentChecked in Angular"
+    },
+    "content": {
+      "rendered": "\n<h2>Lifecycle hooks recap</h2>\n\n\n\n<p>The life of a&nbsp;component&nbsp;(or directive) starts, when angular instantiates the component.</p>\n\n\n\n<p>Instantiation starts with invoking the component’s constructor and injecting the services via&nbsp;dependency injection.</p>\n\n\n\n<p>Once the Angular instantiates the component, it starts the change detection cycle for the component. It checks &amp; updates any data-bound&nbsp;input property&nbsp;of the component &amp; Initializes the component. It then raises the following life cycle hooks.</p>\n\n\n\n<p>Onchanges, if Angular detects any changes to the&nbsp;Input property. It runs every time angular detects an input change.</p>\n\n\n\n<p>OnInit, which tells us that the component is ready. This hook gives us a chance to run any initialization logic, updates a few properties, etc. This hook runs only once.</p>\n\n\n\n<p>DoCheck&nbsp;which allows us to run custom change detection because change detection may overlook some of the changes. This hook runs during every change detection cycle.</p>\n\n\n\n<p>After this angular invokes four more hooks. They are&nbsp;<code>AfterContentInit</code>,&nbsp;<code>AfterContentChecked</code>,&nbsp;<code>AfterViewInit</code>&nbsp;&amp;&nbsp;<code>AfterViewChecked</code>. We will look at them in detail.</p>\n\n\n\n<p>Finally, when we remove the component, Angular invokes the&nbsp;ngOnDestroy&nbsp;hook and then destroys the component.</p>\n\n\n\n<h2>Content Vs View</h2>\n\n\n\n<p>Before diving into these hooks, we need to know the difference between&nbsp;<em><strong>Content</strong></em>&nbsp;&amp;&nbsp;<em><strong>View</strong></em>. The hooks&nbsp;<code>AfterConentInit</code>&nbsp;&amp;&nbsp;<code>AfterContentChecked</code>&nbsp;deals with the&nbsp;<strong>Content</strong>, While&nbsp;<code>AfterViewInit</code>,&nbsp;<code>AfterViewChecked</code>&nbsp;deals with the&nbsp;<strong>View</strong>.</p>\n\n\n\n<h3>Content</h3>\n\n\n\n<p>Content refers to the external content injected into this component using the&nbsp;Content Projection.</p>\n\n\n\n<p><code>Content projection</code>&nbsp;is a way to pass the HTML content from the parent component to the child component. The child component will display the template in a designated spot. We use the&nbsp;<code>ng-content</code>&nbsp;element to create a spot in the template of the child component as shown below.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> &lt;h2>Child Component&lt;/h2>&lt;ng-content>&lt;/ng-content>   &lt;!-- place hodler for content from parent --> </code></pre>\n\n\n\n<p>Parent injects the content between the opening &amp; closing element.&nbsp; Angular passes this content to the child component.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> &lt;h1>Parent Component&lt;/h1>&lt;app-child> This &lt;b>content&lt;/b> is injected from parent&lt;/app-child> </code></pre>\n\n\n\n<h3>View</h3>\n\n\n\n<p>View refer to the the template of the component.</p>\n\n\n\n<h2>AfterContentInit</h2>\n\n\n\n<p>The&nbsp;<code>AfterContentInit</code>&nbsp;is the Life cycle hook that angular calls after the Component’s&nbsp;<strong>content</strong>&nbsp;has been fully initialized and injected into Components View.</p>\n\n\n\n<p>Angular also updates the properties decorated with the&nbsp;ContentChild and ContentChildren&nbsp;before raising this hook.</p>\n\n\n\n<p>Angular calls this hook even if there is no projected content in the component</p>\n\n\n\n<p>This hook fires after the&nbsp;<code>ngDoCheck</code>&nbsp;hook.</p>\n\n\n\n<p>Fires only once, during the first change detection cycle, immediately after the creation of the component.</p>\n\n\n\n<h2>AfterContentChecked</h2>\n\n\n\n<p><code>AfterContentChecked</code>&nbsp;is the life cycle hook, that angular calls during every change detection cycle after Angular completes the checking of the content for changes.</p>\n\n\n\n<p>Angular also updates the properties decorated with the&nbsp;ContentChild and ContentChildren&nbsp;before raising this hook.</p>\n\n\n\n<p>This hook fires after the&nbsp;<code>ngDoCheck</code>&nbsp;&amp;&nbsp;<code>AfterContentInit</code>.</p>\n\n\n\n<h2>AfterViewInit</h2>\n\n\n\n<p>A lifecycle hook that Angular calls during the change detection after it completes initialization of component’s view and its child views.</p>\n\n\n\n<p>Angular also updates the properties decorated with the&nbsp;ViewChild&nbsp; &amp;&nbsp;ViewChildren&nbsp;properties before raising this hook.&nbsp;</p>\n\n\n\n<p>Use this hook to handle any additional initialization tasks.</p>\n\n\n\n<p>Fires only once, during the first change detection cycle, immediately after the creation of the component.</p>\n\n\n\n<h2>AfterViewChecked</h2>\n\n\n\n<p>A lifecycle hook that Angular calls after the change detector completes the checking of a component’s view and child views for changes.</p>\n\n\n\n<p>Angular also updates the properties decorated with the&nbsp;ViewChild&nbsp;&amp;&nbsp;ViewChildren&nbsp;properties before raising this hook.</p>\n\n\n\n<h2>Init Vs Checked</h2>\n\n\n\n<h3>Init Hooks</h3>\n\n\n\n<p>Angular fires the&nbsp;<code>AfterContentInit</code>&nbsp;&amp;&nbsp;<code>AfterViewInit</code>&nbsp;hooks, when the content or view is initialized for the first time. That happens during the first change detection cycle, which angular invokes immediately after the instantiation of the component.</p>\n\n\n\n<h3>Checked Hooks</h3>\n\n\n\n<p>Angular fires the&nbsp;<code>AfterContentChecked</code>&nbsp;&amp;&nbsp;<code>AfterViewChecked</code>&nbsp;hooks, where Angular checks if the the content or view has changed. i.e previously rendered content or view is same as the current content or view.</p>\n\n\n\n<h2>Example</h2>\n\n\n\n<p>Now, now let use see above hooks using an example</p>\n\n\n\n<p><strong><code>child-component.ts</code></strong></p>\n\n\n\n<pre class=\"wp-block-code\"><code>\r\nimport { Component } from \"@angular/core\";\r\n \r\n@Component({\r\n  selector: \"app-child\",\r\n  template: `\r\n    &lt;div style=\"border:solid; border-width:1px;\">\r\n \r\n      &lt;h2>Child Component&lt;/h2>\r\n    \r\n      message : &lt;input &#91;(ngModel)]=\"message\">\r\n \r\n      &lt;p> Injected Content Below&lt;/p>\r\n      &lt;ng-content>&lt;/ng-content>\r\n \r\n    &lt;/div>\r\n  `,\r\n})\r\nexport class ChildComponent {\r\n  message = \"\" \r\n \r\n  ngOnChanges() {\r\n    console.log('  ChildComponent==>ngOnChanges');\r\n  }\r\n \r\n  ngOnInit() {\r\n    console.log('  ChildComponent==>ngOnInit');\r\n  }\r\n \r\n  ngDoCheck() {\r\n    console.log('  ChildComponent==>ngDoCheck');\r\n  }\r\n \r\n  ngAfterContentInit() {\r\n    console.log('  ChildComponent==>ngAfterContentInit');\r\n  }\r\n \r\n  ngAfterContentChecked() {\r\n    console.log('  ChildComponent==>ngAfterContentChecked');\r\n  }\r\n \r\n  ngAfterViewInit() {\r\n    console.log('  ChildComponent==>AfterViewInit');\r\n  }\r\n \r\n   ngAfterViewChecked() {\r\n    console.log('  ChildComponent==>AfterViewChecked');\r\n  }\r\n \r\n}\r\n </code></pre>\n\n\n\n<ol><li>We have a input FORM element, which is bound to&nbsp;<code>message</code>&nbsp;property of the component using&nbsp;ngModel</li><li><code>&lt;ng-content&gt;&lt;/ng-content&gt;</code>&nbsp;is a place holder for the injected content from the parent.</li><li>The code&nbsp;<code>ex: console.log(' ChildComponent==&gt;ngOnChanges');</code>&nbsp;in the component logs to console, whenever change detection invokes the hook;</li></ol>\n\n\n\n<p><code><strong>app.component.ts</strong></code></p>\n\n\n\n<pre class=\"wp-block-code\"><code>import { Component, ViewChild } from \"@angular/core\";\r\nimport { ChildComponent } from \"./child-component\";\r\n \r\n@Component({\r\n  selector: \"my-app\",\r\n  template: `\r\n  \r\n  AfterConentInit, AfterContentChecked, AfterViewInit, AfterViewChecked\r\n \r\n  &lt;app-child>\r\n    &lt;b>Injected&lt;/b> content from the &lt;i>Parent&lt;/i>\r\n  &lt;/app-child>\r\n \r\n \r\n \r\n  `,\r\n})\r\nexport class AppComponent {\r\n \r\n  message=\"\";\r\n \r\n  @ViewChild(ChildComponent) viewChild: ChildComponent;\r\n \r\n  ngOnChanges() {\r\n    console.log('AppComponent==>ngOnChanges');\r\n  }\r\n \r\n  ngOnInit() {\r\n    console.log('AppComponent==>ngOnInit');\r\n  }\r\n \r\n  ngDoCheck() {\r\n    console.log('AppComponent==>ngDoCheck');\r\n  }\r\n \r\n  ngAfterContentInit() {\r\n    console.log('AppComponent==>ngAfterContentInit');\r\n  }\r\n \r\n  ngAfterContentChecked() {\r\n    console.log('AppComponent==>ngAfterContentChecked');\r\n  }\r\n \r\n  ngAfterViewInit() {\r\n    console.log('AppComponent==>AfterViewInit');\r\n  }\r\n \r\n  ngAfterViewChecked() {\r\n    console.log('AppComponent==>AfterViewChecked');\r\n    this.message=this.viewChild.message;\r\n  }\r\n \r\n}\r\n </code></pre>\n\n\n\n<ol><li>We are injecting the content to&nbsp;<code>&lt;app-child&gt;</code>&nbsp;by placing the content&nbsp;<code>&lt;b&gt;Injected&lt;/b&gt; content from the &lt;i&gt;Parent&lt;/i&gt;</code>&nbsp;within the element tag.</li><li>Using&nbsp;<code>ViewChild</code>&nbsp;query to update the reference to the child component in the property&nbsp;<code>ChildComponent</code></li><li><code>this.message=this.viewChild.message;</code>&nbsp;updates the&nbsp;<code>message</code>&nbsp;property of this component with that of&nbsp;<code>ChildComponent</code></li></ol>\n\n\n\n<p>Now let us run this app and see what happens.</p>\n\n\n\n<h3>On Component Creation</h3>\n\n\n\n<p>On the component creation, the hooks are fired in the following order.</p>\n\n\n\n<ol><li>OnChanges</li><li>OnInit</li><li>DoCheck</li><li>AfterContentInit</li><li>AfterContentChecked</li><li>AfterViewInit</li><li>AfterViewChecked</li></ol>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://www.tektutorialshub.com/wp-content/uploads/2020/10/AfterContentInit-AfterContentChecked-AfterViewInit-and-AfterViewChecked-during-application-startup.png\" alt=\" AfterContentInit AfterContentChecked AfterViewInit and AfterViewChecked during application startup\" class=\"wp-image-21134\"/></figure>\n\n\n\n<p>Angular runs the change detection twice on application startup. Hence, the</p>\n\n\n\n<h3>On Component Running</h3>\n\n\n\n<p>Once the component is initialized, Angular do not fire the&nbsp;<code>init</code>&nbsp;hooks. Only the the checked hooks are invoked.</p>\n\n\n\n<ol id=\"block-ec4f3a57-b1f0-4db7-9ce5-7ad70b998dc7\"><li>DoCheck</li><li>AfterContentChecked</li><li>AfterViewChecked</li></ol>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://www.tektutorialshub.com/wp-content/uploads/2020/10/AfterContentChecked-and-AfterViewChecked.gif\" alt=\"\" class=\"wp-image-21138\"/></figure>\n\n\n\n<h3>Content is first</h3>\n\n\n\n<p>Angular initializes and checks the content first, before the components view &amp; child views.</p>\n\n\n\n<h3>AfterViewInit &amp; AfterViewChecked fires after child components are ready</h3>\n\n\n\n<p>After content, angular initializes the components view. It also initializes the child views &amp; runs thier change detection. Hence, by the time we receive the hooks&nbsp;<code>AfterViewInit</code>&nbsp;&amp;&nbsp;<code>AfterViewChecked</code>, the current component &amp; all its children are ready to render.</p>\n\n\n\n<h2>Init Hook fires only once</h2>\n\n\n\n<p>Init hooks fires only once, during the&nbsp;<strong>first</strong>&nbsp;change detection cycle, which angular fires immediately after the creation of the component. This makes it best place to run some custom initialization logic. Use the&nbsp;<code>AfertContentInit</code>&nbsp;for content related initialization &amp;&nbsp;<code>AfterViewInit</code>&nbsp;for view related initializations.</p>\n\n\n\n<h2>Avoid using Checked Hooks</h2>\n\n\n\n<p>Checked hooks runs on every change detection cycle. For example when you just click on the input element and move away.</p>\n\n\n\n<p>Hence it is better to avoid using these hooks. If you choose to implement these hooks then ensure that your code is extremely lightweight otherwise it may slow down the application.</p>\n\n\n\n<h2>Do not modify bindings in Checked Hooks</h2>\n\n\n\n<p>Open the&nbsp;<code>ngAfterViewChecked</code>&nbsp;method of the&nbsp;<code>app.component.ts</code>. here, we assign value of the&nbsp;<code>viewChild.message</code>&nbsp;to the&nbsp;<code>message</code>&nbsp;variable of parent component. Code does not raise any errors.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> ngAfterViewChecked() {\r\n    console.log('AppComponent==>AfterViewChecked');\r\n    this.message=this.viewChild.message;\r\n  }\r\n </code></pre>\n\n\n\n<p>Now add the following to the template of the&nbsp;<code>app.component.ts</code></p>\n\n\n\n<pre class=\"wp-block-code\"><code> message from child {{message}} </code></pre>\n\n\n\n<p>and run the app.</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://www.tektutorialshub.com/wp-content/uploads/2020/10/Modifying-the-binding-in-AfterViewChecked-hook.gif\" alt=\"\" class=\"wp-image-21139\"/></figure>\n\n\n\n<p>There are two important points to note here.</p>\n\n\n\n<ol><li>The&nbsp;<code>{{message}}</code>&nbsp;in the&nbsp;<code>app.component.ts</code>&nbsp;waits a tick before updating</li><li><code>ExpressionChangedAfterItHasBeenCheckedError</code></li></ol>\n\n\n\n<p>Although the code looks fine, but this is what happens</p>\n\n\n\n<ol><li>Initially the value of&nbsp;<code>message</code>&nbsp;is empty</li><li>We enter&nbsp;<code><strong>h</strong></code>&nbsp;in input element. This starts a change detection cycle.</li><li>It checks the value of&nbsp;<code>message</code>&nbsp;variable. Its value is empty.&nbsp;<strong>Hence updates the DOM with empty string.</strong></li><li>Angular fires the&nbsp;<code>AfterViewChecked</code>&nbsp;hook</li><li>We update the&nbsp;<code>message</code>&nbsp;variable to&nbsp;<code><strong>h</strong></code>.</li><li>Angular runs another check to see if all the bindings values are correct. If detects&nbsp;<code>message</code>&nbsp;value is now&nbsp;<code>h</code>&nbsp;is different from when it checked it in the step 3. It raises the&nbsp;<code>ExpressionChangedAfterItHasBeenCheckedError</code></li><li>Change detection cycle ends.</li></ol>\n\n\n\n<p>Now, as you can see at the end of change detection&nbsp;<code><strong>h</strong></code>&nbsp;is not updated in DOM.</p>\n\n\n\n<ol><li>We, type&nbsp;<code><strong>e</strong></code>&nbsp;in input element.</li><li>A change detection cycle starts</li><li>It checks the value of&nbsp;<code>message</code>&nbsp;variable. Its value is&nbsp;<code><strong>h</strong></code>. Hence Angular updates the DOM with&nbsp;<code><strong>h</strong></code>.</li><li>Angular fires the&nbsp;<code>AfterViewChecked</code>&nbsp;hook</li><li>We update the&nbsp;<code>message</code>&nbsp;variable to&nbsp;<code><strong>he</strong></code>.</li><li>Angular runs another check to see if all the bindings values are correct. If detects&nbsp;<code>message</code>&nbsp;value is now&nbsp;<code>h</code>&nbsp;is different from when it checked it in the step 3. It raises the&nbsp;<code>ExpressionChangedAfterItHasBeenCheckedError</code>.</li><li>Change detection cycle ends.</li></ol>\n\n\n\n<p>The&nbsp;<strong><em>step 6 only happens only in development mode</em></strong>. Angular only checks the bindings, but does not update the DOM if it detects any changes. It only raises the error.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Lifecycle hooks recap The life of a&nbsp;component&nbsp;(or directive) starts, when angular instantiates the component. Instantiation starts with invoking the component’s constructor and injecting the services via&nbsp;dependency injection. Once the Angular instantiates the component, it starts the change detection cycle for the component. It checks &amp; updates any data-bound&nbsp;input property&nbsp;of the component &amp; Initializes the component. [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [136],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3751" }
+      ],
+      "collection": [
+        { "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=3751"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 2,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3751/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3879,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3751/revisions/3879"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=3751"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=3751"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=3751"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  }
+]

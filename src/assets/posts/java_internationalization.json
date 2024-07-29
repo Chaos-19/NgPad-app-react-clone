@@ -1,0 +1,702 @@
+[
+  {
+    "id": 457,
+    "date": "2020-06-23T12:11:47",
+    "date_gmt": "2020-06-23T12:11:47",
+    "guid": {
+      "rendered": "http://java.foobrdigital.com/?p=457"
+    },
+    "modified": "2020-06-23T12:11:47",
+    "modified_gmt": "2020-06-23T12:11:47",
+    "slug": "internationalization-2",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/internationalization-2/",
+    "title": {
+      "rendered": "Internationalization"
+    },
+    "content": {
+      "rendered": "\n<p><strong>Internationalization</strong>&nbsp;is also abbreviated as I18N because there are total 18 characters between the first letter &#8216;I&#8217; and the last letter &#8216;N&#8217;.</p>\n\n\n\n<p>Internationalization is a mechanism to create such an application that can be adapted to different languages and regions.</p>\n\n\n\n<p>Internationalization is one of the powerful concept of java if you are developing an application and want to display messages, currencies, date, time etc. according to the specific region or language.</p>\n\n\n\n<p><strong>Localization</strong>&nbsp;is also abbreviated as I10N because there are total 10 characters between the first letter &#8216;L&#8217; and last letter &#8216;N&#8217;. Localization is the mechanism to create such an application that can be adapted to a specific language and region by adding locale-specific text and component.</p>\n\n\n\n<p>Do You Know ?</p>\n\n\n\n<ul><li>What is the use of Locale class ?</li><li>How can we globalize the messages (or) What is the use of ResourceBundle class?</li><li>How can we internationalize the date, time, number, currency and measurements?</li></ul>\n\n\n\n<h2>Understanding the culturally dependent data before starting internationalization</h2>\n\n\n\n<p>Before starting the internationalization, Let&#8217;s first understand what are the informations that differ from one region to another. There is the list of culturally dependent data:</p>\n\n\n\n<ul><li>Messages</li><li>Dates</li><li>Times</li><li>Numbers</li><li>Currencies</li><li>Measurements</li><li>Phone Numbers</li><li>Postal Addresses</li><li>Labels on GUI components etc.</li></ul>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h2>Importance of Locale class in Internationalization</h2>\n\n\n\n<p>An object of Locale class represents a geographical or cultural region. This object can be used to get the locale specific information such as country name, language, variant etc.</p>\n\n\n\n<h2>Fields of Locale class</h2>\n\n\n\n<p>There are fields of Locale class:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>public static final Locale ENGLISH\npublic static final Locale FRENCH\npublic static final Locale GERMAN\npublic static final Locale ITALIAN\npublic static final Locale JAPANESE\npublic static final Locale KOREAN\npublic static final Locale CHINESE\npublic static final Locale SIMPLIFIED_CHINESE\npublic static final Locale TRADITIONAL_CHINESE\npublic static final Locale FRANCE\npublic static final Locale GERMANY\npublic static final Locale ITALY\npublic static final Locale JAPAN\npublic static final Locale KOREA\npublic static final Locale CHINA\npublic static final Locale PRC\npublic static final Locale TAIWAN\npublic static final Locale UK\npublic static final Locale US\npublic static final Locale CANADA\npublic static final Locale CANADA_FRENCH\npublic static final Locale ROOT</code></pre>\n\n\n\n<h2>Constructors of Locale class</h2>\n\n\n\n<p>There are three constructors of Locale class.They are as follows:</p>\n\n\n\n<ol><li>Locale(String language)</li><li>Locale(String language, String country)</li><li>Locale(String language, String country, String variant)</li></ol>\n\n\n\n<h2>Commonly used methods of Locale class</h2>\n\n\n\n<p>There are given commonly used methods of Locale class.</p>\n\n\n\n<ol><li><strong>public static Locale getDefault()</strong>&nbsp;it returns the instance of current Locale</li><li><strong>public static Locale[] getAvailableLocales()</strong>&nbsp;it returns an array of available locales.</li><li><strong>public String getDisplayCountry()</strong>&nbsp;it returns the country name of this locale object.</li><li><strong>public String getDisplayLanguage()</strong>&nbsp;it returns the language name of this locale object.</li><li><strong>public String getDisplayVariant()</strong>&nbsp;it returns the variant code for this locale object.</li><li><strong>public String getISO3Country()</strong>&nbsp;it returns the three letter abbreviation for the current locale&#8217;s country.</li><li><strong>public String getISO3Language()</strong>&nbsp;it returns the three letter abbreviation for the current locale&#8217;s language.</li></ol>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h3>Example of Local class that prints the informations of the default locale</h3>\n\n\n\n<p>In this example, we are displaying the informations of the default locale. If you want to get the informations about any specific locale, comment the first line statement and uncomment the second line statement in the main method.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>import java.util.*;  \npublic class LocaleExample {  \npublic static void main(String&#91;] args) {  \nLocale locale=Locale.getDefault();  \n//Locale locale=new Locale(\"fr\",\"fr\");//for the specific locale  \n  \nSystem.out.println(locale.getDisplayCountry());  \nSystem.out.println(locale.getDisplayLanguage());  \nSystem.out.println(locale.getDisplayName());  \nSystem.out.println(locale.getISO3Country());  \nSystem.out.println(locale.getISO3Language());  \nSystem.out.println(locale.getLanguage());  \nSystem.out.println(locale.getCountry());  \n      \n}  \n}</code></pre>\n\n\n\n<pre class=\"wp-block-code\"><code>Output:United States\n       English\n       English (United States)\n       USA\n       eng\n       en\n       US</code></pre>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h3>Example of Local class that prints english in different languages</h3>\n\n\n\n<p>In this example, we are displaying english language in different language. Let&#8217;s see how english is written in french and spanish languages.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>import java.util.*;  \npublic class LocaleExample2 {  \n    public static void main(String&#91;] args) {  \n        Locale enLocale = new Locale(\"en\", \"US\");  \n        Locale frLocale = new Locale(\"fr\", \"FR\");  \n        Locale esLocale = new Locale(\"es\", \"ES\");  \n        System.out.println(\"English language name (default): \" +   \n                            enLocale.getDisplayLanguage());  \n  \n        System.out.println(\"English language name in French: \" +   \n                            enLocale.getDisplayLanguage(frLocale));  \n        System.out.println(\"English language name in spanish: \" +   \n                enLocale.getDisplayLanguage(esLocale));  \n    }  \n  \n}  </code></pre>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h3>Example of Local class that print display language of many locales</h3>\n\n\n\n<figure class=\"wp-block-table\"><table><tbody><tr><td>In this example, we are displaying the display lanuage of many locales.</td></tr></tbody></table><figcaption><br><br></figcaption></figure>\n\n\n\n<pre class=\"wp-block-code\"><code>import java.util.*;  \npublic class LocaleEx {  \npublic static void main(String&#91;] args) {  \nLocale&#91;] locales = { new Locale(\"en\", \"US\"),  \n new Locale(\"es\", \"ES\"), new Locale(\"it\", \"IT\") };   \n  \nfor (int i=0; i&lt; locales.length; i++) {   \n String displayLanguage = locales&#91;i].getDisplayLanguage(locales&#91;i]);   \n System.out.println(locales&#91;i].toString() + \": \" + displayLanguage);   \n}   \n}  \n  \n}  </code></pre>\n\n\n\n<pre class=\"wp-block-code\"><code>Output:en_US: English\n       es_ES: espa?ol\n       it_IT: italiano</code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Internationalization&nbsp;is also abbreviated as I18N because there are total 18 characters between the first letter &#8216;I&#8217; and the last letter &#8216;N&#8217;. Internationalization is a mechanism to create such an application that can be adapted to different languages and regions. Internationalization is one of the powerful concept of java if you are developing an application and [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [15],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/457"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=457"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/457/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 458,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/457/revisions/458"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=457"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=457"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=457"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 456,
+    "date": "2020-06-23T12:33:29",
+    "date_gmt": "2020-06-23T12:33:29",
+    "guid": {
+      "rendered": "http://java.foobrdigital.com/?p=456"
+    },
+    "modified": "2020-06-23T12:33:29",
+    "modified_gmt": "2020-06-23T12:33:29",
+    "slug": "resourcebundle",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/resourcebundle/",
+    "title": {
+      "rendered": "ResourceBundle"
+    },
+    "content": {
+      "rendered": "\n<p>The&nbsp;<strong>ResourceBundle class</strong>&nbsp;is used to internationalize the messages. In other words, we can say that it provides a mechanism to globalize the messages.</p>\n\n\n\n<p>The hardcoded message is not considered good in terms of programming, because it differs from one country to another. So we use the ResourceBundle class to globalize the massages. The ResourceBundle class loads these informations from the properties file that contains the messages.</p>\n\n\n\n<p>Conventionally, the name of the properties file should be&nbsp;<strong>filename_languagecode_country</strong>&nbsp;code for example&nbsp;<strong>MyMessage_en_US.properties</strong>.</p>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h3>Commonly used methods of ResourceBundle class</h3>\n\n\n\n<p>There are many methods in the ResourceBundle class. Let&#8217;s see the commonly used methods of the ResourceBundle class.</p>\n\n\n\n<ul><li><strong>public static ResourceBundle getBundle(String basename)</strong>&nbsp;returns the instance of the ResourceBundle class for the default locale.</li><li><strong>public static ResourceBundle getBundle(String basename, Locale locale)</strong>&nbsp;returns the instance of the ResourceBundle class for the specified locale.</li><li><strong>public String getString(String key)</strong>&nbsp;returns the value for the corresponding key from this resource bundle.</li></ul>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h3>Example of ResourceBundle class</h3>\n\n\n\n<p>Let&#8217;s see the simple example of ResourceBundle class. In this example, we are creating three files:</p>\n\n\n\n<ul><li><strong>MessageBundle_en_US.properties</strong>&nbsp;file contains the localize message for US country.</li><li><strong>MessageBundle_in_ID.properties</strong>&nbsp;file contains the localize message for Indonaisa country.</li><li><strong>InternationalizationDemo.java</strong>&nbsp;file that loads these properties file in a bundle and prints the messages.</li></ul>\n\n\n\n<h4>MessageBundle_en_US.properties</h4>\n\n\n\n<h4>MessageBundle_in_ID.properties</h4>\n\n\n\n<h4>InternationalizationDemo.java</h4>\n\n\n\n<pre class=\"wp-block-code\"><code>import java.util.Locale;  \nimport java.util.ResourceBundle;  \npublic class InternationalizationDemo {  \n public static void main(String&#91;] args) {  \n  \n  ResourceBundle bundle = ResourceBundle.getBundle(\"MessageBundle\", Locale.US);  \n  System.out.println(\"Message in \"+Locale.US +\":\"+bundle.getString(\"greeting\"));  \n  \n  //changing the default locale to indonasian   \n  Locale.setDefault(new Locale(\"in\", \"ID\"));  \n  bundle = ResourceBundle.getBundle(\"MessageBundle\");  \n  System.out.println(\"Message in \"+Locale.getDefault()+\":\"+bundle.getString(\"greeting\"));  \n  \n }  \n}  </code></pre>\n\n\n\n<pre class=\"wp-block-code\"><code>Output:Message in en_US : Hello, how r u?\n       Message in in_ID : halo, apa kabar?</code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>The&nbsp;ResourceBundle class&nbsp;is used to internationalize the messages. In other words, we can say that it provides a mechanism to globalize the messages. The hardcoded message is not considered good in terms of programming, because it differs from one country to another. So we use the ResourceBundle class to globalize the massages. The ResourceBundle class loads [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [15],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/456"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=456"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/456/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 459,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/456/revisions/459"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=456"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=456"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=456"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 455,
+    "date": "2020-06-23T12:36:10",
+    "date_gmt": "2020-06-23T12:36:10",
+    "guid": {
+      "rendered": "http://java.foobrdigital.com/?p=455"
+    },
+    "modified": "2020-06-23T12:36:10",
+    "modified_gmt": "2020-06-23T12:36:10",
+    "slug": "internationalizing-date",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/internationalizing-date/",
+    "title": {
+      "rendered": "Internationalizing Date"
+    },
+    "content": {
+      "rendered": "\n<p>The format of the dates differ from one region to another that is why we internationalize the dates.</p>\n\n\n\n<p>We can internationalize the date by using the&nbsp;<strong>getDateInstance()</strong>&nbsp;method of the&nbsp;<strong>DateFormat</strong>&nbsp;class. It receives the locale object as a parameter and returns the instance of the DateFormat class.</p>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h3>Commonly used methods of DateFormat class for internationalizing date</h3>\n\n\n\n<p>There are many methods of the DateFormat class. Let&#8217;s see the two methods of the DateFormat class for internationalizing the dates.</p>\n\n\n\n<ul><li><strong>public static DateFormat getDateInstance(int style, Locale locale)</strong>&nbsp;returns the instance of the DateFormat class for the specified style and locale. The style can be DEFAULT, SHORT, LONG etc.</li><li><strong>public String format(Date date)</strong>&nbsp;returns the formatted and localized date as a string.</li></ul>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h3>Example of Internationalizing Date</h3>\n\n\n\n<p>In this example, we are displaying the date according to the different locale such as UK, US, FRANCE etc. For this purpose we have created the printDate() method that receives Locale object as an instance. The format() method of the DateFormat class receives the Date object and returns the formatted and localized date as a string.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>import java.text.DateFormat;  \nimport java.util.*;  \npublic class InternationalizationDate {  \n      \nstatic void printDate(Locale locale){  \nDateFormat formatter=DateFormat.getDateInstance(DateFormat.DEFAULT,locale);  \nDate currentDate=new Date();  \nString date=formatter.format(currentDate);  \nSystem.out.println(date+\" \"+locale);  \n}  \n  \npublic static void main(String&#91;] args) {  \n    printDate(Locale.UK);  \n    printDate(Locale.US);  \n    printDate(Locale.FRANCE);  \n}  \n}  </code></pre>\n\n\n\n<pre class=\"wp-block-code\"><code>Output:01-Mar-2012 en_GB\n       Mar 1, 2012 en_US\n       1 mars 2012 fr_FR</code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>The format of the dates differ from one region to another that is why we internationalize the dates. We can internationalize the date by using the&nbsp;getDateInstance()&nbsp;method of the&nbsp;DateFormat&nbsp;class. It receives the locale object as a parameter and returns the instance of the DateFormat class. Commonly used methods of DateFormat class for internationalizing date There are [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [15],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/455"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=455"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/455/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 460,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/455/revisions/460"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=455"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=455"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=455"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 454,
+    "date": "2020-06-23T12:37:03",
+    "date_gmt": "2020-06-23T12:37:03",
+    "guid": {
+      "rendered": "http://java.foobrdigital.com/?p=454"
+    },
+    "modified": "2020-06-23T12:37:03",
+    "modified_gmt": "2020-06-23T12:37:03",
+    "slug": "internationalizing-time",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/internationalizing-time/",
+    "title": {
+      "rendered": "Internationalizing Time"
+    },
+    "content": {
+      "rendered": "\n<p>The display format of the time differs from one region to another, so we need to internationalize the time.</p>\n\n\n\n<p>For internationalizing the time, the&nbsp;<strong>DateFormat</strong>&nbsp;class provides some useful methods.</p>\n\n\n\n<p>The&nbsp;<strong>getTimeInstance()</strong>&nbsp;method of the DateFormat class returns the instance of the DateFormat class for the specified style and locale.</p>\n\n\n\n<p>Syntax of the getTimeInstance() method is given below:</p>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h3>Example of Internationalizing Time</h3>\n\n\n\n<p>In this example, we are displaying the current time for the specified locale. The format() method of the DateFormat class receives date object and returns the formatted and localized time as a string. Notice that the object of Date class prints date and time both.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>import java.text.DateFormat;  \nimport java.util.*;  \n  \npublic class InternationalizingTime {  \n  \nstatic void printTime(Locale locale){  \nDateFormat formatter=DateFormat.getTimeInstance(DateFormat.DEFAULT,locale);  \nDate currentDate=new Date();  \nString time=formatter.format(currentDate);  \nSystem.out.println(time+\" in locale \"+locale);  \n}  \n  \npublic static void main(String&#91;] args) {  \nprintTime(Locale.UK);  \nprintTime(Locale.US);  \nprintTime(Locale.FRANCE);  \n}  \n}  </code></pre>\n\n\n\n<pre class=\"wp-block-code\"><code>Output:16:22:49 in locale en_GB\n4:22:49 PM in locale en_US\n16:22:49 in locale fr_FR</code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>The display format of the time differs from one region to another, so we need to internationalize the time. For internationalizing the time, the&nbsp;DateFormat&nbsp;class provides some useful methods. The&nbsp;getTimeInstance()&nbsp;method of the DateFormat class returns the instance of the DateFormat class for the specified style and locale. Syntax of the getTimeInstance() method is given below: Example [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [15],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/454"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=454"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/454/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 461,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/454/revisions/461"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=454"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=454"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=454"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 453,
+    "date": "2020-06-23T12:37:53",
+    "date_gmt": "2020-06-23T12:37:53",
+    "guid": {
+      "rendered": "http://java.foobrdigital.com/?p=453"
+    },
+    "modified": "2020-06-23T12:37:53",
+    "modified_gmt": "2020-06-23T12:37:53",
+    "slug": "internationalizing-number",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/internationalizing-number/",
+    "title": {
+      "rendered": "Internationalizing Number"
+    },
+    "content": {
+      "rendered": "\n<p>The representation of the numbers differ from one locale to another. Internationalizing the numbers is good approach for the application that displays the informations according to the locales.</p>\n\n\n\n<p>The&nbsp;<strong>NumberFormat</strong>&nbsp;class is used to format the number according to the specific locale. To get the instance of the NumberFormat class, we need to call either&nbsp;<strong>getInstance()</strong>&nbsp;or&nbsp;<strong>getNumberInstance()</strong>&nbsp;methods.</p>\n\n\n\n<p>Syntax of these methods is given below:</p>\n\n\n\n<ol><li><strong>public</strong>&nbsp;<strong>static</strong>&nbsp;NumberFormat&nbsp;getNumberInstance(Locale&nbsp;locale)&nbsp;&nbsp;</li><li class=\"\"><strong>public</strong>&nbsp;<strong>static</strong>&nbsp;NumberFormat&nbsp;getInstance(Locale&nbsp;locale)//same&nbsp;as&nbsp;above&nbsp;&nbsp;</li></ol>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h3>Example of Internationalizing Number</h3>\n\n\n\n<p>In this example, we are internationalizing the number. The format method of the NumberFormat class formats the double value into the locale specific number.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>import java.text.NumberFormat;  \nimport java.util.*;  \n  \npublic class InternalizationNumber {  \n  \nstatic void printNumber(Locale locale){  \n double dbl=105000.3245;  \n NumberFormat formatter=NumberFormat.getNumberInstance(locale);  \n String number=formatter.format(dbl);  \n System.out.println(number+\" for the locale \"+locale);  \n}  \n  \npublic static void main(String&#91;] args) {  \n    printNumber(Locale.UK);  \n    printNumber(Locale.US);  \n    printNumber(Locale.FRANCE);  \n    printNumber(Locale.JAPAN);  \n  \n}  \n}  </code></pre>\n\n\n\n<pre class=\"wp-block-code\"><code>Output:105,500.324 for the locale en_GB\n       105,000.324 for the locale en_US\n       105,a000,324 for the locale fr_FR\n       105,000.324 for the locale ja_JP</code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>The representation of the numbers differ from one locale to another. Internationalizing the numbers is good approach for the application that displays the informations according to the locales. The&nbsp;NumberFormat&nbsp;class is used to format the number according to the specific locale. To get the instance of the NumberFormat class, we need to call either&nbsp;getInstance()&nbsp;or&nbsp;getNumberInstance()&nbsp;methods. Syntax of [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [15],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/453"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=453"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/453/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 462,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/453/revisions/462"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=453"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=453"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=453"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 452,
+    "date": "2020-06-23T12:38:48",
+    "date_gmt": "2020-06-23T12:38:48",
+    "guid": {
+      "rendered": "http://java.foobrdigital.com/?p=452"
+    },
+    "modified": "2020-06-23T12:38:48",
+    "modified_gmt": "2020-06-23T12:38:48",
+    "slug": "internationalizing-currency",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/internationalizing-currency/",
+    "title": {
+      "rendered": "Internationalizing Currency"
+    },
+    "content": {
+      "rendered": "\n<p>As we have internationalize the date, time and numbers, we can internationalize the currency also. The currency differs from one country to another so we need to internationalize the currency.</p>\n\n\n\n<p>The&nbsp;<strong>NumberFormat</strong>&nbsp;class provides methods to format the currency according to the locale. The&nbsp;<strong>getCurrencyInstance()</strong>&nbsp;method of the NumberFormat class returns the instance of the NumberFormat class.</p>\n\n\n\n<p>The syntax of the getCurrencyInstance() method is given below:</p>\n\n\n\n<ol><li><strong>public</strong>&nbsp;<strong>static</strong>&nbsp;NumberFormat&nbsp;getCurrencyInstance(Locale&nbsp;locale)&nbsp;&nbsp;</li></ol>\n\n\n\n<h3>Example of Internationalizing Currency</h3>\n\n\n\n<p>In this example, we are internationalizing the currency. The format method of the NumberFormat class formats the double value into the locale specific currency.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>import java.text.NumberFormat;  \nimport java.util.*;  \npublic class InternalizationCurrency {  \n  \nstatic void printCurrency(Locale locale){  \n double dbl=10500.3245;  \n NumberFormat formatter=NumberFormat.getCurrencyInstance(locale);  \n String currency=formatter.format(dbl);  \n System.out.println(currency+\" for the locale \"+locale);  \n}  \n  \npublic static void main(String&#91;] args) {  \n    printCurrency(Locale.UK);  \n    printCurrency(Locale.US);  \n    printCurrency(Locale.FRANCE);  \n}  \n}  </code></pre>\n\n\n\n<p></p>\n\n\n\n<pre class=\"wp-block-code\"><code>Output:\u00a310,500.32 for the locale en_GB\n       $10,500.32 for the locale en_US\n       10 500,32 \u00a3 for the locale fr_FR</code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>As we have internationalize the date, time and numbers, we can internationalize the currency also. The currency differs from one country to another so we need to internationalize the currency. The&nbsp;NumberFormat&nbsp;class provides methods to format the currency according to the locale. The&nbsp;getCurrencyInstance()&nbsp;method of the NumberFormat class returns the instance of the NumberFormat class. The syntax [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [15],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/452"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=452"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/452/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 463,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/452/revisions/463"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=452"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=452"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=452"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 451,
+    "date": "2020-06-23T12:43:53",
+    "date_gmt": "2020-06-23T12:43:53",
+    "guid": {
+      "rendered": "http://java.foobrdigital.com/?p=451"
+    },
+    "modified": "2020-06-23T12:43:53",
+    "modified_gmt": "2020-06-23T12:43:53",
+    "slug": "java-regex",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/java-regex/",
+    "title": {
+      "rendered": "Java Regex"
+    },
+    "content": {
+      "rendered": "\n<p>The&nbsp;<strong>Java Regex</strong>&nbsp;or Regular Expression is an API to&nbsp;<em>define a pattern for searching or manipulating strings</em>.</p>\n\n\n\n<p>It is widely used to define the constraint on strings such as password and email validation. After learning Java regex tutorial, you will be able to test your regular expressions by the Java Regex Tester Tool.</p>\n\n\n\n<p>Java Regex API provides 1 interface and 3 classes in&nbsp;<strong>java.util.regex</strong>&nbsp;package.</p>\n\n\n\n<h4>java.util.regex package</h4>\n\n\n\n<p>The Matcher and Pattern classes provide the facility of Java regular expression. The java.util.regex package provides following classes and interfaces for regular expressions.</p>\n\n\n\n<ol><li>MatchResult interface</li><li>Matcher class</li><li>Pattern class</li><li>PatternSyntaxException class</li></ol>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://static.javatpoint.com/images/java-regex-api.jpg\" alt=\"Java Regex API\"/></figure>\n\n\n\n<h2>Matcher class</h2>\n\n\n\n<p>It implements the&nbsp;<strong>MatchResult</strong>&nbsp;interface. It is a&nbsp;<em>regex engine</em>&nbsp;which is used to perform match operations on a character sequence.</p>\n\n\n\n<figure class=\"wp-block-table\"><table><tbody><tr><th>No.</th><th>Method</th><th>Description</th></tr><tr><td>1</td><td>boolean matches()</td><td>test whether the regular expression matches the pattern.</td></tr><tr><td>2</td><td>boolean find()</td><td>finds the next expression that matches the pattern.</td></tr><tr><td>3</td><td>boolean find(int start)</td><td>finds the next expression that matches the pattern from the given start number.</td></tr><tr><td>4</td><td>String group()</td><td>returns the matched subsequence.</td></tr><tr><td>5</td><td>int start()</td><td>returns the starting index of the matched subsequence.</td></tr><tr><td>6</td><td>int end()</td><td>returns the ending index of the matched subsequence.</td></tr><tr><td>7</td><td>int groupCount()</td><td>returns the total number of the matched subsequence.</td></tr></tbody></table></figure>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<p><ins><ins></ins></ins></p>\n\n\n\n<h2>Pattern class</h2>\n\n\n\n<p>It is the&nbsp;<em>compiled version of a regular expression</em>. It is used to define a pattern for the regex engine.</p>\n\n\n\n<figure class=\"wp-block-table\"><table><tbody><tr><th>No.</th><th>Method</th><th>Description</th></tr><tr><td>1</td><td>static Pattern compile(String regex)</td><td>compiles the given regex and returns the instance of the Pattern.</td></tr><tr><td>2</td><td>Matcher matcher(CharSequence input)</td><td>creates a matcher that matches the given input with the pattern.</td></tr><tr><td>3</td><td>static boolean matches(String regex, CharSequence input)</td><td>It works as the combination of compile and matcher methods. It compiles the regular expression and matches the given input with the pattern.</td></tr><tr><td>4</td><td>String[] split(CharSequence input)</td><td>splits the given input string around matches of given pattern.</td></tr><tr><td>5</td><td>String pattern()</td><td>returns the regex pattern.</td></tr></tbody></table></figure>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h3>Example of Java Regular Expressions</h3>\n\n\n\n<p>There are three ways to write the regex example in Java.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>import java.util.regex.*;  \npublic class RegexExample1{  \npublic static void main(String args&#91;]){  \n//1st way  \nPattern p = Pattern.compile(\".s\");//. represents single character  \nMatcher m = p.matcher(\"as\");  \nboolean b = m.matches();  \n  \n//2nd way  \nboolean b2=Pattern.compile(\".s\").matcher(\"as\").matches();  \n  \n//3rd way  \nboolean b3 = Pattern.matches(\".s\", \"as\");  \n  \nSystem.out.println(b+\" \"+b2+\" \"+b3);  \n}}  </code></pre>\n\n\n\n<h4>Output</h4>\n\n\n\n<pre class=\"wp-block-code\"><code>true true true\n</code></pre>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h2>Regular Expression . Example</h2>\n\n\n\n<p>The . (dot) represents a single character.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>import java.util.regex.*;  \nclass RegexExample2{  \npublic static void main(String args&#91;]){  \nSystem.out.println(Pattern.matches(\".s\", \"as\"));//true (2nd char is s)  \nSystem.out.println(Pattern.matches(\".s\", \"mk\"));//false (2nd char is not s)  \nSystem.out.println(Pattern.matches(\".s\", \"mst\"));//false (has more than 2 char)  \nSystem.out.println(Pattern.matches(\".s\", \"amms\"));//false (has more than 2 char)  \nSystem.out.println(Pattern.matches(\"..s\", \"mas\"));//true (3rd char is s)  \n}}  </code></pre>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h2>Regex Character classes</h2>\n\n\n\n<figure class=\"wp-block-table\"><table><tbody><tr><th>No.</th><th>Character Class</th><th>Description</th></tr><tr><td>1</td><td>[abc]</td><td>a, b, or c (simple class)</td></tr><tr><td>2</td><td>[^abc]</td><td>Any character except a, b, or c (negation)</td></tr><tr><td>3</td><td>[a-zA-Z]</td><td>a through z or A through Z, inclusive (range)</td></tr><tr><td>4</td><td>[a-d[m-p]]</td><td>a through d, or m through p: [a-dm-p] (union)</td></tr><tr><td>5</td><td>[a-z&amp;&amp;[def]]</td><td>d, e, or f (intersection)</td></tr><tr><td>6</td><td>[a-z&amp;&amp;[^bc]]</td><td>a through z, except for b and c: [ad-z] (subtraction)</td></tr><tr><td>7</td><td>[a-z&amp;&amp;[^m-p]]</td><td>a through z, and not m through p: [a-lq-z](subtraction)</td></tr></tbody></table></figure>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h2>Regular Expression Character classes Example</h2>\n\n\n\n<pre class=\"wp-block-code\"><code>import java.util.regex.*;  \nclass RegexExample3{  \npublic static void main(String args&#91;]){  \nSystem.out.println(Pattern.matches(\"&#91;amn]\", \"abcd\"));//false (not a or m or n)  \nSystem.out.println(Pattern.matches(\"&#91;amn]\", \"a\"));//true (among a or m or n)  \nSystem.out.println(Pattern.matches(\"&#91;amn]\", \"ammmna\"));//false (m and a comes more than once)  \n}} </code></pre>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h2>Regex Quantifiers</h2>\n\n\n\n<p>The quantifiers specify the number of occurrences of a character.</p>\n\n\n\n<figure class=\"wp-block-table\"><table><tbody><tr><th>Regex</th><th>Description</th></tr><tr><td>X?</td><td>X occurs once or not at all</td></tr><tr><td>X+</td><td>X occurs once or more times</td></tr><tr><td>X*</td><td>X occurs zero or more times</td></tr><tr><td>X{n}</td><td>X occurs n times only</td></tr><tr><td>X{n,}</td><td>X occurs n or more times</td></tr><tr><td>X{y,z}</td><td>X occurs at least y times but less than z times</td></tr></tbody></table></figure>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h2>Regular Expression Character classes and Quantifiers Example</h2>\n\n\n\n<pre class=\"wp-block-code\"><code>import java.util.regex.*;  \nclass RegexExample4{  \npublic static void main(String args&#91;]){  \nSystem.out.println(\"? quantifier ....\");  \nSystem.out.println(Pattern.matches(\"&#91;amn]?\", \"a\"));//true (a or m or n comes one time)  \nSystem.out.println(Pattern.matches(\"&#91;amn]?\", \"aaa\"));//false (a comes more than one time)  \nSystem.out.println(Pattern.matches(\"&#91;amn]?\", \"aammmnn\"));//false (a m and n comes more than one time)  \nSystem.out.println(Pattern.matches(\"&#91;amn]?\", \"aazzta\"));//false (a comes more than one time)  \nSystem.out.println(Pattern.matches(\"&#91;amn]?\", \"am\"));//false (a or m or n must come one time)  \n  \nSystem.out.println(\"+ quantifier ....\");  \nSystem.out.println(Pattern.matches(\"&#91;amn]+\", \"a\"));//true (a or m or n once or more times)  \nSystem.out.println(Pattern.matches(\"&#91;amn]+\", \"aaa\"));//true (a comes more than one time)  \nSystem.out.println(Pattern.matches(\"&#91;amn]+\", \"aammmnn\"));//true (a or m or n comes more than once)  \nSystem.out.println(Pattern.matches(\"&#91;amn]+\", \"aazzta\"));//false (z and t are not matching pattern)  \n  \nSystem.out.println(\"* quantifier ....\");  \nSystem.out.println(Pattern.matches(\"&#91;amn]*\", \"ammmna\"));//true (a or m or n may come zero or more times)  \n  \n}}  </code></pre>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h2>Regex Metacharacters</h2>\n\n\n\n<p>The regular expression metacharacters work as shortcodes.</p>\n\n\n\n<figure class=\"wp-block-table\"><table><tbody><tr><th>Regex</th><th>Description</th></tr><tr><td>.</td><td>Any character (may or may not match terminator)</td></tr><tr><td>\\d</td><td>Any digits, short of [0-9]</td></tr><tr><td>\\D</td><td>Any non-digit, short for [^0-9]</td></tr><tr><td>\\s</td><td>Any whitespace character, short for [\\t\\n\\x0B\\f\\r]</td></tr><tr><td>\\S</td><td>Any non-whitespace character, short for [^\\s]</td></tr><tr><td>\\w</td><td>Any word character, short for [a-zA-Z_0-9]</td></tr><tr><td>\\W</td><td>Any non-word character, short for [^\\w]</td></tr><tr><td>\\b</td><td>A word boundary</td></tr><tr><td>\\B</td><td>A non word boundary</td></tr></tbody></table></figure>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h2>Regular Expression Metacharacters Example</h2>\n\n\n\n<pre class=\"wp-block-code\"><code>import java.util.regex.*;  \nclass RegexExample5{  \npublic static void main(String args&#91;]){  \nSystem.out.println(\"metacharacters d....\");\\\\d means digit  \n  \nSystem.out.println(Pattern.matches(\"\\\\d\", \"abc\"));//false (non-digit)  \nSystem.out.println(Pattern.matches(\"\\\\d\", \"1\"));//true (digit and comes once)  \nSystem.out.println(Pattern.matches(\"\\\\d\", \"4443\"));//false (digit but comes more than once)  \nSystem.out.println(Pattern.matches(\"\\\\d\", \"323abc\"));//false (digit and char)  \n  \nSystem.out.println(\"metacharacters D....\");\\\\D means non-digit  \n  \nSystem.out.println(Pattern.matches(\"\\\\D\", \"abc\"));//false (non-digit but comes more than once)  \nSystem.out.println(Pattern.matches(\"\\\\D\", \"1\"));//false (digit)  \nSystem.out.println(Pattern.matches(\"\\\\D\", \"4443\"));//false (digit)  \nSystem.out.println(Pattern.matches(\"\\\\D\", \"323abc\"));//false (digit and char)  \nSystem.out.println(Pattern.matches(\"\\\\D\", \"m\"));//true (non-digit and comes once)  \n  \nSystem.out.println(\"metacharacters D with quantifier....\");  \nSystem.out.println(Pattern.matches(\"\\\\D*\", \"mak\"));//true (non-digit and may come 0 or more times)  \n  \n}}  </code></pre>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h2>Regular Expression Question 1</h2>\n\n\n\n<pre class=\"wp-block-code\"><code>/*Create a regular expression that accepts alphanumeric characters only.  \nIts length must be six characters long only.*/  \n  \nimport java.util.regex.*;  \nclass RegexExample6{  \npublic static void main(String args&#91;]){  \nSystem.out.println(Pattern.matches(\"&#91;a-zA-Z0-9]{6}\", \"arun32\"));//true  \nSystem.out.println(Pattern.matches(\"&#91;a-zA-Z0-9]{6}\", \"kkvarun32\"));//false (more than 6 char)  \nSystem.out.println(Pattern.matches(\"&#91;a-zA-Z0-9]{6}\", \"JA2Uk2\"));//true  \nSystem.out.println(Pattern.matches(\"&#91;a-zA-Z0-9]{6}\", \"arun$2\"));//false ($ is not matched)  \n}}  </code></pre>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h2>Regular Expression Question 2</h2>\n\n\n\n<pre class=\"wp-block-code\"><code>/*Create a regular expression that accepts 10 digit numeric characters \n starting with 7, 8 or 9 only.*/  \n  \nimport java.util.regex.*;  \nclass RegexExample7{  \npublic static void main(String args&#91;]){  \nSystem.out.println(\"by character classes and quantifiers ...\");  \nSystem.out.println(Pattern.matches(\"&#91;789]{1}&#91;0-9]{9}\", \"9953038949\"));//true  \nSystem.out.println(Pattern.matches(\"&#91;789]&#91;0-9]{9}\", \"9953038949\"));//true  \n  \nSystem.out.println(Pattern.matches(\"&#91;789]&#91;0-9]{9}\", \"99530389490\"));//false (11 characters)  \nSystem.out.println(Pattern.matches(\"&#91;789]&#91;0-9]{9}\", \"6953038949\"));//false (starts from 6)  \nSystem.out.println(Pattern.matches(\"&#91;789]&#91;0-9]{9}\", \"8853038949\"));//true  \n  \nSystem.out.println(\"by metacharacters ...\");  \nSystem.out.println(Pattern.matches(\"&#91;789]{1}\\\\d{9}\", \"8853038949\"));//true  \nSystem.out.println(Pattern.matches(\"&#91;789]{1}\\\\d{9}\", \"3853038949\"));//false (starts from 3)  \n  \n}}  </code></pre>\n\n\n\n<h2>Java Regex Finder Example</h2>\n\n\n\n<pre class=\"wp-block-code\"><code>import java.util.regex.Pattern;  \nimport java.util.Scanner;  \nimport java.util.regex.Matcher;    \npublic class RegexExample8{    \n    public static void main(String&#91;] args){    \n        Scanner sc=new Scanner(System.in);  \n        while (true) {    \n            System.out.println(\"Enter regex pattern:\");  \n            Pattern pattern = Pattern.compile(sc.nextLine());    \n            System.out.println(\"Enter text:\");  \n            Matcher matcher = pattern.matcher(sc.nextLine());    \n            boolean found = false;    \n            while (matcher.find()) {    \n                System.out.println(\"I found the text \"+matcher.group()+\" starting at index \"+    \n                 matcher.start()+\" and ending at index \"+matcher.end());    \n                found = true;    \n            }    \n            if(!found){    \n                System.out.println(\"No match found.\");    \n            }    \n        }    \n    }    \n}</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Enter regex pattern: java\nEnter text: this is java, do you know java\nI found the text java starting at index 8 and ending at index 12\nI found the text java starting at index 26 and ending at index 30</code></pre>\n\n\n\n<p></p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>The&nbsp;Java Regex&nbsp;or Regular Expression is an API to&nbsp;define a pattern for searching or manipulating strings. It is widely used to define the constraint on strings such as password and email validation. After learning Java regex tutorial, you will be able to test your regular expressions by the Java Regex Tester Tool. Java Regex API provides [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [15],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/451"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=451"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/451/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 464,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/451/revisions/464"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=451"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=451"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=451"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  }
+]

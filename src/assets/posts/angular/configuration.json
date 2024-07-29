@@ -1,0 +1,260 @@
+[
+  {
+    "id": 3898,
+    "date": "2020-12-10T11:08:52",
+    "date_gmt": "2020-12-10T11:08:52",
+    "guid": { "rendered": "http://angular.foobrdigital.com/?p=3898" },
+    "modified": "2020-12-10T11:08:52",
+    "modified_gmt": "2020-12-10T11:08:52",
+    "slug": "angular-how-to-use-app_initializer",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/angular-how-to-use-app_initializer/",
+    "title": { "rendered": "Angular How to use APP_INITIALIZER" },
+    "content": {
+      "rendered": "\n<h2>What is APP_INITIALIZER</h2>\n\n\n\n<p>The&nbsp;<code>APP_INITIALIZER</code>&nbsp;is an instance of&nbsp;<code>InjectionToken</code>. It is a built in Injection token provided by Angular.</p>\n\n\n\n<p>The Angular will execute the function provided by this token when the application loads. If the function returns the promise, then the angular will wait until the promise is resolved. This will make it ideal place to perform some initialization logic before the application is initialized.</p>\n\n\n\n<h3>Dependency Injection Recap</h3>\n\n\n\n<p>The Angular injector uses the DI token to locate the dependencies in the Angular Provider. We register the dependency in the provider using the token</p>\n\n\n\n<pre class=\"wp-block-code\"><code>providers :&#91;{ provide: token, useClass: SomeService }]</code></pre>\n\n\n\n<p>The<strong><code>token</code></strong>&nbsp;can be either&nbsp;<code>type</code>, a&nbsp;<code>string</code>&nbsp;or an instance of&nbsp;<code>InjectionToken</code>.</p>\n\n\n\n<h4><strong>The type token</strong></h4>\n\n\n\n<pre class=\"wp-block-code\"><code>providers :&#91;{ provide: productService, useClass: productService}]</code></pre>\n\n\n\n<h4><strong>The type token</strong></h4>\n\n\n\n<h4><strong>The string token</strong></h4>\n\n\n\n<pre class=\"wp-block-code\"><code>providers :&#91; {provide:'MESSAGE', useValue: 'Hello Angular'}]</code></pre>\n\n\n\n<h4><strong>The InjectionToken</strong></h4>\n\n\n\n<p>The <code>InjectionToken</code> is used whenever the type that is being used does not have runtime representation such as when injecting an interface, callable type,array etc</p>\n\n\n\n<pre class=\"wp-block-code\"><code>export const MESSAGE = new InjectionToken&lt;string>('Hello Angular'); \r\n \r\nproviders :&#91; { provide: HELLO_MESSAGE, useValue: 'Hello World!' }];\r\n </code></pre>\n\n\n\n<h2>Where to use APP_INITIALIZER</h2>\n\n\n\n<p>As mentioned earlier, the&nbsp;<code>APP_INITIALIZER</code>&nbsp;is run when the application is initialized. The Angular suspends the app initialization until all the functions provided by the&nbsp;<code>APP_INITIALIZER</code>&nbsp;are run. If any of those intializers return a&nbsp;<code>promise</code>, then the angular waits for it to&nbsp;<code>resolve</code>, before continuing with the App initialization</p>\n\n\n\n<p>This gives us an opportunity to hook into the initialization process and run some our application custom logic. You can load runtime configuration information. load important data from the backend etc.</p>\n\n\n\n<h2 id=\"mce_6\">APP_INITIALIZER Example</h2>\n\n\n\n<p>Create a new Angular Project</p>\n\n\n\n<p>Create <code>app-init.service.ts</code> under the folder <code>src/app</code>.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>\r\nimport { Injectable }  from '@angular/core';\r\n \r\n@Injectable()\r\nexport class AppInitService {\r\n \r\n    constructor() {\r\n    }\r\n    \r\n    Init() {\r\n \r\n        return new Promise&lt;void>((resolve, reject) => {\r\n            console.log(\"AppInitService.init() called\");\r\n            ////do your initialisation stuff here  \r\n            setTimeout(() => {\r\n                console.log('AppInitService Finished');\r\n                resolve();\r\n            }, 6000);\r\n \r\n        });\r\n    }\r\n}</code></pre>\n\n\n\n<p>This is a simple service, which has one method <code>Init</code>. The method returns a <code>Promise</code>.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>return new Promise&lt;void>((resolve, reject) => {</code></pre>\n\n\n\n<p>Inside the method we have setup a timer which waits for&nbsp;<em>6000 milliseconds</em>&nbsp;and then calls the&nbsp;<code>resolve</code></p>\n\n\n\n<p>Open the <code>app.module.ts</code></p>\n\n\n\n<pre class=\"wp-block-code\"><code> \r\nimport { BrowserModule } from '@angular/platform-browser';\r\nimport { NgModule, APP_INITIALIZER } from '@angular/core';\r\nimport { HttpClientModule } from '@angular/common/http';\r\n \r\nimport { AppRoutingModule } from './app-routing.module';\r\n \r\nimport { AppComponent } from './app.component';\r\nimport { AboutUsComponent } from './about-us.component';\r\nimport { HomeComponent } from './home.component';\r\nimport { ContactUsComponent } from './contact-us.component';\r\n \r\nimport { AppInitService } from './app-init.service';\r\n \r\nexport function initializeApp1(appInitService: AppInitService) {\r\n  return (): Promise&lt;any> => { \r\n    return appInitService.Init();\r\n  }\r\n}\r\n \r\n@NgModule({\r\n  declarations: &#91;\r\n    AppComponent, AboutUsComponent,HomeComponent,ContactUsComponent\r\n  ],\r\n  imports: &#91;\r\n    HttpClientModule,\r\n    BrowserModule,\r\n    AppRoutingModule,\r\n  ],\r\n  providers: &#91; \r\n    AppInitService,\r\n    { provide: APP_INITIALIZER,useFactory: initializeApp1, deps: &#91;AppInitService], multi: true}\r\n  ],\r\n  bootstrap: &#91;AppComponent]\r\n})\r\nexport class AppModule { }</code></pre>\n\n\n\n<p>First, we need to import <code>APP_INITIALIZER</code> from the <code>@angular/core</code></p>\n\n\n\n<pre class=\"wp-block-code\"><code>import { NgModule, APP_INITIALIZER } from '@angular/core';\r\n </code></pre>\n\n\n\n<p>We need to execute the <code>appInitService.Init()</code>. We cannot do it directly from the provider. We need to create a function which invokes the <code>appInitService.Init()</code> and returns a <code>Promise</code>. We do that in <code>initializeApp1</code> function.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> \r\nimport { AppInitService } from './app-init.service';\r\n \r\nexport function initializeApp1(appInitService: AppInitService) {\r\n  return (): Promise&lt;any> => { \r\n    return appInitService.Init();\r\n  }\r\n}</code></pre>\n\n\n\n<p>Finally,. use the <code>APP_INITIALIZER</code> token to provide the <code>initializeApp1</code></p>\n\n\n\n<pre class=\"wp-block-code\"><code>providers: &#91; \r\n    AppInitService,\r\n    { provide: APP_INITIALIZER,useFactory: initializeApp1, deps: &#91;AppInitService], multi: true}\r\n  ],</code></pre>\n\n\n\n<p>The <code>useFactory</code> is used because <code>initializeApp1</code> is a function and not a class. The Angular Injector executes this function , which in turn calls the <code>appInitService.Init()</code>.</p>\n\n\n\n<p>The Angular Dependency injection injects dependencies to classes &amp; components, but not to functions. But our <code>initializeApp1</code> is a function and needs <code>AppInitService</code> to be injected as the argument. We do that by using the <code>deps:</code> flag and let angular know that it needs to create a instance of <code>AppInitService</code> and inject it to the <code>initializeApp1</code> function.</p>\n\n\n\n<p>The&nbsp;<code>multi : true</code>&nbsp;creates the multi provider DI token. Which means that you can provide array of providers for a DI token.</p>\n\n\n\n<p>If&nbsp;<code>multi: false</code>&nbsp;(which is default) is set and use a token more than once, the last to register will override all the previous tokens. i.e you can have only one provider for token.</p>\n\n\n\n<p>If&nbsp;<code>multi: true</code>&nbsp;is set, then the new providers are added to the previously registered providers making it more than one provider for a token. The angular will execute all of them when the token in invoked.</p>\n\n\n\n<p>The run the app &amp; Open the Chrome developer console. You will see that the messages from the service appears first, before the “<em>Angular running in development mode</em>” message.</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://www.tektutorialshub.com/wp-content/uploads/2018/12/How-to-APP_INITIALIZER-in-Angular.gif\" alt=\"How to use APP_INITIALIZER in Angular\" class=\"wp-image-10631\"/></figure>\n\n\n\n<p>If you return reject from the service, the angular app will not start.</p>\n\n\n\n<p>The Observables are not yet supported in APP_INITIALIZER</p>\n\n\n\n<h3>Multi Providers in APP_INITIALIZER</h3>\n\n\n\n<p>You can use the&nbsp;<code>multi: true</code>&nbsp;to create Multi Provider token. This means we can create more than one function/service and invoke it during initialization.</p>\n\n\n\n<p>Create another factory function <code>initializeApp2</code>, which just writes to console after a timeout of 2000 milliseconds.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>export function initializeApp2() {\r\n  return (): Promise&lt;any> => {\r\n    return new Promise((resolve, reject) => {\r\n      console.log(`initializeApp2 called`);\r\n      setTimeout(() => {\r\n        console.log(`initializeApp2 Finished`);\r\n        resolve();\r\n      }, 2000);\r\n    });\r\n  };\r\n}</code></pre>\n\n\n\n<p>Next, register it with the&nbsp;<code>APP_INITIALIZER</code>&nbsp;token as shown below.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>\r\n  providers: &#91; \r\n    AppInitService,\r\n    { provide: APP_INITIALIZER,useFactory: initializeApp1, deps: &#91;AppInitService], multi: true},\r\n    { provide: APP_INITIALIZER,useFactory: initializeApp2, multi: true}\r\n  ],</code></pre>\n\n\n\n<p>Run the app. You will observe the following</p>\n\n\n\n<ol><li>Both&nbsp;<code>initializeApp1</code>&nbsp;&amp;&nbsp;<code>initializeApp2</code>&nbsp;runs in succession without waiting for each other.</li><li><code>initializeApp2</code>&nbsp;finishes first, although it is invoked after&nbsp;<code>initializeApp1</code></li><li>The Angular waits for both the functions to finish</li></ol>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://www.tektutorialshub.com/wp-content/uploads/2018/12/Angular-APP_INITIALIZER-Example.gif\" alt=\"Angular APP_INITIALIZER example\" class=\"wp-image-10647\"/></figure>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>What is APP_INITIALIZER The&nbsp;APP_INITIALIZER&nbsp;is an instance of&nbsp;InjectionToken. It is a built in Injection token provided by Angular. The Angular will execute the function provided by this token when the application loads. If the function returns the promise, then the angular will wait until the promise is resolved. This will make it ideal place to perform [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [140],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3898" }
+      ],
+      "collection": [
+        { "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=3898"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3898/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3899,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3898/revisions/3899"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=3898"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=3898"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=3898"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3900,
+    "date": "2020-12-10T11:17:55",
+    "date_gmt": "2020-12-10T11:17:55",
+    "guid": { "rendered": "http://angular.foobrdigital.com/?p=3900" },
+    "modified": "2020-12-10T11:17:55",
+    "modified_gmt": "2020-12-10T11:17:55",
+    "slug": "angular-runtime-configuration",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/angular-runtime-configuration/",
+    "title": { "rendered": "Angular Runtime Configuration" },
+    "content": {
+      "rendered": "\n<h2>Where to Store&nbsp;configuration</h2>\n\n\n\n<p>The Angular has the environment variables where you can keep the runtime settings, but it has limitations. The setting of the environment variables are defined at build time and cannot be changed at run time.</p>\n\n\n\n<p>We can keep the configuration information in a database. But we still need to store the REST endpoints to connect to the database.</p>\n\n\n\n<p>The right approach is to store the configuration information in a config file in a secured location. We will deploy the configuration file along with the App. The App can load the configuration from it when the application loads.</p>\n\n\n\n<p>For the examples in this tutorial, we will keep it in the&nbsp;<code>src/app/assets/config</code>&nbsp;folder</p>\n\n\n\n<p>You can use any format to store the configuration. The popular choice is either&nbsp;<strong>JSON</strong>&nbsp;or&nbsp;<strong>XML</strong>&nbsp;format. For Example&nbsp;<code>appConfig.json</code>&nbsp;or&nbsp;<code>appConfig.xml</code></p>\n\n\n\n<p>Below is the typical structure of the configuration file (or config file) in <strong>JSON</strong> format.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>\r\n{\r\n   \"appTitle\": \"APP_INITIALIZER Example App\",\r\n        \r\n   \"apiServer\" : {\r\n        \"link1\" :\"http://amazon.com\",\r\n        \"link2\" :\"http://ebay.com\"\r\n    },\r\n \r\n   \"appSetting\"             : {\r\n        \"config1\"    : \"Value1\",\r\n        \"config2\"    : \"Value2\",\r\n        \"config3\"    : \"Value3\",\r\n        \"config3\"    : \"Value4\"\r\n    }\r\n}</code></pre>\n\n\n\n<h2>When to read&nbsp;the configuration</h2>\n\n\n\n<p>Some of the configuration information is needed before we load our first page. Hence it is better to read the configuration very early in the application. The Angular provides the injection token named APP_INITIALIZER, which it executes when the application starts.</p>\n\n\n\n<h3>APP_INITIALIZER</h3>\n\n\n\n<p>The <code>APP_INITIALIZER</code> is the predefined injection token provided by Angular. The Angular will execute the function provided by this token when the application loads. If the function returns the promise, then the angular will wait until the promise is resolved. This will make it an ideal place to read the configuration and also to perform some initialization logic before the application is initialized.</p>\n\n\n\n<p>To use <code>APP_INITIALIZER</code> first we need to import it our Root Module.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>import { NgModule, APP_INITIALIZER } from '@angular/core';</code></pre>\n\n\n\n<p>Next, We need to create a service, which is responsible for reading the configuration file. The <code>AppConfigService</code> in the example below loads the configuration in its <code>load</code> method</p>\n\n\n\n<pre class=\"wp-block-code\"><code>\r\n@Injectable()\r\nexport class AppConfigService { \r\n   constructor(private http: HttpClient) {}\r\n   load() {\r\n       //Read Configuration here \r\n   }\r\n}</code></pre>\n\n\n\n<p>Next, create a factory method, which calls the <code>load</code> method of <code>AppConfigService</code>. We need to inject the <code>appConfigService</code> into the factory method as shown below</p>\n\n\n\n<pre class=\"wp-block-code\"><code>\r\nexport function initializeApp(appConfigService: AppConfigService) {\r\n  return () => appConfigService.load();\r\n}</code></pre>\n\n\n\n<p>Finally, use the <code>APP_INITIALIZER</code> token to provide the <code>initializeApp</code> using the <code>useFactory</code>. Remember to use the <code>deps</code> to add <code>AppConfigService</code> as a dependency as the <code>initializeApp</code> uses that service. The <code>multi: true</code> allows us to add more than one provider to the <code>APP_INITIALIZER</code> token.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>\r\nproviders: &#91; \r\n  AppConfigService,\r\n  { provide: APP_INITIALIZER,useFactory: initializeApp, deps:  &#91;AppConfigService], multi: true}\r\n],</code></pre>\n\n\n\n<p><strong>Suggested Reading</strong></p>\n\n\n\n<ul><li>Dependency Injection</li><li>Angular Providers</li><li>Injector, Injectable &amp; Inject</li><li>APP_INITIALIZER</li></ul>\n\n\n\n<h2>Reading the Configuration file</h2>\n\n\n\n<p>To Read the Config or Configuration file, we need to make an HTTP GET&nbsp;<code>request</code>&nbsp;and return a&nbsp;<code>Promise</code>.</p>\n\n\n\n<p>If you do not return a <code>promise</code>, then angular will not wait for the function to finish. The <code>observable</code> is not yet supported</p>\n\n\n\n<pre class=\"wp-block-code\"><code>\r\n    load() {\r\n \r\n        const jsonFile = `assets/config/config.json`;\r\n \r\n        return new Promise&lt;void>((resolve, reject) => {\r\n            this.http.get(jsonFile).toPromise().then((response : IAppConfig) => {\r\n               AppConfigService.settings = &lt;IAppConfig>response;\r\n               console.log( AppConfigService.settings);\r\n               resolve();   //Return Sucess\r\n            }).catch((response: any) => {\r\n               reject(`Failed to load the config file`);\r\n            });\r\n        });\r\n    }\r\n </code></pre>\n\n\n\n<h2>Example Application</h2>\n\n\n\n<p>Create a new Angular App.</p>\n\n\n\n<h3>Create the Config file</h3>\n\n\n\n<p>We will use the JSON format for our configuration.</p>\n\n\n\n<p>First, We will create an Interface&nbsp;<code>IAppConfig</code></p>\n\n\n\n<p>Create the <code>app-config.service.ts</code> in the <code>src/app</code> folder and create <code>IAppConfig</code> as shown below.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>export interface IAppConfig {\r\n \r\n    env: {\r\n        name: string\r\n    }\r\n \r\n    apiServer: {\r\n        link1:string,\r\n        link2:string,\r\n    }\r\n}\r\n </code></pre>\n\n\n\n<p>Then create the actual configuration file in the <code>assets/config/config.json</code> as shown below</p>\n\n\n\n<pre class=\"wp-block-code\"><code>\r\n{\r\n    \"env\": {\r\n        \"name\":\"Dev\"\r\n    },\r\n     \r\n    \"apiServer\" : {\r\n        \"link1\" :\"http://amazon.com\",\r\n        \"link2\" :\"http://ebay.com\"\r\n    }\r\n}</code></pre>\n\n\n\n<h3>Service</h3>\n\n\n\n<p>The task of the service is to send the HTTP GET request to the <code>config.json</code> file and store the configuration.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>\r\nimport { Injectable } from '@angular/core';\r\nimport { HttpClient } from '@angular/common/http';\r\n \r\n@Injectable()\r\nexport class AppConfigService {\r\n \r\n    static settings: IAppConfig;\r\n \r\n    constructor(private http: HttpClient) {}\r\n \r\n    load() {\r\n \r\n        const jsonFile = `assets/config/config.json`;\r\n        \r\n        return new Promise&lt;void>((resolve, reject) => {\r\n            this.http.get(jsonFile).toPromise().then((response : IAppConfig) => {\r\n               AppConfigService.settings = &lt;IAppConfig>response;\r\n \r\n               console.log('Config Loaded');\r\n               console.log( AppConfigService.settings);\r\n               resolve();\r\n               \r\n            }).catch((response: any) => {\r\n               reject(`Could not load the config file`);\r\n            });\r\n        });\r\n    }\r\n}\r\n </code></pre>\n\n\n\n<p>Create <code>staticsettings</code> variable</p>\n\n\n\n<pre class=\"wp-block-code\"><code>\r\nstatic settings: IAppConfig;</code></pre>\n\n\n\n<p>Next, we inject <code>HttpClient</code> in the constructor. We use the HTTP get method to read the configuration file.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>\r\nconstructor(private http: HttpClient) {}\r\n </code></pre>\n\n\n\n<p>In the <code>load</code> method, <code>jsonFile</code> constant is assigned to the location of the config file.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> \r\nconst jsonFile = assets/config/config.json;</code></pre>\n\n\n\n<p>Then, we return the <code>Promise</code></p>\n\n\n\n<pre class=\"wp-block-code\"><code> \r\nreturn new Promise&lt;void>((resolve, reject) => {</code></pre>\n\n\n\n<p>Inside the <code>Promise</code> we make a GET request to the config file. The returned <code>response</code> is mapped to the <code>IAppConfig</code> interface.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> \r\nthis.http.get(jsonFile).toPromise().then((response : IAppConfig) => {</code></pre>\n\n\n\n<p>Assign it to the settings variable. Note that it is a <code>static</code> variable. Hence, we are using <code>AppConfigService.settings</code> here.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> \r\nAppConfigService.settings = &lt;IAppConfig>response;</code></pre>\n\n\n\n<p>Output the values to the console</p>\n\n\n\n<pre class=\"wp-block-code\"><code>\r\n \r\nconsole.log('Config Loaded');\r\nconsole.log( AppConfigService.settings);\r\n </code></pre>\n\n\n\n<p>And Finally, call the <code>resolve</code> to return the <code>Promise</code></p>\n\n\n\n<pre class=\"wp-block-code\"><code>\r\nresolve();</code></pre>\n\n\n\n<p>And, in case of any errors <code>catch</code> it and <code>reject</code> the <code>Promise</code>. The Angular will stop loading the application</p>\n\n\n\n<pre class=\"wp-block-code\"><code> \r\n.catch((response: any) => {\r\n   reject(`Could not load the config file`);\r\n});</code></pre>\n\n\n\n<h3>Loading the Runtime configuration</h3>\n\n\n\n<p>Next, step is to inject the Service in <code>AppModule</code></p>\n\n\n\n<pre class=\"wp-block-code\"><code>\r\nimport { BrowserModule } from '@angular/platform-browser';\r\nimport { NgModule, APP_INITIALIZER } from '@angular/core';\r\nimport { HttpModule } from '@angular/http';\r\n \r\nimport { AppRoutingModule } from './app-routing.module';\r\n \r\nimport { AppComponent } from './app.component';\r\nimport { AboutUsComponent,  ContactUsComponent, HomeComponent} from './pages'\r\nimport { AppConfigService } from './app-config.service';\r\nimport { HttpClientModule } from '@angular/common/http';\r\n \r\n \r\nexport function initializeApp(appConfigService: AppConfigService) {\r\n  return (): Promise&lt;any> => { \r\n    return appConfigService.load();\r\n  }\r\n}\r\n \r\n@NgModule({\r\n  declarations: &#91;\r\n    AppComponent, AboutUsComponent,HomeComponent,ContactUsComponent\r\n  ],\r\n  imports: &#91;\r\n    HttpClientModule,\r\n    BrowserModule,\r\n    AppRoutingModule,\r\n  ],\r\n  providers: &#91; \r\n    AppConfigService,\r\n    { provide: APP_INITIALIZER,useFactory: initializeApp, deps: &#91;AppConfigService], multi: true}\r\n  ],\r\n  bootstrap: &#91;AppComponent]\r\n})\r\nexport class AppModule { }\r\n </code></pre>\n\n\n\n<p>First, we need to import <code>APP_INITIALIZER</code> from the <code>@angular/core</code>.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>\r\n \r\nimport { NgModule, APP_INITIALIZER } from '@angular/core';\n </code></pre>\n\n\n\n<p>Next import <code>AppConfigService</code> &amp; <code>HttpClientModule</code></p>\n\n\n\n<pre class=\"wp-block-code\"><code>\r\nimport { AppConfigService } from './app-config.service';\r\nimport { HttpClientModule } from '@angular/common/http';\r\n </code></pre>\n\n\n\n<p>We have <code>appConfigService</code> which loads the configuration. Now we need a function, which invokes the <code>load</code> method. Hence we will create a function <code>initializeApp</code>, which calls the <code>appConfigService.load()</code> method</p>\n\n\n\n<pre class=\"wp-block-code\"><code>\r\nexport function initializeApp(appConfigService: AppConfigService) {\r\n  return (): Promise&lt;any> => { \r\n    return appConfigService.load();\r\n  }\r\n}\r\n </code></pre>\n\n\n\n<p>Finally, we need to tell angular to execute the <code>initializeApp</code> on application startup. We do that by adding it to the providers array using the APP_INITIALIZER token as shown below.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>\r\n  providers: &#91; \r\n    AppConfigService,\r\n    { provide: APP_INITIALIZER,useFactory: initializeApp, deps: &#91;AppConfigService], multi: true}\r\n  ],</code></pre>\n\n\n\n<p>The&nbsp;<code>useFactory</code>&nbsp;is used because&nbsp;<code>initializeApp</code>&nbsp;is a function and not a class</p>\n\n\n\n<p>We make use of the&nbsp;<code>deps:[AppConfigService]</code>&nbsp;flag to let angular know that&nbsp;<code>initializeApp</code>&nbsp;has a dependency on&nbsp;<code>AppConfigService</code>.</p>\n\n\n\n<p>The&nbsp;<code>multi : true</code>&nbsp;creates the multi-provider DI token. The APP_INITIALIZER is a multi-provider token. We can define more than one Provider for APP_INITIALIZER. The Angular Injector invokes each of them in the order they appear in the Providers array.</p>\n\n\n\n<h3>Read the configuration in components</h3>\n\n\n\n<p>The following <code>AboutUsComponent</code> shows how to read the runtime settings in the component</p>\n\n\n\n<pre class=\"wp-block-code\"><code>\r\nimport { Component } from '@angular/core';\r\nimport { AppConfigService} from '../../app-config.service';\r\n \r\n@Component({\r\n    template: `About Us`,\r\n})\r\nexport class AboutUsComponent\r\n{\r\n    protected apiServer = AppConfigService.settings.apiServer;\r\n \r\n    constructor() {\r\n        console.log(this.apiServer.link1);\r\n        console.log(this.apiServer.link2);\r\n    }\r\n}</code></pre>\n\n\n\n<p>First import the <code>AppConfigService</code> in the component/service.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>import { AppConfigService} from '../../app-config.service';</code></pre>\n\n\n\n<p>Next, get a reference to the <code>AppConfigService.settings</code></p>\n\n\n\n<pre class=\"wp-block-code\"><code>protected apiServer = AppConfigService.settings.apiServer;</code></pre>\n\n\n\n<p>And the use it in your component/service etc</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://www.tektutorialshub.com/wp-content/uploads/2018/12/Angular-Runtime-Configuration-Example.gif\" alt=\"\" class=\"wp-image-10668\"/></figure>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Where to Store&nbsp;configuration The Angular has the environment variables where you can keep the runtime settings, but it has limitations. The setting of the environment variables are defined at build time and cannot be changed at run time. We can keep the configuration information in a database. But we still need to store the REST endpoints to connect to [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [140],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3900" }
+      ],
+      "collection": [
+        { "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=3900"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3900/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3901,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3900/revisions/3901"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=3900"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=3900"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=3900"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3902,
+    "date": "2020-12-10T11:26:35",
+    "date_gmt": "2020-12-10T11:26:35",
+    "guid": { "rendered": "http://angular.foobrdigital.com/?p=3902" },
+    "modified": "2020-12-10T11:26:35",
+    "modified_gmt": "2020-12-10T11:26:35",
+    "slug": "angular-environment-variables",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/angular-environment-variables/",
+    "title": { "rendered": "Angular Environment Variables" },
+    "content": {
+      "rendered": "\n<h2>What is Angular Environment</h2>\n\n\n\n<p>Most apps go through different stages before they go into production. These stages may be development, testing, staging, and production. We call these stages as Environment. All these Environments require different setups &amp; configuration. For Example, while you build the app for production, we need our app to be optimized, minified and uglified. For development, we do not want any of them but want the app to log all kinds of debugging information.</p>\n\n\n\n<h2>What is Angular Environment Variable</h2>\n\n\n\n<p>The Environment Variable are those variables, whose value changes as per the environment we are in. This will help us to change some behavior of the App based on the environment.</p>\n\n\n\n<p>For Example, You may want to use different API Endpoints for production, testing, and development. Or you do not want to send those log messages to console in the production environment.</p>\n\n\n\n<h2>Where is Angular Environment Variable</h2>\n\n\n\n<p>The Angular provides built-in support to configure and manage environment variables. It keeps the environment configuration under the folder&nbsp;<code>src/environments</code>&nbsp;folder</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://www.tektutorialshub.com/wp-content/uploads/2019/11/Location-of-Angular-Environment-Variable-1024x358.png\" alt=\"Location of Angular Environment Variable\" class=\"wp-image-15157\"/><figcaption>Location of Angular Environment Variable</figcaption></figure>\n\n\n\n<p>The folder contains two files one in&nbsp;<code>environment.ts</code>&nbsp;&amp; the other one is&nbsp;<code>environment.prod.ts</code></p>\n\n\n\n<p>Out of the box, Angular provides support for the&nbsp;<code>development</code>&nbsp;&amp;&nbsp;<code>production</code>&nbsp;environment. The default is the&nbsp;<code>development</code>&nbsp;and uses the&nbsp;<code>environment.ts</code>&nbsp;The production&nbsp;<code>environment</code>&nbsp;uses the&nbsp;<code>environment.prod.ts</code>&nbsp;file.</p>\n\n\n\n<p>If you open the above files, you will find the following code.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> \r\n//environment.ts\r\n \r\nexport const environment = {\r\n  production: false\r\n};</code></pre>\n\n\n\n<pre class=\"wp-block-code\"><code> \r\n//environment.prod.ts\r\n \r\nexport const environment = {\r\n  production: true\r\n};\r\n </code></pre>\n\n\n\n<p>The file has only one variable declared. The&nbsp;<code>production</code>&nbsp;variable, which is set to&nbsp;<code>true</code>&nbsp;in&nbsp;<code>environment.prod.ts</code>&nbsp;and&nbsp;<code>false</code>&nbsp;in the other</p>\n\n\n\n<h2>How to Create Environment Variable</h2>\n\n\n\n<p>Creating a new environment variable is very simple. Add the new environment variable to all the environment files.</p>\n\n\n\n<p>For Example, to have a different <code>apiEndPoint</code>, add the variable to each and every environment files as shown below</p>\n\n\n\n<pre class=\"wp-block-code\"><code>//environment.ts\r\n \r\nexport const environment = {\r\n  production: false,\r\n  apiEndPoint:\"https://api.development.example.com\"\r\n};</code></pre>\n\n\n\n<pre class=\"wp-block-code\"><code>\r\n//environment.prod.ts\r\n \r\nexport const environment = {\r\n  production: true,\r\n  apiEndPoint:\"https://api.production.example.com\"\r\n};\r\n </code></pre>\n\n\n\n<h2>How To Read the Environment Variable</h2>\n\n\n\n<p>Now, we have a new environment variable, we want to read it in our app.</p>\n\n\n\n<p>First, import the default <code>environment</code> in the component. Note that you should not import any other environment files like <code>environment.prod</code>, but only the default <code>environment</code> file.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> \r\nimport { environment } from '../environments/environment';</code></pre>\n\n\n\n<p>Next, read the value as shown below.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>apiEndPoint:string=\"\";\r\n  constructor() {\r\n    this.apiEndPoint = environment.apiEndPoint;\r\n  }</code></pre>\n\n\n\n<h2>Testing the Environment Variable</h2>\n\n\n\n<h3>ng serve</h3>\n\n\n\n<p>The&nbsp;<code>ng serve</code>&nbsp;command builds the app in memory and serves them via the local development server.</p>\n\n\n\n<p>Run the app using the <code>ng serve</code>. This will build the app using the default or development environment variable. And you should see the <code>https://api.development.example.com</code> in your console window.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> \r\nng serve</code></pre>\n\n\n\n<p>Use the <code>--configuration=\"production\"</code> option will force the serve command to build the app using the <code>production</code> configuration. Using the <code>production</code> configuration switches the <code>environment</code> file to <code>environment.prod</code>. And you should see <code>https://api.production.example.com</code> in your console window.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> \r\nng serve --configuration=\"production\"\r\n </code></pre>\n\n\n\n<h3>ng Build</h3>\n\n\n\n<p>We use&nbsp;<code>ng build</code>&nbsp;to build the app before distributing it. it will only build the app and copies the final output to the&nbsp;<code>dist</code>&nbsp;folder. It does not serve the app like&nbsp;<code>ng serve</code>&nbsp;does.</p>\n\n\n\n<p><code>ng build</code>&nbsp;uses the default environment i.e. development environment.</p>\n\n\n\n<p>The&nbsp;<code>ng build --prod</code>&nbsp;or (<code>ng build --configuration=\"production\"</code>) uses the&nbsp;<code>production</code>&nbsp;environment.</p>\n\n\n\n<h2>How does Angular know to switch files?</h2>\n\n\n\n<p>It does not. It is our job to tell angular which files to use for each environment. We do that in&nbsp;<code>Angular.Json</code>&nbsp;file.</p>\n\n\n\n<p>All the build related configuration to the app is stored under the node&nbsp;<code>projects</code>&nbsp;-&gt;&nbsp;<code>&lt;name&gt;</code>-&gt;&nbsp;<code>architect</code>&nbsp;-&gt;&nbsp;<code>build</code>.</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://www.tektutorialshub.com/wp-content/uploads/2019/11/Angular-build-configuration.png\" alt=\"Angular.json. Place where you find build configuration of all  angular envrionments\" class=\"wp-image-15162\"/><figcaption>Angular.json. Place where you find build configuration of all angular envrionments</figcaption></figure>\n\n\n\n<p>The&nbsp;<code>build</code>&nbsp;-&gt;&nbsp;<code>configuration</code>&nbsp;-&gt;&nbsp;<code>production</code>&nbsp;node is where all our configuration for the production build exits.</p>\n\n\n\n<p>The <code>fileReplacements</code> section is where all the magic happens. It tells the angular compiler to replace the <code>environment.ts</code> with the <code>environment.prod.ts</code>, when the <code>production</code> configuration is used.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> \"production\": {\r\n              \"fileReplacements\": &#91;\r\n                {\r\n                  \"replace\": \"projects/variable/src/environments/environment.ts\",\r\n                  \"with\": \"projects/variable/src/environments/environment.prod.ts\"\r\n                }\r\n              ],</code></pre>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://www.tektutorialshub.com/wp-content/uploads/2019/11/How-environment-variables-are-changed-using-the-fileReplacements-section.png\" alt=\"\" class=\"wp-image-15163\"/></figure>\n\n\n\n<h2>Create our own configuration</h2>\n\n\n\n<p>We can create our own environment easily. Let us add the test configuration.</p>\n\n\n\n<p>First, go to <code>app->environments</code> folder and create a new environment file. You can actually name the file whatever you want, but let us stick to the convention and name it as <code>environment.test.ts</code>.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> \r\nexport const environment = {\r\n  production: false,\r\n  apiEndPoint:\"https://api.test.example.com\"\r\n};</code></pre>\n\n\n\n<p>Next, we need to create a <code>test</code> node under the <code>build ->configurations</code> section as shown below. Add the <code>fileReplacements</code> section which instructs the compiler to use the <code>environment.test.ts</code> when in <code>test</code> configuration.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> \r\n      \"configurations\": {\r\n            \"production\": {\r\n                //Removed to make code smaller\r\n            },\r\n            \"test\" : {\r\n              \"fileReplacements\": &#91;\r\n                {\r\n                  \"replace\": \"projects/variable/src/environments/environment.ts\",\r\n                  \"with\": \"projects/variable/src/environments/environment.test.ts\"\r\n                }\r\n              ]\r\n            }</code></pre>\n\n\n\n<p>The above is sufficient if we want to use the configuration with the command&nbsp;<code>ng build --configuration=\"test\"</code>. But if you want it to work with the&nbsp;<code>ng serve</code>&nbsp;then. we need to add the&nbsp;<code>test</code>&nbsp;node under&nbsp;<code>architect-&gt;serve-&gt;configurations</code>node with the following&nbsp;<code>\"browserTarget\": \"variable:build:test\"</code></p>\n\n\n\n<p>Note that the <code>variable</code> is the name of the app. You need to replace it with the name you have given to your app.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>\r\n      \"architect\": {\r\n        \"build\": {\r\n        },\r\n        \"serve\": {\r\n          \"builder\": \"@angular-devkit/build-angular:dev-server\",\r\n          \"options\": {\r\n            \"browserTarget\": \"variable:build\"\r\n          },\r\n          \"configurations\": {\r\n            \"production\": {\r\n              \"browserTarget\": \"variable:build:production\"\r\n            },\r\n            \"test\": {\r\n              \"browserTarget\": \"variable:build:test\"\r\n            }\r\n          }</code></pre>\n\n\n\n<p>Now, run&nbsp;<code>ng serve --configuration=\"test\"</code>&nbsp;and you should see the&nbsp;<code>https://api.test.example.com</code>&nbsp;in your console window</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>What is Angular Environment Most apps go through different stages before they go into production. These stages may be development, testing, staging, and production. We call these stages as Environment. All these Environments require different setups &amp; configuration. For Example, while you build the app for production, we need our app to be optimized, minified [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [140],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3902" }
+      ],
+      "collection": [
+        { "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=3902"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3902/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3903,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3902/revisions/3903"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=3902"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=3902"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=3902"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  }
+]

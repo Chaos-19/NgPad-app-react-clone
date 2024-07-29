@@ -1,0 +1,402 @@
+[
+  {
+    "id": 4674,
+    "date": "2021-02-27T08:45:21",
+    "date_gmt": "2021-02-27T08:45:21",
+    "guid": {
+      "rendered": "http://angular.foobrdigital.com/?p=4674"
+    },
+    "modified": "2021-02-27T08:45:21",
+    "modified_gmt": "2021-02-27T08:45:21",
+    "slug": "introduction-14",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/introduction-14/",
+    "title": {
+      "rendered": "Introduction"
+    },
+    "content": {
+      "rendered": "\n<p>Architect runs builders asynchronously. To invoke a builder, you schedule a task to be run when all configuration resolution is complete.</p>\n\n\n\n<p>The builder function is not executed until the scheduler returns a&nbsp;<code>BuilderRun</code>&nbsp;control object. The CLI typically schedules tasks by calling the&nbsp;<code>BuilderContext.scheduleTarget()</code>&nbsp;function, and then resolves input options using the target definition in the&nbsp;<code>angular.json</code>&nbsp;file.</p>\n\n\n\n<p>Architect resolves input options for a given target by taking the default options object, then overwriting values from the configuration used (if any), then further overwriting values from the overrides object passed to&nbsp;<code>BuilderContext.scheduleTarget()</code>. For the Angular CLI, the overrides object is built from command line arguments.</p>\n\n\n\n<p>Architect validates the resulting options values against the schema of the builder. If inputs are valid, Architect creates the context and executes the builder.</p>\n\n\n\n<p>For more information see&nbsp;<a href=\"https://angular.io/guide/workspace-config\">Workspace Configuration</a>.</p>\n\n\n\n<p>You can also invoke a builder directly from another builder or test by calling&nbsp;<code>BuilderContext.scheduleBuilder()</code>. You pass an&nbsp;<code>options</code>&nbsp;object directly to the method, and those option values are validated against the schema of the builder without further adjustment.</p>\n\n\n\n<p>Only the&nbsp;<code>BuilderContext.scheduleTarget()</code>&nbsp;method resolves the configuration and overrides through the&nbsp;<code>angular.json</code>&nbsp;file.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Architect runs builders asynchronously. To invoke a builder, you schedule a task to be run when all configuration resolution is complete. The builder function is not executed until the scheduler returns a&nbsp;BuilderRun&nbsp;control object. The CLI typically schedules tasks by calling the&nbsp;BuilderContext.scheduleTarget()&nbsp;function, and then resolves input options using the target definition in the&nbsp;angular.json&nbsp;file. Architect resolves input [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [251],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4674"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=4674"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4674/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4675,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4674/revisions/4675"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=4674"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=4674"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=4674"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 4673,
+    "date": "2021-02-27T08:45:55",
+    "date_gmt": "2021-02-27T08:45:55",
+    "guid": {
+      "rendered": "http://angular.foobrdigital.com/?p=4673"
+    },
+    "modified": "2021-02-27T08:45:55",
+    "modified_gmt": "2021-02-27T08:45:55",
+    "slug": "default-architect-configuration",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/default-architect-configuration/",
+    "title": {
+      "rendered": "Default architect configuration"
+    },
+    "content": {
+      "rendered": "\n<p>Let\u2019s create a simple&nbsp;<code>angular.json</code>&nbsp;file that puts target configurations into context.</p>\n\n\n\n<p>We can publish the builder to npm (see\u00a0Publishing your Library), and install it using the following command:</p>\n\n\n\n<pre class=\"wp-block-preformatted\">content_copy<code>npm install @example/command-runner</code></pre>\n\n\n\n<p>If we create a new project with&nbsp;<code>ng new builder-test</code>, the generated&nbsp;<code>angular.json</code>&nbsp;file looks something like this, with only default builder configurations.angular.json</p>\n\n\n\n<pre class=\"wp-block-code\"><code>content_copy<code>{\n  // ...\n  \"projects\": {\n    // ...\n    \"builder-test\": {\n      // ...\n      \"architect\": {\n        // ...\n        \"build\": {\n          \"builder\": \"@angular-devkit/build-angular:browser\",\n          \"options\": {\n            // ... more options...\n            \"outputPath\": \"dist/builder-test\",\n            \"index\": \"src/index.html\",\n            \"main\": \"src/main.ts\",\n            \"polyfills\": \"src/polyfills.ts\",\n            \"tsConfig\": \"src/tsconfig.app.json\"\n          },\n          \"configurations\": {\n            \"production\": {\n              // ... more options...\n              \"optimization\": true,\n              \"aot\": true,\n              \"buildOptimizer\": true\n            }\n          }\n        }\n      }\n    }\n  }\n  // ...\n}</code></code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Let\u2019s create a simple&nbsp;angular.json&nbsp;file that puts target configurations into context. We can publish the builder to npm (see\u00a0Publishing your Library), and install it using the following command: content_copynpm install @example/command-runner If we create a new project with&nbsp;ng new builder-test, the generated&nbsp;angular.json&nbsp;file looks something like this, with only default builder configurations.angular.json</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [251],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4673"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=4673"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4673/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4676,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4673/revisions/4676"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=4673"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=4673"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=4673"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 4672,
+    "date": "2021-02-27T08:46:16",
+    "date_gmt": "2021-02-27T08:46:16",
+    "guid": {
+      "rendered": "http://angular.foobrdigital.com/?p=4672"
+    },
+    "modified": "2021-02-27T08:46:16",
+    "modified_gmt": "2021-02-27T08:46:16",
+    "slug": "adding-a-target",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/adding-a-target/",
+    "title": {
+      "rendered": "Adding a target"
+    },
+    "content": {
+      "rendered": "\n<p>Let&#8217;s add a new target that will run our builder to execute a particular command. This target will tell the builder to run&nbsp;<code>touch</code>&nbsp;on a file, in order to update its modified date.</p>\n\n\n\n<p>We need to update the&nbsp;<code>angular.json</code>&nbsp;file to add a target for this builder to the &#8220;architect&#8221; section of our new project.</p>\n\n\n\n<ul><li>We&#8217;ll add a new target section to the &#8220;architect&#8221; object for our project.</li><li>The target named &#8220;touch&#8221; uses our builder, which we published to&nbsp;<code>@example/command-runner</code>. (See&nbsp;<a href=\"https://angular.io/guide/creating-libraries#publishing-your-library\">Publishing your Library</a>)</li><li>The options object provides default values for the two inputs that we defined;&nbsp;<code>command</code>, which is the Unix command to execute, and&nbsp;<code>args</code>, an array that contains the file to operate on.</li><li>The configurations key is optional, we&#8217;ll leave it out for now.</li></ul>\n\n\n\n<p>angular.json</p>\n\n\n\n<pre class=\"wp-block-code\"><code>content_copy<code>{\n  \"projects\": {\n    \"builder-test\": {\n      \"architect\": {\n        \"touch\": {\n          \"builder\": \"@example/command-runner:command\",\n          \"options\": {\n            \"command\": \"touch\",\n            \"args\": &#91;\n              \"src/main.ts\"\n            ]\n          }\n        },\n        \"build\": {\n          \"builder\": \"@angular-devkit/build-angular:browser\",\n          \"options\": {\n            \"outputPath\": \"dist/builder-test\",\n            \"index\": \"src/index.html\",\n            \"main\": \"src/main.ts\",\n            \"polyfills\": \"src/polyfills.ts\",\n            \"tsConfig\": \"src/tsconfig.app.json\"\n          },\n          \"configurations\": {\n            \"production\": {\n              \"fileReplacements\": &#91;\n                {\n                  \"replace\": \"src/environments/environment.ts\",\n                  \"with\": \"src/environments/environment.prod.ts\"\n                }\n              ],\n              \"optimization\": true,\n              \"aot\": true,\n              \"buildOptimizer\": true\n            }\n          }\n        }\n      }\n    }\n  }\n}</code></code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Let&#8217;s add a new target that will run our builder to execute a particular command. This target will tell the builder to run&nbsp;touch&nbsp;on a file, in order to update its modified date. We need to update the&nbsp;angular.json&nbsp;file to add a target for this builder to the &#8220;architect&#8221; section of our new project. We&#8217;ll add a [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [251],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4672"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=4672"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4672/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4677,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4672/revisions/4677"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=4672"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=4672"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=4672"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 4671,
+    "date": "2021-02-27T08:46:43",
+    "date_gmt": "2021-02-27T08:46:43",
+    "guid": {
+      "rendered": "http://angular.foobrdigital.com/?p=4671"
+    },
+    "modified": "2021-02-27T08:46:43",
+    "modified_gmt": "2021-02-27T08:46:43",
+    "slug": "running-the-builder",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/running-the-builder/",
+    "title": {
+      "rendered": "Running the builder"
+    },
+    "content": {
+      "rendered": "\n<p>To run our builder with the new target&#8217;s default configuration, use the following CLI command in a Linux shell.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>content_copy<code>ng run builder-test:touch</code></code></pre>\n\n\n\n<p>This will run the&nbsp;<code>touch</code>&nbsp;command on the&nbsp;<code>src/main.ts</code>&nbsp;file.</p>\n\n\n\n<p>You can use command-line arguments to override the configured defaults. For example, to run with a different&nbsp;<code>command</code>&nbsp;value, use the following CLI command.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>content_copy<code>ng run builder-test:touch --command=ls</code></code></pre>\n\n\n\n<p>This will call the&nbsp;<code>ls</code>&nbsp;command instead of the&nbsp;<code>touch</code>&nbsp;command. Because we did not override the&nbsp;<em>args</em>&nbsp;option, it will list information about the&nbsp;<code>src/main.ts</code>&nbsp;file (the default value provided for the target).</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>To run our builder with the new target&#8217;s default configuration, use the following CLI command in a Linux shell. This will run the&nbsp;touch&nbsp;command on the&nbsp;src/main.ts&nbsp;file. You can use command-line arguments to override the configured defaults. For example, to run with a different&nbsp;command&nbsp;value, use the following CLI command. This will call the&nbsp;ls&nbsp;command instead of the&nbsp;touch&nbsp;command. Because [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [251],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4671"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=4671"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4671/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4678,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4671/revisions/4678"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=4671"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=4671"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=4671"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  }
+]

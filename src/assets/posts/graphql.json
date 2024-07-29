@@ -1,0 +1,1106 @@
+[
+  {
+    "id": 781,
+    "date": "2020-05-13T06:53:23",
+    "date_gmt": "2020-05-13T06:53:23",
+    "guid": { "rendered": "http://angular.foobrdigital.com/?p=781" },
+    "modified": "2020-12-25T19:09:47",
+    "modified_gmt": "2020-12-25T19:09:47",
+    "slug": "introduction-6",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/introduction-6/",
+    "title": { "rendered": "Introduction" },
+    "content": {
+      "rendered": "\n<p>GraphQL is a query language for your API, and a server-side runtime for executing queries by using a type system you define for your data. GraphQL isn&#8217;t tied to any specific database or storage engine and is instead backed by your existing code and data.</p>\n\n\n\n<h2>Why GraphQL</h2>\n\n\n\n<figure class=\"wp-block-image size-large\"><img src=\"https://angular.foobrdigital.com/wp-content/uploads/2020/05/8496.1558526064.jpg\" alt=\"\" class=\"wp-image-1207\"/></figure>\n\n\n\n<p>RESTful APIs follow clear and well-structured resource-oriented approach. However, when the data gets more complex, the routes get longer. Sometimes it is not possible to fetch data with a single request. This is where GraphQL comes handy. GraphQL structures data in the form of a graph with its powerful query syntax for traversing, retrieving, and modifying data.</p>\n\n\n\n<p>The following are advantages of using GraphQL query Language −</p>\n\n\n\n<h3>Ask for what you want − and get it</h3>\n\n\n\n<p>Send a GraphQL query to your API and get exactly what you need. GraphQL queries always return predictable results. Applications using GraphQL are fast and stable. Unlike Restful services, these applications can restrict data that should be fetched from the server.</p>\n\n\n\n<p>The following example will help you understand this better −</p>\n\n\n\n<p>Let us consider a business object&nbsp;<em>Student</em>&nbsp;with the attributes&nbsp;<em>id, firstName, lastName</em>&nbsp;and&nbsp;<em>collegeName</em>. Suppose a mobile application needs to fetch only the&nbsp;<em>firstName</em>&nbsp;and&nbsp;<em>id</em>. If we design a REST endpoint like&nbsp;<em>/api/v1/students</em>, it will end up fetching data for all the fields for a&nbsp;<em>student</em>&nbsp;object. This means, data is over fetched by the RESTful service. This problem can be solved by using GraphQL.</p>\n\n\n\n<p>Consider the GraphQL query given below −</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{\n   students {\n      id\n      firstName\n   }\n}</code></pre>\n\n\n\n<p>This will return values only for the id and first name fields. The query will not fetch values for other attributes of the student object. The response of the query illustrated above is as shown below −</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{\n   \"data\": {\n      \"students\": &#91;\n         {\n            \"id\": \"1\",\n            \"firstName\": \"Harry\"\n         },\n         {\n            \"id\": \"2\",\n            \"firstName\": \"Rob\"\n         }\n      ]\n   }\n}</code></pre>\n\n\n\n<h3>Get many resources in a single request</h3>\n\n\n\n<p>GraphQL queries help to smoothly retrieve associated business objects, while typical REST APIs require loading from multiple URLs. GraphQL APIs fetch all the data your application need in a single request. Applications using GraphQL can be quick even on slow mobile network connections.</p>\n\n\n\n<p>Let us consider one more business object,&nbsp;<em>College</em>&nbsp;which has the attributes: name and location. The&nbsp;<em>Student</em>&nbsp;business object has an association relationship with the College object. If we were to use a REST API in order to fetch the details of students and their college, we will end up making two requests to the server like&nbsp;<em>/api/v1/students</em>&nbsp;and&nbsp;<em>/api/v1/colleges</em>. This will lead to under fetching of data with each request. So mobile applications are forced to make multiple calls to the server to get the desired data.</p>\n\n\n\n<p>However, the mobile application can fetch details for both Student and College objects in a single request by using GraphQL.</p>\n\n\n\n<p>The following is a GraphQL query to fetch data −</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{\n   students{\n      id\n      firstName\n      lastName\n      college{\n         name\n         location\n      }\n   }\n}</code></pre>\n\n\n\n<p>The output of the above query contains exactly those fields we have requested for as shown below −</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{\n   \"data\": {\n      \"students\": &#91;\n         {\n            \"id\": \"1\",\n            \"firstName\": \"Harry\",\n            \"lastName\": \"Potter\",\n            \"college\": {\n               \"name\": \"Hogwardes\",\n               \"location\": \"Unknown\"\n            }\n         },\n         \n         {\n            \"id\": \"2\",\n            \"firstName\": \"Rob\",\n            \"lastName\": \"Weasley\",\n            \"college\": {\n               \"name\": \"Hogwardes\",\n               \"location\": \"Unknown\"\n            }\n         }\n      ]\n   }\n}</code></pre>\n\n\n\n<h3>Describe what’s possible with a type system</h3>\n\n\n\n<p>GraphQL is strongly typed and the queries are based on fields and their associated data types. If there is type mismatch in a GraphQL query, server applications return clear and helpful error messages. This helps in smooth debugging and easy detection of bugs by client applications. GraphQL also provides client side libraries that can help in reducing explicit data conversion and parsing.</p>\n\n\n\n<p>An example of the&nbsp;<em>Student</em>&nbsp;and&nbsp;<em>College</em>&nbsp;data types is given below −</p>\n\n\n\n<pre class=\"wp-block-code\"><code>type Query {\n   students:&#91;Student]\n}\n\ntype Student {\n   id:ID!\n   firstName:String\n   lastName:String\n   fullName:String\n   college:College\n}\n\ntype College {\n   id:ID!\n   name:String\n   location:String\n   rating:Float\n   students:&#91;Student]\n}</code></pre>\n\n\n\n<h3>Move faster with powerful developer tools</h3>\n\n\n\n<p>GraphQL provides rich developer tools for documentation and testing queries. GraphiQL is an excellent tool which generates documentation of the query and its schema. It also gives a query editor to test GraphQL APIs and intelligent code completion capability while building queries.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>GraphQL is a query language for your API, and a server-side runtime for executing queries by using a type system you define for your data. GraphQL isn&#8217;t tied to any specific database or storage engine and is instead backed by your existing code and data. Why GraphQL RESTful APIs follow clear and well-structured resource-oriented approach. [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 1208,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [21, 75, 110, 175],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/781" }
+      ],
+      "collection": [
+        { "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=781"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 3,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/781/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 1987,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/781/revisions/1987"
+        }
+      ],
+      "wp:featuredmedia": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media/1208"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=781"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=781"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=781"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 782,
+    "date": "2020-05-13T06:56:10",
+    "date_gmt": "2020-05-13T06:56:10",
+    "guid": { "rendered": "http://angular.foobrdigital.com/?p=782" },
+    "modified": "2020-12-25T19:09:47",
+    "modified_gmt": "2020-12-25T19:09:47",
+    "slug": "environment-setup-5",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/environment-setup-5/",
+    "title": { "rendered": "Installation" },
+    "content": {
+      "rendered": "\n<p>In this chapter, we will learn about the environmental setup for GraphQL. To execute the examples in this tutorial you will need the following −</p>\n\n\n\n<ul><li>A computer running Linux, macOS, or Windows.</li><li>A web browser, preferably the latest version of Google Chrome.</li><li>A recent version of Node.js installed. The latest LTS version is recommended.</li><li>Visual Studio Code with extension GraphQL for VSCode installed or any code editor of your choice.</li></ul>\n\n\n\n<h2>How to Build a GraphQL server with Nodejs</h2>\n\n\n\n<p>We will go through a detailed step-wise approach to build GraphQL server with Nodejs as shown below −</p>\n\n\n\n<h3>Step 1 − Verify Node and Npm Versions</h3>\n\n\n\n<p>After installing NodeJs, verify the version of node and npm using following commands on the terminal −</p>\n\n\n\n<pre class=\"wp-block-code\"><code>C:\\Users\\Admin>node -v\nv10.19.0\n\nC:\\Users\\Admin>npm -v\n6.14.4</code></pre>\n\n\n\n<h3>Step 2 − Create a Project Folder and Open in VSCode</h3>\n\n\n\n<p>The root folder of project can be named as test-app.</p>\n\n\n\n<p>Open the folder using visual studio code editor by using the instructions below −</p>\n\n\n\n<pre class=\"wp-block-code\"><code>C:\\Users\\Admin>mkdir test-app\nC:\\Users\\Admin>cd test-app\nC:\\Users\\Admin\\test-app>code.</code></pre>\n\n\n\n<h3>Step 3 − Create package.json and Install the Dependencies</h3>\n\n\n\n<p>Create a package.json file which will contain all the dependencies of the GraphQL server application.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{\n   \"name\": \"hello-world-server\",\n   \"private\": true,\n   \"scripts\": {\n      \"start\": \"nodemon --ignore data/ server.js\"\n   },\n   \n   \"dependencies\": {\n      \"apollo-server-express\": \"^1.4.0\",\n      \"body-parser\": \"^1.18.3\",\n      \"cors\": \"^2.8.4\",\n      \"express\": \"^4.16.3\",\n      \"graphql\": \"^15.0.0\",\n      \"graphql-tools\": \"^5.0.0\"\n   },\n   \n   \"devDependencies\": {\n      \"nodemon\": \"1.17.1\"\n   }\n}</code></pre>\n\n\n\n<p>Install the dependencies by using the command as given below −</p>\n\n\n\n<pre class=\"wp-block-code\"><code>C:\\Users\\Code\\test-app>npm install</code></pre>\n\n\n\n<h3>Step 4 − Create Flat File Database in Data Folder</h3>\n\n\n\n<p>In this step, we use flat files to store and retrieve data. Create a folder data and add two files&nbsp;<strong>students.json</strong>&nbsp;and&nbsp;<strong>colleges.json</strong>.</p>\n\n\n\n<p>Following is the&nbsp;<strong>colleges.json</strong>&nbsp;file −</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&#91;\n   {\n      \"id\": \"col-10\",\n      \"name\": \"Hogwards\",\n      \"location\": \"USA\",\n      \"rating\":5.0\n   },\n   \n   {\n      \"id\": \"col-11\",\n      \"name\": \"Hogwards\",\n      \"location\": \"USA\",\n      \"rating\":4.5\n   }\n]</code></pre>\n\n\n\n<p>Following is the&nbsp;<strong>students.json</strong>&nbsp;file −</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&#91;\n   {\n      \"id\": \"1\",\n      \"firstName\":\"Saqib\",\n      \"lastName\":\"Khan\",\n      \"email\": \"Saqib@example.com\",\n      \"password\": \"password12\",\n      \"collegeId\": \"col-102\"\n   },\n   \n   {\n      \"id\": \"2\",\n      \"email\": \"Mubeen@example.com\",\n      \"firstName\":\"Mubeen\",\n      \"lastName\":\"Khan\",\n      \"password\": \"mango01\",\n      \"collegeId\": \"col-101\"\n   },\n   \n   {\n      \"id\": \"3\",\n      \"email\": \"shahbaz@example.com\",\n      \"firstName\":\"Shahbaz\",\n      \"lastName\":\"Khan\",\n      \"password\": \"oranges11\",\n      \"collegeId\": \"col-101\"\n   }\n]</code></pre>\n\n\n\n<h3>Step 5 − Create a Data Access Layer</h3>\n\n\n\n<p>We need to create a data store that loads the data folder contents. In this case, we need collection variables, <em>students</em> and <em>colleges</em>. Whenever the application needs data, it makes use of these collection variables.</p>\n\n\n\n<p>Create file db.js with in the project folder as follows −</p>\n\n\n\n<pre class=\"wp-block-code\"><code>const { DataStore } = require('notarealdb');\n\nconst store = new DataStore('./data');\n\nmodule.exports = {\n   students:store.collection('students'),\n   colleges:store.collection('colleges')\n};</code></pre>\n\n\n\n<h3>Step 6 − Create Schema File, schema.GraphQL</h3>\n\n\n\n<p>Create a schema file in the current project folder and add the following contents −</p>\n\n\n\n<pre class=\"wp-block-code\"><code>type Query  {\n   test: String\n}</code></pre>\n\n\n\n<h3>Step 7 − Create Resolver File, resolvers.js</h3>\n\n\n\n<p>Create a resolver file in the current project folder and add the following contents −</p>\n\n\n\n<pre class=\"wp-block-code\"><code>const Query = {\n   test: () => 'Test Success, GraphQL server is up &amp; running !!'\n}\nmodule.exports = {Query}</code></pre>\n\n\n\n<h3>Step 8 − Create&nbsp;Server.js&nbsp;and Configure GraphQL</h3>\n\n\n\n<p>Create a server file and configure GraphQL as follows −</p>\n\n\n\n<pre class=\"wp-block-code\"><code>const bodyParser = require('body-parser');\nconst cors = require('cors');\nconst express = require('express');\nconst db = require('./db');\n\nconst port = process.env.PORT || 9000;\nconst app = express();\n\nconst fs = require('fs')\nconst typeDefs = fs.readFileSync('./schema.graphql',{encoding:'utf-8'})\nconst resolvers = require('./resolvers')\n\nconst {makeExecutableSchema} = require('graphql-tools')\nconst schema = makeExecutableSchema({typeDefs, resolvers})\n\napp.use(cors(), bodyParser.json());\n\nconst  {graphiqlExpress,graphqlExpress} = require('apollo-server-express')\napp.use('/graphql',graphqlExpress({schema}))\napp.use('/graphiql',graphiqlExpress({endpointURL:'/graphql'}))\n\napp.listen(\n   port, () => console.info(\n      `Server started on port ${port}`\n   )\n);</code></pre>\n\n\n\n<h3>Step 9 − Run the Application and Test with GraphiQL</h3>\n\n\n\n<p>Verify the folder structure of project test-app as follows −</p>\n\n\n\n<pre class=\"wp-block-code\"><code>test-app /\n   -->package.json\n   -->db.js\n   -->data\n      students.json\n      colleges.json\n   -->resolvers.js\n   -->schema.graphql\n   -->server.js</code></pre>\n\n\n\n<p>Run the command npm start as given below −</p>\n\n\n\n<pre class=\"wp-block-code\"><code>C:\\Users\\Code\\test-app>npm start\n</code></pre>\n\n\n\n<p>The server is running in 9000 port, so we can test the application using GraphiQL tool. Open the browser and enter the URL http://localhost:9000/graphiql. Type the following query in the editor −</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{\n   Test \n}</code></pre>\n\n\n\n<p>The response from the server is given below −</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{\n   \"data\": {\n      \"test\": \"Test Success, GraphQL server is running !!\"\n   }\n}</code></pre>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://www.tutorialspoint.com/graphql/images/environment_setup.jpg\" alt=\"Environment Setup.jpg\"/></figure>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>In this chapter, we will learn about the environmental setup for GraphQL. To execute the examples in this tutorial you will need the following − A computer running Linux, macOS, or Windows. A web browser, preferably the latest version of Google Chrome. A recent version of Node.js installed. The latest LTS version is recommended. Visual [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 1212,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [21, 75, 110, 175],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/782" }
+      ],
+      "collection": [
+        { "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=782"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 4,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/782/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 1988,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/782/revisions/1988"
+        }
+      ],
+      "wp:featuredmedia": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media/1212"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=782"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=782"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=782"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 783,
+    "date": "2020-05-13T06:56:35",
+    "date_gmt": "2020-05-13T06:56:35",
+    "guid": { "rendered": "http://angular.foobrdigital.com/?p=783" },
+    "modified": "2020-12-25T19:09:47",
+    "modified_gmt": "2020-12-25T19:09:47",
+    "slug": "architecture",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/architecture/",
+    "title": { "rendered": "Architecture" },
+    "content": {
+      "rendered": "\n<p>GraphQL is a specification that describes the behavior of a GraphQL server. It is a set of guidelines on how requests and responses should be handled like supported protocols, format of the data that can be accepted by the server, format of the response returned by the server, etc. The request made by a client to the GraphQL server is called a Query. </p>\n\n\n\n<p>Another important concept of GraphQL is its transport layer agnostics. It can be used with any available network protocol like TCP, websocket, or any other transport layer protocol. It is also neutral to databases, so you can use it with relational or NoSQL databases.</p>\n\n\n\n<p>GraphQL Server can be deployed by using any of the three methods listed below −</p>\n\n\n\n<ul><li>GraphQL server with connected database</li><li>GraphQL server that integrates existing systems</li><li>Hybrid approach</li></ul>\n\n\n\n<h2>GraphQL Server with Connected Database</h2>\n\n\n\n<p>This architecture has a GraphQL Server with an integrated database and can often be used with new projects. On the receipt of a Query, the server reads the request payload and fetches data from the database. This is called resolving the query. The response returned to the client adheres to the format specified in the official GraphQL specification.</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://www.tutorialspoint.com/graphql/images/graphql_server_connected_database.jpg\" alt=\"GraphQL Server Connected Database\"/></figure>\n\n\n\n<p>In the above diagram, GraphQL server and the database are integrated on a single node. The client (desktop/mobile) communicates with GraphQL server over HTTP. The server processes the request, fetches data from the database and returns it to the client.</p>\n\n\n\n<h2>GraphQL Server Integrating Existing Systems</h2>\n\n\n\n<p>This approach is helpful for companies which have legacy infrastructure and different APIs. GraphQL can be used to unify micro services, legacy infrastructure and third-party APIs in the existing system.</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://www.tutorialspoint.com/graphql/images/graphql_server_integrating_existing_systems.jpg\" alt=\"GraphQL Server Integrating Existing Systems\"/></figure>\n\n\n\n<p>In the above diagram, a GraphQL API acts as an interface between the client and the existing systems. Client applications communicate with the GraphQL server which in turn resolves the query.</p>\n\n\n\n<h2>Hybrid Approach</h2>\n\n\n\n<p>Finally, we can combine the above two approaches and build a GraphQL server. In this architecture, the GraphQL server will resolve any request that is received. It will either retrieve data from connected database or from the integrated API’s. This is represented in the below figure −</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://www.tutorialspoint.com/graphql/images/graphql_hybrid_approach.jpg\" alt=\"GraphQL Hybrid Approach\"/></figure>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>GraphQL is a specification that describes the behavior of a GraphQL server. It is a set of guidelines on how requests and responses should be handled like supported protocols, format of the data that can be accepted by the server, format of the response returned by the server, etc. The request made by a client [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 1214,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [21, 75, 110, 175],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/783" }
+      ],
+      "collection": [
+        { "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=783"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 4,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/783/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 1989,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/783/revisions/1989"
+        }
+      ],
+      "wp:featuredmedia": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media/1214"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=783"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=783"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=783"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 784,
+    "date": "2020-05-13T06:56:59",
+    "date_gmt": "2020-05-13T06:56:59",
+    "guid": { "rendered": "http://angular.foobrdigital.com/?p=784" },
+    "modified": "2020-12-25T19:09:47",
+    "modified_gmt": "2020-12-25T19:09:47",
+    "slug": "application-components",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/application-components/",
+    "title": { "rendered": "Application Components" },
+    "content": {
+      "rendered": "\n<p>Let&#8217;s discuss GraphQL components and the way they communicate with each other. The entire application components can be distinguished as below −</p>\n\n\n\n<ul><li>Server-side Components</li><li>Client-side Components</li></ul>\n\n\n\n<h2>Server-Side Components</h2>\n\n\n\n<p>GraphQL server forms the core component on the server-side and allows us to parse the queries coming from GraphQL client applications. Apollo Server is the most commonly used implementation of GraphQL specification. Other server programming components include the following −</p>\n\n\n\n<table><tbody><tr><th>Sr.No.</th><th>Server Essentials &amp; Description</th></tr><tr><td>1</td><td><strong>Schema</strong>A GraphQL schema is at the center of any GraphQL server implementation and describes the functionality available to the clients which connect to it.</td></tr><tr><td>2</td><td><strong>Query</strong>A GraphQL query is the client application request to retrieve data from database or legacy API&#8217;s.</td></tr><tr><td>3</td><td><strong>Resolver</strong>Resolvers provide the instructions for turning a GraphQL operation into data. They resolve the query to data by defining resolver functions.</td></tr></tbody></table>\n\n\n\n<h2>Client-side Components</h2>\n\n\n\n<p>Given below are the client-side components −</p>\n\n\n\n<pre><code><table><tbody><tr><th>Sr.No.</th><th>Tool &amp; Description</th></tr><tr><td>1</td><td><strong>GraphiQL</strong>Browser based interface for editing and testing GraphQL queries and mutations.</td></tr><tr><td>2</td><td><strong>ApolloClient</strong>Best tool to build GraphQL client applications. Integrates well with all javascript front-end.</td></tr></tbody></table></code></pre>\n\n\n\n<p>The below diagram shows a&nbsp;<strong>Client-Server architecture</strong>. The web server is built on NodeJs and Express framework. A request is made to the Apollo GraphQL Server by ReactJS application (built using Apollo Client library) or GraphiQL browser application. The query will be parsed and validated against a schema defined in the server. If the request schema passes the validation, then the associated resolver functions will be executed. The resolver will contain code to fetch data from an API or a database.</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://www.tutorialspoint.com/graphql/images/client_side_components.jpg\" alt=\"Client-side Components\"/></figure>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Let&#8217;s discuss GraphQL components and the way they communicate with each other. The entire application components can be distinguished as below − Server-side Components Client-side Components Server-Side Components GraphQL server forms the core component on the server-side and allows us to parse the queries coming from GraphQL client applications. Apollo Server is the most commonly [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 1217,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [21, 75, 110, 175],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/784" }
+      ],
+      "collection": [
+        { "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=784"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 4,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/784/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 2265,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/784/revisions/2265"
+        }
+      ],
+      "wp:featuredmedia": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media/1217"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=784"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=784"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=784"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 785,
+    "date": "2020-05-13T07:00:08",
+    "date_gmt": "2020-05-13T07:00:08",
+    "guid": { "rendered": "http://angular.foobrdigital.com/?p=785" },
+    "modified": "2020-12-25T19:09:47",
+    "modified_gmt": "2020-12-25T19:09:47",
+    "slug": "example",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/example/",
+    "title": { "rendered": "Example" },
+    "content": {
+      "rendered": "\n<p>In this chapter, we will create a simple API that returns a greeting message, HelloWorld, and access it using GraphiQL.</p>\n\n\n\n<h2>Example</h2>\n\n\n\n<p>This example is based on NodeJS, Express and Apollo server. We will learn to put all the concepts together with the following steps −</p>\n\n\n\n<h3>Step 1 − Setting up Express</h3>\n\n\n\n<p>ExpressJS is a web application framework that helps to build websites and web applications. In this example, we will build a GraphQL API on top of the Express framework.</p>\n\n\n\n<p>Next step is to create a folder&nbsp;<strong>hello-world-server</strong>&nbsp;and navigate to the same folder from the terminal. Add package.json, and give a name to the package. Since this package is only used internally, we can declare it private.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{\n   \"name\":\"hello-world-server\",\n   \"private\":true\n}</code></pre>\n\n\n\n<p>Install the dependencies for Express server as shown below −</p>\n\n\n\n<pre class=\"wp-block-code\"><code>C:\\Users\\Admin\\hello-world-server>npm install express body-parser cors</code></pre>\n\n\n\n<p><em>body-parser</em>&nbsp;is a middleware package which helps Express to handle HTTP Post requests efficiently.&nbsp;<em>cors</em>&nbsp;is another middleware package that handles cross-origin resource sharing.</p>\n\n\n\n<p>Create a&nbsp;<strong>server.js</strong>&nbsp;file within the project folder and type the following in it −</p>\n\n\n\n<pre class=\"wp-block-code\"><code>const bodyParser = require('body-parser')\n   const cors = require('cors')\n   const express = require('express')\n   const port = process.env.PORT|| 9000\n   const app = express()\n   \n   //register middleware\n   app.use(bodyParser.json() , cors())\n   app.listen(port, () =>  console.log(`server is up and running at ${port}`)</code></pre>\n\n\n\n<p>To verify if the Express server is up and running, execute the following code in the terminal window −</p>\n\n\n\n<pre class=\"wp-block-code\"><code>C:\\Users\\Admin\\hello-world-server>node server.js\n</code></pre>\n\n\n\n<p>The following output is displayed in the server console. This shows that the express server is running on port 9000.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>server is up and running at 9000\n</code></pre>\n\n\n\n<p>If you open the browser and type&nbsp;<strong>http://localhost:9000</strong>, you will get the following screen −</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://www.tutorialspoint.com/graphql/images/running_express_server.jpg\" alt=\"Running Epress Server\"/></figure>\n\n\n\n<p>To stop the server, press&nbsp;<strong>Ctrl + C</strong>.</p>\n\n\n\n<h3>Step 2 − Install GraphQL and Apollo Server</h3>\n\n\n\n<p>Now that Express is configured, the next step is to download the following GraphQL dependencies −</p>\n\n\n\n<ul><li>GraphiQL</li><li>GraphiQL-tools</li><li>apollo-server-express@1</li></ul>\n\n\n\n<p>We shall use Apollo server v1.0 as it is a stable release. Type the following commands to install these dependencies −</p>\n\n\n\n<pre class=\"wp-block-code\"><code>C:\\Users\\Admin\\hello-world-server>npm install graphql graphql-tools apollo-server-express@1</code></pre>\n\n\n\n<p>We can verify if these dependencies are installed successfully by checking the&nbsp;<strong>package.json</strong>&nbsp;file that we created previously.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{\n   \"name\": \"hello-world-server\",\n   \"private\": true,\n   \n   \"dependencies\": {\n      \"apollo-server-express\": \"^1.4.0\",\n      \"body-parser\": \"^1.18.3\",\n      \"cors\": \"^2.8.4\",\n      \"express\": \"^4.16.3\",\n      \"graphql\": \"^0.13.2\",\n      \"graphql-tools\": \"^3.1.1\"\n   }\n}</code></pre>\n\n\n\n<h3>Step 3 − Define the Schema</h3>\n\n\n\n<p>A GraphQL schema defines what kind of object can be fetched from a service, and what fields it has. The schema can be defined using&nbsp;<strong>GraphQL Schema Definition Language</strong>. Now, add the following code snippet in the&nbsp;<strong>server.js</strong>&nbsp;file −</p>\n\n\n\n<pre class=\"wp-block-code\"><code>// Adding Type Definitions\nconst typeDefinition = `\n   type Query  {\n      greeting: String\n   }</code></pre>\n\n\n\n<p>Here, the query contains a&nbsp;<em>greeting</em>&nbsp;attribute that returns a&nbsp;<em>string</em>&nbsp;value.</p>\n\n\n\n<h3>Step 4 − Create a Resolver</h3>\n\n\n\n<p>The first step in creating a resolver is to add some code to process the request for greeting field. This is specified in a&nbsp;<strong>resolver</strong>. The structure of the resolver function must match the schema. Add the following code snippet in the&nbsp;<strong>server.js</strong>&nbsp;file.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>// Adding resolver\nconst  resolverObject = {\n   Query : {\n      greeting: () => 'Hello GraphQL  From TutorialsPoint !!'\n   }\n}</code></pre>\n\n\n\n<p>The second step is to bind the schema and resolver using <strong>makeExecutableSchema</strong>. This function is pre-defined in the GraphiQL-tools module. Add the following code snippet in the <strong>server.js</strong> file.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>const {makeExecutableSchema} = require('graphql-tools')\nconst schema = makeExecutableSchema({typeDefs:typeDefinition, resolvers:resolverObject})</code></pre>\n\n\n\n<h3>Step 5 − Define Routes to Fetch Data from ReactJS/GraphiQL Application</h3>\n\n\n\n<p>Add the following code snippet in the&nbsp;<strong>server.js</strong>&nbsp;file −</p>\n\n\n\n<pre class=\"wp-block-code\"><code>const {graphqlExpress, graphiqlExpress} = require('apollo-server-express')\n\n   //create routes for graphql and graphiql\n   app.use('/graphql',graphqlExpress({schema}))\n   \n   app.use('/graphiql',graphiqlExpress({endpointURL:'/graphql'}))</code></pre>\n\n\n\n<p>The&nbsp;<em>graphqlExpress</em>&nbsp;function helps to register the route&nbsp;<strong>http://localhost:9000/graphql</strong>. The ReactJS application can use this endpoint to query data. Similarly, the&nbsp;<em>graphqliExpress</em>&nbsp;function helps to register the route&nbsp;<strong>http://localhost:9000/graphiql</strong>. This will be used by the GraphiQL browser client to test the API.</p>\n\n\n\n<p>The complete server.js code is as given below −</p>\n\n\n\n<pre class=\"wp-block-code\"><code>const bodyParser = require('body-parser')\nconst cors = require('cors')\nconst express = require('express')\nconst port = process.env.PORT||9000\nconst app = express()\n\napp.use(bodyParser.json() , cors())\nconst typeDefinition = `\ntype Query  {\n   greeting: String\n}`\nconst  resolverObject = {\n   Query : {\n      greeting: () => 'Hello GraphQL  From TutorialsPoint !!'\n   }\n}\nconst {makeExecutableSchema} = require('graphql-tools')\n\nconst schema = makeExecutableSchema({typeDefs:typeDefinition, resolvers:resolverObject})\n\nconst {graphqlExpress,graphiqlExpress} = require('apollo-server-express')\n\napp.use('/graphql',graphqlExpress({schema}))\napp.use('/graphiql',graphiqlExpress({endpointURL:'/graphql'}))\napp.listen(port, () =>  console.log(`server is up and running ${port}`))</code></pre>\n\n\n\n<h3>Step 6 − Start the Application</h3>\n\n\n\n<p>Execute&nbsp;<strong>server.js</strong>&nbsp;using Node.js as follows −</p>\n\n\n\n<pre class=\"wp-block-code\"><code>C:\\Users\\Admin\\hello-world-server>node server.js\n</code></pre>\n\n\n\n<h3>Step 7 − Test the GraphQL API</h3>\n\n\n\n<p>Open the browser and type <strong>http://localhost:9000/graphiql</strong>. In the query tab of GraphQL, enter the following −</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{\n   greeting\n}</code></pre>\n\n\n\n<p>The response from the server is given below −</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{\n   \"data\": {\n      \"greeting\": \"Hello GraphQL From TutorialsPoint !!\"\n   }\n}\n﻿</code></pre>\n\n\n\n<p>The following image illustrates the response −</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://www.tutorialspoint.com/graphql/images/test_graphql_api.jpg\" alt=\"Test GraphQL API\"/></figure>\n\n\n\n<p><strong>Note</strong>&nbsp;− Please ensure that Apollo Server Version 1.0 is used.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>In this chapter, we will create a simple API that returns a greeting message, HelloWorld, and access it using GraphiQL. Example This example is based on NodeJS, Express and Apollo server. We will learn to put all the concepts together with the following steps − Step 1 − Setting up Express ExpressJS is a web [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 1325,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [21, 75, 110, 175],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/785" }
+      ],
+      "collection": [
+        { "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=785"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 3,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/785/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 1990,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/785/revisions/1990"
+        }
+      ],
+      "wp:featuredmedia": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media/1325"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=785"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=785"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=785"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 786,
+    "date": "2020-05-13T07:03:19",
+    "date_gmt": "2020-05-13T07:03:19",
+    "guid": { "rendered": "http://angular.foobrdigital.com/?p=786" },
+    "modified": "2020-12-25T19:09:46",
+    "modified_gmt": "2020-12-25T19:09:46",
+    "slug": "type-system",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/type-system/",
+    "title": { "rendered": "Type System" },
+    "content": {
+      "rendered": "\n<p>GraphQL is a strongly typed language. Type System defines various data types that can be used in a GraphQL application. The type system helps to define the schema, which is a contract between client and server. The commonly used GraphQL data types are as follows −</p>\n\n\n\n<figure class=\"wp-block-table\"><table><tbody><tr><th>Sr.No.</th><th>Types &amp; Description</th></tr><tr><td>1</td><td><strong>Scalar</strong>Stores a single value</td></tr><tr><td>2</td><td><strong>Object</strong>Shows what kind of object can be fetched</td></tr><tr><td>3</td><td><strong>Query</strong>Entry point type to other specific types</td></tr><tr><td>4</td><td><strong>Mutation</strong>Entry point for data manipulation</td></tr><tr><td>5</td><td><strong>Enum</strong>Useful in a situation where you need the user to pick from a prescribed list of options</td></tr></tbody></table></figure>\n\n\n\n<h2>Scalar Type</h2>\n\n\n\n<p>Scalar types are primitive data types that can store only a single value. The default scalar types that GraphQL offers are −</p>\n\n\n\n<ul><li><strong>Int</strong>&nbsp;− Signed 32-bit Integer</li><li><strong>Float</strong>&nbsp;− Signed double precision floating point value</li><li><strong>String</strong>&nbsp;− UTF &#8211; 8-character sequence</li><li><strong>Boolean</strong>&nbsp;− True or false</li><li><strong>ID</strong>&nbsp;− A unique identifier, often used as a unique identifier to fetch an object or as the key for a cache.</li></ul>\n\n\n\n<p>The syntax for defining a scalar type is as follows −</p>\n\n\n\n<p>The snippet given below defines a field named greeting which returns String value.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>greeting: String\n</code></pre>\n\n\n\n<h2>Object Type</h2>\n\n\n\n<p>The object type is the most common type used in a schema and represents a group of fields. Each field inside an object type maps to another type, thereby allowing nested types. In other words, an object type is composed of multiple scalar types or object types.</p>\n\n\n\n<p>The syntax for defining an object type is given below −</p>\n\n\n\n<pre class=\"wp-block-code\"><code>type object_type_name\n{\n   field1: data_type\n   field2:data_type \n   ....\n   fieldn:data_type\n}</code></pre>\n\n\n\n<p>You can consider the following code snippet −</p>\n\n\n\n<pre class=\"wp-block-code\"><code>--Defining a GraphQL schema--  \n\ntype Query\n{\n   stud_details:&#91;Student]\n}</code></pre>\n\n\n\n<p>The example given above defines an object data-type Student. The&nbsp;<em>stud_details</em>&nbsp;field in the root Query schema will return a list of Student objects.</p>\n\n\n\n<h2>Query Type</h2>\n\n\n\n<p>A GraphQL query is used to fetch data. It is like requesting a resource in REST-based APIs. To keep it simple, the Query type is the request sent from a client application to the GraphQL server. GraphQL uses the&nbsp;<strong>Schema Definition Language (SDL)</strong>&nbsp;to define a Query. Query type is one of the many root-level types in GraphQL.</p>\n\n\n\n<p>The syntax for defining a Query is as given below −</p>\n\n\n\n<pre class=\"wp-block-code\"><code>type Query {\n   field1: data_type\n   field2:data_type\n   field2(param1:data_type,param2:data_type,...paramN:data_type):data_type\n}</code></pre>\n\n\n\n<p>An example of defining a Query −</p>\n\n\n\n<pre class=\"wp-block-code\"><code>type Query  {\n   greeting: String\n}</code></pre>\n\n\n\n<h2>Mutation Type</h2>\n\n\n\n<p>Mutations are operations sent to the server to&nbsp;<strong>create, update</strong>&nbsp;or&nbsp;<strong>delete</strong>&nbsp;data. These are analogous to the PUT, POST, PATCH and DELETE verbs to call REST-based APIs.</p>\n\n\n\n<p>Mutation is one of the root-level data-types in GraphQL. The Query type defines the entry-points for data-fetching operations whereas the Mutation type specifies the entry points for data-manipulation operations.</p>\n\n\n\n<p>The syntax for defining a Mutation type is given below −</p>\n\n\n\n<pre class=\"wp-block-code\"><code>type Mutation {\n   field1: data_type\n   field2(param1:data_type,param2:data_type,...paramN:data_type):data_type \n}</code></pre>\n\n\n\n<p>For example, we can define a mutation type to add a new Student as below −</p>\n\n\n\n<pre class=\"wp-block-code\"><code>type Mutation {\n   addStudent(firstName: String, lastName: String): Student\n}</code></pre>\n\n\n\n<h2>Enum Type</h2>\n\n\n\n<p>An Enum is similar to a scalar type. Enums are useful in a situation where the value for a field must be from a prescribed list of options.</p>\n\n\n\n<p>The syntax for defining an Enum type is −</p>\n\n\n\n<pre class=\"wp-block-code\"><code>type enum_name{\n   value1\n   value2\n}</code></pre>\n\n\n\n<p>Following snippet illustrates how an enum type can be defined −</p>\n\n\n\n<pre class=\"wp-block-code\"><code>type Days_of_Week{\n   SUNDAY\n   MONDAY\n   TUESDAY\n   WEDNESDAY\n   THURSDAY\n   FRIDAY\n   SATURDAY\n}</code></pre>\n\n\n\n<h2>List Type</h2>\n\n\n\n<p>Lists can be used to represent an array of values of specific type. Lists are defined with a type modifier [] that wraps object types, scalars, and enums.</p>\n\n\n\n<p>The following syntax can be used to define a list type −</p>\n\n\n\n<pre class=\"wp-block-code\"><code>field:&#91;data_type]\n</code></pre>\n\n\n\n<p>The below example defines a list type todos −</p>\n\n\n\n<pre class=\"wp-block-code\"><code>type Query {\n   todos: &#91;String]\n}</code></pre>\n\n\n\n<h2>Non-Nullable Type</h2>\n\n\n\n<p>By default, each of the core scalar types can be set to null. In other words, these types can either return a value of the specified type or they can have no value. To override this default and specify that a field must be defined, an exclamation mark (!) can be appended to a type. This ensures the presence of value in results returned by the query.</p>\n\n\n\n<p>The following syntax can be used to define a non-nullable field −</p>\n\n\n\n<pre class=\"wp-block-code\"><code>field:data_type!\n</code></pre>\n\n\n\n<p>In the below example,&nbsp;<em>stud_id</em>&nbsp;is declared as a mandatory field.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>type Student {\n   stud_id:ID!\n   firstName:String\n   lastName:String\n   fullName:String\n   college:College\n}</code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>GraphQL is a strongly typed language. Type System defines various data types that can be used in a GraphQL application. The type system helps to define the schema, which is a contract between client and server. The commonly used GraphQL data types are as follows − Sr.No. Types &amp; Description 1 ScalarStores a single value [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 1327,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [21, 75, 110, 175],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/786" }
+      ],
+      "collection": [
+        { "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=786"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 2,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/786/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 1334,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/786/revisions/1334"
+        }
+      ],
+      "wp:featuredmedia": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media/1327"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=786"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=786"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=786"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 787,
+    "date": "2020-05-13T07:05:40",
+    "date_gmt": "2020-05-13T07:05:40",
+    "guid": { "rendered": "http://angular.foobrdigital.com/?p=787" },
+    "modified": "2020-12-25T19:09:46",
+    "modified_gmt": "2020-12-25T19:09:46",
+    "slug": "schema",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/schema/",
+    "title": { "rendered": "Schema" },
+    "content": {
+      "rendered": "\n<p>A GraphQL schema is at the core of any GraphQL server implementation. It describes the functionality available to the client applications that connect to it. We can use any programming language to create a GraphQL schema and build an interface around it.</p>\n\n\n\n<p>The GraphQL runtime defines a generic graph-based schema to publish the capabilities of the data service it represents. Client applications can query the schema within its capabilities. This approach decouples clients from servers and allows both to evolve and scale independently.</p>\n\n\n\n<p>In this chapter, we use Apollo server to execute GraphQL queries. The <strong>makeExecutableSchema</strong> function in GraphiQL-tools helps you to bind schema and resolvers.</p>\n\n\n\n<h2>makeExecutableSchema Function Syntax</h2>\n\n\n\n<p>The&nbsp;<strong>makeExecutableSchema</strong>&nbsp;function takes a single argument {} of Object type. The syntax for using this function is given below −</p>\n\n\n\n<pre class=\"wp-block-code\"><code>import { makeExecutableSchema } from 'graphql-tools';\n\nconst jsSchema = makeExecutableSchema({\n   typeDefs,\n   resolvers, // optional\n   logger, // optional\n   allowUndefinedInResolve = false, // optional\n   resolverValidationOptions = {}, // optional\n   directiveResolvers = null, // optional\n   schemaDirectives = null,  // optional\n   parseOptions = {},  // optional\n   inheritResolversFromInterfaces = false  // optional\n});</code></pre>\n\n\n\n<figure class=\"wp-block-table\"><table><tbody><tr><th>Sr.No.</th><th>Parameter &amp; Description</th></tr><tr><td>1</td><td><strong>typeDefs</strong> This is a required argument. It represents a GraphQL query as a UTF-8 string.</td></tr><tr><td>2</td><td><strong>Resolvers</strong> This is an optional argument (empty object by default). This has functions that handle the query.</td></tr><tr><td>3</td><td><strong>logger</strong> This is an optional argument and can be used to print errors to the server console.</td></tr><tr><td>4</td><td><strong>parseOptions</strong> This is an optional argument and allows customization of parse when specifying typeDefs as a string.</td></tr><tr><td>5</td><td><strong>allowUndefinedInResolve</strong> This is true by default. When set to false, causes your resolve functions to throw errors if they return undefined.</td></tr><tr><td>6</td><td><strong>resolverValidationOptions</strong> This is an optional argument and accepts an object with Boolean properties.</td></tr><tr><td>7</td><td><strong>inheritResolversFromInterfaces</strong> This is an optional argument and accepts a Boolean argument to check resolvers object inheritance.</td></tr></tbody></table></figure>\n\n\n\n<h2>Illustration</h2>\n\n\n\n<p>Let us create a simple application to understand this schema. This will create a schema for querying list of students from the server. The student data will be stored in a flat file and we will use a node module called&nbsp;<strong>notarealdb</strong>&nbsp;to fake a database and read from the flat file.</p>\n\n\n\n<h3>Step 1 − Download and Install Required Dependencies for the Project</h3>\n\n\n\n<p>Create a folder named&nbsp;<strong>schema-app</strong>. Change your directory to schema-app from the terminal. Then, follow steps 3 to 5 explained in the Environment Setup chapter to complete the download and the installation process.</p>\n\n\n\n<h3>Step 2 − Create a Schema</h3>\n\n\n\n<p>Add <strong>schema.GraphiQL</strong> file in the project folder, <strong>schema-app</strong> and add the following code −</p>\n\n\n\n<pre class=\"wp-block-code\"><code>type Query {\n   greeting:String\n   students:&#91;Student]\n}\n\ntype Student {\n   id:ID!\n   firstName:String\n   lastName:String\n   password:String\n   collegeId:String\n}</code></pre>\n\n\n\n<p>The root of the schema will be Query type. The query has two fields − greeting and Students that returns String and a list of students respectively. Student is declared as an Object type since it contains multiple fields. The ID field is declared as non-nullable.</p>\n\n\n\n<h3>Step 3 − Create Resolver</h3>\n\n\n\n<p>Create a file&nbsp;<strong>resolvers.js</strong>&nbsp;in the project folder and add the following code −</p>\n\n\n\n<pre class=\"wp-block-code\"><code>const db = require('./db')\nconst Query = {\n   greeting:() => {\n      return \"hello from  TutorialsPoint !!!\"\n   },\n   students:() => db.students.list()\n}\n\nmodule.exports = {Query}</code></pre>\n\n\n\n<p>Here greeting and students are the resolvers that handle the query.&nbsp;<strong>students resolver function</strong>&nbsp;returns a list of students from the data access layer. To access resolver functions outside the module, Query object has to be exported using&nbsp;<strong>module.exports</strong>.</p>\n\n\n\n<h3>Step 4 − Run the Application</h3>\n\n\n\n<p>Create a server.js file and refer step 8 in the Environment Setup Chapter. The next step is to execute the command npm start in the terminal. The server will be up and running on 9000 port. Here, we use GraphQL as a client to test the application. Open browser and type the URL, <strong>http://localhost:9000/graphiql</strong>.</p>\n\n\n\n<p>Type the following query in the editor −</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{\n   greeting\n   students {\n      id\n      firstName\n      lastName\n   }\n}</code></pre>\n\n\n\n<p>The query will display the output as shown below −</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://www.tutorialspoint.com/graphql/images/query_output.jpg\" alt=\"Query Output\"/></figure>\n\n\n\n<p><strong>Note</strong>&nbsp;− We can replace the students.json with a RESTful API call to retrieve student data or even a real database like MySQL or MongoDB. GraphQL becomes a thin wrapper around your original application layer to improve performance.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>A GraphQL schema is at the core of any GraphQL server implementation. It describes the functionality available to the client applications that connect to it. We can use any programming language to create a GraphQL schema and build an interface around it. The GraphQL runtime defines a generic graph-based schema to publish the capabilities of [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 1326,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [21, 75, 110, 175],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/787" }
+      ],
+      "collection": [
+        { "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=787"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 3,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/787/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 1991,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/787/revisions/1991"
+        }
+      ],
+      "wp:featuredmedia": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media/1326"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=787"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=787"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=787"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 788,
+    "date": "2020-05-13T07:07:02",
+    "date_gmt": "2020-05-13T07:07:02",
+    "guid": { "rendered": "http://angular.foobrdigital.com/?p=788" },
+    "modified": "2020-12-25T19:09:46",
+    "modified_gmt": "2020-12-25T19:09:46",
+    "slug": "resolver",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/resolver/",
+    "title": { "rendered": "Resolver" },
+    "content": {
+      "rendered": "\n<p>Resolver is a collection of functions that generate response for a GraphQL query. In simple terms, a resolver acts as a GraphQL query handler. Every resolver function in a GraphQL schema accepts four positional arguments as given below −</p>\n\n\n\n<pre class=\"wp-block-code\"><code>fieldName:(root, args, context, info) => { result }\n</code></pre>\n\n\n\n<p>An example of resolver functions is shown below −</p>\n\n\n\n<pre class=\"wp-block-code\"><code>//resolver function  with no parameters and returning string\ngreeting:() => {\n   return \"hello from  TutorialsPoint !!!\"\n}\n\n//resolver function with no parameters and returning list\nstudents:() => db.students.list()\n\n//resolver function with arguments and returning object\nstudentById:(root,args,context,info) => {\n   return db.students.get(args.id);\n}</code></pre>\n\n\n\n<p>Given below are the positional arguments and their description −</p>\n\n\n\n<figure class=\"wp-block-table\"><table><tbody><tr><th>Sr.No.</th><th>Arguments &amp; Description</th></tr><tr><td>1</td><td><strong>root</strong>The object that contains the result returned from the resolver on the parent field.</td></tr><tr><td>2</td><td><strong>args</strong>An object with the arguments passed into the field in the query.</td></tr><tr><td>3</td><td><strong>context</strong>This is an object shared by all resolvers in a particular query.</td></tr><tr><td>4</td><td><strong>info</strong>It contains information about the execution state of the query, including the field name, path to the field from the root.</td></tr></tbody></table></figure>\n\n\n\n<h2>Resolver Result Format</h2>\n\n\n\n<p>Resolvers in GraphQL can return different types of values as given below −</p>\n\n\n\n<figure class=\"wp-block-table\"><table><tbody><tr><th>Sr.No.</th><th>Arguments and Description</th></tr><tr><td>1</td><td><strong>null or undefined</strong> this indicates the object could not be found</td></tr><tr><td>2</td><td><strong>array</strong> this is only valid if the schema indicates that the result of a field should be a list</td></tr><tr><td>3</td><td><strong>promise</strong> resolvers often do asynchronous actions like fetching from a database or backend API, so they can return promises</td></tr><tr><td>4</td><td><strong>scalar or object</strong> a resolver can also return other values</td></tr></tbody></table></figure>\n\n\n\n<h2>Illustration</h2>\n\n\n\n<p>Let us create a simple application to understand resolver. This will create schema for querying a student by id from the server. The student data will be stored in a flat file and we will use a node module called&nbsp;<strong>notarealdb</strong>&nbsp;to fake a database and read from flat file.</p>\n\n\n\n<p>The following is a step-wise process to create a simple application −</p>\n\n\n\n<h3>Step 1 − Download and Install Required Dependencies for the Project</h3>\n\n\n\n<p>Create a folder named&nbsp;<strong>resolver-app</strong>. Change your directory to&nbsp;<strong>resolver-app</strong>&nbsp;from the terminal. Later, follow steps 3 to 5 in the Environment Setup chapter.</p>\n\n\n\n<h3>Step 2 − Create a Schema</h3>\n\n\n\n<p>Add schema.graphql file in the project folder resolver-app and add the following code −</p>\n\n\n\n<pre class=\"wp-block-code\"><code>type Query { \n   greeting:String\n   students:&#91;Student]\n   studentById(id:ID!):Student \n}\n\ntype Student {\n   id:ID!\n   firstName:String\n   lastName:String\n   password:String\n   collegeId:String\n}</code></pre>\n\n\n\n<p>The schema file shows that user can query for&nbsp;<em>greeting, students</em>&nbsp;and&nbsp;<em>studentById</em>. To retrieve students with specific id, we use&nbsp;<strong>data type ID!</strong>&nbsp;which shows a non nullable unique identifier field. The&nbsp;<em>students</em>&nbsp;field returns an array of students, and&nbsp;<em>greeting</em>&nbsp;returns a simple string value.</p>\n\n\n\n<h3>Step 3 − Create Resolver</h3>\n\n\n\n<p>Create a file&nbsp;<strong>resolvers.js</strong>&nbsp;in the project folder and add the following code −</p>\n\n\n\n<pre class=\"wp-block-code\"><code>const db = require('./db')\nconst Query = {\n   //resolver function for greeting\n   greeting:() => {\n      return \"hello from  TutorialsPoint !!!\"\n   },\n   \n   //resolver function for students returns list\n   students:() => db.students.list(),\n\n   //resolver function for studentbyId\n   studentById:(root,args,context,info) => {\n      //args will contain parameter passed in query\n      return db.students.get(args.id);\n   }\n}\nmodule.exports = {Query}</code></pre>\n\n\n\n<p>Here,&nbsp;<em>studentById</em>&nbsp;takes in three parameters. As discussed in this chapter, the&nbsp;<em>studentId</em>&nbsp;can be retrieved from args; root will contain the Query object itself. To return a specific student, we need to call get method with id parameter in the students collection.</p>\n\n\n\n<p>Here&nbsp;<em>greeting, students, studentById</em>&nbsp;are the resolvers that handle the query.&nbsp;<strong>students resolver function</strong>&nbsp;returns a list of students from the data access layer. To access resolver functions outside the module, Query object has to be exported using module.exports.</p>\n\n\n\n<h3>Step 4 − Run the Application</h3>\n\n\n\n<p>Create a server.js file. Refer step 8 in the Environment Setup Chapter. Execute the command npm start in the terminal. The server will be up and running on 9000 port. Here, we use GraphQL as a client to test the application.</p>\n\n\n\n<p>Open the browser and enter the url,&nbsp;<strong>http://localhost:9000/graphiql</strong>. Type the following query in the editor −</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{  \n   studentById(id:\"S1001\") {\n      id\n      firstName\n      lastName\n   }\n}</code></pre>\n\n\n\n<p>The output for the above query is as shown below −</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{\n   \"data\": {\n      \"studentById\": {\n         \"id\": \"S1001\",\n         \"firstName\": \"Mohtashim\",\n         \"lastName\": \"Mohammad\"\n      }\n   }\n}</code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Resolver is a collection of functions that generate response for a GraphQL query. In simple terms, a resolver acts as a GraphQL query handler. Every resolver function in a GraphQL schema accepts four positional arguments as given below − An example of resolver functions is shown below − Given below are the positional arguments and [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 1328,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [21, 75, 110, 175],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/788" }
+      ],
+      "collection": [
+        { "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=788"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 3,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/788/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 1992,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/788/revisions/1992"
+        }
+      ],
+      "wp:featuredmedia": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media/1328"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=788"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=788"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=788"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 789,
+    "date": "2020-05-13T07:12:49",
+    "date_gmt": "2020-05-13T07:12:49",
+    "guid": { "rendered": "http://angular.foobrdigital.com/?p=789" },
+    "modified": "2020-12-25T19:09:46",
+    "modified_gmt": "2020-12-25T19:09:46",
+    "slug": "query",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/query/",
+    "title": { "rendered": "Query" },
+    "content": {
+      "rendered": "\n<p>A GraphQL operation can either be a read or a write operation. A GraphQL query is used to read or fetch values while a mutation is used to write or post values. In either case, the operation is a simple string that a GraphQL server can parse and respond to with data in a specific format. The popular response format that is usually used for mobile and web applications is JSON.</p>\n\n\n\n<p>The syntax to define a query is as follows −</p>\n\n\n\n<pre class=\"wp-block-code\"><code>//syntax 1\nquery query_name{ someField }\n\n//syntax 2\n{ someField }</code></pre>\n\n\n\n<p>Following is an example of a query −</p>\n\n\n\n<pre class=\"wp-block-code\"><code>//query with name myQuery\nquery myQuery{\n   greeting\n}\n\n// query without any name\n{\n   greeting\n}</code></pre>\n\n\n\n<p>It is clear from the above example that the query keyword is optional.</p>\n\n\n\n<p>GraphQL queries help to reduce over fetching of data. Unlike a Restful API, GraphQL allows a user to restrict fields that should be fetched from the server. This means smaller queries and lesser traffic over the network; which in turn reduces the response time.</p>\n\n\n\n<h2>Illustration 1 &#8211; Query Student Model with a Custom Field</h2>\n\n\n\n<p>In this example, we have a set of students stored in a json file. Each student model has fields like firstName, lastName and id but no fullName. Here, we will discuss how to make a query to retrieve fullName of all students. For this, we need to create fullName field in both schema resolver.</p>\n\n\n\n<p>Let us see how to do this illustration using the below steps −</p>\n\n\n\n<h3>Step 1 − Download and Install Required Dependencies for the Project</h3>\n\n\n\n<p>Create a folder named&nbsp;<strong>query-app</strong>. Change your directory to&nbsp;<strong>query-app</strong>&nbsp;from the terminal. Later, follow steps 3 to 5 explained in the Environment Setup chapter.</p>\n\n\n\n<h3>Step 2 − Create a Schema</h3>\n\n\n\n<p>Add&nbsp;<strong>schema.graphql</strong>&nbsp;file in the project folder query-app and add the following code −</p>\n\n\n\n<pre class=\"wp-block-code\"><code>type Query {\n   greeting:String\n   students:&#91;Student]\n   studentById(id:ID!):Student\n}\n\ntype Student {\n   id:ID!\n   firstName:String\n   lastName:String\n   fullName:String \n}</code></pre>\n\n\n\n<p>Note that there is no&nbsp;<em>fullName</em>&nbsp;field in the&nbsp;<strong>students.json</strong>&nbsp;file. However, we need to fetch the&nbsp;<em>fullname</em>&nbsp;of the student via a query. The&nbsp;<em>fullName</em>, in this case will be a custom field that isn&#8217;t available with the data source.</p>\n\n\n\n<h3>Step 3 − Create Resolver</h3>\n\n\n\n<p>Create a file&nbsp;<strong>resolvers.js</strong>&nbsp;in the project folder and add the following code −</p>\n\n\n\n<pre class=\"wp-block-code\"><code>const db = require('./db')\nconst Query = {\n   //resolver function for greeting\n   greeting:() => {\n      return \"hello from  TutorialsPoint !!!\"\n   },\n   \n   //resolver function for students returns list\n   students:() => db.students.list(),\n\n   //resolver function for studentbyId\n   studentById:(root,args,context,info) => {\n      //args will contain parameter passed in query\n      return db.students.get(args.id);\n   }\n}\n\n//for each single student object returned,resolver is invoked\n\nconst Student = {\n   fullName:(root,args,context,info) => {\n      return root.firstName+\":\"+root.lastName\n   }\n}\n\nmodule.exports = {Query,Student}</code></pre>\n\n\n\n<h3>Step 4 − Run the Application</h3>\n\n\n\n<p>Create a&nbsp;<strong>server.js</strong>&nbsp;file. Refer step 8 in the Environment Setup Chapter. Execute the command&nbsp;<em>npm</em>&nbsp;start&nbsp;in the terminal. The server will be up and running on 9000 port. Here, we use GraphQL as a client to test the application.</p>\n\n\n\n<p>Open browser and type the URL&nbsp;<strong>http://localhost:9000/graphiql</strong>. Type the following query in the editor −</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{\n   students{\n      id\n      fullName\n   }\n}</code></pre>\n\n\n\n<p>The response for the query is given below −</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{\n   \"data\": {\n      \"students\": &#91;\n         {\n            \"id\": \"S1001\",\n            \"fullName\": \"Mohtashim:Mohammad\"\n         },\n         \n         {\n            \"id\": \"S1002\",\n            \"fullName\": \"Kannan:Sudhakaran\"\n         },\n         \n         {\n            \"id\": \"S1003\",\n            \"fullName\": \"Kiran:Panigrahi\"\n         }\n      ]\n   }\n}</code></pre>\n\n\n\n<p>Create a&nbsp;<strong>server.js</strong>&nbsp;and add the following code −</p>\n\n\n\n<pre class=\"wp-block-code\"><code>const bodyParser = require('body-parser');\nconst cors = require('cors');\nconst express = require('express');\n\nconst db = require('./db');\nconst port = 9000;\nconst app = express();\n\n//loading type definitions from schema file\nconst fs = require('fs')\nconst typeDefs = fs.readFileSync('./schema.graphql',{encoding:'utf-8'})\n\n//loading resolvers\nconst resolvers = require('./resolvers')\n\n//binding schema and resolver\nconst {makeExecutableSchema} = require('graphql-tools')\nconst schema = makeExecutableSchema({typeDefs, resolvers})\n\n//enabling cross domain calls and form post\napp.use(cors(), bodyParser.json());\n\n//enabling routes\nconst  {graphiqlExpress,graphqlExpress} = require('apollo-server-express')\napp.use('/graphql',graphqlExpress({schema}))\napp.use('/graphiql',graphiqlExpress({endpointURL:'/graphql'}))\n\n//registering port\napp.listen(port, () => console.info(`Server started on port ${port}`));</code></pre>\n\n\n\n<p>Execute the command npm start in the terminal. The server will be up and running on 9000 port. Here, we use GraphQL as a client to test the application.</p>\n\n\n\n<p>Open the browser and type the URL&nbsp;<strong>http://localhost:9000/graphiql</strong>. Type the following query in the editor −</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{\n   students{\n      id\n      fullName\n   }\n}</code></pre>\n\n\n\n<p>The response for the query is given below −</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{\n   \"data\": {\n      \"students\": &#91;\n         {\n            \"id\": \"S1001\",\n            \"fullName\": \"Mohtashim:Mohammad\"\n         },\n         {\n            \"id\": \"S1002\",\n            \"fullName\": \"Kannan:Sudhakaran\"\n         },\n         {\n            \"id\": \"S1003\",\n            \"fullName\": \"Kiran:Panigrahi\"\n         }\n      ]\n   }\n}</code></pre>\n\n\n\n<h2>Illustration 2 &#8211; Nested Query</h2>\n\n\n\n<p>Let us create a nested query for fetching the student details and their college details. We will work with the same project folder.</p>\n\n\n\n<h3>Step 1 − Edit the Schema</h3>\n\n\n\n<p>The schema file already has the&nbsp;<em>student</em>&nbsp;field. Let us add a field college and define its type.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>type College {\n   id:ID!\n   name:String\n   location:String\n   rating:Float\n}\n\ntype Student {\n   id:ID!\n   firstName:String\n   lastName:String\n   fullName:String\n   college:College\n}</code></pre>\n\n\n\n<h3>Step 2 − Modify the resolver.js</h3>\n\n\n\n<p>We need to add a college resolver function as below. The college resolver function will be executed for each student object returned. The root parameter of resolver in this case will contain&nbsp;<em>student</em>.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>const Student = {\n   fullName:(root,args,context,info) => {\n      return root.firstName+\":\"+root.lastName\n   },\n   college:(root) => {\n      return db.colleges.get(root.collegeId);\n   }\n}\nmodule.exports = {Query,Student}</code></pre>\n\n\n\n<p>The resolver returns college of each student by calling the get method of college collection and passing the&nbsp;<em>collegeId</em>. We have association relationship between Student and College through the&nbsp;<em>collegeId</em>.</p>\n\n\n\n<h3>Step 3 − Test the Application</h3>\n\n\n\n<p>Open the terminal window and navigate to the project folder. Type the command -npm start. Launch the browser and enter the URL&nbsp;<strong>http://localhost:9000/graphql</strong>.</p>\n\n\n\n<p>Enter the following query in the GraphQL window −</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{\n   students{\n      id\n      firstName\n      college {\n         id\n         name\n         location\n         rating\n      }\n   }\n}</code></pre>\n\n\n\n<p>The response for the query is as given below −</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{\n   \"data\": {\n      \"students\": &#91;\n         {\n            \"id\": \"S1001\",\n            \"firstName\": \"Mohtashim\",\n            \"college\": {\n               \"id\": \"col-102\",\n               \"name\": \"CUSAT\",\n               \"location\": \"Kerala\",\n               \"rating\": 4.5\n            }\n         },\n         \n         {\n            \"id\": \"S1002\",\n            \"firstName\": \"Kannan\",\n            \"college\": {\n               \"id\": \"col-101\",\n               \"name\": \"AMU\",\n               \"location\": \"Uttar Pradesh\",\n               \"rating\": 5\n            }\n         },\n         \n         {\n            \"id\": \"S1003\",\n            \"firstName\": \"Kiran\",\n            \"college\": {\n               \"id\": \"col-101\",\n               \"name\": \"AMU\",\n               \"location\": \"Uttar Pradesh\",\n               \"rating\": 5\n            }\n         }\n      ]\n   }\n}</code></pre>\n\n\n\n<h2>What is a Query Variable?</h2>\n\n\n\n<p>If a query has some dynamic values to be passed, then represent these dynamic values using variables. Hence, the query can be reused by the client applications.</p>\n\n\n\n<h2>Illustration</h2>\n\n\n\n<p>Let us create a simple application to understand the query variable.</p>\n\n\n\n<h3>Step 1 − Edit Schema File</h3>\n\n\n\n<p>Add a&nbsp;<em>sayHello</em>&nbsp;field which takes a string parameter and returns a string. The name values will be dynamic in client application.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>type Query {\n   sayHello(name:String!):String\n}</code></pre>\n\n\n\n<h3>Step 2 − Edit resolver.js File</h3>\n\n\n\n<p>Add a&nbsp;<em>sayHello</em>&nbsp;resolver which takes parameter as below −</p>\n\n\n\n<pre class=\"wp-block-code\"><code>sayHello:(root,args,context,info) => `Hi ${args.name} GraphQL server says Hello to you!!`</code></pre>\n\n\n\n<h3>Step 3 − Declare Query Variable in GraphQL</h3>\n\n\n\n<p>A variable is declared with $ followed by name of the variable. For example: <strong>$myname_Variable</strong>.</p>\n\n\n\n<p>Once <strong>$myname_Variable</strong> is declared, it has to be used with a named query syntax. The query, myQuery takes string value and passes it on to sayHello as shown below −</p>\n\n\n\n<pre class=\"wp-block-code\"><code>query myQuery($myname_Variable:String!) {\n   sayHello(name:$myname_Variable)\n}</code></pre>\n\n\n\n<p>Set the value for $myname_Variable as a JSON object in the Query Variables section of the GraphQL client.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>query myQuery($myname_Variable:String!) {\n   sayHello(name:$myname_Variable)\n}</code></pre>\n\n\n\n<p>The output of the above code is as follows −</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{\n   \"data\": {\n      \"sayHello\": \"Hi Mohtashim GraphQL server says Hello to you!!\"\n   }\n}\n﻿</code></pre>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://www.tutorialspoint.com/graphql/images/query_variable_graphiql.jpg\" alt=\"Query Variable GraphiQL\"/></figure>\n\n\n\n<h2>How to use Query Variable with Enum</h2>\n\n\n\n<p>Let us see how to use a query variable when field parameter is&nbsp;<strong>enum type</strong>.</p>\n\n\n\n<h3>Step 1 − Edit schema.graphql File</h3>\n\n\n\n<pre class=\"wp-block-code\"><code>enum ColorType {\n   RED\n   BLUE\n   GREEN\n}\n\ntype Query {\n   setFavouriteColor(color:ColorType):String\n}</code></pre>\n\n\n\n<p>The&nbsp;<em>setFavouriteColor</em>&nbsp;function takes enum as input and returns a string value.</p>\n\n\n\n<h3>Step 2 − Edit resolvers.js File</h3>\n\n\n\n<p>The resolver function&nbsp;<em>setFavouriteColor</em>&nbsp;takes&nbsp;<em>root</em>&nbsp;and&nbsp;<em>args</em>. The enum value passed to function at runtime can be accessed through args parameter.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>setFavouriteColor:(root,args) => {\n   return  \"Your Fav Color is :\"+args.color;\n}</code></pre>\n\n\n\n<h3>Step 3 − Declare a Query Variable in GraphiQL</h3>\n\n\n\n<p>The query is named&nbsp;<strong>query_to_setColor</strong>&nbsp;which takes a variable of the name color_variable of ColorType. This variable is passed on to method setFavouriteColor.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>query query_to_setColor($color_variable:ColorType) {\n   setFavouriteColor(color:$color_variable)\n}</code></pre>\n\n\n\n<p>In the query variable section of GraphQL, type the following code −</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{\n   \"color_variable\":\"RED\"\n}</code></pre>\n\n\n\n<p>The response is shown below −</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{\n   \"data\": {\n      \"setFavouriteColor\": \"Your Fav Color is: RED\"\n   }\n}</code></pre>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://www.tutorialspoint.com/graphql/images/declaring_query_variable.jpg\" alt=\"Declaring Query Variable\"/></figure>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>A GraphQL operation can either be a read or a write operation. A GraphQL query is used to read or fetch values while a mutation is used to write or post values. In either case, the operation is a simple string that a GraphQL server can parse and respond to with data in a specific [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 1329,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [21, 75, 110, 175],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/789" }
+      ],
+      "collection": [
+        { "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=789"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 4,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/789/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 2120,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/789/revisions/2120"
+        }
+      ],
+      "wp:featuredmedia": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media/1329"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=789"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=789"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=789"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 790,
+    "date": "2020-05-13T07:15:37",
+    "date_gmt": "2020-05-13T07:15:37",
+    "guid": { "rendered": "http://angular.foobrdigital.com/?p=790" },
+    "modified": "2020-12-25T19:09:46",
+    "modified_gmt": "2020-12-25T19:09:46",
+    "slug": "mutation",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/mutation/",
+    "title": { "rendered": "Mutation" },
+    "content": {
+      "rendered": "\n<p>In this chapter, we will learn mutation queries in GraphQL.</p>\n\n\n\n<p>Mutation queries modify data in the data store and returns a value. It can be used to insert, update, or delete data. Mutations are defined as a part of the schema.</p>\n\n\n\n<p>The syntax of a mutation query is given below −</p>\n\n\n\n<pre class=\"wp-block-code\"><code>mutation{\n   someEditOperation(dataField:\"valueOfField\"):returnType\n}</code></pre>\n\n\n\n<h2>Illustration</h2>\n\n\n\n<p>Let us understand how to add new student record into the data store using a mutation query.</p>\n\n\n\n<h3>Step 1 − Download and Install Required Dependencies for the Project</h3>\n\n\n\n<p>Create a project folder by the name&nbsp;mutation-app. Change your directory to&nbsp;mutation-app&nbsp;from the terminal. Follow steps 3 to 5 explained in the Environment Setup chapter.</p>\n\n\n\n<h3>Step 2 − Create a&nbsp;schema.graphql&nbsp;File</h3>\n\n\n\n<p>Add&nbsp;<strong>schema.graphql</strong>&nbsp;file in the project folder mutation-app and add the following code −</p>\n\n\n\n<pre class=\"wp-block-code\"><code>type Query {\n   greeting:String\n}\n\ntype Mutation {\n   createStudent(collegeId:ID,firstName:String,lastName:String):String\n}</code></pre>\n\n\n\n<p>Note that the function createStudent returns a String type. This is a unique identifier (ID) which is generated after creating a student.</p>\n\n\n\n<h3>Step 3 − Create a resolver.js File</h3>\n\n\n\n<p>Create a file resolvers.js in the project folder and add the following code −</p>\n\n\n\n<pre class=\"wp-block-code\"><code>const db = require('./db')\nconst Mutation = {\n   createStudent:(root,args,context,info) => {\n      return db.students.create({collegeId:args.collegeId,\n      firstName:args.firstName,\n      lastName:args.lastName})\n   }\n}\nconst Query = {\n   greeting:() => \"hello\"\n}\n\nmodule.exports = {Query,Mutation}</code></pre>\n\n\n\n<p>The mutation function points to students collection in the data store. To add a new <em>student</em>, invoke the create method in students collection. The <em>args</em> object will contain the parameters which are passed in the query. The create method of <em>students</em> collection will return the id of a newly created student object.</p>\n\n\n\n<h3>Step 4 − Run the Application</h3>\n\n\n\n<p>Create a <strong>server.js</strong> file. Refer to step 8 in the Environment Setup Chapter. Execute the command npm start in the terminal. The server will be up and running on 9000 port. Here, we use GraphQL as a client to test the application.</p>\n\n\n\n<p>Next step is to open browser and type the URL&nbsp;<strong>http://localhost:9000/graphiql</strong>.&nbsp;Type the following query in the editor −</p>\n\n\n\n<pre class=\"wp-block-code\"><code>//college Id should be matched with data from colleges.json for easy retrieval\n\nmutation {\n   createStudent(collegeId:\"col-2\",firstName:\"Tim\",lastName:\"George\")\n}</code></pre>\n\n\n\n<p>The above query will create a student object in&nbsp;student.json&nbsp;file. The query will return a unique identifier. The response of the query is as shown below −</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{\n   \"data\": {\n      \"createStudent\": \"SkQtxYBUm\"\n   }\n}</code></pre>\n\n\n\n<p>To verify if the student object is created, we can use the&nbsp;studentById&nbsp;query. You can also open the&nbsp;students.json&nbsp;file from&nbsp;data&nbsp;folder to verify the id.</p>\n\n\n\n<p>To use&nbsp;studentById&nbsp;query, edit the&nbsp;<strong>schema.graphql</strong>&nbsp;as given below −</p>\n\n\n\n<pre class=\"wp-block-code\"><code>type Query {\n   studentById(id:ID!):Student\n}\n\ntype Student {\n   id:ID!\n   firstName:String\n   lastName:String\n   collegeId:String\n}</code></pre>\n\n\n\n<p>Edit the&nbsp;<strong>resolver.js</strong>&nbsp;file as given below −</p>\n\n\n\n<pre class=\"wp-block-code\"><code>const db = require('./db')\nconst Query = {\n   studentById:(root,args,context,info) => {\n      return db.students.get(args.id);\n   }\n}\n\nconst Mutation = {\n   createStudent:(root,args,context,info) => {\n      return db.students.create({collegeId:args.collegeId,\n      firstName:args.firstName,\n      lastName:args.lastName})\n   }\n}\n\nmodule.exports = {Query,Mutation}</code></pre>\n\n\n\n<p>Given below is the query to get student by unique id returned from the mutation query −</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{\n    studentById(id:\"SkQtxYBUm\") {\n    id\n    firstName\n    lastName\n  }\n}</code></pre>\n\n\n\n<p>The response from the server is as follows −</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{\n   \"data\": {\n      \"studentById\": {\n         \"id\": \"SkQtxYBUm\",\n         \"firstName\": \"Tim\",\n         \"lastName\":\"George\"\n      }\n   }\n}</code></pre>\n\n\n\n<h2>Returning an Object in Mutation</h2>\n\n\n\n<p>It is best practice to return an object in mutation. For example, the client application wants to fetch student and college details. In this case, rather than making two different requests, we can create a query that returns an object containing students and their college details.</p>\n\n\n\n<h3>Step 1 − Edit Schema File</h3>\n\n\n\n<p>Add a new method named&nbsp;<strong>addStudent</strong>&nbsp;which returns object&nbsp;in mutation type of&nbsp;<strong>schema.graphql</strong>.</p>\n\n\n\n<p>Let us learn how to access the college details through student details. Add college type in the schema file.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>type Mutation {\n   addStudent_returns_object(collegeId:ID,firstName:String,lastName:String):Student\n\n   createStudent(collegeId:ID,firstName:String,lastName:String):String\n}\n\ntype College {\n   id:ID!\n   name:String\n   location:String\n   rating:Float\n}\n\ntype Student {\n   id:ID!\n   firstName:String\n   lastName:String\n   college:College\n}</code></pre>\n\n\n\n<h3>Step 2 − Update the&nbsp;resolvers.js&nbsp;File</h3>\n\n\n\n<p>Update a file&nbsp;<strong>resolvers.js</strong>&nbsp;in the project folder and add the following code −</p>\n\n\n\n<pre class=\"wp-block-code\"><code>const Mutation = {\n   createStudent:(root,args,context,info) => {\n\n      return db.students.create({\n         collegeId:args.collegeId,\n         firstName:args.firstName,\n         lastName:args.lastName\n      })\n   },\n   \n   // new resolver function\n   addStudent_returns_object:(root,args,context,info) => {\n      const id = db.students.create({\n         collegeId:args.collegeId,\n         firstName:args.firstName,\n         lastName:args.lastName\n      })\n\n      return db.students.get(id)\n   }\n}\n\n//for each single student object returned,resolver is invoked\nconst Student = {\n   college:(root) => {\n      return db.colleges.get(root.collegeId);\n   }\n}\n\nmodule.exports = {Query,Student,Mutation}</code></pre>\n\n\n\n<h3>Step 3 − Start the Server and Type the Request Query in GraphQL</h3>\n\n\n\n<p>Next, we shall start the server and request query in GraphQL with the following code −</p>\n\n\n\n<pre class=\"wp-block-code\"><code>mutation {\n   addStudent_returns_object(collegeId:\"col-101\",firstName:\"Susan\",lastName:\"George\") {\n      id\n      firstName\n      college{\n         id\n         name\n      }\n   }\n}</code></pre>\n\n\n\n<p>The above query adds a new student and retrieves the student object along with college object. This saves round trips to the server.</p>\n\n\n\n<p>The response is as given below −</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{\n   \"data\": {\n      \"addStudent_returns_object\": {\n         \"id\": \"rklUl08IX\",\n         \"firstName\": \"Susan\",\n         \"college\": {\n            \"id\": \"col-101\",\n            \"name\": \"AMU\"\n         }\n      }\n   }\n}</code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>In this chapter, we will learn mutation queries in GraphQL. Mutation queries modify data in the data store and returns a value. It can be used to insert, update, or delete data. Mutations are defined as a part of the schema. The syntax of a mutation query is given below − Illustration Let us understand [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 1330,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [21, 75, 110, 175],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/790" }
+      ],
+      "collection": [
+        { "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=790"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 3,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/790/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 1994,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/790/revisions/1994"
+        }
+      ],
+      "wp:featuredmedia": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media/1330"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=790"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=790"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=790"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 802,
+    "date": "2020-05-13T07:19:52",
+    "date_gmt": "2020-05-13T07:19:52",
+    "guid": { "rendered": "http://angular.foobrdigital.com/?p=802" },
+    "modified": "2020-12-25T19:09:46",
+    "modified_gmt": "2020-12-25T19:09:46",
+    "slug": "jquery-integration",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/jquery-integration/",
+    "title": { "rendered": "JQuery Integration" },
+    "content": {
+      "rendered": "\n<p>Web applications send and retrieve data asynchronously (in the background). AJAX allows websites to load content onto the screen without refreshing the page. jQuery provides several methods for AJAX functionality thus making it easier to use AJAX. In this chapter, we shall learn how we can integrate GraphQL with jQuery.</p>\n\n\n\n<p>Consider an application using client server architecture. We can build a front end webpage that requests data from a GraphQL server. The webpage will make AJAX calls using jQuery to the GraphQL server.</p>\n\n\n\n<p>To integrate GraphQL with JQuery, let us inspect the GraphiQL request headers and understand the request parameters.</p>\n\n\n\n<p>Start the&nbsp;<strong>hello-world</strong>&nbsp;app (refer to chapter 6 for the relevant illustration). Type the graphql query&nbsp;{greeting}&nbsp;in the GraphiQL window. Right-click and inspect or press (ctrl + shift + I) on chrome to go to the network tab as shown below −</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://www.tutorialspoint.com/graphql/images/chrome_network_tab.jpg\" alt=\"Chrome Network Tab\"/></figure>\n\n\n\n<p>From the simple&nbsp;<strong>hello-world</strong>&nbsp;example, we can understand that&nbsp;<strong>http method</strong>&nbsp;used is&nbsp;<strong>POST</strong>.&nbsp;Now in the browser, scroll down to the header section to view the&nbsp;<em>request payload</em>.</p>\n\n\n\n<p>Once you click on&nbsp;<strong>view code</strong>,&nbsp;you will see the following in the request payload section of chrome.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{\"query\":\"{\\n  greeting\\n}\",\"variables\":null,\"operationName\":null}</code></pre>\n\n\n\n<p>Also note the request URL,&nbsp;<strong>http://localhost:9000/graphql</strong>&nbsp;that should be called from client application.</p>\n\n\n\n<h2>Illustration</h2>\n\n\n\n<p>Let us understand how to integrate GraphQL with JQuery using a step-wise process.</p>\n\n\n\n<h2>Setting up the Server</h2>\n\n\n\n<p>We will learn to set up the server using the following steps −</p>\n\n\n\n<h3>Step 1 − Download and Install Required Dependencies for the Project</h3>\n\n\n\n<p>Create a folder named&nbsp;<strong>jquery-server-app</strong>. Change your directory to jquery-server-app from the terminal. Follow steps 3 to 5 explained in the Environment Setup chapter.</p>\n\n\n\n<h3>Step 2 − Create a Schema</h3>\n\n\n\n<p>Add schema.graphql file in the project folder&nbsp;<strong>jquery-server-app</strong>&nbsp;and add the following code −</p>\n\n\n\n<pre class=\"wp-block-code\"><code>type Query\n{\n   greeting: String\n   sayHello(name:String!):String\n}</code></pre>\n\n\n\n<p>The file has defined two queries&nbsp;<strong>greeting</strong>&nbsp;and&nbsp;<strong>sayHello</strong>. The&nbsp;sayHello&nbsp;query accepts a string parameter and returns another string. The parameter to the&nbsp;sayHello()&nbsp;function is not null.</p>\n\n\n\n<h3>Step 3 − Create Resolvers</h3>\n\n\n\n<p>Create a file resolvers.js in the project folder and add the following code −</p>\n\n\n\n<pre class=\"wp-block-code\"><code>const Query =\n{\n   greeting: () => 'Hello GraphQL  From Codemeals !!' ,\n   sayHello:(root,args,context,info) =>  `Hi ${args.name} GraphQL server says Hello to you!!`\n}\nmodule.exports = {Query}</code></pre>\n\n\n\n<p>Here,&nbsp;<strong>greeting</strong>&nbsp;and&nbsp;<strong>sayHello</strong>&nbsp;are two resolvers. In&nbsp;sayHello&nbsp;resolver, the value passed to the name parameter can be accessed through&nbsp;args. To access resolver functions outside the module, Query object has to be exported using&nbsp;<strong>module.exports</strong>.</p>\n\n\n\n<h3>Step 4 − Run the Application</h3>\n\n\n\n<p>Create a server.js file. Refer to step 8 in the Environment Setup Chapter. Execute the command <em>npm start</em> in the terminal. The server will be up and running on 9000 port. Here, we use GraphQL as a client to test the application.</p>\n\n\n\n<p>Open browser and type the URL&nbsp;<strong>http://localhost:9000/graphiql</strong>.&nbsp;Type the following query in the editor −</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{\n   greeting,\n   sayHello(name:\"Mohtashim\")\n}</code></pre>\n\n\n\n<p>The response from the server is as given below −</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{\n   \"data\": {\n      \"greeting\": \"Hello GraphQL From Codemeals !!\",\n      \"sayHello\": \"Hi Mohtashim GraphQL server says Hello to you!!\"\n   }\n}</code></pre>\n\n\n\n<h2>Setting up the Client</h2>\n\n\n\n<p>Since, we have already set up the server, now we will learn how to set up the client.</p>\n\n\n\n<h3>Step 1 − Create a new folder&nbsp;jquery-client-app&nbsp;outside the current project folder</h3>\n\n\n\n<p>First, we will create a folder named&nbsp;<strong>jquery-client-app</strong>&nbsp;outside the project folder.</p>\n\n\n\n<h3>Step 2 − Create a HTML Page&nbsp;index.html&nbsp;for jQuery Integration</h3>\n\n\n\n<p>We will create a client application in jquery and invoke both the methods. Following is the code for&nbsp;<strong>index.html</strong>&nbsp;file. The&nbsp;<strong>index.html</strong>&nbsp;page sends requests to the server when the buttons –&nbsp;<strong>Greet</strong>&nbsp;and&nbsp;<strong>SayHello</strong>&nbsp;are clicked. We will make asynchronous request using&nbsp;$.ajax()&nbsp;function.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;!DOCTYPE html>\n&lt;html>\n   &lt;head>\n      &lt;script src = \"https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js\">&lt;/script>\n      &lt;script>\n         $(document).ready(function() {\n\n            $(\"#btnSayhello\").click(function() {\n\n               const name = $(\"#txtName\").val();\n               console.log(name);\n               $(\"#SayhelloDiv\").html('loading....');\n\n               $.ajax({url: \"http://localhost:9000/graphql\",\n                  contentType: \"application/json\",type:'POST',\n                  data: JSON.stringify({ query:`{\n                     sayHello(name:\"${name}\")}`\n                  }),\n                  success: function(result) {\n                     console.log(JSON.stringify(result))\n                     $(\"#SayhelloDiv\").html(\"&lt;h1>\"+result.data.sayHello +\"&lt;/h1>\");\n                  }\n               });\n            });\n            \n            $(\"#btnGreet\").click(function() {\n               $(\"#greetingDiv\").html('loading....');\n               //https://kannan-first-graphql-app.herokuapp.com/graphql\n               $.ajax({url: \"http://localhost:9000/graphql\",\n                  contentType: \"application/json\",\n                  type:'POST',\n                  data: JSON.stringify({\n                     query:`{greeting}`\n                  }),\n                  success: function(result) {\n                     $(\"#greetingDiv\").html(\"&lt;h1>\"+result.data.greeting+\"&lt;/h1>\");\n                  }\n               });\n            });\n         });\n      &lt;/script>\n   &lt;/head>\n   \n   &lt;body>\n      &lt;h1>Jquery Client &lt;/h1>\n\n      &lt;hr/>\n      &lt;section>\n         &lt;button id = \"btnGreet\">Greet&lt;/button>\n         &lt;br/> &lt;br/>\n         &lt;div id = \"greetingDiv\"> &lt;/div>\n      &lt;/section>\n      \n      &lt;br/> &lt;br/> &lt;br/>\n      &lt;hr/>\n\n      &lt;section>\n         Enter a name:&lt;input id = \"txtName\" type = \"text\" value = \"kannan\"/>\n         &lt;button id = \"btnSayhello\">SayHello&lt;/button>\n         &lt;div id = \"SayhelloDiv\"> &lt;/div>\n      &lt;/section>\n   &lt;/body>\n&lt;/html></code></pre>\n\n\n\n<p>Open this file in the browser and click on the button to see the response. </p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Web applications send and retrieve data asynchronously (in the background). AJAX allows websites to load content onto the screen without refreshing the page. jQuery provides several methods for AJAX functionality thus making it easier to use AJAX. In this chapter, we shall learn how we can integrate GraphQL with jQuery. Consider an application using client [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 1331,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [21, 75, 110, 175],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/802" }
+      ],
+      "collection": [
+        { "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=802"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 3,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/802/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 1995,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/802/revisions/1995"
+        }
+      ],
+      "wp:featuredmedia": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media/1331"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=802"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=802"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=802"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 799,
+    "date": "2020-05-13T07:21:41",
+    "date_gmt": "2020-05-13T07:21:41",
+    "guid": { "rendered": "http://angular.foobrdigital.com/?p=799" },
+    "modified": "2020-12-25T19:09:46",
+    "modified_gmt": "2020-12-25T19:09:46",
+    "slug": "react-integration",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/react-integration/",
+    "title": { "rendered": "React Integration" },
+    "content": {
+      "rendered": "\n<p>React is a Javascript library for building user interfaces. This chapter explains how one can integrate GraphQL with a React application.</p>\n\n\n\n<h2>Illustration</h2>\n\n\n\n<p>The quickest way to set up a react project is by using the&nbsp;<em>Create React App</em>&nbsp;tool. In the subsequent sections, we will learn how to set up both the Server and the Client.</p>\n\n\n\n<h2>Setting up the Server</h2>\n\n\n\n<p>For setting up the Server, follow the below steps −</p>\n\n\n\n<h3>Step 1 − Download and Install Required Dependencies for the Project</h3>\n\n\n\n<p>Create a folder&nbsp;<strong>react-server-app</strong>. Change your directory to&nbsp;<strong>react-server-app</strong>&nbsp;from the terminal. Follow steps 3 to 5 explained in the Environment Setup chapter.</p>\n\n\n\n<h3>Step 2 − Create a Schema</h3>\n\n\n\n<p>Add&nbsp;<strong>schema.graphql</strong>&nbsp;file in the project folder&nbsp;<strong>react-server-app</strong>&nbsp;and add the following code −</p>\n\n\n\n<pre class=\"wp-block-code\"><code>type Query\n{\n   greeting: String\n   sayHello(name:String!):String\n}</code></pre>\n\n\n\n<p>The file has defined two queries –&nbsp;greeting&nbsp;and&nbsp;sayHello. The&nbsp;sayHello&nbsp;query accepts a string parameter and returns another string. The parameter to the&nbsp;sayHello()&nbsp;function is not null.</p>\n\n\n\n<h3>Step 3 − Create Resolvers</h3>\n\n\n\n<p>Create a file&nbsp;<strong>resolvers.js</strong>&nbsp;in the project folder and add the following code −</p>\n\n\n\n<pre class=\"wp-block-code\"><code>const Query =\n{\n   greeting: () => 'Hello GraphQL  From Codemeals !!' ,\n   sayHello:(root,args,context,info) =>  `Hi ${args.name} GraphQL server says Hello to you!!`\n}\nmodule.exports = {Query}</code></pre>\n\n\n\n<p>Here&nbsp;greeting&nbsp;and&nbsp;sayHello&nbsp;are two resolvers. In the sayHello&nbsp;resolver, the value passed to the name parameter can be accessed through&nbsp;args. To access resolver functions outside the module, Query object has to be exported using&nbsp;module.exports.</p>\n\n\n\n<h3>Step 4 − Run the Application</h3>\n\n\n\n<p>Create a server.js file. Refer step 8 in the Environment Setup Chapter. Execute the command <em>npm start</em> in the terminal. The server will be up and running on 9000 port. Here, we use GraphQL as a client to test the application.</p>\n\n\n\n<p>Open browser and type the URL&nbsp;<strong>http://localhost:9000/graphiql</strong>. Type the following query in the editor −</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{\n   greeting,\n   sayHello(name:\"Mohtashim\")\n}</code></pre>\n\n\n\n<p>The response from the server is given below −</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{\n   \"data\": {\n      \"greeting\": \"Hello GraphQL  From Codemeals !!\",\n      \"sayHello\": \"Hi Mohtashim GraphQL server says Hello to you!!\"\n   }\n}</code></pre>\n\n\n\n<h2>Setting up the Client</h2>\n\n\n\n<p>Open a new terminal for client. The server terminal should be kept running before executing the client application. React application will be running on port number 3000 and server application on port number 9000.</p>\n\n\n\n<h3>Step 1 − Create a React Project hello-world-client</h3>\n\n\n\n<p>In the client terminal, type the following command −</p>\n\n\n\n<pre class=\"wp-block-code\"><code>npx create-react-app hello-world-client\n</code></pre>\n\n\n\n<p>This will install everything needed for a typical react application. The&nbsp;<strong>npx</strong>&nbsp;utility and&nbsp;<strong>create-react-app</strong>&nbsp;tool create a project with name hello-world-client. Once the installation is completed, open the project in VSCode.</p>\n\n\n\n<h3>Step 2 − Start hello-world-client</h3>\n\n\n\n<p>Change the current folder path in the terminal to hello-world-client. Type&nbsp;npm start&nbsp;to launch the project. This will run a development server at port 3000 and will automatically open the browser and load the index page.</p>\n\n\n\n<p>This is shown in the screenshot given below −</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://www.tutorialspoint.com/graphql/images/creating_react_project.jpg\" alt=\"Creating React Project\"/></figure>\n\n\n\n<h3>Step 3 − Modify the App Component</h3>\n\n\n\n<p>In the App.js inside src folder, add two functions, one to load greeting and another to load sayHello messages.</p>\n\n\n\n<p>Following is the&nbsp;loadGreeting&nbsp;function which sends GraphQL query for greeting.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>async function loadGreeting() {\n   const response = await fetch('http://localhost:9000/graphql', {\n      method:'POST',\n\n      headers:{'content-type':'application/json'},\n      body:JSON.stringify({query:'{greeting}'})\n   })\n\n   const rsponseBody = await response.json();\n   return rsponseBody.data.greeting;\n\n   console.log(\"end of function\")\n}</code></pre>\n\n\n\n<p>Following is the&nbsp;<strong>loadSayhello</strong>&nbsp;function which sends GraphQL query for&nbsp;sayHello −</p>\n\n\n\n<pre class=\"wp-block-code\"><code>async function  loadSayhello(name) {\n   const response = await fetch('http://localhost:9000/graphql', {\n      method:'POST',\n      headers:{'content-type':'application/json'},\n      body:JSON.stringify({query:`{sayHello(name:\"${name}\")}`})\n   })\n}</code></pre>\n\n\n\n<p>The complete&nbsp;<strong>App.js</strong>&nbsp;file is shown below −</p>\n\n\n\n<pre class=\"wp-block-code\"><code>import React, { Component } from 'react';\nimport logo from './logo.svg';\nimport './App.css';\n\nasync function loadGreeting() {\n   const response =  await fetch('http://localhost:9000/graphql', {\n      method:'POST',\n      headers:{'content-type':'application/json'},\n      body:JSON.stringify({query:'{greeting}'})\n   })\n   const rsponseBody =  await response.json();\n   return rsponseBody.data.greeting;\n   console.log(\"end of function\")\n}\n\nasync function  loadSayhello(name) {\n   const response =  await fetch('http://localhost:9000/graphql', {\n      method:'POST',\n      headers:{'content-type':'application/json'},\n      body:JSON.stringify({query:`{sayHello(name:\"${name}\")}`})\n   })\n   const rsponseBody =  await response.json();\n   return rsponseBody.data.sayHello;\n}\n\nclass App extends Component {\n   constructor(props) {\n      super(props);\n      this.state =  {greetingMessage:'',sayHelloMessage:'',userName:''}\n      this.updateName =  this.updateName.bind(this);\n      this.showSayHelloMessage =  this.showSayHelloMessage.bind(this);\n      this.showGreeting =  this.showGreeting.bind(this);\n   }\n   \n   showGreeting() {\n      loadGreeting().then(g => this.setState({greetingMessage:g+\" :-)\"}))\n   }\n   \n   showSayHelloMessage() {\n      const name = this.state.userName;\n      console.log(name)\n      loadSayhello(name).then(m => this.setState({sayHelloMessage:m}))\n   }\n   \n   updateName(event) {\n      this.setState({userName:event.target.value})\n   }\n   render() {\n      return (\n         &lt;div className = \"App\">\n            &lt;header className = \"App-header\">\n               &lt;img src = {logo} className = \"App-logo\" alt = \"logo\" />\n               &lt;h1 className = \"App-title\">Welcome to React&lt;/h1>\n            &lt;/header>\n            &lt;br/>&lt;br/>\n            &lt;section>\n               &lt;button id = \"btnGreet\" onClick = {this.showGreeting}>Greet&lt;/button>\n               &lt;br/> &lt;br/>\n               &lt;div id = \"greetingDiv\">\n                  &lt;h1>{this.state.greetingMessage}&lt;/h1>\n               &lt;/div>\n            &lt;/section>\n            \n            &lt;hr/>\n            \n            &lt;section>\n               Enter a name:&lt;input id = \"txtName\" type = \"text\" onChange = {this.updateName}\n               value = {this.state.userName}/>\n               &lt;button id = \"btnSayhello\" onClick = {this.showSayHelloMessage}>SayHello&lt;/button>\n               &lt;br/>\n               user name is:{this.state.userName}    &lt;br/>\n               &lt;div id = \"SayhelloDiv\">\n                  &lt;h1>{this.state.sayHelloMessage}&lt;/h1>\n               &lt;/div>\n            &lt;/section>\n         &lt;/div>\n      );\n   }\n}\n\nexport default App;</code></pre>\n\n\n\n<p>Once both the applications are running, click on the greet button. Next, enter a name in the text box and click on sayHello button.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>React is a Javascript library for building user interfaces. This chapter explains how one can integrate GraphQL with a React application. Illustration The quickest way to set up a react project is by using the&nbsp;Create React App&nbsp;tool. In the subsequent sections, we will learn how to set up both the Server and the Client. Setting [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 1332,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [21, 75, 110, 175],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/799" }
+      ],
+      "collection": [
+        { "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=799"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 3,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/799/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 1996,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/799/revisions/1996"
+        }
+      ],
+      "wp:featuredmedia": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media/1332"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=799"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=799"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=799"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  }
+]

@@ -1,0 +1,190 @@
+[
+  {
+    "id": 4076,
+    "date": "2020-11-27T11:05:28",
+    "date_gmt": "2020-11-27T11:05:28",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3074"
+    },
+    "modified": "2020-11-27T11:05:28",
+    "modified_gmt": "2020-11-27T11:05:28",
+    "slug": "array-destructuring",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/array-destructuring/",
+    "title": {
+      "rendered": "Array Destructuring"
+    },
+    "content": {
+      "rendered": "\n<p>ES6 provides a new feature called destructing assignment that allows you to\u00a0destructure properties of an object\u00a0or elements of an\u00a0array\u00a0into individual variables.</p>\n\n\n\n<p>Let\u2019s start with the array destructuring.</p>\n\n\n\n<h2>Introduction to JavaScript Array destructuring</h2>\n\n\n\n<p>Assuming that you have a function that returns an array of numbers as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function getScores() {\n   return &#91;70, 80, 90];\n}</code></pre>\n\n\n\n<p>The following invokes the&nbsp;<code>getScores()</code>&nbsp;function and assigns the returned value to a variable:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let scores = getScores();</code></pre>\n\n\n\n<p>To get the individual score, you need to do like this:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let x = scores&#91;0], \n    y = scores&#91;1], \n    z = scores&#91;2];</code></pre>\n\n\n\n<p>Prior to ES6, there was no direct way to assign the elements of the returned array to multiple variables such as&nbsp;<code>x</code>,&nbsp;<code>y</code>&nbsp;and&nbsp;<code>z</code>.</p>\n\n\n\n<p>Fortunately, starting from ES6, you can use the destructing assignment as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let &#91;x, y, z] = getScores();\n\nconsole.log(x); // 70\nconsole.log(y); // 80\nconsole.log(z); // 90</code></pre>\n\n\n\n<p>The variables&nbsp;<code>x</code>,&nbsp;<code>y</code>&nbsp;and&nbsp;<code>z</code>&nbsp;will take the values of the first, second, and third elements of the returned array.</p>\n\n\n\n<p>Note that the square brackets&nbsp;<code>[]</code>&nbsp;look like the array syntax but they are not.</p>\n\n\n\n<p>If the&nbsp;<code>getScores()</code>&nbsp;function returns an array of two elements, the third variable will be&nbsp;<code>undefined</code>, like this:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function getScores() {\n   return &#91;70, 80];\n}\n\nlet &#91;x, y, z] = getScores();\n\nconsole.log(x); // 70\nconsole.log(y); // 80\nconsole.log(z); // undefined</code></pre>\n\n\n\n<p>In case the&nbsp;<code>getScores()</code>&nbsp;function returns an array that has more than three elements, the remaining elements are discarded. For example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function getScores() {\n   return &#91;70, 80, 90, 100];\n}\n\nlet &#91;x, y, z] = getScores();\n\nconsole.log(x); // 70\nconsole.log(y); // 80\nconsole.log(z); // 90</code></pre>\n\n\n\n<h2>Array Destructuring Assignment and Rest syntax</h2>\n\n\n\n<p>It\u2019s possible to take all remaining elements of an array and put them in a new array by using the\u00a0rest\u00a0syntax\u00a0<code>(...)</code>:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let &#91;x, y ,...args] = getScores();\nconsole.log(x); // 70\nconsole.log(y); // 80\nconsole.log(args); // &#91;90, 100]</code></pre>\n\n\n\n<p>The variables&nbsp;<code>x</code>&nbsp;and&nbsp;<code>y</code>&nbsp;receive values of the first two elements of the returned array. And the&nbsp;<code>args</code>&nbsp;variable receives all the remaining arguments, which are the last two elements of the returned array.</p>\n\n\n\n<p>Note that it\u2019s possible to destructure an array in the assignment that separates from the variable\u2019s declaration. For example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let a, b;\n&#91;a, b] = &#91;10, 20];\nconsole.log(a); // 10\nconsole.log(b); // 20</code></pre>\n\n\n\n<h2>Setting default values</h2>\n\n\n\n<p>See the following example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function getItems() {\n    return &#91;10, 20];\n}\n\nlet items = getItems();\nlet thirdItem = items&#91;2] != undefined ? items&#91;2] : 0;\n\nconsole.log(thirdItem); // 0</code></pre>\n\n\n\n<p>How it works:</p>\n\n\n\n<ul><li>First, declare the&nbsp;<code>getItems()</code>&nbsp;function that returns an array of two numbers.</li><li>Then, assign the items variable to the returned array of the getItems() function.</li><li>Finally, check if the third element exists in the array. If not, assign the value 0 to the&nbsp;<code>thirdItem</code>&nbsp;variable.</li></ul>\n\n\n\n<p>It\u2019ll be simpler with the destructuring assignment with a default value:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let &#91;, , thirdItem = 0] = getItems();\n\nconsole.log(thirdItem); // 0</code></pre>\n\n\n\n<p>If the value taken from the array is&nbsp;<code>undefined</code>, you can assign the variable a default value, like this:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let a, b;\n&#91;a = 1, b = 2] = &#91;10];\nconsole.log(a); // 10\nconsole.log(b); // 2</code></pre>\n\n\n\n<p>If the&nbsp;<code>getItems()</code>&nbsp;function doesn\u2019t return an array and you expect an array, the destructing assignment will result in an error. For example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function getItems() {\n    return null;\n}\n\nlet &#91;x = 1, y = 2] = getItems();</code></pre>\n\n\n\n<p>Error:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Uncaught TypeError: getItems is not a function or its return value is not iterable</code></pre>\n\n\n\n<p>A typical way to solve this is to fallback the returned value of the&nbsp;<code>getItems()</code>&nbsp;function to an empty array like this:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function getItems() {\n    return null;\n}\n\nlet &#91;a = 10, b = 20] = getItems() || &#91;];\n\nconsole.log(a); // 10\nconsole.log(b); // 20</code></pre>\n\n\n\n<h2>Nested array destructuring</h2>\n\n\n\n<p>The following function returns an array that contains an element which is another array, or nested array:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function getProfile() {\n    return &#91;\n        'John',\n        'Doe',\n        &#91;'Red', 'Green', 'Blue']\n    ];\n}</code></pre>\n\n\n\n<p>Since the third element of the returned array is another array, you need to use the nested array destructuring syntax to destructure it, like this:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let &#91;\n    firstName,\n    lastName,\n    &#91;\n        color1,\n        color2,\n        color3\n    ]\n] = getProfile();\n\nconsole.log(color1, color2, color3); // Red Green Blue</code></pre>\n\n\n\n<h2>Array Destructuring Assignment Applications</h2>\n\n\n\n<p>Let\u2019s see some practical examples of using the array destructuring assignment syntax.</p>\n\n\n\n<h3>1) Swapping variables</h3>\n\n\n\n<p>The array destructuring makes it easy to swap values of variables without using a temporary variable:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let a = 10, \n    b = 20;\n\n&#91;a, b] = &#91;b, a];\n\nconsole.log(a); // 20\nconsole.log(b); // 10</code></pre>\n\n\n\n<h3>2) Functions that return multiple values</h3>\n\n\n\n<p>In JavaScript, a function can return a value. However, you can return an array that contains multiple values, for example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function stat(a, b) {\n    return &#91;\n        a + b,\n        (a + b) / 2,\n        a - b\n    ]\n}</code></pre>\n\n\n\n<p>And then you use the array destructuring assignment syntax to destructure the elements of the return array into variables:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let &#91;sum, average, difference] = stat(20, 10);\nconsole.log(sum, average, difference); // 30, 15, 10</code></pre>\n\n\n\n<p>In this tutorial, you have learned how to use the ES6 destructuring assignment to destructure elements in an array into individual variables.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>ES6 provides a new feature called destructing assignment that allows you to\u00a0destructure properties of an object\u00a0or elements of an\u00a0array\u00a0into individual variables. Let\u2019s start with the array destructuring. Introduction to JavaScript Array destructuring Assuming that you have a function that returns an array of numbers as follows: The following invokes the&nbsp;getScores()&nbsp;function and assigns the returned value [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [199],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4076"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=4076"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4076/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=4076"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=4076"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=4076"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 4077,
+    "date": "2020-11-27T11:07:34",
+    "date_gmt": "2020-11-27T11:07:34",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3080"
+    },
+    "modified": "2020-11-27T11:07:34",
+    "modified_gmt": "2020-11-27T11:07:34",
+    "slug": "object-destructuring-2",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/object-destructuring-2/",
+    "title": {
+      "rendered": "Object Destructuring"
+    },
+    "content": {
+      "rendered": "\n<h2>Introduction to the JavaScript object destructuring assignment</h2>\n\n\n\n<p>Suppose you have a&nbsp;<code>person</code>&nbsp;object with two properties:&nbsp;<code>firstName</code>&nbsp;and&nbsp;<code>lastName</code>.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let person = {\n    firstName: 'John',\n    lastName: 'Doe'\n};</code></pre>\n\n\n\n<p>Prior to ES6, when you want to assign the variables to the properties of the&nbsp;<code>person</code>&nbsp;object, you typically do like this:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let firstName = person.firstName;\nlet lastName = person.lastName; </code></pre>\n\n\n\n<p>ES6 introduces the object destructuring syntax that provides an alternative way to assign\u00a0properties\u00a0of an\u00a0object\u00a0to variables:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let {\n   firstName: fname, \n   lastName: lname\n} = person;</code></pre>\n\n\n\n<p>In this example, the&nbsp;<code>firstName</code>&nbsp;and&nbsp;<code>lastName</code>&nbsp;properties are assigned to the&nbsp;<code>fName</code>&nbsp;and&nbsp;<code>lName</code>&nbsp;variables respectively.</p>\n\n\n\n<p>In this syntax:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let { \n   property1: variable1,\n   property2: variable2\n} = object;</code></pre>\n\n\n\n<p>The identifier before the colon (<code>:</code>) is the property of the object and the identifier after the colon is the variable.</p>\n\n\n\n<p>Notice that the property name is always on the left whether it is object literal or object destructuring syntax.</p>\n\n\n\n<p>If the variables have the same names as the properties of the object, you can make the code more concise as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let {\n   firstName, \n   lastName\n} = person;\n\nconsole.log(firstName); // 'John'\nconsole.log(lastName); // 'Doe'</code></pre>\n\n\n\n<p>In this example, we declared two variables&nbsp;<code>firstName</code>&nbsp;and&nbsp;<code>lastName</code>, and assigned the properties of the person object to the variables in the same statement.</p>\n\n\n\n<p>It\u2019s possible to separate the declaration and assignment. However, you must surround the variables in parentheses:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>({\n    firstName,\n    lastName\n} = person);</code></pre>\n\n\n\n<p>If you don\u2019t use the parentheses, the JavaScript engine will interpret the left-hand side&nbsp;as a block and throw a syntax error.</p>\n\n\n\n<p>When you assign a property that does not exist to a variable using the object destructuring, the variable is set to&nbsp;<code>undefined</code>. For example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let {\n    firstName,\n    lastName,\n    middleName\n} = person;\n\nconsole.log(middleName); // undefined</code></pre>\n\n\n\n<p>In this example, the&nbsp;<code>middleName</code>&nbsp;property doesn\u2019t exist in the&nbsp;<code>person</code>&nbsp;object, therefore, the&nbsp;<code>middleName</code>&nbsp;variable is&nbsp;<code>undefined</code>.</p>\n\n\n\n<h2>Setting default values</h2>\n\n\n\n<p>You can assign a default value ot the variable when the property of an object doesn\u2019t exist. For example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let person = {\n    firstName: 'John',\n    lastName: 'Doe',\n    currentAge: 28\n};\n\nlet {\n    firstName,\n    lastName,\n    middleName = '',\n    age: currentAge = 18\n} = person;\n\nconsole.log(middleName); // ''\nconsole.log(age); // 28</code></pre>\n\n\n\n<p>In this example, we assigned the empty string to the&nbsp;<code>middleName</code>&nbsp;variable when the person object doesn\u2019t have the&nbsp;<code>middleName</code>&nbsp;property.</p>\n\n\n\n<p>Also, we assign the&nbsp;<code>currentAge</code>&nbsp;property to the&nbsp;<code>age</code>&nbsp;variable with the default value of 18.</p>\n\n\n\n<p>However, when the person object does have the&nbsp;<code>middleName</code>&nbsp;property, the assignment works as usual:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let person = {\n    firstName: 'John',\n    lastName: 'Doe',\n    middleName: 'C.',\n    currentAge: 28\n};\n\nlet {\n    firstName,\n    lastName,\n    middleName = '',\n    currentAge: age = 18\n} = person;\n\nconsole.log(middleName); // 'C.'\nconsole.log(age); // 28</code></pre>\n\n\n\n<h2>Destructuring a null object</h2>\n\n\n\n<p>A function may return an object or null in some situations. For example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function getPerson() {\n    return null;\n}</code></pre>\n\n\n\n<p>And you use the object destructuring assignment:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let {\n    firstName,\n    lastName\n} = getPerson();\n\nconsole.log(firstName, lastName);</code></pre>\n\n\n\n<p>The code will throw a&nbsp;<code>TypeError</code>:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>TypeError: Cannot destructure property 'firstName' of 'getPerson(...)' as it is null.</code></pre>\n\n\n\n<p>To avoid this, you can use the&nbsp;<code>OR</code>&nbsp;operator (<code>||</code>) to fallback the&nbsp;<code>null</code>&nbsp;object to an empty object:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let {\n    firstName,\n    lastName\n} = getPerson() || {};</code></pre>\n\n\n\n<p>Now, no error will occur. And the&nbsp;<code>firstName</code>&nbsp;and&nbsp;<code>lastName</code>&nbsp;will be&nbsp;<code>undefined</code>.</p>\n\n\n\n<h2>Nested object destructuring</h2>\n\n\n\n<p>Assuming that you have an&nbsp;<code>employee</code>&nbsp;object which&nbsp;has a&nbsp;<code>name</code>&nbsp;object as the property:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let employee = {\n    id: 1001,\n    name: {\n        firstName: 'John',\n        lastName: 'Doe'\n    }\n};</code></pre>\n\n\n\n<p>The following statement destructures the properties of the nested&nbsp;<code>name</code>object into individual variables:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let {\n    name: {\n        firstName,\n        lastName\n    }\n} = employee;\n\nconsole.log(firstName); // John\nconsole.log(lastName); // Doe</code></pre>\n\n\n\n<p>It\u2019s possible to do multiple assignement of a property to multiple variables:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let employee = {\n    id: 1001,\n    name: {\n        firstName: 'John',\n        lastName: 'Doe'\n    }\n};\n\nlet {\n    name: {\n        firstName,\n        lastName\n    },\n    name\n} = employee;\n\nconsole.log(firstName); // John\nconsole.log(lastName); // Doe\nconsole.log(name); // { firstName: 'John', lastName: 'Doe' }</code></pre>\n\n\n\n<h2>Destructuring function arguments</h2>\n\n\n\n<p>Suppose you have a function that displays the person object:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let display = (person) => console.log(`${person.firstName} ${person.lastName}`);\n\nlet person = {\n    firstName: 'John',\n    lastName: 'Doe'\n};\n\ndisplay(person);</code></pre>\n\n\n\n<p>It\u2019s possible to destructure the object argument passed into the function like this:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let display = ({firstName, lastName}) => console.log(`${firstName} ${lastName}`);\n\nlet person = {\n    firstName: 'John',\n    lastName: 'Doe'\n};\n\ndisplay(person);</code></pre>\n\n\n\n<p>It looks less verbose especially when you use many properties of the argument object. This technique is often used in React.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Introduction to the JavaScript object destructuring assignment Suppose you have a&nbsp;person&nbsp;object with two properties:&nbsp;firstName&nbsp;and&nbsp;lastName. Prior to ES6, when you want to assign the variables to the properties of the&nbsp;person&nbsp;object, you typically do like this: ES6 introduces the object destructuring syntax that provides an alternative way to assign\u00a0properties\u00a0of an\u00a0object\u00a0to variables: In this example, the&nbsp;firstName&nbsp;and&nbsp;lastName&nbsp;properties are assigned [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [199],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4077"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=4077"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4077/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=4077"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=4077"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=4077"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  }
+]

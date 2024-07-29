@@ -1,0 +1,176 @@
+[
+  {
+    "id": 3949,
+    "date": "2020-12-12T06:07:40",
+    "date_gmt": "2020-12-12T06:07:40",
+    "guid": { "rendered": "http://angular.foobrdigital.com/?p=3949" },
+    "modified": "2020-12-12T06:13:52",
+    "modified_gmt": "2020-12-12T06:13:52",
+    "slug": "how-to-get-the-current-route-or-url-in-angular",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/how-to-get-the-current-route-or-url-in-angular/",
+    "title": { "rendered": "How to get the current route or URL in Angular" },
+    "content": {
+      "rendered": "\n<h2>Using Router.url</h2>\n\n\n\n<p>Inject the Router and use the URL property.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>import { Component } from '@angular/core';\r\nimport { Router } from '@angular/router';\r\n \r\n  @Component({\r\n    template: `&lt;h1>Dashboard Component&lt;/h1>`,\r\n  })\r\n  export class DashboardComponent {\r\n    title = '';\r\n \r\n    constructor(private router: Router) {\r\n      console.log(this.router.url)\r\n    }\r\n \r\n  }\r\n </code></pre>\n\n\n\n<h2>Subscribe to Router Events</h2>\n\n\n\n<p>Subscribe to the NavigationStart Router Event and use the <code>url</code> property of the <code>NavigationEvent</code>. By subscribing to the event, you will always</p>\n\n\n\n<p>Do not forget to <code>unsubscribe</code>, the subscription when the component is destroyed. Not doing so will lead to a memory leak as the subscription will keep running.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>import { Component, OnDestroy} from '@angular/core';\r\nimport { Router,NavigationStart, Event as NavigationEvent } from '@angular/router';\r\n \r\n@Component({\r\n  selector: 'app-admin',\r\n  templateUrl: './admin.component.html',\r\n  styleUrls: &#91;'./admin.component.css']\r\n})\r\nexport class AdminComponent implements OnDestroy  {\r\n \r\n  event$ \r\n \r\n  constructor(private router: Router) {\r\n    \r\n    this.event$\r\n      =this.router.events\r\n          .subscribe(\r\n            (event: NavigationEvent) => {\r\n              if(event instanceof NavigationStart) {\r\n                console.log(event.url);\r\n              }\r\n            });\r\n  }\r\n \r\n  ngOnDestroy() {\r\n    this.event$.unsubscribe();\r\n  }\r\n}</code></pre>\n\n\n\n<p>The route change even fires, only when the route changes. It won’t fire when the app starts for the first time.</p>\n\n\n\n<h2>Using Location Service</h2>\n\n\n\n<p>Import Location Service from the <code>@angular/common</code>. And use the <code>Location.path()</code> to get the current URL.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>import { Component} from '@angular/core';\r\nimport { Location } from '@angular/common';\r\n \r\n@Component({\r\n  selector: 'app-admin',\r\n  templateUrl: './admin.component.html',\r\n  styleUrls: &#91;'./admin.component.css']\r\n})\r\nexport class AdminComponent implements OnDestroy  {\r\n \r\n  constructor(private Location:Location) {\r\n    console.log(this.Location.path())\r\n  }\r\n \r\n}</code></pre>\n\n\n\n<h2>Listen to Location Change</h2>\n\n\n\n<pre class=\"wp-block-code\"><code>import { Component, OnDestroy } from '@angular/core';\r\nimport { Router, NavigationStart, Event as NavigationEvent } from '@angular/router';\r\nimport { Location } from '@angular/common';\r\n \r\n@Component({\r\n  selector: 'app-admin',\r\n  templateUrl: './admin.component.html',\r\n  styleUrls: &#91;'./admin.component.css']\r\n})\r\nexport class AdminComponent implements OnDestroy {\r\n \r\n  event$\r\n \r\n  constructor(private location: Location) {\r\n    this.event$=location.onUrlChange((val) => {\r\n      console.log('AdminComponent '+ val)\r\n    })\r\n  }\r\n \r\n  ngOnDestroy() {\r\n    this.event$.unsubscribe()\r\n  }\r\n}\r\n</code></pre>\n\n\n\n<h2>Using Window</h2>\n\n\n\n<p>You can also use the window object to get the path. But remember that it works only if the app is using the browser. If you using Server Side Rending using Angular Universal then this will not work.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>window.location.pathname </code></pre>\n\n\n\n<p></p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Using Router.url Inject the Router and use the URL property. Subscribe to Router Events Subscribe to the NavigationStart Router Event and use the url property of the NavigationEvent. By subscribing to the event, you will always Do not forget to unsubscribe, the subscription when the component is destroyed. Not doing so will lead to a memory leak as the subscription will keep running. [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [158],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3949" }
+      ],
+      "collection": [
+        { "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=3949"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3949/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3950,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3949/revisions/3950"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=3949"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=3949"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=3949"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3951,
+    "date": "2020-12-12T06:13:27",
+    "date_gmt": "2020-12-12T06:13:27",
+    "guid": { "rendered": "http://angular.foobrdigital.com/?p=3951" },
+    "modified": "2020-12-12T06:14:08",
+    "modified_gmt": "2020-12-12T06:14:08",
+    "slug": "expressionchangedafterithasbeencheckederror-in-angular",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/expressionchangedafterithasbeencheckederror-in-angular/",
+    "title": {
+      "rendered": "ExpressionChangedAfterItHasBeenCheckedError in Angular"
+    },
+    "content": {
+      "rendered": "\n<p>The expression has changed after it was checked (Expressionchangedafterithasbeencheckederror) is one of the common errors, that we encounter in Angular applications. The error arises when the binding expression changes after angular checked it during the change detection cycle.</p>\n\n\n\n<h2>ExpressionChangedAfterItHasBeenCheckedError</h2>\n\n\n\n<p>To understand the error, let us create an app and try to produce the error.</p>\n\n\n\n<p>Create a new angular application. Add <code>child.component.ts</code> with the following code. It has one form element <code>message</code>.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>import { Component } from \"@angular/core\";\r\n \r\n@Component({\r\n  selector: \"app-child\",\r\n  template: `\r\n \r\n    &lt;h2>Child Component&lt;/h2>\r\n    message: &lt;input &#91;(ngModel)]=\"message\">\r\n \r\n  `,\r\n})\r\nexport class ChildComponent {\r\n  message = \"\" \r\n}</code></pre>\n\n\n\n<p>Open <code>app.component.ts</code> and add following code.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>import { Component, ViewChild } from \"@angular/core\";\r\nimport { ChildComponent } from \"./child-component\";\r\n \r\n@Component({\r\n  selector: \"my-app\",\r\n  template: `\r\n  \r\n  &lt;h1>ExpressionChangedAfterItHasBeenCheckedError&lt;/h1>\r\n \r\n  &lt;app-child>\r\n  &lt;/app-child>\r\n \r\n  &lt;br>\r\n \r\n  `,\r\n})\r\nexport class AppComponent {\r\n \r\n  message=\"\";\r\n \r\n  @ViewChild(ChildComponent) childComp: ChildComponent;\r\n \r\n  ngAfterViewChecked() {\r\n    console.log('AppComponent==>AfterViewChecked');\r\n    this.message=this.childComp.message;\r\n  }\r\n \r\n}</code></pre>\n\n\n\n<ol><li>We are using the <code>ViewChild</code> query to get the reference of the <code>ChildComponent</code> (<code>childComp</code>)</li><li><code>this.message=this.childComp.message;</code> updates the <code>message</code> property of this component with that of <code>ChildComponent</code>. We are not doing anything with this property.</li></ol>\n\n\n\n<p>Run this app. Type&nbsp;<code>Hello</code>&nbsp;it will work correctly and you will not see any errors.</p>\n\n\n\n<p>Now, add the following in the template of <code>AppComponent</code></p>\n\n\n\n<pre class=\"wp-block-code\"><code>message from child {{message}} </code></pre>\n\n\n\n<p>Run the app. Now as soon as you start typing&nbsp;<code>Hello</code>, the Angular will throw the error&nbsp;<code>ExpressionChangedAfterItHasBeenCheckedError</code>, which you can see in the developer console.</p>\n\n\n\n<p>The above error appears only in the development environment. If you enable the production environment, you will no longer see the error.</p>\n\n\n\n<h2>Reason for the error</h2>\n\n\n\n<p>To understand the error, we need to understand what is change detection &amp; how it works.</p>\n\n\n\n<h3>What is Change Detection ?</h3>\n\n\n\n<p>Change detection (CD) is the mechanism by which angular keeps the template in sync with the component.</p>\n\n\n\n<p>Now, look at the following template from the <code>app.component.ts</code>. Angular needs to evaluate the string interpolation expression <code>{{message}}</code> and replace it with the actual value and update the DOM. It must do it every time, the value of the <code>message</code> changes.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> message from child {{message}} </code></pre>\n\n\n\n<p>To do that, Angular runs a&nbsp;<strong>change detection process</strong>, which checks the value of every such binding in the component. If the current value of such binding is different from its previous value (oldValue), then it will update the DOM.</p>\n\n\n\n<p>For the change detection work properly, the angular must run change detection on every event that may lead to a change. The following are some of the events that may lead to a change in the state of the application.</p>\n\n\n\n<ol><li>Browser events like click, keyup, mouse movement, etc</li><li>Child Component raising an event to notify the parent</li><li>Sending HTTP Requests to the backend server for a data</li><li>Observable / Promises emits a new result</li><li>Timer events like setInterval() and setTimeout()</li></ol>\n\n\n\n<p>Hence, Angular starts a change detection, whenever the above events take place.</p>\n\n\n\n<p>Now, there are two important points to remember</p>\n\n\n\n<ol><li>Change Detection is unidirectional and always starts from the root component irrespective of where the change has occurred.</li><li>It evaluates each binding only once in each change detection cycle and then it updates the DOM if necessary</li></ol>\n\n\n\n<h3>Back to the Error</h3>\n\n\n\n<p>Now, let us see what is happening in our above code.</p>\n\n\n\n<ol><li>Initially, the value of <code>message</code> is empty</li><li>We enter <code><strong>h</strong></code> in the input element. This starts a change detection cycle.</li><li>It checks the value of <code>message</code> property. Its value is empty. <strong>Hence updates the DOM with empty string.</strong></li><li>Angular fires the <code>AfterViewChecked</code> hook</li><li>AfterViewChecked updates the message property to h.</li><li>Angular runs another check to see if all the binding’s values are correct. It detects the value of <code>message</code> property is now <code>h</code>. which is different from when it checked it in step 3. It raises the <code>ExpressionChangedAfterItHasBeenCheckedError</code></li><li>Change detection cycle ends</li></ol>\n\n\n\n<p>Also, note that&nbsp;<strong>h</strong>&nbsp;is not displayed as soon as you type it.&nbsp;<em>To display it we need to start another change detection</em>, which we start just by clicking elsewhere in the browser window.</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://www.tektutorialshub.com/wp-content/uploads/2020/10/Producing-the-ExpressionChangedAfterItHasBeenCheckedError-error-in-Angular.gif\" alt=\"\" class=\"wp-image-21203\"/></figure>\n\n\n\n<h2>Error appears only in development mode</h2>\n\n\n\n<p><strong>Angular runs another check</strong>&nbsp;only in the development mode. It helps us to identify &amp; rectify the error.</p>\n\n\n\n<p>Angular could easily update the bindings &amp; DOM in the second check. But such a check may potentially introduce new changes in the bindings. Hence, we may actually enter into an infinite loop. In Fact, that is what happened in the AngularJS digest cycle.</p>\n\n\n\n<p>Angular does not run another check in the production environment for performance reasons. Because It is just a waste of crucial CPU time. Hence you won’t see any errors thrown in the console window. That does not mean that error does not exist.</p>\n\n\n\n<h2>Examples &amp; Solutions to Expression Changed After It Has Been Checked Error</h2>\n\n\n\n<p>There is no single right solution to the&nbsp;<code>ExpressionChangedAfterItHasBeenCheckedError</code>&nbsp;problem. The solution depends on each use case.</p>\n\n\n\n<p>The most important is to find out where and why the error is happening. And based on that refactor the code.</p>\n\n\n\n<p>In the example code above, instead of the parent reading the child component property, it would be better if the child component raises an event, whenever the model changes using the output &amp; EventEmitter</p>\n\n\n\n<pre class=\"wp-block-code\"><code>import { Component, EventEmitter, Output } from \"@angular/core\";\r\n \r\n@Component({\r\n  selector: \"app-child\",\r\n  template: `\r\n \r\n    &lt;h2>Child Component&lt;/h2>\r\n    &lt;input &#91;(ngModel)]=\"message\" (ngModelChange)=\"messageChangeFn($event)\" />\r\n \r\n  `,\r\n})\r\nexport class ChildComponent {\r\n  message = \"\" \r\n \r\n  @Output() messageChanged: EventEmitter&lt;any> = new EventEmitter&lt;any>();\r\n \r\n  messageChangeFn($event) {\r\n    this.messageChanged.emit(this.message);\r\n  }\r\n}</code></pre>\n\n\n\n<p>In the parent component use the event binding to read the message whenever it changes in the child component.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>import { Component, ViewChild } from \"@angular/core\";\r\nimport { ChildComponent } from \"./child-component\";\r\n \r\n@Component({\r\n  selector: \"my-app\",\r\n  template: `\r\n    &lt;h1>ExpressionChangedAfterItHasBeenCheckedError&lt;/h1>\r\n \r\n    &lt;app-child (messageChanged)=\"messageChanged($event)\"> &lt;/app-child>\r\n \r\n    &lt;br />\r\n \r\n    message from child {{ message }}\r\n \r\n  `\r\n})\r\nexport class AppComponent {\r\n  message = \"\";\r\n \r\n  @ViewChild(ChildComponent) childComp: ChildComponent;\r\n \r\n \r\n  messageChanged(message) {\r\n    this.message = message;\r\n  }\r\n}\r\n </code></pre>\n\n\n\n<h3>Check AfterViewChecked &amp; AfterContentChecked hook</h3>\n\n\n\n<p>Angular invokes <code>AfterViewChecked</code> after it checks all the bindings. <code>AfterContentChecked</code> is triggered when angular finishes checking of the projected content.</p>\n\n\n\n<p>Hence if you are using these hooks, you should make sure that they do not change any binding that angular has already checked. Better to avoid using these hooks as angular invokes them during every change detection cycle.</p>\n\n\n\n<p>For any initialisation you can make use of OnInit hook.</p>\n\n\n\n<h2>ViewChild &amp; Expression Changed Error</h2>\n\n\n\n<p>Look at this question from stackoverflow.com. The code is shown below (also check the stackblitz.com.).</p>\n\n\n\n<pre class=\"wp-block-code\"><code>\r\n//our root app component\r\nimport { Component, NgModule, VERSION, ViewChild } from \"@angular/core\";\r\nimport { BrowserModule } from \"@angular/platform-browser\";\r\n \r\n@Component({\r\n  selector: \"my-app\",\r\n  template: `\r\n    &lt;div>\r\n      &lt;div #box class=\"box\">{{ getData() }}&lt;/div>\r\n      &lt;button *ngIf=\"isShowExpand()\">Expand&lt;/button>\r\n    &lt;/div>\r\n  `\r\n})\r\nexport class AppComponent {\r\n  data = \"loading data...\";\r\n \r\n  @ViewChild(\"box\") boxElement;\r\n \r\n  constructor() {\r\n    this.fetchData();\r\n  }\r\n \r\n  getData() {\r\n    return this.data;\r\n  }\r\n \r\n  fetchData() {\r\n    setTimeout(() => {\r\n      this.data =\r\n        \"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\";\r\n \r\n      console.log(\"data arrives\");\r\n    }, 1000);\r\n  }\r\n \r\n  isShowExpand() {\r\n    let show =\r\n      this.boxElement &amp;&amp;\r\n      this.boxElement.nativeElement.scrollHeight >\r\n        this.boxElement.nativeElement.clientHeight;\r\n    console.log(\"show: =>\" + show + \" box => \" + this.boxElement);\r\n \r\n    return show;\r\n  }\r\n \r\n  ngDoCheck() {\r\n    console.log(\"AppComponent==>ngDoCheck\");\r\n  }\r\n \r\n  ngAfterContentInit() {\r\n    console.log(\"AppComponent==>ngAfterContentInit\");\r\n  }\r\n \r\n  ngAfterContentChecked() {\r\n    console.log(\"AppComponent==>ngAfterContentChecked\");\r\n  }\r\n \r\n  ngAfterViewInit() {\r\n    console.log(\"AppComponent==>AfterViewInit\");\r\n  }\r\n \r\n  ngAfterViewChecked() {\r\n    console.log(\"AppComponent==>AfterViewChecked\");\r\n  }\r\n}\r\n </code></pre>\n\n\n\n<p>The culprit here is the&nbsp;<code>boxElement</code>, which is&nbsp;<code>undefined</code>&nbsp;when the component is loads for the first time. The following is the sequence of events that takes place.</p>\n\n\n\n<ul id=\"block-7da88b98-ad8e-4f87-97cb-975d114f3a94\"><li>Angular Instantiates the component. The <code>boxElement</code> is <code>undefined</code>.</li><li>The change detection cycle begins. (steps 1 to 6)</li><li>Angular starts to check the view and evaluates <code>isShowExpand()</code>. It returns <code>undefined</code> because <code>boxElement</code> is <code>undefined</code>. (step 4 )</li><li>Angular updates the ViewChild query and updates the <code>boxElement</code>. Raises the <code>AfterViewInit</code> &amp; <code>AfterViewChecked</code> (step 5 &amp; 6 )</li><li><strong><em>Angular runs another check </em></strong>to see if all the bindings values are correct. If detects <code>isShowExpand()</code> method returns <code>false</code> Hence it raises the <code>ExpressionChangedAfterItHasBeenCheckedError</code> (step 7 &amp; 8)</li><li>Angular runs second CD on app startup. (steps 9 to 13).</li><li>Data Arrives from the back end (step 15).</li><li>This triggers another change detection (step 16 to 20 )</li><li><code>isShowExpand()</code> returns <code>true</code> (step 18)</li><li>Angular runs another check. <code>isShowExpand()</code> returns true, Hence no error is thrown.</li></ul>\n\n\n\n<pre class=\"wp-block-code\"><code>1.  AppComponent==>ngDoCheck\r\n2.  AppComponent==>ngAfterContentInit\r\n3.  AppComponent==>ngAfterContentChecked\r\n \r\n4.  show: =>undefined box => undefined\r\n \r\n5.  AppComponent==>AfterViewInit\r\n6.  AppComponent==>AfterViewChecked\r\n \r\n7.  show: =>false box => &#91;object Object]\r\n8.  ExpressionChangedAfterItHasBeenCheckedError: Expression has changed after it was checked. Previous value: 'undefined'. Current value: 'false'.\r\n   \r\n9.  Angular is running in development mode. Call enableProdMode() to enable production mode.\r\n \r\n10. AppComponent==>ngDoCheck\r\n11. AppComponent==>ngAfterContentChecked\r\n12. show: =>false box => &#91;object Object]\r\n13. AppComponent==>AfterViewChecked\r\n14. show: =>false box => &#91;object Object]\r\n \r\n15. data arrives\r\n16. AppComponent==>ngDoCheck\r\n17. AppComponent==>ngAfterContentChecked\r\n18. show: =>true box => &#91;object Object]\r\n19. AppComponent==>AfterViewChecked\r\n20. show: =>true box => &#91;object Object]\r\n </code></pre>\n\n\n\n<p>The Stack Overflow solution uses the <code>AfterViewChecked</code> to trigger another change detection. But the <code>AfterViewChecked</code> runs on every CD, hence it is not an optimal solution.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>//our root app component\r\nimport {\r\n  ChangeDetectorRef,\r\n  Component,\r\n  NgModule,\r\n  VERSION,\r\n  ViewChild\r\n} from \"@angular/core\";\r\nimport { BrowserModule } from \"@angular/platform-browser\";\r\n \r\n@Component({\r\n  selector: \"my-app\",\r\n \r\n  template: `\r\n    &lt;div>\r\n      &lt;div #box class=\"box\">{{ getData() }}&lt;/div>\r\n \r\n      &lt;button *ngIf=\"show\">Expand&lt;/button>\r\n    &lt;/div>\r\n  `\r\n})\r\nexport class AppComponent {\r\n  \r\n  data = \"loading data...\";\r\n  show = false;\r\n  @ViewChild(\"box\") boxElement;\r\n \r\n  constructor(private cd: ChangeDetectorRef) {\r\n    this.fetchData();\r\n  }\r\n \r\n  getData() {\r\n    return this.data;\r\n  }\r\n \r\n  fetchData() {\r\n    setTimeout(() => {\r\n      this.data =\r\n        \"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\";\r\n \r\n      console.log(\"data arrives\");\r\n \r\n      setTimeout(() => {\r\n        this.show = this.isShowExpand();\r\n      });\r\n \r\n    }, 1000);\r\n  }\r\n \r\n  isShowExpand() {\r\n    let show =\r\n      this.boxElement &amp;&amp;\r\n      this.boxElement.nativeElement.scrollHeight >\r\n        this.boxElement.nativeElement.clientHeight;\r\n \r\n    console.log(\"show: =>\" + this.show + \" box => \" + this.boxElement);\r\n    return show;\r\n  }\r\n \r\n \r\n}\r\n </code></pre>\n\n\n\n<p>First, we create a property <code>show</code> and use it to bind to the <code>ngIf</code>. This will make the CD quicker as it does not have to call the <code>isShowExpand</code> method on every CD.</p>\n\n\n\n<p>Since we need to update the <code>show</code> property only when we receive the data, we use the <code>fetchData</code> method to update it.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>  setTimeout(() => {\r\n        this.show = this.isShowExpand();\r\n      })\r\n </code></pre>\n\n\n\n<p>After the data arrives we need to wait for angular to render the data. Otherwise&nbsp;<code>scrollHeight</code>&nbsp;&amp;&nbsp;<code>clientHeight</code>&nbsp;will not be correctly updated. Hence, we use the&nbsp;<code>setTimeout</code>&nbsp;to wait for a tick before calling the&nbsp;<code>isShowExpand</code>&nbsp;method. The&nbsp;<code>setTimeout</code>&nbsp;triggers a change detection.</p>\n\n\n\n<h2>ngIf and ExpressionChangedAfterItHasBeenCheckedError</h2>\n\n\n\n<p>The expressions we use in&nbsp;<code>ngIf</code>&nbsp;is one of the common reason for ExpressionChangedAfterItHasBeenCheckedError. Consider the following example</p>\n\n\n\n<p>stackblitz</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;h1>\r\n Angular-Expression Changed After It Has Been Checked Error Demo\r\n&lt;/h1>\r\n \r\n&lt;p>\r\n Note: If age equal Adult, then it should choose married option. If not, then\r\n no need to choose married option\r\n&lt;/p>\r\n \r\n&lt;form #form=\"ngForm\">\r\n &lt;div>\r\n &lt;em *ngIf=\"age.invalid\">Required&lt;/em>\r\n &lt;label>Age&lt;/label>\r\n &lt;select required name=\"age\" ngModel #age=\"ngModel\">\r\n      &lt;option value=\"\" disabled>Choose&lt;/option>\r\n      &lt;option value=\"1\">Child&lt;/option>\r\n      &lt;option value=\"2\">Adult&lt;/option>\r\n    &lt;/select>\r\n &lt;/div>\r\n \r\n \r\n Married Control Status {{ married.invalid }}\r\n &lt;!-- No Error -->\r\n \r\n \r\n &lt;div>\r\n &lt;em *ngIf=\"married.invalid\">Required&lt;/em> &lt;!--   Error Here  -->\r\n &lt;label>Married&lt;/label>\r\n &lt;select\r\n      &#91;required]=\"age.value === '2'\"\r\n      name=\"married\"\r\n      ngModel\r\n      #married=\"ngModel\"\r\n    >\r\n      &lt;option value=\"\">Choose&lt;/option>\r\n      &lt;option value=\"1\">Married&lt;/option>\r\n      &lt;option value=\"2\">Not Yet&lt;/option>\r\n    &lt;/select>\r\n &lt;/div>\r\n&lt;/form>\r\n&lt;div>\r\n &lt;ul>\r\n &lt;li>Step 1: Press F12, Turn on Dev tool&lt;/li>\r\n &lt;li>Step 2: Age options => select to Adult&lt;/li>\r\n &lt;li>Step 3: Error message shown&lt;/li>\r\n &lt;li>Step 4: Click any space on page&lt;/li>\r\n &lt;li>Step 5: Married &#91;Required] message Shown&lt;/li>\r\n &lt;/ul>\r\n&lt;/div>\r\n </code></pre>\n\n\n\n<ol><li>The&nbsp;<code>age</code>&nbsp;field accepts values&nbsp;<code>Child</code>&nbsp;(1) &amp;&nbsp;<code>Adult</code>&nbsp;(2).</li><li>If&nbsp;<code>age</code>&nbsp;is&nbsp;<code>Adult</code>&nbsp;(i.e.&nbsp;<code>age.value===2</code>) then&nbsp;<code>married</code>&nbsp;field is required else not.</li></ol>\n\n\n\n<p>Run this app and select&nbsp;<code>age</code>&nbsp;as&nbsp;<code>Adult</code>. The error is thrown immediately.</p>\n\n\n\n<p>Error is thrown in the <code>ngIf</code> expression where we use <code>married.invalid</code>.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> &lt;em *ngIf=\"married.invalid\">Required&lt;/em> &lt;!--   Error Here  -->  </code></pre>\n\n\n\n<p>But the following line does not throw the error although we use the same expression&nbsp;<code>married.invalid</code></p>\n\n\n\n<figure class=\"wp-block-table\"><table><tbody><tr><td>12345</td><td>&nbsp;Married Control Status {{ married.invalid }} &lt;!&#8211; No Error &#8211;&gt;&nbsp;&nbsp;</td></tr></tbody></table></figure>\n\n\n\n<ol><li>When the app starts the <code>married.invalid</code> is <code>false</code></li><li>We change the age to <code>Adult</code>. The <code>age.value</code> updated to <code>2</code>. , but the <code>married.invalid</code> is still <code>false</code>. Angular is yet to update it</li><li>Angular starts the change detection.</li><li><code>ngIf</code> is structural directive. It is treated as a child view, Hence Angular starts the change detection of <code>ngIf</code> first. It evaluates the <code>married.invalid</code> (which is <code>false</code>), which is an input to the <code>ngIf</code> directive.</li><li>Once angular finishes all the child components, it will start checking the current component. Updates <code>married.invalid</code> to <code>true</code></li><li>Now, Angular runs another check It raises the error when it checks the <code>ngIf</code> expression.</li></ol>\n\n\n\n<h3>Solution</h3>\n\n\n\n<p>The solution is to control the evaluation of <code>ngIf</code> expression. Change the expression to a property in the component class <code>marriedinvalid</code>.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>  &lt;em *ngIf=\"marriedinvalid\">Required&lt;/em> </code></pre>\n\n\n\n<p>Next, use the <code>ModelChange</code> to listen to the changes to the <code>age</code> &amp; <code>married</code> input fields.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;select\r\n required\r\n name=\"age\"\r\n ngModel\r\n #age=\"ngModel\"\r\n    (ngModelChange)=\"modelChanged($event)\"></code></pre>\n\n\n\n<pre class=\"wp-block-code\"><code>\r\n&lt;select\r\n &#91;required]=\"age.value === '2'\"\r\n name=\"married\"\r\n ngModel\r\n #married=\"ngModel\"\r\n (ngModelChange)=\"modelChanged($event)\"\r\n>\r\n </code></pre>\n\n\n\n<p>Finally, in the component code listen to the <code>modelChanged</code>. Update the <code>marriedinvalid</code> accordingly. We use the <code>setTimeout</code> to wait for a tick before updating the <code>marriedinvalid</code>.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>import { Component, ViewChild } from \"@angular/core\";\r\nimport { NgModel } from \"@angular/forms\";\r\n \r\n@Component({\r\n  selector: \"my-app\",\r\n  templateUrl: \"./app.component.html\",\r\n  styleUrls: &#91;\"./app.component.css\"]\r\n})\r\nexport class AppComponent {\r\n  \r\n  marriedinvalid = false;\r\n \r\n  @ViewChild(\"married\", { static: false, read: NgModel }) marriedRef;\r\n \r\n  modelChanged() {\r\n    setTimeout(() => {\r\n      this.marriedinvalid = this.marriedRef.invalid;\r\n      console.log(\"modelChanged \" + this.marriedinvalid);\r\n    });\r\n  }\r\n \r\n}</code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>The expression has changed after it was checked (Expressionchangedafterithasbeencheckederror) is one of the common errors, that we encounter in Angular applications. The error arises when the binding expression changes after angular checked it during the change detection cycle. ExpressionChangedAfterItHasBeenCheckedError To understand the error, let us create an app and try to produce the error. Create [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [158],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3951" }
+      ],
+      "collection": [
+        { "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=3951"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3951/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3952,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3951/revisions/3952"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=3951"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=3951"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=3951"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  }
+]

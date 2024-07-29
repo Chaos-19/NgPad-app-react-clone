@@ -1,0 +1,90 @@
+[
+  {
+    "id": 3943,
+    "date": "2020-12-12T06:02:48",
+    "date_gmt": "2020-12-12T06:02:48",
+    "guid": { "rendered": "http://angular.foobrdigital.com/?p=3943" },
+    "modified": "2020-12-12T06:03:25",
+    "modified_gmt": "2020-12-12T06:03:25",
+    "slug": "the-requested-url-was-not-found-on-this-server-error-in-angular",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/the-requested-url-was-not-found-on-this-server-error-in-angular/",
+    "title": {
+      "rendered": "The requested URL was not found on this server error in Angular"
+    },
+    "content": {
+      "rendered": "\n<h2>Reason for the requested URL was not found on this server error</h2>\n\n\n\n<p>In a Multi-page web application, every time the application needs to display a page it has to send a request to the webserver. You can do that by either typing the URL in the address bar, clicking on the Menu link/ button. Every such action results in a new request being sent to the Web server. For each request, a corresponding page must exist on the server. The server locates that page and returns it back to the client.</p>\n\n\n\n<p>But in Angular Apps, the app starts when the main page (<code>index.html</code>) is loaded. Any subsequent requests do not reload the page but only load a part of the page. The requests are not sent to the server but handled by the Angular router at the client-side. You can read more about it from the article Angular bootstrap process</p>\n\n\n\n<p>For Example, when you request for <code>example.com</code> the request is sent to the server, which returns the <code>index.html</code>.This will bootstrap the Angular.</p>\n\n\n\n<p>Now when you click on <code>example.com/products</code>, the request is not sent to the server but handled at the client-side by the Angular Router. The Router loads the component associated with the <code>products</code> route. The <code>products</code> component may send an HTTP request to fetch the list of products to display. But the request to display the <code>products</code> page is never sent to the server.</p>\n\n\n\n<p>What happens when somebody types the&nbsp;<code>example.com/products</code>&nbsp;in the address bar or refreshes the page. Now the request to fetch the products page is sent to the server. Since there is no products page available in the server it returns the The requested URL was not found on this server or 404 error page</p>\n\n\n\n<h2>Workaround</h2>\n\n\n\n<p>The workaround to this problem is to instruct the server to load the&nbsp;<code>index.html</code>&nbsp;no matter what. So when the request comes to&nbsp;<code>example.com/products</code>&nbsp;page, the server serves the&nbsp;<code>index.html</code>&nbsp;page. This bootstraps the Angular app and the Angular router is smart enough to read the requested URL and load the&nbsp;<code>products</code>&nbsp;component.</p>\n\n\n\n<p>To instruct the server to load the&nbsp;<code>index.html</code>&nbsp;for every request require a configuration change at the Web server level. The configuration settings depend on the server used.</p>\n\n\n\n<h3>IIS Server</h3>\n\n\n\n<p>First, install the IIS URL Rewrite module. Copy the following to <code>web.config file</code> to the root of the application.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n&lt;configuration>\r\n&lt;system.webServer>\r\n \r\n  &lt;rewrite>\r\n    &lt;rules>\r\n      &lt;rule name=\"Angular Routes\" stopProcessing=\"true\">\r\n        &lt;match url=\".*\" />\r\n        &lt;conditions logicalGrouping=\"MatchAll\">\r\n          &lt;add input=\"{REQUEST_FILENAME}\" matchType=\"IsFile\" negate=\"true\" />\r\n          &lt;add input=\"{REQUEST_FILENAME}\" matchType=\"IsDirectory\" negate=\"true\" />\r\n        &lt;/conditions>\r\n        &lt;action type=\"Rewrite\" url=\"./index.html\" />\r\n      &lt;/rule>\r\n    &lt;/rules>\r\n  &lt;/rewrite>\r\n \r\n&lt;/system.webServer>\r\n&lt;/configuration></code></pre>\n\n\n\n<h3>Apache</h3>\n\n\n\n<p>Add a <a href=\"https://httpd.apache.org/docs/current/mod/mod_rewrite.html\">rewrite rule</a> to the <code>.htaccess</code> file as shown.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> \r\nRewriteEngine On\r\n# If an existing asset or directory is requested go to it as it is\r\nRewriteCond %{DOCUMENT_ROOT}%{REQUEST_URI} -f &#91;OR]\r\nRewriteCond %{DOCUMENT_ROOT}%{REQUEST_URI} -d\r\nRewriteRule ^ - &#91;L]\r\n \r\n# If the requested resource doesn't exist, use index.html\r\nRewriteRule ^ /index.html</code></pre>\n\n\n\n<h3>Nginx</h3>\n\n\n\n<p>Add the following <code>try_files</code> rules to the Nginx configuration file to redirect every request to serve <code>index.html</code></p>\n\n\n\n<pre class=\"wp-block-code\"><code>try_files $uri $uri/ /index.html;</code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Reason for the requested URL was not found on this server error In a Multi-page web application, every time the application needs to display a page it has to send a request to the webserver. You can do that by either typing the URL in the address bar, clicking on the Menu link/ button. Every [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [156],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3943" }
+      ],
+      "collection": [
+        { "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=3943"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3943/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3944,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3943/revisions/3944"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=3943"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=3943"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=3943"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  }
+]

@@ -1,0 +1,96 @@
+[
+  {
+    "id": 4078,
+    "date": "2020-11-27T11:11:02",
+    "date_gmt": "2020-11-27T11:11:02",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3090"
+    },
+    "modified": "2020-11-27T11:11:02",
+    "modified_gmt": "2020-11-27T11:11:02",
+    "slug": "es6-modules-2",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/es6-modules-2/",
+    "title": {
+      "rendered": "ES6 modules"
+    },
+    "content": {
+      "rendered": "\n<p>An ES6 module is a JavaScript file that executes in strict mode only. It means that any\u00a0variables\u00a0or\u00a0functions\u00a0declared in the module won\u2019t be added automatically to the global scope.</p>\n\n\n\n<h2>Executing modules on web browsers</h2>\n\n\n\n<p>First, create a new file called&nbsp;<code>message.js</code>&nbsp;and add the following code:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>export let message = 'ES6 Modules';</code></pre>\n\n\n\n<p>The&nbsp;<code>message.js</code>&nbsp;is a module in ES6 that contains the&nbsp;<code>message</code>&nbsp;variable. The&nbsp;<code>export</code>&nbsp;statement exposes the&nbsp;<code>message</code>&nbsp;variable to other modules.</p>\n\n\n\n<p>Second, create another new file named&nbsp;<code>app.js</code>&nbsp;that uses the&nbsp;<code>message.js</code>&nbsp;module. The&nbsp;<code>app.js</code>&nbsp;module creates a new heading 1 (h1) element and attaches it to an HTML page. The&nbsp;<code>import</code>&nbsp;statement imports the&nbsp;<code>message</code>&nbsp;variable from the&nbsp;<code>message.js</code>&nbsp;module.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>import { message } from './message.js'\n\nconst h1 = document.createElement('h1');\nh1.textContent = message\n\ndocument.body.appendChild(h1)</code></pre>\n\n\n\n<p>Third, create a new HTML page that uses the&nbsp;<code>app.js</code>&nbsp;module:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;!DOCTYPE html>\n&lt;html>\n&lt;head>\n  &lt;meta charset=\"utf-8\">\n  &lt;title>ES6 Modules&lt;/title>\n&lt;/head>\n&lt;body>\n&lt;script type=\"module\" src=\"./app.js\">&lt;/script>\n&lt;/body>\n&lt;/html></code></pre>\n\n\n\n<p>Note that we used the&nbsp;<code>type=\"module\"</code>&nbsp;in the script tag to load the&nbsp;<code>app.js</code>&nbsp;module. If you view the page on a web browser, you will see the following page:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://cdn.javascripttutorial.net/wp-content/uploads/2019/12/es6-module.png\" alt=\"es6 module\" class=\"wp-image-84747\"/></figure>\n\n\n\n<p>Let\u2019s examine the export and import statements in more detail.</p>\n\n\n\n<h2>Exporting</h2>\n\n\n\n<p>To export a\u00a0variable, a\u00a0function, or a\u00a0class, you place the\u00a0<code>export</code>\u00a0keyword in front of it as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>// log.js\nexport let message = 'Hi';\n\nexport function getMessage() {\n  return message;\n}\n\nexport function setMessage(msg) {\n  message = msg;\n}\n\nexport class Logger {\n}\n</code></pre>\n\n\n\n<p>In this example, we have the&nbsp;<code>log.js</code>&nbsp;module with a variable, two functions, and one class. We used the&nbsp;<code>export</code>&nbsp;keyword to exports all identifiers in the module.</p>\n\n\n\n<p>Note that the&nbsp;<code>export</code>&nbsp;keyword requires the function or class to have a name to be exported. You can\u2019t export an anonymous function or class using this syntax.</p>\n\n\n\n<p>JavaScript allows you to define a variable, a function, or a class first then export it later as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>// foo.js\nfunction foo() {\n   console.log('foo');\n}\n\nfunction bar() {\n  console.log('bar');\n}\nexport foo;\n</code></pre>\n\n\n\n<p>In this example, we defined the&nbsp;<code>foo()</code>&nbsp;function first and then exported it. Since we didn\u2019t export the&nbsp;<code>bar()</code>&nbsp;function, we couldn\u2019t access it in other modules. The&nbsp;<code>bar()</code>&nbsp;function is inaccessible outside the module or we say it is private.</p>\n\n\n\n<h2>Importing</h2>\n\n\n\n<p>Once you define a module with exports, you can access the exported variables, functions, and classes in another module by using the&nbsp;<code>import</code>&nbsp;keyword. The following illustrates the syntax:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>import { what, ever } from './other_module.js';</code></pre>\n\n\n\n<p>In this syntax:</p>\n\n\n\n<ul><li>First, specify what to import inside the curly braces, which are called bindings.</li><li>Then, specify the module from which you import the given bindings.</li></ul>\n\n\n\n<p>Note that when you import a binding from a module, the binding behaves like it was defined using\u00a0const. It means you can\u2019t have another identifier with the same name or change the value of the binding.</p>\n\n\n\n<p>See the following example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>// greeting.js\nexport let message = 'Hi';\n\nexport function setMessage(msg) {\n  message = msg;\n}\n</code></pre>\n\n\n\n<p>When you import the&nbsp;<code>message</code>&nbsp;variable and&nbsp;<code>setMessage()</code>&nbsp;function, you can use the&nbsp;<code>setMessage()</code>&nbsp;function to change the value of the&nbsp;<code>message</code>&nbsp;variable as shown below:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>// app.js\nimport {message, setMessage } from './greeting.js';\nconsole.log(message); // 'Hi'\n\nsetMessage('Hello');\nconsole.log(message); // 'Hello' \n</code></pre>\n\n\n\n<p>However, you can\u2019t change the value of the&nbsp;<code>message</code>&nbsp;variable directly. The following expression causes an error:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>message = 'Hallo'; // error\n</code></pre>\n\n\n\n<p>Behind the scenes, when you called the&nbsp;<code>setMessage()</code>&nbsp;function. JavaScript went back to the&nbsp;<code>greeting.js</code>&nbsp;module and executed code in there and changed the&nbsp;<code>message</code>&nbsp;variable. The change was then automatically reflected on the imported&nbsp;<code>message</code>&nbsp;binding.</p>\n\n\n\n<p>The&nbsp;<code>message</code>&nbsp;binding in the&nbsp;<code>app.js</code>&nbsp;is the local name for exported&nbsp;<code>message</code>&nbsp;identifier. So basically the&nbsp;<code>message</code>&nbsp;variables in the&nbsp;<code>app.js</code>&nbsp;and&nbsp;<code>greeting.js</code>&nbsp;modules aren\u2019t the same.</p>\n\n\n\n<h3>Import a single binding</h3>\n\n\n\n<p>Suppose you have a module with the&nbsp;<code>foo</code>&nbsp;variable as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>// foo.js\nexport foo = 10;\n</code></pre>\n\n\n\n<p>Then, in another module, you can reuse the&nbsp;<code>foo</code>&nbsp;variable:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>// app.js\nimport { foo } from './foo.js';\nconsole.log(foo); // 10;\n</code></pre>\n\n\n\n<p>However, you can\u2019t change the value of&nbsp;<code>foo</code>. If you attempt to do so, you will get an error:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>foo = 20; // throws an error\n</code></pre>\n\n\n\n<h3>Import multiple bindings</h3>\n\n\n\n<p>Suppose you have the&nbsp;<code>cal.js</code>&nbsp;module as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>// cal.js\nexport let a = 10,\n           b = 20,\n           result = 0;\n\nexport function sum() {\n  result = a + b;\n  return result;\n}\n\nexport function multiply() {\n  result = a * b;\n  return result;\n}\n</code></pre>\n\n\n\n<p>And you want to import these bindings from the&nbsp;<code>cal.js</code>, you can explicitly list them as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>import {a, b, result, sum, multiply } from './cal.js';\nsum();\nconsole.log(result); // 30\n\nmultiply();\nconsole.log(result); // 200\n</code></pre>\n\n\n\n<h3>Import an entire module as an object</h3>\n\n\n\n<p>To import everything from a module as a single object, you&nbsp;use the asterisk (*) pattern as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>import * as cal from './cal.js';\n</code></pre>\n\n\n\n<p>In this example, we imported all bindings from the&nbsp;<code>cal.js</code>&nbsp;module as the&nbsp;<code>cal</code>&nbsp;object. In this case, all the bindings become properties of the&nbsp;<code>cal</code>&nbsp;object, so you can access them as shown below:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>cal.a;\ncal.b;\ncal.sum();</code></pre>\n\n\n\n<p>This import is called&nbsp;<em>namespace import</em>.</p>\n\n\n\n<p>It\u2019s important to keep in mind that the imported module executes&nbsp;<em>only once</em>&nbsp;even import it multiple times. Consider this example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>import { a } from './cal.js';\nimport { b } from './cal.js';\nimport {result} from './cal.js';\n</code></pre>\n\n\n\n<p>After the first&nbsp;<code>import</code>&nbsp;statement, the&nbsp;<code>cal.js</code>&nbsp;module is executed and loaded into the memory, and it is reused whenever it is referenced by the subsequent&nbsp;<code>import</code>&nbsp;statement.</p>\n\n\n\n<h2>Limitation of&nbsp;<code>import</code>&nbsp;and&nbsp;<code>export</code>&nbsp;statements</h2>\n\n\n\n<p>Note that you must use the&nbsp;<code>import</code>&nbsp;or&nbsp;<code>export</code>&nbsp;statement&nbsp;<em>outside</em>&nbsp;other statements and functions. The following example causes a&nbsp;<code>SyntaxError</code>:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>if( requiredSum ) {\n   export sum;\n}  \n</code></pre>\n\n\n\n<p>Because we used the\u00a0<code>export</code>\u00a0statement inside the\u00a0<code>if</code>\u00a0statement. Similarly, the following\u00a0<code>import</code>\u00a0statement also causes a\u00a0<code>SyntaxError</code>:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function importSum() {\n   import {sum} from './cal.js';\n}\n</code></pre>\n\n\n\n<p>Because we used the&nbsp;<code>import</code>&nbsp;statement inside a function.</p>\n\n\n\n<p>The reason for the error is that JavaScript must&nbsp;<em>statically</em>&nbsp;determine what will be exported and imported.</p>\n\n\n\n<p>Note that ES2020 introduced the function-like object\u00a0import()\u00a0that allows you to dynamically import a module.</p>\n\n\n\n<h2>Aliasing</h2>\n\n\n\n<p>JavaScript allows you to create aliases for variables, functions, or classes when you export and import. See the following&nbsp;<code>math.js</code>&nbsp;module:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>// math.js  \nfunction add( a, b ) {\n   return a + b;\n}\n\nexport { add as sum };\n</code></pre>\n\n\n\n<p>In this example, instead of exporting the&nbsp;<code>add()</code>&nbsp;function, we used the&nbsp;<code>as</code>&nbsp;keyword to assign the&nbsp;<code>sum()</code>&nbsp;function an alias.</p>\n\n\n\n<p>So when you import the&nbsp;<code>add()</code>&nbsp;function from the&nbsp;<code>math.js</code>&nbsp;module, you must use&nbsp;<code>sum</code>&nbsp;instead:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>import { sum } from './math.js';\n</code></pre>\n\n\n\n<p>If you want to use a different name when you import, you can use the&nbsp;<code>as</code>&nbsp;keyword as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>import {sum as total} from './math.js';\n</code></pre>\n\n\n\n<h2>Re-exporting a binding</h2>\n\n\n\n<p>It\u2019s possible to export bindings that you have imported. This is called re-exporting. For example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>import { sum } from './math.js';\nexport { sum };\n</code></pre>\n\n\n\n<p>In this example, we imported&nbsp;<code>sum</code>&nbsp;from the&nbsp;<code>math.js</code>&nbsp;module and re-export it. The following statement is equivalent to the statements above:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>export {sum} from './math.js';</code></pre>\n\n\n\n<p>In case you want to rename the bindings before re-exporting, you use the&nbsp;<code>as</code>&nbsp;keyword. The following example imports&nbsp;<code>sum</code>&nbsp;from the&nbsp;<code>math.js</code>&nbsp;module and re-export it as&nbsp;<code>add</code>.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>export { sum as add } from './math.js';\n</code></pre>\n\n\n\n<p>If you want to export all the bindings from another module, you can use the asterisk (*):</p>\n\n\n\n<pre class=\"wp-block-code\"><code>export * from './cal.js';\n</code></pre>\n\n\n\n<h2>Importing without bindings</h2>\n\n\n\n<p>Sometimes, you want to develop a module that doesn\u2019t export anything, for example, you may want to add a new method to a built-in object such as the\u00a0Array.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>// array.js\nif (!Array.prototype.contain) {\n  Array.prototype.contain = function(e) {\n    // contain implementation\n    // ...\n  }\n}</code></pre>\n\n\n\n<p>Now, you can import the module without any binding and use the&nbsp;<code>contain()</code>&nbsp;method defined in the&nbsp;<code>array.js</code>&nbsp;module as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>import './array.js';\n&#91;1,2,3].contain(2); // true\n</code></pre>\n\n\n\n<h2>Default exports</h2>\n\n\n\n<p>A module can have one and only one default export. The default export is easier to import. The default for a module can be a variable, a function, or a class.</p>\n\n\n\n<p>The following is the&nbsp;<code>sort.js</code>&nbsp;module with a default export.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>// sort.js\nexport default function(arr) {\n  // sorting here\n} \n</code></pre>\n\n\n\n<p>Note that you don\u2019t need to specify the name for the function because the module represents the function name.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>import sort from sort.js;\nsort(&#91;2,1,3]);\n</code></pre>\n\n\n\n<p>As you see, the &nbsp;<code>sort</code>&nbsp;identifier represents the default function of the&nbsp;<code>sort.js</code>&nbsp;module. Notice that we didn\u2019t use the curly brace&nbsp;<code>{}</code>&nbsp;surrounding the &nbsp;<code>sort</code>&nbsp;identifier.</p>\n\n\n\n<p>Let\u2019s change the&nbsp;<code>sort.js</code>&nbsp;module to include the default export as well as the non-default one:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>// sort.js\nexport default function(arr) {\n  // sorting here\n}\nexport function heapSort(arr) {\n  // heapsort\n}\n</code></pre>\n\n\n\n<p>To import both default and non-default bindings, you use the specify a list of bindings after the&nbsp;<code>import</code>&nbsp;keyword with the following rules:</p>\n\n\n\n<ul><li>The default binding must come first.</li><li>The non-default binding must be surrounded by curly braces.</li></ul>\n\n\n\n<p>See the following example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>import sort, {heapSort} from './sort.js';\nsort(&#91;2,1,3]);\nheapSort(&#91;3,1,2]);\n</code></pre>\n\n\n\n<p>To rename the default export, you also use the&nbsp;<code>as</code>&nbsp;keyword as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>import { default as quicksort, heapSort} from './sort.js';\n</code></pre>\n\n\n\n<p>In this tutorial, you have learned about ES6 modules and how to export bindings from a module and import them into another module.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>An ES6 module is a JavaScript file that executes in strict mode only. It means that any\u00a0variables\u00a0or\u00a0functions\u00a0declared in the module won\u2019t be added automatically to the global scope. Executing modules on web browsers First, create a new file called&nbsp;message.js&nbsp;and add the following code: The&nbsp;message.js&nbsp;is a module in ES6 that contains the&nbsp;message&nbsp;variable. The&nbsp;export&nbsp;statement exposes the&nbsp;message&nbsp;variable to [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [200],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4078"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=4078"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4078/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=4078"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=4078"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=4078"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  }
+]

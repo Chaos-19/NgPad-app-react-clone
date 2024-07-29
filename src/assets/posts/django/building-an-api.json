@@ -1,0 +1,1206 @@
+[
+  {
+    "id": 4079,
+    "date": "2022-06-29T07:47:12",
+    "date_gmt": "2022-06-29T07:47:12",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=4079" },
+    "modified": "2022-06-29T07:47:12",
+    "modified_gmt": "2022-06-29T07:47:12",
+    "slug": "building-a-restful-api",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/building-a-restful-api/",
+    "title": { "rendered": "Building a RESTful API" },
+    "content": {
+      "rendered": "\n<p>When building an API, there are several ways you can structure its endpoints and actions, but following&nbsp;<a></a>REST principles is encouraged. The&nbsp;<strong>REST</strong>&nbsp;architecture comes from&nbsp;<strong>Representational State Transfer</strong>. RESTful APIs are resource-based; your&nbsp;<a></a>models represent resources and HTTP methods such as&nbsp;<code>GET</code>,&nbsp;<code>POST</code>,&nbsp;<code>PUT</code>, or&nbsp;<code>DELETE</code>&nbsp;are used to retrieve, create, update, or delete objects. HTTP response codes are also used in this context. Different HTTP response codes are returned to indicate the result of the HTTP request, for example,&nbsp;<code>2XX</code>&nbsp;response codes for success,&nbsp;<code>4XX</code>&nbsp;for errors, and so on.</p>\n\n\n\n<p>The most common formats to exchange data in RESTful APIs are JSON and XML. You will build a RESTful API with JSON serialization for your project. Your API will provide the following functionality:</p>\n\n\n\n<ul><li>Retrieve subjects</li><li>Retrieve available courses</li><li>Retrieve course contents</li><li>Enroll on a course</li></ul>\n\n\n\n<p>You can build an API from scratch with Django by creating custom views. However, there are several third-party modules that simplify creating an API for your project; the most popular among them is Django REST framework.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>When building an API, there are several ways you can structure its endpoints and actions, but following&nbsp;REST principles is encouraged. The&nbsp;REST&nbsp;architecture comes from&nbsp;Representational State Transfer. RESTful APIs are resource-based; your&nbsp;models represent resources and HTTP methods such as&nbsp;GET,&nbsp;POST,&nbsp;PUT, or&nbsp;DELETE&nbsp;are used to retrieve, create, update, or delete objects. HTTP response codes are also used in this context.&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/building-a-restful-api/\">Continue reading <span class=\"screen-reader-text\">Building a RESTful API</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [136],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4079" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=4079"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4079/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4080,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4079/revisions/4080"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=4079"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=4079"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=4079"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 4081,
+    "date": "2022-06-29T07:48:00",
+    "date_gmt": "2022-06-29T07:48:00",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=4081" },
+    "modified": "2022-06-29T07:48:00",
+    "modified_gmt": "2022-06-29T07:48:00",
+    "slug": "installing-django-rest-framework",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/installing-django-rest-framework/",
+    "title": { "rendered": "Installing Django REST framework" },
+    "content": {
+      "rendered": "\n<p>Django REST framework allows you to easily build RESTful APIs for your project. You can find all the information about REST framework at https://www.django-rest-framework.org/.</p>\n\n\n\n<p>Open the shell and install the framework with the following command:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>pip install djangorestframework==3.11.0\n</code></pre>\n\n\n\n<p>Edit the&nbsp;<code>settings.py</code>&nbsp;file of the&nbsp;<code>educa</code>&nbsp;project and add&nbsp;<code>rest_framework</code>&nbsp;to the&nbsp;<code>INSTALLED_APPS</code>&nbsp;setting to activate the application, as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>INSTALLED_APPS = &#91;\n    <em># ...</em>\n    <strong>'rest_framework',</strong>\n]\n</code></pre>\n\n\n\n<p>Then, add the following code to the&nbsp;<code>settings.py</code>&nbsp;file:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>REST_FRAMEWORK = {\n    'DEFAULT_PERMISSION_CLASSES': &#91;\n      'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'\n    ]\n}\n</code></pre>\n\n\n\n<p>You can provide a specific configuration for your API using the&nbsp;<code>REST_FRAMEWORK</code>&nbsp;setting. REST framework offers a wide range of settings to configure default behaviors. The&nbsp;<code>DEFAULT_PERMISSION_CLASSES</code>&nbsp;setting specifies the default permissions to read, create, update, or delete objects. You set&nbsp;<code>DjangoModelPermissionsOrAnonReadOnly</code>&nbsp;as the only&nbsp;<a></a>default permission class. This class relies on Django&#8217;s permissions system to allow users to create, update, or&nbsp;delete objects, while providing read-only access for anonymous users. You will learn more about permissions later in the&nbsp;<em>Adding permissions to views</em>&nbsp;section.</p>\n\n\n\n<p>For a complete list of available settings for REST framework, you can visit https://www.django-rest-framework.org/api-guide/settings/.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Django REST framework allows you to easily build RESTful APIs for your project. You can find all the information about REST framework at https://www.django-rest-framework.org/. Open the shell and install the framework with the following command: Edit the&nbsp;settings.py&nbsp;file of the&nbsp;educa&nbsp;project and add&nbsp;rest_framework&nbsp;to the&nbsp;INSTALLED_APPS&nbsp;setting to activate the application, as follows: Then, add the following code to the&nbsp;settings.py&nbsp;file: You can provide&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/installing-django-rest-framework/\">Continue reading <span class=\"screen-reader-text\">Installing Django REST framework</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [136],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4081" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=4081"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4081/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4082,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4081/revisions/4082"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=4081"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=4081"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=4081"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 4083,
+    "date": "2022-06-29T07:49:20",
+    "date_gmt": "2022-06-29T07:49:20",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=4083" },
+    "modified": "2022-06-29T07:49:20",
+    "modified_gmt": "2022-06-29T07:49:20",
+    "slug": "defining-serializers",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/defining-serializers/",
+    "title": { "rendered": "Defining serializers" },
+    "content": {
+      "rendered": "\n<p>After setting up REST framework, you need to specify how your data will be serialized. Output data&nbsp;<a></a>has to be serialized in a specific format, and input data will&nbsp;be deserialized for processing. The framework provides the following classes to&nbsp;build serializers for single objects:</p>\n\n\n\n<ul><li><code>Serializer</code>: Provides serialization for normal Python class instances</li><li><code>ModelSerializer</code>: Provides serialization for model instances</li><li><code>HyperlinkedModelSerializer</code>: The same as&nbsp;<code>ModelSerializer</code>, but it represents object relationships with links rather than primary keys</li></ul>\n\n\n\n<p>Let&#8217;s build your first serializer. Create the following file structure inside the&nbsp;<code>courses</code>&nbsp;application directory:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>api/\n    __init__.py\n    serializers.py\n</code></pre>\n\n\n\n<p>You will build all the API functionality inside the&nbsp;<code>api</code>&nbsp;directory to keep everything well organized. Edit the&nbsp;<code>serializers.py</code>&nbsp;file and add the following code:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>from rest_framework import serializers\nfrom ..models import Subject\nclass SubjectSerializer(serializers.ModelSerializer):\n    class Meta:\n        model = Subject\n        fields = &#91;'id', 'title', 'slug']\n</code></pre>\n\n\n\n<p>This is the serializer for the&nbsp;<code>Subject</code>&nbsp;model. Serializers are defined in a similar fashion to Django&#8217;s&nbsp;<code>Form</code>&nbsp;and&nbsp;<code>ModelForm</code>&nbsp;classes. The&nbsp;<code>Meta</code>&nbsp;class allows you to specify the model to serialize and the fields to be included for serialization. All model fields will be included if you don&#8217;t set a&nbsp;<code>fields</code>&nbsp;attribute.</p>\n\n\n\n<p>Let&#8217;s try&nbsp;<a></a>your serializer. Open the command line and start the Django shell with the following command:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>python manage.py shell\n</code></pre>\n\n\n\n<p>Run the following code:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&gt;&gt;&gt; from courses.models import Subject\n&gt;&gt;&gt; from courses.api.serializers import SubjectSerializer\n&gt;&gt;&gt; subject = Subject.objects.latest('id')\n&gt;&gt;&gt; serializer = SubjectSerializer(subject)\n&gt;&gt;&gt; serializer.data\n{'id': 4, 'title': 'Programming', 'slug': 'programming'}\n</code></pre>\n\n\n\n<p>In this example, you get a&nbsp;<code>Subject</code>&nbsp;object, create an instance of&nbsp;<code>SubjectSerializer</code>, and access the serialized data. You can see that the model data is translated into Python native data types.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>After setting up REST framework, you need to specify how your data will be serialized. Output data&nbsp;has to be serialized in a specific format, and input data will&nbsp;be deserialized for processing. The framework provides the following classes to&nbsp;build serializers for single objects: Serializer: Provides serialization for normal Python class instances ModelSerializer: Provides serialization for model&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/defining-serializers/\">Continue reading <span class=\"screen-reader-text\">Defining serializers</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [136],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4083" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=4083"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4083/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4084,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4083/revisions/4084"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=4083"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=4083"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=4083"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 4085,
+    "date": "2022-06-29T07:50:05",
+    "date_gmt": "2022-06-29T07:50:05",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=4085" },
+    "modified": "2022-06-29T07:50:05",
+    "modified_gmt": "2022-06-29T07:50:05",
+    "slug": "understanding-parsers-and-renderers",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/understanding-parsers-and-renderers/",
+    "title": { "rendered": "Understanding parsers and renderers" },
+    "content": {
+      "rendered": "\n<p>The serialized data has to be rendered in a specific format before you return it in an&nbsp;HTTP response. Likewise, when you get an HTTP request, you have to parse the incoming&nbsp;<a></a>data and deserialize it before you can operate with it. REST&nbsp;<a></a>framework includes renderers and parsers to handle that.</p>\n\n\n\n<p>Let&#8217;s see how to parse incoming data. Execute the following code in the Python shell:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&gt;&gt;&gt; from io import BytesIO\n&gt;&gt;&gt; from rest_framework.parsers import JSONParser\n&gt;&gt;&gt; data = b'{\"id\":4,\"title\":\"Programming\",\"slug\":\"programming\"}'\n&gt;&gt;&gt; JSONParser().parse(BytesIO(data))\n{'id': 4, 'title': 'Programming', 'slug': 'programming'}\n</code></pre>\n\n\n\n<p>Given a JSON string input, you can use the&nbsp;<code>JSONParser</code>&nbsp;class provided by REST framework to convert it to a Python object.</p>\n\n\n\n<p>REST framework also includes&nbsp;<code>Renderer</code>&nbsp;classes that allow you to format API responses. The framework determines which renderer to use through content negotiation by inspecting the request&#8217;s&nbsp;<code>Accept</code>&nbsp;header to determine the expected content type for the response. Optionally, the renderer is determined by the format suffix of the URL. For example, the URL&nbsp;<code>http://127.0.0.1:8000/api/data.json</code>&nbsp;might be an endpoint that triggers the&nbsp;<code>JSONRenderer</code>&nbsp;in order to return a JSON response.</p>\n\n\n\n<p>Go back&nbsp;<a></a>to the shell and execute the following code to render the&nbsp;<code>serializer</code>&nbsp;object from the previous serializer example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&gt;&gt;&gt; from rest_framework.renderers import JSONRenderer\n&gt;&gt;&gt; JSONRenderer().render(serializer.data)\n</code></pre>\n\n\n\n<p>You will see the following output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>b'{\"id\":4,\"title\":\"Programming\",\"slug\":\"programming\"}'\n</code></pre>\n\n\n\n<p>You use the&nbsp;<code>JSONRenderer</code>&nbsp;to render the serialized data into JSON. By default, REST framework&nbsp;<a></a>uses two different renderers:&nbsp;<code>JSONRenderer</code>&nbsp;and&nbsp;<code>BrowsableAPIRenderer</code>. The latter provides a web interface to easily browse your API. You can change the default renderer classes with the&nbsp;<code>DEFAULT_RENDERER_CLASSES</code>&nbsp;option of the&nbsp;<code>REST_FRAMEWORK</code>&nbsp;setting.</p>\n\n\n\n<p>You can find more information about renderers and parsers at https://www.django-rest-framework.org/api-guide/renderers/ and https://www.django-rest-framework.org/api-guide/parsers/, respectively.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>The serialized data has to be rendered in a specific format before you return it in an&nbsp;HTTP response. Likewise, when you get an HTTP request, you have to parse the incoming&nbsp;data and deserialize it before you can operate with it. REST&nbsp;framework includes renderers and parsers to handle that. Let&#8217;s see how to parse incoming data.&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/understanding-parsers-and-renderers/\">Continue reading <span class=\"screen-reader-text\">Understanding parsers and renderers</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [136],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4085" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=4085"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4085/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4086,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4085/revisions/4086"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=4085"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=4085"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=4085"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 4087,
+    "date": "2022-06-29T07:50:55",
+    "date_gmt": "2022-06-29T07:50:55",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=4087" },
+    "modified": "2022-06-29T07:50:55",
+    "modified_gmt": "2022-06-29T07:50:55",
+    "slug": "building-list-and-detail-views-2",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/building-list-and-detail-views-2/",
+    "title": { "rendered": "Building list and detail views" },
+    "content": {
+      "rendered": "\n<p>REST framework comes with a set of generic views and mixins that you can use to build your API views. They provide the functionality to retrieve, create, update, or delete model objects. You can see all the generic mixins and views provided by REST framework at https://www.django-rest-framework.org/api-guide/generic-views/.</p>\n\n\n\n<p>Let&#8217;s create list and detail views to retrieve&nbsp;<code>Subject</code>&nbsp;objects. Create a new file inside the&nbsp;<code>courses/api/</code>&nbsp;directory and name it&nbsp;<code>views.py</code>. Add the following code to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>from rest_framework import generics\nfrom ..models import Subject\nfrom .serializers import SubjectSerializer\nclass SubjectListView(generics.ListAPIView):\n    queryset = Subject.objects.all()\n    serializer_class = SubjectSerializer\nclass SubjectDetailView(generics.RetrieveAPIView):\n    queryset = Subject.objects.all()\n    serializer_class = SubjectSerializer\n</code></pre>\n\n\n\n<p>In this code, you are using the generic&nbsp;<code>ListAPIView</code>&nbsp;and&nbsp;<code>RetrieveAPIView</code>&nbsp;views of&nbsp;REST framework. You include a&nbsp;<code>pk</code>&nbsp;URL parameter for the detail view to retrieve the object for the given primary key. Both views have the following attributes:</p>\n\n\n\n<ul><li><code>queryset</code>: The base&nbsp;<code>QuerySet</code>&nbsp;to use to retrieve objects</li><li><code>serializer_class</code>: The class to serialize objects</li></ul>\n\n\n\n<p>Let&#8217;s add&nbsp;<a></a>URL patterns for your views. Create a new file inside the&nbsp;<code>courses/api/</code>&nbsp;directory, name it&nbsp;<code>urls.py</code>, and make it look as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>from django.urls import path\nfrom . import views\napp_name = 'courses'\nurlpatterns = &#91;\n    path('subjects/',\n         views.SubjectListView.as_view(),\n         name='subject_list'),\n    path('subjects/&lt;pk&gt;/',\n         views.SubjectDetailView.as_view(),\n         name='subject_detail'),\n]\n</code></pre>\n\n\n\n<p>Edit the main&nbsp;<code>urls.py</code>&nbsp;file of the&nbsp;<code>educa</code>&nbsp;project and include the API patterns, as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>urlpatterns = &#91;\n    # ...\n    <strong>path('api/', include('courses.api.urls', namespace='api')),</strong>\n]\n</code></pre>\n\n\n\n<p>You use the&nbsp;<code>api</code>&nbsp;namespace for your API URLs. Ensure that your server is running with the command&nbsp;<code>python manage.py runserver</code>. Open the shell and retrieve the URL&nbsp;<code>http://127.0.0.1:8000/api/subjects/</code>&nbsp;with&nbsp;<code>curl</code>, as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>curl http://127.0.0.1:8000/api/subjects/\n</code></pre>\n\n\n\n<p>You will get a response similar to the following one:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&#91;\n    {\n        \"id\":1,\n        \"title\":\"Mathematics\",\n        \"slug\":\"mathematics\"\n    },\n    {\n        \"id\":2,\n        \"title\":\"Music\",\n        \"slug\":\"music\"\n    },\n    {\n        \"id\":3,\n        \"title\":\"Physics\",\n        \"slug\":\"physics\"\n    },\n    {\n        \"id\":4,\n        \"title\":\"Programming\",\n        \"slug\":\"programming\"\n    }\n]\n</code></pre>\n\n\n\n<p>To obtain&nbsp;<a></a>a more readable, well-indented JSON response, you can use&nbsp;<code>curl</code>&nbsp;with the&nbsp;<code>json_pp</code>&nbsp;utility, as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>curl http://127.0.0.1:8000/api/subjects/ | json_pp\n</code></pre>\n\n\n\n<p>The HTTP response contains a list of <code>Subject</code> objects in JSON format. If your operating system doesn&#8217;t come with <code>curl</code> installed, you can download it from https://curl.haxx.se/dlwiz/. Instead of <code>curl</code>, you can also use any other tool to send custom HTTP requests, including a browser extension such as Postman, which you can get at https://www.getpostman.com/.</p>\n\n\n\n<p>Open&nbsp;<code>http://127.0.0.1:8000/api/subjects/</code>&nbsp;in your browser. You will see REST framework&#8217;s browsable API, as follows:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/B14981_12_01.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 12.1: The subject list page in the REST framework browsable API</p>\n\n\n\n<p>This HTML&nbsp;<a></a>interface is provided by the&nbsp;<code>BrowsableAPIRenderer</code>&nbsp;renderer. It displays the result headers and content, and it allows you to perform requests. You can also access the API detail view for a&nbsp;<code>Subject</code>&nbsp;object by including its ID in the URL.</p>\n\n\n\n<p>Open&nbsp;<code>http://127.0.0.1:8000/api/subjects/1/</code>&nbsp;in your browser. You will see a single&nbsp;<code>Subject</code>&nbsp;object rendered in JSON format.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>REST framework comes with a set of generic views and mixins that you can use to build your API views. They provide the functionality to retrieve, create, update, or delete model objects. You can see all the generic mixins and views provided by REST framework at https://www.django-rest-framework.org/api-guide/generic-views/. Let&#8217;s create list and detail views to retrieve&nbsp;Subject&nbsp;objects. Create a new&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/building-list-and-detail-views-2/\">Continue reading <span class=\"screen-reader-text\">Building list and detail views</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [136],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4087" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=4087"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4087/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4088,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4087/revisions/4088"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=4087"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=4087"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=4087"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 4089,
+    "date": "2022-06-29T07:51:34",
+    "date_gmt": "2022-06-29T07:51:34",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=4089" },
+    "modified": "2022-06-29T07:51:34",
+    "modified_gmt": "2022-06-29T07:51:34",
+    "slug": "creating-nested-serializers",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/creating-nested-serializers/",
+    "title": { "rendered": "Creating nested serializers" },
+    "content": {
+      "rendered": "\n<p>You are&nbsp;<a></a>going to create a serializer for the&nbsp;<code>Course</code>&nbsp;model. Edit the&nbsp;<code>api/serializers.py</code>&nbsp;file of the&nbsp;<code>courses</code>&nbsp;application and add the following code to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>from ..models import Course\nclass CourseSerializer(serializers.ModelSerializer):\n    class Meta:\n        model = Course\n        fields = &#91;'id', 'subject', 'title', 'slug', 'overview',\n                  'created', 'owner', 'modules']\n</code></pre>\n\n\n\n<p>Let&#8217;s take a look at how a&nbsp;<code>Course</code>&nbsp;object is serialized. Open the shell, run&nbsp;<code>python manage.py shell</code>, and run the following code:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&gt;&gt;&gt; from rest_framework.renderers import JSONRenderer\n&gt;&gt;&gt; from courses.models import Course\n&gt;&gt;&gt; from courses.api.serializers import CourseSerializer\n&gt;&gt;&gt; course = Course.objects.latest('id')\n&gt;&gt;&gt; serializer = CourseSerializer(course)\n&gt;&gt;&gt; JSONRenderer().render(serializer.data)\n</code></pre>\n\n\n\n<p>You will get a JSON object with the fields that you included in&nbsp;<code>CourseSerializer</code>. You can see that the related objects of the&nbsp;<code>modules</code>&nbsp;manager are serialized as a list of&nbsp;primary keys, as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>\"modules\": &#91;6, 7, 9, 10]\n</code></pre>\n\n\n\n<p>You want&nbsp;<a></a>to include more information about each module, so you need to serialize&nbsp;<code>Module</code>&nbsp;objects and nest them. Modify the previous code of the&nbsp;<code>api/serializers.py</code>&nbsp;file of the&nbsp;<code>courses</code>&nbsp;application to make it look as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>from rest_framework import serializers\nfrom ..models import Course, <strong>Module</strong>\n<strong>class ModuleSerializer(serializers.ModelSerializer):</strong>\n    <strong>class Meta:</strong>\n        <strong>model = Module</strong>\n        <strong>fields = &#91;'order', 'title', 'description']</strong>\nclass CourseSerializer(serializers.ModelSerializer):\n    <strong>modules = ModuleSerializer(many=True, read_only=True)</strong>\n    class Meta:\n        model = Course\n        fields = &#91;'id', 'subject', 'title', 'slug', 'overview',\n                  'created', 'owner', 'modules']\n</code></pre>\n\n\n\n<p>You define&nbsp;<code>ModuleSerializer</code>&nbsp;to provide serialization for the&nbsp;<code>Module</code>&nbsp;model. Then, you add a&nbsp;<code>modules</code>&nbsp;attribute to&nbsp;<code>CourseSerializer</code>&nbsp;to nest the&nbsp;<code>ModuleSerializer</code>&nbsp;serializer. You set&nbsp;<code>many=True</code>&nbsp;to indicate that you are serializing multiple objects. The&nbsp;<code>read_only</code>&nbsp;parameter indicates that this field is read-only and should not be included in any input to create or update objects.</p>\n\n\n\n<p>Open the shell and create an instance of&nbsp;<code>CourseSerializer</code>&nbsp;again. Render the serializer&#8217;s&nbsp;<code>data</code>&nbsp;attribute with&nbsp;<code>JSONRenderer</code>. This time, the listed modules are being serialized with the nested&nbsp;<code>ModuleSerializer</code>&nbsp;serializer, as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>\"modules\": &#91;\n    {\n        \"order\": 0,\n        \"title\": \"Introduction to overview\",\n        \"description\": \"A brief overview about the Web Framework.\"\n    },\n    {\n        \"order\": 1,\n        \"title\": \"Configuring Django\",\n        \"description\": \"How to install Django.\"\n    },\n    ...\n]\n</code></pre>\n\n\n\n<p>You can read more about serializers at https://www.django-rest-framework.org/api-guide/serializers/.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>You are&nbsp;going to create a serializer for the&nbsp;Course&nbsp;model. Edit the&nbsp;api/serializers.py&nbsp;file of the&nbsp;courses&nbsp;application and add the following code to it: Let&#8217;s take a look at how a&nbsp;Course&nbsp;object is serialized. Open the shell, run&nbsp;python manage.py shell, and run the following code: You will get a JSON object with the fields that you included in&nbsp;CourseSerializer. You can see&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/creating-nested-serializers/\">Continue reading <span class=\"screen-reader-text\">Creating nested serializers</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [136],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4089" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=4089"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4089/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4090,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4089/revisions/4090"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=4089"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=4089"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=4089"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 4092,
+    "date": "2022-06-29T07:51:59",
+    "date_gmt": "2022-06-29T07:51:59",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=4092" },
+    "modified": "2022-06-29T07:51:59",
+    "modified_gmt": "2022-06-29T07:51:59",
+    "slug": "building-custom-api-views",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/building-custom-api-views/",
+    "title": { "rendered": "Building custom API views" },
+    "content": {
+      "rendered": "\n<p>REST framework provides an&nbsp;<code>APIView</code>&nbsp;class that builds API functionality on top of Django&#8217;s&nbsp;<code>View</code>&nbsp;class. The&nbsp;<code>APIView</code>&nbsp;class differs from&nbsp;<code>View</code>&nbsp;by using REST framework&#8217;s custom&nbsp;<code>Request</code>&nbsp;and&nbsp;<code>Response</code>&nbsp;objects, and handling&nbsp;<code>APIException</code>&nbsp;exceptions to return the&nbsp;<a></a>appropriate HTTP responses. It also has a built-in authentication and authorization system to manage access to views.</p>\n\n\n\n<p>You are going to create a view for users to enroll on courses. Edit the&nbsp;<code>api/views.py</code>&nbsp;file of the&nbsp;<code>courses</code>&nbsp;application and add the following code to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>from django.shortcuts import get_object_or_404\nfrom rest_framework.views import APIView\nfrom rest_framework.response import Response\nfrom ..models import Course\nclass CourseEnrollView(APIView):\n    def post(self, request, pk, format=None):\n        course = get_object_or_404(Course, pk=pk)\n        course.students.add(request.user)\n        return Response({'enrolled': True})\n</code></pre>\n\n\n\n<p>The&nbsp;<code>CourseEnrollView</code>&nbsp;view handles user enrollment on courses. The preceding code is as follows:</p>\n\n\n\n<ol><li>You create a custom view that subclasses&nbsp;<code>APIView</code>.</li><li>You define a&nbsp;<code>post()</code>&nbsp;method for&nbsp;<code>POST</code>&nbsp;actions. No other HTTP method will be allowed for this view.</li><li>You expect a&nbsp;<code>pk</code>&nbsp;URL parameter containing the ID of a course. You retrieve the course by the given&nbsp;<code>pk</code>&nbsp;parameter and raise a&nbsp;<code>404</code>&nbsp;exception if it&#8217;s not found.</li><li>You add the current user to the&nbsp;<code>students</code>&nbsp;many-to-many relationship of the&nbsp;<code>Course</code>&nbsp;object and return a successful response.</li></ol>\n\n\n\n<p>Edit the&nbsp;<code>api/urls.py</code>&nbsp;file and add the following URL pattern for the&nbsp;<code>CourseEnrollView</code>&nbsp;view:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>path('courses/&lt;pk&gt;/enroll/',\n     views.CourseEnrollView.as_view(),\n     name='course_enroll'),\n</code></pre>\n\n\n\n<p>Theoretically, you&nbsp;<a></a>could now perform a&nbsp;<code>POST</code>&nbsp;request to enroll the current user on a course. However, you need to be able to identify the user and prevent unauthenticated users from accessing this view. Let&#8217;s see how API authentication and permissions work.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>REST framework provides an&nbsp;APIView&nbsp;class that builds API functionality on top of Django&#8217;s&nbsp;View&nbsp;class. The&nbsp;APIView&nbsp;class differs from&nbsp;View&nbsp;by using REST framework&#8217;s custom&nbsp;Request&nbsp;and&nbsp;Response&nbsp;objects, and handling&nbsp;APIException&nbsp;exceptions to return the&nbsp;appropriate HTTP responses. It also has a built-in authentication and authorization system to manage access to views. You are going to create a view for users to enroll on courses. Edit the&nbsp;api/views.py&nbsp;file&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/building-custom-api-views/\">Continue reading <span class=\"screen-reader-text\">Building custom API views</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [136],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4092" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=4092"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4092/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4093,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4092/revisions/4093"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=4092"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=4092"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=4092"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 4094,
+    "date": "2022-06-29T07:52:30",
+    "date_gmt": "2022-06-29T07:52:30",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=4094" },
+    "modified": "2022-06-29T07:52:30",
+    "modified_gmt": "2022-06-29T07:52:30",
+    "slug": "handling-authentication",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/handling-authentication/",
+    "title": { "rendered": "Handling authentication" },
+    "content": {
+      "rendered": "\n<p>REST framework provides authentication classes to identify the user performing the request. If&nbsp;<a></a>authentication is successful, the framework sets the authenticated&nbsp;<code>User</code>&nbsp;object in&nbsp;<code>request.user</code>. If no user is authenticated, an instance of Django&#8217;s&nbsp;<code>AnonymousUser</code>&nbsp;is set instead.</p>\n\n\n\n<p>REST framework&nbsp;<a></a>provides the following authentication backends:</p>\n\n\n\n<ul><li><code>BasicAuthentication</code>: This is HTTP basic authentication. The user and password are sent by the client in the <code>Authorization</code> HTTP header encoded with Base64. You can learn more about it at https://en.wikipedia.org/wiki/Basic_access_authentication.</li><li><code>TokenAuthentication</code>: This is token-based authentication. A <code>Token</code> model is used to store user tokens. Users include the token in the <code>Authorization</code> HTTP header for authentication.</li><li><code>SessionAuthentication</code>: This uses Django&#8217;s session backend for authentication. This backend is useful for performing authenticated AJAX requests to the API from your website&#8217;s frontend.</li><li><code>RemoteUserAuthentication</code>: This allows you to delegate authentication to your web server, which sets a <code>REMOTE_USER</code> environment variable.</li></ul>\n\n\n\n<p>You can build a custom authentication backend by subclassing the&nbsp;<code>BaseAuthentication</code>&nbsp;class provided by REST framework and overriding the&nbsp;<code>authenticate()</code>&nbsp;method.</p>\n\n\n\n<p>You can&nbsp;<a></a>set authentication on a per-view basis, or set it globally with the&nbsp;<code>DEFAULT_AUTHENTICATION_CLASSES</code>&nbsp;setting.</p>\n\n\n\n<p>Authentication only identifies the user performing the request. It won&#8217;t allow or deny access to views. You have to use permissions to restrict access to views.</p>\n\n\n\n<p>You can find all the information about authentication at https://www.django-rest-framework.org/api-guide/authentication/.</p>\n\n\n\n<p>Let&#8217;s add&nbsp;<code>BasicAuthentication</code>&nbsp;to your view. Edit the&nbsp;<code>api/views.py</code>&nbsp;file of the&nbsp;<code>courses</code>&nbsp;application and add an&nbsp;<code>authentication_classes</code>&nbsp;attribute to&nbsp;<code>CourseEnrollView</code>, as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code><strong>from rest_framework.authentication import BasicAuthentication</strong>\nclass CourseEnrollView(APIView):\n    <strong>authentication_classes = (BasicAuthentication,)</strong>\n    # ...\n</code></pre>\n\n\n\n<p>Users will be identified by the credentials set in the&nbsp;<code>Authorization</code>&nbsp;header of the HTTP request.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>REST framework provides authentication classes to identify the user performing the request. If&nbsp;authentication is successful, the framework sets the authenticated&nbsp;User&nbsp;object in&nbsp;request.user. If no user is authenticated, an instance of Django&#8217;s&nbsp;AnonymousUser&nbsp;is set instead. REST framework&nbsp;provides the following authentication backends: BasicAuthentication: This is HTTP basic authentication. The user and password are sent by the client in the Authorization HTTP&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/handling-authentication/\">Continue reading <span class=\"screen-reader-text\">Handling authentication</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [136],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4094" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=4094"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4094/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4095,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4094/revisions/4095"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=4094"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=4094"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=4094"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 4096,
+    "date": "2022-06-29T07:52:57",
+    "date_gmt": "2022-06-29T07:52:57",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=4096" },
+    "modified": "2022-06-29T07:52:57",
+    "modified_gmt": "2022-06-29T07:52:57",
+    "slug": "adding-permissions-to-views",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/adding-permissions-to-views/",
+    "title": { "rendered": "Adding permissions to views" },
+    "content": {
+      "rendered": "\n<p>REST framework&nbsp;<a></a>includes a permission system to restrict access to views. Some of&nbsp;the built-in permissions of REST framework are:</p>\n\n\n\n<ul><li><code>AllowAny</code>: Unrestricted access, regardless of whether a user is authenticated or not.</li><li><code>IsAuthenticated</code>: Allows access to authenticated users only.</li><li><code>IsAuthenticatedOrReadOnly</code>: Complete access to authenticated users. Anonymous users are only allowed to execute read methods such as&nbsp;<code>GET</code>,&nbsp;<code>HEAD</code>, or&nbsp;<code>OPTIONS</code>.</li><li><code>DjangoModelPermissions</code>: Permissions tied to&nbsp;<code>django.contrib.auth</code>. The view requires a&nbsp;<code>queryset</code>&nbsp;attribute. Only authenticated users with model permissions assigned are granted permission.</li><li><code>DjangoObjectPermissions</code>: Django permissions on a per-object basis.</li></ul>\n\n\n\n<p>If users are denied permission, they will usually get one of the following HTTP error&nbsp;codes:</p>\n\n\n\n<ul><li><code>HTTP 401</code>: Unauthorized</li><li><code>HTTP 403</code>: Permission denied</li></ul>\n\n\n\n<p>You can&nbsp;<a></a>read more information about permissions at&nbsp;<a href=\"https://www.django-rest-framework.org/api-guide/permissions/\">https://www.django-rest-framework.org/api-guide/permissions/</a>.</p>\n\n\n\n<p>Edit the&nbsp;<code>api/views.py</code>&nbsp;file of the&nbsp;<code>courses</code>&nbsp;application and add a&nbsp;<code>permission_classes</code>&nbsp;attribute to&nbsp;<code>CourseEnrollView</code>, as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>from rest_framework.authentication import BasicAuthentication\n<strong>from rest_framework.permissions import IsAuthenticated</strong>\nclass CourseEnrollView(APIView):\n    authentication_classes = (BasicAuthentication,)\n    <strong>permission_classes = (IsAuthenticated,)</strong>\n    # ...\n</code></pre>\n\n\n\n<p>You&nbsp;<a></a>include the&nbsp;<code>IsAuthenticated</code>&nbsp;permission. This will prevent anonymous users from accessing the view. Now, you can perform a&nbsp;<code>POST</code>&nbsp;request to your new API method.</p>\n\n\n\n<p>Make sure the development server is running. Open the shell and run the following command:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>curl -i -X POST http://127.0.0.1:8000/api/courses/1/enroll/\n</code></pre>\n\n\n\n<p>You will get the following response:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>HTTP/1.1 401 Unauthorized\n...\n{\"detail\": \"Authentication credentials were not provided.\"}\n</code></pre>\n\n\n\n<p>You got a&nbsp;<code>401</code>&nbsp;HTTP code as expected, since you are not authenticated. Let&#8217;s use basic authentication with one of your users. Run the following command, replacing&nbsp;<code>student:password</code>&nbsp;with the credentials of an existing user:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>curl -i -X POST -u student:password http:<em>//127.0.0.1:8000/api/courses/1/enroll/</em>\n</code></pre>\n\n\n\n<p>You will get the following response:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>HTTP/1.1 200 OK\n...\n{\"enrolled\": true}\n</code></pre>\n\n\n\n<p>You can access the administration site and check that the user is now enrolled on the&nbsp;course.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>REST framework&nbsp;includes a permission system to restrict access to views. Some of&nbsp;the built-in permissions of REST framework are: AllowAny: Unrestricted access, regardless of whether a user is authenticated or not. IsAuthenticated: Allows access to authenticated users only. IsAuthenticatedOrReadOnly: Complete access to authenticated users. Anonymous users are only allowed to execute read methods such as&nbsp;GET,&nbsp;HEAD, or&nbsp;OPTIONS.&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/adding-permissions-to-views/\">Continue reading <span class=\"screen-reader-text\">Adding permissions to views</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [136],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4096" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=4096"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4096/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4097,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4096/revisions/4097"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=4096"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=4096"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=4096"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 4098,
+    "date": "2022-06-29T07:53:55",
+    "date_gmt": "2022-06-29T07:53:55",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=4098" },
+    "modified": "2022-06-29T07:53:55",
+    "modified_gmt": "2022-06-29T07:53:55",
+    "slug": "creating-viewsets-and-routers",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/creating-viewsets-and-routers/",
+    "title": { "rendered": "Creating viewsets and routers" },
+    "content": {
+      "rendered": "\n<p><code>ViewSets</code>&nbsp;allow you&nbsp;<a></a>to define the interactions of your API&nbsp;<a></a>and let REST framework build the URLs dynamically with a&nbsp;<code>Router</code>&nbsp;object. By using viewsets, you can avoid repeating logic for multiple views. Viewsets include actions for the following standard operations:</p>\n\n\n\n<ul><li>Create operation:&nbsp;<code>create()</code></li><li>Retrieve operation:&nbsp;<code>list()</code>&nbsp;and&nbsp;<code>retrieve()</code></li><li>Update operation:&nbsp;<code>update()</code>&nbsp;and&nbsp;<code>partial_update()</code></li><li>Delete operation:&nbsp;<code>destroy()</code></li></ul>\n\n\n\n<p>Let&#8217;s create a viewset for the&nbsp;<code>Course</code>&nbsp;model. Edit the&nbsp;<code>api/views.py</code>&nbsp;file and add the following code to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>from rest_framework import viewsets\nfrom .serializers import CourseSerializer\nclass CourseViewSet(viewsets.ReadOnlyModelViewSet):\n    queryset = Course.objects.all()\n    serializer_class = CourseSerializer\n</code></pre>\n\n\n\n<p>You subclass&nbsp;<code>ReadOnlyModelViewSet</code>, which provides the read-only actions&nbsp;<code>list()</code>&nbsp;and&nbsp;<code>retrieve()</code>&nbsp;to both list objects, or retrieves a single object.</p>\n\n\n\n<p>Edit the&nbsp;<code>api/urls.py</code>&nbsp;file and create a router for your viewset, as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>from django.urls import path, <strong>include</strong>\n<strong>from rest_framework import routers</strong>\nfrom . import views\n<strong>router = routers.DefaultRouter()</strong>\n<strong>router.register('courses', views.CourseViewSet)</strong>\nurlpatterns = &#91;\n    # ...\n    <strong>path('', include(router.urls)),</strong>\n]\n</code></pre>\n\n\n\n<p>You create a&nbsp;<code>DefaultRouter</code>&nbsp;object and register your viewset with the&nbsp;<code>courses</code>&nbsp;prefix. The router takes charge of generating URLs automatically for your viewset.</p>\n\n\n\n<p>Open&nbsp;<code>http://127.0.0.1:8000/api/</code>&nbsp;in your browser. You will see that the router lists all viewsets&nbsp;<a></a>in its base URL, as shown in the following screenshot:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/B14981_12_02.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 12.2: The API root page of the REST framework browsable API</p>\n\n\n\n<p>You&nbsp;<a></a>can access&nbsp;<code>http://127.0.0.1:8000/api/courses/</code>&nbsp;to retrieve the list of courses.</p>\n\n\n\n<p>You can learn more about viewsets at https://www.django-rest-framework.org/api-guide/viewsets/. You can also find more information about routers at https://www.django-rest-framework.org/api-guide/routers/.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>ViewSets&nbsp;allow you&nbsp;to define the interactions of your API&nbsp;and let REST framework build the URLs dynamically with a&nbsp;Router&nbsp;object. By using viewsets, you can avoid repeating logic for multiple views. Viewsets include actions for the following standard operations: Create operation:&nbsp;create() Retrieve operation:&nbsp;list()&nbsp;and&nbsp;retrieve() Update operation:&nbsp;update()&nbsp;and&nbsp;partial_update() Delete operation:&nbsp;destroy() Let&#8217;s create a viewset for the&nbsp;Course&nbsp;model. Edit the&nbsp;api/views.py&nbsp;file and add the&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/creating-viewsets-and-routers/\">Continue reading <span class=\"screen-reader-text\">Creating viewsets and routers</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [136],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4098" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=4098"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4098/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4099,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4098/revisions/4099"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=4098"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=4098"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=4098"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 4100,
+    "date": "2022-06-29T07:54:25",
+    "date_gmt": "2022-06-29T07:54:25",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=4100" },
+    "modified": "2022-06-29T07:54:25",
+    "modified_gmt": "2022-06-29T07:54:25",
+    "slug": "adding-additional-actions-to-viewsets",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/adding-additional-actions-to-viewsets/",
+    "title": { "rendered": "Adding additional actions to viewsets" },
+    "content": {
+      "rendered": "\n<p>You can&nbsp;<a></a>add extra actions to viewsets. Let&#8217;s change your previous&nbsp;<code>CourseEnrollView</code>&nbsp;view into a custom viewset action. Edit the&nbsp;<code>api/views.py</code>&nbsp;file and modify the&nbsp;<code>CourseViewSet</code>&nbsp;class to look as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code><strong>from rest_framework.decorators import action</strong>\nclass CourseViewSet(viewsets.ReadOnlyModelViewSet):\n    queryset = Course.objects.all()\n    serializer_class = CourseSerializer\n    <strong>@action(detail=True,</strong>\n            <strong>methods=&#91;'post'],</strong>\n            <strong>authentication_classes=&#91;BasicAuthentication],</strong>\n            <strong>permission_classes=&#91;IsAuthenticated])</strong>\n    <strong>def enroll(self, request, *args, **kwargs):</strong>\n        <strong>course = self.get_object()</strong>\n        <strong>course.students.add(request.user)</strong>\n        <strong>return Response({'enrolled': True})</strong>\n</code></pre>\n\n\n\n<p>In the preceding code, you add a custom&nbsp;<code>enroll()</code>&nbsp;method that represents an additional action for this viewset. The preceding code is as follows:</p>\n\n\n\n<ol><li>You use the&nbsp;<code>action</code>&nbsp;decorator of the framework with the parameter&nbsp;<code>detail=True</code>&nbsp;to specify that this is an action to be performed on a single&nbsp;object.</li><li>The decorator allows you to add custom attributes for the action. You specify that only the&nbsp;<code>post()</code>&nbsp;method is allowed for this view and set the authentication and permission classes.</li><li>You use&nbsp;<code>self.get_object()</code>&nbsp;to retrieve the&nbsp;<code>Course</code>&nbsp;object.</li><li>You add&nbsp;<a></a>the current user to the&nbsp;<code>students</code>&nbsp;many-to-many relationship and return a custom success response.</li></ol>\n\n\n\n<p>Edit the&nbsp;<code>api/urls.py</code>&nbsp;file and remove the following URL, since you don&#8217;t need it anymore:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>path('courses/&lt;pk&gt;/enroll/',\n     views.CourseEnrollView.as_view(),\n     name='course_enroll'),\n</code></pre>\n\n\n\n<p>Then, edit the&nbsp;<code>api/views.py</code>&nbsp;file and remove the&nbsp;<code>CourseEnrollView</code>&nbsp;class.</p>\n\n\n\n<p>The URL to enroll on courses is now automatically generated by the router. The URL&nbsp;remains the same, since it&#8217;s built dynamically using your action name&nbsp;<code>enroll</code>.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>You can&nbsp;add extra actions to viewsets. Let&#8217;s change your previous&nbsp;CourseEnrollView&nbsp;view into a custom viewset action. Edit the&nbsp;api/views.py&nbsp;file and modify the&nbsp;CourseViewSet&nbsp;class to look as follows: In the preceding code, you add a custom&nbsp;enroll()&nbsp;method that represents an additional action for this viewset. The preceding code is as follows: You use the&nbsp;action&nbsp;decorator of the framework with the parameter&nbsp;detail=True&nbsp;to&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/adding-additional-actions-to-viewsets/\">Continue reading <span class=\"screen-reader-text\">Adding additional actions to viewsets</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [136],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4100" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=4100"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4100/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4101,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4100/revisions/4101"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=4100"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=4100"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=4100"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 4102,
+    "date": "2022-06-29T07:54:50",
+    "date_gmt": "2022-06-29T07:54:50",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=4102" },
+    "modified": "2022-06-29T07:54:50",
+    "modified_gmt": "2022-06-29T07:54:50",
+    "slug": "creating-custom-permissions",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/creating-custom-permissions/",
+    "title": { "rendered": "Creating custom permissions" },
+    "content": {
+      "rendered": "\n<p>You want students to be able to access the contents of the courses they are enrolled on. Only students&nbsp;<a></a>enrolled on a course should be able to access its contents. The best way to do this is with a custom permission class. Django provides a&nbsp;<code>BasePermission</code>&nbsp;class that allows you to define the following methods:</p>\n\n\n\n<ul><li><code>has_permission()</code>: View-level permission check</li><li><code>has_object_permission()</code>: Instance-level permission check</li></ul>\n\n\n\n<p>These methods should return&nbsp;<code>True</code>&nbsp;to grant access, or&nbsp;<code>False</code>&nbsp;otherwise.</p>\n\n\n\n<p>Create a new file inside the&nbsp;<code>courses/api/</code>&nbsp;directory and name it&nbsp;<code>permissions.py</code>. Add the following code to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>from rest_framework.permissions import BasePermission\nclass IsEnrolled(BasePermission):\n    def has_object_permission(self, request, view, obj):\n        return obj.students.filter(id=request.user.id).exists()\n</code></pre>\n\n\n\n<p>You&nbsp;<a></a>subclass the&nbsp;<code>BasePermission</code>&nbsp;class and override the&nbsp;<code>has_object_permission()</code>. You check that the user performing the request is present in the&nbsp;<code>students</code>&nbsp;relationship of the&nbsp;<code>Course</code>&nbsp;object. You are going to use the&nbsp;<code>IsEnrolled</code>&nbsp;permission next.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>You want students to be able to access the contents of the courses they are enrolled on. Only students&nbsp;enrolled on a course should be able to access its contents. The best way to do this is with a custom permission class. Django provides a&nbsp;BasePermission&nbsp;class that allows you to define the following methods: has_permission(): View-level permission&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/creating-custom-permissions/\">Continue reading <span class=\"screen-reader-text\">Creating custom permissions</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [136],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4102" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=4102"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4102/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4103,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4102/revisions/4103"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=4102"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=4102"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=4102"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 4105,
+    "date": "2022-06-29T07:57:58",
+    "date_gmt": "2022-06-29T07:57:58",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=4105" },
+    "modified": "2022-06-29T07:57:58",
+    "modified_gmt": "2022-06-29T07:57:58",
+    "slug": "serializing-course-contents",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/serializing-course-contents/",
+    "title": { "rendered": "Serializing course contents" },
+    "content": {
+      "rendered": "\n<p>You need to serialize course contents. The <code>Content</code> model includes a generic foreign key that allows you to associate objects of different content models. Yet, you added a common <code>render()</code> method for all content models. You can use this method to provide rendered contents to your API.</p>\n\n\n\n<p>Edit the&nbsp;<code>api/serializers.py</code>&nbsp;file of the&nbsp;<code>courses</code>&nbsp;application and add the following code to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>from ..models import Content\nclass ItemRelatedField(serializers.RelatedField):\n    def to_representation(self, value):\n        return value.render()\nclass ContentSerializer(serializers.ModelSerializer):\n    item = ItemRelatedField(read_only=True)\n    class Meta:\n        model = Content\n        fields = &#91;'order', 'item']\n</code></pre>\n\n\n\n<p>In this code, you define a custom field by subclassing the&nbsp;<code>RelatedField</code>&nbsp;serializer field provided by REST framework and overriding the&nbsp;<code>to_representation()</code>&nbsp;method. You define the&nbsp;<code>ContentSerializer</code>&nbsp;serializer for the&nbsp;<code>Content</code>&nbsp;model and use the custom field for the&nbsp;<code>item</code>&nbsp;generic foreign key.</p>\n\n\n\n<p>You need an alternative serializer for the&nbsp;<code>Module</code>&nbsp;model that includes its contents, and an extended&nbsp;<code>Course</code>&nbsp;serializer as well. Edit the&nbsp;<code>api/serializers.py</code>&nbsp;file and add the following code to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>class ModuleWithContentsSerializer(serializers.ModelSerializer):\n    contents = ContentSerializer(many=True)\n    class Meta:\n        model = Module\n        fields = &#91;'order', 'title', 'description', 'contents']\nclass CourseWithContentsSerializer(serializers.ModelSerializer):\n    modules = ModuleWithContentsSerializer(many=True)\n    class Meta:\n        model = Course\n        fields = &#91;'id', 'subject', 'title', 'slug',\n                  'overview', 'created', 'owner', 'modules']\n</code></pre>\n\n\n\n<p>Let&#8217;s create&nbsp;<a></a>a view that mimics the behavior of the&nbsp;<code>retrieve()</code>&nbsp;action, but includes the course contents. Edit the&nbsp;<code>api/views.py</code>&nbsp;file and add the following method to the&nbsp;<code>CourseViewSet</code>&nbsp;class:</p>\n\n\n\n<pre class=\"wp-block-code\"><code><strong>from .permissions import IsEnrolled</strong>\n<strong>from .serializers import CourseWithContentsSerializer</strong>\nclass CourseViewSet(viewsets.ReadOnlyModelViewSet):\n    # ...\n    <strong>@action(detail=True,</strong>\n<strong>            methods=&#91;'get'],</strong>\n<strong>            serializer_class=CourseWithContentsSerializer,</strong>\n<strong>            authentication_classes=&#91;BasicAuthentication],</strong>\n<strong>            permission_classes=&#91;IsAuthenticated, IsEnrolled])</strong>\n<strong>    def contents(self, request, *args, **kwargs):</strong>\n<strong>        return self.retrieve(request, *args, **kwargs)</strong>\n</code></pre>\n\n\n\n<p>The description of this method is as follows:</p>\n\n\n\n<ul><li>You use the&nbsp;<code>action</code>&nbsp;decorator with the parameter&nbsp;<code>detail=True</code>&nbsp;to specify an action that is performed on a single object.</li><li>You specify that only the&nbsp;<code>GET</code>&nbsp;method is allowed for this action.</li><li>You use the new&nbsp;<code>CourseWithContentsSerializer</code>&nbsp;serializer class that includes rendered course contents.</li><li>You use both&nbsp;<code>IsAuthenticated</code>&nbsp;and your custom&nbsp;<code>IsEnrolled</code>&nbsp;permissions. By doing so, you make sure that only users enrolled on the course are able to&nbsp;access its contents.</li><li>You use the existing&nbsp;<code>retrieve()</code>&nbsp;action to return the&nbsp;<code>Course</code>&nbsp;object.</li></ul>\n\n\n\n<p>Open&nbsp;<code>http://127.0.0.1:8000/api/courses/1/contents/</code>&nbsp;in your browser. If&nbsp;you access the view with the right credentials, you will see that each module of&nbsp;the&nbsp;course includes the rendered HTML for course contents, as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{\n    \"order\": 0,\n    \"title\": \"Introduction to Django\",\n    \"description\": \"Brief introduction to the Django Web Framework.\",\n    \"contents\": &#91;\n        {\n            \"order\": 0,\n            \"item\": \"&lt;p&gt;Meet Django. Django is a high-level\n            Python Web framework\n            ...&lt;/p&gt;\"\n        },\n        {\n            \"order\": 1,\n            \"item\": \"\\n&lt;iframe width=\\\"480\\\" height=\\\"360\\\"\n            src=\\\"http://www.youtube.com/embed/bgV39DlmZ2U?\n            wmode=opaque\\\"\n            frameborder=\\\"0\\\" allowfullscreen&gt;&lt;/iframe&gt;\\n\"\n        }\n    ]\n}\n</code></pre>\n\n\n\n<p>You have built a simple API that allows other services to access the course application programmatically. REST framework also allows you to handle creating and editing objects with the <code>ModelViewSet</code> viewset. We have covered the main aspects of Django REST framework, but you will find further information about its features in its extensive documentation at https://www.django-rest-framework.org/.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>You need to serialize course contents. The Content model includes a generic foreign key that allows you to associate objects of different content models. Yet, you added a common render() method for all content models. You can use this method to provide rendered contents to your API. Edit the&nbsp;api/serializers.py&nbsp;file of the&nbsp;courses&nbsp;application and add the following code to it: In this&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/serializing-course-contents/\">Continue reading <span class=\"screen-reader-text\">Serializing course contents</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [136],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4105" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=4105"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4105/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4106,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4105/revisions/4106"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=4105"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=4105"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=4105"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 4107,
+    "date": "2022-06-29T07:59:27",
+    "date_gmt": "2022-06-29T07:59:27",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=4107" },
+    "modified": "2022-06-29T07:59:27",
+    "modified_gmt": "2022-06-29T07:59:27",
+    "slug": "consuming-the-restful-api",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/consuming-the-restful-api/",
+    "title": { "rendered": "Consuming the RESTful API " },
+    "content": {
+      "rendered": "\n<p>Now that you have implemented an API, you can consume it in a programmatic manner from other applications. You can interact with the API using JavaScript in the frontend of your application, in a similar fashion to the AJAX functionalities, <em>Sharing Content on Your Website</em>. You can also consume the API from applications built with Python or any other programming languages. </p>\n\n\n\n<p>You are going to create a simple Python application that uses the RESTful API to retrieve all available courses and then enrolls a student on all of them. You will learn how to authenticate against the API using HTTP basic authentication, and perform&nbsp;<code>GET</code>&nbsp;and&nbsp;<code>POST</code>&nbsp;requests.&nbsp;</p>\n\n\n\n<p>You will use the Python Requests library to consume the API. Requests is the most popular HTTP library for Python. It abstracts the complexity of dealing with HTTP requests and provides a very simple interface to consume HTTP services. You can find the documentation for the Requests library at https://requests.readthedocs.io/en/master/. </p>\n\n\n\n<p>Open the shell and install the Requests library with the following command:&nbsp;</p>\n\n\n\n<pre class=\"wp-block-code\"><code>pip install requests==2.23&nbsp;\n</code></pre>\n\n\n\n<p>Create a new directory next to the&nbsp;<code>educa</code>&nbsp;project directory and name it&nbsp;<code>api_examples</code>. Create&nbsp;<a></a>a new file inside the&nbsp;<code>api_examples/</code>&nbsp;directory and name it&nbsp;<code>enroll_all.py</code>. The file structure should now look like this:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>api_examples/&nbsp;\n&nbsp;&nbsp;&nbsp; enroll_all.py&nbsp;\neduca/&nbsp;\n&nbsp;&nbsp;&nbsp; ...&nbsp;\n</code></pre>\n\n\n\n<p>Edit the&nbsp;<code>enroll_all.py</code>&nbsp;file and add the following code to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>import requests\nbase_url = 'http://127.0.0.1:8000/api/'&nbsp;\n# retrieve all courses&nbsp;\nr = requests.get(f'{base_url}courses/')&nbsp;\ncourses = r.json()\n&nbsp;\navailable_courses = ', '.join(&#91;course&#91;'title'] for course in courses])\nprint(f'Available courses: {available_courses}')\n</code></pre>\n\n\n\n<p>In this code, you perform the following actions:</p>\n\n\n\n<ol><li>You import the Requests library and define the base URL for the API.&nbsp;</li><li>You use&nbsp;<code>requests.get()</code>&nbsp;to retrieve data from the API by sending a&nbsp;<code>GET</code>&nbsp;request to the URL&nbsp;<code>http://127.0.0.1:8000/api/courses/</code>. This API endpoint is publicly accessible, so it does not require any authentication.&nbsp;</li><li>You use the&nbsp;<code>json()</code>&nbsp;method of the response object to decode the JSON data returned by the API.</li><li>You print the title attribute of each course.&nbsp;</li></ol>\n\n\n\n<p>Start the development server from the&nbsp;<code>educa</code>&nbsp;project directory with the following command:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>python manage.py runserver\n</code></pre>\n\n\n\n<p>In another shell, run the following command from the&nbsp;<code>api_examples/</code>&nbsp;directory:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>python enroll_all.py\n</code></pre>\n\n\n\n<p>You will see output with a list of all course titles, like this:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Available courses: Introduction to Django, Python for beginners, Algebra basics\n</code></pre>\n\n\n\n<p>This is&nbsp;<a></a>your first automated call to your API.&nbsp;&nbsp;</p>\n\n\n\n<p>Edit the&nbsp;<code>enroll_all.py</code>&nbsp;file and change it to make it look like this:&nbsp;</p>\n\n\n\n<pre class=\"wp-block-code\"><code>import requests\n<strong>username = ''</strong>\n<strong>password = ''</strong>\nbase_url = 'http://127.0.0.1:8000/api/'\n<em># retrieve all courses</em>\nr = requests.get(f'{base_url}courses/')\ncourses = r.json()\navailable_courses = ', '.join(&#91;course&#91;'title'] for course in courses])\nprint(f'Available courses: {available_courses}')\n<strong>for course in courses:</strong>\n<strong>  course_id = course&#91;'id']</strong>\n<strong>  course_title = course&#91;'title']</strong>\n<strong>  r = requests.post(f'{base_url}courses/{course_id}/enroll/',&nbsp;</strong>\n<strong>                                  auth=(username, password))</strong>\n<strong>  if r.status_code == 200:</strong>\n<strong>    <em># successful request</em></strong>\n<strong>    print(f'Successfully enrolled in {course_title}')</strong>&nbsp;\n</code></pre>\n\n\n\n<p>Replace the values for the&nbsp;<code>username</code>&nbsp;and&nbsp;<code>password</code>&nbsp;variables with the credentials of an existing user.&nbsp;</p>\n\n\n\n<p>With the new code, you perform the following actions:&nbsp;</p>\n\n\n\n<ol><li>You define the username and password of the student you want to enroll on&nbsp;courses.&nbsp;</li><li>You iterate over the available courses retrieved from the API.&nbsp;</li><li>You store the course ID attribute in the&nbsp;<code>course_id</code>&nbsp;variable and the title attribute in the&nbsp;<code>course_title</code>&nbsp;variable.&nbsp;</li><li>You use&nbsp;<code>requests.post()</code>&nbsp;to send a&nbsp;<code>POST</code>&nbsp;request to the URL&nbsp;<code>http://127.0.0.1:8000/api/courses/[id]/enroll/</code>&nbsp;for each course. This URL corresponds to the&nbsp;<code>CourseEnrollView</code>&nbsp;API view, which allows you to enroll a user on a course. You build the URL for each course using the&nbsp;<code>course_id</code>&nbsp;variable. The&nbsp;<code>CourseEnrollView</code>&nbsp;view requires authentication. It uses the&nbsp;<code>IsAuthenticated</code>&nbsp;permission and the&nbsp;<code>BasicAuthentication</code>&nbsp;authentication class. The Requests library supports HTTP basic authentication out of the box. You use the&nbsp;<code>auth</code>&nbsp;parameter to pass a tuple with the username and password to authenticate the user using HTTP basic authentication.&nbsp;</li><li>If the status code of the response is&nbsp;<code>200 OK</code>, you print a message to indicate that the user has been successfully enrolled on the course.&nbsp;</li></ol>\n\n\n\n<p>You can use different kinds of authentication with Requests. You can find more information on authentication with Requests at https://requests.readthedocs.io/en/master/user/authentication/.  </p>\n\n\n\n<p>Run the following command from the&nbsp;<code>api_examples/</code>&nbsp;directory:&nbsp;</p>\n\n\n\n<pre class=\"wp-block-code\"><code>python enroll_all.py&nbsp;\n</code></pre>\n\n\n\n<p>You will now see output like this:&nbsp;</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Available courses: Introduction to Django, Python for beginners, Algebra basics&nbsp;\nSuccessfully enrolled in Introduction to Django&nbsp;\nSuccessfully enrolled in Python for beginners&nbsp;\nSuccessfully enrolled in Algebra basics&nbsp;\n</code></pre>\n\n\n\n<p>Great! You have successfully enrolled the user on all available courses using the API. You will see a&nbsp;<code>Successfully enrolled</code>&nbsp;message for each course in the platform. As you can see, it&#8217;s very easy to consume the API from any other application. You can effortlessly build other functionalities based on the API and let others integrate your API into their applications.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Now that you have implemented an API, you can consume it in a programmatic manner from other applications. You can interact with the API using JavaScript in the frontend of your application, in a similar fashion to the AJAX functionalities, Sharing Content on Your Website. You can also consume the API from applications built with Python or&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/consuming-the-restful-api/\">Continue reading <span class=\"screen-reader-text\">Consuming the RESTful API </span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [136],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4107" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=4107"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4107/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4108,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/4107/revisions/4108"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=4107"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=4107"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=4107"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  }
+]

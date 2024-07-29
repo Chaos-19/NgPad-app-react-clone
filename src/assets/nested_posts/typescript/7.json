@@ -1,0 +1,378 @@
+[
+  {
+    "id": 4146,
+    "date": "2020-11-28T11:28:19",
+    "date_gmt": "2020-11-28T11:28:19",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3328"
+    },
+    "modified": "2020-11-28T11:28:19",
+    "modified_gmt": "2020-11-28T11:28:19",
+    "slug": "intersection-types",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/intersection-types/",
+    "title": {
+      "rendered": "Intersection Types"
+    },
+    "content": {
+      "rendered": "\n<h2>Introduction to TypeScript intersection types</h2>\n\n\n\n<p>An intersection type creates a new type by combining multiple existing types. The new type has all features of the existing types.</p>\n\n\n\n<p>To combine types, you use the&nbsp;<code>&amp;</code>&nbsp;operator as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>type typeAB = typeA &amp; typeB;\n</code></pre>\n\n\n\n<p>The&nbsp;<code>typeAB</code>&nbsp;will have all properties from both&nbsp;<code>typeA</code>&nbsp;and&nbsp;<code>typeB</code>.</p>\n\n\n\n<p>Note that the union type uses the&nbsp;<code>|</code>&nbsp;operator that defines a variable which can hold a value of either&nbsp;<code>typeA</code>&nbsp;or&nbsp;<code>typeB</code></p>\n\n\n\n<pre class=\"wp-block-code\"><code>let varName = typeA | typeB; // union type\n</code></pre>\n\n\n\n<p>Suppose that you have three interfaces:&nbsp;<code>BusinessPartner</code>,&nbsp;<code>Identity</code>, and&nbsp;<code>Contact</code>.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>interface BusinessPartner {\n    name: string;\n    credit: number;\n}\n\ninterface Identity {\n    id: number;\n    name: string;\n}\n\ninterface Contact {\n    email: string;\n    phone: string;\n}\n</code></pre>\n\n\n\n<p>The following defines two intersection types:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>type Employee = Identity &amp; Contact;\ntype Customer = BusinessPartner &amp; Contact;\n</code></pre>\n\n\n\n<p>The&nbsp;<code>Employee</code>&nbsp;type contains all properties of the&nbsp;<code>Identity</code>&nbsp;and&nbsp;<code>Contact</code>&nbsp;type:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>type Employee = Identity &amp; Contact;\n\nlet e: Employee = {\n    id: 100,\n    name: 'John Doe',\n    email: 'john.doe@example.com',\n    phone: '(408)-897-5684'\n};\n</code></pre>\n\n\n\n<p>And the&nbsp;<code>Customer</code>&nbsp;type contains all properties of the&nbsp;<code>BusinessPartner</code>&nbsp;and&nbsp;<code>Contact</code>&nbsp;type:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>type Customer = BusinessPartner &amp; Contact;\n\nlet c: Customer = {\n    name: 'ABC Inc.',\n    credit: 1000000,\n    email: 'sales@abcinc.com',\n    phone: '(408)-897-5735'\n};\n</code></pre>\n\n\n\n<p>Later, if you want to implement employee sales, you can create a new intersection type that contains all properties of&nbsp;<code>Identity</code>,&nbsp;<code>Contact</code>, and&nbsp;<code>BusinessPartner</code>&nbsp;types:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>type Employee = Identity &amp; BusinessPartner &amp; Contact;\n\nlet e: Employee = {\n    id: 100,\n    name: 'John Doe',\n    email: 'john.doe@example.com',\n    phone: '(408)-897-5684',\n    credit: 1000\n};\n</code></pre>\n\n\n\n<p>Notice both&nbsp;<code>BusinessPartner</code>&nbsp;and&nbsp;<code>Identity</code>&nbsp;have the property&nbsp;<code>name</code>&nbsp;with the same type. If they do not, then you will have an error.</p>\n\n\n\n<h2>Type Order</h2>\n\n\n\n<p>When you intersect types, the order of the types doesn\u2019t matter. For example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>type typeAB = typeA &amp; typeB;\ntype typeBA = typeB &amp; typeA;\n</code></pre>\n\n\n\n<p>In this example,&nbsp;<code>typeAB</code>&nbsp;and&nbsp;<code>typeBA</code>&nbsp;have the same properties.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Introduction to TypeScript intersection types An intersection type creates a new type by combining multiple existing types. The new type has all features of the existing types. To combine types, you use the&nbsp;&amp;&nbsp;operator as follows: The&nbsp;typeAB&nbsp;will have all properties from both&nbsp;typeA&nbsp;and&nbsp;typeB. Note that the union type uses the&nbsp;|&nbsp;operator that defines a variable which can hold [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [213],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4146"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=4146"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4146/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=4146"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=4146"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=4146"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 4147,
+    "date": "2020-11-28T11:30:12",
+    "date_gmt": "2020-11-28T11:30:12",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3330"
+    },
+    "modified": "2020-11-28T11:30:12",
+    "modified_gmt": "2020-11-28T11:30:12",
+    "slug": "type-guards",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/type-guards/",
+    "title": {
+      "rendered": "Type Guards"
+    },
+    "content": {
+      "rendered": "\n<h2>Typeof</h2>\n\n\n\n<p>Let\u2019s take a look at the following example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>type alphanumeric = string | number;\n\nfunction add(a: alphanumeric, b: alphanumeric) {\n    if (typeof a === 'number' &amp;&amp; typeof b === 'number') {\n        return a + b;\n    }\n\n    if (typeof a === 'string' &amp;&amp; typeof b === 'string') {\n        return a.concat(b);\n    }\n\n    throw new Error('Invalid arguments. Both arguments must be either numbers or strings.');\n}\n</code></pre>\n\n\n\n<p>How it works:</p>\n\n\n\n<ul><li>First, define the\u00a0<code>alphanumeric</code>\u00a0type that can hold either a\u00a0string\u00a0or a\u00a0number.</li><li>Next, declare a function that adds two variables\u00a0<code>a</code>\u00a0and\u00a0<code>b</code>\u00a0with the type of\u00a0<code>alphanumeric</code>.</li><li>Then, check if both types of arguments are numbers using the\u00a0<code>typeof</code>\u00a0operator. If yes, then calculate the sum of arguments using the\u00a0<code>+</code>\u00a0operator.</li><li>After that, check if both types of arguments are strings using the\u00a0<code>typeof</code>\u00a0operator. If yes, then concatenate two arguments.</li><li>Finally, throw an error if arguments are neither numbers nor strings.</li></ul>\n\n\n\n<p>In this example, TypeScript knows the usage of the\u00a0<code>typeof</code>\u00a0operator in the conditional blocks. Inside the following\u00a0<code>if</code>\u00a0block, TypeScript realizes that\u00a0<code>a</code>\u00a0and\u00a0<code>b</code>\u00a0are numbers.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>if (typeof a === 'number' &amp;&amp; typeof b === 'number') {\n    return a + b;\n}</code></pre>\n\n\n\n<p>Similarly, in the following&nbsp;<code>if</code>&nbsp;block, TypeScript treats&nbsp;<code>a</code>&nbsp;and&nbsp;<code>b</code>&nbsp;as strings, therefore, you can concatenate them into one:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>if (typeof a === 'string' &amp;&amp; typeof b === 'string') {\n    return a.concat(b);\n}\n</code></pre>\n\n\n\n<h2>instanceof</h2>\n\n\n\n<p>Similar to the&nbsp;<code>typeof</code>&nbsp;operator, TypeScript is also aware of the usage of the&nbsp;<code>instanceof</code>&nbsp;operator. For example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>class Customer {\n    isCreditAllowed(): boolean {\n        // ...\n        return true;\n    }\n}\n\nclass Supplier {\n    isInShortList(): boolean {\n        // ...\n        return true;\n    }\n}\n\ntype BusinessPartner = Customer | Supplier;\n\nfunction signContract(partner: BusinessPartner) : string {\n    let message: string;\n    if (partner instanceof Customer) {\n        message = partner.isCreditAllowed() ? 'Sign a new contract with the customer' : 'Credit issue';\n    }\n\n    if (partner instanceof Supplier) {\n        message = partner.isInShortList() ? 'Sign a new contract the supplier' : 'Need to evaluate further';\n    }\n\n    return message;\n}\n</code></pre>\n\n\n\n<p>How it works:</p>\n\n\n\n<ul><li>First, declare the&nbsp;<code>Customer</code>&nbsp;and&nbsp;<code>Supplier</code>&nbsp;classes.<br>Second, create a type alias&nbsp;<code>BusinessPartner</code>&nbsp;which is a union type of&nbsp;<code>Customer</code>&nbsp;and&nbsp;<code>Supplier</code>.</li><li>Third, declare a function&nbsp;<code>signContract()</code>&nbsp;that accepts a parameter with the type&nbsp;<code>BusinessPartner</code>.</li><li>Finally, check if the partner is an instance of&nbsp;<code>Customer</code>&nbsp;or&nbsp;<code>Supplier</code>, and then provide the respective logic.</li></ul>\n\n\n\n<p>Inside the following&nbsp;<code>if</code>&nbsp;block, TypeScript knows that the partner is an instance of the&nbsp;<code>Customer</code>&nbsp;type due to the&nbsp;<code>instanceof</code>&nbsp;operator:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>if (partner instanceof Customer) {\n    message = partner.isCreditAllowed() ? 'Sign a new contract with the customer' : 'Credit issue';\n}</code></pre>\n\n\n\n<p>Likewise, TypeScript knows that the partner is an instance of&nbsp;<code>Supplier</code>&nbsp;inside the following&nbsp;<code>if</code>&nbsp;block:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>if (partner instanceof Supplier) {\n    message = partner.isInShortList() ? 'Sign a new contract with the supplier' : 'Need to evaluate further';\n}</code></pre>\n\n\n\n<p>When an if narrows out one type, TypeScript knows that within the&nbsp;<code>else</code>&nbsp;it is not that type but the other. For example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function signContract(partner: BusinessPartner) : string {\n    let message: string;\n    if (partner instanceof Customer) {\n        message = partner.isCreditAllowed() ? 'Sign a new contract with the customer' : 'Credit issue';\n    } else {\n        // must be Supplier\n        message = partner.isInShortList() ? 'Sign a new contract with the supplier' : 'Need to evaluate further';\n    }\n    return message;\n}\n</code></pre>\n\n\n\n<h2>in</h2>\n\n\n\n<p>The&nbsp;<code>in</code>&nbsp;operator carries a safe check for the existence of a property on an object. You can also use it as a type guard. For example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function signContract(partner: BusinessPartner) : string {\n    let message: string;\n    if ('isCreditAllowed' in partner) {\n        message = partner.isCreditAllowed() ? 'Sign a new contract with the customer' : 'Credit issue';\n    } else {\n        // must be Supplier\n        message = partner.isInShortList() ? 'Sign a new contract the supplier ' : 'Need to evaluate further';\n    }\n    return message;\n}\n</code></pre>\n\n\n\n<h2>User-defined Type Guards</h2>\n\n\n\n<p>User-defined type guards allow you to define a type guard or help TypeScript infer a type when you use a function.</p>\n\n\n\n<p>A user-defined type guard function is a function that simply returns&nbsp;<code>arg is aType</code>. For example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function isCustomer(partner: any): partner is Customer {\n    return partner instanceof Customer;\n}\n</code></pre>\n\n\n\n<p>In this example, the&nbsp;<code>isCustomer()</code>&nbsp;is a user-defined type guard function. Now you can use it in as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function signContract(partner: BusinessPartner): string {\n    let message: string;\n    if (isCustomer(partner)) {\n        message = partner.isCreditAllowed() ? 'Sign a new contract with the customer' : 'Credit issue';\n    } else {\n        message = partner.isInShortList() ? 'Sign a new contract with the supplier' : 'Need to evaluate further';\n    }\n\n    return message;\n}</code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Typeof Let\u2019s take a look at the following example: How it works: First, define the\u00a0alphanumeric\u00a0type that can hold either a\u00a0string\u00a0or a\u00a0number. Next, declare a function that adds two variables\u00a0a\u00a0and\u00a0b\u00a0with the type of\u00a0alphanumeric. Then, check if both types of arguments are numbers using the\u00a0typeof\u00a0operator. If yes, then calculate the sum of arguments using the\u00a0+\u00a0operator. After that, [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [213],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4147"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=4147"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4147/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=4147"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=4147"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=4147"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 4148,
+    "date": "2020-11-28T11:31:17",
+    "date_gmt": "2020-11-28T11:31:17",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3332"
+    },
+    "modified": "2020-11-28T11:31:17",
+    "modified_gmt": "2020-11-28T11:31:17",
+    "slug": "casting",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/casting/",
+    "title": {
+      "rendered": "Casting"
+    },
+    "content": {
+      "rendered": "\n<h2>Type casting using the as keyword</h2>\n\n\n\n<p>The following selects the first input element by using the\u00a0<code>querySelector()</code>\u00a0method:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let input = document.querySelector('input&#91;\"type=\"text\"]');</code></pre>\n\n\n\n<p>Since the returned type of the&nbsp;<code>document.querySelector()</code>&nbsp;method is the&nbsp;<code>Element</code>&nbsp;type, the following code causes a compiler error:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>console.log(input.value);</code></pre>\n\n\n\n<p>The reason is that the value property doesn\u2019t exist in the Element type. It only exists on the&nbsp;<code>HTMLInputElement</code>&nbsp;type.</p>\n\n\n\n<p>To resolve this, you can use type casting that cast the Element to&nbsp;<code>HTMLInputElement</code>&nbsp;by using the&nbsp;<code>as</code>&nbsp;keyword like this:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let input = document.querySelector('input&#91;type=\"text\"]') as HTMLInputElement;</code></pre>\n\n\n\n<p>Now, the&nbsp;<code>input</code>&nbsp;variable has the type&nbsp;<code>HTMLInputElement</code>. So accessing its value property won\u2019t cause any error. The following code works:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>console.log(input.value);\n</code></pre>\n\n\n\n<p>Another way to cast the&nbsp;<code>Element</code>&nbsp;to&nbsp;<code>HTMLInputElement</code>&nbsp;is when you access the property as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let enteredText = (input as HTMLInputElement).value;</code></pre>\n\n\n\n<p>Note that the&nbsp;<code>HTMLInputElement</code>&nbsp;type extends the&nbsp;<code>HTMLElement</code>&nbsp;type that extends to the&nbsp;<code>Element</code>&nbsp;type. When you cast the&nbsp;<code>HTMLElement</code>&nbsp;to&nbsp;<code>HTMLInputElement</code>, this type casting is also known as a down casting.</p>\n\n\n\n<p>It\u2019s also possible to carry an down casting. For example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let el: HTMLElement;\nel = new HTMLInputElement();</code></pre>\n\n\n\n<p>In this example, the&nbsp;<code>el</code>&nbsp;variable has the&nbsp;<code>HTMLElement</code>&nbsp;type. And you can assign it an instance of&nbsp;<code>HTMLInputElement</code>&nbsp;type because the&nbsp;<code>HTMLInputElement</code>&nbsp;type is an subclass of the&nbsp;<code>HTMLElement</code>&nbsp;type.</p>\n\n\n\n<p>The syntax for converting a variable from&nbsp;<code>typeA</code>&nbsp;to&nbsp;<code>typeB</code>&nbsp;is as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let a: typeA;\nlet b = a as typeB;\n</code></pre>\n\n\n\n<h2>Type Casting using the &lt;&gt; operator</h2>\n\n\n\n<p>Besides the&nbsp;<code>as</code>&nbsp;keyword, you can use the&nbsp;<code>&lt;&gt;</code>&nbsp;operator to carry a type casting. For example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let input = &lt;HTMLInputElement>document.querySelector('input&#91;type=\"text\"]');\n\nconsole.log(input.value);\n</code></pre>\n\n\n\n<p>The syntax for type casting using the&nbsp;<code>&lt;&gt;</code>&nbsp;is:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let a: typeA;\nlet b = &lt;typeB>a;</code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Type casting using the as keyword The following selects the first input element by using the\u00a0querySelector()\u00a0method: Since the returned type of the&nbsp;document.querySelector()&nbsp;method is the&nbsp;Element&nbsp;type, the following code causes a compiler error: The reason is that the value property doesn\u2019t exist in the Element type. It only exists on the&nbsp;HTMLInputElement&nbsp;type. To resolve this, you can use [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [213],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4148"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=4148"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4148/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=4148"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=4148"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=4148"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 4149,
+    "date": "2020-11-28T11:32:08",
+    "date_gmt": "2020-11-28T11:32:08",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3334"
+    },
+    "modified": "2020-11-28T11:32:08",
+    "modified_gmt": "2020-11-28T11:32:08",
+    "slug": "assertions",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/assertions/",
+    "title": {
+      "rendered": "Assertions"
+    },
+    "content": {
+      "rendered": "\n<h2>Introduction to Type Assertions in TypeScript</h2>\n\n\n\n<p>Type assertions instruct the TypeScript compiler to treat a value as a specified type. It uses the&nbsp;<code>as</code>&nbsp;keyword to do so:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>expression as targetType</code></pre>\n\n\n\n<p>A type assertion is also known as type narrowing. It allows you to narrow a type from a\u00a0union type. Let\u2019s see the following simple function:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function getNetPrice(price: number, discount: number, format: boolean): number | string {\n    let netPrice = price * (1 - discount);\n    return format ? `$${netPrice}` : netPrice;\n}</code></pre>\n\n\n\n<p>The&nbsp;<code>getNetPrice()</code>&nbsp;function accepts&nbsp;<code>price</code>,&nbsp;<code>discount</code>, and&nbsp;<code>format</code>&nbsp;arguments and returns a value of the union type&nbsp;<code>number | string</code>.</p>\n\n\n\n<p>If the&nbsp;<code>format</code>&nbsp;is&nbsp;<code>true</code>, the&nbsp;<code>getNetPrice()</code>&nbsp;returns a formatted net price as a string. Otherwise, it returns the net price as a number.</p>\n\n\n\n<p>The following uses the&nbsp;<code>as</code>&nbsp;keyword to instruct the compiler that the value assigned to the&nbsp;<code>netPrice</code>&nbsp;is a string:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let netPrice = getNetPrice(100, 0.05, true) as string;\nconsole.log(netPrice);</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>$95</code></pre>\n\n\n\n<p>Similarly, the following uses the&nbsp;<code>as</code>&nbsp;keyword to instruct the compiler that the returned value of the&nbsp;<code>getNetPrice()</code>&nbsp;function is a number.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let netPrice = getNetPrice(100, 0.05, false) as number;\nconsole.log(netPrice);</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>95</code></pre>\n\n\n\n<p>Note that a type assertion does not carry any\u00a0type casting. It only tells the compiler which type it should apply to a value for the type checking purposes.</p>\n\n\n\n<h2>The alternative Type Assertion syntax</h2>\n\n\n\n<p>You can also uses the angle bracket syntax&nbsp;<code>&lt;&gt;</code>&nbsp;to assert a type, like this:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;targetType> value</code></pre>\n\n\n\n<p>For example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let netPrice = &lt;number>getNetPrice(100, 0.05, false);\n</code></pre>\n\n\n\n<p>Note that you cannot use angle bracket syntax&nbsp;<code>&lt;&gt;</code>&nbsp;with some libraries such as React. For this reason, you should use the&nbsp;<code>as</code>&nbsp;keyword for type assertions.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Introduction to Type Assertions in TypeScript Type assertions instruct the TypeScript compiler to treat a value as a specified type. It uses the&nbsp;as&nbsp;keyword to do so: A type assertion is also known as type narrowing. It allows you to narrow a type from a\u00a0union type. Let\u2019s see the following simple function: The&nbsp;getNetPrice()&nbsp;function accepts&nbsp;price,&nbsp;discount, and&nbsp;format&nbsp;arguments and [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [213],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4149"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=4149"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4149/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=4149"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=4149"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=4149"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  }
+]

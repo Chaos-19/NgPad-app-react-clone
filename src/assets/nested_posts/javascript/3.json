@@ -1,0 +1,378 @@
+[
+  {
+    "id": 3060,
+    "date": "2020-11-27T11:00:05",
+    "date_gmt": "2020-11-27T11:00:05",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3060"
+    },
+    "modified": "2020-11-27T11:00:05",
+    "modified_gmt": "2020-11-27T11:00:05",
+    "slug": "javascript-unary-operators-explained",
+    "status": "publish",
+    "type": "post",
+    "link": "https://computerprogramming.foobrdigital.com/javascript-unary-operators-explained/",
+    "title": {
+      "rendered": "JavaScript Unary Operators Explained"
+    },
+    "content": {
+      "rendered": "\n<p><strong>Summary</strong>: in this tutorial, you will learn how to use JavaScript unary operators that take a single operand and performs an operation.</p>\n\n\n\n<p>The simplest operators in JavaScript are unary operators. A unary operator works on one operand. The unary operators in JavaScript are:</p>\n\n\n\n<ul><li>Unary plus (<code>+</code>)&nbsp; – convert an operand into a number</li><li>Unary minus (<code>-</code>) – convert an operand into a number and negate the value after that.</li><li>prefix / postfix increments (<code>++</code>) – add one to its operand</li><li>prefix / postfix decrements (<code>--</code>) – subtract one from its operand.</li></ul>\n\n\n\n<h2>Unary plus / minus</h2>\n\n\n\n<p>The unary plus operator is a simple plus sign <code>+</code> and the unary minus is the minus sign <code>-</code>. You can place the unary plus or minus in front of a variable as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let a = 10;\na = +a; // 10\na = -a; // -10</code></pre>\n\n\n\n<p>If the value is a number, the unary plus operator does not take any effect whereas the unary minus negates the value.</p>\n\n\n\n<p>In case you apply the unary plus or minus on a non-numeric value, it performs the same conversion as the <code>Number()</code> function.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let s = '10';\nconsole.log(+s); // 10</code></pre>\n\n\n\n<p>In this example,&nbsp;<code>s</code>&nbsp;is a string. However, when we placed the unary plus operator in front of it, the string&nbsp;<code>s</code>&nbsp;is converted to a number.</p>\n\n\n\n<p>The following example shows how the unary operator converts boolean values into numbers,&nbsp;<code>false</code>&nbsp;to&nbsp;<code>0</code>&nbsp;and&nbsp;<code>true</code>&nbsp;to&nbsp;<code>1</code>.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let f = false,\n    t = true;\nconsole.log(+f); // 0\nconsole.log(+t); // 1</code></pre>\n\n\n\n<p>Suppose you have a&nbsp;<code>product</code>&nbsp;object with the&nbsp;<code>valueOf()</code>&nbsp;method as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let product = {\n    valueOf: function () {\n        return 60;\n    }\n};</code></pre>\n\n\n\n<p>When you apply the unary plus or minus on an object that has the&nbsp;<code>valueOf()</code>&nbsp;method, the method is called to return the converted value.</p>\n\n\n\n<p>In case the returned value is&nbsp;<code>NaN</code>, the&nbsp;<code>toString()</code>&nbsp;method is called to get the converted value. Here is an example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>console.log(+product); // 60</code></pre>\n\n\n\n<h2>Increment / Decrements operators</h2>\n\n\n\n<p>JavaScript borrows increment and decrement operators from the C language. Both of increment and decrement operators have two versions: prefix and postfix.</p>\n\n\n\n<p>You place the prefix version of the increment or decrement operators before a variable and the postfix versions after the variable.</p>\n\n\n\n<p>The following example shows how to add&nbsp;<code>1</code>&nbsp;to a variable by using the prefix increment operator.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let dan = 8;\n++dan;\nconsole.log(dan); // 9</code></pre>\n\n\n\n<p>In this example, the prefix increment operator adds&nbsp;<code>1</code>&nbsp;to the value of&nbsp;<code>dan</code>. As a result, the value of&nbsp;<code>dan</code>&nbsp;is&nbsp;<code>9</code>. The effect is the same as the following:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let dan = 8;\ndan = dan + 1;\nconsole.log(dan); // 9</code></pre>\n\n\n\n<p>The prefix decrement operator subtracts&nbsp;<code>1</code>&nbsp;from a numeric value:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let dan = 9;\n--dan;\nconsole.log(dan); // 8</code></pre>\n\n\n\n<p>In this example, the prefix decrement subtracts&nbsp;<code>1</code>&nbsp;from&nbsp;<code>9</code>.</p>\n\n\n\n<p>It’s important to note that the prefix decrement, the value of the variable changed before the statement is evaluated. See the following example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let x = 10, \n    y = 20;\nlet z = --x + y;\nconsole.log(z); // 29</code></pre>\n\n\n\n<p>In this example, the&nbsp;<code>z</code>&nbsp;variable is initialized with the decremented value of&nbsp;<code>x</code>&nbsp;plus&nbsp;<code>y</code>.</p>\n\n\n\n<p>Because the prefix decrement operator is evaluated first, the value of&nbsp;<code>x</code>&nbsp;is set to&nbsp;<code>9</code>, and then&nbsp;<code>20</code>&nbsp;is added, resulting in&nbsp;<code>29</code>.</p>\n\n\n\n<p>The postfix versions of increment and decrement have the same forms:&nbsp;<code>++</code>&nbsp;and&nbsp;<code>--</code>&nbsp;but are placed after a variable.</p>\n\n\n\n<p>The only difference between the postfix and prefix is that JavaScript doesn’t evaluate them until the containing statement has been evaluated. Here is an example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let i = 10;\ni--;</code></pre>\n\n\n\n<p>After the second statement, the value of&nbsp;<code>i</code>&nbsp;is&nbsp;<code>9</code>. It has the same effect as:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let i = 10;\n--i;</code></pre>\n\n\n\n<p>…because only one operation has been applied.</p>\n\n\n\n<p>The difference becomes clearer when you mix the postfix version with other operations:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let i = 10, j = 20;\nlet m = i-- + j;\nconsole.log(m); // 30\nconsole.log(i); // 9\n\ni = 10;\nlet n = --i + j;\nconsole.log(n); // 29\nconsole.log(i); // 9</code></pre>\n\n\n\n<p>In this example,&nbsp;<code>m</code>&nbsp;uses the original value of&nbsp;<code>i</code>, which is&nbsp;<code>10</code>&nbsp;whereas&nbsp;<code>n</code>&nbsp;uses the decremented value of&nbsp;<code>i</code>&nbsp;which is&nbsp;<code>9</code>.</p>\n\n\n\n<p>Similar to the unary plus and minus, you can use the increment or decrement operator on a value of a string, Boolean, and object to convert these value into a number with the similar rules:</p>\n\n\n\n<ul><li>When used on a string that can be converted to a valid number, it converts the string to a number. If the string cannot be converted to a number, it returns&nbsp;<code>NaN</code>.</li><li>When used on a Boolean, the variable is converted to a number,&nbsp;<code>true</code>&nbsp;becomes 1 and&nbsp;<code>false</code>&nbsp;becomes 0.</li><li>When used on an object, the&nbsp;<code>valueOf()</code>&nbsp;is called first. If the result is&nbsp;<code>NaN</code>&nbsp;then the&nbsp;<code>toString()</code>&nbsp;is called to return the converted value.</li></ul>\n\n\n\n<p>In this tutorial, you have learned how to use JavaScript unary operators to manipulate values.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Summary: in this tutorial, you will learn how to use JavaScript unary operators that take a single operand and performs an operation. The simplest operators in JavaScript are unary operators. A unary operator works on one operand. The unary operators in JavaScript are: Unary plus (+)&nbsp; – convert an operand into a number Unary minus [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [34],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3060"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/comments?post=3060"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3060/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/media?parent=3060"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/categories?post=3060"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/tags?post=3060"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 3062,
+    "date": "2020-11-27T11:00:54",
+    "date_gmt": "2020-11-27T11:00:54",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3062"
+    },
+    "modified": "2020-11-27T11:00:54",
+    "modified_gmt": "2020-11-27T11:00:54",
+    "slug": "javascript-assignment-operators",
+    "status": "publish",
+    "type": "post",
+    "link": "https://computerprogramming.foobrdigital.com/javascript-assignment-operators/",
+    "title": {
+      "rendered": "JavaScript Assignment Operators"
+    },
+    "content": {
+      "rendered": "\n<p><strong>Summary</strong>: in this tutorial, you will learn about JavaScript assignment operators to&nbsp;assign a value of its right operand to its left operand.</p>\n\n\n\n<p>An assignment operator assigns a value of the right operand to its left operand.</p>\n\n\n\n<p>The basic assignment operator is equal (=):</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let a = 10;\n</code></pre>\n\n\n\n<p>In this example, we assigned the number 10 to the variable a.</p>\n\n\n\n<p>See the following example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let a = 10;\na = a + 5;\n</code></pre>\n\n\n\n<p>It’s equivalent to the following:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let a = 10;\na += 5;\n</code></pre>\n\n\n\n<p>The += assignment operator assigns the result of a plus 5 to a.</p>\n\n\n\n<p>The following table illustrates assignment operators that are shorthand for another operator plus the assignment:</p>\n\n\n\n<figure class=\"wp-block-table\"><table><thead><tr><th>Operator</th><th>Meaning</th><th>Description</th></tr></thead><tbody><tr><td><code>a = b</code></td><td><code>a = b</code></td><td>Assigns the value of&nbsp;<code>b</code>&nbsp;to&nbsp;<code>a</code>.</td></tr><tr><td><code>a += b</code></td><td><code>a = a + b</code></td><td>Assigns the result of&nbsp;<code>a</code>&nbsp;plus&nbsp;<code>b</code>&nbsp;to&nbsp;<code>a</code>.</td></tr><tr><td><code>a -= b</code></td><td><code>a = a - b</code></td><td>Assigns the result of&nbsp;<code>a</code>&nbsp;minus&nbsp;<code>b</code>&nbsp;to&nbsp;<code>a</code>.</td></tr><tr><td><code>a *= b</code></td><td><code>a = a * b</code></td><td>Assigns the result of&nbsp;<code>a</code>&nbsp;times&nbsp;<code>b</code>&nbsp;to&nbsp;<code>a</code>.</td></tr><tr><td><code>a /= b</code></td><td><code>a = a / b</code></td><td>Assigns the result of&nbsp;<code>a</code>&nbsp;divided by&nbsp;<code>b</code>&nbsp;to&nbsp;<code>a</code>.</td></tr><tr><td><code>a %= b</code></td><td><code>a = a % b</code></td><td>Assigns the result of&nbsp;<code>a</code>&nbsp;modulo&nbsp;<code>b</code>&nbsp;to&nbsp;<code>a</code>.</td></tr><tr><td><code>a &amp;=b</code></td><td><code>a = a &amp; b</code></td><td>Assigns the result of&nbsp;<code>a</code>&nbsp;AND&nbsp;<code>b</code>&nbsp;to&nbsp;<code>a</code>.</td></tr><tr><td><code>a |=b</code></td><td><code>a =a | b</code></td><td>Assigns the result of&nbsp;<code>a</code>&nbsp;OR&nbsp;<code>b</code>&nbsp;to&nbsp;<code>a</code>.</td></tr><tr><td><code>a ^=b</code></td><td><code>a = a ^ b</code></td><td>Assigns the result of&nbsp;<code>a</code>&nbsp;XOR&nbsp;<code>b</code>&nbsp;to&nbsp;<code>a</code>.</td></tr><tr><td><code>a &lt;&lt;= b</code></td><td><code>a = a &lt;&lt; b</code></td><td>Assigns the result of&nbsp;<code>a</code>&nbsp;shifted left by&nbsp;<code>b</code>&nbsp;to&nbsp;<code>a</code>.</td></tr><tr><td><code>a &gt;&gt;= b</code></td><td><code>a = a &gt;&gt; b</code></td><td>Assigns the result of&nbsp;<code>a</code>&nbsp;shifted right (sign preserved) by&nbsp;<code>b</code>&nbsp;to&nbsp;<code>a</code>.</td></tr><tr><td><code>a &gt;&gt;&gt;= b</code></td><td><code>a = a &gt;&gt;&gt; b</code></td><td>Assigns the result of&nbsp;<code>a</code>&nbsp;shifted right by&nbsp;<code>b</code>&nbsp;to&nbsp;<code>a</code>.</td></tr></tbody></table></figure>\n\n\n\n<p>In this tutorial, you have learned how to use JavaScript assignment operators to assign a value of its right operand to its left operand.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Summary: in this tutorial, you will learn about JavaScript assignment operators to&nbsp;assign a value of its right operand to its left operand. An assignment operator assigns a value of the right operand to its left operand. The basic assignment operator is equal (=): In this example, we assigned the number 10 to the variable a. [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [34],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3062"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/comments?post=3062"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3062/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/media?parent=3062"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/categories?post=3062"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/tags?post=3062"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 3066,
+    "date": "2020-11-27T11:02:34",
+    "date_gmt": "2020-11-27T11:02:34",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3066"
+    },
+    "modified": "2020-11-27T11:02:34",
+    "modified_gmt": "2020-11-27T11:02:34",
+    "slug": "a-comprehensive-look-at-javascript-comparison-operators",
+    "status": "publish",
+    "type": "post",
+    "link": "https://computerprogramming.foobrdigital.com/a-comprehensive-look-at-javascript-comparison-operators/",
+    "title": {
+      "rendered": "A Comprehensive Look at JavaScript Comparison Operators"
+    },
+    "content": {
+      "rendered": "\n<p><strong>Summary</strong>: in this tutorial, you will learn how to use JavaScript comparison operators to compare two values.</p>\n\n\n\n<h2>Introduction to JavaScript comparison operators</h2>\n\n\n\n<p>To compare two values, you use the comparison operators. The following table illustrates the JavaScript comparison operators:</p>\n\n\n\n<figure class=\"wp-block-table\"><table><thead><tr><th>Operator</th><th>Meaning</th></tr></thead><tbody><tr><td>&lt;</td><td>less than</td></tr><tr><td>&gt;</td><td>greater than</td></tr><tr><td>&lt;=</td><td>less than or equal to</td></tr><tr><td>&gt;=</td><td>greater than or equal to</td></tr><tr><td>==</td><td>equal to</td></tr><tr><td>!=</td><td>not equal to</td></tr></tbody></table></figure>\n\n\n\n<p>A comparison operator returns a Boolean value indicating that the comparison is true or not. See the following example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let r1 = 20 > 10; // true\nlet r2 = 20 &lt; 10; // false\nlet r3 = 10 == 10; // true</code></pre>\n\n\n\n<div class=\"wp-block-image\"></div>\n\n\n\n<p>The comparison operator takes at least two values (or operands). If one of the two values has a different type, JavaScript will perform a conversion based on specific rules before comparing them. We will discuss each rule in detail in the following sections.</p>\n\n\n\n<h3>Comparing numbers</h3>\n\n\n\n<p>If the operands are numbers, JavaScript will perform a numeric comparison. For example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let a = 10, \n    b = 20; \nconsole.log(a >= b);  // false\nconsole.log(a == 10); // true</code></pre>\n\n\n\n<p>This example is straightforward. the variable&nbsp;<code>a</code>&nbsp;is&nbsp;<code>10</code>,&nbsp;<code>b</code>&nbsp;is&nbsp;<code>20</code>. &nbsp;The&nbsp;<code>a&gt;=b</code>&nbsp;expression returns and&nbsp;<code>a==10</code>&nbsp;expression returns &nbsp;<code>true</code>.</p>\n\n\n\n<h3>Comparing strings</h3>\n\n\n\n<p>If the operands are strings, JavaScript compares the character codes numerically one by one in the string.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let name1 = 'alice',\n    name2 = 'bob';    \nlet result = name1 &lt; name2;\nconsole.log(result); // true\nconsole.log(name1 == 'alice'); // true</code></pre>\n\n\n\n<p>Because JavaScript compares character codes in the strings numerically, you may receive an unexpected result, for example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let f1 = 'apple',\n    f2 = 'Banana';\nlet result = f2 &lt; f1;\nconsole.log(result); // true</code></pre>\n\n\n\n<p>In this example,&nbsp;<code>f2</code>&nbsp;is less than&nbsp;<code>f1</code>&nbsp;because the letter&nbsp;<code>B</code>&nbsp;has the character code&nbsp;<code>66</code>&nbsp;while the letter&nbsp;<code>a</code>&nbsp;has the character code&nbsp;<code>97</code>.</p>\n\n\n\n<p>To fix this, you must first convert strings into a common format, either lowercase or uppercase and then perform comparison as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let result2 = f2.toLowerCase() &lt; f1.toLowerCase();\nconsole.log(result2); // false</code></pre>\n\n\n\n<p>Note that the&nbsp;<code>toLowerCase()</code>&nbsp;is a method of the String object that converts the string itself to lowercase.</p>\n\n\n\n<h3>Comparing a number with a value of another type</h3>\n\n\n\n<p>If an operand is a number while the other is not, JavaScript converts the non-numeric operand to a number and performs comparison numerically.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>console.log(10 &lt; '20'); // true\n</code></pre>\n\n\n\n<p>In this example, the string&nbsp;<code>'20'</code>is converted to&nbsp;<code>20</code>&nbsp;and compared with the number 10. Here is an example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>console.log(10 == '10'); // true</code></pre>\n\n\n\n<p>In this example, JavaScript converts the string&nbsp;<code>'10'</code>&nbsp;to the number&nbsp;<code>10</code>&nbsp;and compares&nbsp;the result with the number&nbsp;<code>10&nbsp;</code>that results in&nbsp;<code>true</code>.</p>\n\n\n\n<h3>Comparing an object with a non-object</h3>\n\n\n\n<p>If an operand is an object, JavaScript calls the&nbsp;<code>valueOf()</code>&nbsp;method of that object to get the value for comparison. If the object doesn’t have the&nbsp;<code>valueOf()</code>&nbsp;method, JavaScript then calls the&nbsp;<code>toString()</code>&nbsp;method and uses the returned value for comparison. See the following example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let apple = {\n  valueOf: function() {\n    return 10;\n  }\n};\n\nlet orange = {\n  toString: function() {\n    return '20';\n  }\n};\nconsole.log(apple > 10); // false\nconsole.log(orange == 20); // true</code></pre>\n\n\n\n<p>In this first comparison, the&nbsp;<code>apple</code>&nbsp;object has the&nbsp;<code>valueOf()</code>&nbsp;method that returns&nbsp;<code>10</code>, therefore, JavaScript uses 10 for comparison. In the second comparison, JavaScript first calls the&nbsp;<code>valueOf()</code>&nbsp;method. However, the&nbsp;<code>orange</code>&nbsp;object doesn’t have the&nbsp;<code>valueOf()</code>&nbsp;method so JavaScript calls the&nbsp;<code>toString()</code>&nbsp;method to get the returned value of&nbsp;<code>20</code>.</p>\n\n\n\n<h3>Comparing a Boolean with another value</h3>\n\n\n\n<p>If an operand is a Boolean, JavaScript converts it to a number and compares the converted value with the other operand;&nbsp;<code>true</code>&nbsp;will convert to&nbsp;<code>1</code>&nbsp;and&nbsp;<code>false</code>&nbsp;will convert to&nbsp;<code>0</code>.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>console.log(true > 0); // true\nconsole.log(false &lt; 1); // true\nconsole.log(true > false); // true\nconsole.log(false > true); // false\nconsole.log(true >= true); // true\nconsole.log(true &lt;= true); // true\nconsole.log(false &lt;= false); // true\nconsole.log(false >= false); // true</code></pre>\n\n\n\n<p>In addition to the above rules, the equal (<code>==</code>) and not-equal(<code>!=</code>) operators also have the following rules.</p>\n\n\n\n<h3>Comparing&nbsp;<code>null</code>&nbsp;and&nbsp;<code>undefined</code></h3>\n\n\n\n<p>In JavaScript,&nbsp;<code>null</code>&nbsp;equals&nbsp;<code>undefined</code>. It means that the following expression returns&nbsp;<code>true</code>.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>console.log(null == undefined); // true\n</code></pre>\n\n\n\n<h3>Comparing&nbsp;<code>NaN</code>&nbsp;with other values</h3>\n\n\n\n<p>If either operand is&nbsp;<code>NaN</code>, then the equal operator(<code>==</code>) returns&nbsp;<code>false</code>.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>console.log(NaN == 1); // false</code></pre>\n\n\n\n<p>Even</p>\n\n\n\n<pre class=\"wp-block-code\"><code>console.log(NaN == NaN); // false</code></pre>\n\n\n\n<p>The not-equal (<code>!=</code>) operator returns&nbsp;<code>true</code>&nbsp;when comparing the&nbsp;<code>NaN</code>&nbsp;with another value:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>console.log(NaN != 1); // true</code></pre>\n\n\n\n<p>And also</p>\n\n\n\n<pre class=\"wp-block-code\"><code>console.log(NaN != NaN); // true</code></pre>\n\n\n\n<h2>Strict equal (<code>===</code>) and not strict equal (<code>!==</code>)</h2>\n\n\n\n<p>Besides the comparison operators above, JavaScript provides the strict equal (&nbsp;<code>===</code>) and not strict equal&nbsp; (&nbsp;<code>!==</code>) operators.</p>\n\n\n\n<figure class=\"wp-block-table\"><table><thead><tr><th>Operator</th><th>Meaning</th></tr></thead><tbody><tr><td>===</td><td>strict equal</td></tr><tr><td>!==</td><td>not strict equal</td></tr></tbody></table></figure>\n\n\n\n<p>The strict equal and not strict equal operators behave like the equal and not equal operator except that they don’t convert the operand before comparison. See the following example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>console.log(\"10\" == 10); // true\nconsole.log(\"10\" === 10); // false</code></pre>\n\n\n\n<p>In the first comparison, since we use the equality operator, JavaScript converts the string into the number and performs the comparison.</p>\n\n\n\n<p>However, in the second comparison, we use the strict equal operator (&nbsp;<code>===</code>), JavaScript doesn’t convert the string before comparison, therefore the result is&nbsp;<code>false</code>.</p>\n\n\n\n<p>In this tutorial, you have learned how to use the JavaScript comparison operators to compare values.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Summary: in this tutorial, you will learn how to use JavaScript comparison operators to compare two values. Introduction to JavaScript comparison operators To compare two values, you use the comparison operators. The following table illustrates the JavaScript comparison operators: Operator Meaning &lt; less than &gt; greater than &lt;= less than or equal to &gt;= greater [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [34],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3066"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/comments?post=3066"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3066/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/media?parent=3066"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/categories?post=3066"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/tags?post=3066"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 3070,
+    "date": "2020-11-27T11:03:26",
+    "date_gmt": "2020-11-27T11:03:26",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3070"
+    },
+    "modified": "2020-11-27T11:03:26",
+    "modified_gmt": "2020-11-27T11:03:26",
+    "slug": "an-introduction-to-javascript-logical-operators",
+    "status": "publish",
+    "type": "post",
+    "link": "https://computerprogramming.foobrdigital.com/an-introduction-to-javascript-logical-operators/",
+    "title": {
+      "rendered": "An Introduction to JavaScript Logical Operators"
+    },
+    "content": {
+      "rendered": "\n<p><strong>Summary</strong>: in this tutorial, you will learn how to use the JavaScript logical operators including the logical NOT operator(&nbsp;<code>!</code>), the logical AND operator (&nbsp;<code>&amp;&amp;</code>) and the logical OR operator (&nbsp;<code>||</code>).</p>\n\n\n\n<p>The logical operators are important in JavaScript because they allow you to compare variables and do something based on the result of that comparison.</p>\n\n\n\n<p>For example, if the result of the comparison is&nbsp;<code>true</code>, you perform a block of code; if it’s&nbsp;<code>false</code>, you perform another block of code.</p>\n\n\n\n<p>JavaScript provides three logical operators:</p>\n\n\n\n<ul><li>! (Logical NOT)</li><li>|| (Logical OR)</li><li>&amp;&amp; (Logical AND)</li></ul>\n\n\n\n<h2>1) The Logical NOT operator (!)</h2>\n\n\n\n<p>JavaScript uses an exclamation point&nbsp;<code>!</code>&nbsp;to represent the logical NOT operator. The&nbsp;<code>!</code>&nbsp;operator can be applied to a single value of any type, not just a Boolean value.</p>\n\n\n\n<p>When you apply the&nbsp;<code>!</code>&nbsp;operator to a boolean value, the&nbsp;<code>!</code>&nbsp;returns&nbsp;<code>true</code>&nbsp;if the value is&nbsp;<code>false</code>&nbsp;and returns&nbsp;<code>false</code>&nbsp;if the value if&nbsp;<code>true</code>. For example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let eligible = false,\n    required = true;\n\nconsole.log(!eligible);\nconsole.log(!required);</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>true\nfalse</code></pre>\n\n\n\n<p>In this example, the&nbsp;<code>eligible</code>&nbsp;is&nbsp;<code>true</code>&nbsp;so&nbsp;<code>!eligible</code>&nbsp;returns&nbsp;<code>false</code>. And because the&nbsp;<code>required</code>&nbsp;is&nbsp;<code>false</code>, the&nbsp;<code>!required</code>&nbsp;returns&nbsp;<code>false</code>.</p>\n\n\n\n<p>When you apply the <code>!</code> operator to a non-Boolean value. The <code>!</code> operator first converts the value to a boolean value and then negates it. For example:</p>\n\n\n\n<p>The following example shows how to use the&nbsp;<code>!</code>&nbsp;operator:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>!a</code></pre>\n\n\n\n<p>The logical&nbsp;<code>!</code>&nbsp;operator works based on the following rules:</p>\n\n\n\n<ul><li>If&nbsp;<code>a</code>&nbsp;is&nbsp;<code>undefined</code>, the result is&nbsp;<code>true</code>.</li><li>If&nbsp;<code>a</code>&nbsp;is&nbsp;<code>null</code>, the result is&nbsp;<code>true</code>.</li><li>If&nbsp;<code>a</code>&nbsp;is a number other than&nbsp;<code>0</code>, the result is&nbsp;<code>false</code>.</li><li>If&nbsp;<code>a</code>&nbsp;is&nbsp;<code>NaN</code>, the result is&nbsp;<code>true</code>.</li><li>If&nbsp;<code>a</code>&nbsp;is&nbsp;<code>null</code>, the result is&nbsp;<code>true</code>.</li><li>If&nbsp;<code>a</code>&nbsp;is an object, the result is&nbsp;<code>false</code>.</li><li>If&nbsp;<code>a</code>&nbsp;is an empty string, the result is&nbsp;<code>true</code>. In case&nbsp;<code>a</code>&nbsp;is a non-empty string, the result is&nbsp;<code>false</code></li></ul>\n\n\n\n<p>The following demonstrates the results of the logical&nbsp;<code>!</code>&nbsp;operator when we apply it to a non-boolean value:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>console.log(!undefined); // true\nconsole.log(!null); // true\nconsole.log(!20); //false\nconsole.log(!0); //true\nconsole.log(!NaN); //true\nconsole.log(!{}); // false\nconsole.log(!''); //true\nconsole.log(!'OK'); //false\nconsole.log(!false); //true\nconsole.log(!true); //false</code></pre>\n\n\n\n<h3>Double-negation (<code>!!</code>)</h3>\n\n\n\n<p>Sometimes, you may see the double negation (<code>!!</code>) in the code. The <code>!!</code> uses the logical NOT operator (<code>!</code>) twice to convert a value to its real boolean value. The result is the same as using the Boolean() function. For example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let counter = 10;\nconsole.log(!!counter); // true</code></pre>\n\n\n\n<p>The first&nbsp;<code>!</code>&nbsp;operator returns a Boolean value of the&nbsp;<code>counter</code>&nbsp;variable. And the second one&nbsp;<code>!</code>&nbsp;negates that result and returns the real boolean value of the&nbsp;<code>counter</code>&nbsp;variable.</p>\n\n\n\n<h2>2) The Logical AND operator (<code>&amp;&amp;</code>)</h2>\n\n\n\n<p>JavaScript uses the&nbsp;double ampersand (<code>&amp;&amp;</code>) to represent the logical AND operator.</p>\n\n\n\n<p>The following expression uses the&nbsp;<code>&amp;&amp;</code>&nbsp;operator:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let result = a &amp;&amp; b;</code></pre>\n\n\n\n<p>If&nbsp;<code>a</code>&nbsp;can be converted to&nbsp;<code>true</code>, the&nbsp;<code>&amp;&amp;</code>&nbsp;operator returns the&nbsp;<code>b</code>; otherwise, it returns the&nbsp;<code>a</code>. In fact, this rule is applied to boolean values.</p>\n\n\n\n<p>The following truth table illustrates the result of the&nbsp;<code>&amp;&amp;</code>&nbsp;operator when it is applied to two Boolean values:</p>\n\n\n\n<figure class=\"wp-block-table\"><table><thead><tr><th>a</th><th>b</th><th>a &amp; b</th></tr><tr><td>true</td><td>true</td><td>true</td></tr></thead><tbody><tr><td>true</td><td>false</td><td>false</td></tr><tr><td>false</td><td>true</td><td>false</td></tr><tr><td>false</td><td>false</td><td>false</td></tr></tbody></table></figure>\n\n\n\n<p>The result of the&nbsp;<code>&amp;&amp;</code>&nbsp;operator is true only if both values are&nbsp;<code>true</code>, otherwise, it is&nbsp;<code>false</code>. For example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let eligible = false,\n    required = true;\n\nconsole.log(eligible &amp;&amp; required); // false</code></pre>\n\n\n\n<p>In this example, the&nbsp;<code>eligible</code>&nbsp;is&nbsp;<code>false</code>, therefore, the value of the expression&nbsp;<code>eligible &amp;&amp; required</code>&nbsp;is&nbsp;<code>false</code>.</p>\n\n\n\n<p>See the following example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let eligible = true,\n    required = true;\n\nconsole.log(eligible &amp;&amp; required); // true</code></pre>\n\n\n\n<p>In this example, both&nbsp;<code>eligible</code>&nbsp;and&nbsp;<code>required</code>&nbsp;are&nbsp;<code>true</code>, therefore, the value of the expression&nbsp;<code>eligible &amp;&amp; required</code>&nbsp;is&nbsp;<code>false</code>.</p>\n\n\n\n<h3>Short-circuit evaluation</h3>\n\n\n\n<p>The&nbsp;<code>&amp;&amp;</code>&nbsp;operator is short-circuited. It means that the&nbsp;<code>&amp;&amp;</code>&nbsp;operator evaluates the second value only if the first one doesn’t suffice to determine the value of an expression. For example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let b = true;\nlet result = b &amp;&amp; (1 / 0);\nconsole.log(result);</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Infinity</code></pre>\n\n\n\n<p>In this example,&nbsp;<code>b</code>&nbsp;is&nbsp;<code>true</code>&nbsp;therefore the&nbsp;<code>&amp;&amp;</code>&nbsp;operator could not determine the result without further evaluating the second expression (<code>1/0</code>).</p>\n\n\n\n<p>The result is&nbsp;<code>Infinity</code>&nbsp;which is the result of the expression (<code>1/0</code>). However:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let b = false;\nlet result = b &amp;&amp; (1 / 0);\nconsole.log(result);</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>false</code></pre>\n\n\n\n<p>In this case,&nbsp;<code>b</code>&nbsp;is&nbsp;<code>false</code>, the&nbsp;<code>&amp;&amp;</code>&nbsp;operator doesn’t need to evaluate the second expression because it can determine the final result as&nbsp;<code>false</code>&nbsp;based value of the first value.</p>\n\n\n\n<h3>A Chain of&nbsp;<code>&amp;&amp;</code>&nbsp;operators</h3>\n\n\n\n<p>The following expression uses multiple&nbsp;<code>&amp;&amp;</code>&nbsp;operators:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let result = value1 &amp;&amp; value2 &amp;&amp; value3;</code></pre>\n\n\n\n<p>The&nbsp;<code>&amp;&amp;</code>&nbsp;operator carry the following:</p>\n\n\n\n<ul><li>Evaluates values from left to right.</li><li>For each value, converts it to a boolean. If the result is&nbsp;<code>false</code>, stops and returns the original value.</li><li>If all values are truthy values, returns the last value.</li></ul>\n\n\n\n<p>In other words, The&nbsp;<code>&amp;&amp;</code>&nbsp;operator returns the first falsy value or the last value if none were found.</p>\n\n\n\n<p>If a value can be converted to&nbsp;<code>true</code>, it is so-called a&nbsp;truthy value. If a value can be converted to&nbsp;<code>false</code>, it is so-called&nbsp;falsy value.</p>\n\n\n\n<h2>3) The Logical OR operator (<code>||</code>)</h2>\n\n\n\n<p>JavaScript uses the&nbsp;double pipe&nbsp;<code>||</code>&nbsp;to represent the logical OR operator. You can apply the&nbsp;<code>||</code>&nbsp;operator to two values of any types:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let result = a || b;</code></pre>\n\n\n\n<p>If&nbsp;<code>a</code>&nbsp;can be converted to&nbsp;<code>true</code>, returns&nbsp;<code>a</code>; else, returns&nbsp;<code>b</code>. This rule is also applied to boolean values.</p>\n\n\n\n<p>The following truth table illustrates the result of the&nbsp;<code>||</code>&nbsp;operator based on the value of the operands:</p>\n\n\n\n<figure class=\"wp-block-table\"><table><thead><tr><th>a</th><th>b</th><th>a || b</th></tr></thead><tbody><tr><td>true</td><td>true</td><td>true</td></tr><tr><td>true</td><td>false</td><td>true</td></tr><tr><td>false</td><td>true</td><td>true</td></tr><tr><td>false</td><td>false</td><td>false</td></tr></tbody></table></figure>\n\n\n\n<p>The&nbsp;<code>||</code>&nbsp;operator returns&nbsp;<code>false</code>&nbsp;if both values evaluate to&nbsp;<code>false</code>. In case either value is , the&nbsp;<code>||</code>&nbsp;operator returns&nbsp;<code>true</code>. For example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let eligible = true,\n    required = false;\n\nconsole.log(eligible || required); // true</code></pre>\n\n\n\n<p>The following expression applies the&nbsp;<code>||</code>&nbsp;operator to the two non-boolean values:</p>\n\n\n\n<p>In this example, the eligible || required returns true because one of the value (<code>required</code>) is true. See another example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let eligible = false,\n    required = false;\n\nconsole.log(eligible || required); // false</code></pre>\n\n\n\n<p>In this example, the expression&nbsp;<code>eligible || required</code>&nbsp;returns&nbsp;<code>false</code>&nbsp;because both values are&nbsp;<code>false</code>.</p>\n\n\n\n<h3>The&nbsp;<code>||</code>&nbsp;operator is also short-circuited</h3>\n\n\n\n<p>Similar to the&nbsp;<code>&amp;&amp;</code>&nbsp;operator, the&nbsp;<code>||</code>&nbsp;operator is short-circuited. It means that if the first value evaluates to&nbsp;<code>true</code>, the&nbsp;<code>&amp;&amp;</code>&nbsp;operator doesn’t evaluate the second one.</p>\n\n\n\n<h3>A chain of&nbsp;<code>||</code>&nbsp;operators</h3>\n\n\n\n<p>The following example shows how to use multiple || operators in an expression:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let result = value1 || value2 || value3;</code></pre>\n\n\n\n<p>The&nbsp;<code>||</code>&nbsp;operator does the following:</p>\n\n\n\n<ul><li>Evaluates values from left to right.</li><li>For each value, converts it to a boolean value. If the result of the conversion is&nbsp;<code>true</code>, stops and returns the value.</li><li>If all values have been evaluated to&nbsp;<code>false</code>, returns the last value.</li></ul>\n\n\n\n<p>In other words, the chain of the&nbsp;<code>||</code>&nbsp;operators return the first truthy value or the last one if no truthy value was found.</p>\n\n\n\n<h2>Logical operator precedence</h2>\n\n\n\n<p>When you use the mixed logical operators in an expression, the JavaScript engine evaluates the operators based on a specified order, and this order is called the operator precedence. In other words, the operator precedence is the order that an operator is executed.</p>\n\n\n\n<p>The precedence of the logical operator is in the following order from the highest to lowest:</p>\n\n\n\n<ol><li>Logical NOT (!)</li><li>Logical AND (&amp;&amp;)</li><li>Logical OR (||)</li></ol>\n\n\n\n<h2>Summary</h2>\n\n\n\n<ul><li>The NOT operator (<code>!</code>) negates a boolean value. The (<code>!!</code>) converts a value into its real boolean value.</li><li>The AND operator (<code>&amp;&amp;</code>) is applied to two Boolean values and returns true if both values are true.</li><li>The OR operator (<code>||</code>) is applied to two Boolean values and returns&nbsp;<code>true</code>&nbsp;if one of the operands is&nbsp;<code>true</code>.</li><li>Both&nbsp;<code>&amp;&amp;</code>&nbsp;and&nbsp;<code>||</code>&nbsp;operator are short-circuited. They cab be also applied to non-Boolean values.</li><li>The logical operator precedence from the highest to the lowest is&nbsp;<code>!</code>,&nbsp;<code>&amp;&amp;</code>&nbsp;and&nbsp;<code>||</code>.</li></ul>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Summary: in this tutorial, you will learn how to use the JavaScript logical operators including the logical NOT operator(&nbsp;!), the logical AND operator (&nbsp;&amp;&amp;) and the logical OR operator (&nbsp;||). The logical operators are important in JavaScript because they allow you to compare variables and do something based on the result of that comparison. For [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [34],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3070"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/comments?post=3070"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3070/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/media?parent=3070"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/categories?post=3070"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/tags?post=3070"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  }
+]

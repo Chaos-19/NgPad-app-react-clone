@@ -1,0 +1,302 @@
+[
+  {
+    "id": 4667,
+    "date": "2021-02-27T08:42:57",
+    "date_gmt": "2021-02-27T08:42:57",
+    "guid": {
+      "rendered": "http://angular.foobrdigital.com/?p=4667"
+    },
+    "modified": "2021-02-27T08:42:57",
+    "modified_gmt": "2021-02-27T08:42:57",
+    "slug": "intro-6",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/intro-6/",
+    "title": {
+      "rendered": "Intro"
+    },
+    "content": {
+      "rendered": "\n<p>You can invoke a builder indirectly through a CLI command, or directly with the Angular CLI\u00a0<code>ng run</code>\u00a0command. In either case, you must provide required inputs, but can allow other inputs to default to values that are pre-configured for a specific\u00a0<a href=\"https://angular.io/guide/glossary#target\"><em>target</em></a>, provide a pre-defined, named override configuration, and provide further override option values on the command line.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>You can invoke a builder indirectly through a CLI command, or directly with the Angular CLI\u00a0ng run\u00a0command. In either case, you must provide required inputs, but can allow other inputs to default to values that are pre-configured for a specific\u00a0target, provide a pre-defined, named override configuration, and provide further override option values on the command [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [250],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4667"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=4667"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4667/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4668,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4667/revisions/4668"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=4667"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=4667"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=4667"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 4666,
+    "date": "2021-02-27T08:43:24",
+    "date_gmt": "2021-02-27T08:43:24",
+    "guid": {
+      "rendered": "http://angular.foobrdigital.com/?p=4666"
+    },
+    "modified": "2021-02-27T08:43:24",
+    "modified_gmt": "2021-02-27T08:43:24",
+    "slug": "input-validation",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/input-validation/",
+    "title": {
+      "rendered": "Input validation"
+    },
+    "content": {
+      "rendered": "\n<p>You define builder inputs in a JSON schema associated with that builder. The Architect tool collects the resolved input values into an&nbsp;<code>options</code>&nbsp;object, and validates their types against the schema before passing them to the builder function. (The Schematics library does the same kind of validation of user input).</p>\n\n\n\n<p>For our example builder, we expect the&nbsp;<code>options</code>&nbsp;value to be a&nbsp;<code>JsonObject</code>&nbsp;with two keys: a&nbsp;<code>command</code>&nbsp;that is a string, and an&nbsp;<code>args</code>&nbsp;array of string values.</p>\n\n\n\n<p>We can provide the following schema for type validation of these values.command/schema.json</p>\n\n\n\n<pre class=\"wp-block-code\"><code>content_copy<code>{\n  \"$schema\": \"http://json-schema.org/schema\",\n  \"type\": \"object\",\n  \"properties\": {\n    \"command\": {\n      \"type\": \"string\"\n    },\n    \"args\": {\n      \"type\": \"array\",\n      \"items\": {\n        \"type\": \"string\"\n      }\n    }\n  }\n}</code></code></pre>\n\n\n\n<p>This is a very simple example, but the use of a schema for validation can be very powerful. For more information, see the&nbsp;<a href=\"http://json-schema.org/\">JSON schemas website</a>.</p>\n\n\n\n<p>To link our builder implementation with its schema and name, we need to create a&nbsp;<em>builder definition</em>&nbsp;file, which we can point to in&nbsp;<code>package.json</code>.</p>\n\n\n\n<p>Create a file named&nbsp;<code>builders.json</code>&nbsp;file that looks like this.builders.json</p>\n\n\n\n<pre class=\"wp-block-code\"><code>content_copy<code>{\n  \"builders\": {\n    \"command\": {\n      \"implementation\": \"./command\",\n      \"schema\": \"./command/schema.json\",\n      \"description\": \"Runs any command line in the operating system.\"\n    }\n  }\n}</code></code></pre>\n\n\n\n<p>In the&nbsp;<code>package.json</code>&nbsp;file, add a&nbsp;<code>builders</code>&nbsp;key that tells the Architect tool where to find our builder definition file.package.json</p>\n\n\n\n<pre class=\"wp-block-code\"><code>content_copy<code>{\n  \"name\": \"@example/command-runner\",\n  \"version\": \"1.0.0\",\n  \"description\": \"Builder for Command Runner\",\n  \"builders\": \"builders.json\",\n  \"devDependencies\": {\n    \"@angular-devkit/architect\": \"^1.0.0\"\n  }\n}</code></code></pre>\n\n\n\n<p>The official name of our builder is now&nbsp;<code>@example/command-runner:command</code>. The first part of this is the package name (resolved using node resolution), and the second part is the builder name (resolved using the&nbsp;<code>builders.json</code>&nbsp;file).</p>\n\n\n\n<p>Using one of our&nbsp;<code>options</code>&nbsp;is very straightforward, we did this in the previous section when we accessed&nbsp;<code>options.command</code>.src/my-builder.ts (report status)</p>\n\n\n\n<pre class=\"wp-block-code\"><code>content_copy<code>context.reportStatus(`Executing \"${options.command}\"...`);\nconst child = childProcess.spawn(options.command, options.args);</code></code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>You define builder inputs in a JSON schema associated with that builder. The Architect tool collects the resolved input values into an&nbsp;options&nbsp;object, and validates their types against the schema before passing them to the builder function. (The Schematics library does the same kind of validation of user input). For our example builder, we expect the&nbsp;options&nbsp;value [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [250],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4666"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=4666"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4666/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4669,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4666/revisions/4669"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=4666"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=4666"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=4666"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 4665,
+    "date": "2021-02-27T08:43:59",
+    "date_gmt": "2021-02-27T08:43:59",
+    "guid": {
+      "rendered": "http://angular.foobrdigital.com/?p=4665"
+    },
+    "modified": "2021-02-27T08:43:59",
+    "modified_gmt": "2021-02-27T08:43:59",
+    "slug": "target-configuration",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/target-configuration/",
+    "title": {
+      "rendered": "Target configuration"
+    },
+    "content": {
+      "rendered": "\n<p>A builder must have a defined target that associates it with a specific input configuration and&nbsp;<a href=\"https://angular.io/guide/glossary#project\">project</a>.</p>\n\n\n\n<p>Targets are defined in the&nbsp;<code>angular.json</code>&nbsp;<a href=\"https://angular.io/guide/workspace-config\">CLI configuration file</a>. A target specifies the builder to use, its default options configuration, and named alternative configurations. The Architect tool uses the target definition to resolve input options for a given run.</p>\n\n\n\n<p>The&nbsp;<code>angular.json</code>&nbsp;file has a section for each project, and the &#8220;architect&#8221; section of each project configures targets for builders used by CLI commands such as &#8216;build&#8217;, &#8216;test&#8217;, and &#8216;lint&#8217;. By default, for example, the&nbsp;<code>build</code>&nbsp;command runs the builder&nbsp;<code>@angular-devkit/build-angular:<a href=\"https://angular.io/api/animations/browser\">browser</a></code>&nbsp;to perform the build task, and passes in default option values as specified for the&nbsp;<code>build</code>&nbsp;target in&nbsp;<code>angular.json</code>.angular.json</p>\n\n\n\n<pre class=\"wp-block-code\"><code>content_copy<code>{\n  \"myApp\": {\n    ...\n    \"architect\": {\n      \"build\": {\n        \"builder\": \"@angular-devkit/build-angular:browser\",\n        \"options\": {\n          \"outputPath\": \"dist/myApp\",\n          \"index\": \"src/index.html\",\n          ...\n        },\n        \"configurations\": {\n          \"production\": {\n            \"fileReplacements\": &#91;\n              {\n                \"replace\": \"src/environments/environment.ts\",\n                \"with\": \"src/environments/environment.prod.ts\"\n              }\n            ],\n            \"optimization\": true,\n            \"outputHashing\": \"all\",\n            ...\n          }\n        }\n      },\n      ...</code></code></pre>\n\n\n\n<p>The command passes the builder the set of default options specified in the &#8220;options&#8221; section. If you pass the&nbsp;<code>--configuration=production</code>&nbsp;flag, it uses the override values specified in the&nbsp;<code>production</code>&nbsp;alternative configuration. You can specify further option overrides individually on the command line. You might also add more alternative configurations to the&nbsp;<code>build</code>&nbsp;target, to define other environments such as&nbsp;<code>stage</code>&nbsp;or&nbsp;<code>qa</code>.</p>\n\n\n\n<h4 id=\"target-strings\">Target strings</h4>\n\n\n\n<p>The generic&nbsp;<code>ng run</code>&nbsp;CLI command takes as its first argument a target string of the form&nbsp;<em>project:target[:configuration]</em>.</p>\n\n\n\n<ul><li><em>project</em>: The name of the Angular CLI project that the target is associated with.</li><li><em>target</em>: A named builder configuration from the&nbsp;<code>architect</code>&nbsp;section of the&nbsp;<code>angular.json</code>&nbsp;file.</li><li><em>configuration</em>: (optional) The name of a specific configuration override for the given target, as defined in the&nbsp;<code>angular.json</code>&nbsp;file.</li></ul>\n\n\n\n<p>If your builder calls another builder, it may need to read a passed target string. You can parse this string into an object by using the&nbsp;<code>targetFromTargetString()</code>&nbsp;utility function from&nbsp;<code>@angular-devkit/architect</code>.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>A builder must have a defined target that associates it with a specific input configuration and&nbsp;project. Targets are defined in the&nbsp;angular.json&nbsp;CLI configuration file. A target specifies the builder to use, its default options configuration, and named alternative configurations. The Architect tool uses the target definition to resolve input options for a given run. The&nbsp;angular.json&nbsp;file has [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [250],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4665"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=4665"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4665/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4670,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4665/revisions/4670"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=4665"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=4665"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=4665"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  }
+]

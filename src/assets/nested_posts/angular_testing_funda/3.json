@@ -1,0 +1,702 @@
+[
+  {
+    "id": 4554,
+    "date": "2021-02-25T10:58:48",
+    "date_gmt": "2021-02-25T10:58:48",
+    "guid": {
+      "rendered": "http://angular.foobrdigital.com/?p=4554"
+    },
+    "modified": "2021-02-25T10:58:48",
+    "modified_gmt": "2021-02-25T10:58:48",
+    "slug": "intro-2",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/intro-2/",
+    "title": {
+      "rendered": "Intro"
+    },
+    "content": {
+      "rendered": "\n<p>To check that your services are working as you intend, you can write tests specifically for them.</p>\n\n\n\n<p>For the sample app that the testing guides describe, see the&nbsp;<a target=\"_blank\" href=\"https://angular.io/generated/live-examples/testing/stackblitz.html\" rel=\"noreferrer noopener\">sample app</a>.</p>\n\n\n\n<p>For the tests features in the testing guides, see&nbsp;<a target=\"_blank\" href=\"https://angular.io/generated/live-examples/testing/specs.stackblitz.html\" rel=\"noreferrer noopener\">tests</a>.</p>\n\n\n\n<p>Services are often the easiest files to unit test. Here are some synchronous and asynchronous unit tests of the&nbsp;<code>ValueService</code>&nbsp;written without assistance from Angular testing utilities.app/demo/demo.spec.ts</p>\n\n\n\n<pre class=\"wp-block-code\"><code>content_copy<code>// Straight Jasmine testing without Angular's testing support\ndescribe('ValueService', () =&gt; {\n  let service: ValueService;\n  beforeEach(() =&gt; { service = new ValueService(); });\n\n  it('#getValue should return real value', () =&gt; {\n    expect(service.getValue()).toBe('real value');\n  });\n\n  it('#getObservableValue should return value from observable',\n    (done: DoneFn) =&gt; {\n    service.getObservableValue().subscribe(value =&gt; {\n      expect(value).toBe('observable value');\n      done();\n    });\n  });\n\n  it('#getPromiseValue should return value from a promise',\n    (done: DoneFn) =&gt; {\n    service.getPromiseValue().then(value =&gt; {\n      expect(value).toBe('promise value');\n      done();\n    });\n  });\n});</code></code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>To check that your services are working as you intend, you can write tests specifically for them. For the sample app that the testing guides describe, see the&nbsp;sample app. For the tests features in the testing guides, see&nbsp;tests. Services are often the easiest files to unit test. Here are some synchronous and asynchronous unit tests [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [242],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4554"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=4554"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4554/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4557,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4554/revisions/4557"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=4554"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=4554"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=4554"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 4556,
+    "date": "2021-02-25T10:59:03",
+    "date_gmt": "2021-02-25T10:59:03",
+    "guid": {
+      "rendered": "http://angular.foobrdigital.com/?p=4556"
+    },
+    "modified": "2021-02-25T10:59:03",
+    "modified_gmt": "2021-02-25T10:59:03",
+    "slug": "services-with-dependencies",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/services-with-dependencies/",
+    "title": {
+      "rendered": "Services with dependencies"
+    },
+    "content": {
+      "rendered": "\n<p>Services often depend on other services that Angular injects into the constructor. In many cases, it&#8217;s easy to create and&nbsp;<em>inject</em>&nbsp;these dependencies by hand while calling the service&#8217;s constructor.</p>\n\n\n\n<p>The&nbsp;<code>MasterService</code>&nbsp;is a simple example:app/demo/demo.ts</p>\n\n\n\n<pre class=\"wp-block-preformatted\">content_copy<code>@<a href=\"https://angular.io/api/core/Injectable\">Injectable</a>()\nexport class MasterService {\n  constructor(private valueService: ValueService) { }\n  getValue() { return this.valueService.getValue(); }\n}</code></pre>\n\n\n\n<p><code>MasterService</code>&nbsp;delegates its only method,&nbsp;<code>getValue</code>, to the injected&nbsp;<code>ValueService</code>.</p>\n\n\n\n<p>Here are several ways to test it.app/demo/demo.spec.ts</p>\n\n\n\n<pre class=\"wp-block-preformatted\">content_copy<code>describe('MasterService without Angular testing support', () =&gt; {\n  let masterService: MasterService;\n\n  it('#getValue should return real value from the real service', () =&gt; {\n    masterService = new MasterService(new ValueService());\n    expect(masterService.getValue()).toBe('real value');\n  });\n\n  it('#getValue should return faked value from a fakeService', () =&gt; {\n    masterService = new MasterService(new FakeValueService());\n    expect(masterService.getValue()).toBe('faked service value');\n  });\n\n  it('#getValue should return faked value from a fake object', () =&gt; {\n    const fake =  { getValue: () =&gt; 'fake value' };\n    masterService = new MasterService(fake as ValueService);\n    expect(masterService.getValue()).toBe('fake value');\n  });\n\n  it('#getValue should return stubbed value from a spy', () =&gt; {\n    // create `getValue` spy on an object representing the ValueService\n    const valueServiceSpy =\n      jasmine.createSpyObj('ValueService', ['getValue']);\n\n    // set the value to return when the `getValue` spy is called.\n    const stubValue = 'stub value';\n    valueServiceSpy.getValue.and.returnValue(stubValue);\n\n    masterService = new MasterService(valueServiceSpy);\n\n    expect(masterService.getValue())\n      .toBe(stubValue, 'service returned stub value');\n    expect(valueServiceSpy.getValue.calls.count())\n      .toBe(1, 'spy method was called once');\n    expect(valueServiceSpy.getValue.calls.mostRecent().returnValue)\n      .toBe(stubValue);\n  });\n});</code></pre>\n\n\n\n<p>The first test creates a&nbsp;<code>ValueService</code>&nbsp;with&nbsp;<code>new</code>&nbsp;and passes it to the&nbsp;<code>MasterService</code>&nbsp;constructor.</p>\n\n\n\n<p>However, injecting the real service rarely works well as most dependent services are difficult to create and control.</p>\n\n\n\n<p>Instead you can mock the dependency, use a dummy value, or create a&nbsp;<a href=\"https://jasmine.github.io/2.0/introduction.html#section-Spies\">spy</a>&nbsp;on the pertinent service method.</p>\n\n\n\n<p>Prefer spies as they are usually the easiest way to mock services.</p>\n\n\n\n<p>These standard testing techniques are great for unit testing services in isolation.</p>\n\n\n\n<p>However, you almost always inject services into application classes using Angular dependency injection and you should have tests that reflect that usage pattern. Angular testing utilities make it easy to investigate how injected services behave.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Services often depend on other services that Angular injects into the constructor. In many cases, it&#8217;s easy to create and&nbsp;inject&nbsp;these dependencies by hand while calling the service&#8217;s constructor. The&nbsp;MasterService&nbsp;is a simple example:app/demo/demo.ts content_copy@Injectable() export class MasterService { constructor(private valueService: ValueService) { } getValue() { return this.valueService.getValue(); } } MasterService&nbsp;delegates its only method,&nbsp;getValue, to the injected&nbsp;ValueService. [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [242],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4556"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=4556"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4556/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4558,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4556/revisions/4558"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=4556"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=4556"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=4556"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 4555,
+    "date": "2021-02-25T10:59:22",
+    "date_gmt": "2021-02-25T10:59:22",
+    "guid": {
+      "rendered": "http://angular.foobrdigital.com/?p=4555"
+    },
+    "modified": "2021-02-25T10:59:22",
+    "modified_gmt": "2021-02-25T10:59:22",
+    "slug": "testing-services-with-the-testbed",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/testing-services-with-the-testbed/",
+    "title": {
+      "rendered": "Testing services with the TestBed"
+    },
+    "content": {
+      "rendered": "\n<p>Your app relies on Angular\u00a0dependency injection (DI)\u00a0to create services. When a service has a dependent service, DI finds or creates that dependent service. And if that dependent service has its own dependencies, DI finds-or-creates them as well.</p>\n\n\n\n<p>As service&nbsp;<em>consumer</em>, you don&#8217;t worry about any of this. You don&#8217;t worry about the order of constructor arguments or how they&#8217;re created.</p>\n\n\n\n<p>As a service&nbsp;<em>tester</em>, you must at least think about the first level of service dependencies but you&nbsp;<em>can</em>&nbsp;let Angular DI do the service creation and deal with constructor argument order when you use the&nbsp;<code><a href=\"https://angular.io/api/core/testing/TestBed\">TestBed</a></code>&nbsp;testing utility to provide and create services.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Your app relies on Angular\u00a0dependency injection (DI)\u00a0to create services. When a service has a dependent service, DI finds or creates that dependent service. And if that dependent service has its own dependencies, DI finds-or-creates them as well. As service&nbsp;consumer, you don&#8217;t worry about any of this. You don&#8217;t worry about the order of constructor arguments [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [242],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4555"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=4555"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4555/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4559,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4555/revisions/4559"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=4555"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=4555"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=4555"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 4553,
+    "date": "2021-02-25T11:00:04",
+    "date_gmt": "2021-02-25T11:00:04",
+    "guid": {
+      "rendered": "http://angular.foobrdigital.com/?p=4553"
+    },
+    "modified": "2021-02-25T11:00:04",
+    "modified_gmt": "2021-02-25T11:00:04",
+    "slug": "angular-testbed",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/angular-testbed/",
+    "title": {
+      "rendered": "Angular TestBed"
+    },
+    "content": {
+      "rendered": "\n<p>The\u00a0<code>TestBed</code>\u00a0is the most important of the Angular testing utilities. The\u00a0<code>TestBed</code>\u00a0creates a dynamically-constructed Angular\u00a0<em>test</em>\u00a0module that emulates an Angular\u00a0@NgModule.</p>\n\n\n\n<p>The\u00a0<code>TestBed.configureTestingModule()</code>\u00a0method takes a metadata object that can have most of the properties of an\u00a0@NgModule.</p>\n\n\n\n<p>To test a service, you set the&nbsp;<code>providers</code>&nbsp;metadata property with an array of the services that you&#8217;ll test or mock.app/demo/demo.testbed.spec.ts (provide ValueService in beforeEach)</p>\n\n\n\n<pre class=\"wp-block-code\"><code>content_copy<code>let service: ValueService;\n\nbeforeEach(() =&gt; {\n  TestBed.configureTestingModule({ providers: &#91;ValueService] });\n});</code></code></pre>\n\n\n\n<p>Then inject it inside a test by calling&nbsp;<code>TestBed.inject()</code>&nbsp;with the service class as the argument.</p>\n\n\n\n<p><strong>Note:</strong>&nbsp;<code>TestBed.get()</code>&nbsp;was deprecated as of Angular version 9. To help minimize breaking changes, Angular introduces a new function called&nbsp;<code>TestBed.inject()</code>, which you should use instead. For information on the removal of&nbsp;<code>TestBed.get()</code>, see its entry in the&nbsp;<a href=\"https://angular.io/guide/deprecations#index\">Deprecations index</a>.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>content_copy<code>it('should use ValueService', () =&gt; {\n  service = TestBed.inject(ValueService);\n  expect(service.getValue()).toBe('real value');\n});</code></code></pre>\n\n\n\n<p>Or inside the&nbsp;<code>beforeEach()</code>&nbsp;if you prefer to inject the service as part of your setup.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>content_copy<code>beforeEach(() =&gt; {\n  TestBed.configureTestingModule({ providers: &#91;ValueService] });\n  service = TestBed.inject(ValueService);\n});</code></code></pre>\n\n\n\n<p>When testing a service with a dependency, provide the mock in the&nbsp;<code>providers</code>&nbsp;array.</p>\n\n\n\n<p>In the following example, the mock is a spy object.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>content_copy<code>let masterService: MasterService;\nlet valueServiceSpy: jasmine.SpyObj&lt;ValueService&gt;;\n\nbeforeEach(() =&gt; {\n  const spy = jasmine.createSpyObj('ValueService', &#91;'getValue']);\n\n  TestBed.configureTestingModule({\n    // Provide both the service-to-test and its (spy) dependency\n    providers: &#91;\n      MasterService,\n      { provide: ValueService, useValue: spy }\n    ]\n  });\n  // <a href=\"https://angular.io/api/core/Inject\">Inject</a> both the service-to-test and its (spy) dependency\n  masterService = TestBed.inject(MasterService);\n  valueServiceSpy = TestBed.inject(ValueService) as jasmine.SpyObj&lt;ValueService&gt;;\n});</code></code></pre>\n\n\n\n<p>The test consumes that spy in the same way it did earlier.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>content_copy<code>it('#getValue should return stubbed value from a spy', () =&gt; {\n  const stubValue = 'stub value';\n  valueServiceSpy.getValue.and.returnValue(stubValue);\n\n  expect(masterService.getValue())\n    .toBe(stubValue, 'service returned stub value');\n  expect(valueServiceSpy.getValue.calls.count())\n    .toBe(1, 'spy method was called once');\n  expect(valueServiceSpy.getValue.calls.mostRecent().returnValue)\n    .toBe(stubValue);\n});</code></code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>The\u00a0TestBed\u00a0is the most important of the Angular testing utilities. The\u00a0TestBed\u00a0creates a dynamically-constructed Angular\u00a0test\u00a0module that emulates an Angular\u00a0@NgModule. The\u00a0TestBed.configureTestingModule()\u00a0method takes a metadata object that can have most of the properties of an\u00a0@NgModule. To test a service, you set the&nbsp;providers&nbsp;metadata property with an array of the services that you&#8217;ll test or mock.app/demo/demo.testbed.spec.ts (provide ValueService in beforeEach) Then [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [242],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4553"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=4553"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4553/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4560,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4553/revisions/4560"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=4553"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=4553"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=4553"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 4552,
+    "date": "2021-02-25T11:00:36",
+    "date_gmt": "2021-02-25T11:00:36",
+    "guid": {
+      "rendered": "http://angular.foobrdigital.com/?p=4552"
+    },
+    "modified": "2021-02-25T11:00:36",
+    "modified_gmt": "2021-02-25T11:00:36",
+    "slug": "testing-without-beforeeach",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/testing-without-beforeeach/",
+    "title": {
+      "rendered": "Testing without beforeEach()"
+    },
+    "content": {
+      "rendered": "\n<p>Most test suites in this guide call&nbsp;<code>beforeEach()</code>&nbsp;to set the preconditions for each&nbsp;<code>it()</code>&nbsp;test and rely on the&nbsp;<code><a href=\"https://angular.io/api/core/testing/TestBed\">TestBed</a></code>&nbsp;to create classes and inject services.</p>\n\n\n\n<p>There&#8217;s another school of testing that never calls&nbsp;<code>beforeEach()</code>&nbsp;and prefers to create classes explicitly rather than use the&nbsp;<code><a href=\"https://angular.io/api/core/testing/TestBed\">TestBed</a></code>.</p>\n\n\n\n<p>Here&#8217;s how you might rewrite one of the&nbsp;<code>MasterService</code>&nbsp;tests in that style.</p>\n\n\n\n<p>Begin by putting re-usable, preparatory code in a&nbsp;<em>setup</em>&nbsp;function instead of&nbsp;<code>beforeEach()</code>.app/demo/demo.spec.ts (setup)</p>\n\n\n\n<pre class=\"wp-block-code\"><code>content_copy<code>function setup() {\n  const valueServiceSpy =\n    jasmine.createSpyObj('ValueService', &#91;'getValue']);\n  const stubValue = 'stub value';\n  const masterService = new MasterService(valueServiceSpy);\n\n  valueServiceSpy.getValue.and.returnValue(stubValue);\n  return { masterService, stubValue, valueServiceSpy };\n}</code></code></pre>\n\n\n\n<p>The&nbsp;<code>setup()</code>&nbsp;function returns an object literal with the variables, such as&nbsp;<code>masterService</code>, that a test might reference. You don&#8217;t define&nbsp;<em>semi-global</em>&nbsp;variables (e.g.,&nbsp;<code>let masterService: MasterService</code>) in the body of the&nbsp;<code>describe()</code>.</p>\n\n\n\n<p>Then each test invokes&nbsp;<code>setup()</code>&nbsp;in its first line, before continuing with steps that manipulate the test subject and assert expectations.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>content_copy<code>it('#getValue should return stubbed value from a spy', () =&gt; {\n  const { masterService, stubValue, valueServiceSpy } = setup();\n  expect(masterService.getValue())\n    .toBe(stubValue, 'service returned stub value');\n  expect(valueServiceSpy.getValue.calls.count())\n    .toBe(1, 'spy method was called once');\n  expect(valueServiceSpy.getValue.calls.mostRecent().returnValue)\n    .toBe(stubValue);\n});</code></code></pre>\n\n\n\n<p>Notice how the test uses&nbsp;<a href=\"https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment\"><em>destructuring assignment</em></a>&nbsp;to extract the setup variables that it needs.</p>\n\n\n\n<pre class=\"wp-block-preformatted\">content_copy<code>const { masterService, stubValue, valueServiceSpy } = setup();</code></pre>\n\n\n\n<p>Many developers feel this approach is cleaner and more explicit than the traditional&nbsp;<code>beforeEach()</code>&nbsp;style.</p>\n\n\n\n<p>Although this testing guide follows the traditional style and the default&nbsp;<a href=\"https://github.com/angular/angular-cli\">CLI schematics</a>&nbsp;generate test files with&nbsp;<code>beforeEach()</code>&nbsp;and&nbsp;<code><a href=\"https://angular.io/api/core/testing/TestBed\">TestBed</a></code>, feel free to adopt&nbsp;<em>this alternative approach</em>&nbsp;in your own projects.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Most test suites in this guide call&nbsp;beforeEach()&nbsp;to set the preconditions for each&nbsp;it()&nbsp;test and rely on the&nbsp;TestBed&nbsp;to create classes and inject services. There&#8217;s another school of testing that never calls&nbsp;beforeEach()&nbsp;and prefers to create classes explicitly rather than use the&nbsp;TestBed. Here&#8217;s how you might rewrite one of the&nbsp;MasterService&nbsp;tests in that style. Begin by putting re-usable, preparatory code [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [242],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4552"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=4552"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4552/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4561,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4552/revisions/4561"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=4552"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=4552"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=4552"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 4551,
+    "date": "2021-02-25T11:01:05",
+    "date_gmt": "2021-02-25T11:01:05",
+    "guid": {
+      "rendered": "http://angular.foobrdigital.com/?p=4551"
+    },
+    "modified": "2021-02-25T11:01:05",
+    "modified_gmt": "2021-02-25T11:01:05",
+    "slug": "testing-http-services",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/testing-http-services/",
+    "title": {
+      "rendered": "Testing HTTP services"
+    },
+    "content": {
+      "rendered": "\n<p>Data services that make HTTP calls to remote servers typically inject and delegate to the Angular&nbsp;<a href=\"https://angular.io/guide/http\"><code>HttpClient</code></a>&nbsp;service for XHR calls.</p>\n\n\n\n<p>You can test a data service with an injected&nbsp;<code><a href=\"https://angular.io/api/common/http/HttpClient\">HttpClient</a></code>&nbsp;spy as you would test any service with a dependency.app/model/hero.service.spec.ts (tests with spies)</p>\n\n\n\n<pre class=\"wp-block-code\"><code>content_copy<code>let httpClientSpy: { get: jasmine.Spy };\nlet heroService: HeroService;\n\nbeforeEach(() =&gt; {\n  // TODO: spy on other methods too\n  httpClientSpy = jasmine.createSpyObj('<a href=\"https://angular.io/api/common/http/HttpClient\">HttpClient</a>', &#91;'get']);\n  heroService = new HeroService(httpClientSpy as any);\n});\n\nit('should return expected heroes (<a href=\"https://angular.io/api/common/http/HttpClient\">HttpClient</a> called once)', () =&gt; {\n  const expectedHeroes: Hero&#91;] =\n    &#91;{ id: 1, name: 'A' }, { id: 2, name: 'B' }];\n\n  httpClientSpy.get.and.returnValue(asyncData(expectedHeroes));\n\n  heroService.getHeroes().subscribe(\n    heroes =&gt; expect(heroes).toEqual(expectedHeroes, 'expected heroes'),\n    fail\n  );\n  expect(httpClientSpy.get.calls.count()).toBe(1, 'one call');\n});\n\nit('should return an error when the server returns a 404', () =&gt; {\n  const errorResponse = new <a href=\"https://angular.io/api/common/http/HttpErrorResponse\">HttpErrorResponse</a>({\n    error: 'test 404 error',\n    status: 404, statusText: 'Not Found'\n  });\n\n  httpClientSpy.get.and.returnValue(asyncError(errorResponse));\n\n  heroService.getHeroes().subscribe(\n    heroes =&gt; fail('expected an error, not heroes'),\n    error  =&gt; expect(error.message).toContain('test 404 error')\n  );\n});</code></code></pre>\n\n\n\n<p>The&nbsp;<code>HeroService</code>&nbsp;methods return&nbsp;<code>Observables</code>. You must&nbsp;<em>subscribe</em>&nbsp;to an observable to (a) cause it to execute and (b) assert that the method succeeds or fails.</p>\n\n\n\n<p>The&nbsp;<code>subscribe()</code>&nbsp;method takes a success (<code>next</code>) and fail (<code>error</code>) callback. Make sure you provide&nbsp;<em>both</em>&nbsp;callbacks so that you capture errors. Neglecting to do so produces an asynchronous uncaught observable error that the test runner will likely attribute to a completely different test.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Data services that make HTTP calls to remote servers typically inject and delegate to the Angular&nbsp;HttpClient&nbsp;service for XHR calls. You can test a data service with an injected&nbsp;HttpClient&nbsp;spy as you would test any service with a dependency.app/model/hero.service.spec.ts (tests with spies) The&nbsp;HeroService&nbsp;methods return&nbsp;Observables. You must&nbsp;subscribe&nbsp;to an observable to (a) cause it to execute and (b) assert [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [242],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4551"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=4551"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4551/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4562,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4551/revisions/4562"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=4551"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=4551"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=4551"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 4550,
+    "date": "2021-02-25T11:01:28",
+    "date_gmt": "2021-02-25T11:01:28",
+    "guid": {
+      "rendered": "http://angular.foobrdigital.com/?p=4550"
+    },
+    "modified": "2021-02-25T11:01:28",
+    "modified_gmt": "2021-02-25T11:01:28",
+    "slug": "httpclienttestingmodule",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/httpclienttestingmodule/",
+    "title": {
+      "rendered": "HttpClientTestingModule"
+    },
+    "content": {
+      "rendered": "\n<p>Extended interactions between a data service and the\u00a0<code>HttpClient</code>\u00a0can be complex and difficult to mock with spies.</p>\n\n\n\n<p>The\u00a0<code>HttpClientTestingModule</code>\u00a0can make these testing scenarios more manageable.</p>\n\n\n\n<p>While the\u00a0<em>code sample</em>\u00a0accompanying this guide demonstrates\u00a0<code>HttpClientTestingModule</code>, this page defers to the\u00a0Http guide, which covers testing with the\u00a0<code>HttpClientTestingModule</code>\u00a0in detail.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Extended interactions between a data service and the\u00a0HttpClient\u00a0can be complex and difficult to mock with spies. The\u00a0HttpClientTestingModule\u00a0can make these testing scenarios more manageable. While the\u00a0code sample\u00a0accompanying this guide demonstrates\u00a0HttpClientTestingModule, this page defers to the\u00a0Http guide, which covers testing with the\u00a0HttpClientTestingModule\u00a0in detail.</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [242],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4550"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=4550"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4550/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4563,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4550/revisions/4563"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=4550"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=4550"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=4550"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  }
+]

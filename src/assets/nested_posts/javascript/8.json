@@ -1,0 +1,1036 @@
+[
+  {
+    "id": 3405,
+    "date": "2020-11-30T06:01:54",
+    "date_gmt": "2020-11-30T06:01:54",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3405"
+    },
+    "modified": "2020-11-30T06:01:54",
+    "modified_gmt": "2020-11-30T06:01:54",
+    "slug": "objects",
+    "status": "publish",
+    "type": "post",
+    "link": "https://computerprogramming.foobrdigital.com/objects/",
+    "title": {
+      "rendered": "Objects"
+    },
+    "content": {
+      "rendered": "\n<p>In JavaScript, an object is a collection of properties, defined as a key-value pair. Each property has a key and a value. The property key can be a string and the property value can be any valid value.</p>\n\n\n\n<p>To create an object, you use the object literal syntax. For example, the following snippet creates an empty object:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let empty = {};</code></pre>\n\n\n\n<p>To create an object with properties, you use the&nbsp;<code>key : value</code>&nbsp;syntax. For example, the following snippet creates a&nbsp;<code>person</code>&nbsp;object:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let person = {\n    firstName: 'John',\n    lastName: 'Doe'\n};</code></pre>\n\n\n\n<p>The&nbsp;<code>person</code>&nbsp;object has two properties&nbsp;<code>firstName</code>&nbsp;and&nbsp;<code>lastName</code>&nbsp;with the corresponding values&nbsp;<code>'John'</code>&nbsp;and&nbsp;<code>'Doe'</code>.</p>\n\n\n\n<h2>Accessing properties</h2>\n\n\n\n<p>To access a property of an object, you use one of two notations: the dot notation and array-like notation.</p>\n\n\n\n<h3>1) The dot notation (.)</h3>\n\n\n\n<p>The following illustrates how to use the dot notation to access a property of an object:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>objectName.propertyName\n</code></pre>\n\n\n\n<p>For example, to access the&nbsp;<code>firstName</code>&nbsp;property of the&nbsp;<code>person</code>&nbsp;object, you use the following expression:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>person.firstName\n</code></pre>\n\n\n\n<p>The following snippet creates a&nbsp;<code>person</code>&nbsp;object and shows the first name and last name on the Console:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let person = {\n    firstName: 'John',\n    lastName: 'Doe'\n};\n\nconsole.log(person.firstName);\nconsole.log(person.lastName);</code></pre>\n\n\n\n<h3>2) Array-like notation (&nbsp;<code>[]</code>)</h3>\n\n\n\n<p>The following illustrates how to access the value of an object’s property via the array-like notation:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>objectName&#91;'propertyName'];</code></pre>\n\n\n\n<p>For example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let person = {\n    firstName: 'John',\n    lastName: 'Doe'\n};\n\nconsole.log(person&#91;'firstName']);\nconsole.log(person&#91;'lastName']);</code></pre>\n\n\n\n<p>When a property name contains spaces, you need to place it inside quotes. For example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let address = {\n    'building no': 3960,\n    street: 'North 1st street',\n    state: 'CA',\n    country: 'USA'\n};\n</code></pre>\n\n\n\n<p>To access the&nbsp;<code>'building no'</code>, you must use the array-like notation:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>address&#91;'building no'];</code></pre>\n\n\n\n<p>If you use the dot notation, you will get an error:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>address.'building no';</code></pre>\n\n\n\n<p>Error:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>SyntaxError: Unexpected string</code></pre>\n\n\n\n<p>Reading from a property that does not exist will result in an&nbsp;<code>undefined</code>. For example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>console.log(address.district);\n</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>undefined</code></pre>\n\n\n\n<h2>Change the property’s value</h2>\n\n\n\n<p>To change the value of a property, you use the assignment operator. For example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let person = {\n    firstName: 'John',\n    lastName: 'Doe'\n};\n\nperson.firstName = 'Jane';\n\nconsole.log(person);</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{ firstName: 'Jane', lastName: 'Doe' }</code></pre>\n\n\n\n<h2>Add a new property to an object</h2>\n\n\n\n<p>Unlike objects in other programming languages such as Java and C#, you can add a property to an object after creating it.</p>\n\n\n\n<p>The following statement adds the&nbsp;<code>age</code>&nbsp;property to the&nbsp;<code>person</code>&nbsp;object and assigns 25 to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>person.age = 25;</code></pre>\n\n\n\n<h2>Delete a property of an object</h2>\n\n\n\n<p>To delete a property from an object, you use the&nbsp;<code>delete</code>&nbsp;operator:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>delete objectName.propertyName;</code></pre>\n\n\n\n<p>The following example removes the&nbsp;<code>age</code>&nbsp;property from the&nbsp;<code>person</code>&nbsp;object:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>delete person.age;</code></pre>\n\n\n\n<h2>Check if a property exists</h2>\n\n\n\n<p>To check if a property exists in an object, you use the in operator:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>propertyName in objectName</code></pre>\n\n\n\n<p>The following example creates an&nbsp;<code>employee</code>&nbsp;object and uses the&nbsp;<code>in</code>&nbsp;operator to check if the&nbsp;<code>ssn</code>&nbsp;and&nbsp;<code>employeeId</code>&nbsp;properties exist in the object.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let employee = {\n    firstName: 'Peter',\n    lastName: 'Doe',\n    employeeId: 1\n};\n\nconsole.log('ssn' in employee);\nconsole.log('employeeId' in employee);\n</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>false\ntrue\n</code></pre>\n\n\n\n<h2>Iterate over properties of an object using&nbsp;<code>for...in</code>&nbsp;loop</h2>\n\n\n\n<p>To iterate over all properties of an object without knowing property names, you use the <code>for...in</code> loop:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>for(let key in object) { \n    // ...\n};\n</code></pre>\n\n\n\n<p>For example, the following statement creates a&nbsp;<code>website</code>&nbsp;object and iterates over its properties using the&nbsp;<code>for...in</code>&nbsp;loop:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let website = {\n    title: 'JavaScript Tutorial',\n    url: 'https://www.javascripttutorial.net',\n    tags: &#91;'es6', 'javascript', 'node.js']\n};\n\nfor (const key in website) {\n    console.log(website&#91;key]);\n}</code></pre>\n\n\n\n<h2>Methods</h2>\n\n\n\n<p>Objects have actions. The actions are represented by functions. The following snippet adds the <code>greet</code> action to the <code>person</code> object:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let person = {\n    firstName: 'John',\n    lastName: 'Doe'\n};\n\nperson.greet = function () {\n    console.log('Hello, World!');\n}\nperson.greet();</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Hello, World!</code></pre>\n\n\n\n<p>In this example, we added a function expression to create the function and assigned it to the property&nbsp;<code>greet</code>&nbsp;of the&nbsp;<code>person</code>&nbsp;object.</p>\n\n\n\n<p>Then, we call the function via the&nbsp;<code>greet</code>&nbsp;property as&nbsp;<code>greet()</code>. When a function is a property of an object, it is called a method.</p>\n\n\n\n<p>Besides using a function expression, you can define a function and add it to the object, like this:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let person = {\n    firstName: 'John',\n    lastName: 'Doe'\n};\n\nfunction greet() {\n    console.log('Hello, World!');\n}\n\nperson.greet = greet;\n\nperson.greet();</code></pre>\n\n\n\n<h3>Method shorthand</h3>\n\n\n\n<p>You can define methods using the object literal syntax:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let person = {\n    firstName: 'John',\n    lastName: 'Doe',\n    greet: function () {\n        console.log('Hello, World!');\n    }\n};\n</code></pre>\n\n\n\n<p>In ES6, you can even make it shorter:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let person = {\n    firstName: 'John',\n    lastName: 'Doe',\n    greet() {\n        console.log('Hello, World!');\n    }\n};\n\nperson.greet();</code></pre>\n\n\n\n<h3>The&nbsp;<code>this</code>&nbsp;value</h3>\n\n\n\n<p>Typically, methods need to access data stored in the object.</p>\n\n\n\n<p>For example, you may want to develop a method that returns the full name of the person object by concatenating the first name and last name.</p>\n\n\n\n<p>Inside the method, the&nbsp;<code>this</code>&nbsp;value references the object that contains the method so you can access an object property using the dot notation:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>this.propertyName</code></pre>\n\n\n\n<p>The following example uses the&nbsp;<code>this</code>&nbsp;value in the&nbsp;<code>getFullName()</code>&nbsp;method:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let person = {\n    firstName: 'John',\n    lastName: 'Doe',\n    greet: function () {\n        console.log('Hello, World!');\n    },\n    getFullName: function () {\n        return this.firstName + ' ' + this.lastName;\n    }\n};\n\n\nconsole.log(person.getFullName());</code></pre>\n\n\n\n<p>Output</p>\n\n\n\n<pre class=\"wp-block-code\"><code>John Doe</code></pre>\n\n\n\n<p>Check it out this tutorial for more information on <code>this</code> value.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>In JavaScript, an object is a collection of properties, defined as a key-value pair. Each property has a key and a value. The property key can be a string and the property value can be any valid value. To create an object, you use the object literal syntax. For example, the following snippet creates an empty [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [39],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3405"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/comments?post=3405"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3405/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/media?parent=3405"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/categories?post=3405"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/tags?post=3405"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 3407,
+    "date": "2020-11-30T06:03:09",
+    "date_gmt": "2020-11-30T06:03:09",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3407"
+    },
+    "modified": "2020-11-30T06:03:09",
+    "modified_gmt": "2020-11-30T06:03:09",
+    "slug": "object-properties",
+    "status": "publish",
+    "type": "post",
+    "link": "https://computerprogramming.foobrdigital.com/object-properties/",
+    "title": {
+      "rendered": "Object Properties"
+    },
+    "content": {
+      "rendered": "\n<h2>Object Property types</h2>\n\n\n\n<p>JavaScript specifies characteristics of properties of objects via internal attributes surrounded by the two pair of square brackets e.g., <code>[[Enumerable]]</code>.</p>\n\n\n\n<p>There are two types of object properties: data properties and accessor properties.</p>\n\n\n\n<h3>Data properties</h3>\n\n\n\n<p>A data property contains a single location for a data value. A data property has four attributes:</p>\n\n\n\n<ul><li> <code>[[Configurarable]]</code> – determines whether a property can be redefined or removed via <code>delete</code> operator.</li><li> <code>[[Enumerable]]</code> – indicates that if a property will be returned in the <code>for...in</code> loop.</li><li> <code>[[Writable]]</code> – specifies that the value of a property can be changed.</li><li> <code>[[Value]]</code> – contains the actual value of a property.</li></ul>\n\n\n\n<p>By default, the&nbsp;<code>[[Configurable]]</code>&nbsp;,&nbsp;<code>[[Enumerable]]</code>, and&nbsp;<code>[[Writable]]</code>&nbsp;attributes set to&nbsp;<code>true</code>&nbsp;for all properties defined directly on an object.&nbsp;The default value of the&nbsp;<code>[[Value]]</code>&nbsp;attribute is&nbsp;<code>undefined</code>.</p>\n\n\n\n<p>The following example creates a&nbsp;<code>person</code>&nbsp;object which has the&nbsp;<code>firstName</code>&nbsp;and&nbsp;<code>lastName</code>&nbsp;properties with the configurable, enumerable, and writable attributes set to true. Their values are set to&nbsp;<code>'John'</code>&nbsp;and&nbsp;<code>'Doe'</code>&nbsp;respectively:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let person = {\n    firstName: 'John',\n    lastName: 'Doe'\n};</code></pre>\n\n\n\n<p>To change any attribute of a property, you use the&nbsp;<code>Object.defineProperty()</code>&nbsp;method.</p>\n\n\n\n<p>The&nbsp;<code>Object.defineProperty()</code>&nbsp;method accepts three arguments:</p>\n\n\n\n<ul><li>An object.</li><li>A property name of the object.</li><li>A property descriptor object that has four properties:&nbsp;<code>configurable</code>,&nbsp;<code>enumerable</code>,&nbsp;<code>writable</code>, and&nbsp;<code>value</code>.</li></ul>\n\n\n\n<p>If you use the&nbsp;<code>Object.defineProperty()</code>&nbsp;method to define a property of the object, the default values of&nbsp;<code>[[Configurable]]</code>,&nbsp;<code>[[Enumerable]]</code>, and&nbsp;<code>[[Writable]]</code>&nbsp;are set to&nbsp;<code>false</code>&nbsp;unless otherwise specified.</p>\n\n\n\n<p>The following example creates a&nbsp;<code>person</code>&nbsp;object with the&nbsp;<code>age</code>&nbsp;property:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let person = {};\nperson.age = 25;\ndelete person.age;\nconsole.log(person.age);</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>undefined</code></pre>\n\n\n\n<p>Since the default value of the&nbsp;<code>[[Configurable]]</code>&nbsp;attribute is set to&nbsp;<code>true</code>, you can remove it via the&nbsp;<code>delete</code>&nbsp;operator.</p>\n\n\n\n<p>The following example creates a&nbsp;<code>person</code>&nbsp;object and adds the&nbsp;<code>ssn</code>&nbsp;property to it using the&nbsp;<code>Object.defineProperty()</code>&nbsp;method:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>'use strict';\n\nlet person = {};\nObject.defineProperty(person, 'ssn', {\n    configurable: false,\n    value: '012-38-9119'\n});\ndelete person.ssn;</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>TypeError: Cannot delete property 'ssn' of #&lt;Object></code></pre>\n\n\n\n<p>In this example, the&nbsp;<code>configurable</code>&nbsp;attribute is set to&nbsp;<code>false</code>&nbsp;therefore deleting the&nbsp;<code>isOn</code>&nbsp;property in the strict mode causes&nbsp;an error.</p>\n\n\n\n<p>In addition, once a property is defined as non-configurable, it cannot become configurable. If you use the&nbsp;<code>Object.defineProperty()</code>&nbsp;method to change any attribute other than writable, you will get an error. For example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>'use strict';\n\nlet person = {};\nObject.defineProperty(person, 'ssn', {\n    configurable: false,\n    value: '012-38-9119'\n});\n\n\nObject.defineProperty(person, 'ssn', {\n    configurable: true\n});</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>TypeError: Cannot redefine property: ssn</code></pre>\n\n\n\n<p>By default, the&nbsp;<code>enumerable</code>&nbsp;attribute of all the properties defined on an object are true. It means that you can iterate over all properties using the&nbsp;<code>for...in</code>&nbsp;loop as shown in the following example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let person = {};\nperson.age = 25;\nperson.ssn = '012-38-9119';\n\nfor (let prop in person) {\n    console.log(prop);\n}</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>age\nssn</code></pre>\n\n\n\n<p>The following snippet makes the&nbsp;<code>ssn</code>&nbsp;property non-enumerable by setting the&nbsp;<code>enumerable</code>&nbsp;attribute to&nbsp;<code>false</code>.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let person = {};\nperson.age = 25;\nperson.ssn = '012-38-9119';\n\nObject.defineProperty(person, 'ssn', {\n    enumerable: false\n});\n\nfor (let prop in person) {\n    console.log(prop);\n}</code></pre>\n\n\n\n<p>Output</p>\n\n\n\n<pre class=\"wp-block-code\"><code>age</code></pre>\n\n\n\n<h3 id=\"accessor_property\">Accessor properties</h3>\n\n\n\n<p>Similar to data properties, accessor properties also have&nbsp;<code>[[Configurable]]</code>&nbsp;and&nbsp;<code>[[Enumerable]]</code>&nbsp;attributes.&nbsp;But the accessor properties have the&nbsp;<code>[[Get]]</code>&nbsp;and&nbsp;<code>[[Set]]</code>&nbsp;attributes instead of&nbsp;<code>[[Value]]</code>&nbsp;and&nbsp;<code>[[Writable]]</code>.</p>\n\n\n\n<p>When you read data from an accessor property, the&nbsp;<code>[[Get]]</code>&nbsp;function is called to return a value. The default return value of the&nbsp;<code>[[Get]]</code>&nbsp;function is&nbsp;<code>undefined</code>.</p>\n\n\n\n<p>If you assign a value to an accessor property, the&nbsp;<code>[[Set]]</code>&nbsp;function is called. To define an accessor property, you must use the&nbsp;<code>Object.defineProperty()</code>&nbsp;method. For example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let person = {\n    firstName: 'John',\n    lastName: 'Doe'\n}\n\nObject.defineProperty(person, 'fullName', {\n    get: function () {\n        return this.firstName + ' ' + this.lastName;\n    },\n    set: function (value) {\n        let parts = value.split(' ');\n        if (parts.length == 2) {\n            this.firstName = parts&#91;0];\n            this.lastName = parts&#91;1];\n        } else {\n            throw 'Invalid name format';\n        }\n    }\n});\n\nconsole.log(person.fullName);</code></pre>\n\n\n\n<p>In this example:</p>\n\n\n\n<ul><li>First, define the&nbsp;<code>person</code>&nbsp;object that contains&nbsp;two properties:&nbsp;<code>firstName</code>&nbsp;and&nbsp;<code>lastName</code>.</li><li>Then, add the&nbsp;<code>fullName</code>&nbsp;property to the&nbsp;<code>person</code>&nbsp;object as an accessor property.</li></ul>\n\n\n\n<p>In the&nbsp;<code>fullname</code>&nbsp;accessor property:</p>\n\n\n\n<ul><li>The&nbsp;<code>[[Get]]</code>&nbsp;returns the full name that is the result of concatenating of&nbsp;<code>firstName</code>,&nbsp;<code>space</code>, and&nbsp;<code>lastName</code>.</li><li>The&nbsp;<code>[[Set]]</code>&nbsp;method splits the argument by the space and assigns the&nbsp;<code>firstName</code>&nbsp;and&nbsp;<code>lastName&nbsp;</code>properties the corresponding parts of the name.</li><li>If the full name is not in the correct format i.e., first name, space, and last name, &nbsp;it will throw an error.</li></ul>\n\n\n\n<h2>Define multiple properties:&nbsp;<code>Object.defineProperties()</code></h2>\n\n\n\n<p>In ES5, you can define multiple properties in a single statement using the&nbsp;<code>Object.defineProperties()</code>&nbsp;method. For example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>var product = {};\n\nObject.defineProperties(product, {\n    name: {\n        value: 'Smartphone'\n    },\n    price: {\n        value: 799\n    },\n    tax: {\n        value: 0.1\n    },\n    netPrice: {\n        get: function () {\n            return this.price * (1 + this.tax);\n        }\n    }\n});\n\nconsole.log('The net price of a ' + product.name + ' is ' + product.netPrice.toFixed(2) + ' USD');</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>The net price of a Smartphone is 878.90 USD</code></pre>\n\n\n\n<p>In this example, we defined three data properties:&nbsp;<code>name</code>,&nbsp;<code>price</code>, and&nbsp;<code>tax</code>, and one accessor property&nbsp;<code>netPrice</code>&nbsp;for the&nbsp;<code>product</code>&nbsp;object.</p>\n\n\n\n<h2>JavaScript object property descriptor</h2>\n\n\n\n<p>The&nbsp;&nbsp;<code>Object.getOwnPropertyDescriptor()</code>&nbsp;method allows you to get the descriptor object of a property. The&nbsp;<code>Object.getOwnPropertyDescriptor()</code>&nbsp;method takes two arguments:</p>\n\n\n\n<ol><li>An object</li><li>A property of the object</li></ol>\n\n\n\n<p>It returns a descriptor object that describes a property. the descriptor object has four properties: configurable, enumerable, writable, and value.</p>\n\n\n\n<p>The following example gets the descriptor object of the&nbsp;<code>name</code>&nbsp;property of the&nbsp;<code>product</code>&nbsp;object in the prior&nbsp;example.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let person = {\n    firstName: 'John',\n    lastName: 'Doe'\n};\n\n\nlet descriptor = Object.getOwnPropertyDescriptor(person, 'firstName');\n\nconsole.log(descriptor);</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{ value: 'John',\n  writable: true,\n  enumerable: true,\n  configurable: true }</code></pre>\n\n\n\n<h2>Summary</h2>\n\n\n\n<ul><li>JavaScript objects have two types of properties: data properties and accessor properties.</li><li>JavaScript uses internal attributes denoted by&nbsp;<code>[[...]]</code>&nbsp;to describe the characteristics of properties such as&nbsp;<code>[[Configurable]]</code>,&nbsp;<code>[[Enumerable]]</code>,&nbsp;<code>[[Writable]]</code>, and&nbsp;&nbsp;<code>[[Value]]</code>,&nbsp;<code>[[Get]]</code>, and&nbsp;<code>[[Set]]</code>.</li><li>The method&nbsp;<code>Object.getOwnPropertyDescriptor()</code>&nbsp;return a property descriptor of a property in an object.</li><li>A property can be defined directly on an object or indirectly via the&nbsp;<code>Object.defineProperty()</code>&nbsp;or&nbsp;<code>Object.defineProperties()</code>&nbsp;methods. These methods can be used to change the attributes of a property.</li></ul>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Object Property types JavaScript specifies characteristics of properties of objects via internal attributes surrounded by the two pair of square brackets e.g., [[Enumerable]]. There are two types of object properties: data properties and accessor properties. Data properties A data property contains a single location for a data value. A data property has four attributes:  [[Configurarable]] – determines whether a [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [39],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3407"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/comments?post=3407"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3407/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/media?parent=3407"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/categories?post=3407"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/tags?post=3407"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 3409,
+    "date": "2020-11-30T06:04:03",
+    "date_gmt": "2020-11-30T06:04:03",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3409"
+    },
+    "modified": "2020-11-30T06:04:03",
+    "modified_gmt": "2020-11-30T06:04:03",
+    "slug": "prototype-explained-by-examples",
+    "status": "publish",
+    "type": "post",
+    "link": "https://computerprogramming.foobrdigital.com/prototype-explained-by-examples/",
+    "title": {
+      "rendered": "Prototype Explained By Examples"
+    },
+    "content": {
+      "rendered": "\n<h2>Introduction to JavaScript prototype</h2>\n\n\n\n<p>By default, the JavaScript engine provides the&nbsp;<code>Object()</code>&nbsp;function and an anonymous object that can be referenced via the&nbsp;<code>Object.prototype.</code></p>\n\n\n\n<pre class=\"wp-block-code\"><code>console.log(Object);\nconsole.log(Object.prototype);</code></pre>\n\n\n\n<p>The&nbsp;<code>Object.prototype</code>&nbsp;object has many built-in methods and properties such as&nbsp;<code>toString(),</code>&nbsp;<code>valueOf(),</code>&nbsp;etc.</p>\n\n\n\n<p>And it&nbsp;has a property named&nbsp;<code>constructor</code>&nbsp;that references the&nbsp;<code>Object()</code>&nbsp;function:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>console.log(Object.prototype.constructor === Object); // true</code></pre>\n\n\n\n<p>Assuming that the circle represents a function and the square represents an object.</p>\n\n\n\n<p>The following figure illustrates the relationships between the&nbsp;<code>Object()</code>&nbsp;function and the&nbsp;<code>Object.prototype</code>&nbsp;object:</p>\n\n\n\n\n\n\n\n<p>First, define a function named&nbsp;<code>Foo</code>&nbsp;as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function Foo(name) {\n    this.name = name;\n}</code></pre>\n\n\n\n<p>In this code, the&nbsp;<code>Foo()</code>&nbsp;function accepts an argument,&nbsp;adds the&nbsp;<code>name</code>&nbsp;property to the object, and sets the value of the&nbsp;<code>name</code>&nbsp;property to the&nbsp;<code>name</code>&nbsp;argument.</p>\n\n\n\n<p>Behind the scenes, the JavaScript engine creates a new function&nbsp;<code>Foo()</code>&nbsp;and an anonymous object.&nbsp;</p>\n\n\n\n<p>The&nbsp;<code>Foo()</code>&nbsp;function has a property named&nbsp;<code>prototype</code>&nbsp;that references the anonymous object. And the anonymous object has the&nbsp;<code>constructor</code>&nbsp;property which references the&nbsp;<code>Foo()</code>&nbsp;function.</p>\n\n\n\n<p>The following shows the function&nbsp;<code>Foo()</code>&nbsp;and the anonymous object:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>console.log(Foo);\nconsole.log(Foo.prototype);</code></pre>\n\n\n\n<p>In addition, the&nbsp;<code>Foo.prototype</code>&nbsp;object is linked to the&nbsp;<code>Object.prototype</code>&nbsp;object via&nbsp;<code>[[Prototype]]</code>, which is known as a&nbsp;<em>prototype linkage</em>.</p>\n\n\n\n<p>The prototype linkage is denoted by&nbsp;<code>[[Prototype]]</code>&nbsp;in the following figure:</p>\n\n\n\n\n\n\n\n<p>Second, add a new method named&nbsp;<code>whoAmI()</code>&nbsp;to the&nbsp;<code>Foo.prototype</code>&nbsp;object:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Foo.prototype.whoAmI = function() {\n    return \"I am \" + this.name;\n}</code></pre>\n\n\n\n\n\n\n\n<p>Third, create a new instance of the&nbsp;<code>Foo</code>&nbsp;object:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let a = new Foo('a');</code></pre>\n\n\n\n<p>Internally, the JavaScript engine creates a new object named&nbsp;<code>a</code>&nbsp;and links the&nbsp;<code>a</code>&nbsp;object&nbsp;to the&nbsp;<code>Foo.prototype</code>&nbsp;object via the prototype linkage.</p>\n\n\n\n<p>The link of&nbsp;<code>a</code>,&nbsp;<code>Foo.prototype</code>, and&nbsp;<code>Object.protoype</code>&nbsp;is called&nbsp;the&nbsp;<em>prototype chain</em>.</p>\n\n\n\n<p>Fourth, create another instance of the&nbsp;<code>Foo</code>&nbsp;object named&nbsp;<code>b</code>.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let b = new Foo('b');</code></pre>\n\n\n\n<p>Fifth, add new&nbsp;<code>say()</code>&nbsp;method to the&nbsp;<code>b</code>&nbsp;object.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>b.say = function() {\n    console.log('Hi from ' + this.whoAmI());\n}</code></pre>\n\n\n\n<p>This time, the JavaScript engine adds the&nbsp;<code>say()</code>&nbsp;method&nbsp;to the&nbsp;<code>b</code>&nbsp;object, not the&nbsp;<code>Foo.prototype</code>&nbsp;object:</p>\n\n\n\n<p>Now, see the following code.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>console.log(a.constructor); // Foo</code></pre>\n\n\n\n<p>The object&nbsp;<code>a</code>&nbsp;doesn’t have the&nbsp;<code>constructor</code>&nbsp;property, therefore, the JavaScript engine goes up to the prototype chain to find it.</p>\n\n\n\n<p>Since the object&nbsp;<code>a</code>&nbsp;links to the&nbsp;<code>Foo.prototype</code>&nbsp;object via the prototype linkage and&nbsp;<code>Foo.prototype</code>&nbsp;has&nbsp;<code>constructor</code>&nbsp;property, JavaScript engine&nbsp;returns&nbsp;<code>Foo</code>.</p>\n\n\n\n<p>As a result, the following statement returns&nbsp;<code>true</code>.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>console.log(a.constructor === Foo); // true</code></pre>\n\n\n\n<p>The prototype allows you to add methods that can be shared by all instances instead of adding the shared method individually in each object. This allows JavaScript to use the memory more efficiently.</p>\n\n\n\n<h2>Getting prototype linkage</h2>\n\n\n\n<p>The <code>__proto__</code> is pronounced as <em>dunder proto</em>. The <code>__proto__</code> is an accessor property of the <code>Object.prototype</code> object. It exposes the internal prototype linkage ( <code>[[Prototype]])</code> of an object through which it is accessed.</p>\n\n\n\n<p>The <code>__proto__ </code>has been standardized in ES6 to ensure the compatibility for web browsers. However, it may be depreciated in favor of <code>Object.getPrototypeOf()</code> in the future. Therefore, you should never use <code>__proto__</code> in your production code.</p>\n\n\n\n<p>As you see in the previous diagram, the&nbsp;&nbsp;<code>a.__proto__</code>&nbsp;exposes the&nbsp;<code>[[Prototype]]</code>&nbsp;that references the&nbsp;<code>Foo.prototype</code>&nbsp;object.</p>\n\n\n\n<p>Similarly,&nbsp;<code>b.__proto__</code>&nbsp;also references the same object as&nbsp;<code>a.__proto__:</code></p>\n\n\n\n<pre class=\"wp-block-code\"><code>console.log(a.__proto__ === Foo.prototype); // true\nconsole.log(a.__proto__ === b.__proto__); // true</code></pre>\n\n\n\n<p>As mentioned earlier, you should use the&nbsp;<code>Object.getPrototypeOf()</code>&nbsp;method instead of the&nbsp;<code>__proto__</code>.</p>\n\n\n\n<p>The&nbsp;<code>Object.getPrototypeOf()</code>&nbsp;method returns the prototype of a specified object.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>console.log(a.__proto__ === Object.getPrototypeOf(a)); // true</code></pre>\n\n\n\n<p>Another popular way to get the prototype linkage when the&nbsp;<code>Object.getPrototypeOf()</code>&nbsp;method wasn’t available is via the&nbsp;<code>constructor</code>&nbsp;property as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>a.constructor.prototype</code></pre>\n\n\n\n<p>The&nbsp;<code>a.constructor</code>&nbsp;returns&nbsp;<code>Foo</code>, therefore,&nbsp;<code>a.constructor.prototype</code>&nbsp;returns the prototype&nbsp;object.</p>\n\n\n\n<h2>Shadowing</h2>\n\n\n\n<p>See the following method call:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>console.log(a.whoAmI()); // I am a</code></pre>\n\n\n\n<p>The&nbsp;<code>a</code>&nbsp;object doesn’t have the method&nbsp;<code>whoAmI()</code>&nbsp;therefore when this method is called from the&nbsp;<code>a</code>&nbsp;object, the JavaScript engine goes up to the prototype chain to find it. In this case, it found the method in the&nbsp;<code>Foo.prototype</code>&nbsp;object and executed it.</p>\n\n\n\n<p>Let’s add a new method to the object&nbsp;<code>a</code>&nbsp;with the same name as the method in the&nbsp;<code>Foo.prototype</code>&nbsp;object:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>a.whoAmI = function() {\n    console.log('This is ' + this.name);\n}</code></pre>\n\n\n\n<p>And call the&nbsp;<code>whoAmI()</code>&nbsp;method:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>console.log(a.whoAmI()); // This is a</code></pre>\n\n\n\n<p>Because the&nbsp;<code>a</code>&nbsp;object has the&nbsp;<code>whoAmI()</code>&nbsp;method, JavaScript engine just executes it immediately without looking it up in the prototype chain.</p>\n\n\n\n<p>This is an example of shadowing. The&nbsp;<code>whoAmI()</code>&nbsp;method of the&nbsp;<code>a</code>&nbsp;object shadows the&nbsp;<code>whoAmI()</code>&nbsp;method of the&nbsp;<code>prototype</code>&nbsp;object which the&nbsp;<code>a</code>&nbsp;object references.</p>\n\n\n\n<p>Now, you should understand all the important concepts related to JavaScript prototype including prototype chain, prototype linkage, dunder proto, and shadowing.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Introduction to JavaScript prototype By default, the JavaScript engine provides the&nbsp;Object()&nbsp;function and an anonymous object that can be referenced via the&nbsp;Object.prototype. The&nbsp;Object.prototype&nbsp;object has many built-in methods and properties such as&nbsp;toString(),&nbsp;valueOf(),&nbsp;etc. And it&nbsp;has a property named&nbsp;constructor&nbsp;that references the&nbsp;Object()&nbsp;function: Assuming that the circle represents a function and the square represents an object. The following figure illustrates the [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [39],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3409"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/comments?post=3409"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3409/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/media?parent=3409"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/categories?post=3409"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/tags?post=3409"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 3411,
+    "date": "2020-11-30T06:07:46",
+    "date_gmt": "2020-11-30T06:07:46",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3411"
+    },
+    "modified": "2020-11-30T06:07:46",
+    "modified_gmt": "2020-11-30T06:07:46",
+    "slug": "patterns-to-create-objects",
+    "status": "publish",
+    "type": "post",
+    "link": "https://computerprogramming.foobrdigital.com/patterns-to-create-objects/",
+    "title": {
+      "rendered": "Patterns To Create Objects"
+    },
+    "content": {
+      "rendered": "\n<p>In the previous tutorial, you have learned how to create JavaScript objects using the object literal syntax.</p>\n\n\n\n<p>The object literal syntax is convenient for creating a single object. In case you want to create multiple similar objects, you need to&nbsp;use one of the following patterns:</p>\n\n\n\n<ul><li>Factory pattern</li><li>Constructor pattern</li><li>Prototype pattern</li><li>Constructor / prototype pattern</li><li>Parasitic constructor pattern</li><li>Durable constructor pattern</li></ul>\n\n\n\n<h2 id=\"factory_pattern\">Factory pattern</h2>\n\n\n\n<p>The factory pattern uses a function to abstract away the process of creating specific objects.</p>\n\n\n\n<p>For example, the following&nbsp;<code>createAnimal()</code>&nbsp;function&nbsp;encapsulates the logic of creating the&nbsp;<code>animal</code>&nbsp;object.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>// factory pattern\nfunction createAnimal(name) {\n    var o = new Object();\n    o.name = name;\n    o.identify = function() {\n        console.log(\"I'm \" + o.name);\n    }\n    return o;\n}\n</code></pre>\n\n\n\n<p>The&nbsp;<code>createAnimal()</code>&nbsp;function accepts an argument that will be used to initialize the&nbsp;<code>name</code>&nbsp;property of the&nbsp;<code>animal</code>&nbsp;object.</p>\n\n\n\n<p>To create a new object, you just need to call this function and pass the&nbsp;<code>name</code>&nbsp;argument as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>var tom = createAnimal('Tom');\nvar jerry = createAnimal('Jerry');\n\ntom.identify(); // I'm Tom\njerry.identify(); // I'm Jerry</code></pre>\n\n\n\n<p>Although the factory pattern can create multiple similar objects, it doesn’t allow you to identify the type of object it creates.</p>\n\n\n\n<h2 id=\"constructor_pattern\">Constructor pattern</h2>\n\n\n\n<p>JavaScript allows you to create a custom&nbsp;constructor function that defines the properties and methods of user-defined objects.</p>\n\n\n\n<p>By convention, the name of a constructor function in JavaScript starts with an&nbsp;uppercase letter.</p>\n\n\n\n<p>For example, the following rewritten the&nbsp;<code>animal</code>&nbsp;object of the prior example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function Animal(name) {\n    this.name = name;\n    this.identify = function() {\n        console.log(\"I'm \" + this.name);\n    };\n}</code></pre>\n\n\n\n<p>Unlike the factory pattern, the properties and methods of the&nbsp;<code>animal</code>&nbsp;object are assigned directly to the&nbsp;<code>this</code>&nbsp;object inside the constructor function.</p>\n\n\n\n<p>At this point, JavaScript engine creates the&nbsp;<code>Animal()</code>&nbsp;function and an anonymous object.</p>\n\n\n\n<p>The&nbsp;<code>Animal()</code>&nbsp;function has the&nbsp;<code>prototype</code>&nbsp;property reference an anonymous object and the anonymous object has the&nbsp;<code>constructor</code>&nbsp;property reference the&nbsp;<code>Animal()</code>&nbsp;function.</p>\n\n\n\n<p>In addition, the JavaScript engine&nbsp;links the anonymous object to the Object.</p>\n\n\n\n\n\n\n\n<p>To create a new instance of&nbsp;<code>Animal</code>, you use the&nbsp;<code>new</code>&nbsp;operator. For example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>var donald = new Animal('Donald');</code></pre>\n\n\n\n<p>Behind the scenes,&nbsp;JavaScript executes these&nbsp;four steps:</p>\n\n\n\n<ol><li>Create a new object.</li><li>Set the&nbsp;<code>this</code>&nbsp;value of the constructor to the&nbsp;<code>new</code>&nbsp;object.</li><li>Execute code inside the constructor i.e., adding properties to the new object.</li><li>Return the new object.</li></ol>\n\n\n\n<p>The following figure illustrates the&nbsp;relationship between the &nbsp;<code>donald</code>&nbsp;object and other objects.</p>\n\n\n\n<p>See the following example.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>console.log(donald.constructor === Animal); // true</code></pre>\n\n\n\n<p>In this&nbsp;example, because the &nbsp;<code>donald</code>&nbsp;object does not have the&nbsp;<code>constructor</code>&nbsp;property, JavaScript engine follows the prototype chain to find it in the&nbsp;<code>Animal.prototype</code>&nbsp;object.</p>\n\n\n\n<p>It found the&nbsp;<code>constructor</code>&nbsp;property in the&nbsp;<code>Animal.prototype</code>&nbsp;object and in this case the&nbsp;<code>constructor</code>&nbsp;property points to the&nbsp;<code>Animal()</code>&nbsp;function, therefore the statement above returns&nbsp;<code>true</code>.</p>\n\n\n\n<p>The &nbsp;<code>donald</code>&nbsp;object is also an instance of&nbsp;<code>Animal</code>&nbsp;and&nbsp;<code>Object</code>&nbsp;as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>console.log(donald instanceof Animal); // true\nconsole.log(donald instanceof Object); // true</code></pre>\n\n\n\n<p>The disadvantage of the constructor pattern is that the same method&nbsp;<code>identify()</code>&nbsp;is duplicated in each instance.&nbsp;</p>\n\n\n\n<p>The following&nbsp;code creates a new&nbsp;<code>Animal</code>&nbsp;object named&nbsp;<code>bob</code>.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>var bob = new Animal('Bob');</code></pre>\n\n\n\n<p>As you see, the&nbsp;<code>identify()</code>&nbsp;method is duplicated in both &nbsp;<code>donald</code>&nbsp;and&nbsp;<code>bob</code>&nbsp;objects. To solve this issue, you use the prototype pattern.</p>\n\n\n\n<h2 id=\"prototype_pattern\">Prototype pattern</h2>\n\n\n\n<p>The prototype pattern adds the properties of the object to the prototype object. Then, these properties are available and shared&nbsp;among all instances.</p>\n\n\n\n<p>The following example uses the prototype pattern to rewrite the Animal object above.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function Animal() {\n    // properties are added to prototype\n}\n\nAnimal.prototype.name = 'Noname';\nAnimal.prototype.identify = function() {\n    console.log(\"I'm \" + this.name);\n}\n</code></pre>\n\n\n\n<p><br>Let’s create a new instance of the&nbsp;<code>Animal</code>.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>var donald = new Animal();\ndonald.name = 'Donald'; // shadow the name property\ndonald.identify(); // I'm Donald</code></pre>\n\n\n\n<p>In the line:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>donald.name = 'Donald'; // shadow the name property</code></pre>\n\n\n\n<p>JavaScript engine adds the name property to the&nbsp;&nbsp;<code>donald</code>&nbsp;object. As the result, both &nbsp;<code>donald</code>&nbsp;and Animal.prototype objects has the same name property.</p>\n\n\n\n<p>Inside the&nbsp;<code>identify()</code>&nbsp;method, the&nbsp;<code>this</code>&nbsp;object is set to the &nbsp;<code>donald</code>&nbsp;object, therefore this.name references to the name property of the &nbsp;<code>donald</code>&nbsp;object. As the result, the output of the following line:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>donald.identify();</code></pre>\n\n\n\n<p>is the &nbsp;string&nbsp;<code>I'm Donald</code></p>\n\n\n\n<p>Let’s remove the name property of the &nbsp;<code>donald</code>&nbsp;object.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>delete donald.name;</code></pre>\n\n\n\n<p>and call the&nbsp;<code>identify()</code>&nbsp;method again.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>donald.identify(); //I'm Noname</code></pre>\n\n\n\n<p>Now, JavaScript could not find the name property in the&nbsp;<code>donald</code>&nbsp;object, it follows the prototype chain and finds it in the&nbsp;<code>Animal.prototype</code>&nbsp;object. Hence, the&nbsp;<code>this.name</code>&nbsp;returns&nbsp;<code>Noname</code>.</p>\n\n\n\n<p>For more information on the prototype, check it out the JavaScript prototype tutorial.</p>\n\n\n\n<h2 id=\"constructor_prototype_pattern\">Constructor / Prototype pattern</h2>\n\n\n\n<p>The combination of the constructor and prototype patterns is the most common way to define custom types.</p>\n\n\n\n<p>The constructor pattern defines object properties, while the prototype pattern defines methods and shared properties.</p>\n\n\n\n<p>By using this pattern,&nbsp;all objects of the custom type share the method and each of them has its own properties. This constructor/prototype takes the best parts of both constructor and prototype patterns.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function Animal(name) {\n    this.name = name;\n}\n\nAnimal.prototype.identify = function() {\n    console.log(\"I'm \" + this.name);\n}\n\nvar donald = new Animal('Donald');\ndonald.identify(); // I'm Donald\n\nvar bob = new Animal('Bob')\nbob.identify(); // I'm Bob</code></pre>\n\n\n\n\n\n\n\n<p>The following figure illustrates the relationships between objects in the constructor / prototype pattern.</p>\n\n\n\n<h2 id=\"parasitic_constructor_pattern\">Parasitic constructor pattern</h2>\n\n\n\n<p>In a parasitic constructor pattern, you create a constructor&nbsp;function that creates an object and returns that object.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function Animal(name) {\n    var o = new Object();\n    o.name = name;\n    o.identify = function() {\n        console.log(\"I'm \" + o.name);\n    }\n    return o;\n}</code></pre>\n\n\n\n<p>In this example, the Animal constructor function is the same as the one in the factory pattern. However, you call it as a constructor using the&nbsp;<code>new</code>&nbsp;operator.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>var dog = new Animal('Bingo');</code></pre>\n\n\n\n<p>By default, the&nbsp;<code>new</code>&nbsp;operator returns the object returned by the&nbsp;<code>constructor</code>&nbsp;function. If the&nbsp;<code>constructor</code>&nbsp;function does not return an object, the&nbsp;<code>new</code>&nbsp;operator creates that object instead.</p>\n\n\n\n<h2 id=\"durable_constructor_pattern\">Durable constructor pattern</h2>\n\n\n\n<p>A durable object is an object that does not have public property and its methods don’t reference to the&nbsp;<code>this</code>&nbsp;object.</p>\n\n\n\n<p>The durable objects are often used in secure environments where accessing&nbsp;<code>this</code>&nbsp;and&nbsp;<code>new</code>&nbsp;are not allowed.</p>\n\n\n\n<p>See the following example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function secureAnimal(name) {\n    var o = new Object();\n    o.identify = function() {\n        console.log(name); //  no this\n    }\n    return o;\n}\n\nvar alien = secureAnimal('?#@');\nalien.identify(); // ?#@</code></pre>\n\n\n\n<p>The&nbsp;<code>alien</code>&nbsp;is a durable object that does not allow the external code to access its members without calling its methods.</p>\n\n\n\n<p>In this tutorial, you have learned various patterns to create objects in JavaScript. Each pattern has pros and cons, choosing the appropriate one depends on your programming context.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>In the previous tutorial, you have learned how to create JavaScript objects using the object literal syntax. The object literal syntax is convenient for creating a single object. In case you want to create multiple similar objects, you need to&nbsp;use one of the following patterns: Factory pattern Constructor pattern Prototype pattern Constructor / prototype pattern Parasitic constructor [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [39],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3411"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/comments?post=3411"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3411/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/media?parent=3411"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/categories?post=3411"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/tags?post=3411"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 3413,
+    "date": "2020-11-30T06:08:42",
+    "date_gmt": "2020-11-30T06:08:42",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3413"
+    },
+    "modified": "2020-11-30T06:08:42",
+    "modified_gmt": "2020-11-30T06:08:42",
+    "slug": "prototypal-inheritance",
+    "status": "publish",
+    "type": "post",
+    "link": "https://computerprogramming.foobrdigital.com/prototypal-inheritance/",
+    "title": {
+      "rendered": "Prototypal Inheritance"
+    },
+    "content": {
+      "rendered": "\n<p>If you’ve been working with other object-oriented programming languages such as Java or C#, you’re familiar with the inheritance concept.</p>\n\n\n\n<p>In this programming paradigm, the class is a blueprint for objects. If you want a new class to reuse the functionality of another&nbsp;class, you create a new class that extends from an existing class. This is called&nbsp;<strong>classical inheritance</strong>.</p>\n\n\n\n<p>JavaScript doesn’t use classical inheritance. Instead, it uses <strong>prototypal inheritance</strong> i.e., an object can inherit properties from another object. The prototypal inheritance is achieved via the prototype linkage.</p>\n\n\n\n<h2>Inheritance and dunder proto (&nbsp;<code>__proto__</code>)</h2>\n\n\n\n<p>Suppose you&nbsp;have an object named&nbsp;<code>animal</code>&nbsp;that has a method called&nbsp;<code>walk().</code></p>\n\n\n\n<pre class=\"wp-block-code\"><code>let animal = {\n    walk: function() {\n        console.log('walking');\n    }\n}</code></pre>\n\n\n\n<p>And another object named&nbsp;<code>bird</code>&nbsp;that&nbsp;has a method named&nbsp;<code>fly()</code>.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let bird = {\n    fly: function() {\n        console.log('flying');\n    }\n}</code></pre>\n\n\n\n<p>Now, you want the&nbsp;<code>bird</code>&nbsp;object to inherit all properties from the&nbsp;<code>animal</code>&nbsp;object. To do this, you use the dunder proto (&nbsp;<code>__proto__</code>) property as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>bird.__proto__ = animal;</code></pre>\n\n\n\n<p>When you access a property of the&nbsp;<code>bird</code>&nbsp;object that does not exist, tje JavaScript engine follows the prototype chain and finds the property in the&nbsp;<code>animal</code>&nbsp;object as shown in the following example.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>bird.walk(); // walking</code></pre>\n\n\n\n<p>In this example, the&nbsp;<code>walk()</code>&nbsp;method doesn’t exist in the&nbsp;<code>bird</code>&nbsp;object, therefore, the JavaScript engine follows the prototype chain and finds it in the&nbsp;<code>animal</code>&nbsp;object.</p>\n\n\n\n<p>If the JavaScript engine can find a property in the&nbsp;<code>bird</code>&nbsp;object, it won’t follow the&nbsp;<code>__proto__</code>&nbsp;link as shown in the following example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>bird.fly(); // flying</code></pre>\n\n\n\n<p>Let’s add a new property to both&nbsp;<code>animal</code>&nbsp;and&nbsp;<code>bird</code>&nbsp;objects, and change the&nbsp;<code>walk()</code>&nbsp;method of the&nbsp;<code>animal</code>&nbsp;object.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let animal = {\n    legs: 4,\n    walk: function() {\n        console.log('walking on ' + this.legs + ' legs');\n    }\n};\n\nlet bird = {\n    legs: 2,\n    fly: function() {\n        console.log('flying');\n    }\n};\n\nbird.__proto__ = animal;</code></pre>\n\n\n\n<p>When you&nbsp;call the&nbsp;<code>walk()</code>&nbsp;method on the&nbsp;<code>bird</code>&nbsp;object:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>bird.walk();</code></pre>\n\n\n\n<p>Internally, the JavaScript engine executes the code in two steps.</p>\n\n\n\n<ol><li>First, find the&nbsp;<code>walk()</code>&nbsp;method in the&nbsp;<code>bird</code>&nbsp;object. Since there’s no&nbsp;<code>walk()</code>&nbsp;method there, it follows the prototype chain to look up the&nbsp;<code>walk()</code>&nbsp;method in the&nbsp;<code>animal</code>&nbsp;object.</li><li>Second, execute the&nbsp;<code>walk()</code>&nbsp;method with the&nbsp;<code>this</code>&nbsp;value set to the&nbsp;<code>bird</code>&nbsp;object, not&nbsp;<code>animal</code>&nbsp;object, &nbsp;so the&nbsp;<code>this.legs</code>&nbsp;property&nbsp;stores the value defined in the&nbsp;<code>bird</code>&nbsp;object.</li></ol>\n\n\n\n<p>When you call&nbsp;<code>bird.walk()</code>&nbsp;method, the&nbsp;<code>this</code>&nbsp;value references the&nbsp;<code>bird</code>&nbsp;object, not&nbsp;<code>animal</code>&nbsp;object.</p>\n\n\n\n<p>As a result, the&nbsp;<code>bird</code>&nbsp;object ( a.k.a the child object) calls the method of the&nbsp;<code>animal</code>&nbsp;object (a.ka. the parent object), but the&nbsp;&nbsp;<code>this</code>&nbsp;is set to&nbsp;<code>bird</code>&nbsp;object.</p>\n\n\n\n<p>By definition, the&nbsp;<code>bird</code>&nbsp;object inherits all properties from the&nbsp;<code>animal</code>&nbsp;object.</p>\n\n\n\n<p>Unfortunately, the dunder proto ( <code>__proto__</code>) has not been standardized until ES6. And ES6 introduced the <code>__proto__</code> as a standard for compatibility only. Therefore, you should never use <code>__proto__</code> in the production code.</p>\n\n\n\n<h2>JavaScript prototypal inheritance – the old way</h2>\n\n\n\n<p>Douglas Crockford had an article titled “Prototypal Inheritance in JavaScript” in 2006. He introduced a function that allows an object to inherit from another object without defining a custom type.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function object(o) {\n    function F(){};\n    F.prototype = o;\n    return new F();\n}</code></pre>\n\n\n\n<p>Essentially, the&nbsp;<code>object()</code>&nbsp;function performs a shallow&nbsp;copy of any object you passed into it.</p>\n\n\n\n<p>According to Crockford, you have an object that you want to use as the base&nbsp;of another object. First, you should pass this object into the&nbsp;<code>object()</code>&nbsp;function and get&nbsp;the resulting object i.e., the derived object. Then, you modify the derived&nbsp;object accordingly.</p>\n\n\n\n<p>See the following example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let animal = {\n    legs: 4,\n    walk: function() {\n        console.log('walking on ' + this.legs + ' legs');\n    }\n}\n\nlet bird = object(animal);\n\nbird.legs = 2;\nbird.fly = function() {\n    console.log('flying');\n}\n\nbird.walk(); // walking on 2 legs\nbird.fly(); // flying</code></pre>\n\n\n\n<p>In this example, the&nbsp;<code>bird</code>&nbsp;object inherits properties from the&nbsp;<code>animal</code>&nbsp;object as in the previous example.</p>\n\n\n\n<h2>A standard way to&nbsp;implement prototypal inheritance in ES5</h2>\n\n\n\n<p>ES5 provided a standard way to work with prototypal inheritance by using the&nbsp;<code>Object.create()</code>&nbsp;method.&nbsp;</p>\n\n\n\n<p>Note that you should now use the newer ES6 <code>class</code> and <code>extends</code> keywords to implement inheritance. It’s so much simpler.</p>\n\n\n\n<p>The&nbsp;<code>Object.create()</code>&nbsp;method creates a new object based on a specified prototype object.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Object.create(proto, &#91;propertiesObject])</code></pre>\n\n\n\n<p>The&nbsp;<code>Object.create()</code>&nbsp;method accepts two arguments. The first argument (<code>proto</code>) is an object to be used as the prototype for the new object. And the second argument (<code>propertiesObject</code>), if provided, is an optional object that defines additional properties for the new object.</p>\n\n\n\n<p>Suppose, you&nbsp;have an&nbsp;<code>animal</code>&nbsp;object as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let animal = {\n    legs: 4,\n    walk: function() {\n        console.log('walking on ' + this.legs + ' legs');\n    }\n}</code></pre>\n\n\n\n<p>The following creates an empty&nbsp;<code>bird</code>&nbsp;object with the&nbsp;&nbsp;<code>__proto__</code>&nbsp;of the&nbsp;<code>animal</code>&nbsp;object.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let bird = Object.create(animal);</code></pre>\n\n\n\n<p>Now, both&nbsp;<code>bird</code>&nbsp;and&nbsp;<code>animal</code>&nbsp;objects reference the same prototype object:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>console.log(bird.prototype === animal.prototype);</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>true</code></pre>\n\n\n\n<p>After that, you can add properties to the&nbsp;<code>bird</code>&nbsp;object.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>bird.legs = 2;\nbird.fly = function() {\n    console.log('flying');\n}</code></pre>\n\n\n\n<p>Or you can do all of these steps in one statement as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let bird = Object.create(animal, {\n    legs: { value: 2 } ,\n    fly: { value: function() {\n      console.log('flying');\n    }}\n});\n</code></pre>\n\n\n\n<p>ES5 introduced the&nbsp;<code>Object.getPrototypeOf()</code>&nbsp;method that returns the prototype of a specified object. For example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>console.log(Object.getPrototypeOf(bird) === animal);</code></pre>\n\n\n\n<p>In this tutorial, you have learned about the JavaScript prototypal inheritance and how to implement the prototypal inheritance using the&nbsp;<code>Object.create()</code>&nbsp;method.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>If you’ve been working with other object-oriented programming languages such as Java or C#, you’re familiar with the inheritance concept. In this programming paradigm, the class is a blueprint for objects. If you want a new class to reuse the functionality of another&nbsp;class, you create a new class that extends from an existing class. This [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [39],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3413"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/comments?post=3413"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3413/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/media?parent=3413"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/categories?post=3413"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/tags?post=3413"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 3415,
+    "date": "2020-11-30T06:10:37",
+    "date_gmt": "2020-11-30T06:10:37",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3415"
+    },
+    "modified": "2020-11-30T06:10:37",
+    "modified_gmt": "2020-11-30T06:10:37",
+    "slug": "java-script-this-keyword",
+    "status": "publish",
+    "type": "post",
+    "link": "https://computerprogramming.foobrdigital.com/java-script-this-keyword/",
+    "title": {
+      "rendered": "Java Script this Keyword"
+    },
+    "content": {
+      "rendered": "\n<p>If you have been working with other programming languages such as C++, Java, and PHP, you’re already familiar with the&nbsp;<code>this</code>&nbsp;keyword.</p>\n\n\n\n<p>In these languages, the&nbsp;<code>this&nbsp;</code>keyword represents the instance of the current object in the method of the class. And the&nbsp;<code>this</code>&nbsp;keyword is only relevant within a method of the class, meaning that you cannot use it outside of a method.</p>\n\n\n\n<p>JavaScript has the&nbsp;<code>this</code>&nbsp;keyword that behaves differently from other programming languages, which may confuse you at first.</p>\n\n\n\n<p>In JavaScript, you can use the <code>this</code> keyword in the global and function contexts. Moreover, the behavior of the  <code>this</code> keyword changes between strict and non-strict mode.</p>\n\n\n\n<h2>What is the&nbsp;<code>this</code>&nbsp;keyword</h2>\n\n\n\n<p>The&nbsp;<code>this</code>&nbsp;references the object of which the function is a property. In other words, the&nbsp;<code>this</code>&nbsp;references the object that is currently calling the function.</p>\n\n\n\n<p>Suppose that you have an object called&nbsp;<code>counter</code>. This object&nbsp;<code>counter</code>&nbsp;has a method called&nbsp;<code>next()</code>.</p>\n\n\n\n<p>When you call the&nbsp;<code>next()</code>&nbsp;method, you can access the&nbsp;<code>this</code>&nbsp;object.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>const counter = {\n    count: 0,\n    next: function () {\n        return ++this.count;\n    }\n};\n\ncounter.next();</code></pre>\n\n\n\n<p>Inside the&nbsp;<code>next()</code>&nbsp;function, the&nbsp;<code>this</code>&nbsp;references the&nbsp;<code>counter</code>&nbsp;object.</p>\n\n\n\n<p>See the following method call:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>counter.next();</code></pre>\n\n\n\n<p>The&nbsp;<code>next()</code>&nbsp;is a function which is the property of the&nbsp;<code>counter</code>&nbsp;object. Therefore, inside the&nbsp;<code>next()</code>&nbsp;function, the&nbsp;<code>this</code>&nbsp;references the&nbsp;<code>counter</code>&nbsp;object.</p>\n\n\n\n<p>By the way, when a function is a property of an object, it is called a method.</p>\n\n\n\n<h2>Global context</h2>\n\n\n\n<p>In the global context, the <code>this</code> references the global object, which is the <code>window</code> object on the web browser or <code>global</code> object on Node.js.</p>\n\n\n\n<p>This behavior is consistent whether the strict mode is applied or not, like this:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>console.log(this === window); // true</code></pre>\n\n\n\n<p>If you assign a property to&nbsp;<code>this</code>&nbsp;object in the global context, JavaScript will add the property to the global object as shown in the following example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>this.color= 'Red';\nconsole.log(window.color); // 'Red'</code></pre>\n\n\n\n<h2>Function context</h2>\n\n\n\n<p>In JavaScript, you can invoke a&nbsp;<a href=\"http://www.javascripttutorial.net/javascript-function/\">function</a>&nbsp;in the following ways:</p>\n\n\n\n<ul><li>Function invocation</li><li>Method invocation</li><li>Constructor invocation</li><li>Indirect invocation</li></ul>\n\n\n\n<p>Each function invocation defines its own context, therefore, the&nbsp;<code>this</code>&nbsp;behaves differently than you may expect.</p>\n\n\n\n<h3 id=\"function_invocation\">1) Simple function invocation</h3>\n\n\n\n<p>In the non-strict mode, the&nbsp;<code>this</code>&nbsp;references the global object when the function is called as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function show() {\n   console.log(this === window); // true\n}\n\nshow();</code></pre>\n\n\n\n<p>When you call the <code>show()</code> function, the <code>this</code> references the global object, which is the <code>window</code> on the web browser and <code>global</code> on Node.js.</p>\n\n\n\n<p>Calling the&nbsp;<code>show()</code>&nbsp;function is the same as:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>window.show();</code></pre>\n\n\n\n<p>In the strict mode, JavaScript sets the&nbsp;<code>this</code>&nbsp;to&nbsp;<code>undefined</code>. Consider the following example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>\"use strict\";\n\nfunction show() {\n    console.log(this === undefined);\n}\n\nshow();</code></pre>\n\n\n\n<p>To set the strict mode, you can use the directive&nbsp;<code>\"use strict\"</code>&nbsp;at the beginning of the file.</p>\n\n\n\n<p>If you want to apply the strict mode to a specific function only, you place it at the top of the function body.</p>\n\n\n\n<p>Note that the strict mode has been available since ECMAScript 5.1. The&nbsp;<code>strict</code>&nbsp;mode applies to both function and inner functions within the function. Here is an example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function show() {\n    \"use strict\";\n    console.log(this === undefined); // true\n\n    function display() {\n        console.log(this === undefined); // true\n    }\n    bar();\n}\n\nfoo();</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>true\ntrue</code></pre>\n\n\n\n<p>In the&nbsp;<code>display()</code>&nbsp;inner function, The&nbsp;<code>this</code>&nbsp;also set to&nbsp;<code>undefined</code>&nbsp;as shown in the console.</p>\n\n\n\n<h3 id=\"method_invocation\">2) Method invocation</h3>\n\n\n\n<p>When you call a method of an object, JavaScript sets&nbsp;<code>this</code>&nbsp;to the object that owns the method. See the following&nbsp;<code>car</code>&nbsp;object:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let car = {\n    brand: 'Honda',\n    getBrand: function () {\n        return this.brand;\n    }\n}\n\nconsole.log(car.getBrand()); // Honda</code></pre>\n\n\n\n<p>In this example, the&nbsp;<code>this</code>&nbsp;object in the&nbsp;<code>getBrand()</code>&nbsp;method references the&nbsp;<code>car</code>&nbsp;object.</p>\n\n\n\n<p>Since a method is a property of an object which is a value, you can store it in a variable.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let brand = car.getBrand;</code></pre>\n\n\n\n<p>And then call the method via the variable</p>\n\n\n\n<pre class=\"wp-block-code\"><code>console.log(brand()); // undefined</code></pre>\n\n\n\n<p>You get&nbsp;<code>undefined</code>&nbsp;instead of&nbsp;<code>\"Honda\"</code>&nbsp;because when you call a method without specifying its object, JavaScript sets&nbsp;<code>this</code>&nbsp;to the global object in non-strict mode and&nbsp;<code>undefined</code>&nbsp;in the strict mode.</p>\n\n\n\n<p>To fix this issue, you use the <code>bind()</code> method of the <code>Function.prototype</code> object. The <code>bind()</code> method creates a new function whose the <code>this</code> keyword is set to a specified value.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let brand = car.getBrand.bind(car);\nconsole.log(brand()); // Honda\n</code></pre>\n\n\n\n<p>In this example, when you call the&nbsp;<code>brand()</code>&nbsp;method, the&nbsp;<code>this</code>&nbsp;keyword is bound to the&nbsp;<code>car</code>&nbsp;object. For example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let car = {\n    brand: 'Honda',\n    getBrand: function () {\n        return this.brand;\n    }\n}\n\nlet bike = {\n    brand: 'Harley Davidson'\n}\n\nlet brand = car.getBrand.bind(bike);\nconsole.log(brand());</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Harley Davidson</code></pre>\n\n\n\n<p>In this example, the&nbsp;<code>bind()</code>&nbsp;method sets the&nbsp;<code>this</code>&nbsp;to the&nbsp;<code>bike</code>&nbsp;object, therefore, you see the value of the&nbsp;<code>brand</code>&nbsp;property of the&nbsp;<code>bike</code>&nbsp;object on the console.</p>\n\n\n\n<h3 id=\"constructor_invocation\">3) Constructor invocation</h3>\n\n\n\n<p>When you use the&nbsp;<code>new</code>&nbsp;keyword to create an instance of a function object, you use the function as a constructor.</p>\n\n\n\n<p>The following example declares a&nbsp;<code>Car</code>&nbsp;function, then invokes it as a constructor:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function Car(brand) {\n    this.brand = brand;\n}\n\nCar.prototype.getBrand = function () {\n    return this.brand;\n}\n\nvar car = new Car('Honda');\nconsole.log(car.getBrand());</code></pre>\n\n\n\n<p>The expression&nbsp;<code>new Car('Honda')</code>&nbsp;is a constructor invocation of the&nbsp;<code>Car</code>&nbsp;function.</p>\n\n\n\n<p>JavaScript creates a new object and sets&nbsp;<code>this</code>&nbsp;to the newly created object. This pattern works great with only one potential problem.</p>\n\n\n\n<p>Now, you can invoke the&nbsp;<code>Car()</code>&nbsp;as a function or as a constructor. If you omit the&nbsp;<code>new</code>&nbsp;keyword as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>var bmw = Car('BMW');\nconsole.log(bmw.brand);\n// => TypeError: Cannot read property 'brand' of undefined</code></pre>\n\n\n\n<p>Since the&nbsp;<code>this</code>&nbsp;value in the&nbsp;<code>Car()</code>&nbsp;sets to the global object, the&nbsp;<code>bmw.brand</code>&nbsp;returns&nbsp;<code>undefined</code>.</p>\n\n\n\n<p>To make sure that the&nbsp;<code>Car()</code>&nbsp;function is always invoked using constructor invocation, you add a check at the beginning of the&nbsp;<code>Car()</code>&nbsp;function as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function Car(brand) {\n    if (!(this instanceof Car)) {\n        throw Error('Must use the new operator to call the function');\n    }\n    this.brand = brand;\n}</code></pre>\n\n\n\n<p>ES6 introduced a meta-property named <code>new.target</code> that allows you to detect whether a function is invoked as a simple invocation or as a constructor.</p>\n\n\n\n<p>You can modify the&nbsp;<code>Car()</code>&nbsp;function that uses the&nbsp;<code>new.target</code>&nbsp;metaproperty as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function Car(brand) {\n    if (!new.target) {\n        throw Error('Must use the new operator to call the function');\n    }\n    this.brand = brand;\n}</code></pre>\n\n\n\n<h3 id=\"indirect_invocation\">4) Indirect Invocation</h3>\n\n\n\n<p>In JavaScript, functions are first-class citizens. In other words, functions are objects, which are instances of the Function type.</p>\n\n\n\n<p>The <code>Function</code> type has two methods: <code>call()</code> and <code>apply()</code> . These methods allow you to set the <code>this</code> value when calling a function. For example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function getBrand(prefix) {\n    console.log(prefix + this.brand);\n}\n\nlet honda = {\n    brand: 'Honda'\n};\nlet audi = {\n    brand: 'Audi'\n};\n\ngetBrand.call(honda, \"It's a \");\ngetBrand.call(audi, \"It's an \");</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>It's a Honda\nIt's an Audi</code></pre>\n\n\n\n<p>In this example, we called the&nbsp;<code>getBrand()</code>&nbsp;function indirectly using the&nbsp;<code>call()</code>&nbsp;method of the&nbsp;<code>getBrand</code>&nbsp;function. We passed&nbsp;<code>honda</code>&nbsp;and &nbsp;<code>audi</code>&nbsp;object as the first argument of the&nbsp;<code>call()</code>&nbsp;method, therefore, we got the corresponding brand in each call.</p>\n\n\n\n<p>The&nbsp;<code>apply()</code>&nbsp;method is similar to the&nbsp;<code>call()</code>&nbsp;method except that its second argument is an array of arguments.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>getBrand.apply(honda, &#91;\"It's a \"]); // \"It's a Honda\"\ngetBrand.apply(audi, &#91;\"It's an \"]); // \"It's a Audi\"</code></pre>\n\n\n\n<h2>Arrow functions</h2>\n\n\n\n<p>ES6 introduced a new concept named arrow function. In arrow functions, JavaScript sets the <code>this</code> lexically.</p>\n\n\n\n<p>It means the arrow function does not create its own execution context, but inherits the <code>this</code> from the outer function where the arrow function is defined. See the following example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let getThis = () => this;\nconsole.log(getThis() === window); // true</code></pre>\n\n\n\n<p>In this example, the&nbsp;<code>this</code>&nbsp;value is set to the global object i.e.,&nbsp;<code>window</code>&nbsp;in the web browser.</p>\n\n\n\n<p>Since an arrow function does not create its own execution context, defining a method using an arrow function will cause an issue. For example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function Car() {\n    this.speed = 120;\n}\n\nCar.prototype.getSpeed = () => {\n    return this.speed;\n}\n\nvar car = new Car();\ncar.getSpeed(); // TypeError</code></pre>\n\n\n\n<p>Inside the&nbsp;<code>getSpeed()</code>&nbsp;method, the&nbsp;<code>this</code>&nbsp;value reference the global object, not the&nbsp;<code>Car</code>&nbsp;object. Therefore the&nbsp;<code>car.getSpeed()</code>&nbsp;invocation causes an error because the global object does not have the&nbsp;<code>speed</code>&nbsp;property.</p>\n\n\n\n<p>In this tutorial, you have learned how JavaScript&nbsp;<code>this</code>&nbsp;behaves in different contexts.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>If you have been working with other programming languages such as C++, Java, and PHP, you’re already familiar with the&nbsp;this&nbsp;keyword. In these languages, the&nbsp;this&nbsp;keyword represents the instance of the current object in the method of the class. And the&nbsp;this&nbsp;keyword is only relevant within a method of the class, meaning that you cannot use it outside [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [39],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3415"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/comments?post=3415"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3415/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/media?parent=3415"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/categories?post=3415"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/tags?post=3415"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 3417,
+    "date": "2020-11-30T06:12:47",
+    "date_gmt": "2020-11-30T06:12:47",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3417"
+    },
+    "modified": "2020-11-30T06:12:47",
+    "modified_gmt": "2020-11-30T06:12:47",
+    "slug": "forin-loop",
+    "status": "publish",
+    "type": "post",
+    "link": "https://computerprogramming.foobrdigital.com/forin-loop/",
+    "title": {
+      "rendered": "For…in Loop"
+    },
+    "content": {
+      "rendered": "\n<h2>Introduction to JavaScript&nbsp;<code>for...in</code>&nbsp;loop</h2>\n\n\n\n<p>The <code>for...in</code> loop over the enumerable properties that are keyed by strings of an object. Note that a property can be keyed by a string or a symbol.</p>\n\n\n\n<p>A property is enumerable when its internal&nbsp;<code>enumerable</code>&nbsp;flag is set to&nbsp;<code>true</code>.</p>\n\n\n\n<p>The&nbsp;<code>enumerable</code>&nbsp;flag defaults to&nbsp;<code>true</code>&nbsp;when a property is created via a simple assignment or via a property initializer:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>object.propertyName = value;\n</code></pre>\n\n\n\n<p>or</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let obj = {\n    propertyName: value,\n    ...\n};\n</code></pre>\n\n\n\n<p>The following shows the syntax of the&nbsp;<code>for...in</code>&nbsp;loop:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>for(const propertyName in object) {\n    // ...\n}\n</code></pre>\n\n\n\n<p>The&nbsp;<code>for...in</code>&nbsp; allows you to access each property and value of an object without knowing the specific name of the property. For example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>var person = {\n    firstName: 'John',\n    lastName: 'Doe',\n    ssn: '299-24-2351'\n};\n\nfor(var prop in person) {\n    console.log(prop + ':' + person&#91;prop]);\n}\n</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>firstName:John\nlastName:Doe\nssn:299-24-2351\n</code></pre>\n\n\n\n<p>In this example, we used the&nbsp;<code>for...in</code>&nbsp;loop to iterate over the properties of the person object. We accessed the value of each property using the following syntax:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>object&#91;property];\n</code></pre>\n\n\n\n<h2>The&nbsp;<code>for...in</code>&nbsp;loop &amp; inheritance</h2>\n\n\n\n<p>When you loop over properties of an object that inherits from another object, the <code>for...in</code> statement goes up in the prototype chain and enumerates over inherited properties. Consider the following example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>var decoration = {\n    color: 'red'\n};\n\nvar circle = Object.create(decoration);\ncircle.radius = 10;\n\n\nfor(const prop in circle) {\n    console.log(prop);\n}\n</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>radius\ncolor\n</code></pre>\n\n\n\n<p>The&nbsp;<code>circle</code>&nbsp;object has its own prototype that references the&nbsp;<code>decoration</code>&nbsp;object. Therefore, the&nbsp;<code>for...in</code>&nbsp;loop displays the properties of the&nbsp;<code>circle</code>&nbsp;object and its prototype.</p>\n\n\n\n<p>If you want to enumerate only the own properties of an object, you use the <code>hasOwnProperty()</code> method:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>for(const prop in circle) {\n    if(circle.hasOwnProperty(prop)) {\n        console.log(prop);\n    }\n}\n</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>radius\n</code></pre>\n\n\n\n<h2>The&nbsp;<code>for...in</code>&nbsp;loop and Array</h2>\n\n\n\n<p>It’s good practice to not use the <code>for...in</code> to iterate over an array, especially when the order of the array elements is important.</p>\n\n\n\n<p>The following example works flawlessly:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>const items = &#91;10 , 20, 30];\nlet total = 0;\n\nfor(const item in items) {\n    total += items&#91;item];\n}\nconsole.log(total); \n</code></pre>\n\n\n\n<p>However, someone may set a property of the built-in <code>Array</code> type in their libraries as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Array.prototype.foo = 100;\n</code></pre>\n\n\n\n<p>Hence, the&nbsp;<code>for...in</code>&nbsp;will not work correctly:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>for(var prop in items) {\n    total += items&#91;prop];\n}\nconsole.log(total); \n</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>220\n</code></pre>\n\n\n\n<p>Or another example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>var arr = &#91;];\n// set the third element to 3, other elements are `undefined`\narr&#91;2] = 3; \n\nfor (let i = 0; i &lt; arr.length; i++) {\n    console.log(arr&#91;i]);    \n}\n</code></pre>\n\n\n\n<p>The output shows three elements of the array, which is correct:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>undefined\nundefined\n3\n</code></pre>\n\n\n\n<p>However, the&nbsp;<code>for...in</code>&nbsp;loop ignores the first two elements:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>for (const key in arr) {\n    console.log(arr&#91;key]);\n}\n</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>3\n</code></pre>\n\n\n\n<p>The output shows only the third element, not the first two elements.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Introduction to JavaScript&nbsp;for&#8230;in&nbsp;loop The for&#8230;in loop over the enumerable properties that are keyed by strings of an object. Note that a property can be keyed by a string or a symbol. A property is enumerable when its internal&nbsp;enumerable&nbsp;flag is set to&nbsp;true. The&nbsp;enumerable&nbsp;flag defaults to&nbsp;true&nbsp;when a property is created via a simple assignment or via a property initializer: or The following shows [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [39],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3417"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/comments?post=3417"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3417/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/media?parent=3417"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/categories?post=3417"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/tags?post=3417"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 3419,
+    "date": "2020-11-30T06:13:52",
+    "date_gmt": "2020-11-30T06:13:52",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3419"
+    },
+    "modified": "2020-11-30T06:13:52",
+    "modified_gmt": "2020-11-30T06:13:52",
+    "slug": "enumerable-properties",
+    "status": "publish",
+    "type": "post",
+    "link": "https://computerprogramming.foobrdigital.com/enumerable-properties/",
+    "title": {
+      "rendered": "Enumerable Properties"
+    },
+    "content": {
+      "rendered": "\n<h2>Introduction to JavaScript enumerable properties</h2>\n\n\n\n<p>In JavaScript, an object is an unordered list of key-value pairs. The key is usually a string or a symbol. The value can be a value of any primitive type (string, boolean, number, undefined, or null), an object, or a function.</p>\n\n\n\n<p>The following example creates a new object using the object literal syntax:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>const person = {\n    firstName: 'John',\n    lastName: 'Doe\n};\n</code></pre>\n\n\n\n<p>The&nbsp;<code>person</code>&nbsp;object has two properties:&nbsp;<code>firstName</code>&nbsp;and&nbsp;<code>lastName</code>.</p>\n\n\n\n<p>An object property has several internal attributes including <code>value</code>, <code>writable</code>, <code>enumerable</code> and <code>configurable</code>. See the Object properties for more details.</p>\n\n\n\n<p>The <code>enumerable</code> attribute determines whether or not a property is accessible when the object’s properties are enumerated using the <code>for...in</code> loop or <code>Object.keys()</code> method.</p>\n\n\n\n<p>By default, all properties created via a simple assignment or via a property initializer are enumerable. For example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>const person = {\n    firstName: 'John',\n    lastName: 'Doe'\n};\n\nperson.age = 25;\n\nfor (const key in person) {\n    console.log(key);\n}\n</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>firstName\nlastName\nage</code></pre>\n\n\n\n<p>In this example:</p>\n\n\n\n<ul><li>The&nbsp;<code>firstName</code>&nbsp;and&nbsp;<code>lastName</code>&nbsp;are enumerable properties because they are created via a property initializer.</li><li>The&nbsp;<code>age</code>&nbsp;property is also enumerable because it is created via a simple assignment.</li></ul>\n\n\n\n<p>To change the internal&nbsp;<code>enumerable</code>&nbsp;attribute of a property, you use the&nbsp;<code>Object.defineProperty()</code>&nbsp;method. For example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>const person = {\n    firstName: 'John',\n    lastName: 'Doe'\n};\n\nperson.age = 25;\n\nObject.defineProperty(person, 'ssn', {\n    enumerable: false,\n    value: '123-456-7890'\n});\n\nfor (const key in person) {\n    console.log(key);\n}\n</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>firstName\nlastName\nage\n</code></pre>\n\n\n\n<p>In this example, the&nbsp;<code>ssn</code>&nbsp;property is created with the&nbsp;<code>enumerable</code>&nbsp;flag sets to&nbsp;<code>false</code>, therefore it does not show up in the&nbsp;<code>for...in</code>&nbsp;loop.</p>\n\n\n\n<p>ES6 provides a method&nbsp;<code>propertyIsEnumerable()</code>&nbsp;that determines whether or not a property is enumerable. It returns&nbsp;<code>true</code>&nbsp;if the property is enumerable; otherwise&nbsp;<code>false</code>. For example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>const person = {\n    firstName: 'John',\n    lastName: 'Doe'\n};\n\nperson.age = 25;\n\nObject.defineProperty(person, 'ssn', {\n    enumerable: false,\n    value: '123-456-7890'\n});\n\n\nconsole.log(person.propertyIsEnumerable('firstName')); // => true\nconsole.log(person.propertyIsEnumerable('lastName')); // => true\nconsole.log(person.propertyIsEnumerable('age')); // => true\nconsole.log(person.propertyIsEnumerable('ssn')); // => false\n</code></pre>\n\n\n\n<h2>Summary</h2>\n\n\n\n<ul><li>A property is enumerable if it has the&nbsp;<code>enumerable</code>&nbsp;attribute sets to&nbsp;<code>true</code>. The&nbsp;<code>obj.propertyIsEnumerable()</code>&nbsp;determines whether or not a property is enumerable.</li><li>A property created via a simple assignment or a property initializer is enumerable.</li></ul>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Introduction to JavaScript enumerable properties In JavaScript, an object is an unordered list of key-value pairs. The key is usually a string or a symbol. The value can be a value of any primitive type (string, boolean, number, undefined, or null), an object, or a function. The following example creates a new object using the object literal syntax: The&nbsp;person&nbsp;object has two [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [39],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3419"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/comments?post=3419"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3419/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/media?parent=3419"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/categories?post=3419"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/tags?post=3419"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 3421,
+    "date": "2020-11-30T06:15:04",
+    "date_gmt": "2020-11-30T06:15:04",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3421"
+    },
+    "modified": "2020-11-30T06:15:04",
+    "modified_gmt": "2020-11-30T06:15:04",
+    "slug": "own-properties",
+    "status": "publish",
+    "type": "post",
+    "link": "https://computerprogramming.foobrdigital.com/own-properties/",
+    "title": {
+      "rendered": "Own Properties"
+    },
+    "content": {
+      "rendered": "\n<p>In JavaScript, an object is a collection of properties, where each property a key-value pair.</p>\n\n\n\n<p>This example creates a new object called&nbsp;<code>person</code>&nbsp;using an object initializer:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>const person = {\n    firstName: 'John',\n    lastName: 'Doe'\n};\n</code></pre>\n\n\n\n<p>The&nbsp;<code>person</code>&nbsp;object has two properties:&nbsp;<code>firstName</code>&nbsp;and&nbsp;<code>lastName</code>.</p>\n\n\n\n<p>JavaScript uses prototypal inheritance. Therefore, a property of an object can be either <strong>own</strong> or <strong>inherited</strong>.</p>\n\n\n\n<p>A property that is defined directly on an object is&nbsp;<strong>own</strong>&nbsp;while a property that the object receives from its prototype is&nbsp;<strong>inherited</strong>.</p>\n\n\n\n<p>The following creates an object called&nbsp;<code>employee</code>&nbsp;that inherits from the&nbsp;<code>person</code>&nbsp;object:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>const employee = Object.create(person, {\n    job: {\n        value: 'JS Developer',\n        enumerable: true\n    }\n});\n</code></pre>\n\n\n\n<p>The&nbsp;<code>employee</code>&nbsp;object has its own property&nbsp;<code>job</code>, and inherits&nbsp;<code>firstName</code>&nbsp;and&nbsp;<code>lastName</code>&nbsp;properties from its prototype&nbsp;<code>person</code>.</p>\n\n\n\n<p>The&nbsp;<code>hasOwnProperty()</code>&nbsp;method returns&nbsp;<code>true</code>&nbsp;if a property is own. For example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>console.log(employee.hasOwnProperty('job')); // => true\nconsole.log(employee.hasOwnProperty('firstName')); // => false\nconsole.log(employee.hasOwnProperty('lastName')); // => false\nconsole.log(employee.hasOwnProperty('ssn')); // => false</code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>In JavaScript, an object is a collection of properties, where each property a key-value pair. This example creates a new object called&nbsp;person&nbsp;using an object initializer: The&nbsp;person&nbsp;object has two properties:&nbsp;firstName&nbsp;and&nbsp;lastName. JavaScript uses prototypal inheritance. Therefore, a property of an object can be either own or inherited. A property that is defined directly on an object is&nbsp;own&nbsp;while a property that the object receives from [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [39],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3421"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/comments?post=3421"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3421/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/media?parent=3421"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/categories?post=3421"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/tags?post=3421"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 3423,
+    "date": "2020-11-30T06:15:49",
+    "date_gmt": "2020-11-30T06:15:49",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3423"
+    },
+    "modified": "2020-11-30T06:15:49",
+    "modified_gmt": "2020-11-30T06:15:49",
+    "slug": "primitive-vs-reference-values",
+    "status": "publish",
+    "type": "post",
+    "link": "https://computerprogramming.foobrdigital.com/primitive-vs-reference-values/",
+    "title": {
+      "rendered": "Primitive vs. Reference Values"
+    },
+    "content": {
+      "rendered": "\n<h2>Accessing by value and reference</h2>\n\n\n\n<p>In JavaScript, a variable may store two types of values: primitive and reference.</p>\n\n\n\n<p>JavaScript provides six primitive types as&nbsp;<code>undefined</code>,&nbsp;<code>null</code>,&nbsp;<code>boolean</code>,&nbsp;<code>number</code>,&nbsp;<code>string</code>, and&nbsp;<code>symbol</code>&nbsp;,&nbsp;and a reference type&nbsp;<code>object</code>.</p>\n\n\n\n<p>The size of a primitive value is fixed, therefore, JavaScript stores the primitive value on the stack.</p>\n\n\n\n<p>On the other hand, the size of a reference value is dynamic so JavaScript stores the reference value on the heap.</p>\n\n\n\n<p>When you assign a value to a variable, the JavaScript engine will determine whether the value is a primitive or reference value.</p>\n\n\n\n<p>If the value is a primitive value, when you access the variable, you manipulate the&nbsp;<strong>actual value</strong>&nbsp;stored in that variable. In other words, the variable that stores a primitive value is&nbsp;<strong>accessed by value</strong>.</p>\n\n\n\n<p>Unlike a primitive value, when you manipulate an object, you work on the&nbsp;<strong>reference</strong>&nbsp;of that object, rather than the actual object. It means a&nbsp;variable that stores an object is&nbsp;<strong>accessed by reference</strong>.</p>\n\n\n\n<p>To determine the type of a primitive value you use the&nbsp;<code>typeof</code>&nbsp;operator. For example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let x = 10;\nconsole.log(typeof(x)); // number</code></pre>\n\n\n\n<p>And</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let str = 'JS';\nconsole.log(typeof(str)); // string</code></pre>\n\n\n\n<p>To find the type of a reference value, you use the&nbsp;<code>instanceof</code>&nbsp;operator:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let refType = variable instanceof constructor;</code></pre>\n\n\n\n<p>For example, the following <code>rgb</code> variable is an instance of the <code>Array</code> object:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let rgb = &#91;'red','green','blue'];\nconsole.log(rgb instanceof Array); // true</code></pre>\n\n\n\n<h2>Copying primitive values</h2>\n\n\n\n<p>When you assign a variable that stores a primitive value to another, the value stored in the variable&nbsp;is created and copied into the new variable.</p>\n\n\n\n<p>Let’s take a look at the following example.</p>\n\n\n\n<p>First, declare a variable a and initialize its value to 10.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>var a = 10;</code></pre>\n\n\n\n<p>Second, declare another variable&nbsp;<code>b</code>&nbsp;and assign it a value of the variable&nbsp;<code>a</code>. Internally, JavaScript engine&nbsp;copies the value stored in &nbsp;<code>a</code>&nbsp;into the location of&nbsp;<code>b</code>.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>var b = a;</code></pre>\n\n\n\n<p>Third, assign the variable&nbsp;<code>b</code>&nbsp;new value 20.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>b = 20;</code></pre>\n\n\n\n<p>Since&nbsp;<code>a</code>&nbsp;and&nbsp;<code>b</code>&nbsp;have no relationship, when you change the value stored in the&nbsp;<code>b</code>&nbsp;variable, the value of the&nbsp;<code>a&nbsp;</code>variable doesn’t change.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>console.log(a); // 10;\nconsole.log(b); // 20;</code></pre>\n\n\n\n<h2>Copying reference values</h2>\n\n\n\n<p>When you assign a reference value from one variable to another, the value stored in the variable is also copied into the location of the new variable.</p>\n\n\n\n<p>The difference is that the values stored in both variables now are the address of the actual object stored on the heap. As a result, both variables are referencing the same object.</p>\n\n\n\n<p>Consider the following example.</p>\n\n\n\n<p>First, declare a variable&nbsp;<code>x</code>&nbsp;that holds an object whose name property is&nbsp;<code>'John'</code>.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>var x = {name: 'John'};</code></pre>\n\n\n\n<p>Second, declare another variable y and assign the&nbsp;<code>x</code>&nbsp;variable&nbsp;to&nbsp;<code>y</code>. Both&nbsp;<code>x</code>&nbsp;and&nbsp;<code>y</code>&nbsp;are now referencing the same object on the heap.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>var y = x;</code></pre>\n\n\n\n<p>Third, modify the&nbsp;value stored in the&nbsp;<code>name</code>&nbsp;property of the object using the&nbsp;<code>y</code>&nbsp;variable.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>y.name = 'David';</code></pre>\n\n\n\n<p>Since both&nbsp;<code>x</code>&nbsp;and&nbsp;<code>y</code>&nbsp;are referencing the same object, the change is also reflected if you access the object using the&nbsp;<code>x</code>&nbsp;variable.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>console.log(x.name); // 'David'</code></pre>\n\n\n\n\n\n\n\n<p>In this tutorial, you have learned about accessing by value and by reference, and also the differences between them.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Accessing by value and reference In JavaScript, a variable may store two types of values: primitive and reference. JavaScript provides six primitive types as&nbsp;undefined,&nbsp;null,&nbsp;boolean,&nbsp;number,&nbsp;string, and&nbsp;symbol&nbsp;,&nbsp;and a reference type&nbsp;object. The size of a primitive value is fixed, therefore, JavaScript stores the primitive value on the stack. On the other hand, the size of a reference value is dynamic so JavaScript [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [39],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3423"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/comments?post=3423"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3423/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/media?parent=3423"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/categories?post=3423"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/tags?post=3423"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 3425,
+    "date": "2020-11-30T06:16:23",
+    "date_gmt": "2020-11-30T06:16:23",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3425"
+    },
+    "modified": "2020-11-30T06:16:23",
+    "modified_gmt": "2020-11-30T06:16:23",
+    "slug": "primitive-wrapper-types",
+    "status": "publish",
+    "type": "post",
+    "link": "https://computerprogramming.foobrdigital.com/primitive-wrapper-types/",
+    "title": {
+      "rendered": "Primitive Wrapper Types"
+    },
+    "content": {
+      "rendered": "\n<h2>Introduction to primitive wrapper types</h2>\n\n\n\n<p>JavaScript provides three primitive wrapper types: Boolean, Number, and String types.</p>\n\n\n\n<p>The primitive wrapper types make it easier to use primitive values including booleans, numbers, and strings.</p>\n\n\n\n<p>See the following example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let language = 'JavaScript';\nlet s = language.substring(4);\nconsole.log(s);  // Script\n</code></pre>\n\n\n\n<p>In this example, The variable&nbsp;<code>language</code>&nbsp;holds a primitive string value. It doesn’t have any method like&nbsp;<code>substring()</code>. However, the above code works perfectly.</p>\n\n\n\n<p>When you call a method on a variable that holds a number, a string, or a boolean, JavaScript performs the following steps behind the scenes:</p>\n\n\n\n<ul><li>Create an object of a corresponding type.</li><li>Call a specific method on the instance.</li><li>Delete the instance immediately.</li></ul>\n\n\n\n<p>So the following code</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let language = 'JavaScript';\nlet str = language.substring(4);</code></pre>\n\n\n\n<p>is technically equivalent to the following code:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let language = 'JavaScript';\n// behind the scenes of the language.substring(4);\nlet tmp = new String(language);\nstr = temp.substring(4);\ntemp = null;</code></pre>\n\n\n\n<h2>Primitive wrapper types vs. reference types</h2>\n\n\n\n<p>When you create an object of a reference type using the&nbsp;<code>new</code>&nbsp;operator, the object will stay in the memory until it goes out of scope.</p>\n\n\n\n<p>The following variable&nbsp;<code>s</code>&nbsp;will stay on the heap until it goes out of the scope:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let s = new String('JavaScript');\nconsole.log(s);</code></pre>\n\n\n\n<p>However, an automatically created primitive wrapper object exists for one line of code only. See the following example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let s = 'JavaScript';\ns.language = 'ECMAScript';\nconsole.log(s.language); // undefined\n</code></pre>\n\n\n\n<p>In this example, we attempted to access the&nbsp;<code>language</code>&nbsp;property of the&nbsp;<code>s</code>&nbsp;variable and received a value of&nbsp;<code>undefined</code>&nbsp;instead of&nbsp;<code>'ECMAScript'</code>:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>console.log(s.language); // undefined</code></pre>\n\n\n\n<p>The reason is that the following code creates a&nbsp;<code>String</code>&nbsp;object and assigns a value to the&nbsp;<code>language</code>&nbsp;property.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>s.language = 'ECMAScript';</code></pre>\n\n\n\n<p>However, the String object with the&nbsp;<code>language</code>&nbsp;property only exists during the execution of this line of code.</p>\n\n\n\n<p>It’s not recommended to explicitly create primitive wrapper objects like the following:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let n = new Number(10);\nlet s = new String('JS');\nlet b = new Boolean(false);\n</code></pre>\n\n\n\n<p>However, you should know which methods are available for a primitive value in order to manipulate it more effectively.</p>\n\n\n\n<p>In this tutorial, you have learned about the JavaScript primitive wrapper types for Booleans, numbers, and strings.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Introduction to primitive wrapper types JavaScript provides three primitive wrapper types: Boolean, Number, and String types. The primitive wrapper types make it easier to use primitive values including booleans, numbers, and strings. See the following example: In this example, The variable&nbsp;language&nbsp;holds a primitive string value. It doesn’t have any method like&nbsp;substring(). However, the above code works perfectly. When you [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [39],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3425"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/comments?post=3425"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3425/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/media?parent=3425"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/categories?post=3425"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/tags?post=3425"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  }
+]

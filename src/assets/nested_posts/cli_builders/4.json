@@ -1,0 +1,202 @@
+[
+  {
+    "id": 4679,
+    "date": "2021-02-27T08:47:31",
+    "date_gmt": "2021-02-27T08:47:31",
+    "guid": {
+      "rendered": "http://angular.foobrdigital.com/?p=4679"
+    },
+    "modified": "2021-02-27T08:47:31",
+    "modified_gmt": "2021-02-27T08:47:31",
+    "slug": "introduction-15",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/introduction-15/",
+    "title": {
+      "rendered": "Introduction"
+    },
+    "content": {
+      "rendered": "\n<p>Use integration testing for your builder, so that you can use the Architect scheduler to create a context, as in this&nbsp;<a href=\"https://github.com/mgechev/cli-builders-demo\">example</a>.</p>\n\n\n\n<ul><li>In the builder source directory, we have created a new test file&nbsp;<code>my-builder.spec.ts</code>. The code creates new instances of&nbsp;<code>JsonSchemaRegistry</code>&nbsp;(for schema validation),&nbsp;<code>TestingArchitectHost</code>&nbsp;(an in-memory implementation of&nbsp;<code>ArchitectHost</code>), and&nbsp;<code>Architect</code>.</li><li>We&#8217;ve added a&nbsp;<code>builders.json</code>&nbsp;file next to the builder&#8217;s&nbsp;<a href=\"https://github.com/mgechev/cli-builders-demo/blob/master/command-builder/builders.json\"><code>package.json</code>&nbsp;file</a>, and modified the package file to point to it.</li></ul>\n\n\n\n<p>Here\u2019s an example of a test that runs the command builder. The test uses the builder to run the&nbsp;<code>node --print 'foo'</code>&nbsp;command, then validates that the&nbsp;<code>logger</code>&nbsp;contains an entry for&nbsp;<code>foo</code>.src/my-builder.spec.ts</p>\n\n\n\n<pre class=\"wp-block-code\"><code>content_copy<code>import { Architect } from '@angular-devkit/architect';\nimport { TestingArchitectHost } from '@angular-devkit/architect/testing';\nimport { logging, schema } from '@angular-devkit/core';\n\ndescribe('Command Runner Builder', () =&gt; {\n  let architect: Architect;\n  let architectHost: TestingArchitectHost;\n\n  beforeEach(async () =&gt; {\n    const registry = new schema.CoreSchemaRegistry();\n    registry.addPostTransform(schema.transforms.addUndefinedDefaults);\n\n    // TestingArchitectHost() takes workspace and current directories.\n    // Since we don't use those, both are the same in this case.\n    architectHost = new TestingArchitectHost(__dirname, __dirname);\n    architect = new Architect(architectHost, registry);\n\n    // This will either take a Node package name, or a path to the directory\n    // for the package.json file.\n    await architectHost.addBuilderFromPackage('..');\n  });\n\n  it('can run node', async () =&gt; {\n    // Create a logger that keeps an array of all messages that were logged.\n    const logger = new logging.Logger('');\n    const logs = &#91;];\n    logger.subscribe(ev =&gt; logs.push(ev.message));\n\n    // A \"run\" can have <a href=\"https://angular.io/api/forms/SelectMultipleControlValueAccessor\">multiple</a> outputs, and contains progress information.\n    const run = await architect.scheduleBuilder('@example/command-runner:command', {\n      command: 'node',\n      args: &#91;'--print', '\\'foo\\''],\n    }, { logger });  // We pass the logger for checking later.\n\n    // The \"result\" member (of type BuilderOutput) is the next output.\n    const output = await run.result;\n\n    // Stop the builder from running. This stops Architect from keeping\n    // the builder-associated states in memory, since builders keep waiting\n    // to be scheduled.\n    await run.stop();\n\n    // Expect that foo was logged\n    expect(logs).toContain('foo');\n  });\n});</code></code></pre>\n\n\n\n<p>When running this test in your repo, you need the&nbsp;<a href=\"https://github.com/TypeStrong/ts-node\"><code>ts-node</code></a>&nbsp;package. You can avoid this by renaming&nbsp;<code>my-builder.spec.ts</code>&nbsp;to&nbsp;<code>my-builder.spec.js</code>.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Use integration testing for your builder, so that you can use the Architect scheduler to create a context, as in this&nbsp;example. In the builder source directory, we have created a new test file&nbsp;my-builder.spec.ts. The code creates new instances of&nbsp;JsonSchemaRegistry&nbsp;(for schema validation),&nbsp;TestingArchitectHost&nbsp;(an in-memory implementation of&nbsp;ArchitectHost), and&nbsp;Architect. We&#8217;ve added a&nbsp;builders.json&nbsp;file next to the builder&#8217;s&nbsp;package.json&nbsp;file, and modified the [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [252],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4679"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=4679"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4679/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4680,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4679/revisions/4680"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=4679"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=4679"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=4679"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 4681,
+    "date": "2021-02-27T08:48:11",
+    "date_gmt": "2021-02-27T08:48:11",
+    "guid": {
+      "rendered": "http://angular.foobrdigital.com/?p=4681"
+    },
+    "modified": "2021-02-27T08:48:11",
+    "modified_gmt": "2021-02-27T08:48:11",
+    "slug": "watch-mode",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/watch-mode/",
+    "title": {
+      "rendered": "Watch mode"
+    },
+    "content": {
+      "rendered": "\n<p>Architect expects builders to run once (by default) and return. This behavior is not entirely compatible with a builder that watches for changes (like Webpack, for example). Architect can support watch mode, but there are some things to look out for.</p>\n\n\n\n<ul><li>To be used with watch mode, a builder handler function should return an Observable. Architect subscribes to the Observable until it completes and might reuse it if the builder is scheduled again with the same arguments.</li><li>The builder should always emit a&nbsp;<code>BuilderOutput</code>&nbsp;object after each execution. Once it\u2019s been executed, it can enter a watch mode, to be triggered by an external event. If an event triggers it to restart, the builder should execute the&nbsp;<code>BuilderContext.reportRunning()</code>&nbsp;function to tell Architect that it is running again. This prevents Architect from stopping the builder if another run is scheduled.</li></ul>\n\n\n\n<p>When your builder calls&nbsp;<code>BuilderRun.stop()</code>&nbsp;to exit watch mode, Architect unsubscribes from the builder\u2019s Observable and calls the builder\u2019s teardown logic to clean up. (This behavior also allows for long running builds to be stopped and cleaned up.)</p>\n\n\n\n<p>In general, if your builder is watching an external event, you should separate your run into three phases.</p>\n\n\n\n<ol><li><strong>Running</strong>&nbsp;For example, webpack compiles. This ends when webpack finishes and your builder emits a&nbsp;<code>BuilderOutput</code>&nbsp;object.</li><li><strong>Watching</strong>&nbsp;Between two runs, watch an external event stream. For example, webpack watches the file system for any changes. This ends when webpack restarts building, and&nbsp;<code>BuilderContext.reportRunning()</code>&nbsp;is called. This goes back to step 1.</li><li><strong>Completion</strong>&nbsp;Either the task is fully completed (for example, webpack was supposed to run a number of times), or the builder run was stopped (using&nbsp;<code>BuilderRun.stop()</code>). Your teardown logic is executed, and Architect unsubscribes from your builder\u2019s Observable.</li></ol>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Architect expects builders to run once (by default) and return. This behavior is not entirely compatible with a builder that watches for changes (like Webpack, for example). Architect can support watch mode, but there are some things to look out for. To be used with watch mode, a builder handler function should return an Observable. [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [252],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4681"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=4681"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4681/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4682,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4681/revisions/4682"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=4681"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=4681"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=4681"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  }
+]

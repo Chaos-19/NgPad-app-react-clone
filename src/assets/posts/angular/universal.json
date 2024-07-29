@@ -1,0 +1,88 @@
+[
+  {
+    "id": 3941,
+    "date": "2020-12-12T06:01:02",
+    "date_gmt": "2020-12-12T06:01:02",
+    "guid": { "rendered": "http://angular.foobrdigital.com/?p=3941" },
+    "modified": "2020-12-12T06:01:24",
+    "modified_gmt": "2020-12-12T06:01:24",
+    "slug": "server-side-rendering-using-angular-universal",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/server-side-rendering-using-angular-universal/",
+    "title": { "rendered": "Server Side Rendering Using Angular Universal" },
+    "content": {
+      "rendered": "\n<h2>What is Angular Universal</h2>\n\n\n\n<p>The Angular Universal renders the HTML view of the requested URL at the server, before sending it to the user’s browser. This will make the app load faster and more importantly search engine friendly.</p>\n\n\n\n<h2>Why Server Side rendering required</h2>\n\n\n\n<p>The Angular apps are single-page applications. They consist of lots of javascript code. These Javascript codes run on the client’s browser and generate an HTML view on the fly. The app does not send any request to the server when the user navigates from one page to another page. The Browser does all the renderings of the page. App sends requests only for data &amp; static resources like images to the backend. This makes the app work very fast for the user.</p>\n\n\n\n<p>But it is search engines who bring users to the site. They assign ranks to each page based on several factors. Speed &amp; Content are the two of the topmost ranking factors. This is where SPA frameworks like Angular suffer.</p>\n\n\n\n<h3>Speed</h3>\n\n\n\n<p>The initial loading of the Angular apps is slow because,</p>\n\n\n\n<ol><li>It needs to download a lot of JavaScript files</li><li>Execute the JavaScript and render the HTML to the view.</li></ol>\n\n\n\n<h3>Content</h3>\n\n\n\n<p>To see the content, the search engines need to execute JavaScript. Although Google does a good job of executing the JavaScript and reading the content, you cannot trust it to get it right all the time. The other search engines like bing etc also not able to process it. The social media crawlers like Facebook &amp; twitter do not execute JavaScript, Hence they will not see the content.</p>\n\n\n\n<p>We can solve the above problems by rendering the content at the server and send the static HTML to the user.</p>\n\n\n\n<h2>What is Server-Side Rendering</h2>\n\n\n\n<p>Server-Side Rendering or SSR is a technique, which executes the javascript and generates the HTML file on the server and sends it to the client-side.</p>\n\n\n\n<p>For Example, when the request for a specific page arrives at the server, it locates the&nbsp;<code>index.html</code>. Now instead of sending it to the browser, the server passes it to a renderer process. The Renderer executes the Angular Framework (as if it is running in the browser) and generates the HTML. It also makes HTTP Requests to the backend server if required to get the data. Finally, the server sends the generated HTML to the Browser</p>\n\n\n\n<p>The Browser now shows the HTML to the user. At this point the browser is yet to download the Angular, Hence the mouse movements &amp; keyboard events will not have any effect on the page. The page is not yet interactive.</p>\n\n\n\n<p>The browser starts to download the Angular framework. Once the Angular loads and bootstraps, it starts to capture the user events. The page becomes interactive. From this point onwards, the Angular takes over &amp; any further navigation happens at client side</p>\n\n\n\n<h2>Server Side rendering Vs Client-Side Rendering</h2>\n\n\n\n<p>The following table shows the difference between Server-side rendering Vs Client-Side Rendering.</p>\n\n\n\n<figure id=\"tablepress-78\" class=\"wp-block-table\"><table><thead><tr><th>Sr.No</th><th>Client-Side Rendering</th><th>Server Side Rendering</th></tr></thead><tbody><tr><td>1</td><td>User sends the requests for a page</td><td>User sends the requests for a page</td></tr><tr><td>2</td><td>Server locate the index.html and sends it to the user</td><td>Server locate the index.html and sends it to the Renderer Process running in Server</td></tr><tr><td>3</td><td></td><td>Renderer prepares the initial page, by executing the Angular Framework and sends it to the browser</td></tr><tr><td>4</td><td>The Browser displays the blank page, but there is no content there</td><td>The browser shows the initial page to the user. The page may be non-interactive at this time.</td></tr><tr><td>5</td><td>The browser downloads the CSS &amp; JavaScript</td><td>The browser downloads the CSS &amp; Javascript</td></tr><tr><td>6</td><td>Browser executes Angular Framework (JavaScript) &amp; Renders the page</td><td>Browser executes Angular Framework (JavaScript)</td></tr><tr><td>7</td><td>User sees the Interactive Page</td><td>The page becomes interactive.</td></tr></tbody></table></figure>\n\n\n\n<p>Now, let us see how this solves the problem of Content &amp; Speed</p>\n\n\n\n<h3>Content and SSR</h3>\n\n\n\n<p>Since the server generates the content, there is no need for search engines to execute the javascript. The social media crawlers also see the HTML</p>\n\n\n\n<h3>Speed and SSR</h3>\n\n\n\n<p>Does it solves the problem of speed?. The short answer is&nbsp;<strong>NO.</strong></p>\n\n\n\n<p>Implementing SSR does not speed up your site all by itself. Because you are only moving the rendering to the server from the browser. In fact, if the server is busy, it may slow your site down.</p>\n\n\n\n<p>But it will improve the first contentful paint or FCP.</p>\n\n\n\n<p>But, you get a&nbsp;<strong>great speed</strong>&nbsp;when you&nbsp;<em><strong>cache the rendered response</strong></em>. Serving the cached response to the user eliminates the rendering process and serves the HTML instantly to the user. This is possible only with the SSR.</p>\n\n\n\n<h2>Angular Universal Tutorial</h2>\n\n\n\n<p>Create a new Angular project using the Angular CLI</p>\n\n\n\n<pre class=\"wp-block-code\"><code>ng new ssr </code></pre>\n\n\n\n<p>Check the app is running by using the command</p>\n\n\n\n<pre class=\"wp-block-code\"><code> ng serve </code></pre>\n\n\n\n<p>Right-click anywhere on the browser windows and view page source. You will see that there is no content. This is what search engines will see when they crawl your site.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;!doctype html>\r\n&lt;html lang=\"en\">\r\n&lt;head>\r\n  &lt;meta charset=\"utf-8\">\r\n  &lt;title>Ssr&lt;/title>\r\n  &lt;base href=\"/\">\r\n  &lt;meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\r\n  &lt;link rel=\"icon\" type=\"image/x-icon\" href=\"favicon.ico\">\r\n&lt;/head>\r\n&lt;body>\r\n  &lt;app-root>&lt;/app-root>\r\n&lt;script src=\"runtime.js\" type=\"module\">&lt;/script>&lt;script src=\"polyfills.js\" type=\"module\">&lt;/script>&lt;script src=\"styles.js\" type=\"module\">&lt;/script>&lt;script src=\"vendor.js\" type=\"module\">&lt;/script>&lt;script src=\"main.js\" type=\"module\">&lt;/script>&lt;/body>\r\n&lt;/html></code></pre>\n\n\n\n<h3>Adding Angular Universal</h3>\n\n\n\n<p>To add Angular Universal to the above project, run the following command. It will add the <code>express-engine</code> to the project. You should specify the name of the project under the flag <code>--clientProject</code>. Name of the project is what you specify while creating the project using <code>ng new &lt;projectName></code></p>\n\n\n\n<pre class=\"wp-block-code\"><code>ng add @nguniversal/express-engine --clientProject ssr </code></pre>\n\n\n\n<p>You can find the project name from the <code>angular.json</code> file from <code>projects</code> node.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>\r\n{\r\n  \"$schema\": \"./node_modules/@angular/cli/lib/config/schema.json\",\r\n  \"version\": 1,\r\n  \"newProjectRoot\": \"projects\",\r\n  \"projects\": {\r\n    \"ssr\": {                             ====> Name of the project\r\n      \"projectType\": \"application\",\r\n      \"schematics\": {},</code></pre>\n\n\n\n<p>Now, you can run the project by running the following command</p>\n\n\n\n<pre class=\"wp-block-code\"><code> npm run build:ssr &amp;&amp; npm run serve:ssr </code></pre>\n\n\n\n<p>It will take a while to compile it as shown in the image below</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://www.tektutorialshub.com/wp-content/uploads/2020/02/Compiling-Angular-Universal-App.jpg\" alt=\"Compiling Angular Universal App\" class=\"wp-image-16548\"/><figcaption>Compiling Angular Universal App</figcaption></figure>\n\n\n\n<p>The App will run on the port 4000 instead of 4200. You can now right-click and look at the source and you will see the content. This is what crawlers see when they visit your site.</p>\n\n\n\n<h2>Things to Note</h2>\n\n\n\n<h3>No Hash Location Strategy</h3>\n\n\n\n<p>If you are still using HashLocationStrategy (where URL looks like <code>http://localhost:4200/#/product</code> ) then you better move to PathLocationStrategy. They won’t work with Universal Apps.</p>\n\n\n\n<h3>Browser API Do not work</h3>\n\n\n\n<p>The objects such as <code>window</code>, <code>location</code> &amp; <code>document</code>, etc work only on the browser. They do not exist on the server. You can make use of Document or Location for those tasks.</p>\n\n\n\n<p>If you are manipulating the DOM elements by using the <code>nativeElement</code> of the <code>ElementRef</code> then it will also not work on the server. You can make use of the Renderer2</p>\n\n\n\n<h3>Find out where you are running server or browser</h3>\n\n\n\n<p>Sometimes it is necessary to find out whether the code is executing on the server or browser. For instance, you may want to make use of a browser API, which won’t work in the server and may result in an error. The Angular has <code>isPlatformBrowser</code>  &amp; <code>isPlatformServer</code> methods from the <code>@angular/common</code> package. You need to inject them using the <code>PLATFORM_ID</code> injection token</p>\n\n\n\n<h3>The Duplication of HTTP Requests.</h3>\n\n\n\n<p>Consider the example where your app makes a request to the back end to get some data and displays it to the user.</p>\n\n\n\n<p>When the page requests for the data, the server makes the HTTP Request for the data. It waits for the HTTP Request to finish before rendering the page. Then the server sends the page to the browser. The Browser instantly displays the page along with the data.</p>\n\n\n\n<p>Now, Browser downloads and bootstraps the Angular framework. The Angular also makes the same HTTP request to get the data, resulting in duplication.</p>\n\n\n\n<p>To Mitigate that, you can make use of BrowserTransferStateModule &amp; ServerTransferStateModule.</p>\n\n\n\n<h3>Make URL’s Absolute</h3>\n\n\n\n<p>If you are making HTTP requests from the client-side, then ensure that you use&nbsp;<em>absolute URLs</em>. The Requests with Relative URLs fail during the SSR.</p>\n\n\n\n<h3>HTTP Security</h3>\n\n\n\n<p>The authenticated HTTP Request for data to the backend server fails in Server. Because the server cannot access the authentication cookies stored in the client. You will have to handle the security at the server-side your self.</p>\n\n\n\n<h3>Browser Events</h3>\n\n\n\n<p>SSR Apps sends the rendered HTML to the browser and browser immedialyty displays it. In the backgroud, browser downloads the Angular Framework and then bootstraps it.</p>\n\n\n\n<p>In between these two events, the user sees the non-interactive page, because angular is yet to load. The events like clicking on a button or mouse movements are not captured.</p>\n\n\n\n<p>You can work around this problem using PreBoot Library It Replays all events once the app becomes interactive. Hence user do not have to perform the actions again</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>What is Angular Universal The Angular Universal renders the HTML view of the requested URL at the server, before sending it to the user’s browser. This will make the app load faster and more importantly search engine friendly. Why Server Side rendering required The Angular apps are single-page applications. They consist of lots of javascript [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [155],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3941" }
+      ],
+      "collection": [
+        { "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=3941"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3941/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3942,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3941/revisions/3942"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=3941"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=3941"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=3941"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  }
+]

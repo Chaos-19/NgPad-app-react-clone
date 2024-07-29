@@ -1,0 +1,902 @@
+[
+  {
+    "id": 4244,
+    "date": "2021-02-24T11:51:35",
+    "date_gmt": "2021-02-24T11:51:35",
+    "guid": { "rendered": "http://javascript.foobrdigital.com/?p=4244" },
+    "modified": "2021-02-24T11:51:35",
+    "modified_gmt": "2021-02-24T11:51:35",
+    "slug": "what-is-places",
+    "status": "publish",
+    "type": "post",
+    "link": "https://javascript.foobrdigital.com/what-is-places/",
+    "title": { "rendered": "What is Places?" },
+    "content": {
+      "rendered": "\n<p>Algolia Places is a geocoder providing a fast, distributed and easy way to use an address search autocomplete on your website. It is available as a Javascript autocomplete library, as a REST API and inside the JS, PHP, Swift and Android Algolia API clients.</p>\n\n\n\n<p><strong>Important:</strong>&nbsp;Algolia Places relies on OpenStreetMap data. Due to the sparseness of house level data in OSM, Places supports geocoding only up to the street level &#8211; house level precision is not guaranteed.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Algolia Places is a geocoder providing a fast, distributed and easy way to use an address search autocomplete on your website. It is available as a Javascript autocomplete library, as a REST API and inside the JS, PHP, Swift and Android Algolia API clients. Important:&nbsp;Algolia Places relies on OpenStreetMap data. Due to the sparseness of [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [158],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/posts/4244"
+        }
+      ],
+      "collection": [
+        { "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        {
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/comments?post=4244"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/posts/4244/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4250,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/posts/4244/revisions/4250"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/media?parent=4244"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/categories?post=4244"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/tags?post=4244"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 4242,
+    "date": "2021-02-24T11:51:49",
+    "date_gmt": "2021-02-24T11:51:49",
+    "guid": { "rendered": "http://javascript.foobrdigital.com/?p=4242" },
+    "modified": "2021-02-24T11:51:49",
+    "modified_gmt": "2021-02-24T11:51:49",
+    "slug": "getting-started-2",
+    "status": "publish",
+    "type": "post",
+    "link": "https://javascript.foobrdigital.com/getting-started-2/",
+    "title": { "rendered": "Getting started" },
+    "content": {
+      "rendered": "\n<p>To use Algolia Places, all you need is an&nbsp;<code>&lt;input&gt;</code>&nbsp;and some JavaScript code that will load<br>and use the places.js library.</p>\n\n\n\n<h3 id=\"cdn-script\">CDN&nbsp;<code>&lt;script&gt;</code></h3>\n\n\n\n<p>Our JavaScript library is available on the jsDelivr CDN.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>1\n&lt;script src=\"https://cdn.jsdelivr.net/npm/places.js@1.19.0\"&gt;&lt;/script&gt;\n</code></pre>\n\n\n\n<p>Here&#8217;s a small example using it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n&lt;input type=\"search\" id=\"address-input\" placeholder=\"Where are we going?\" /&gt;\n\n&lt;script src=\"https://cdn.jsdelivr.net/npm/places.js@1.19.0\"&gt;&lt;/script&gt;\n&lt;script&gt;\n  <strong>var</strong> placesAutocomplete <strong>=</strong> places({\n    appId: 'YOUR_PLACES_APP_ID',\n    apiKey: 'YOUR_PLACES_API_KEY',\n    container: document.querySelector('#address-input')\n  });\n&lt;/script&gt;\n</code></pre>\n\n\n\n<p><strong>Note:</strong>&nbsp;You can access your Places credentials from the&nbsp;<a href=\"https://www.algolia.com/api-keys\">dashboard</a>&nbsp;like any other Algolia application.</p>\n\n\n\n<p><strong>Important:</strong>&nbsp;We recommend using jsDelivr only for prototyping,&nbsp;<strong>not for production applications</strong>. Whenever possible, you should host your assets yourself or use a premium CDN service. jsDelivr is a free service and isn’t operated by Algolia, so we won’t be able to provide support if it fails.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>To use Algolia Places, all you need is an&nbsp;&lt;input&gt;&nbsp;and some JavaScript code that will loadand use the places.js library. CDN&nbsp;&lt;script&gt; Our JavaScript library is available on the jsDelivr CDN. Here&#8217;s a small example using it: Note:&nbsp;You can access your Places credentials from the&nbsp;dashboard&nbsp;like any other Algolia application. Important:&nbsp;We recommend using jsDelivr only for prototyping,&nbsp;not for production [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [158],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/posts/4242"
+        }
+      ],
+      "collection": [
+        { "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        {
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/comments?post=4242"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/posts/4242/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4251,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/posts/4242/revisions/4251"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/media?parent=4242"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/categories?post=4242"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/tags?post=4242"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 4243,
+    "date": "2021-02-24T11:52:11",
+    "date_gmt": "2021-02-24T11:52:11",
+    "guid": { "rendered": "http://javascript.foobrdigital.com/?p=4243" },
+    "modified": "2021-02-24T11:52:11",
+    "modified_gmt": "2021-02-24T11:52:11",
+    "slug": "using-npm",
+    "status": "publish",
+    "type": "post",
+    "link": "https://javascript.foobrdigital.com/using-npm/",
+    "title": { "rendered": "Using npm" },
+    "content": {
+      "rendered": "\n<p>Algolia Places is also available on&nbsp;<a href=\"https://www.npmjs.com/package/places.js\">npm</a>.</p>\n\n\n\n<p>Install the module:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>1\nnpm install places.js --save\n</code></pre>\n\n\n\n<p>Put an&nbsp;<code>&lt;input&gt;</code>&nbsp;in your html page:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>1\n&lt;input type=\"search\" id=\"address-input\" placeholder=\"Where are we going?\" /&gt;\n</code></pre>\n\n\n\n<p>Initialize the places.js library:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>1\n2\n3\n4\n5\n6\n<strong>var</strong> places <strong>=</strong> require('places.js');\n<strong>var</strong> placesAutocomplete <strong>=</strong> places({\n  appId: 'YOUR_PLACES_APP_ID',\n  apiKey: 'YOUR_PLACES_API_KEY',\n  container: document.querySelector('#address-input')\n});\n</code></pre>\n\n\n\n<h3 id=\"demo\">Demo</h3>\n\n\n\n<p>As a result, you will get the Algolia Places autocompletion menu:</p>\n\n\n\n<h2 id=\"usage\">Usage</h2>\n\n\n\n<p>To turn any HTML&nbsp;<code>&lt;input /&gt;</code>&nbsp;into an address search bar make sure you include the&nbsp;<code>places.js</code>&nbsp;library and use the following initialization code:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>1\n2\n3\n4\n5\n6\n7\n<strong>const</strong> options <strong>=</strong> {\n  appId: 'YOUR_PLACES_APP_ID',\n  apiKey: 'YOUR_PLACES_API_KEY',\n  container: '#my-input-DOM-selector',\n  <em>// ...</em>\n};\nplaces(options);\n</code></pre>\n\n\n\n<p>Advanced example using all parameters:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n<strong>const</strong> fixedOptions <strong>=</strong> {\n  appId: 'YOUR_PLACES_APP_ID',\n  apiKey: 'YOUR_PLACES_API_KEY',\n  container: document.querySelector('#demo'),\n};\n\n<strong>const</strong> reconfigurableOptions <strong>=</strong> {\n  language: 'de', <em>// Receives results in German</em>\n  countries: &#91;'us', 'ru'], <em>// Search in the United States of America and in the Russian Federation</em>\n  type: 'city', <em>// Search only for cities names</em>\n  aroundLatLngViaIP: <strong>false</strong> <em>// disable the extra search/boost around the source IP</em>\n};\n<strong>const</strong> placesInstance <strong>=</strong> places(fixedOptions).configure(reconfigurableOptions);\n\n<em>// dynamically reconfigure options</em>\nplacesInstance.configure({\n  countries: &#91;'us'] <em>// only search in the United States, the rest of the settings are unchanged: we're still searching for cities in German.</em>\n})\n</code></pre>\n\n\n\n<p>Tip:&nbsp;<em>Places application IDs&nbsp;<strong>always</strong>&nbsp;start by</em>&nbsp;<code>pl</code>,&nbsp;<em>which makes them recognizable at a glance.</em></p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Algolia Places is also available on&nbsp;npm. Install the module: Put an&nbsp;&lt;input&gt;&nbsp;in your html page: Initialize the places.js library: Demo As a result, you will get the Algolia Places autocompletion menu: Usage To turn any HTML&nbsp;&lt;input /&gt;&nbsp;into an address search bar make sure you include the&nbsp;places.js&nbsp;library and use the following initialization code: Advanced example using all [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [158],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/posts/4243"
+        }
+      ],
+      "collection": [
+        { "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        {
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/comments?post=4243"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/posts/4243/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4252,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/posts/4243/revisions/4252"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/media?parent=4243"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/categories?post=4243"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/tags?post=4243"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 4239,
+    "date": "2021-02-24T11:52:36",
+    "date_gmt": "2021-02-24T11:52:36",
+    "guid": { "rendered": "http://javascript.foobrdigital.com/?p=4239" },
+    "modified": "2021-02-24T11:52:36",
+    "modified_gmt": "2021-02-24T11:52:36",
+    "slug": "options",
+    "status": "publish",
+    "type": "post",
+    "link": "https://javascript.foobrdigital.com/options/",
+    "title": { "rendered": "Options" },
+    "content": {
+      "rendered": "\n<p>Here are the options you can pass to the&nbsp;<code>places(options)</code>&nbsp;function:</p>\n\n\n\n<h5 id=\"static-options\">Static options</h5>\n\n\n\n<p>These options can only be set during the instantiation of the places application using</p>\n\n\n\n<pre class=\"wp-block-code\"><code>1\n<strong>const</strong> placesInstance <strong>=</strong> places(options)\n</code></pre>\n\n\n\n<figure class=\"wp-block-table\"><table><thead><tr><th>Static Option</th><th>Description</th></tr></thead><tbody><tr><td><code>container*</code>Type:&nbsp;<strong><a href=\"https://www.w3.org/2003/01/dom2-javadoc/org/w3c/dom/html2/HTMLInputElement.html\">HTMLInputElement</a></strong>*&nbsp;Required</td><td>Determines the&nbsp;<code>&lt;input&gt;</code>&nbsp;that will be used for the Algolia Places autocompletion menu.You just need to pass a reference to an Element. Obtained via&nbsp;<a href=\"https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelector\">document.querySelector</a>&nbsp;for example.<strong>Important</strong>: This parameter can only be set at instantiation.</td></tr><tr><td><code>appId</code>Type:&nbsp;<strong>string</strong></td><td>The Places application ID to use.<strong>Important</strong>: This parameter can only be set at instantiation.</td></tr><tr><td><code>apiKey</code>Type:&nbsp;<strong>string</strong></td><td>The Places search API key to use.<strong>Important</strong>: This parameter can only be set at instantiation.</td></tr><tr><td><code>templates</code>Type:&nbsp;<strong>Object</strong></td><td>Change the templates used in place.js.Available templates:valuesuggestionEach template is a function that will receive a&nbsp;<a href=\"https://community.algolia.com/places/documentation.html#suggestions\">suggestion object</a>&nbsp;and must return a&nbsp;<code>string</code>.<code>value</code>&nbsp;must return a plain string as it&#8217;s used to fill the&nbsp;<code>input.value</code>.&nbsp;<code>suggestion</code>&nbsp;should return an HTML string to be displayed in the dropdown.</td></tr><tr><td><code>style</code>Type:&nbsp;<strong>boolean</strong></td><td>Control whether the default styles should be used.<strong>Default</strong>: Styles are enabled.<strong>Important</strong>: This parameter can only be set at instantiation.</td></tr><tr><td><code>accessibility</code>Type:&nbsp;<strong>Object</strong></td><td>an object containing a&nbsp;<code>pinButton</code>&nbsp;and/or&nbsp;<code>clearButton</code>&nbsp;object which is composed of html attributes to apply to the corresponding button<strong>Example</strong>:<code>1 2 3 4 5 6 7 8 9 accessibility: { pinButton: { 'aria-label': 'use browser geolocation', 'tab-index': 12, }, clearButton: { 'tab-index': 13, } } </code><strong>Important</strong>: This parameter can only be set at instantiation.</td></tr></tbody></table></figure>\n\n\n\n<h5 id=\"reconfigurable-options\">Reconfigurable options</h5>\n\n\n\n<p>These options can be set during the instantiation of the places application using</p>\n\n\n\n<pre class=\"wp-block-code\"><code>1\n<strong>const</strong> placesInstance <strong>=</strong> places(options)\n</code></pre>\n\n\n\n<p>or at any time using</p>\n\n\n\n<pre class=\"wp-block-code\"><code>1\nplacesInstance.configure(options)\n</code></pre>\n\n\n\n<figure class=\"wp-block-table\"><table><thead><tr><th>Reconfigurable option</th><th>Description</th></tr></thead><tbody><tr><td><code>type</code>Type:&nbsp;<strong>string</strong></td><td>Restrict the search results to a specific type.Available types:citycountryaddressbusStoptrainStationtownhallairport<strong>Default</strong>: Search in all types.<strong>Note</strong>: If you restrict the search to&nbsp;<code>city</code>&nbsp;or&nbsp;<code>airport</code>, you probably want to disable the&nbsp;<code>aroundLatLngViaIP</code>&nbsp;option as well. This will make sure you don&#8217;t get only nearby results.</td></tr><tr><td><code>postcodeSearch</code>Type:&nbsp;<strong>boolean</strong></td><td>Only search in the postcode field.<strong>Default</strong>: false.</td></tr><tr><td><code>language</code>Type:&nbsp;<strong>string</strong></td><td>Change the default language of the results. You can pass two letters language codes (<a href=\"https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes\">ISO 639-1</a>).<strong>Default</strong>: Current user language obtained via&nbsp;<code>navigator.language</code>&nbsp;in the two letter form. Example:&nbsp;<code>en</code>&nbsp;when navigator.language is&nbsp;<code>en_US</code>.</td></tr><tr><td><code>countries</code>Type:&nbsp;<strong>string[]</strong></td><td>Change the countries to search in. You must pass an array of two letters country codes (<a href=\"https://en.wikipedia.org/wiki/ISO_3166-1#Officially_assigned_code_elements\">ISO 639-1</a>).<strong>Default</strong>: Search on the whole planet.</td></tr><tr><td><code>aroundLatLng</code>Type:&nbsp;<strong>string</strong></td><td>Force to&nbsp;<em>first</em>&nbsp;search around a specific latitude longitude. The option value must be provided as a string:&nbsp;<code>latitude,longitude</code>&nbsp;like&nbsp;<code>12.232,23.1</code>.The default is to search around the location of the user determined via his IP address (geoip).</td></tr><tr><td><code>aroundLatLngViaIP</code>Type:&nbsp;<strong>boolean</strong></td><td>Whether or not to&nbsp;<em>first</em>&nbsp;search around the geolocation of the user found via his IP address. This is&nbsp;<code>true</code>&nbsp;by default.</td></tr><tr><td><code>aroundRadius</code>Type:&nbsp;<strong>number</strong></td><td>Radius in meters to search around the latitude longitude. Otherwise a default radius is automatically computed given the area density.</td></tr><tr><td><code>insideBoundingBox</code>Type:&nbsp;<strong>string</strong></td><td>Filters the results inside the area defined by the two extreme points of a rectangle.&nbsp;<a href=\"https://www.algolia.com/doc/guides/managing-results/refine-results/geolocation/#filter-inside-rectanglepolygonal-area\">See guide</a>&nbsp;or&nbsp;<a href=\"https://www.algolia.com/doc/api-reference/api-parameters/insideBoundingBox/\">API reference</a>.Format:&nbsp;<code>topRightLat, topRightLng, bottomLeftLat, bottomLeftLng</code>Example:&nbsp;<code>\"60, 16, 40, -4\"</code></td></tr><tr><td><code>insidePolygon</code>Type:&nbsp;<strong>string</strong></td><td>Filters the results inside the area defined by a shape.&nbsp;<a href=\"https://www.algolia.com/doc/guides/managing-results/refine-results/geolocation/#filter-inside-rectanglepolygonal-area\">See guide</a>&nbsp;or&nbsp;<a href=\"https://www.algolia.com/doc/api-reference/api-parameters/insidePolygon/\">API reference</a>.Format:&nbsp;<code>p1Lat, p1Lng, p2Lat, p2Lng, p3Lat, p3Lng...</code></td></tr><tr><td><code>getRankingInfo</code>Type:&nbsp;<strong>boolean</strong></td><td>Controls whether the&nbsp;<a href=\"https://www.algolia.com/doc/api-reference/api-methods/search/#method-response-_rankinginfo\">_rankingInfo</a>&nbsp;object should be included in the hits. This defaults to&nbsp;<code>false</code>.The _rankingInfo object for a Places query is slightly different from a regular Algolia query and you can read up more about the difference and how to leverage them in&nbsp;<a href=\"https://community.algolia.com/places/examples.html#using-_rankinginfo\">our guide</a>.</td></tr><tr><td><code>useDeviceLocation</code>Type:&nbsp;<strong>boolean</strong></td><td>Ask and use the device location.</td></tr><tr><td><code>computeQueryParams</code>Type:&nbsp;<strong>object</strong></td><td>Allows you to override computed query parameters sent to the&nbsp;<a href=\"https://community.algolia.com/places/rest.html\">Algolia Places REST API</a>.</td></tr></tbody></table></figure>\n\n\n\n<h5 id=\"advanced-static-options\">Advanced static options</h5>\n\n\n\n<p>These are very advanced options that can be only set during the instantiation of the places application using</p>\n\n\n\n<pre class=\"wp-block-code\"><code>1\n<strong>const</strong> placesInstance <strong>=</strong> places(options)\n</code></pre>\n\n\n\n<p>These options should not be considered for regular use cases.</p>\n\n\n\n<figure class=\"wp-block-table\"><table><thead><tr><th>Advanced static option</th><th>Description</th></tr></thead><tbody><tr><td><code>clientOptions</code>Type:&nbsp;<strong>object</strong></td><td>Algolia&nbsp;<a href=\"https://github.com/algolia/algoliasearch-client-js#client-options\">JavaScript API client options</a>.<strong>Note:</strong>&nbsp;This is an advanced option.</td></tr><tr><td><code>autocompleteOptions</code>Type:&nbsp;<strong>object</strong></td><td><a href=\"https://github.com/algolia/autocomplete.js#options\">autocomplete.js options</a>&nbsp;to configure the underlying autocomplete.js instance.<strong>Note:</strong>&nbsp;This is an advanced option.</td></tr></tbody></table></figure>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Here are the options you can pass to the&nbsp;places(options)&nbsp;function: Static options These options can only be set during the instantiation of the places application using Static Option Description container*Type:&nbsp;HTMLInputElement*&nbsp;Required Determines the&nbsp;&lt;input&gt;&nbsp;that will be used for the Algolia Places autocompletion menu.You just need to pass a reference to an Element. Obtained via&nbsp;document.querySelector&nbsp;for example.Important: This parameter can [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [158],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/posts/4239"
+        }
+      ],
+      "collection": [
+        { "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        {
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/comments?post=4239"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/posts/4239/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4253,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/posts/4239/revisions/4253"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/media?parent=4239"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/categories?post=4239"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/tags?post=4239"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 4248,
+    "date": "2021-02-24T11:52:55",
+    "date_gmt": "2021-02-24T11:52:55",
+    "guid": { "rendered": "http://javascript.foobrdigital.com/?p=4248" },
+    "modified": "2021-02-24T11:52:55",
+    "modified_gmt": "2021-02-24T11:52:55",
+    "slug": "events-5",
+    "status": "publish",
+    "type": "post",
+    "link": "https://javascript.foobrdigital.com/events-5/",
+    "title": { "rendered": "Events" },
+    "content": {
+      "rendered": "\n<p>The Algolia Places autocomplete exposes some events that you can register to:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>1\n2\n3\n4\n5\n6\n7\n<strong>var</strong> placesAutocomplete <strong>=</strong> places({\n  appId: 'YOUR_PLACES_APP_ID',\n  apiKey: 'YOUR_PLACES_API_KEY',\n  container: document.querySelector('#demo')\n});\n\nplacesAutocomplete.on('change', e <strong>=&gt;</strong> console.log(e.suggestion));\n</code></pre>\n\n\n\n<figure class=\"wp-block-table\"><table><thead><tr><th>Event</th><th>Description</th></tr></thead><tbody><tr><td><code>change</code>Event data:<em>query</em><br>Type:&nbsp;<strong>string</strong><em>rawAnswer</em><br>Type:&nbsp;<strong>object</strong><em>suggestion</em><br>Type:&nbsp;<strong><a href=\"https://community.algolia.com/places/documentation.html#suggestions\">suggestion</a></strong><em>suggestionIndex</em><br>Type:&nbsp;<strong>number</strong></td><td>Fired when suggestion selected in the dropdown or hint was validated.You can use this event to then populate another form,&nbsp;<a href=\"https://community.algolia.com/places/examples.html#complete-form\">see the example</a>.</td></tr><tr><td><code>suggestions</code>Event data:<em>rawAnswer</em><br>Type:&nbsp;<strong>object</strong><em>query</em><br>Type:&nbsp;<strong>string</strong><em>suggestions</em><br>Type:&nbsp;<strong>Array&lt;<a href=\"https://community.algolia.com/places/documentation.html#suggestions\">suggestion</a>&gt;</strong></td><td>Fired when dropdown receives suggestions. You will receive the array of suggestions that are displayed.You will also receive this event when no places were found.You can use this event to display the suggestions on a map, see the&nbsp;<a href=\"https://community.algolia.com/places/examples.html#link-to-a-map\">map example</a>.</td></tr><tr><td><code>cursorchanged</code>Event data:<em>rawAnswer</em><br>Type:&nbsp;<strong>object</strong><em>query</em><br>Type:&nbsp;<strong>string</strong><em>suggestion</em><br>Type:&nbsp;<strong><a href=\"https://community.algolia.com/places/documentation.html#suggestions\">suggestion</a></strong><em>suggestionIndex</em><br>Type:&nbsp;<strong>number</strong></td><td>Fired when arrows keys are used to navigate suggestions.You can use this event to highlight markers on a map, see the&nbsp;<a href=\"https://community.algolia.com/places/examples.html#link-to-a-map\">map example</a>.</td></tr><tr><td><code>clear</code>Event data:&nbsp;<code>undefined</code></td><td>Fired when the input is cleared. This event doesn&#8217;t return anything, as the value of the query is then&nbsp;<code>''</code>&nbsp;and no suggestion is displayed nor selected.You can use this event when used with a map to reset the pins and the default center. See this behaviour live on the&nbsp;<a href=\"https://community.algolia.com/places/examples.html#link-to-a-map\">map example</a>.</td></tr><tr><td><code>locate</code>Event data:&nbsp;<code>undefined</code></td><td>Fired when the location pin is clicked. This event doesn&#8217;t return anything.You can use this event when the user has chosen to enable geolcation in the browser by clicking on the pin icon.</td></tr><tr><td><code>limit</code>Event data:<em>message</em><br>Type:&nbsp;<strong>string</strong></td><td>Fired when you reached your current&nbsp;<a href=\"https://community.algolia.com/places/pricing.html#rate-limits\">rate limit</a>.</td></tr><tr><td><code>error</code>Event data:<em>message</em><br>Type:&nbsp;<strong>string</strong></td><td>Fired when we could not make the request to Algolia Places servers for any reason but reaching your&nbsp;<a href=\"https://community.algolia.com/places/pricing.html#rate-limits\">rate limit</a>.</td></tr></tbody></table></figure>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>The Algolia Places autocomplete exposes some events that you can register to: Event Description changeEvent data:queryType:&nbsp;stringrawAnswerType:&nbsp;objectsuggestionType:&nbsp;suggestionsuggestionIndexType:&nbsp;number Fired when suggestion selected in the dropdown or hint was validated.You can use this event to then populate another form,&nbsp;see the example. suggestionsEvent data:rawAnswerType:&nbsp;objectqueryType:&nbsp;stringsuggestionsType:&nbsp;Array&lt;suggestion&gt; Fired when dropdown receives suggestions. You will receive the array of suggestions that are displayed.You [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [158],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/posts/4248"
+        }
+      ],
+      "collection": [
+        { "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        {
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/comments?post=4248"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/posts/4248/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4254,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/posts/4248/revisions/4254"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/media?parent=4248"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/categories?post=4248"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/tags?post=4248"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 4240,
+    "date": "2021-02-24T11:53:19",
+    "date_gmt": "2021-02-24T11:53:19",
+    "guid": { "rendered": "http://javascript.foobrdigital.com/?p=4240" },
+    "modified": "2021-02-24T11:53:19",
+    "modified_gmt": "2021-02-24T11:53:19",
+    "slug": "methods-2",
+    "status": "publish",
+    "type": "post",
+    "link": "https://javascript.foobrdigital.com/methods-2/",
+    "title": { "rendered": "Methods" },
+    "content": {
+      "rendered": "\n<p>We provide some methods to help you interact with the places.js autocomplete instance.<br>If you have a good use case for a new method,&nbsp;<a href=\"https://github.com/algolia/places/issues/new\">open a new issue</a>&nbsp;about it.</p>\n\n\n\n<figure class=\"wp-block-table\"><table><thead><tr><th>Name</th><th>Description</th></tr></thead><tbody><tr><td><code>open</code>Returns:&nbsp;<strong>undefined</strong></td><td>Usage:&nbsp;<strong>placesAutocomplete.open()</strong>Opens the dropdown menu. The menu will be visible if it has content to show.</td></tr><tr><td><code>close</code>Returns:&nbsp;<strong>undefined</strong></td><td>Usage:&nbsp;<strong>placesAutocomplete.close()</strong>Closes the dropdown menu.</td></tr><tr><td><code>getVal</code>Returns:&nbsp;<strong>string</strong></td><td>Usage:&nbsp;<strong>placesAutocomplete.getVal()</strong>Get the current input value.</td></tr><tr><td><code>setVal</code>Returns:&nbsp;<strong>undefined</strong></td><td>Usage:&nbsp;<strong>placesAutocomplete.setVal()</strong>Set the current input value. This will not open the menu. You will need to call&nbsp;<a href=\"https://community.algolia.com/places/documentation.html#api-methods-open\">.open()</a></td></tr><tr><td><code>destroy</code>Returns:&nbsp;<strong>undefined</strong></td><td>Usage:&nbsp;<strong>placesAutocomplete.destroy()</strong>Removes the places autocomplete instance, switch the input back to it&#8217;s original behavior.</td></tr></tbody></table></figure>\n\n\n\n<h3 id=\"suggestions\">Suggestions</h3>\n\n\n\n<p>All of the events will send suggestion objects with those properties:</p>\n\n\n\n<figure class=\"wp-block-table\"><table><thead><tr><th>Property</th><th>Description</th></tr></thead><tbody><tr><td><code>type</code>Type:&nbsp;<strong>string</strong></td><td>Type of the current suggestion, possible values:&nbsp;<code>country</code>,&nbsp;<code>city</code>,&nbsp;<code>address</code>,&nbsp;<code>busStop</code>,&nbsp;<code>trainStation</code>,&nbsp;<code>townhall</code>,&nbsp;<code>airport</code>.</td></tr><tr><td><code>name</code>Type:&nbsp;<strong>string</strong></td><td>Display name of the place found.Examples:Paris589 Howard Street San Francisco</td></tr><tr><td><code>city</code>Type:&nbsp;<strong>string</strong></td><td>City name.</td></tr><tr><td><code>country</code>Type:&nbsp;<strong>string</strong></td><td>Country name.</td></tr><tr><td><code>countryCode</code>Type:&nbsp;<strong>string</strong></td><td>Two letters country code (<a href=\"https://en.wikipedia.org/wiki/ISO_3166-1#Officially_assigned_code_elements\">ISO 639-1</a>).</td></tr><tr><td><code>administrative</code>Type:&nbsp;<strong>string</strong></td><td>Administrative region depending on the country.Examples:Pays de la LoireTexasCatalunya</td></tr><tr><td><code>county</code>Type:&nbsp;<strong>string</strong></td><td>County level administrative region depending on the country.Examples:CorrèzeClark County</td></tr><tr><td><code>suburb</code>Type:&nbsp;<strong>string</strong></td><td>Suburb name.Examples:Angelino heightsHarbor City</td></tr><tr><td><code>latlng</code>Type:&nbsp;<strong>Object</strong></td><td>Latitude and longitude of the place found. Shape:&nbsp;<code>{lat: 48.797885, lng: 2.337034}</code>.</td></tr><tr><td><code>postcode</code>Type:&nbsp;<strong>string</strong></td><td>The best matching postcode (or ZIP Code) of the place found.Examples:9410475009</td></tr><tr><td><code>postcodes</code>Type:&nbsp;<strong>array</strong></td><td>The list of all postcode (or ZIP Code) of the place found.Examples:<code>[\"94102\", \"94103\", \"94104\", ... ]</code><code>[\"75008\", \"75009\"]</code></td></tr><tr><td><code>value</code>Type:&nbsp;<strong>string</strong></td><td>Full display name of the place found. It&#8217;s the value displayed in the input.Examples:Paris Île-de-France, France589 Howard Street San Francisco, California, United States of America</td></tr><tr><td><code>highlight</code>Type:&nbsp;<strong>object</strong></td><td>Given the query, contains the highlighted values of the following attributes:namesuburbcitypostcodecountyadministrativecountryExample:<code>1 2 3 4 5 6 7 <em>// query was `par`</em> console.log(suggestion.highlight); <em>// {</em> <em>// name: '&lt;em&gt;Par&lt;/em&gt;is',</em> <em>// administrative: 'Île-de-France',</em> <em>// country: 'France'</em> <em>// }</em></code></td></tr></tbody></table></figure>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>We provide some methods to help you interact with the places.js autocomplete instance.If you have a good use case for a new method,&nbsp;open a new issue&nbsp;about it. Name Description openReturns:&nbsp;undefined Usage:&nbsp;placesAutocomplete.open()Opens the dropdown menu. The menu will be visible if it has content to show. closeReturns:&nbsp;undefined Usage:&nbsp;placesAutocomplete.close()Closes the dropdown menu. getValReturns:&nbsp;string Usage:&nbsp;placesAutocomplete.getVal()Get the current input [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [158],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/posts/4240"
+        }
+      ],
+      "collection": [
+        { "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        {
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/comments?post=4240"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/posts/4240/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4255,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/posts/4240/revisions/4255"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/media?parent=4240"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/categories?post=4240"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/tags?post=4240"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 4237,
+    "date": "2021-02-24T11:53:43",
+    "date_gmt": "2021-02-24T11:53:43",
+    "guid": { "rendered": "http://javascript.foobrdigital.com/?p=4237" },
+    "modified": "2021-02-24T11:53:43",
+    "modified_gmt": "2021-02-24T11:53:43",
+    "slug": "autocomplete-js",
+    "status": "publish",
+    "type": "post",
+    "link": "https://javascript.foobrdigital.com/autocomplete-js/",
+    "title": { "rendered": "autocomplete.js" },
+    "content": {
+      "rendered": "\n<p>The places.js library is leveraging&nbsp;<a href=\"https://github.com/algolia/autocomplete.js\">Algolia&#8217;s autocomplete.js</a>&nbsp;library.</p>\n\n\n\n<p>To be able to combine your own data along with showing results of Algolia Places, we provide an&nbsp;<a href=\"https://github.com/algolia/autocomplete.js#datasets\">autocomplete.js dataset</a>:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>1\n&lt;script src=\"https://cdn.jsdelivr.net/npm/places.js@1.19.0/dist/cdn/placesAutocompleteDataset.min.js\"&gt;&lt;/script&gt;\n</code></pre>\n\n\n\n<p>The autocomplete.js dataset is exported as&nbsp;<code>placesAutocompleteDataset</code>&nbsp;in the window, also available with npm using:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>1\n<strong>import</strong> placesAutocompleteDataset <strong>from</strong> 'places.js/placesAutocompleteDataset';\n</code></pre>\n\n\n\n<p>All the places.js&nbsp;<a href=\"https://community.algolia.com/places/documentation.html#options\">options</a>&nbsp;are available and can be passed to the&nbsp;<code>placesAutocompleteDataset</code>&nbsp;function. The places.js CSS file is automatically loaded so that the rendering of suggestions is already the one you will expect.</p>\n\n\n\n<p>You will need an&nbsp;<a href=\"https://www.algolia.com/\">Algolia account</a>&nbsp;to be able to search into your own data. See the&nbsp;<a href=\"https://community.algolia.com/places/examples.html#autocompletejs\">autocomplete.js dataset example</a>.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>The places.js library is leveraging&nbsp;Algolia&#8217;s autocomplete.js&nbsp;library. To be able to combine your own data along with showing results of Algolia Places, we provide an&nbsp;autocomplete.js dataset: The autocomplete.js dataset is exported as&nbsp;placesAutocompleteDataset&nbsp;in the window, also available with npm using: All the places.js&nbsp;options&nbsp;are available and can be passed to the&nbsp;placesAutocompleteDataset&nbsp;function. The places.js CSS file is automatically loaded [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [158],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/posts/4237"
+        }
+      ],
+      "collection": [
+        { "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        {
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/comments?post=4237"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/posts/4237/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4256,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/posts/4237/revisions/4256"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/media?parent=4237"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/categories?post=4237"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/tags?post=4237"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 4241,
+    "date": "2021-02-24T11:54:02",
+    "date_gmt": "2021-02-24T11:54:02",
+    "guid": { "rendered": "http://javascript.foobrdigital.com/?p=4241" },
+    "modified": "2021-02-24T11:54:02",
+    "modified_gmt": "2021-02-24T11:54:02",
+    "slug": "instantsearch-js",
+    "status": "publish",
+    "type": "post",
+    "link": "https://javascript.foobrdigital.com/instantsearch-js/",
+    "title": { "rendered": "InstantSearch.js" },
+    "content": {
+      "rendered": "\n<p>If you&#8217;re already using instantsearch.js, you can use Algolia Places out of the box. This<br>widget will do a search of places using Algolia Places and when an address is selected, it<br>will update the geolocation point of the instantsearch.js search.</p>\n\n\n\n<p><strong>Important:</strong>&nbsp;With the release of InstantSearch.JS v4, the places widget has been re-worked and is now living in the InstantSearch repository. You can find an example of how to setup the widget in the&nbsp;<a href=\"https://github.com/algolia/instantsearch.js/blob/master/stories/geo-search.stories.js\">geo-search story</a>&nbsp;of the&nbsp;<a href=\"https://github.com/algolia/instantsearch.js\">InstantSearch repository</a></p>\n\n\n\n<p>If you are using InstantSearch v3, you can rely on the example below.</p>\n\n\n\n<p>You can include it using a link tag:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>1\n&lt;script src=\"https://cdn.jsdelivr.net/npm/places.js@1.19.0/dist/cdn/placesInstantsearchWidget.min.js\"&gt;&lt;/script&gt;\n</code></pre>\n\n\n\n<p>The widget is exported as&nbsp;<code>placesInstantsearchWidget</code>&nbsp;in the window. It is also available with<br>npm using:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>1\n<strong>import</strong> widget <strong>from</strong> 'places.js/placesInstantsearchWidget';\n</code></pre>\n\n\n\n<p>The widget accept the same&nbsp;<a href=\"https://community.algolia.com/places/documentation.html#options\">options as places.js</a>. Because it is an instantsearch.js that<br>will have an impact on the instantsearch search, it contains other options:</p>\n\n\n\n<figure class=\"wp-block-table\"><table><thead><tr><th>Option</th><th>Description</th></tr></thead><tbody><tr><td><code>defaultPosition</code>Type:&nbsp;<strong>number[]</strong></td><td>Sets the default position around which the instantsearch search is done, when no element is selected in the places widget. This position is an array of two numbers, representing the latitude and</td></tr></tbody></table></figure>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>If you&#8217;re already using instantsearch.js, you can use Algolia Places out of the box. Thiswidget will do a search of places using Algolia Places and when an address is selected, itwill update the geolocation point of the instantsearch.js search. Important:&nbsp;With the release of InstantSearch.JS v4, the places widget has been re-worked and is now living [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [158],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/posts/4241"
+        }
+      ],
+      "collection": [
+        { "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        {
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/comments?post=4241"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/posts/4241/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4257,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/posts/4241/revisions/4257"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/media?parent=4241"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/categories?post=4241"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/tags?post=4241"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 4247,
+    "date": "2021-02-24T11:54:23",
+    "date_gmt": "2021-02-24T11:54:23",
+    "guid": { "rendered": "http://javascript.foobrdigital.com/?p=4247" },
+    "modified": "2021-02-24T11:54:23",
+    "modified_gmt": "2021-02-24T11:54:23",
+    "slug": "security-3",
+    "status": "publish",
+    "type": "post",
+    "link": "https://javascript.foobrdigital.com/security-3/",
+    "title": { "rendered": "Security" },
+    "content": {
+      "rendered": "\n<p>The default way of using Places is to pass your Places application ID and API Key to the Places library.<br>However, since the Places library is user-facing, this means that your credentials can be exposed.</p>\n\n\n\n<p>It is therefore recommended to put in place some extra limitations in order to prevent any abuse of your API Key. Algolia offers two solutions to restrict the usage of your API Keys, which can be combined together:</p>\n\n\n\n<ul><li>restricted API Keys</li><li>secured API Keys</li></ul>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>The default way of using Places is to pass your Places application ID and API Key to the Places library.However, since the Places library is user-facing, this means that your credentials can be exposed. It is therefore recommended to put in place some extra limitations in order to prevent any abuse of your API Key. [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [158],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/posts/4247"
+        }
+      ],
+      "collection": [
+        { "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        {
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/comments?post=4247"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/posts/4247/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4258,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/posts/4247/revisions/4258"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/media?parent=4247"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/categories?post=4247"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/tags?post=4247"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 4249,
+    "date": "2021-02-24T11:55:05",
+    "date_gmt": "2021-02-24T11:55:05",
+    "guid": { "rendered": "http://javascript.foobrdigital.com/?p=4249" },
+    "modified": "2021-02-24T11:55:12",
+    "modified_gmt": "2021-02-24T11:55:12",
+    "slug": "styling-3",
+    "status": "publish",
+    "type": "post",
+    "link": "https://javascript.foobrdigital.com/styling-3/",
+    "title": { "rendered": "Styling" },
+    "content": {
+      "rendered": "\n<p>Algolia Places can fit existing designs. By default only the dropdown has a default light style.</p>\n\n\n\n<h3 id=\"html-structure\">HTML structure</h3>\n\n\n\n<p>The overall html structure looks like this:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>1\n2\n3\n4\n5\n&lt;span class=\"algolia-places\"&gt;\n  &lt;input class=\"ap-input\" /&gt;\n  &lt;button type=\"button\" class=\"ap-input-icon ap-icon-clear\"&gt;&lt;svg&gt;&lt;/svg&gt;&lt;/button&gt;\n  &lt;button type=\"button\" class=\"ap-input-icon ap-icon-pin\"&gt;&lt;svg&gt;&lt;/svg&gt;&lt;/button&gt;\n&lt;/span&gt;\n</code></pre>\n\n\n\n<p>Then the dropdown html structure looks like this:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n&lt;span class=\"ap-dropdown-menu\"&gt;\n  &lt;div&gt;\n    &lt;span class=\"ap-suggestions\"&gt;\n      &lt;div class=\"ap-suggestion\"&gt;\n        &lt;span class=\"ap-suggestion-icon\"&gt;&lt;svg&gt;&lt;/svg&gt;&lt;/span&gt;\n        &lt;span class=\"ap-name\"&gt;&lt;/span&gt;\n        &lt;span class=\"ap-address\"&gt;&lt;/span&gt;\n      &lt;/div&gt;\n      <em>&lt;!-- Other suggestions --&gt;</em>\n    &lt;/span&gt;\n  &lt;/div&gt;\n&lt;/span&gt;\n</code></pre>\n\n\n\n<h3 id=\"css-classes\">CSS classes</h3>\n\n\n\n<p>Here&#8217;s a visual explanation of the different CSS classes:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://community.algolia.com/places/images/visual-preview-places-f0316f09.png\" alt=\"preview-places\"/></figure>\n\n\n\n<figure class=\"wp-block-table\"><table><thead><tr><th>CSS Class</th><th>Description</th></tr></thead><tbody><tr><td><code>.ap-input</code>&nbsp;</td><td>This class is the one use by the main places input</td></tr><tr><td><code>.ap-icon-pin</code>&nbsp;</td><td>This is the class attached to the pin icon, which is visible when the input is on it&#8217;s normal state</td></tr><tr><td><code>.ap-icon-clear</code>&nbsp;</td><td>This is the class attached to the clear icon, which is visible when the input is filled, clicking it will empty the input</td></tr><tr><td><code>.ap-dropdown-menu</code>&nbsp;</td><td>This class is the one that is on the whole suggestions wrapper</td></tr><tr><td><code>.ap-suggestion</code>&nbsp;</td><td>The .ap-suggestion class is the class of each dropdown suggestions</td></tr><tr><td><code>.ap-cursor</code>&nbsp;</td><td>The .ap-cursor class is added to .ap-suggestion when the suggestion is hovered</td></tr><tr><td><code>.ap-suggestion-icon</code>&nbsp;</td><td>The .ap-suggestion-icon is the class that is used on the left icon of each suggestions</td></tr><tr><td><code>.ap-name</code>&nbsp;</td><td>The .ap-name class is the one used on the&nbsp;<strong>name</strong>&nbsp;of the place</td></tr><tr><td><code>.ap-address</code>&nbsp;</td><td>The .ap-address class is the one used on the&nbsp;<strong>address</strong>&nbsp;of the place</td></tr><tr><td><code>&lt;em&gt;</code>&nbsp;</td><td>The &lt;em&gt; tag in the .ap-suggestion is the tag that is used to make an highlight on each names</td></tr></tbody></table></figure>\n\n\n\n<p>Here&#8217;s a default empty CSS file you can copy paste to tune the default styling:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n20\n21\n22\n23\n24\n25\n26\n27\n28\n29\n30\n31\n32\n33\n34\n35\n36\n37\n38\n39\n40\n41\n42\n43\n44\n45\n46\n47\n48\n49\n50\n51\n52\n<em>/* Main input wrapper */</em>\n<strong>.algolia-places</strong> {}\n\n<em>/* The algolia-places input */</em>\n<strong>.ap-input</strong><strong>,</strong> <strong>.ap-hint</strong> {}\n\n<em>/* The style of the svg icons when the input is on hover */</em>\n<strong>.ap-input</strong><strong>:hover</strong> <strong>~</strong> <strong>.ap-input-icon</strong> svg<strong>,</strong>\n<strong>.ap-input</strong><strong>:focus</strong> <strong>~</strong> <strong>.ap-input-icon</strong> svg<strong>,</strong>\n<strong>.ap-input-icon</strong><strong>:hover</strong> svg {}\n\n<em>/* The dropdown style */</em>\n<strong>.ap-dropdown-menu</strong> {}\n\n<em>/* The suggestions style */</em>\n<strong>.ap-suggestion</strong> {}\n\n<em>/* The highlighted names style */</em>\n<strong>.ap-suggestion</strong> em {}\n\n<em>/* The addresses style */</em>\n<strong>.ap-address</strong> {}\n\n<em>/* The icons of each suggestions ( can be a building or a pin ) */</em>\n<strong>.ap-suggestion-icon</strong> {}\n\n<em>/* The style of the svg inside the .ap-suggestion-icon */</em>\n<strong>.ap-suggestion-icon</strong> svg {}\n\n<em>/* The icons inside the input ( can be a pin or a cross ) */</em>\n<strong>.ap-input-icon</strong> {}\n\n<em>/* The style of the svg inside the .ap-input-icon */</em>\n<strong>.ap-input-icon</strong> svg {}\n\n<em>/* .a-cursor is the class a suggestion go on hover */</em>\n<strong>.ap-cursor</strong> {}\n\n<em>/* The style of the svg icon, when the .ap-suggestion is on hover */</em>\n<strong>.ap-cursor</strong> <strong>.ap-suggestion-icon</strong> svg {}\n\n<em>/* The styles of the Algolia Places input footer */</em>\n<strong>.ap-footer</strong> {}\n\n<em>/* The styles of the Algolia Places input footer links */</em>\n<strong>.ap-footer</strong> a {}\n\n<em>/* The styles of the Algolia Places input footer svg icons */</em>\n<strong>.ap-footer</strong> a svg {}\n\n<em>/* The styles of the Algolia Places input footer on hover */</em>\n<strong>.ap-footer</strong><strong>:hover</strong> {}\n</code></pre>\n\n\n\n<h3 id=\"disable-default-style\">Disable default style</h3>\n\n\n\n<p>By default we insert some styling into your page. You can disable all the Algolia Places styling by passing the&nbsp;<code>style: false</code>&nbsp;option.</p>\n\n\n\n<p>Once you do so, all&nbsp;<a href=\"https://community.algolia.com/places/documentation.html#css-classes\">CSS classes</a>&nbsp;will be prefixed with&nbsp;<code>ap-nostyle</code>&nbsp;and no styling will be applied anymore.</p>\n\n\n\n<p>Pin and clear icons will still be shown and working, without being styled.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Algolia Places can fit existing designs. By default only the dropdown has a default light style. HTML structure The overall html structure looks like this: Then the dropdown html structure looks like this: CSS classes Here&#8217;s a visual explanation of the different CSS classes: CSS Class Description .ap-input&nbsp; This class is the one use by [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [158],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/posts/4249"
+        }
+      ],
+      "collection": [
+        { "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        {
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/comments?post=4249"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 2,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/posts/4249/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4260,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/posts/4249/revisions/4260"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/media?parent=4249"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/categories?post=4249"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/tags?post=4249"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  }
+]

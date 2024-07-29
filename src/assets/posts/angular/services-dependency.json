@@ -1,0 +1,434 @@
+[
+  {
+    "id": 3616,
+    "date": "2020-12-05T11:18:00",
+    "date_gmt": "2020-12-05T11:18:00",
+    "guid": { "rendered": "http://angular.foobrdigital.com/?p=3616" },
+    "modified": "2020-12-09T06:01:23",
+    "modified_gmt": "2020-12-09T06:01:23",
+    "slug": "introduction-to-angular-services",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/introduction-to-angular-services/",
+    "title": { "rendered": "Introduction to Angular Services" },
+    "content": {
+      "rendered": "\n<h2>What is a Service</h2>\n\n\n\n<p>Service is a piece of reusable code with a focused purpose. A code that you will use it in many components across your application</p>\n\n\n\n<h3>What services are used for</h3>\n\n\n\n<ol><li>Features that are independent of components such a logging services</li><li>Share logic or data across components</li><li>Encapsulate external interactions like data access</li></ol>\n\n\n\n<h3>Advantageous of Service</h3>\n\n\n\n<ol><li>Services are easier to test.</li><li>Services are easier to Debug.</li><li>You can reuse the service.</li></ol>\n\n\n\n<h2>How to create a Service in Angular</h2>\n\n\n\n<p>An Angular service is simply a Javascript function. All we need to do is to create a class and add methods &amp; properties. We can then create an instance of this class in our component and call its methods.</p>\n\n\n\n<p>One of the best uses of services is to get the data from the data source. Let us create a simple service, which gets the product data and passes it to our component.</p>\n\n\n\n<h3>Product</h3>\n\n\n\n<p>Create a new file under the folder&nbsp;<code>src/app</code>&nbsp;and call it&nbsp;<code>product.ts</code></p>\n\n\n\n<pre class=\"wp-block-code\"><code>export class Product { \r\n \r\n    constructor(productID:number,    name: string ,   price:number) {\r\n        this.productID=productID;\r\n        this.name=name;\r\n        this.price=price;\r\n    }\r\n \r\n    productID:number ;\r\n    name: string ;\r\n    price:number;\r\n \r\n}\r\n </code></pre>\n\n\n\n<p>The&nbsp;<code>Product</code>&nbsp;class above is our domain model.</p>\n\n\n\n<h3>Product Service</h3>\n\n\n\n<p>Next, let us build an Angular Service, which returns the list of&nbsp;<code>products</code>.</p>\n\n\n\n<p>Create a new file under the folder&nbsp;<code>src/app</code>&nbsp;and call it&nbsp;<code>product.service.ts</code></p>\n\n\n\n<pre class=\"wp-block-code\"><code>import {Product} from './Product'\r\n \r\nexport class ProductService{\r\n \r\n    public  getProducts() {\r\n \r\n        let products:Product&#91;];\r\n \r\n        products=&#91;\r\n            new Product(1,'Memory Card',500),\r\n            new Product(1,'Pen Drive',750),\r\n            new Product(1,'Power Bank',100)\r\n        ]\r\n \r\n        return products;               \r\n    }\r\n}</code></pre>\n\n\n\n<p>First, we have imported the&nbsp;<code>Product</code></p>\n\n\n\n<p>We have created the&nbsp;<code>ProductService</code>&nbsp;class and exported it.</p>\n\n\n\n<p>We have created a&nbsp;<code>getProducts</code>&nbsp;method, which returns the collection of the&nbsp;<code>products</code>. In this example, we have hard coded the&nbsp;<code>products</code>. In real life, you would send an HTTP request to your back end API to get the data</p>\n\n\n\n<p>Now our service is ready.</p>\n\n\n\n<p>Note that the above class is a simple JavaScript function. There is nothing Angular about it.</p>\n\n\n\n<h3>Invoking the ProductService</h3>\n\n\n\n<p>The Next step is to invoke the&nbsp;<code>ProductService</code>&nbsp;from the component. Open the&nbsp;<code>app.componet.ts</code>&nbsp;and add the following code.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> import { Component } from '@angular/core';\r\n \r\nimport { ProductService } from './product.service';\r\nimport { Product } from './product';\r\n \r\n@Component({\r\n  selector: 'app-root',\r\n  templateUrl: './app.component.html',\r\n})\r\n \r\nexport class AppComponent\r\n{\r\n \r\n   products:Product&#91;];\r\n   productService;\r\n \r\n   constructor(){\r\n     this.productService=new ProductService();\r\n   }\r\n \r\n   getProducts() {\r\n     \r\n     this.products=this.productService.getProducts();\r\n   }\r\n  \r\n}</code></pre>\n\n\n\n<p>First, we have imported both&nbsp;<code>Product</code>&nbsp;&amp;&nbsp;<code>ProductService</code></p>\n\n\n\n<p>In the constructor of the&nbsp;<code>AppComponet</code>, we have created the instance of the&nbsp;<code>ProductSerivce</code></p>\n\n\n\n<p>The&nbsp;<code>getProducts</code>&nbsp;method calls the&nbsp;<code>getProducts</code>&nbsp;method of the&nbsp;<code>ProductService.</code>&nbsp;The returned list of Products are stored in the local variable&nbsp;<code>products</code></p>\n\n\n\n<h3>Template</h3>\n\n\n\n<p>The next step is to display the&nbsp;<code>Products</code>&nbsp;to user</p>\n\n\n\n<p>Open the&nbsp;<code>app.component.html</code>&nbsp;file and add the following code</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;div class=\"container\">\r\n    &lt;h1 class=\"heading\">&lt;strong>Services &lt;/strong>Demo&lt;/h1>\r\n \r\n    &lt;button type=\"button\" (click)=\"getProducts()\">Get Products&lt;/button>\r\n \r\n     &lt;div class='table-responsive'>\r\n            &lt;table class='table'>\r\n                &lt;thead>\r\n                    &lt;tr>\r\n                        &lt;th>ID&lt;/th>\r\n                        &lt;th>Name&lt;/th>\r\n                        &lt;th>Price&lt;/th>\r\n                    &lt;/tr>\r\n                &lt;/thead>\r\n                &lt;tbody>\r\n                    &lt;tr *ngFor=\"let product of products;\">\r\n                        &lt;td>{{product.productID}}&lt;/td>\r\n                        &lt;td>{{product.name}}&lt;/td>\r\n                        &lt;td>{{product.price}}&lt;/td>\r\n                    &lt;/tr>\r\n                &lt;/tbody>\r\n            &lt;/table>\r\n        &lt;/div>\r\n \r\n&lt;/div></code></pre>\n\n\n\n<p>We are using the&nbsp;<code>bootstrap 3</code>&nbsp;to style our template here</p>\n\n\n\n<p>We have added a button “Get Products”, which is hooked to&nbsp;<code>getProducts</code>&nbsp;method of the component class via&nbsp;event binding</p>\n\n\n\n<p>We are displaying the returned products via&nbsp;ngFor directive.</p>\n\n\n\n<p>Finally, run the code and click on the Get Product button and see the Products are displayed.</p>\n\n\n\n<h3>Injecting Services into Component</h3>\n\n\n\n<p>In the example, we instantiated the&nbsp;<code>productService</code>&nbsp;in the Component directly as shown below</p>\n\n\n\n<pre class=\"wp-block-code\"><code> this.productService=new ProductService(); </code></pre>\n\n\n\n<p>export <strong>class</strong> Product { &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;constructor(productID:number,&nbsp;&nbsp;&nbsp;&nbsp;name: <strong>string</strong> ,&nbsp;&nbsp; price:number) {&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>this</strong>.productID=productID;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>this</strong>.name=name;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>this</strong>.price=price;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;productID:number ;&nbsp;&nbsp;&nbsp;&nbsp;name: <strong>string</strong> ;&nbsp;&nbsp;&nbsp;&nbsp;price:number;&nbsp;}&nbsp;&nbsp;</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>What is a Service Service is a piece of reusable code with a focused purpose. A code that you will use it in many components across your application What services are used for Features that are independent of components such a logging services Share logic or data across components Encapsulate external interactions like data access [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [131],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3616" }
+      ],
+      "collection": [
+        { "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=3616"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 2,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3616/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3827,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3616/revisions/3827"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=3616"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=3616"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=3616"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3618,
+    "date": "2020-12-05T11:24:29",
+    "date_gmt": "2020-12-05T11:24:29",
+    "guid": { "rendered": "http://angular.foobrdigital.com/?p=3618" },
+    "modified": "2020-12-09T06:02:50",
+    "modified_gmt": "2020-12-09T06:02:50",
+    "slug": "introduction-to-angular-dependency-injection",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/introduction-to-angular-dependency-injection/",
+    "title": { "rendered": "Introduction to Angular Dependency Injection" },
+    "content": {
+      "rendered": "\n<h2>What is Dependency</h2>\n\n\n\n<p>We built a&nbsp;<code>ProductService</code>&nbsp;in the&nbsp;Angular Services. The&nbsp;<code>AppComponent</code>&nbsp;is depends on the&nbsp;<code>ProductService</code>&nbsp;to provide the list of Products to display.</p>\n\n\n\n<p>In short, the&nbsp;<code>AppComponent</code>&nbsp;has a&nbsp;<strong>Dependency</strong>&nbsp;on&nbsp;<code>ProductService</code>.</p>\n\n\n\n<h2>What is Angular Dependency Injection</h2>\n\n\n\n<p>Dependency Injection (DI) is a technique in which we provide an instance of an object to another object, which depends on it. This is technique is also known as “Inversion of Control” (IoC)</p>\n\n\n\n<p>Let us look at the&nbsp;<code>ProductService</code>, which we created in our&nbsp;Angular Services&nbsp;tutorial. You can download the source code from&nbsp;GitHub&nbsp;(available under the folder Services).</p>\n\n\n\n<p>Our&nbsp;ProductService&nbsp;returns the hard-coded products when&nbsp;getProduct&nbsp;method invoked.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>import {Product} from './Product'\r\n \r\nexport class ProductService{\r\n \r\n    public  getProducts() {\r\n \r\n        let products:Product&#91;];\r\n \r\n        products=&#91;\r\n            new Product(1,'Memory Card',500),\r\n            new Product(1,'Pen Drive',750),\r\n            new Product(1,'Power Bank',100)\r\n        ]\r\n \r\n        return products;               \r\n    }\r\n}</code></pre>\n\n\n\n<p>We instantiated the&nbsp;productService&nbsp;directly in our component as shown below.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> import { Component } from '@angular/core';\r\n \r\nimport { ProductService } from './product.service';\r\nimport { Product } from './product';\r\n \r\n@Component({\r\n  selector: 'app-root',\r\n  templateUrl: './app.component.html',\r\n})\r\n \r\nexport class AppComponent\r\n{\r\n   products:Product&#91;];\r\n   productService;\r\n \r\n   constructor(){\r\n     this.productService=new ProductService();\r\n   }\r\n \r\n   getProducts() {\r\n     \r\n     this.products=this.productService.getProducts();\r\n   }\r\n \r\n}</code></pre>\n\n\n\n<p>The&nbsp;<code>ProductService</code>&nbsp;Instance is local to the Component. The&nbsp;<code>AppComponent</code>&nbsp;is now tightly coupled to the&nbsp;<code>ProductService</code>, This tight coupling brings a lot of Issues.</p>\n\n\n\n<p>The&nbsp;<code>ProductService</code>&nbsp;hardcoded in our&nbsp;<code>AppComponent</code>. What if we want to use&nbsp;<code>BetterProductService</code>. We need change wherever the&nbsp;<code>ProductService</code>&nbsp;is used and rename it to&nbsp;<code>BetterProductService</code>. What if we wanted to use either&nbsp;<code>ProductService</code>&nbsp;or&nbsp;<code>BetterProductService</code>&nbsp;based on users preference.</p>\n\n\n\n<p>What if&nbsp;<code>ProductService</code>&nbsp;depends on&nbsp; another Service. And then we decides to change the service to some other service. Again we need to search and replace the code manually</p>\n\n\n\n<p>It is hard to test this Component as it is difficult to provide the Mock for the&nbsp;<code>ProductService</code>. For Instance, what if we wanted to substitute out the implementation of&nbsp;<code>ProductService</code>&nbsp;with&nbsp;<code>MockProductService</code>&nbsp;during testing.</p>\n\n\n\n<p>Our Component Class has now tied one particular implementation of&nbsp;<code>ProductService</code>. It will make it difficult to reuse our component.</p>\n\n\n\n<p>We would also like to make our&nbsp;<code>ProductService</code>&nbsp;singleton so that we can use it across our application.</p>\n\n\n\n<p>How to solve all these problems. Move the creation of&nbsp;<code>ProductService</code>&nbsp;to the constructor the&nbsp;<code>AppComponent</code>&nbsp;class as shown below.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>export class AppComponent {    \r\n   products:Product&#91;];    \r\n \r\n   constructor(private productService:ProductService) {    \r\n \r\n   }    \r\n \r\n   getProducts() {        \r\n       this.products=this.productService.getProducts();    \r\n   }\r\n}</code></pre>\n\n\n\n<p>Now our&nbsp;<code>AppComponent</code>&nbsp;does not create the instance of the&nbsp;<code>ProductService</code>. It just asks for it in its Constructor. The&nbsp;<code>AppComponent</code>&nbsp;is now decoupled from the&nbsp;<code>ProductService</code>. The&nbsp;<code>AppComponent</code>&nbsp;does not know anything about the&nbsp;<code>ProductService</code>. It just works with the&nbsp;<code>ProductService</code>&nbsp;passed onto it. You can pass&nbsp;<code>ProductService</code>,&nbsp;<code>BetterProductService</code>&nbsp;or&nbsp;<code>MockProductService</code>. The&nbsp;<code>AppComponent</code>&nbsp;does not care.</p>\n\n\n\n<p>Now the responsibility of Creating the&nbsp;<code>ProductService</code>&nbsp;falls on the creator of the&nbsp;<code>AppComponent</code>.</p>\n\n\n\n<p>The above pattern is known as&nbsp;<strong>Dependency Injection Pattern</strong>.</p>\n\n\n\n<h2>Why use Dependency Injection</h2>\n\n\n\n<p>Our Component is now loosely coupled to the&nbsp;<code>ProductService</code>.&nbsp;<code>AppComponent</code>&nbsp;does not know how to create the&nbsp;<code>ProductService</code>.&nbsp;</p>\n\n\n\n<p><code>AppComponent</code>&nbsp;is now easier to Test. Our&nbsp;<code>AppComponent</code>&nbsp;is not dependent on a Particular implementation of&nbsp;<code>ProductService</code>&nbsp;anymore. It will work with any implementation of&nbsp;<code>ProductService</code>&nbsp;that is passed on to it. You can just create a&nbsp;<code>mockProductService</code>&nbsp;Class and pass it while testing.</p>\n\n\n\n<p>Reusing of the component is becomes easier. Our Component will now work with any&nbsp;<code>ProductService</code>&nbsp;as long as the interface is honored.</p>\n\n\n\n<p>Dependency injection pattern made our&nbsp;<code>AppComponent</code>&nbsp;testable, maintainable etc.</p>\n\n\n\n<p>But does it solve all our Problem ?. No, we just moved the Problem out of Component to the Creator of the Component.</p>\n\n\n\n<p>How do we create an instance of&nbsp;<code>ProductService</code>&nbsp;and pass it to the&nbsp;<code>AppComponent</code>? That is what&nbsp;<code>Angular Dependency Injection</code>&nbsp;does.</p>\n\n\n\n<h2>Angular Dependency Injection Framework</h2>\n\n\n\n<p>Angular Dependency Injection framework implements the Dependency injection Pattern in Angular. It creates &amp; maintains the Dependencies and injects them into the Components or Services which requests for it.</p>\n\n\n\n<h3>Parts of Angular Dependency Injection Framework&nbsp;</h3>\n\n\n\n<p>There are five main parts of the Angular Dependency injection Framework.</p>\n\n\n\n<h4><strong>Consumer</strong></h4>\n\n\n\n<p>The Component that needs the Dependency. In the above example, the&nbsp;<code>AppComponent</code>&nbsp;is the Consumer</p>\n\n\n\n<h4><strong>Dependency</strong></h4>\n\n\n\n<p>The Service that is being injected. In the above example the&nbsp;<code>ProductService</code>&nbsp;is the Dependency</p>\n\n\n\n<h4>DI Token</h4>\n\n\n\n<p>The DI Token uniquely identifies a Dependency. We use DI Token when we register dependency</p>\n\n\n\n<h4><strong>Provider</strong></h4>\n\n\n\n<p>The&nbsp;&nbsp;Providers&nbsp;Maintains the list of Dependencies along with their&nbsp;<em>Tokens</em>. The&nbsp;<em>DI Token</em>&nbsp;is used to identify the Dependency.&nbsp;&nbsp;</p>\n\n\n\n<h4><strong>Injector</strong></h4>\n\n\n\n<p>Injector&nbsp;holds the&nbsp;<em>Providers</em>&nbsp;and is responsible for resolving the dependencies and injecting the instance of the Dependency to the Consumer</p>\n\n\n\n<h2>How Dependency Injection works in Angular</h2>\n\n\n\n<p>The dependencies are registered with the&nbsp;<code>Provider</code>. This is done in the&nbsp;<code>Providers</code>&nbsp;metadata of the&nbsp;<code>Injector</code>.</p>\n\n\n\n<p>Angular Provides&nbsp;an instance of&nbsp;<code>Injector</code>&nbsp;&amp;&nbsp;<code>Provider</code>&nbsp;to every Consumer.</p>\n\n\n\n<p>Consumer when instantiated, It declares the Dependencies it needs in its constructor.</p>\n\n\n\n<p><code>Injector</code>&nbsp;reads the Dependencies from the constructor of the Consumer and looks for the dependency in the provider. The Provider provides the instance and injector, then injects it into the consumer. If the instance of the Dependency is already exists, then it is reused making the dependency singleton.</p>\n\n\n\n<h2>How to Use Dependency Injection</h2>\n\n\n\n<p>We had created a simple&nbsp;<code>ProductService</code>&nbsp;in our last tutorial. Let us now update it to use&nbsp;<strong>Dependency Injection.&nbsp;</strong></p>\n\n\n\n<p>First, we need to register the dependencies with the provider. This is done in the&nbsp;<code>providers</code>&nbsp;metadata array of&nbsp;<code>@Component</code>&nbsp;decorator.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> providers: &#91;ProductService] </code></pre>\n\n\n\n<p>Next, we need to tell angular that our component needs dependency injection. This is done by using the&nbsp;<code>@Injectable()</code>&nbsp;decorator.</p>\n\n\n\n<p><code>@Injectable()</code>&nbsp;decorator is not needed, if the class already has other Angular decorators like&nbsp;<code>@Component</code>,&nbsp;<code>@pipe</code>&nbsp;or&nbsp;<code>@directive</code>&nbsp;etc. Because all these are a subtype of&nbsp;<code>Injectible</code>.</p>\n\n\n\n<p>Since our AppComponent is already decorated with&nbsp;<code>@Component</code>,&nbsp;we do not need to decorate with the&nbsp;<code>@Injectable</code></p>\n\n\n\n<p><code><strong>@Injectible</strong></code><strong>&nbsp;is also not needed if the class does not have any dependencies to be injected. However it is best practice is to decorate every service class with&nbsp;</strong><code><strong>@Injectable()</strong></code><strong>, even those that don’t have dependencies</strong>.</p>\n\n\n\n<p>Next, our&nbsp;<code>AppComponent</code>&nbsp;needs to ask for the dependencies. This is done in the constructor as shown below</p>\n\n\n\n<pre class=\"wp-block-code\"><code> constructor(private productService:ProductService) { } </code></pre>\n\n\n\n<p>That’s it.</p>\n\n\n\n<p>The Services are usually not added to&nbsp;<code>Providers</code>&nbsp;array of the Component, but to the&nbsp;<strong><code>Providers</code>&nbsp;array of the&nbsp;<code>@NgModule</code></strong>. Then they will be available to be used in all the components in the application</p>\n\n\n\n<p>When&nbsp;<code>AppComponent</code>&nbsp;is instantiated it gets its own&nbsp;<code>Injector</code>&nbsp;instance. The&nbsp;<code>Injector</code>&nbsp;knows that&nbsp;<code>AppComponent</code>&nbsp;requires&nbsp;<code>ProductService</code>&nbsp;by looking at its constructor. It then looks at the&nbsp;<code>Providers</code>&nbsp;for a match and&nbsp;<code>Provides</code>&nbsp;an instance of&nbsp;<code>ProductService</code>&nbsp;to the&nbsp;<code>AppComponent</code></p>\n\n\n\n<p>The Complete AppComponent is as follows</p>\n\n\n\n<pre class=\"wp-block-code\"><code> import { Component } from '@angular/core';\r\n \r\nimport { ProductService } from './product.service';\r\nimport { Product } from './product';\r\n \r\n@Component({\r\n  selector: 'app-root',\r\n  templateUrl: './app.component.html',\r\n  providers: &#91;ProductService]\r\n})\r\nexport class AppComponent\r\n{\r\n \r\n   products:Product&#91;];\r\n   \r\n   constructor(private productService:ProductService){\r\n   }\r\n   \r\n   getProducts() {\r\n     this.products=this.productService.getProducts();\r\n   }\r\n  \r\n}</code></pre>\n\n\n\n<h2>Injecting Service into Service</h2>\n\n\n\n<p>We looked at how to inject&nbsp;<code>ProductService</code>&nbsp;to a component. Now let us look at how to inject service into another service.</p>\n\n\n\n<p>Let us build&nbsp;<code>loggerService</code>, which logs every operation into a console window and inject it into our&nbsp;<code>ProductService</code>.</p>\n\n\n\n<h3>Logger Service</h3>\n\n\n\n<p>Create the&nbsp;<code>logger.service.ts</code>&nbsp;and add the following code</p>\n\n\n\n<pre class=\"wp-block-code\"><code>\r\nimport { Injectable } from '@angular/core';\r\n \r\n@Injectable()\r\nexport class LoggerService {\r\n  log(message:any) {\r\n    console.log(message);\r\n  }\r\n}</code></pre>\n\n\n\n<p>The&nbsp;<code>LoggerService</code>&nbsp;has just one method log, which takes a&nbsp;<code>message</code>&nbsp;and writes it to the console.</p>\n\n\n\n<p>We are also using&nbsp;<code>@Injectible</code>&nbsp;metadata to decorate our logger class. Technically, this is not required here as the logger class does not have any external dependencies.</p>\n\n\n\n<p>Make it a practice to add&nbsp;<code>@Injectible</code>&nbsp;metadata for the following reasons<br><br><strong>Future proofing:</strong>&nbsp;No need to remember&nbsp;<code>@Injectable()</code>&nbsp;when we add a dependency later.<br><br><strong>Consistency:</strong>&nbsp;All services follow the same rules, and we don’t have to wonder why a decorator is missing.</p>\n\n\n\n<h3>Product Service</h3>\n\n\n\n<p>Now we want to inject this into our&nbsp;ProductService&nbsp;class</p>\n\n\n\n<p>The&nbsp;<code>ProductService</code>&nbsp;needs&nbsp;<code>loggerService</code>&nbsp;to be injected. Hence the class requires&nbsp;<code>@Injectible</code>&nbsp;metadata</p>\n\n\n\n<pre class=\"wp-block-code\"><code> @Injectable()export class ProductService{}</code></pre>\n\n\n\n<p>Next, In the constructor of the&nbsp;<code>ProductService</code>&nbsp;ask for the&nbsp;<code>loggerService</code>.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>constructor(private loggerService: LoggerService) {    this.loggerService.log(\"Product Service Constructed\");}</code></pre>\n\n\n\n<p>And update the&nbsp;<code>GetProducts</code>&nbsp;method to use the Logger Service.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> public  getProducts() {\r\n \r\n        this.loggerService.log(\"getProducts called\");\r\n        let products:Product&#91;];\r\n \r\n        products=&#91;\r\n            new Product(1,'Memory Card',500),\r\n            new Product(1,'Pen Drive',750),\r\n            new Product(1,'Power Bank',100)\r\n        ]\r\n \r\n        this.loggerService.log(products);\r\n        return products;               \r\n    }</code></pre>\n\n\n\n<p>Finally, we need to register&nbsp;<code>LoggerService</code>&nbsp;with the&nbsp;<code>Providers</code>&nbsp;metadata.</p>\n\n\n\n<p>Angular&nbsp; does not have any options add&nbsp;<code>providers</code>&nbsp;in the Service Class. The&nbsp;<code>Providers</code>&nbsp;must be added to the Component/Directive/Pipe or to the Module.</p>\n\n\n\n<p>Open the&nbsp;<code>AppComponent</code>&nbsp;Update the Providers array to include&nbsp;<code>LoggerService</code></p>\n\n\n\n<pre class=\"wp-block-code\"><code>providers: &#91;ProductService,LoggerService] </code></pre>\n\n\n\n<p>That’s it. As you click on the Get Products button, you will see the Console window updated with the Log messages</p>\n\n\n\n<h2>Using NgModule to Provide Dependencies</h2>\n\n\n\n<p>In the above example, we registered the dependencies in the&nbsp;<code>Providers</code>&nbsp;array of the component class. The dependencies are only available to the component where it is registered and to its child components.</p>\n\n\n\n<p>To Make the dependencies available to the entire application, we need to register it in the root module.</p>\n\n\n\n<p>Remove the&nbsp;<code>providers: [ProductService,LoggerService],</code>&nbsp;from the&nbsp;<code>AppComponent</code>&nbsp;and move it to the&nbsp;&nbsp;<code>AppModule</code>&nbsp;as shown below</p>\n\n\n\n<pre class=\"wp-block-code\"><code> import { BrowserModule } from '@angular/platform-browser';\r\nimport { NgModule } from '@angular/core';\r\nimport { HttpModule } from '@angular/http';\r\nimport { FormsModule } from '@angular/forms';\r\n \r\nimport { AppComponent } from './app.component';\r\n \r\nimport { ProductService } from './product.service';\r\nimport { LoggerService } from './logger.service';\r\n \r\n@NgModule({\r\n  declarations: &#91;\r\n    AppComponent\r\n  ],\r\n  imports: &#91;\r\n    BrowserModule,\r\n    HttpModule,\r\n    FormsModule\r\n  ],\r\n  providers: &#91;ProductService,LoggerService],\r\n  bootstrap: &#91;AppComponent]\r\n})\r\nexport class AppModule { } </code></pre>\n\n\n\n<p>Providing the service in the root module will create a single, shared instance of service and injects into any class that asks for it.</p>\n\n\n\n<p>The above code works because, we Angular creates the&nbsp;Tree of Injectors with parent child relationship&nbsp;similar to the Component Tree. We will cover this next tutorials.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>What is Dependency We built a&nbsp;ProductService&nbsp;in the&nbsp;Angular Services. The&nbsp;AppComponent&nbsp;is depends on the&nbsp;ProductService&nbsp;to provide the list of Products to display. In short, the&nbsp;AppComponent&nbsp;has a&nbsp;Dependency&nbsp;on&nbsp;ProductService. What is Angular Dependency Injection Dependency Injection (DI) is a technique in which we provide an instance of an object to another object, which depends on it. This is technique is also [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [131],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3618" }
+      ],
+      "collection": [
+        { "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=3618"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 2,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3618/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3828,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3618/revisions/3828"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=3618"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=3618"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=3618"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3620,
+    "date": "2020-12-05T11:27:03",
+    "date_gmt": "2020-12-05T11:27:03",
+    "guid": { "rendered": "http://angular.foobrdigital.com/?p=3620" },
+    "modified": "2020-12-09T06:03:42",
+    "modified_gmt": "2020-12-09T06:03:42",
+    "slug": "angular-injector-injectable-inject",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/angular-injector-injectable-inject/",
+    "title": { "rendered": "Angular Injector, @Injectable &#038; @Inject" },
+    "content": {
+      "rendered": "\n<h2>What is Angular Injector</h2>\n\n\n\n<p>The Angular Injector is responsible instantiating the dependency and injecting into the component or service.</p>\n\n\n\n<p>The Injector looks for the dependency in the&nbsp;Angular Providers&nbsp;using the token. The Angular Providers array returns the Provider, which contains the information about how to create the instance of the dependency. The Injector creates the instance and injects it into&nbsp;Component&nbsp;or&nbsp;service.</p>\n\n\n\n<h2>When is Angular Injector is created</h2>\n\n\n\n<p>The Angular creates an injector when the application root module (named as&nbsp;<code>AppModule</code>) is bootstrapped. This injector is called as root injector. The root injector has the application wide scope. It acts as parent to all injectors</p>\n\n\n\n<p>Angular root module loads the&nbsp;<code>AppComponent</code>. We call this as root component. The&nbsp;<code>AppComponent</code>&nbsp;gets its own injector. This injector created as the child of the root injector.</p>\n\n\n\n<p>The Root Component contains all other components. Angular App will create child components under the Root Component. All these child component can have their own child components creating a tree of components. The Angular Injector is also created for all those components creating a Injector tree closely mimicking the component tree.</p>\n\n\n\n<p>The Every Injector gets its own copy of&nbsp;Providers.</p>\n\n\n\n<h3>Registering the service with injector</h3>\n\n\n\n<p>All the application dependencies are&nbsp;registered with the&nbsp;Providers. The every injector has a Provider associated with it. The Providers metadata of&nbsp;<code>@NgModule</code>,&nbsp;<code>@Component</code>&nbsp;or&nbsp;<code>@Directive</code>&nbsp;is where we register our dependency</p>\n\n\n\n<pre class=\"wp-block-code\"><code>providers: &#91;ProductService, LoggerService] </code></pre>\n\n\n\n<p>Where you register your dependency defines the scope of the dependency. The dependency registered with the Module using&nbsp;<code>@NgModule</code>&nbsp;decorator is attached the Root Provider ( Provider attached to the Root Injector). This Dependency is available to entire application.</p>\n\n\n\n<p>The dependency registered with the component is available to that component and any child component of that component.</p>\n\n\n\n<h2>@Injectable</h2>\n\n\n\n<p>The&nbsp;<code>Injectable</code>&nbsp;is a decorator, which you need to add to the&nbsp;<strong>consumer of the dependency</strong>. This decorator tells angular that the constructor arguments must be injected using the&nbsp;Angular DI&nbsp;system</p>\n\n\n\n<h3>Example of Injectable</h3>\n\n\n\n<p>We created an example application in the&nbsp;Angular Dependency injection&nbsp;tutorial. It had two services&nbsp;<code>LoggerService</code>&nbsp;&amp;&nbsp;<code>ProductService</code>&nbsp;as shown below.</p>\n\n\n\n<p><strong>LoggerService</strong></p>\n\n\n\n<pre class=\"wp-block-code\"><code>import { Injectable } from '@angular/core';\r\n \r\n@Injectable()\r\nexport class LoggerService {\r\n  log(message:any) {\r\n    console.log(message);\r\n  }\r\n}</code></pre>\n\n\n\n<p><strong>ProductService</strong></p>\n\n\n\n<pre class=\"wp-block-code\"><code> import { Injectable } from '@angular/core';\r\n \r\nimport {Product} from './Product'\r\nimport {LoggerService} from './logger.service'\r\n \r\n@Injectable()\r\nexport class ProductService{\r\n \r\n    constructor(private loggerService: LoggerService) {\r\n        this.loggerService.log(\"Product Service Constructed\");\r\n    }\r\n \r\n    public  getProducts() {\r\n \r\n        this.loggerService.log(\"getProducts called\");\r\n        let products:Product&#91;];\r\n \r\n        products=&#91;\r\n            new Product(1,'Memory Card',500),\r\n            new Product(1,'Pen Drive',750),\r\n            new Product(1,'Power Bank',100)\r\n        ]\r\n \r\n        this.loggerService.log(products);\r\n        return products;               \r\n    }\r\n}</code></pre>\n\n\n\n<p>The&nbsp;<code>ProductService</code>&nbsp;has a dependency on the&nbsp;<code>LoggerService</code>. Hence it is decorated with the&nbsp;<code>@Injectable</code>&nbsp;decorator. Remove&nbsp;<code>@Injectable()</code>&nbsp;from&nbsp;<code>ProductService</code>&nbsp;and you will get the following error.</p>\n\n\n\n<p>Uncaught Error: Can’t resolve all parameters for ProductService: (?)</p>\n\n\n\n<p>That is because without&nbsp;DI&nbsp;Angular will not know how to inject&nbsp;<code>LoggerService</code>&nbsp;into&nbsp;<code>ProductService</code>.</p>\n\n\n\n<p>Remove&nbsp;<code>@Injectable()</code>&nbsp;from&nbsp;<code>LoggerService</code>&nbsp;will not result in any error as the&nbsp;<code>LoggerService</code>&nbsp;do not have any dependency.</p>\n\n\n\n<p>The&nbsp;Components&nbsp;&amp;&nbsp;Directives&nbsp;are already decorated with&nbsp;<code>@Component</code>&nbsp;&amp;&nbsp;<code>@Directive</code>&nbsp;decorators. These decorators also tell Angular to use DI, hence you do not need to add the&nbsp;<code>@Injectable()</code>.</p>\n\n\n\n<h2>@Inject</h2>\n\n\n\n<p>The&nbsp;<code>@Inject()</code>&nbsp;is a&nbsp;constructor parameter decorator, which tells angular to Inject the parameter with the dependency provided in the given token. It is a manual way of injecting the dependency</p>\n\n\n\n<p>In the previous example, when we removed the&nbsp;<code>@Injectable</code>&nbsp;decorator from the&nbsp;<code>ProductService</code>&nbsp;we got an error.</p>\n\n\n\n<p>We can manually inject the&nbsp;<code>LoggerService</code>&nbsp;by using the&nbsp;<code>@Inject</code>&nbsp;decorator applied to the parameter&nbsp;<code>loggerService</code>&nbsp;as shown below.</p>\n\n\n\n<p>The&nbsp;<code>@Inject</code>&nbsp;takes the&nbsp;Injector token as the parameter. The token is used to locate the dependency in the Providers.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>export class ProductService{\r\n    constructor(@Inject(LoggerService) private loggerService) {\r\n        this.loggerService.log(\"Product Service Constructed\");\r\n    }\r\n}</code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>What is Angular Injector The Angular Injector is responsible instantiating the dependency and injecting into the component or service. The Injector looks for the dependency in the&nbsp;Angular Providers&nbsp;using the token. The Angular Providers array returns the Provider, which contains the information about how to create the instance of the dependency. The Injector creates the instance [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [131],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3620" }
+      ],
+      "collection": [
+        { "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=3620"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 2,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3620/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3829,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3620/revisions/3829"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=3620"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=3620"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=3620"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3622,
+    "date": "2020-12-05T11:32:41",
+    "date_gmt": "2020-12-05T11:32:41",
+    "guid": { "rendered": "http://angular.foobrdigital.com/?p=3622" },
+    "modified": "2020-12-09T06:06:23",
+    "modified_gmt": "2020-12-09T06:06:23",
+    "slug": "angular-providers-useclass-usevalue-usefactory-useexisting",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/angular-providers-useclass-usevalue-usefactory-useexisting/",
+    "title": {
+      "rendered": "Angular Providers: useClass, useValue, useFactory &#038; useExisting"
+    },
+    "content": {
+      "rendered": "\n<h2>What are Angular Providers</h2>\n\n\n\n<p>The&nbsp;<em>Angular Provider</em>&nbsp;is an instruction (or recipe) that describes how an object for a certain token is created. The&nbsp;<em><strong>Angular Providers</strong></em>&nbsp;is an array of such instruction (Provider). Each provider is uniquely identified by a token (or DI&nbsp; Token ) in the Providers Array.</p>\n\n\n\n<p>We register the services participating in the&nbsp;dependency injections&nbsp;in the&nbsp;<code>Providers</code>&nbsp;metadata of the&nbsp;<code>@NgModule</code>&nbsp;or&nbsp;<code>@Component</code>&nbsp;or in&nbsp;<code>@Directive</code>. Where you register the dependency&nbsp;defines the scope of the&nbsp;dependency.&nbsp;&nbsp;</p>\n\n\n\n<p>The Angular creates an injector for each component/directive it creates. It also creates a root level injector, which has the app level scope. Each injector gets its own copy of the Providers.</p>\n\n\n\n<p>The&nbsp;Angular Components&nbsp;or&nbsp;Angular Services&nbsp;declare the dependencies they need in their constructor. The&nbsp;Injector&nbsp;reads the dependencies and looks for the&nbsp;<em>provider</em>&nbsp;in the&nbsp;<em>providers</em>&nbsp;array using the&nbsp;<em>Token</em>. The injector then instantiates the dependency using the instructions provided in the&nbsp;<em>provider</em>. The&nbsp;<em>Injector</em>&nbsp;then injects the instance of the dependency into the Components/Services.</p>\n\n\n\n<h2>Configuring the Angular Provider</h2>\n\n\n\n<p>To Provide an instance of the dependency, we need to register it in the&nbsp;<code>Providers</code>&nbsp;metadata&nbsp;</p>\n\n\n\n<p>In our last tutorial on&nbsp;Angular Dependency injection, we registered our&nbsp;<code>ProductService</code>&nbsp;using the&nbsp;<code>Providers</code>&nbsp;arrays as shown below in the&nbsp;<code>@NgModule</code></p>\n\n\n\n<pre class=\"wp-block-code\"><code>providers: &#91;ProductService] </code></pre>\n\n\n\n<p>The above is an actual shorthand notation for the following syntax</p>\n\n\n\n<pre class=\"wp-block-code\"><code>providers :&#91;{ provide: ProductService, useClass: ProductService }] </code></pre>\n\n\n\n<p>The above syntax has two properties.</p>\n\n\n\n<h3>Provide</h3>\n\n\n\n<p>The First property is&nbsp;<code>Provide</code>&nbsp;holds the&nbsp;<strong>Token&nbsp;or&nbsp;DI Token</strong>. The token is used by the injector to locate the&nbsp;<code>provider</code>&nbsp;in the&nbsp;<code>Providers</code>&nbsp;array. The Token can be either&nbsp;<code>type</code>, a&nbsp;<code>string</code>&nbsp;or an instance of&nbsp;<code>InjectionToken</code>.</p>\n\n\n\n<h3>Provider</h3>\n\n\n\n<p>The second property is&nbsp;<code>Provider</code>.&nbsp;It tells the Angular how to create the instance of the dependency. The Angular can create the instance of the Dependency in four different ways. It can create a dependency from the existing service class (<code>useClass</code>). It can inject a value, array or object (<code>useValue</code>). It can use a factory function, which returns the instance of service class or value (<code>useFactory</code>). It can return the instance from an already existing token (<code>useExisting</code>).</p>\n\n\n\n<h2>DI Token</h2>\n\n\n\n<p>The injector maintains an&nbsp;<strong>internal collection of token-provider map</strong>&nbsp;in the Providers array. The token acts as a key to that collection &amp; Injector use the Token (key) to locate the&nbsp;<code>provider</code>.</p>\n\n\n\n<h3>Types of DI Token</h3>\n\n\n\n<p>The DI Token can be either&nbsp;<code>type</code>, a&nbsp;<code>string</code>&nbsp;or an instance of&nbsp;<code>InjectionToken</code>.</p>\n\n\n\n<h3>Type Token</h3>\n\n\n\n<p>Here the type being injected is used as the token.</p>\n\n\n\n<p>For Example, we would like to inject the instance of the&nbsp;<code>ProductService</code>, we will use the&nbsp;<code>ProducService</code>&nbsp;as the token as shown below</p>\n\n\n\n<pre class=\"wp-block-code\"><code> providers :&#91;{ provide: ProductService, useClass: ProductService }] </code></pre>\n\n\n\n<p>The&nbsp;<code>ProductService</code>&nbsp;is then injected to the component by using the following code.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>class ProductComponent {\r\n  constructor(private productService : ProductService ) {}\r\n}\r\n </code></pre>\n\n\n\n<h3>String token</h3>\n\n\n\n<p>Instead of using a type, we can use a string literal to register the dependency. This is useful in scenarios where the dependency is a value or object etc, which is not represented by a class.</p>\n\n\n\n<p>Example</p>\n\n\n\n<pre class=\"wp-block-code\"><code>  {provide:'PRODUCT_SERVICE', useClass: ProductService },    </code></pre>\n\n\n\n<p>You can then use the Inject the&nbsp;<code>ProductService</code>&nbsp;using the&nbsp;<code>@Inject</code>&nbsp;method</p>\n\n\n\n<pre class=\"wp-block-code\"><code>class ProductComponent {\r\n   constructor(@Inject('PRODUCTSERVICE') private prdService:ProductService ) { \r\n}\r\n </code></pre>\n\n\n\n<p>Example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code> {provide:'USE_FAKE', useValue: true },   \r\n {provide:'APIURL', useValue: 'http://SomeEndPoint.com/api' },   \r\n </code></pre>\n\n\n\n<pre class=\"wp-block-code\"><code>class ProductComponent {\r\n   constructor(@Inject('APIURL') private apiURL:string )\r\n}</code></pre>\n\n\n\n<h3>Injection Token</h3>\n\n\n\n<p>The Problem with the string tokens is that two developers can use the same string token at a different part of the app. You also do not have any control over the third-party modules, which may use the same token. If the token is reused, the last to register overwrites all previously registered tokens.</p>\n\n\n\n<p>String tokens are easier to mistype and that makes it difficult to track &amp; maintain in big applications.</p>\n\n\n\n<p>The Angular provides&nbsp;<code>InjectionToken</code>&nbsp;class so as to ensure that the Unique tokens are created. The Injection Token is created by creating a new instance of the&nbsp;<code>InjectionToken</code>&nbsp;class.</p>\n\n\n\n<h4>InjectionToken Example</h4>\n\n\n\n<p>First, create a separate file and name it as&nbsp;<code>tokens.ts</code>. Import the&nbsp;<code>InjectionToken</code>&nbsp;from&nbsp;<code>@angular/core</code>&nbsp;library. Create an instance of&nbsp;<code>InjectionToken</code>&nbsp;and assign it to a const&nbsp;<code>API_URL</code></p>\n\n\n\n<pre class=\"wp-block-code\"><code>import { InjectionToken } from '@angular/core';\nexport const API_URL= new InjectionToken&lt;string>('');  </code></pre>\n\n\n\n<p>Open the&nbsp;<code>AppModule</code>&nbsp;and the Token is used to register the value in&nbsp;<code>providers</code>&nbsp;metadata</p>\n\n\n\n<pre class=\"wp-block-code\"><code> import { API_URL } from './tokens';\r\n \r\nproviders: &#91; \r\n    { provide: API_URL, useValue: 'http://SomeEndPoint.com/api' }\r\n]</code></pre>\n\n\n\n<p>It is then injected using the&nbsp;<code>@Inject</code>&nbsp;in the constructor of the service/component.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> import { API_URL } from './tokens'; constructor(@Inject(API_URL) private apiURL: string) { } </code></pre>\n\n\n\n<h2>The Types of Provider&nbsp;</h2>\n\n\n\n<p>The&nbsp;Angular Dependency Injection&nbsp;provides several types of providers.</p>\n\n\n\n<ul><li>Class Provider : useClass</li><li>Value Provider:&nbsp;useValue</li><li>Factory Provider:&nbsp;useFactory</li><li>Aliased Class Provider:&nbsp;useExisting</li></ul>\n\n\n\n<h3>Class Provider: useClass</h3>\n\n\n\n<p>The Class Provider&nbsp;<code>useClass</code>&nbsp;is used, when you want to provide an instance of the class.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> providers :&#91;{ provide: ProductService, useClass: ProductService }] </code></pre>\n\n\n\n<p>In the above, example&nbsp;<code>ProductService</code>&nbsp;is the&nbsp;<code>Token</code>&nbsp;(or key) and it maps to the&nbsp;<code>ProductService</code>&nbsp;Class. In this case both the Class name and token name match.</p>\n\n\n\n<p>The Angular Provides a shortcut in cases where both token &amp; class name matches as follows</p>\n\n\n\n<pre class=\"wp-block-code\"><code> providers: &#91;ProductService]</code></pre>\n\n\n\n<p>You can provide a mock/Fake class for Testing purpose as shown below.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>providers :&#91;{ provide: ProductService, useClass: fakeProductService }] </code></pre>\n\n\n\n<p>The above example shows us how easy to switch dependencies.&nbsp;</p>\n\n\n\n<h3>Value Provider: useValue</h3>\n\n\n\n<p>The Value Provider&nbsp;<code>useValue</code>&nbsp;is used, when you want to provide a Simple value</p>\n\n\n\n<p>This property can be used when you want to provide URL of Service class, Application wide Configuration Option, etc</p>\n\n\n\n<pre class=\"wp-block-code\"><code>providers :&#91; {provide:'USE_FAKE', useValue: true}] </code></pre>\n\n\n\n<pre class=\"wp-block-code\"><code> const APP_CONFIG = { \r\n      serviceURL: \"www.serviceUrl.com\\api\", \r\n      IsDevleomentMode: true \r\n}; \r\n \r\nproviders: &#91;{ provide: AppConfig, useValue: APP_CONFIG }]\r\n </code></pre>\n\n\n\n<p>Use&nbsp;<code>Object.freeze</code>&nbsp;to freeze the value of the configuration, so that it cannot be changed</p>\n\n\n\n<pre class=\"wp-block-code\"><code> const APP_CONFIG = Object.freeze({ \r\n      serviceURL: \"www.serviceUrl.com\\api\", \r\n      IsDevleomentMode: true \r\n}); \r\n \r\nproviders: &#91;{ provide: AppConfig, useValue: APP_CONFIG }]</code></pre>\n\n\n\n<h3>Factory Provider: useFactory</h3>\n\n\n\n<p>The Factory Provider&nbsp;<code>useFactory</code>&nbsp;is used when you want to return an object based on a certain condition. The factory function can have an optional argument with dependencies if any.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> providers :&#91; \r\n  {provide:'USE_FAKE', useValue: true},             \r\n  {provide: ProductService, useFactory: (USE_FAKE) =>                  \r\n       USE_FAKE ? new FakeProductService() : new ProductService(),                  \r\n       deps: &#91;'USE_FAKE']}           \r\n]</code></pre>\n\n\n\n<p>The above example code uses&nbsp;<code>useValue</code>&nbsp;provider to define&nbsp;<code>USE_FAKE</code>&nbsp;constant</p>\n\n\n\n<p>We are then using&nbsp;<code>useFactory</code>&nbsp;to return either&nbsp;<code>FakeProductService</code>&nbsp;or&nbsp;<code>ProductService</code>&nbsp;based on the value of&nbsp;<code>USE_FAKE</code></p>\n\n\n\n<p>Since our Factory Provider depends on&nbsp;&nbsp;<code>‘USE_FAKE'</code>, we need to specify it on&nbsp;<code>Deps</code>&nbsp;array.</p>\n\n\n\n<h3>Aliased Provider: useExisting</h3>\n\n\n\n<p>The Aliased Provider&nbsp;<code>useExisting</code>&nbsp;The provider is used, when you want to use the new provider in place of old Provider.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> providers :&#91;\r\n    { provide: ProductService, useExisting: NewProductService },\r\n    { provide: NewProductService, useClass: NewProductService }\r\n]</code></pre>\n\n\n\n<p>For Example, in the above example, the&nbsp;<code>ProductService</code>&nbsp;is mapped to the&nbsp;<code>NewProductService</code>&nbsp;token using&nbsp;<code>useExisting</code>&nbsp;Provider. This will return the&nbsp;<code>NewProductService</code>&nbsp;whenever the&nbsp;<code>ProductService</code>&nbsp;is used.</p>\n\n\n\n<h2>Provider Scope</h2>\n\n\n\n<p>Where you provide the dependency, defines the lifetime of the dependency.</p>\n\n\n\n<p>The service provided in the&nbsp;<code>@ngModule</code>&nbsp;of the&nbsp;<em><strong>root module</strong></em>&nbsp;or any&nbsp;<em><strong>eagerly loaded module</strong></em>&nbsp;are available to be injected everywhere in the application.</p>\n\n\n\n<p>The services provided in the&nbsp;<code>@Component</code>,&nbsp;<code>@pipe</code>&nbsp;or&nbsp;<code>@Directive</code>&nbsp;are available to be injected in that component and all the child components</p>\n\n\n\n<p>The services provided in the&nbsp;<code>@ngModule</code>&nbsp;of the&nbsp;lazy loaded module&nbsp;are available to be injected in that module and every&nbsp;<em>component</em>,&nbsp;<em>pipe</em>&nbsp;or&nbsp;<em>directive</em>&nbsp;belonging to that Module.</p>\n\n\n\n<h2>Singleton services</h2>\n\n\n\n<p>Each Injector creates a singleton object of the dependency registered by the provider.</p>\n\n\n\n<p>For Example, consider a service configured in&nbsp;<code>@ngModule</code>. Component A asks for the service it will get a new instance of the service. Now if Component B Asks for the same service, the injector does not create a new instance of the service, but it will reuse the already created service.</p>\n\n\n\n<p>But if we register the service in&nbsp;<code>@ngModule</code>&nbsp;and also in Component A. Component A always gets a new instance of the service. While other components gets the instance of the service registered in&nbsp;<code>@ngModule</code>.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>What are Angular Providers The&nbsp;Angular Provider&nbsp;is an instruction (or recipe) that describes how an object for a certain token is created. The&nbsp;Angular Providers&nbsp;is an array of such instruction (Provider). Each provider is uniquely identified by a token (or DI&nbsp; Token ) in the Providers Array. We register the services participating in the&nbsp;dependency injections&nbsp;in the&nbsp;Providers&nbsp;metadata of [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [131],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3622" }
+      ],
+      "collection": [
+        { "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=3622"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 2,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3622/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3830,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3622/revisions/3830"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=3622"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=3622"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=3622"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3624,
+    "date": "2020-12-05T11:40:03",
+    "date_gmt": "2020-12-05T11:40:03",
+    "guid": { "rendered": "http://angular.foobrdigital.com/?p=3624" },
+    "modified": "2020-12-09T06:08:43",
+    "modified_gmt": "2020-12-09T06:08:43",
+    "slug": "angular-hierarchical-dependency-injection",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/angular-hierarchical-dependency-injection/",
+    "title": { "rendered": "Angular Hierarchical Dependency Injection" },
+    "content": {
+      "rendered": "\n<h2>Injector Tree</h2>\n\n\n\n<p>The Angular creates the&nbsp;Injector,&nbsp;when the application root module (named as&nbsp;<code>AppModule</code>) is bootstrapped. This injector is called as&nbsp;<em>root injector</em>&nbsp;and acts as a parent to all other injectors. The&nbsp;<em>root injector</em>&nbsp;also gets its own copy of&nbsp;Providers. It gets it from the&nbsp;<code>Providers</code>&nbsp;is metadata of&nbsp;<code>@NgModule</code>&nbsp;of&nbsp;<code>AppModule</code>.</p>\n\n\n\n<p>The&nbsp;<code>AppModule</code>&nbsp;loads the&nbsp;<code>AppComponent</code>, which is the&nbsp;<em>root component</em>&nbsp;of our application. The&nbsp;<code>AppComponent</code>&nbsp;gets its own injector with a copy of&nbsp;Providers&nbsp;defined in&nbsp;<code>Providers</code>&nbsp;metadata of the&nbsp;<code>AppComponent</code></p>\n\n\n\n<p>The&nbsp;<em>Root Component</em>&nbsp;acts as a parent to every component we create. Each of those components can contain child components creating a tree of components. The Injector is created for each of those component creating a tree of injector, which closely resembles the component tree. This is called a hierarchical pattern. The injectors also get their own copy of providers from the&nbsp;<code>@component</code>&nbsp;metadata.</p>\n\n\n\n<p>The injector is destroyed when the associated component is destroyed.</p>\n\n\n\n<h2>Dependency Resolution</h2>\n\n\n\n<p>The components ask for the&nbsp;dependencies to be injected in the constructor using the token.</p>\n\n\n\n<p>The injector attached to the component looks for a provider in the Providers collection using the token. If the provider is found, it is then instantiated and injected into the component</p>\n\n\n\n<h3>What if the provider is not found?</h3>\n\n\n\n<p>The injector passes the request to the injector of the parent component. If the provider is found, the request returns the instance of the Provider. If not found then the request continues until the request reaches the topmost injector in the injector chain.</p>\n\n\n\n<p>If it fails to find the service then the request returns the error&nbsp;<em>“EXCEPTION: Error in Component class – inline template caused by No provider for Service!”</em></p>\n\n\n\n<h2>Service Instance</h2>\n\n\n\n<p>The Services are singletons&nbsp;<em>within the scope of an injector</em>. That is, there is at most one instance of a service in a given injector.</p>\n\n\n\n<p>When the injector gets a request for a particular service for the first time, it creates the new instance of the service. For all the subsequent request, it will return the already created instance.&nbsp;</p>\n\n\n\n<h2>Example of hierarchical dependency injection</h2>\n\n\n\n<p>To understand the hierarchical dependency injection system let us build a simple application. The App has a shared service and 5 components. 2 Parent components &amp; 3 Child Components.</p>\n\n\n\n<h3>The App</h3>\n\n\n\n<h4>Shared Service</h4>\n\n\n\n<p>Create a Shared Service&nbsp;<code>shared.service.ts</code>&nbsp;as shown below.&nbsp;The service just generates some random number when instantiated.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>import { Injectable } from '@angular/core';\r\n \r\n@Injectable()\r\nexport class SharedService{\r\n \r\n    sharedValue:number;\r\n \r\n    constructor(){\r\n       console.log('Shared Service initialised')\r\n       this.sharedValue=Math.round(Math.random()*100);\r\n       console.log(this.sharedValue);\r\n    } \r\n \r\n    public  getSharedValue() {\r\n        return this.sharedValue;               \r\n    }\r\n}</code></pre>\n\n\n\n<p>Create a Shared Service&nbsp;<code>shared.service.ts</code>&nbsp;as shown below.&nbsp;The service just generates some random number when instantiated.</p>\n\n\n\n<h4>Parent Component</h4>\n\n\n\n<p>Let us add two-parent components,&nbsp;&nbsp;<code>Parent1Component</code>&nbsp;&amp;&nbsp;<code>Parent2Component</code>. Both the components are almost similar. Both read the&nbsp;<code>SharedValue</code>&nbsp;from&nbsp;<code>SharedService</code>&nbsp;and displays it in the template. The&nbsp;<code>Parent1Component</code>&nbsp;has two child components&nbsp;<code>Child1Component</code>&nbsp;&amp;&nbsp;<code>Child2Component</code>, While&nbsp;<code>Parent2Component</code>&nbsp;has&nbsp;<code>Child3Component</code>.</p>\n\n\n\n<p><strong>parent1.component.ts</strong></p>\n\n\n\n<pre class=\"wp-block-code\"><code>import { Component } from '@angular/core';\r\nimport { SharedService} from './Shared.service';\r\n \r\n@Component({\r\n  selector: 'parent1-component',\r\n  templateUrl: './parent1.component.html',\r\n  providers :&#91;SharedService]  \r\n})\r\nexport class Parent1Component\r\n{\r\n   sharedValue;\r\n \r\n   constructor(private sharedService:SharedService){\r\n     this.sharedValue=sharedService.getSharedValue();\r\n     console.log('Parent-1 ' + this.sharedValue.toString());\r\n   }\r\n}</code></pre>\n\n\n\n<p><strong>parent1.component.ts</strong></p>\n\n\n\n<p><strong>parent1.component.html</strong></p>\n\n\n\n<pre class=\"wp-block-code\"><code> &lt;div class=\"container\">\r\n   &lt;strong>Parent-1 &lt;/strong>     Value {{sharedValue}}\r\n   &lt;child1-component>&lt;/child1-component>\r\n   &lt;child2-component>&lt;/child2-component>\r\n&lt;/div></code></pre>\n\n\n\n<p><strong>parent1.component.html</strong></p>\n\n\n\n<p><strong>parent2.component.ts</strong></p>\n\n\n\n<pre class=\"wp-block-code\"><code> import { Component } from '@angular/core';\r\nimport { SharedService} from './Shared.service';\r\n \r\n@Component({\r\n  selector: 'parent2-component',\r\n  templateUrl: './parent2.component.html',\r\n  providers :&#91;SharedService]\r\n})\r\nexport class Parent2Component\r\n{\r\n \r\n   sharedValue;\r\n \r\n   constructor(private sharedService:SharedService){\r\n     this.sharedValue=sharedService.getSharedValue();\r\n     console.log('Parent-2 ' + this.sharedValue.toString());\r\n   }\r\n}</code></pre>\n\n\n\n<p><strong>parent2.component.ts</strong></p>\n\n\n\n<p><strong>parent2.component.html</strong></p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;div class=\"container\">    &lt;strong>Parent-2&lt;/strong>     Value {{sharedValue}}    &lt;child3-component>&lt;/child3-component>&lt;/div> </code></pre>\n\n\n\n<p><strong>parent2.component.html</strong></p>\n\n\n\n<h4>Child Components</h4>\n\n\n\n<p>The child components also read&nbsp;from the&nbsp;<code>SharedService</code>&nbsp;and display&nbsp;the&nbsp;<code>SharedValue</code>&nbsp;in the template. We have three child components, which are very much similar.</p>\n\n\n\n<p><strong>child1.component.ts</strong></p>\n\n\n\n<pre class=\"wp-block-code\"><code>import { Component } from '@angular/core';\r\nimport { SharedService} from './Shared.service';\r\n \r\n@Component({\r\n  selector: 'child1-component',\r\n  templateUrl: './child1.component.html',\r\n  providers :&#91;]\r\n})\r\nexport class Child1Component\r\n{\r\n   sharedValue;\r\n \r\n   constructor(private sharedService:SharedService){\r\n     this.sharedValue=sharedService.getSharedValue();\r\n     console.log('Child-1 ' + this.sharedValue.toString());\r\n   }\r\n}\r\n </code></pre>\n\n\n\n<p><strong>child1.component.ts</strong></p>\n\n\n\n<p><strong>child1.component.html</strong></p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;div\n class=\"container\">    &lt;strong>Child-1&lt;/strong>   Value {{sharedValue}}\n&lt;/div> </code></pre>\n\n\n\n<p><strong>child1.component.html</strong></p>\n\n\n\n<p><strong>child2.component.ts</strong></p>\n\n\n\n<pre class=\"wp-block-code\"><code> import { Component } from '@angular/core';\r\nimport { SharedService} from './Shared.service';\r\n \r\n@Component({\r\n  selector: 'child2-component',\r\n  templateUrl: './child2.component.html',\r\n  providers :&#91;]\r\n})\r\nexport class Child2Component\r\n{\r\n   sharedValue;\r\n \r\n   constructor(private sharedService:SharedService){\r\n     this.sharedValue=sharedService.getSharedValue();\r\n     console.log('Child-2 ' + this.sharedValue.toString());\r\n   }\r\n}</code></pre>\n\n\n\n<p><strong>child2.component.ts</strong></p>\n\n\n\n<p><strong>child2.component.html</strong></p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;div class=\"container\">    &lt;strong>Child-2&lt;/strong>    Value {{sharedValue}}\n&lt;/div> </code></pre>\n\n\n\n<p><strong>child2.component.html</strong></p>\n\n\n\n<p><strong>child3.component.ts</strong></p>\n\n\n\n<pre class=\"wp-block-code\"><code> import { Component } from '@angular/core';\r\nimport { FormsModule } from '@angular/forms'\r\nimport { SharedService } from './Shared.service';\r\n \r\n@Component({\r\n  selector: 'child3-component',\r\n  templateUrl: './child3.component.html',\r\n  providers :&#91;]\r\n})\r\n \r\nexport class Child3Component\r\n{\r\n   sharedValue;\r\n \r\n   constructor(private sharedService:SharedService){\r\n     this.sharedValue=sharedService.getSharedValue();\r\n     console.log('Child-3 ' + this.sharedValue.toString());\r\n   }\r\n}</code></pre>\n\n\n\n<p><strong>child3.component.ts</strong></p>\n\n\n\n<p><strong>child3.component.html</strong></p>\n\n\n\n<pre class=\"wp-block-code\"><code> &lt;div class=\"container\">    &lt;strong>Child-3&lt;/strong>   Value {{sharedValue}}&lt;/div> </code></pre>\n\n\n\n<p><strong>child3.component.html</strong></p>\n\n\n\n<h4>Root Component</h4>\n\n\n\n<p><strong>app.component.ts</strong></p>\n\n\n\n<pre class=\"wp-block-code\"><code> import { Component } from '@angular/core';\r\nimport { SharedService } from './Shared.service';\r\n \r\n@Component({\r\n  selector: 'app-root',\r\n  templateUrl: './app.component.html',\r\n  providers :&#91;]\r\n})\r\nexport class AppComponent\r\n{}</code></pre>\n\n\n\n<p><strong>app.component.ts</strong></p>\n\n\n\n<p><strong>app.component.html</strong></p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;div class=\"container\">\r\n    &lt;strong>AppComponent &lt;/strong>\r\n    &lt;p> This is the top most component &lt;/p>\r\n    \r\n    &lt;parent1-component>&lt;/parent1-component>\r\n    &lt;parent2-component>&lt;/parent2-component>\r\n    \r\n&lt;/div></code></pre>\n\n\n\n<h4>Root module</h4>\n\n\n\n<pre class=\"wp-block-code\"><code> import { BrowserModule } from '@angular/platform-browser';\r\nimport { NgModule } from '@angular/core';\r\nimport { HttpModule } from '@angular/http';\r\nimport { FormsModule } from '@angular/forms';\r\n \r\nimport { AppComponent } from './app.component';\r\n \r\nimport { Parent1Component } from './parent1.component';\r\nimport { Parent2Component } from './parent2.component';\r\n \r\nimport { Child1Component } from './child1.component';\r\nimport { Child2Component } from './child2.component';\r\nimport { Child3Component } from './child3.component';\r\n \r\nimport { SharedService} from './Shared.service';\r\n \r\n@NgModule({\r\n  declarations: &#91;\r\n    AppComponent,Parent1Component,Parent2Component, Child1Component,Child2Component,Child3Component\r\n  ],\r\n  imports: &#91;\r\n    BrowserModule,\r\n    HttpModule,\r\n    FormsModule\r\n  ],\r\n  providers :&#91;SharedService],\r\n  bootstrap: &#91;AppComponent]\r\n})\r\nexport class AppModule { }</code></pre>\n\n\n\n<h3>Injector Tree</h3>\n\n\n\n<p>The following image illustrates how the component tree and injector tree of the above app look like.</p>\n\n\n\n<p>The Component tree starts with the root component (AppComponent in the image). Each component in the component tree gets its own injector. The injector is destroyed when the component is destroyed. The injector is also created for the root module when the app starts.&nbsp;</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://www.tektutorialshub.com/wp-content/uploads/2017/01/Angular-2-Injector-Tree.png\" alt=\"The Injector Tree\" class=\"wp-image-5056\"/></figure>\n\n\n\n<h3>How Dependency is Resolved</h3>\n\n\n\n<p>What happens if the&nbsp;<code>child1Component</code>&nbsp;requests a Service. The injector attached to&nbsp;<code>Child1Component</code>&nbsp;looks for the provider in the Providers collection registered with the&nbsp;<code>Child1Component.</code></p>\n\n\n\n<p>If it does not find the provider, it then passes the request to the injector instance of the&nbsp;<code>parent1Component</code>&nbsp;as shown by the dotted arrow in the image above. If the provider is found, the request is returned with the instance of the dependency else the request is passed on the injector of the AppComponent. This process continues until it reaches the top-level injector.</p>\n\n\n\n<h3>Registering the Providers</h3>\n\n\n\n<p>Where you register the provider for your service, determines the lifetime of the Services.</p>\n\n\n\n<p>Let us register our&nbsp;<code>SharedService</code>&nbsp;in both the parent components. Add the following code to the&nbsp;<code>@Component</code>&nbsp;metadata.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> providers :&#91;SharedService] </code></pre>\n\n\n\n<p>Both the Parent Components will get their own Instance of the&nbsp;<code>SharedService</code>. The&nbsp;<code>Child1Component</code>&nbsp;&amp;&nbsp;<code>Child2Component</code>&nbsp;will share the instance of the&nbsp;<code>Parent1Component</code>, while&nbsp;<code>Child3Component</code>&nbsp;will share the instance from the&nbsp;<code>Parent2Component</code>.</p>\n\n\n\n<p>The output and the injection graph is as shown below.</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://www.tektutorialshub.com/wp-content/uploads/2017/01/Angular-2-Child-Components-Share-the-Same-Insance-as-thier-Parent-Components.png\" alt=\"Angular 2 Child Components Share the Same Insance as thier Parent Components\" class=\"wp-image-5055\"/></figure>\n\n\n\n<h2>Angular Singleton Service</h2>\n\n\n\n<p>You can create a Singleton Service by moving the Provider registration to the root injector i.e the root module (<code>AppModule</code>&nbsp;in the example).</p>\n\n\n\n<p>Remove the provider registration from all the components and add it to the&nbsp;<code>Providers</code>&nbsp;array in the&nbsp;<code>AppModule</code></p>\n\n\n\n<p>Now the entire application will share the same instance of&nbsp;<code>SharedService</code>&nbsp;as shown below making the Service as Singleton</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://www.tektutorialshub.com/wp-content/uploads/2017/01/Angular-2-Singletone-Service.png\" alt=\"\" class=\"wp-image-5057\"/></figure>\n\n\n\n<p></p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Injector Tree The Angular creates the&nbsp;Injector,&nbsp;when the application root module (named as&nbsp;AppModule) is bootstrapped. This injector is called as&nbsp;root injector&nbsp;and acts as a parent to all other injectors. The&nbsp;root injector&nbsp;also gets its own copy of&nbsp;Providers. It gets it from the&nbsp;Providers&nbsp;is metadata of&nbsp;@NgModule&nbsp;of&nbsp;AppModule. The&nbsp;AppModule&nbsp;loads the&nbsp;AppComponent, which is the&nbsp;root component&nbsp;of our application. The&nbsp;AppComponent&nbsp;gets its own injector with [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [131],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3624" }
+      ],
+      "collection": [
+        { "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=3624"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 2,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3624/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3831,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3624/revisions/3831"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=3624"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=3624"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=3624"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  }
+]

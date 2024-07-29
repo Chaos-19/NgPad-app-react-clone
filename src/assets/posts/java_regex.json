@@ -1,0 +1,602 @@
+[
+  {
+    "id": 901,
+    "date": "2020-07-16T10:12:55",
+    "date_gmt": "2020-07-16T10:12:55",
+    "guid": {
+      "rendered": "http://java.foobrdigital.com/?p=901"
+    },
+    "modified": "2020-07-16T10:12:55",
+    "modified_gmt": "2020-07-16T10:12:55",
+    "slug": "overview-3",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/overview-3/",
+    "title": {
+      "rendered": "Overview"
+    },
+    "content": {
+      "rendered": "\n<p>Java provides the java.util.regex package for pattern matching with regular expressions. Java regular expressions are very similar to the Perl programming language and very easy to learn.</p>\n\n\n\n<p>A regular expression is a special sequence of characters that helps you match or find other strings or sets of strings, using a specialized syntax held in a pattern. They can be used to search, edit, or manipulate text and data.</p>\n\n\n\n<p>The java.util.regex package primarily consists of the following three classes \u2212</p>\n\n\n\n<ul><li><strong>Pattern Class</strong>&nbsp;\u2212 A Pattern object is a compiled representation of a regular expression. The Pattern class provides no public constructors. To create a pattern, you must first invoke one of its public static&nbsp;<strong>compile()</strong>&nbsp;methods, which will then return a Pattern object. These methods accept a regular expression as the first argument.</li><li><strong>Matcher Class</strong>&nbsp;\u2212 A Matcher object is the engine that interprets the pattern and performs match operations against an input string. Like the Pattern class, Matcher defines no public constructors. You obtain a Matcher object by invoking the&nbsp;<strong>matcher()</strong>&nbsp;method on a Pattern object.</li><li><strong>PatternSyntaxException</strong>&nbsp;\u2212 A PatternSyntaxException object is an unchecked exception that indicates a syntax error in a regular expression pattern.</li></ul>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Java provides the java.util.regex package for pattern matching with regular expressions. Java regular expressions are very similar to the Perl programming language and very easy to learn. A regular expression is a special sequence of characters that helps you match or find other strings or sets of strings, using a specialized syntax held in a [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [11],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/901"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=901"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/901/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 902,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/901/revisions/902"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=901"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=901"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=901"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 900,
+    "date": "2020-07-16T10:13:40",
+    "date_gmt": "2020-07-16T10:13:40",
+    "guid": {
+      "rendered": "http://java.foobrdigital.com/?p=900"
+    },
+    "modified": "2020-07-16T10:13:40",
+    "modified_gmt": "2020-07-16T10:13:40",
+    "slug": "capturing-groups",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/capturing-groups/",
+    "title": {
+      "rendered": "Capturing Groups"
+    },
+    "content": {
+      "rendered": "\n<p>Capturing groups are a way to treat multiple characters as a single unit. They are created by placing the characters to be grouped inside a set of parentheses. For example, the regular expression (dog) creates a single group containing the letters &#8220;d&#8221;, &#8220;o&#8221;, and &#8220;g&#8221;.</p>\n\n\n\n<p>Capturing groups are numbered by counting their opening parentheses from the left to the right. In the expression ((A)(B(C))), for example, there are four such groups \u2212</p>\n\n\n\n<ul><li>((A)(B(C)))</li><li>(A)</li><li>(B(C))</li><li>(C)</li></ul>\n\n\n\n<p>To find out how many groups are present in the expression, call the groupCount method on a matcher object. The groupCount method returns an&nbsp;<strong>int</strong>&nbsp;showing the number of capturing groups present in the matcher&#8217;s pattern.</p>\n\n\n\n<p>There is also a special group, group 0, which always represents the entire expression. This group is not included in the total reported by groupCount.</p>\n\n\n\n<h2>Example</h2>\n\n\n\n<p>Following example illustrates how to find a digit string from the given alphanumeric string \u2212</p>\n\n\n\n<pre class=\"wp-block-code\"><code>import java.util.regex.Matcher;\nimport java.util.regex.Pattern;\n\npublic class RegexMatches {\n   public static void main( String args&#91;] ) {\n      // String to be scanned to find the pattern.\n      String line = \"This order was placed for QT3000! OK?\";\n      String pattern = \"(.*)(\\\\d+)(.*)\";\n\n      // Create a Pattern object\n      Pattern r = Pattern.compile(pattern);\n\n      // Now create matcher object.\n      Matcher m = r.matcher(line);\n      \n      if (m.find( )) {\n         System.out.println(\"Found value: \" + m.group(0) );\n         System.out.println(\"Found value: \" + m.group(1) );\n         System.out.println(\"Found value: \" + m.group(2) );\n      } else {\n         System.out.println(\"NO MATCH\");\n      }\n   }\n}</code></pre>\n\n\n\n<p>This will produce the following result \u2212</p>\n\n\n\n<h2>Output</h2>\n\n\n\n<pre class=\"wp-block-code\"><code>Found value: This order was placed for QT3000! OK?\nFound value: This order was placed for QT300\nFound value: 0</code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Capturing groups are a way to treat multiple characters as a single unit. They are created by placing the characters to be grouped inside a set of parentheses. For example, the regular expression (dog) creates a single group containing the letters &#8220;d&#8221;, &#8220;o&#8221;, and &#8220;g&#8221;. Capturing groups are numbered by counting their opening parentheses from [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [11],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/900"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=900"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/900/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 903,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/900/revisions/903"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=900"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=900"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=900"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 906,
+    "date": "2020-07-16T10:14:24",
+    "date_gmt": "2020-07-16T10:14:24",
+    "guid": {
+      "rendered": "http://java.foobrdigital.com/?p=906"
+    },
+    "modified": "2020-07-16T10:14:24",
+    "modified_gmt": "2020-07-16T10:14:24",
+    "slug": "matchresult-interface",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/matchresult-interface/",
+    "title": {
+      "rendered": "MatchResult Interface"
+    },
+    "content": {
+      "rendered": "\n<h2>Introduction</h2>\n\n\n\n<p>The&nbsp;<strong>java.util.regex.MatchResult</strong>&nbsp;interface represents the result of a match operation. This interface contains query methods used to determine the results of a match against a regular expression. The match boundaries, groups and group boundaries can be seen but not modified through a MatchResult.</p>\n\n\n\n<h2>Interface declaration</h2>\n\n\n\n<p>Following is the declaration for\u00a0<strong>java.util.regex.MatchResult</strong>\u00a0interface \u2212</p>\n\n\n\n<pre class=\"wp-block-code\"><code>public interface MatchResult\n</code></pre>\n\n\n\n<h2>Interface methods</h2>\n\n\n\n<figure class=\"wp-block-table\"><table><tbody><tr><th>Sr.No</th><th>Method &amp; Description</th></tr><tr><td>1</td><td>int end()Returns the offset after the last character matched.</td></tr><tr><td>2</td><td>int end(int group)Returns the offset after the last character of the subsequence captured by the given group during this match.</td></tr><tr><td>3</td><td>String group()Returns the input subsequence matched by the previous match.</td></tr><tr><td>4</td><td>String group(int group)Returns the input subsequence captured by the given group during the previous match operation.</td></tr><tr><td>5</td><td>int groupCount()Returns the number of capturing groups in this match result&#8217;s pattern.</td></tr><tr><td>6</td><td>int start()Returns the start index of the match.</td></tr><tr><td>7</td><td>int start(int group)Returns the start index of the subsequence captured by the given group during this match.</td></tr></tbody></table></figure>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Introduction The&nbsp;java.util.regex.MatchResult&nbsp;interface represents the result of a match operation. This interface contains query methods used to determine the results of a match against a regular expression. The match boundaries, groups and group boundaries can be seen but not modified through a MatchResult. Interface declaration Following is the declaration for\u00a0java.util.regex.MatchResult\u00a0interface \u2212 Interface methods Sr.No Method &amp; [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [11],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/906"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=906"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/906/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 907,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/906/revisions/907"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=906"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=906"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=906"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 905,
+    "date": "2020-07-16T10:15:23",
+    "date_gmt": "2020-07-16T10:15:23",
+    "guid": {
+      "rendered": "http://java.foobrdigital.com/?p=905"
+    },
+    "modified": "2020-07-16T10:15:23",
+    "modified_gmt": "2020-07-16T10:15:23",
+    "slug": "pattern-class",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/pattern-class/",
+    "title": {
+      "rendered": "Pattern Class"
+    },
+    "content": {
+      "rendered": "\n<h2>Introduction</h2>\n\n\n\n<p>The&nbsp;<strong>java.util.regex.Pattern</strong>&nbsp;class represents a compiled representation of a regular expression.</p>\n\n\n\n<h2>Class declaration</h2>\n\n\n\n<p>Following is the declaration for\u00a0<strong>java.util.regex.Pattern</strong>\u00a0class \u2212</p>\n\n\n\n<pre class=\"wp-block-code\"><code>public final class Pattern\n   extends Object\n      implements Serializable</code></pre>\n\n\n\n<h2>Field</h2>\n\n\n\n<p>Following are the fields for&nbsp;<strong>java.util.regex.Duration</strong>&nbsp;class \u2212</p>\n\n\n\n<ul><li><strong>static int CANON_EQ</strong>&nbsp;\u2212 Enables canonical equivalence.</li><li><strong>static int CASE_INSENSITIVE</strong>&nbsp;\u2212 Enables case-insensitive matching.</li><li><strong>static int COMMENTS</strong>&nbsp;\u2212 Permits whitespace and comments in pattern.</li><li><strong>static int DOTALL</strong>&nbsp;\u2212 Enables dotall mode.</li><li><strong>static int LITERAL</strong>&nbsp;\u2212 Enables literal parsing of the pattern.</li><li><strong>static int MULTILINE</strong>&nbsp;\u2212 Enables multiline mode.</li><li><strong>static int UNICODE_CASE</strong>&nbsp;\u2212 Enables Unicode-aware case folding.</li><li><strong>static int UNICODE_CHARACTER_CLASS</strong>&nbsp;\u2212 Enables the Unicode version of Predefined character classes and POSIX character classes.</li><li><strong>static int UNIX_LINES</strong>&nbsp;\u2212 Enables Unix lines mode.</li></ul>\n\n\n\n<h2>Class methods</h2>\n\n\n\n<figure class=\"wp-block-table\"><table><tbody><tr><th>Sr.No</th><th>Method &amp; Description</th></tr><tr><td>1</td><td>static Pattern compile(String regex)Compiles the given regular expression into a pattern.</td></tr><tr><td>2</td><td>static Pattern compile(String regex, int flags)Compiles the given regular expression into a pattern with the given flags.</td></tr><tr><td>3</td><td>int flags()Returns this pattern&#8217;s match flags.</td></tr><tr><td>4</td><td>Matcher matcher(CharSequence input)Creates a matcher that will match the given input against this pattern.</td></tr><tr><td>5</td><td>static boolean matches(String regex, CharSequence input)Compiles the given regular expression and attempts to match the given input against it.</td></tr><tr><td>6</td><td>String pattern()Returns the regular expression from which this pattern was compiled.</td></tr><tr><td>7</td><td>static String quote(String s)Returns a literal pattern String for the specified String.</td></tr><tr><td>8</td><td>String[] split(CharSequence input)Splits the given input sequence around matches of this pattern.</td></tr><tr><td>9</td><td>String[] split(CharSequence input, int limit)Splits the given input sequence around matches of this pattern.</td></tr><tr><td>10</td><td>String toString()Returns the string representation of this pattern.</td></tr></tbody></table></figure>\n\n\n\n<h2>Methods inherited</h2>\n\n\n\n<p>This class inherits methods from the following classes \u2212</p>\n\n\n\n<ul><li>Java.lang.Object</li></ul>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Introduction The&nbsp;java.util.regex.Pattern&nbsp;class represents a compiled representation of a regular expression. Class declaration Following is the declaration for\u00a0java.util.regex.Pattern\u00a0class \u2212 Field Following are the fields for&nbsp;java.util.regex.Duration&nbsp;class \u2212 static int CANON_EQ&nbsp;\u2212 Enables canonical equivalence. static int CASE_INSENSITIVE&nbsp;\u2212 Enables case-insensitive matching. static int COMMENTS&nbsp;\u2212 Permits whitespace and comments in pattern. static int DOTALL&nbsp;\u2212 Enables dotall mode. static int LITERAL&nbsp;\u2212 [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [11],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/905"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=905"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/905/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 908,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/905/revisions/908"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=905"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=905"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=905"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 904,
+    "date": "2020-07-16T10:16:36",
+    "date_gmt": "2020-07-16T10:16:36",
+    "guid": {
+      "rendered": "http://java.foobrdigital.com/?p=904"
+    },
+    "modified": "2020-07-16T10:16:36",
+    "modified_gmt": "2020-07-16T10:16:36",
+    "slug": "matcher-class",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/matcher-class/",
+    "title": {
+      "rendered": "Matcher Class"
+    },
+    "content": {
+      "rendered": "\n<h2>Introduction</h2>\n\n\n\n<p>The&nbsp;<strong>java.util.regex.Matcher</strong>&nbsp;class acts as an engine that performs match operations on a character sequence by interpreting a Pattern.</p>\n\n\n\n<h2>Class declaration</h2>\n\n\n\n<p>Following is the declaration for\u00a0<strong>java.util.regex.Matcher</strong>\u00a0class \u2212</p>\n\n\n\n<pre class=\"wp-block-code\"><code>public final class Matcher\n   extends Object\n      implements MatchResult</code></pre>\n\n\n\n<h2>Class methods</h2>\n\n\n\n<figure class=\"wp-block-table\"><table><tbody><tr><th>Sr.No</th><th>Method &amp; Description</th></tr><tr><td>1</td><td>Matcher appendReplacement(StringBuffer sb, String replacement)Implements a non-terminal append-and-replace step.</td></tr><tr><td>2</td><td>StringBuffer appendTail(StringBuffer sb)Implements a terminal append-and-replace step.</td></tr><tr><td>3</td><td>int end()Returns the offset after the last character matched.</td></tr><tr><td>4</td><td>int end(int group)Returns the offset after the last character of the subsequence captured by the given group during the previous match operation.</td></tr><tr><td>5</td><td>boolean find()Attempts to find the next subsequence of the input sequence that matches the pattern.</td></tr><tr><td>6</td><td>boolean find(int start)Resets this matcher and then attempts to find the next subsequence of the input sequence that matches the pattern, starting at the specified index.</td></tr><tr><td>7</td><td>String group()Returns the input subsequence captured by the given group during the previous match operation.</td></tr><tr><td>8</td><td>String group(String name)Returns the input subsequence captured by the given named-capturing group during the previous match operation.</td></tr><tr><td>9</td><td>int groupCount()Returns the number of capturing groups in this matcher&#8217;s pattern.</td></tr><tr><td>10</td><td>boolean hasAnchoringBounds()Queries the anchoring of region bounds for this matcher.</td></tr><tr><td>11</td><td>boolean hasTransparentBounds()Queries the transparency of region bounds for this matcher.</td></tr><tr><td>12</td><td>boolean hitEnd()Returns true if the end of input was hit by the search engine in the last match operation performed by this matcher.</td></tr><tr><td>13</td><td>boolean lookingAt()Attempts to match the input sequence, starting at the beginning of the region, against the pattern.</td></tr><tr><td>14</td><td>boolean matches()Attempts to match the entire region against the pattern.</td></tr><tr><td>15</td><td>Pattern pattern()Returns the pattern that is interpreted by this matcher.</td></tr><tr><td>16</td><td>static String quoteReplacement(String s)Returns a literal replacement String for the specified String.</td></tr><tr><td>17</td><td>Matcher region(int start, int end)Sets the limits of this matcher&#8217;s region.</td></tr><tr><td>18</td><td>int regionEnd()Reports the end index (exclusive) of this matcher&#8217;s region.</td></tr><tr><td>19</td><td>int regionStart()Reports the start index of this matcher&#8217;s region.</td></tr><tr><td>20</td><td>String replaceAll(String replacement)Replaces every subsequence of the input sequence that matches the pattern with the given replacement string.</td></tr><tr><td>21</td><td>String replaceFirst(String replacement)Replaces the first subsequence of the input sequence that matches the pattern with the given replacement string.</td></tr><tr><td>22</td><td>boolean requireEnd()Returns true if more input could change a positive match into a negative one.</td></tr><tr><td>23</td><td>Matcher reset()Resets this matcher.</td></tr><tr><td>24</td><td>Matcher reset(CharSequence input)Resets this matcher with a new input sequence.</td></tr><tr><td>25</td><td>int start()Returns the start index of the previous match.</td></tr><tr><td>26</td><td>int start(int group)Returns the start index of the subsequence captured by the given group during the previous match operation.</td></tr><tr><td>27</td><td>MatchResult toMatchResult()Returns the match state of this matcher as a MatchResult.</td></tr><tr><td>28</td><td>String toString()Returns the string representation of this matcher.</td></tr><tr><td>29</td><td>Matcher useAnchoringBounds(boolean b)Sets the anchoring of region bounds for this matcher.</td></tr><tr><td>30</td><td>Matcher usePattern(Pattern newPattern)Changes the Pattern that this Matcher uses to find matches with.</td></tr><tr><td>31</td><td>Matcher useTransparentBounds(boolean b)Sets the transparency of region bounds for this matcher.</td></tr></tbody></table></figure>\n\n\n\n<h2>Methods inherited</h2>\n\n\n\n<p>This class inherits methods from the following classes \u2212</p>\n\n\n\n<ul><li>Java.lang.Object</li></ul>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Introduction The&nbsp;java.util.regex.Matcher&nbsp;class acts as an engine that performs match operations on a character sequence by interpreting a Pattern. Class declaration Following is the declaration for\u00a0java.util.regex.Matcher\u00a0class \u2212 Class methods Sr.No Method &amp; Description 1 Matcher appendReplacement(StringBuffer sb, String replacement)Implements a non-terminal append-and-replace step. 2 StringBuffer appendTail(StringBuffer sb)Implements a terminal append-and-replace step. 3 int end()Returns the offset [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [11],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/904"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=904"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/904/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 909,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/904/revisions/909"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=904"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=904"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=904"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 910,
+    "date": "2020-07-16T10:17:39",
+    "date_gmt": "2020-07-16T10:17:39",
+    "guid": {
+      "rendered": "http://java.foobrdigital.com/?p=910"
+    },
+    "modified": "2020-07-16T10:17:39",
+    "modified_gmt": "2020-07-16T10:17:39",
+    "slug": "patternsyntaxexception-class",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/patternsyntaxexception-class/",
+    "title": {
+      "rendered": "PatternSyntaxException Class"
+    },
+    "content": {
+      "rendered": "\n<h2>Introduction</h2>\n\n\n\n<p>The&nbsp;<strong>java.util.regex.PatternSyntaxException</strong>&nbsp;class represents a unchecked exception thrown to indicate a syntax error in a regular-expression pattern.</p>\n\n\n\n<h2>Class declaration</h2>\n\n\n\n<p>Following is the declaration for\u00a0<strong>java.util.regex.PatternSyntaxException</strong>\u00a0class \u2212</p>\n\n\n\n<pre class=\"wp-block-code\"><code>public class PatternSyntaxException\n   extends IllegalArgumentException</code></pre>\n\n\n\n<h2>Constructors</h2>\n\n\n\n<figure class=\"wp-block-table\"><table><tbody><tr><th>Sr.No</th><th>Method &amp; Description</th></tr><tr><td>1</td><td><strong>PatternSyntaxException(String desc, String regex, int index)</strong>Constructs a new instance of this class.</td></tr></tbody></table></figure>\n\n\n\n<h2>Class methods</h2>\n\n\n\n<figure class=\"wp-block-table\"><table><tbody><tr><th>Sr.No</th><th>Method &amp; Description</th></tr><tr><td>1</td><td><strong>String getDescription()</strong>Retrieves the description of the error.</td></tr><tr><td>2</td><td><strong>int getIndex()</strong>Retrieves the error index.</td></tr><tr><td>3</td><td><strong>String getMessage()</strong>Returns a multi-line string containing the description of the syntax error and its index, the erroneous regular-expression pattern, and a visual indication of the error index within the pattern.</td></tr><tr><td>4</td><td><strong>String getPattern()</strong>Retrieves the erroneous regular-expression pattern.</td></tr></tbody></table></figure>\n\n\n\n<h2>Methods inherited</h2>\n\n\n\n<p>This class inherits methods from the following classes \u2212</p>\n\n\n\n<ul><li>Java.lang.Throwable</li><li>Java.lang.Object</li></ul>\n\n\n\n<h2>Example</h2>\n\n\n\n<p>The following example shows the usage of java.util.regex.Pattern.PatternSyntaxException class methods.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>package com.tutorialspoint;\n\nimport java.util.regex.Matcher;\nimport java.util.regex.Pattern;\nimport java.util.regex.PatternSyntaxException;\n\npublic class PatternSyntaxExceptionDemo {\n   private static String REGEX = \"&#91;\";\n   private static String INPUT = \"The dog says meow \" + \"All dogs say meow.\";\n   private static String REPLACE = \"cat\";\n\n   public static void main(String&#91;] args) {\n      try{\n         Pattern pattern = Pattern.compile(REGEX);\n         \n         // get a matcher object\n         Matcher matcher = pattern.matcher(INPUT); \n         INPUT = matcher.replaceAll(REPLACE);\n      } catch(PatternSyntaxException e){\n         System.out.println(\"PatternSyntaxException: \");\n         System.out.println(\"Description: \"+ e.getDescription());\n         System.out.println(\"Index: \"+ e.getIndex());\n         System.out.println(\"Message: \"+ e.getMessage());\n         System.out.println(\"Pattern: \"+ e.getPattern());\n      }\n   }\n}</code></pre>\n\n\n\n<p>Let us compile and run the above program, this will produce the following result \u2212</p>\n\n\n\n<pre class=\"wp-block-code\"><code>PatternSyntaxException: \nDescription: Unclosed character class\nIndex: 0\nMessage: Unclosed character class near index 0\n&#91;\n^\nPattern: &#91;</code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Introduction The&nbsp;java.util.regex.PatternSyntaxException&nbsp;class represents a unchecked exception thrown to indicate a syntax error in a regular-expression pattern. Class declaration Following is the declaration for\u00a0java.util.regex.PatternSyntaxException\u00a0class \u2212 Constructors Sr.No Method &amp; Description 1 PatternSyntaxException(String desc, String regex, int index)Constructs a new instance of this class. Class methods Sr.No Method &amp; Description 1 String getDescription()Retrieves the description of the [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [11],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/910"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=910"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/910/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 911,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/910/revisions/911"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=910"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=910"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=910"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  }
+]

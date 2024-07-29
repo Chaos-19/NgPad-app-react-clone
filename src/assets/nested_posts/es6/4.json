@@ -1,0 +1,284 @@
+[
+  {
+    "id": 3137,
+    "date": "2020-11-28T06:00:52",
+    "date_gmt": "2020-11-28T06:00:52",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3137"
+    },
+    "modified": "2020-11-28T06:00:52",
+    "modified_gmt": "2020-11-28T06:00:52",
+    "slug": "class",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/class/",
+    "title": {
+      "rendered": "Class"
+    },
+    "content": {
+      "rendered": "\n<h2>Classes prior to ES6 revisited</h2>\n\n\n\n<p>Prior to ES6, JavaScript had no classes. To mimic a class, we often use a constructor function as shown in the following example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function Animal(type) {\n    this.type = type;\n}\n\nAnimal.prototype.identify = function() {\n    console.log(this.type);\n}\n\nvar cat = new Animal('Cat');\ncat.identify(); // Cat</code></pre>\n\n\n\n<p>How it works.</p>\n\n\n\n<ul><li>First, created the\u00a0<code>Animal</code>\u00a0as a constructor function that has a property name called\u00a0<code>type</code>. The\u00a0<code>identify()</code>\u00a0method is assigned to the\u00a0<code>prototype</code>\u00a0so that it can be shared by all instances of the\u00a0<code>Animal</code>\u00a0type.</li><li>Then, created a new instance of the\u00a0<code>Animal</code>\u00a0type using the\u00a0<code>new</code>\u00a0operator. The\u00a0<code>cat</code>\u00a0object, hence, is an instance of the\u00a0<code>Animal</code>\u00a0and of\u00a0<code>Object</code>\u00a0through\u00a0prototypal inheritance.</li></ul>\n\n\n\n<h2>JavaScript class declaration</h2>\n\n\n\n<p>ES6 introduced a new syntax for creating&nbsp;a&nbsp;class as shown in this&nbsp;example.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>class Animal {\n    constructor(type) {\n        this.type = type;\n    }\n    identify() {\n        console.log(this.type);\n    }\n}\n\nlet cat = new Animal('Cat');\ncat.identify();\n</code></pre>\n\n\n\n<p>This&nbsp;<code>Animal</code>&nbsp;class behaves like the&nbsp;<code>Animal</code>&nbsp;type in the previous example. However, instead of using a constructor function, it uses the&nbsp;<code>class</code>&nbsp;keyword.</p>\n\n\n\n<p>In the&nbsp;<code>Animal</code>&nbsp;class, the&nbsp;<code>constructor()</code>&nbsp;is where you can add the properties of an instance. The&nbsp;<code>identify()</code>&nbsp;is the method of the&nbsp;<code>Animal</code>&nbsp;class. Note that you don\u2019t need to use the&nbsp;<code>function</code>&nbsp;keyword to declare a&nbsp;method of the class.</p>\n\n\n\n<p>The class declaration is just&nbsp;<strong>syntactic sugar</strong>&nbsp;of the constructor function, therefore, the result of the&nbsp;&nbsp;<code>typeof</code>&nbsp;operator&nbsp;of the&nbsp;<code>Animal</code>&nbsp;class is &nbsp;<code>function</code>.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>console.log(typeof Animal); // function</code></pre>\n\n\n\n<p>In addition, the relationship between the&nbsp;<code>identify()</code>&nbsp;method and&nbsp;<code>Animal</code>&nbsp;class is the same as the relationship between the&nbsp;<code>identify()</code>&nbsp;method and the&nbsp;<code>Animal.prototype</code>&nbsp;in the previous example.</p>\n\n\n\n<p>Syntactic sugar is syntax in JavaScript programming language designed to make things easier to express more clearly and concisely.</p>\n\n\n\n<h2>Class vs.&nbsp;custom type</h2>\n\n\n\n<p>Despite the similarities between a class a custom type defined via a constructor function, there are some important differences.</p>\n\n\n\n<p>First, class declarations are not hoisted like function declarations. For example, if you place the following code above the&nbsp;<code>Animal</code>&nbsp;class declaration section, you will get a&nbsp;<code>ReferenceError</code>.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let dog = new Animal('Dog');\n// Uncaught ReferenceError: Animal is not defined</code></pre>\n\n\n\n<p>Second, all the code inside a class automatically executes in the&nbsp;<em>strict mode</em>, and you cannot change this behavior.</p>\n\n\n\n<p>Third, class methods are non-enumerable. If you use a constructor function, you have to use the&nbsp;<code>Object.defineProperty()</code>&nbsp;method to&nbsp;make a property non-enumerable.</p>\n\n\n\n<p>Fourth, calling the class constructor without the&nbsp;<code>new</code>&nbsp;operator will result in an error as shown in the following example.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let duck = Animal('Duck');\n// Uncaught TypeError: Class constructor Animal cannot be invoked without 'new'</code></pre>\n\n\n\n<h2>JavaScript class expressions</h2>\n\n\n\n<p>Similar to\u00a0functions, classes have expression forms too. A class expression does not require an\u00a0identifier\u00a0after the\u00a0<code>class</code>\u00a0keyword. You can use a class expression in a variable declaration and pass it into a function as an argument.</p>\n\n\n\n<p>Here is a class expression that is equivalent to the previous&nbsp;<code>Animal</code>&nbsp;class example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let Animal = class {\n    constructor(type) {\n        this.type = type;\n    }\n    identify() {\n        console.log(this.type);\n    }\n}\n\nlet duck = new Animal('Duck');\n\nconsole.log(duck instanceof Animal); // true\nconsole.log(duck instanceof Object); // true\n\nconsole.log(typeof Animal); // function\nconsole.log(typeof Animal.prototype); // function\n</code></pre>\n\n\n\n<p>Similar to function expressions, class expressions are not hoisted.</p>\n\n\n\n<h3>First-class citizen</h3>\n\n\n\n<p>JavaScript class is a first-class citizen. It means that you can pass a&nbsp;class into a function, return it from a function, and assign it to a variable.</p>\n\n\n\n<p>See the following example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function factory(aClass) {\n    return new aClass();\n}\n\nlet greeting = factory(class {\n    sayHi() {\n        console.log('Hi');\n    }\n});\n\ngreeting.sayHi(); // 'Hi'\n</code></pre>\n\n\n\n<p>In this example, the&nbsp;<code>factory()</code>&nbsp;function takes an anonymous class expression as an argument. It creates an instance of that class and returns the instance.</p>\n\n\n\n<h3>Singleton</h3>\n\n\n\n<p>You can use the class expression to create singleton by calling the class constructor immediately. To do this, you use the&nbsp;<code>new</code>&nbsp;operator with a class expression and include the parentheses at the end of class declaration as in the following example.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let app = new class {\n    constructor(name) {\n        this.name = name;\n    }\n    start() {\n        console.log(`Starting the ${this.name}...`);\n    }\n\n}('Awesome App');\n\napp.start(); // Starting the Awesome App...</code></pre>\n\n\n\n<p>In this example, we create an anonymous class expression and execute it immediately.</p>\n\n\n\n<h2>Getter and setter</h2>\n\n\n\n<p>To create a getter and setter, you use&nbsp;<code>get</code>&nbsp;and&nbsp;<code>set</code>&nbsp;keywords followed by a space and an identifier. See the following example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>class Person {\n    constructor(firstName, lastName) {\n        this.firstName = firstName;\n        this.lastName = lastName;\n    }\n    get fullName() {\n        return this.firstName + ' ' + this.lastName;\n    }\n\n    set fullName(str) {\n        let names = str.split(' ');\n        if (names.length === 2) {\n            this.firstName = names&#91;0];\n            this.lastName = names&#91;1];\n        } else {\n            throw 'Invalid name format';\n        }\n    }\n}\n\nlet mary = new Person('Mary', 'Doe');\nconsole.log(mary.fullName); // Mary Doe\n\n// set new name\nmary.fullName = 'Mary William';\nconsole.log(mary.fullName); // Mary William\n</code></pre>\n\n\n\n<p>The&nbsp;<code>Person</code>&nbsp;class has the property&nbsp;<code>fullName</code>&nbsp;as a getter and setter.</p>\n\n\n\n<p>The&nbsp;<code>fullName</code>&nbsp;getter returns the full name of a person object by concatenating the first name, space, and last name.</p>\n\n\n\n<p>The&nbsp;<code>fullName</code>&nbsp;setter accepts a string as an argument. The setter method splits the string into parts and assigns the&nbsp;<code>firstName</code>&nbsp;and&nbsp;<code>lastName</code>&nbsp;properties the appropriate&nbsp;parts. If the input argument is not in the correct format i.e., first name, space, and last name, the setter method throws an error.</p>\n\n\n\n<h2>Computed member names</h2>\n\n\n\n<p>Like an&nbsp;<a href=\"http://www.javascripttutorial.net/es6/object-literal-extensions/\">object literal</a>, you can use computed names for properties of a class. The following&nbsp;<code>Person</code>&nbsp;class is equivalent to the&nbsp;<code>Person</code>&nbsp;class in the previous example except that it uses the name as the computed getter and setter.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let name = 'fullName';\nclass Person {\n    constructor(firstName, lastName) {\n        this.firstName = firstName;\n        this.lastName = lastName;\n    }\n    get&#91;name]() {\n        return this.firstName + ' ' + this.lastName;\n    }\n    set&#91;name](str) {\n        //...\n    }\n}\n\nvar john = new Person('John', 'Doe');\nconsole.log(john.fullName); // John Doe</code></pre>\n\n\n\n<h2>Static&nbsp;methods</h2>\n\n\n\n<p>Prior to ES6, to create a static method, you add the method directly to the constructor. For example, the following adds a static method to the&nbsp;<code>Animal</code>&nbsp;type:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Animal.make = function(type) {\n    return new Animal(type);\n}\n\nvar dog = Animal.make('Dog');\ndog.identify(); // Dog</code></pre>\n\n\n\n<p>The&nbsp;<code>make()</code>&nbsp;method is considered a static method because it doesn\u2019t depend&nbsp;on any instance of the&nbsp;<code>Animal</code>&nbsp;for its property values. ES6 simplified this by using the&nbsp;<code>static</code>&nbsp;notation before the method name as shown in the following example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>class Animal {\n    constructor(type) {\n        this.type = type;\n    }\n    identify() {\n        console.log(this.type);\n    }\n    static create(type) {\n        return new Animal(type);\n    }\n}\n\nvar mouse = Animal.create('Mouse');\nmouse.identify(); // mouse</code></pre>\n\n\n\n<p>Note that an attempt to access the static method from an instance of the class results in an error.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>mouse.create('Monkey'); \n// Uncaught TypeError: mouse.create is not a function\n</code></pre>\n\n\n\n<p>ES6 has not provided a way to define static properties like static methods&nbsp;even though there was a proposal for adding them to the language.</p>\n\n\n\n<p>Now, you should have a good understanding of JavaScript class in ES6 and how to apply it to develop custom types in your application.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Classes prior to ES6 revisited Prior to ES6, JavaScript had no classes. To mimic a class, we often use a constructor function as shown in the following example: How it works. First, created the\u00a0Animal\u00a0as a constructor function that has a property name called\u00a0type. The\u00a0identify()\u00a0method is assigned to the\u00a0prototype\u00a0so that it can be shared by all [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [201],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3137"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=3137"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3137/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=3137"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=3137"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=3137"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 3139,
+    "date": "2020-11-28T06:02:10",
+    "date_gmt": "2020-11-28T06:02:10",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3139"
+    },
+    "modified": "2020-11-28T06:02:10",
+    "modified_gmt": "2020-11-28T06:02:10",
+    "slug": "extends-and-super",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/extends-and-super/",
+    "title": {
+      "rendered": "Extends and super"
+    },
+    "content": {
+      "rendered": "\n<h2>Implementing JavaScript inheritance using&nbsp;<code>extends</code>&nbsp;and&nbsp;<code>super</code></h2>\n\n\n\n<p>Prior to ES6, implementing a proper inheritance required multiple steps. One of the most commonly used strategies is the\u00a0prototypal inheritance.\u00a0The following illustrates how the\u00a0<code>Bird</code>\u00a0inherits properties from the\u00a0<code>Animal</code>\u00a0using the prototypal inheritance technique.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function Animal(legs) {\n    this.legs = legs;\n}\n\nAnimal.prototype.walk = function() {\n    console.log('walking on ' + this.legs + ' legs');\n}\n\nfunction Bird(legs) {\n    Animal.call(this, legs);\n}\n\nBird.prototype = Object.create(Animal.prototype);\nBird.prototype.constructor = Animal;\n\n\nBird.prototype.fly = function() {\n    console.log('flying');\n}\n\nvar pigeon = new Bird(2);\npigeon.walk(); // walking on 2 legs\npigeon.fly(); // flying\n</code></pre>\n\n\n\n<p>ES6 simplified these steps by using the&nbsp;<code>extends</code>&nbsp;and&nbsp;<code>super</code>&nbsp;keywords. The following example defines the&nbsp;<code>Animal</code>&nbsp;and&nbsp;<code>Bird</code>&nbsp;classes and establishes the inheritance through the&nbsp;<code>extends</code>&nbsp;and&nbsp;<code>super</code>&nbsp;keywords.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>class Animal {\n    constructor(legs) {\n        this.legs = legs;\n    }\n    walk() {\n        console.log('walking on ' + this.legs + ' legs');\n    }\n}\n\nclass Bird extends Animal {\n    constructor(legs) {\n        super(legs);\n    }\n    fly() {\n        console.log('flying');\n    }\n}\n\n\nlet bird = new Bird(2);\n\nbird.walk();\nbird.fly();\n</code></pre>\n\n\n\n<p>In this example, the&nbsp;<code>Bird</code>\u2018s constructor uses&nbsp;<code>super()</code>&nbsp;to call the&nbsp;<code>Animal</code>\u2018s constructor with the specified arguments.</p>\n\n\n\n<p>Note that the class version is just the syntactic sugar for the prototypal inheritance. In other words, JavaScript uses classes for the syntax but still realizes on the\u00a0prototype\u00a0mechanism</p>\n\n\n\n<p>The&nbsp;<code>Animal</code>&nbsp;class is called&nbsp;<em>base class</em>&nbsp;and the&nbsp;<code>Bird</code>&nbsp;class is known as&nbsp;<em>derived class</em>. JavaScript&nbsp;requires the derived&nbsp;class to use&nbsp;<code>super()</code>&nbsp;if it has a constructor. As you see in the&nbsp;<code>Bird</code>&nbsp;class, the&nbsp;<code>super(legs)</code>&nbsp;is equivalent to the following statement.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Animal.call(this, legs);</code></pre>\n\n\n\n<p>If you decide to not use constructor in the&nbsp;<code>Bird</code>&nbsp;class, you can do it as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>class Bird extends Animal {\n    fly() {\n        console.log('flying');\n    }\n}</code></pre>\n\n\n\n<p>It is equivalent to the following class:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>class Bird extends Animal {\n    constructor(...args) {\n        super(...args);\n    }\n    fly() {\n        console.log('flying');\n    }\n}</code></pre>\n\n\n\n<p>However, if you specify the constructor, you muse call&nbsp;<code>super()</code>&nbsp;inside the constructor, therefore the following code results in an error.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>class Bird extends Animal {\n    constructor(legs) {\n    }\n    fly() {\n        console.log('flying');\n    }\n}</code></pre>\n\n\n\n<p>Because the&nbsp;<code>super()</code>&nbsp;initializes the&nbsp;<code>this</code>&nbsp;object, you must call the&nbsp;<code>super()</code>&nbsp;before accessing the&nbsp;<code>this</code>&nbsp;object. Trying to access&nbsp;<code>this</code>&nbsp;before calling&nbsp;<code>super()</code>&nbsp;results in an error.</p>\n\n\n\n<p>For example, if you want to initialize the&nbsp;<code>color</code>&nbsp;property of the&nbsp;<code>Bird</code>&nbsp;class, you can do it as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>class Bird extends Animal {\n    constructor(legs, color) {\n        super(legs);\n        this.color = color;\n    }\n    fly() {\n        console.log('flying');\n    }\n    getColor() {\n        console.log(this.color);\n    }\n}\n\n\nlet pegion = new Bird(2, 'white');\nconsole.log(pegion.getColor());</code></pre>\n\n\n\n<h2>Shadowing methods</h2>\n\n\n\n<p>JavaScript allows you to add a new method in the derived class that has the same name as a method in the base class. In this case, when you call the method of an object of the derived class, that method will shadow the method in the base class.</p>\n\n\n\n<p>The following&nbsp;<code>Dog</code>&nbsp;class extends the&nbsp;<code>Animal</code>&nbsp;class and redefines the&nbsp;<code>walk()</code>&nbsp;method.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>class Dog extends Animal {\n    constructor() {\n        super(4);\n    }\n    walk() {\n        console.log(`go walking`);\n    }\n}\n\nlet bingo = new Dog();\nbingo.walk(); // go walking</code></pre>\n\n\n\n<p>To call the method of the base class in the derived class, you use&nbsp;<code>super.method()</code>&nbsp;like this:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>class Dog extends Animal {\n    constructor() {\n        super(4);\n    }\n    walk() {\n        super.walk();\n        console.log(`go walking`);\n    }\n}\n\nlet bingo = new Dog();\nbingo.walk();\n// walking on 4 legs\n// go walking</code></pre>\n\n\n\n<h2>Inheriting static members</h2>\n\n\n\n<p>The derived class inherits all static members of the base class. See the following example.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>class Animal {\n    constructor(legs) {\n        this.legs = legs;\n    }\n    walk() {\n        console.log('walking on ' + this.legs + ' legs');\n    }\n    static helloWorld() {\n        console.log('Hello World');\n    }\n}\n\nclass Bird extends Animal {\n    fly() {\n        console.log('flying');\n    }\n}\n</code></pre>\n\n\n\n<p>In this example, the&nbsp;<code>Animal</code>&nbsp;class has the&nbsp;<code>helloWorld()</code>&nbsp;static method and this method is available as&nbsp;<code>Bird.helloWorld()</code>&nbsp;and behaves the same as the&nbsp;<code>Animal.helloWorld()</code>&nbsp;method. See the following code:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Bird.helloWorld(); // Hello World</code></pre>\n\n\n\n<h2>Inheriting from built-in types</h2>\n\n\n\n<p>JavaScript allows you to extend a built-in type such as\u00a0Array, String,\u00a0Map, and\u00a0Set\u00a0through inheritance. The following\u00a0<code>Queue</code>\u00a0class extends the\u00a0<code>Array</code>\u00a0reference type.\u00a0The syntax is much cleaner than the\u00a0<code>Queue</code>\u00a0implemented using the\u00a0constructor/prototype pattern.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>class Queue extends Array {\n    enqueue(e) {\n        super.push(e);\n    }\n    dequeue() {\n        return super.shift();\n    }\n    peek() {\n        return !this.empty() ? this&#91;0] : undefined;\n    }\n    empty() {\n        return this.length === 0;\n    }\n}\n\nvar customers = new Queue();\ncustomers.enqueue('A');\ncustomers.enqueue('B');\ncustomers.enqueue('C');\n\nwhile (!customers.empty()) {\n    console.log(customers.dequeue());\n}</code></pre>\n\n\n\n<p>In this tutorial, you have learned how to implement JavaScript inheritance using the&nbsp;<code>extends</code>&nbsp;and&nbsp;<code>super</code>&nbsp;keywords.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Implementing JavaScript inheritance using&nbsp;extends&nbsp;and&nbsp;super Prior to ES6, implementing a proper inheritance required multiple steps. One of the most commonly used strategies is the\u00a0prototypal inheritance.\u00a0The following illustrates how the\u00a0Bird\u00a0inherits properties from the\u00a0Animal\u00a0using the prototypal inheritance technique. ES6 simplified these steps by using the&nbsp;extends&nbsp;and&nbsp;super&nbsp;keywords. The following example defines the&nbsp;Animal&nbsp;and&nbsp;Bird&nbsp;classes and establishes the inheritance through the&nbsp;extends&nbsp;and&nbsp;super&nbsp;keywords. In this [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [201],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3139"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=3139"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3139/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=3139"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=3139"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=3139"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 3141,
+    "date": "2020-11-28T06:02:58",
+    "date_gmt": "2020-11-28T06:02:58",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3141"
+    },
+    "modified": "2020-11-28T06:02:58",
+    "modified_gmt": "2020-11-28T06:02:58",
+    "slug": "new-target",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/new-target/",
+    "title": {
+      "rendered": "New.Target"
+    },
+    "content": {
+      "rendered": "\n<h2>Introduction to JavaScript new.target</h2>\n\n\n\n<div class=\"wp-block-image\"><figure class=\"alignright\"><img src=\"https://cdn.javascripttutorial.net/wp-content/uploads/2016/09/javascript-new.target-300x150.png\" alt=\"JavaScript new.target\" class=\"wp-image-707\" title=\"JavaScript new.target\"/></figure></div>\n\n\n\n<p>ES6 provides a\u00a0<em>metaproperty</em>\u00a0named\u00a0<code>new.target</code>\u00a0that allows you to detect whether a\u00a0function\u00a0or constructor was called using the\u00a0<code>new</code>\u00a0operator.</p>\n\n\n\n<p>The\u00a0<code>new.target</code>\u00a0consists of the\u00a0<code>new</code>\u00a0keyword, a dot, and\u00a0<code>target</code>\u00a0property. The\u00a0<code>new.target</code>\u00a0is available for\u00a0all functions. However, in\u00a0arrow functions, the\u00a0<code>new.targe</code>t is the one that belongs to the surrounding function.</p>\n\n\n\n<p>The&nbsp;<code>new.target</code>&nbsp;is very useful to inspect at runtime whether a function is being executed as a function or as a constructor. It is also handy to determine a specific derived class that was called by using&nbsp;the&nbsp;<code>new</code>&nbsp;operator from within a base class.</p>\n\n\n\n<h2>JavaScript new.target in functions</h2>\n\n\n\n<p>Let\u2019s see the following&nbsp;<code>Person</code>&nbsp;constructor function:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function Person(name) {\n    this.name = name;\n}</code></pre>\n\n\n\n<p>You can create a new object from the Person() function by using the&nbsp;<code>new</code>&nbsp;operator as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let john = new Person('John');\nconsole.log(john.name); // john</code></pre>\n\n\n\n<p>Or you can call the Person() as a function.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Person('Lily');</code></pre>\n\n\n\n<p>Because the&nbsp;<code>this</code>&nbsp;is set to global object i.e., the&nbsp;<code>window</code>&nbsp;object when you run JavaScript in the web browser, the&nbsp;<code>name</code>&nbsp;property is added to the&nbsp;<code>window</code>&nbsp;object as shown below.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>console.log(window.name); //Lily</code></pre>\n\n\n\n<p>To help you detect whether a function was called using the new operator, you use the new.target.</p>\n\n\n\n<p>In a normal function call the&nbsp;<code>new.target</code>&nbsp;returns&nbsp;<code>undefined</code>. If the function&nbsp;was called with the&nbsp;<code>new</code>&nbsp;operator, the&nbsp;<code>new.target</code>&nbsp;returns a reference to the function.</p>\n\n\n\n<p>Suppose you don\u2019t want the Person() to be called as a function, you can use the&nbsp;<code>new.target</code>&nbsp;as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function Person(name) {\n    if (!new.target) {\n        throw \"must use new operator with Person\";\n    }\n    this.name = name;\n}</code></pre>\n\n\n\n<p>Now, the&nbsp;only way to use&nbsp;Person() is to instantiate an object from it by using the&nbsp;<code>new</code>&nbsp;operator. If you try to call it as a normal function, you will get an error.</p>\n\n\n\n<h2>JavaScript new.target in constructors</h2>\n\n\n\n<p>In a&nbsp;<a href=\"http://www.javascripttutorial.net/es6/javascript-class/\">class&nbsp;</a>constructor, the&nbsp;<code>new.target</code>&nbsp;refers to the constructor that was invoked directly by the&nbsp;<code>new</code>&nbsp;operator. It is&nbsp;<code>true</code>&nbsp;if the constructor is in the base class and was delegated from a derived constructor. Here is an example.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>class Person {\n    constructor(name) {\n        this.name = name;\n        console.log(new.target.name);\n    }\n}\n\nclass Employee extends Person {\n    constructor(name, title) {\n        super(name);\n        this.title = title;\n    }\n}\n\nlet john = new Person('John Doe'); // Person\nlet lily = new Employee('Lily Bush', 'Programmer'); // Employee</code></pre>\n\n\n\n<p>In this example,&nbsp;<code>new.target.name</code>&nbsp;is the&nbsp;human-friendly name of the constructor reference of new.target</p>\n\n\n\n<p>In this tutorial, you have learned how to use&nbsp;the JavaScript new.target metaproperty to detect whether a function or constructor was called using the new operator.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Introduction to JavaScript new.target ES6 provides a\u00a0metaproperty\u00a0named\u00a0new.target\u00a0that allows you to detect whether a\u00a0function\u00a0or constructor was called using the\u00a0new\u00a0operator. The\u00a0new.target\u00a0consists of the\u00a0new\u00a0keyword, a dot, and\u00a0target\u00a0property. The\u00a0new.target\u00a0is available for\u00a0all functions. However, in\u00a0arrow functions, the\u00a0new.target is the one that belongs to the surrounding function. The&nbsp;new.target&nbsp;is very useful to inspect at runtime whether a function is being executed as [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [201],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3141"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=3141"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3141/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=3141"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=3141"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=3141"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  }
+]

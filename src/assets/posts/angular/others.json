@@ -1,0 +1,102 @@
+[
+  {
+    "id": 3896,
+    "date": "2020-12-10T11:04:06",
+    "date_gmt": "2020-12-10T11:04:06",
+    "guid": {
+      "rendered": "http://angular.foobrdigital.com/?p=3896"
+    },
+    "modified": "2020-12-10T11:04:06",
+    "modified_gmt": "2020-12-10T11:04:06",
+    "slug": "angular-location-service-go-back-forward",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/angular-location-service-go-back-forward/",
+    "title": {
+      "rendered": "Angular Location Service: go/back/forward"
+    },
+    "content": {
+      "rendered": "\n<h1>How to use Location Service</h1>\n\n\n\n<p>The Location service is part of the <code>@angular/common</code> package. Hence import it in the Component, where you want to use it.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> \r\nimport { Location } from '@angular/common';</code></pre>\n\n\n\n<p>And finally, inject it to the component, where you want to use it</p>\n\n\n\n<pre class=\"wp-block-code\"><code>\r\nexport class MyComponent {\r\n  constructor(private location: Location) { \r\n  }\r\n}\r\n </code></pre>\n\n\n\n<h3>back()</h3>\n\n\n\n<p>Use <code>location.back()</code> to go back to the previous URL.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>goBack() {\r\n  this.location.back();\r\n}</code></pre>\n\n\n\n<h3>forward()</h3>\n\n\n\n<p>Use <code>location.forward()</code> to go to the next URL.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>\r\ngoForward() {\r\n  this.location.forward();\r\n}</code></pre>\n\n\n\n<h2>Get the current path</h2>\n\n\n\n<h3>path()</h3>\n\n\n\n<p>The current URL path can be obtained using the <code>location.path()</code></p>\n\n\n\n<pre class=\"wp-block-code\"><code>getPath() {\r\n  return this.location.path();  \r\n}\r\n </code></pre>\n\n\n\n<h2>Manipulate the URL</h2>\n\n\n\n<h3>go()</h3>\n\n\n\n<p>Use the <code>location.go()</code> to change the current URL to a new given URL. It also pushes the new URL into the browser history. The <code>location.go()</code> does not navigate to the new URL. To navigate to the new URL, you must use the Angular router</p>\n\n\n\n<pre class=\"wp-block-code\"><code> \r\nSyntax:\r\ngo(path: string, query: string = '', state: any = null): void\r\n </code></pre>\n\n\n\n<pre class=\"wp-block-code\"><code> \r\nlocation.go(\"/product/1\");\r\n </code></pre>\n\n\n\n<p>Note that, you can also change the state object of the URL.</p>\n\n\n\n<h3>replaceState()</h3>\n\n\n\n<p>Use the&nbsp;<code>location.replaceState()</code>&nbsp;to change the current URL to a new given URL. It replaces the top item in the browser history.</p>\n\n\n\n<p>This is very similar to <code>location.go()</code> with one difference. The <code>location.go()</code> add the URL to the browser history, while <code>location.replaceState()</code> replaces the top item in the history with the newly added one</p>\n\n\n\n<pre class=\"wp-block-code\"><code>\r\nSyntax\r\nreplaceState(path: string, query: string = '', state: any = null): void\r\n </code></pre>\n\n\n\n<pre class=\"wp-block-code\"><code> \r\nExamples:\r\nlocation.replaceState(): </code></pre>\n\n\n\n<h2>Get History State Object</h2>\n\n\n\n<h3>getState()</h3>\n\n\n\n<pre class=\"wp-block-code\"><code> \r\nlocation.getState(): </code></pre>\n\n\n\n<p>The above introduced in Angular 8, returns the current value of history. state object. You can use this method to pass the dynamic data via the Angular Routes</p>\n\n\n\n<p>You can pass the state object by using the following ways.</p>\n\n\n\n<ol><li>By using&nbsp;<code>routerLink</code>&nbsp;directive.</li><li>By using the&nbsp;<code>router.navigateByUrl()</code>&nbsp;method.</li><li>via&nbsp;<code>location.go()</code>&nbsp;method of the location service</li><li>via&nbsp;<code>location.replaceState()</code>&nbsp;method of the location service</li></ol>\n\n\n\n<pre class=\"wp-block-code\"><code>\r\n&lt;a &#91;routerLink]=\"&#91;'dynamic']\" &#91;state]=\"{ id:1 , name:'Angular'}\">Dynamic Data&lt;/a>\r\n \r\nthis.router.navigateByUrl('/dynamic', { state: { id:1 , name:'Angular' } });\r\n \r\nlocation.go(\"/product/1\",\"\", { id:1 , name:'Angular'})\r\nlocation.replaceState(\"/product/1\",\"\", { id:1 , name:'Angular'})\r\n </code></pre>\n\n\n\n<h2>Listen to URL Changes</h2>\n\n\n\n<h3>onUrlChange()</h3>\n\n\n\n<p>Use onUrlChange to listen for a change in URLs. This API can be used to catch updates performed by the Angular framework. These are not detectable through “popstate” or “hashchange” events.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> \r\nonUrlChange(fn: (url: string, state: unknown) => void)</code></pre>\n\n\n\n<pre class=\"wp-block-code\"><code>\r\n ngOnInit() {\r\n \r\n    this.location.onUrlChange( (url: string, state: unknown) => {\r\n      console.log(\"Location changes to \"+url);\r\n      console.log(state);\r\n    })\r\n  }</code></pre>\n\n\n\n<h2>Subscribe to the platform’s&nbsp;<code>popState</code>&nbsp;events.</h2>\n\n\n\n<p>Subscribe to the location service to listen to the platform’s popState events</p>\n\n\n\n<p>The popState events are fired when</p>\n\n\n\n<ol><li>User clicks on the Back/Forward button on the browser window</li><li>location.forward() &amp; location.back() is called.</li></ol>\n\n\n\n<p>And not fired when</p>\n\n\n\n<ol><li><code>Location.go()</code>&nbsp;and&nbsp;<code>location.replaceState()</code>&nbsp;is used.</li></ol>\n\n\n\n<pre class=\"wp-block-code\"><code>subscribe(onNext: (value: PopStateEvent) => void, onThrow?: (exception: any) => void, onReturn?: () => void): SubscriptionLike\r\n \r\n</code></pre>\n\n\n\n<pre class=\"wp-block-code\"><code> this.location.subscribe(\r\n      ( (value:PopStateEvent) => {\r\n        console.log(\"locaton OnNext\")\r\n        console.log(value);\r\n      }),\r\n      ( ex => {\r\n        console.log(\"Error occured postate event\")\r\n        console.log(ex);\r\n      })\r\n    )</code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>How to use Location Service The Location service is part of the @angular/common package. Hence import it in the Component, where you want to use it. And finally, inject it to the component, where you want to use it back() Use location.back() to go back to the previous URL. forward() Use location.forward() to go to the next URL. Get the current [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [139],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3896"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=3896"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3896/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3897,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3896/revisions/3897"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=3896"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=3896"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=3896"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  }
+]

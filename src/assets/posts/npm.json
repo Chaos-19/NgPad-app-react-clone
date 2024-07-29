@@ -1,0 +1,932 @@
+[
+  {
+    "id": 659,
+    "date": "2020-05-13T04:11:09",
+    "date_gmt": "2020-05-13T04:11:09",
+    "guid": {
+      "rendered": "http://angular.foobrdigital.com/?p=659"
+    },
+    "modified": "2020-05-13T04:11:09",
+    "modified_gmt": "2020-05-13T04:11:09",
+    "slug": "introduction-4",
+    "status": "publish",
+    "type": "post",
+    "link": "https://react.foobrdigital.com/introduction-4/",
+    "title": {
+      "rendered": "Introduction"
+    },
+    "content": {
+      "rendered": "\n<p>Node.js makes it possible to write applications in JavaScript on the server. It’s built on the V8 JavaScript runtime and written in C++ so it’s fast. Originally, it was intended as a server environment for applications, but developers started using it to create tools to aid them in local task automation. Since then, a whole new ecosystem of Node-based tools (such as Grunt, Gulp, and <strong>web-pack</strong>) has evolved to transform the face of front-end development.</p>\n\n\n\n<p>To make use of these tools (or packages) in Node.js, we need to be able to install and manage them in a useful way. This is where npm, the Node package manager, comes in. It installs the packages you want to use and provides a useful interface to work with them.</p>\n\n\n\n<p>In this guide, we’re going to look at the basics of working with npm. We’ll show you how to install packages in local and global mode, as well as delete, update and install a certain version of a package. We’ll also show you how to work with&nbsp;<code>package.json</code>&nbsp;to manage a project’s dependencies.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Node.js makes it possible to write applications in JavaScript on the server. It’s built on the V8 JavaScript runtime and written in C++ so it’s fast. Originally, it was intended as a server environment for applications, but developers started using it to create tools to aid them in local task automation. Since then, a whole new ecosystem [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 663,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [
+      13
+    ],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/posts/659"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/comments?post=659"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/posts/659/revisions"
+        }
+      ],
+      "wp:featuredmedia": [
+        {
+          "embeddable": true,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/media/663"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/media?parent=659"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/categories?post=659"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/tags?post=659"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 664,
+    "date": "2020-05-13T04:18:24",
+    "date_gmt": "2020-05-13T04:18:24",
+    "guid": {
+      "rendered": "http://angular.foobrdigital.com/?p=664"
+    },
+    "modified": "2020-07-20T11:48:48",
+    "modified_gmt": "2020-07-20T11:48:48",
+    "slug": "updating-npm",
+    "status": "publish",
+    "type": "post",
+    "link": "https://react.foobrdigital.com/updating-npm/",
+    "title": {
+      "rendered": "Updating NPM"
+    },
+    "content": {
+      "rendered": "\n<h2 id=\"updatingnpm\">Updating npm</h2>\n\n\n\n<p>npm, which originally stood for Node Package Manager, is a separate project from Node.js. It tends to be updated more frequently. If you realize you have an older version, you can update as follows.</p>\n\n\n\n<p>For Linux and Mac users, use the following command:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>npm install -g npm@latest</code></pre>\n\n\n\n<p>For Windows users, the process might be slightly more complicated.</p>\n\n\n\n<p>Many improvements for Windows users have been made in npm 3 – you will have a better experience if you run a recent version of npm. To upgrade, either use&nbsp;<strong>Microsoft’s upgrade tool</strong>,&nbsp;<strong>download a new version of Node</strong>.</p>\n\n\n\n<p>For most users, the upgrade tool will be the best bet. To use it, you’ll need to open Powers hell as administrator and execute the following command:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Set-ExecutionPolicy Unrestricted -Scope CurrentUser -Force</code></pre>\n\n\n\n<p>This will ensure you can execute scripts on your system. Next, you’ll need to install the&nbsp;<strong>npm-windows-upgrade</strong>&nbsp;tool. After you’ve installed the tool, you need to run it so that it can update npm for you. Do all this within the elevated Power shell console:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>npm install --global --production npm-windows-upgrade\nnpm-windows-upgrade --npm-version latest</code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Updating npm npm, which originally stood for Node Package Manager, is a separate project from Node.js. It tends to be updated more frequently. If you realize you have an older version, you can update as follows. For Linux and Mac users, use the following command: For Windows users, the process might be slightly more complicated. [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 665,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [
+      13
+    ],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/posts/664"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/comments?post=664"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/posts/664/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 2315,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/posts/664/revisions/2315"
+        }
+      ],
+      "wp:featuredmedia": [
+        {
+          "embeddable": true,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/media/665"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/media?parent=664"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/categories?post=664"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/tags?post=664"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 667,
+    "date": "2020-05-13T04:21:59",
+    "date_gmt": "2020-05-13T04:21:59",
+    "guid": {
+      "rendered": "http://angular.foobrdigital.com/?p=667"
+    },
+    "modified": "2020-05-13T04:21:59",
+    "modified_gmt": "2020-05-13T04:21:59",
+    "slug": "global-mode",
+    "status": "publish",
+    "type": "post",
+    "link": "https://react.foobrdigital.com/global-mode/",
+    "title": {
+      "rendered": "Global Mode"
+    },
+    "content": {
+      "rendered": "\n<h2 id=\"installingpackagesinglobalmode\">Installing Packages in Global Mode</h2>\n\n\n\n<p>At the moment, we only have one package installed globally — the npm package itself. So let’s change that and install <strong>UglifyJ</strong>S (a JavaScript minification tool). We use the <code><strong>--global</strong></code> flag, but this can be abbreviated to <code><strong>-g</strong></code>:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>$ npm install uglify-js --global\n/home/CodePoint/.node_modules_global/bin/uglifyjs -> /home/CodePoint/.node_modules_global/lib/node_modules/uglify-js/bin/uglifyjs\n+ uglify-js@3.9.2\nadded 3 packages from 38 contributors in 0.221s\n</code></pre>\n\n\n\n<p>As you can see from the output, additional packages are installed. These are UglifyJS’s dependencies.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Installing Packages in Global Mode At the moment, we only have one package installed globally — the npm package itself. So let’s change that and install UglifyJS (a JavaScript minification tool). We use the &#8211;global flag, but this can be abbreviated to -g: As you can see from the output, additional packages are installed. These are UglifyJS’s dependencies.</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 668,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [
+      13
+    ],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/posts/667"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/comments?post=667"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/posts/667/revisions"
+        }
+      ],
+      "wp:featuredmedia": [
+        {
+          "embeddable": true,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/media/668"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/media?parent=667"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/categories?post=667"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/tags?post=667"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 671,
+    "date": "2020-05-13T04:25:31",
+    "date_gmt": "2020-05-13T04:25:31",
+    "guid": {
+      "rendered": "http://angular.foobrdigital.com/?p=671"
+    },
+    "modified": "2020-07-20T11:49:22",
+    "modified_gmt": "2020-07-20T11:49:22",
+    "slug": "local-mode",
+    "status": "publish",
+    "type": "post",
+    "link": "https://react.foobrdigital.com/local-mode/",
+    "title": {
+      "rendered": "Local Mode"
+    },
+    "content": {
+      "rendered": "\n<p>When you install packages locally, you normally do so using a&nbsp;<code><strong>package.json</strong></code>&nbsp;file. Let’s go ahead and create one:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>$ mkdir project &amp;&amp; cd project\n\n$ npm init\npackage name: (project)\nversion: (1.0.0)\ndescription: Demo of package.json\nentry point: (index.js)\ntest command:\ngit repository:\nkeywords:\nauthor:\nlicense: (ISC)</code></pre>\n\n\n\n<p>Press&nbsp;<kbd>Return</kbd>&nbsp;to accept the defaults, then press it again to confirm your choices. This will create a&nbsp;<code>package.json</code>&nbsp;file at the root of the project:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{\n  \"name\": \"project\",\n  \"version\": \"1.0.0\",\n  \"description\": \"\",\n  \"main\": \"index.js\",\n  \"scripts\": {\n    \"test\": \"echo \\\"Error: no test specified\\\" &amp;&amp; exit 1\"\n  },\n  \"author\": \"\",\n  \"license\": \"ISC\"\n}</code></pre>\n\n\n\n<p><em>Tip: If you want a quicker way to generate a&nbsp;</em><code><strong>package.json</strong></code><em>&nbsp;file use&nbsp;</em><code><strong>npm init --y</strong></code><em>.</em></p>\n\n\n\n<p>The fields are hopefully pretty self-explanatory, with the exception of&nbsp;<code><strong>main</strong></code>&nbsp;and&nbsp;<code><strong>scripts</strong></code>. The&nbsp;<code><strong>main</strong></code>&nbsp;field is the primary entry point to your program and the&nbsp;<code><strong>scripts</strong></code>&nbsp;field lets you specify script commands that are run at various times in the life cycle of your package.</p>\n\n\n\n<p>Now let’s try and install&nbsp;<strong>Underscore</strong>:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>$ npm install underscore\nnpm notice created a lockfile as package-lock.json. You should commit this file.\nnpm WARN project@1.0.0 No repository field.\n\n+ underscore@1.10.2\nadded 1 package from 1 contributor and audited 1 package in 0.432s\nfound 0 vulnerabilities</code></pre>\n\n\n\n<p>Now if we have a look in&nbsp;<code><strong>package.json</strong></code>, we’ll see that a&nbsp;<code><strong>dependencies</strong></code>&nbsp;field has been added:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{\n  ...\n  \"dependencies\": {\n    \"underscore\": \"^1.10.2\"\n  }\n}</code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>When you install packages locally, you normally do so using a&nbsp;package.json&nbsp;file. Let’s go ahead and create one: Press&nbsp;Return&nbsp;to accept the defaults, then press it again to confirm your choices. This will create a&nbsp;package.json&nbsp;file at the root of the project: Tip: If you want a quicker way to generate a&nbsp;package.json&nbsp;file use&nbsp;npm init &#8211;y. The fields are [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 672,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [
+      13
+    ],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/posts/671"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/comments?post=671"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/posts/671/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 2316,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/posts/671/revisions/2316"
+        }
+      ],
+      "wp:featuredmedia": [
+        {
+          "embeddable": true,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/media/672"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/media?parent=671"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/categories?post=671"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/tags?post=671"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 674,
+    "date": "2020-05-13T04:28:35",
+    "date_gmt": "2020-05-13T04:28:35",
+    "guid": {
+      "rendered": "http://angular.foobrdigital.com/?p=674"
+    },
+    "modified": "2020-05-13T04:28:35",
+    "modified_gmt": "2020-05-13T04:28:35",
+    "slug": "package-json",
+    "status": "publish",
+    "type": "post",
+    "link": "https://react.foobrdigital.com/package-json/",
+    "title": {
+      "rendered": "Package.json"
+    },
+    "content": {
+      "rendered": "\n<p>As you can see, Underscore v1.10.2 was installed in our project. The caret (<code>^</code>) at the front of the version number indicates that when installing, npm will pull in the highest version of the package it can find where only the major version has to match (unless a&nbsp;<code>package-lock.json</code>&nbsp;file is present). In our case, that would be anything below v2.0.0. This method of versioning dependencies (major.minor.patch) is known as&nbsp;<strong>semantic versioning</strong>.</p>\n\n\n\n<p>Also notice that Underscore was saved as a property of the&nbsp;<code>dependencies</code>&nbsp;field. This has become the default in the latest version of npm and is used for packages (like Underscore) required for the application to run. It would also be possible to save a package as a&nbsp;<code>devDependency</code>&nbsp;by specifying a&nbsp;<code>--save-dev</code>&nbsp;flag.&nbsp;<code>devDependencies</code>&nbsp;are packages used for development purposes — for example, for running tests or transpiling code.</p>\n\n\n\n<p><strong>Note: you can also add&nbsp;<code>private: true</code>&nbsp;to&nbsp;<code>package.json</code>&nbsp;to prevent accidental publication of private repositories, as well as suppressing any warnings generated when running&nbsp;<code>npm install</code>.</strong></p>\n\n\n\n<p>Far and away the biggest reason for using&nbsp;<code>package.json</code>&nbsp;to specify a project’s dependencies is portability. For example, when you clone someone else’s code, all you have to do is run&nbsp;<code>npm i</code>&nbsp;in the project root and npm will resolve and fetch all of the necessary packages for you to run the app. We’ll look at this in more detail later.</p>\n\n\n\n<p>Before finishing this section, let’s quickly check that Underscore is working. Create a file called&nbsp;<code>app.js</code>&nbsp;in the project root and add the following:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>const _ = require(\"underscore\");\nconsole.log(_.range(5));</code></pre>\n\n\n\n<p>Run the file using&nbsp;<code>node app.js</code>&nbsp;and you should see&nbsp;<code>[0, 1, 2, 3, 4]</code>&nbsp;output to the screen.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>As you can see, Underscore v1.10.2 was installed in our project. The caret (^) at the front of the version number indicates that when installing, npm will pull in the highest version of the package it can find where only the major version has to match (unless a&nbsp;package-lock.json&nbsp;file is present). In our case, that would [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 675,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [
+      13
+    ],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/posts/674"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/comments?post=674"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/posts/674/revisions"
+        }
+      ],
+      "wp:featuredmedia": [
+        {
+          "embeddable": true,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/media/675"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/media?parent=674"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/categories?post=674"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/tags?post=674"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 677,
+    "date": "2020-05-13T04:30:58",
+    "date_gmt": "2020-05-13T04:30:58",
+    "guid": {
+      "rendered": "http://angular.foobrdigital.com/?p=677"
+    },
+    "modified": "2020-05-13T04:30:58",
+    "modified_gmt": "2020-05-13T04:30:58",
+    "slug": "uninstalling-package",
+    "status": "publish",
+    "type": "post",
+    "link": "https://react.foobrdigital.com/uninstalling-package/",
+    "title": {
+      "rendered": "Uninstalling Package"
+    },
+    "content": {
+      "rendered": "\n<p>npm is a package manager, so it must be able to remove a package. Let’s assume that the current Underscore package is causing us compatibility problems. We can remove the package and install an older version, like so:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>$ npm uninstall underscore\nremoved 1 package in 0.256s\n\n$ npm list\nproject@1.0.0 /home/CodePoint/DemoProjects\n└── (empty)</code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>npm is a package manager, so it must be able to remove a package. Let’s assume that the current Underscore package is causing us compatibility problems. We can remove the package and install an older version, like so:</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 678,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [
+      13
+    ],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/posts/677"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/comments?post=677"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/posts/677/revisions"
+        }
+      ],
+      "wp:featuredmedia": [
+        {
+          "embeddable": true,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/media/678"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/media?parent=677"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/categories?post=677"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/tags?post=677"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 680,
+    "date": "2020-05-13T04:33:56",
+    "date_gmt": "2020-05-13T04:33:56",
+    "guid": {
+      "rendered": "http://angular.foobrdigital.com/?p=680"
+    },
+    "modified": "2020-05-13T04:33:56",
+    "modified_gmt": "2020-05-13T04:33:56",
+    "slug": "searching-packages",
+    "status": "publish",
+    "type": "post",
+    "link": "https://react.foobrdigital.com/searching-packages/",
+    "title": {
+      "rendered": "Searching Packages"
+    },
+    "content": {
+      "rendered": "\n<p>We’ve used the <code><strong>mkdir</strong></code> command a couple of times in this tutorial. Is there a Node package that has this functionality? Let’s use <code><strong>npm search</strong></code>:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>$ npm search mkdir\nNAME                      | DESCRIPTION          | AUTHOR          | DATE\nmkdir                     | Directory creation…  | =joehewitt      | 2012-04-17\nfs-extra                  | fs-extra contains…   | =jprichardson…  | 2019-06-28\nmkdirp                    | Recursively mkdir,…  | =isaacs…        | 2020-01-24\nmake-dir                  | Make a directory…    | =sindresorhus   | 2019-04-01\n...\n</code></pre>\n\n\n\n<p>There’s <strong>mkdirp</strong>. Let’s install it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>$ npm install mkdirp\n+ mkdirp@1.0.4\nadded 1 package and audited 2 packages in 0.264s\n</code></pre>\n\n\n\n<p>Now create a&nbsp;<code>mkdir.js</code>&nbsp;fie and copy–paste this code:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>const mkdirp = require('mkdirp');\n\nconst made = mkdirp.sync('/tmp/foo/bar/baz');\nconsole.log(`made directories, starting with ${made}`);\n</code></pre>\n\n\n\n<p>Next, run it from the terminal:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>$ node mkdir.js\nmade directories, starting with /tmp/foo</code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>We’ve used the mkdir command a couple of times in this tutorial. Is there a Node package that has this functionality? Let’s use npm search: There’s mkdirp. Let’s install it: Now create a&nbsp;mkdir.js&nbsp;fie and copy–paste this code: Next, run it from the terminal:</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 681,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [
+      13
+    ],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/posts/680"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/comments?post=680"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/posts/680/revisions"
+        }
+      ],
+      "wp:featuredmedia": [
+        {
+          "embeddable": true,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/media/681"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/media?parent=680"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/categories?post=680"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/tags?post=680"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 684,
+    "date": "2020-05-13T04:36:14",
+    "date_gmt": "2020-05-13T04:36:14",
+    "guid": {
+      "rendered": "http://angular.foobrdigital.com/?p=684"
+    },
+    "modified": "2020-05-13T04:36:14",
+    "modified_gmt": "2020-05-13T04:36:14",
+    "slug": "aliases",
+    "status": "publish",
+    "type": "post",
+    "link": "https://react.foobrdigital.com/aliases/",
+    "title": {
+      "rendered": "Aliases"
+    },
+    "content": {
+      "rendered": "\n<h2 id=\"aliases\">Aliases</h2>\n\n\n\n<p>As you may have noticed, there are multiple ways of running npm commands. Here’s a brief list of some of the commonly used npm aliases:</p>\n\n\n\n<ul><li><code><strong>npm i &lt;package></strong></code>: install local package</li><li><code><strong>npm i -g &lt;package></strong></code>: install global package</li><li><code><strong>npm un &lt;package></strong></code>: uninstall local package</li><li><code><strong>npm up</strong></code>: npm update packages</li><li><code><strong>npm t</strong></code>: run tests</li><li><code><strong>npm ls</strong></code>: list installed modules</li><li><code><strong>npm ll</strong></code> or <code><strong>npm la</strong></code>: print additional package information while listing modules</li></ul>\n\n\n\n<p>You can also install multiple packages at once like this:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>$ npm i express underscore lodash mongoose body-parser</code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Aliases As you may have noticed, there are multiple ways of running npm commands. Here’s a brief list of some of the commonly used npm aliases: npm i &lt;package>: install local package npm i -g &lt;package>: install global package npm un &lt;package>: uninstall local package npm up: npm update packages npm t: run tests npm [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 685,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [
+      13
+    ],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/posts/684"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/comments?post=684"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/posts/684/revisions"
+        }
+      ],
+      "wp:featuredmedia": [
+        {
+          "embeddable": true,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/media/685"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/media?parent=684"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/categories?post=684"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/tags?post=684"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 687,
+    "date": "2020-05-13T04:52:34",
+    "date_gmt": "2020-05-13T04:52:34",
+    "guid": {
+      "rendered": "http://angular.foobrdigital.com/?p=687"
+    },
+    "modified": "2020-05-13T04:52:34",
+    "modified_gmt": "2020-05-13T04:52:34",
+    "slug": "npx",
+    "status": "publish",
+    "type": "post",
+    "link": "https://react.foobrdigital.com/npx/",
+    "title": {
+      "rendered": "NPX"
+    },
+    "content": {
+      "rendered": "\n<p>You might also hear talk of npx on your travels. Don’t confuse this with npm. As we’ve learned, npm is a tool for&nbsp;<em>managing</em>&nbsp;your packages, whereas npx is a tool for&nbsp;<em>executing</em>&nbsp;packages. It comes bundled with npm version 5.2+.</p>\n\n\n\n<p>A typical use of npx is for executing one-off commands. For example, imagine you wanted to spin up a simple HTTP server. You <em>could</em> install the <strong><em>http-server package</em></strong> globally on your system, which is great if you’ll be using <code><strong>http-server</strong></code> on a regular basis. But if you just want to test the package, or would like to keep your globally installed modules to a minimum, you can change into the directory where you’d like to run it, then execute the following command:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>npx http-server</code></pre>\n\n\n\n<p>And this will spin up the server without installing anything globally.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>You might also hear talk of npx on your travels. Don’t confuse this with npm. As we’ve learned, npm is a tool for&nbsp;managing&nbsp;your packages, whereas npx is a tool for&nbsp;executing&nbsp;packages. It comes bundled with npm version 5.2+. A typical use of npx is for executing one-off commands. For example, imagine you wanted to spin up [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 688,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [
+      13
+    ],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/posts/687"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/comments?post=687"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/posts/687/revisions"
+        }
+      ],
+      "wp:featuredmedia": [
+        {
+          "embeddable": true,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/media/688"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/media?parent=687"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/categories?post=687"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/tags?post=687"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  }
+]
