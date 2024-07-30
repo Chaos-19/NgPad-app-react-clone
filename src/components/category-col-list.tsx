@@ -5,6 +5,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from '@/components/ui/accordion';
+import {Link} from "react-router-dom"
 import {
   Card,
   CardContent,
@@ -29,8 +30,11 @@ interface CardProps {
   icon: string;
 }
 
-const CatagoryCard = ({ name, icon, courseInfo }: CardProps) => {
+const CatagoryCard = ({ name, icon, courseInfo,slug,isNested }: CardProps) => {
   return (
+    <Link to={`course/content/:${slug}`} state={{course:{
+      icon,name,courseInfo,isNested
+    }}}>
     <Card className="shadow border drop-shadow backdrop-brightness-100 p-5 py-7">
       <div className="flex items-center gap-5 py-1">
         <img src={getImgUrl(icon)} alt={name} className="size-14" />
@@ -42,17 +46,19 @@ const CatagoryCard = ({ name, icon, courseInfo }: CardProps) => {
         </div>
       </div>
     </Card>
+    </Link>
   );
 };
 
 const CategoryColList = ({ title, fileName, bannerIcon, icon }: Props) => {
-  const basePath = '../assets/categories/';
-  const { data: categoryList, error } = useFetchJsonData(basePath + fileName);
+  
+  
+  const { data: categoryList, error } = useFetchJsonData( fileName);
 
   return (
     <Accordion type="single" collapsible>
       <AccordionItem value="item-1" className="">
-        <AccordionTrigger className="px-4">
+        <AccordionTrigger className="px-4 [&data-[state='open']]:no-underline">
           <div className="flex justify-between items-center gap-5 py-4 px-5">
             <img src={getImgUrl(icon)} className="size-10" />
             <h2 className="text-base font-semibold text-foreground capitalize text-left">
