@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from '@/components/ui/accordion';
-import {Link} from "react-router-dom"
+} from "@/components/ui/accordion";
+import { Link } from "react-router-dom";
 import {
   Card,
   CardContent,
@@ -13,10 +13,10 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from '@/components/ui/card';
-import useFetchJsonData from '../hooks/fetchJsonData';
+} from "@/components/ui/card";
+import useFetchJsonData from "../hooks/fetchJsonData";
 
-import { getImgUrl } from '../lib/utils';
+import { getImgUrl } from "../lib/utils";
 
 interface Props {
   title: string;
@@ -30,35 +30,50 @@ interface CardProps {
   icon: string;
 }
 
-const CatagoryCard = ({ name, icon, courseInfo,slug,isNested }: CardProps) => {
+const CatagoryCard = ({
+  name,
+  icon,
+  courseInfo,
+  slug,
+  isNested,
+}: CardProps) => {
   return (
-    <Link to={`course/content/:${slug}`} state={{course:{
-      icon,name,courseInfo,isNested
-    }}}>
-    <Card className="shadow border drop-shadow backdrop-brightness-100 p-5 py-7">
-      <div className="flex items-center gap-5 py-1">
-        <img src={getImgUrl(icon)} alt={name} className="size-14" />
-        <div className="flex flex-col gap-2 py-1.5">
-          <h2 className="text-lg font-bold">{name.replace('&amp;', '&')}</h2>
-          <p className="text-xs text-muted-foreground line-clamp-3">
-            {courseInfo}
-          </p>
+    <Link
+      to={`course/content/:${slug}`}
+      state={{
+        course: {
+          icon,
+          name,
+          courseInfo,
+          isNested,
+        },
+      }}
+    >
+      <Card className="shadow border drop-shadow backdrop-brightness-100 p-5 py-7">
+        <div className="flex items-center gap-5 py-1">
+          <img src={getImgUrl(icon)} alt={name} className="size-14" />
+          <div className="flex flex-col gap-2 py-1.5">
+            <h2 className="text-lg font-bold">{name.replace("&amp;", "&")}</h2>
+            <p className="text-xs text-muted-foreground line-clamp-3">
+              {courseInfo}
+            </p>
+          </div>
         </div>
-      </div>
-    </Card>
+      </Card>
     </Link>
   );
 };
 
 const CategoryColList = ({ title, fileName, bannerIcon, icon }: Props) => {
-  
-  
-  const { data: categoryList, error } = useFetchJsonData( fileName);
+  const { data: categoryList, error } = useFetchJsonData(fileName);
 
   return (
     <Accordion type="single" collapsible>
       <AccordionItem value="item-1" className="">
-        <AccordionTrigger className="px-4 [&data-[state='open']]:no-underline">
+        <AccordionTrigger
+          data-state="open"
+          className="px-4 data-[state=close]:no-underline data-[state=open]:no-underline [data-state=open]"
+        >
           <div className="flex justify-between items-center gap-5 py-4 px-5">
             <img src={getImgUrl(icon)} className="size-10" />
             <h2 className="text-base font-semibold text-foreground capitalize text-left">
