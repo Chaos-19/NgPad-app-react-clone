@@ -4,13 +4,11 @@ import { getImgUrl } from "../lib/utils";
 import useFetchJsonData from "../hooks/fetchJsonData";
 
 interface Props {
-  // Define your props here
-  icon?: string;
-  courseInfo?: string;
+
 }
 
 interface ContentCardProps {
-  // Define your props here
+ 
 }
 
 const ContentCard = (props: ContentCardProps) => {

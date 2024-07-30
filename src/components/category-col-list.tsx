@@ -69,10 +69,10 @@ const CategoryColList = ({ title, fileName, bannerIcon, icon }: Props) => {
 
   return (
     <Accordion type="single" collapsible>
-      <AccordionItem value="item-1" className="">
+      <AccordionItem value={title} className="">
         <AccordionTrigger
           data-state="open"
-          className="px-4 data-[state=close]:no-underline data-[state=open]:no-underline [data-state=open]"
+          className="px-4 data-[state=close]:no-underline data-[state=open]:no-underline [data-state='open']"
         >
           <div className="flex justify-between items-center gap-5 py-4 px-5">
             <img src={getImgUrl(icon)} className="size-10" />
