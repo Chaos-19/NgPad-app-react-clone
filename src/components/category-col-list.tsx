@@ -28,6 +28,8 @@ interface CardProps {
   name: React.ReactNode;
   courseInfo: string;
   icon: string;
+  slug:string
+  isNested:boolean
 }
 
 const CatagoryCard = ({
