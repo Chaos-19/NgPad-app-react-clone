@@ -44,6 +44,7 @@ const CatagoryCard = ({
         course: {
           icon,
           name,
+          slug,
           courseInfo,
           isNested,
         },

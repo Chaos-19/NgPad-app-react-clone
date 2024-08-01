@@ -1,15 +1,15 @@
-import AppLayout from "./layouts/layout";
-import DetailContentLayout from "./screens/detail-content-layout"
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import AppLayout from './layouts/layout';
+import DetailContentLayout from './screens/detail-content-layout';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: '/',
     element: <AppLayout />,
   },
   {
-    path: "course/content/:slug",
-    element: <DetailContentLayout />
+    path: 'course/content/:slug',
+    element: <DetailContentLayout />,
   },
 ]);
 

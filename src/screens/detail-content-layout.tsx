@@ -1,5 +1,5 @@
-import React from "react";
-import { TobBar,CourseContent } from "../components";
+import React from 'react';
+import { TobBar, CourseContent } from '../components';
 interface Props {
   // Define your props here
 }
