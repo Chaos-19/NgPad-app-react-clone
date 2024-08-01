@@ -51,11 +51,24 @@ interface RegularContentCardProps {
   index:number
 }
 
-const RegularContentCard = (props: RegularContentCardProps) => {
+const RegularContentCard = ({name ,index}: RegularContentCardProps) => {
   return (
-    <div>
-      
-    </div>
+      <Link
+      to={`course/content/:${""}`}
+      state={{
+        /*course: {
+        },*/
+      }}
+    >
+      <Card className="shadow border drop-shadow backdrop-brightness-100 p-5 py-7">
+        <div className="flex items-center gap-5 py-1">
+          <h2 className="text-lg font-black text-muted-foreground">{index< 10 ? `0${index}`:index}</h2>
+          <div className="flex flex-col gap-2 py-1.5">
+            <h2 className="text-lg font-bold">{name.replace("&amp;", "&")}</h2>
+          </div>
+        </div>
+      </Card>
+    </Link>
   );
 };
 
