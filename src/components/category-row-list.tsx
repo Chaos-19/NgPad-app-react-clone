@@ -23,6 +23,8 @@ interface CategoryCardProps {
   name: React.ReactNode;
   courseInfo: string;
   icon: string;
+  slug: string;
+  postID: string;
 }
 
 const CategoryCard = ({
@@ -31,6 +33,7 @@ const CategoryCard = ({
   icon,
   slug,
   isNested,
+  postID,
 }: CategoryCardProps) => {
   return (
     <Link
@@ -42,6 +45,7 @@ const CategoryCard = ({
           courseInfo,
           isNested,
           slug,
+          postID,
         },
       }}
     >

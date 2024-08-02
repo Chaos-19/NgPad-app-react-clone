@@ -28,8 +28,9 @@ interface CardProps {
   name: React.ReactNode;
   courseInfo: string;
   icon: string;
-  slug:string
-  isNested:boolean
+  slug: string;
+  isNested: boolean;
+  postID: string;
 }
 
 const CatagoryCard = ({
@@ -38,6 +39,7 @@ const CatagoryCard = ({
   courseInfo,
   slug,
   isNested,
+  postID,
 }: CardProps) => {
   return (
     <Link
@@ -49,6 +51,7 @@ const CatagoryCard = ({
           slug,
           courseInfo,
           isNested,
+          postID,
         },
       }}
     >
