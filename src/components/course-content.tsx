@@ -1,15 +1,7 @@
 import React from "react";
 import { useLocation, Link } from "react-router-dom";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
 
-import {RegularContentCard,NestedContentCard} from "./course-cards"
+import { RegularContentCard, NestedContentCard } from "./course-cards";
 import { getImgUrl } from "../lib/utils";
 import useFetchJsonData from "../hooks/fetchJsonData";
 
@@ -41,7 +33,7 @@ const CourseContent = (props: Props) => {
         </p>
       </div>
       <div className="flex flex-col gap-3 px-4 py-5">
-        {isNested ? (
+        {isNested  ? (
           <>
             {courseContents &&
               courseContents.map((element, index) => (
@@ -49,12 +41,13 @@ const CourseContent = (props: Props) => {
                   {...element}
                   icon={icon}
                   key={element.name}
+                  index={index}
                 />
               ))}
           </>
         ) : (
           <>
-            {courseContents &&
+            {courseContents && !taxonomy &&
               courseContents.map((element, index) => (
                 <RegularContentCard courseDetail={element} index={index + 1} />
               ))}

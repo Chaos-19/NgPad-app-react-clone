@@ -1,6 +1,16 @@
-import React from "react"
-import {Link} from "react-router-dom"
-import type { NestedContentCardProps,RegularContentCardProps} from "../types"
+import React from "react";
+import { Link } from "react-router-dom";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+
+import { getImgUrl } from "../lib/utils";
+import type { NestedContentCardProps, RegularContentCardProps } from "../types";
 
 export const NestedContentCard = ({
   name,
@@ -10,10 +20,14 @@ export const NestedContentCard = ({
   isNested,
   postID,
   taxonomy,
+  lang,
+  index
 }: NestedContentCardProps) => {
   return (
     <Link
-      to={`nested_content/${slug}`}
+      to={
+        isNested ? `nested_content/${slug}` : `nested_content/${slug}/content`
+      }
       state={{
         course: {
           icon,
@@ -22,6 +36,8 @@ export const NestedContentCard = ({
           courseInfo,
           isNested,
           taxonomy,
+          lang,
+          index
         },
       }}
     >
@@ -29,7 +45,10 @@ export const NestedContentCard = ({
         <div className="flex items-center gap-5 py-1">
           <img src={getImgUrl(icon)} alt={name} className="size-14" />
           <div className="flex flex-col gap-2 py-1.5">
-            <h2 className="text-lg font-bold">{name.replace("&amp;", "&")}</h2>
+            <h2
+              className="text-lg font-bold"
+              dangerouslySetInnerHTML={{ __html: name }}
+            ></h2>
             <p className="text-xs text-muted-foreground line-clamp-3">
               {courseInfo}
             </p>
@@ -39,8 +58,6 @@ export const NestedContentCard = ({
     </Link>
   );
 };
-
-
 
 export const RegularContentCard = ({
   courseDetail,

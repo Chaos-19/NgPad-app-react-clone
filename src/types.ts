@@ -1,5 +1,4 @@
-import React from "react"
-
+import React from "react";
 
 export interface NestedContentCardProps {
   name: React.ReactNode;
@@ -9,13 +8,13 @@ export interface NestedContentCardProps {
   isNested: boolean;
   postID: string;
   taxonomy: string;
+  index: number;
 }
 
 export interface RegularContentCardProps {
   courseDetail: Post;
   index: number;
 }
-
 
 export type Post = {
   id: number;

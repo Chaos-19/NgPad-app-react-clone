@@ -1,23 +1,14 @@
-import {
-  useState,
-  useEffect
-} from "react";
-
+import { useState, useEffect } from 'react';
 
 const loadData = async (filePath: string) => {
   const response = await import(`../assets/${filePath}`);
   return response.default;
 };
 
-export default function useFetchJsonData < T > (path: string) {
-  const [data,
-    setData] = useState < T | null > (null);
-  const [isLoading,
-    setIsLoading] = useState < boolean > (true);
-  const [error,
-    setError] = useState < boolean > (false);
-
-
+export default function useFetchJsonData<T>(path: string) {
+  const [data, setData] = useState<T | null>(null);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [error, setError] = useState<boolean>(false);
 
   useEffect(() => {
     const fetchJson = async () => {
