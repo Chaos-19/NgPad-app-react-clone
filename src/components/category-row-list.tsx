@@ -1,6 +1,6 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { ScrollArea } from "@/components/ui/scroll-area";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { ScrollArea } from '@/components/ui/scroll-area';
 import {
   Card,
   CardContent,
@@ -8,10 +8,10 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
-import useFetchJsonData from "../hooks/fetchJsonData";
+} from '@/components/ui/card';
+import useFetchJsonData from '../hooks/fetchJsonData';
 
-import { getImgUrl } from "../lib/utils";
+import { getImgUrl } from '../lib/utils';
 
 interface Props {
   title: string;
@@ -37,7 +37,7 @@ const CategoryCard = ({
 }: CategoryCardProps) => {
   return (
     <Link
-      to={`course/content/:${slug}`}
+      to={`course/content/${slug}`}
       state={{
         course: {
           icon,
@@ -54,7 +54,7 @@ const CategoryCard = ({
           <img src={getImgUrl(icon)} alt={name} className="size-14" />
         </div>
         <div className="">
-          <h2 className="text-lg font-bold">{name.replace("&amp;", "&")}</h2>
+          <h2 className="text-lg font-bold">{name.replace('&amp;', '&')}</h2>
           <p className="text-xs text-muted-foreground line-clamp-3">
             {courseInfo}
           </p>

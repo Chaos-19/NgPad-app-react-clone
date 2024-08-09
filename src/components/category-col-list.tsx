@@ -43,7 +43,7 @@ const CatagoryCard = ({
 }: CardProps) => {
   return (
     <Link
-      to={`course/content/:${slug}`}
+      to={`course/content/${slug}`}
       state={{
         course: {
           icon,
