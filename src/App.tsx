@@ -11,16 +11,15 @@ const router = createBrowserRouter([
   {
     path: "course/content/:slug",
     element: <DetailContentLayout />,
-    children: [
-      {
-        path: "nested_content/:slug",
-        element: <DetailContentLayout />,
-      },
-      {
-        path: "detail-content/:slug",
-        element: <DetailContent />,
-      },
-    ],
+    children: [],
+  },
+  {
+    path: "course/content/:slug/nested_content/:slug",
+    element: <DetailContentLayout />,
+  },
+  {
+    path: "course/content/:slug/detail-content/:slug",
+    element: <DetailContent />,
   },
 ]);
 

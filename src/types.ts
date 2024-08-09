@@ -1,3 +1,22 @@
+import React from "react"
+
+
+export interface NestedContentCardProps {
+  name: React.ReactNode;
+  courseInfo: string;
+  icon: string;
+  slug: string;
+  isNested: boolean;
+  postID: string;
+  taxonomy: string;
+}
+
+export interface RegularContentCardProps {
+  courseDetail: Post;
+  index: number;
+}
+
+
 export type Post = {
   id: number;
   date: string;
