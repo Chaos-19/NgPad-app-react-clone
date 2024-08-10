@@ -10,16 +10,16 @@ const CoursePage = (props: Props) => {
   const { courseDetail } = location.state;
 
   const content = `
-  <div class="note">
+  <div class="note" className="">
   ${courseDetail.content.rendered}
   </div>
   `;
 
   return (
-    <section className="overflow-y-hidden border-4 border-green-800">
+    <section className="overflow-y-hidden">
       <TobBar style="bg-transparent" />
       <ScrollArea>
-        <div className="h-[700px] border-2 border-blue-600 w-fit">
+        <div className="h-[700px] max-w-[96vw] mx-auto">
           <DetailContent content={content} />
         </div>
       </ScrollArea>
