@@ -1,20 +1,20 @@
 import React from 'react';
-import { TobBar, CourseContent } from '../components';
+import { TobBar, NestedCourseContent } from '../components';
 import { ScrollArea } from '@/components/ui/scroll-area';
 
 interface Props {}
 
-const DetailContentLayout = (props: Props) => {
+const NestedContentDetail = (props: Props) => {
   return (
     <section className="overflow-y-hidden w-full">
-      <TobBar />
+      <TobBar style=" bg-transparent" />
       <ScrollArea>
         <div className="h-[700px]">
-          <CourseContent />
+          <NestedCourseContent />
         </div>
       </ScrollArea>
     </section>
   );
 };
 
-export default DetailContentLayout;
+export default NestedContentDetail;

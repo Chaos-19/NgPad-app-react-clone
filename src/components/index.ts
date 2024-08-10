@@ -4,6 +4,8 @@ import CourseContent from './course-content';
 import NavigationDrawer from './navigation-drawer';
 import CategoryColList from './category-col-list';
 import CategoryRowList from './category-row-list';
+import NestedCourseContent from './nested-course-content';
+import DetailContent from './detail-content';
 
 export {
   Navbar,
@@ -12,4 +14,6 @@ export {
   CategoryRowList,
   TobBar,
   CourseContent,
+  NestedCourseContent,
+  DetailContent,
 };

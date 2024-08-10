@@ -1,5 +1,5 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { Link } from 'react-router-dom';
 import {
   Card,
   CardContent,
@@ -7,10 +7,10 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
+} from '@/components/ui/card';
 
-import { getImgUrl } from "../lib/utils";
-import type { NestedContentCardProps, RegularContentCardProps } from "../types";
+import { getImgUrl } from '../lib/utils';
+import type { NestedContentCardProps, RegularContentCardProps } from '../types';
 
 export const NestedContentCard = ({
   name,
@@ -21,13 +21,24 @@ export const NestedContentCard = ({
   postID,
   taxonomy,
   lang,
-  index
+  index,
+  folder,
 }: NestedContentCardProps) => {
+  console.log({
+    name,
+    icon,
+    courseInfo,
+    slug,
+    isNested,
+    postID,
+    taxonomy,
+    lang,
+    index,
+  });
+
   return (
     <Link
-      to={
-        isNested ? `nested_content/${slug}` : `nested_content/${slug}/content`
-      }
+      to={`nested_content/${slug}/content`}
       state={{
         course: {
           icon,
@@ -37,7 +48,8 @@ export const NestedContentCard = ({
           isNested,
           taxonomy,
           lang,
-          index
+          index,
+          folder,
         },
       }}
     >

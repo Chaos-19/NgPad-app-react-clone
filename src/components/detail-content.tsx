@@ -1,18 +1,19 @@
 import React from "react";
-import { useLocation } from "react-router-dom";
+import ReactMarkdown from 'react-markdown' 
+import rehypeRaw from 'rehype-raw' 
+
+
 interface Props {
-  // Define your props here
+content:string
 }
 
-const DetailContent = (props: Props) => {
-  const location = useLocation();
-
-  const { courseDetail } = location.state;
+const DetailContent = ({content}: Props) => {
 
   return (
     <div
-      dangerouslySetInnerHTML={{ __html: courseDetail.content.rendered }}
-    ></div>
+    >
+      <ReactMarkdown rehypePlugins={[rehypeRaw]} children={content} className="prose dark:prose-invert max-w-none prose-slate"escapeHtml={false}/>
+      </div>
   );
 };
 

@@ -15,23 +15,8 @@ import {
   CardTitle,
 } from '@/components/ui/card';
 import useFetchJsonData from '../hooks/fetchJsonData';
-
+import type { CategoryColListProps, CategoryColListCardProps } from '../types';
 import { getImgUrl } from '../lib/utils';
-
-interface Props {
-  title: string;
-  fileName: string;
-  bannerIcon?: string;
-  icon: string;
-}
-interface CardProps {
-  name: React.ReactNode;
-  courseInfo: string;
-  icon: string;
-  slug: string;
-  isNested: boolean;
-  postID: string;
-}
 
 const CatagoryCard = ({
   name,
@@ -40,7 +25,8 @@ const CatagoryCard = ({
   slug,
   isNested,
   postID,
-}: CardProps) => {
+  folder,
+}: CategoryColListCardProps) => {
   return (
     <Link
       to={`course/content/${slug}`}
@@ -52,6 +38,7 @@ const CatagoryCard = ({
           courseInfo,
           isNested,
           postID,
+          folder,
         },
       }}
     >
@@ -70,8 +57,15 @@ const CatagoryCard = ({
   );
 };
 
-const CategoryColList = ({ title, fileName, bannerIcon, icon }: Props) => {
+const CategoryColList = ({
+  title,
+  fileName,
+  bannerIcon,
+  icon,
+}: CategoryColListProps) => {
   const { data: categoryList, error } = useFetchJsonData(fileName);
+
+  console.log(categoryList);
 
   return (
     <Accordion type="single" collapsible>
@@ -102,7 +96,7 @@ const CategoryColList = ({ title, fileName, bannerIcon, icon }: Props) => {
             )}
             {categoryList &&
               categoryList.map((info) => (
-                <CatagoryCard key={info.name} {...info} />
+                <CatagoryCard key={info.name} {...info} folder={info.postID} />
               ))}
           </div>
         </AccordionContent>

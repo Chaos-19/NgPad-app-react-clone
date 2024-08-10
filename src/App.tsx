@@ -1,8 +1,11 @@
-import AppLayout from "./layouts/layout";
-import DetailContentLayout from "./screens/detail-content-layout";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import AppLayout from "./layouts/layout";
+import NestedContentDetail from "./screens/nested-content-detail";
+import DetailContentLayout from "./screens/detail-content-layout";
 import DetailContent from "./components/detail-content";
+
 import NestedCourseContent from "./components/nested-course-content";
+import CoursePage from "./screens/course-page";
 
 const router = createBrowserRouter([
   {
@@ -20,11 +23,11 @@ const router = createBrowserRouter([
   },
   {
     path: "course/content/:slug/nested_content/:slug/content",
-    element: <NestedCourseContent />,
+    element: <NestedContentDetail />,
   },
   {
     path: "course/content/:slug/detail-content/:slug",
-    element: <DetailContent />,
+    element: <CoursePage />,
   },
 ]);
 

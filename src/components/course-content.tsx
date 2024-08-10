@@ -1,9 +1,9 @@
-import React from "react";
-import { useLocation, Link } from "react-router-dom";
+import React from 'react';
+import { useLocation, Link } from 'react-router-dom';
 
-import { RegularContentCard, NestedContentCard } from "./course-cards";
-import { getImgUrl } from "../lib/utils";
-import useFetchJsonData from "../hooks/fetchJsonData";
+import { RegularContentCard, NestedContentCard } from './course-cards';
+import { getImgUrl } from '../lib/utils';
+import useFetchJsonData from '../hooks/fetchJsonData';
 
 interface Props {}
 
@@ -11,21 +11,32 @@ const CourseContent = (props: Props) => {
   const location = useLocation();
 
   const {
-    course: { icon, courseInfo, isNested, slug, name, postID, taxonomy },
+    course: {
+      icon,
+      courseInfo,
+      isNested,
+      slug,
+      name,
+      postID,
+      taxonomy,
+      folder,
+    },
   } = location.state;
+
+  //console.log(location.state);
 
   let path = isNested
     ? `nested_categories/${postID}`
     : taxonomy
-    ? `nested_posts/${postID}`
-    : `posts/${postID}`;
+      ? `nested_posts/${postID}`
+      : `posts/${postID}`;
 
   const { data: courseContents } = useFetchJsonData(path);
 
   return (
     <div className="w-full">
       <div className="py-5 mt-3 px-5">
-        <img src={icon ? getImgUrl(icon) : ""} className="size-16" />
+        <img src={icon ? getImgUrl(icon) : ''} className="size-16" />
       </div>
       <div className="px-6 py-1">
         <p className="text-muted-foreground text-[13px] font-semibold">
@@ -33,7 +44,7 @@ const CourseContent = (props: Props) => {
         </p>
       </div>
       <div className="flex flex-col gap-3 px-4 py-5">
-        {isNested  ? (
+        {isNested ? (
           <>
             {courseContents &&
               courseContents.map((element, index) => (
@@ -41,13 +52,15 @@ const CourseContent = (props: Props) => {
                   {...element}
                   icon={icon}
                   key={element.name}
+                  folder={folder}
                   index={index}
                 />
               ))}
           </>
         ) : (
           <>
-            {courseContents && !taxonomy &&
+            {courseContents &&
+              !taxonomy &&
               courseContents.map((element, index) => (
                 <RegularContentCard courseDetail={element} index={index + 1} />
               ))}

@@ -1,4 +1,20 @@
-import React from "react";
+import React from 'react';
+
+export interface CategoryColListProps {
+  title: string;
+  fileName: string;
+  bannerIcon?: string;
+  icon: string;
+}
+export interface CategoryColListCardProps {
+  name: React.ReactNode;
+  courseInfo: string;
+  icon: string;
+  slug: string;
+  isNested: boolean;
+  postID: string;
+  folder: string;
+}
 
 export interface NestedContentCardProps {
   name: React.ReactNode;
@@ -9,6 +25,7 @@ export interface NestedContentCardProps {
   postID: string;
   taxonomy: string;
   index: number;
+  folder?: string;
 }
 
 export interface RegularContentCardProps {
@@ -68,14 +85,14 @@ export type Post = {
       embeddable: boolean;
       href: string;
     }[];
-    "version-history": {
+    'version-history': {
       count: number;
       href: string;
     }[];
-    "wp:attachment": {
+    'wp:attachment': {
       href: string;
     }[];
-    "wp:term": {
+    'wp:term': {
       taxonomy: string;
       embeddable: boolean;
       href: string;
