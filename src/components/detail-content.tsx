@@ -5,7 +5,7 @@ import rehypePrism from "rehype-prism-plus";
 import { Light as SyntaxHighlighter } from "react-syntax-highlighter";
 import { dark } from "react-syntax-highlighter/dist/esm/styles/prism";
 import { docco } from "react-syntax-highlighter/dist/esm/styles/hljs";
-import { CopyBlock, dracula } from "react-code-blocks";
+import { CopyBlock, dracula, railscast, monokai } from "react-code-blocks";
 
 interface Props {
   content: string;
@@ -13,14 +13,12 @@ interface Props {
 }
 
 const DetailContent = ({ content, lang }: Props) => {
-  console.log(lang);
-
   return (
     <div className="">
       <ReactMarkdown
         rehypePlugins={[rehypeRaw]}
         children={content}
-        className="prose dark:prose-invert prose-pre:not-prose prose-pre:p-0 prose-code:[not-prose] "
+        className="prose dark:prose-invert prose-pre:not-prose prose-pre:p-0 prose-table:break-all prose-table:table-fixed"
         components={{
           code(props) {
             const { children, className, node, ...rest } = props;
@@ -37,18 +35,14 @@ const DetailContent = ({ content, lang }: Props) => {
                     ? children.props.children
                     : children
                 ).replace(/\n$/, "")}
-                language={"javascript"}
+                language={
+                  ["html", "css"].includes(lang.toLowerCase())
+                    ? "html"
+                    : "typescript"
+                }
                 codeBlock
+                theme={dracula}
               />
-              /* 
-             
-              <SyntaxHighlighter
-                {...rest}
-                PreTag="div"
-                language="javascript"
-                children={String(children).replace(/\n$/, "")}
-                style={docco}
-              />*/
             );
           },
         }}

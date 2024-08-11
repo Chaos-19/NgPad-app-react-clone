@@ -48,7 +48,7 @@ const NestedCourseContent = (props: Props) => {
       <div className="flex flex-col gap-3 px-4 py-5">
         {courseContents &&
           courseContents.map((element, index) => (
-            <RegularContentCard courseDetail={element} index={index + 1} />
+            <RegularContentCard courseDetail={element} index={index + 1} lang={folder} />
           ))}
       </div>
     </div>

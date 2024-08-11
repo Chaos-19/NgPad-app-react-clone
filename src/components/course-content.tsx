@@ -62,7 +62,7 @@ const CourseContent = (props: Props) => {
             {courseContents &&
               !taxonomy &&
               courseContents.map((element, index) => (
-                <RegularContentCard courseDetail={element} index={index + 1} />
+                <RegularContentCard courseDetail={element} index={index + 1} lang={folder}/>
               ))}
           </>
         )}

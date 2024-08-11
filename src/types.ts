@@ -45,6 +45,7 @@ export interface NestedContentCardProps {
 export interface RegularContentCardProps {
   courseDetail: Post;
   index: number;
+  lang?:string
 }
 
 export type Post = {
