@@ -1,6 +1,6 @@
-import React from 'react';
-import { TobBar, CourseContent } from '../components';
-import { ScrollArea } from '@/components/ui/scroll-area';
+import React from "react";
+import { TobBar, CourseContent } from "../components";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 interface Props {}
 
@@ -9,7 +9,7 @@ const DetailContentLayout = (props: Props) => {
     <section className="overflow-y-hidden w-full">
       <TobBar />
       <ScrollArea>
-        <div className="h-[700px]">
+        <div className="h-[calc(100vh_-_80px)]">
           <CourseContent />
         </div>
       </ScrollArea>

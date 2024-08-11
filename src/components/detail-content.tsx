@@ -5,6 +5,7 @@ import rehypePrism from "rehype-prism-plus";
 import { Light as SyntaxHighlighter } from "react-syntax-highlighter";
 import { dark } from "react-syntax-highlighter/dist/esm/styles/prism";
 import { docco } from "react-syntax-highlighter/dist/esm/styles/hljs";
+import { CopyBlock, dracula } from "react-code-blocks";
 
 interface Props {
   content: string;
@@ -12,12 +13,14 @@ interface Props {
 }
 
 const DetailContent = ({ content, lang }: Props) => {
+  console.log(lang);
+
   return (
     <div className="">
       <ReactMarkdown
         rehypePlugins={[rehypeRaw]}
         children={content}
-        className="prose dark:prose-invert prose-pre:not-prose"
+        className="prose dark:prose-invert prose-pre:not-prose prose-pre:p-0 prose-code:[not-prose] "
         components={{
           code(props) {
             const { children, className, node, ...rest } = props;
@@ -28,14 +31,24 @@ const DetailContent = ({ content, lang }: Props) => {
             );
 
             return (
+              <CopyBlock
+                text={String(
+                  typeof children == "object"
+                    ? children.props.children
+                    : children
+                ).replace(/\n$/, "")}
+                language={"javascript"}
+                codeBlock
+              />
+              /* 
+             
               <SyntaxHighlighter
                 {...rest}
                 PreTag="div"
                 language="javascript"
                 children={String(children).replace(/\n$/, "")}
                 style={docco}
-                className="not-prose"
-              />
+              />*/
             );
           },
         }}

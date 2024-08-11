@@ -1,6 +1,6 @@
-import React from 'react';
-import { TobBar, NestedCourseContent } from '../components';
-import { ScrollArea } from '@/components/ui/scroll-area';
+import React from "react";
+import { TobBar, NestedCourseContent } from "../components";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 interface Props {}
 
@@ -9,7 +9,7 @@ const NestedContentDetail = (props: Props) => {
     <section className="overflow-y-hidden w-full">
       <TobBar style=" bg-transparent" />
       <ScrollArea>
-        <div className="h-[700px] max-w-none">
+        <div className="h-[calc(100vh_-_80px)]] max-w-none">
           <NestedCourseContent />
         </div>
       </ScrollArea>
