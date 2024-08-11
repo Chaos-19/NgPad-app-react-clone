@@ -5,11 +5,15 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from '@/components/ui/card';
-import type { CategoryColListProps, CategoryColListCardProps } from '../types';
-import { getImgUrl } from '../lib/utils';
+} from "@/components/ui/card";
+import type {
+  CategoryColListCardProps,
+  CategoryRowListCardProps,
+} from "../types";
+import { Link } from "react-router-dom";
+import { getImgUrl } from "../lib/utils";
 
-export const CatagoryCard = ({
+export const CatagoryColListCard = ({
   name,
   icon,
   courseInfo,
@@ -45,6 +49,43 @@ export const CatagoryCard = ({
               {courseInfo}
             </p>
           </div>
+        </div>
+      </Card>
+    </Link>
+  );
+};
+
+export const CategoryRowListCard = ({
+  name,
+  courseInfo,
+  icon,
+  slug,
+  isNested,
+  postID,
+}: CategoryRowListCardProps) => {
+  return (
+    <Link
+      to={`course/content/${slug}`}
+      state={{
+        course: {
+          icon,
+          name,
+          courseInfo,
+          isNested,
+          slug,
+          postID,
+        },
+      }}
+    >
+      <Card className="py-5 px-3">
+        <div className="p-3 w-[270px]">
+          <img src={getImgUrl(icon)} alt={name} className="size-14" />
+        </div>
+        <div className="">
+          <h2 className="text-lg font-bold">{name.replace("&amp;", "&")}</h2>
+          <p className="text-xs text-muted-foreground line-clamp-3">
+            {courseInfo}
+          </p>
         </div>
       </Card>
     </Link>

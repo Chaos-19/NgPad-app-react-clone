@@ -1,61 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React from "react";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from '@/components/ui/accordion';
-import { Link } from 'react-router-dom';
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card';
-import useFetchJsonData from '../hooks/fetchJsonData';
-import type { CategoryColListProps, CategoryColListCardProps } from '../types';
-import { getImgUrl } from '../lib/utils';
+} from "@/components/ui/accordion";
+import { Link } from "react-router-dom";
+import { Card } from "@/components/ui/card";
+import { CatagoryColListCard } from "./category-list-cards";
 
-const CatagoryCard = ({
-  name,
-  icon,
-  courseInfo,
-  slug,
-  isNested,
-  postID,
-  folder,
-}: CategoryColListCardProps) => {
-  return (
-    <Link
-      to={`course/content/${slug}`}
-      state={{
-        course: {
-          icon,
-          name,
-          slug,
-          courseInfo,
-          isNested,
-          postID,
-          folder,
-        },
-      }}
-    >
-      <Card className="shadow border drop-shadow backdrop-brightness-100 p-5 py-7">
-        <div className="flex items-center gap-5 py-1">
-          <img src={getImgUrl(icon)} alt={name} className="size-14" />
-          <div className="flex flex-col gap-2 py-1.5">
-            <h2 className="text-lg font-bold">{name.replace('&amp;', '&')}</h2>
-            <p className="text-xs text-muted-foreground line-clamp-3">
-              {courseInfo}
-            </p>
-          </div>
-        </div>
-      </Card>
-    </Link>
-  );
-};
+import useFetchJsonData from "../hooks/fetchJsonData";
+import type { CategoryColListProps } from "../types";
+import { getImgUrl } from "../lib/utils";
 
 const CategoryColList = ({
   title,
@@ -65,14 +21,12 @@ const CategoryColList = ({
 }: CategoryColListProps) => {
   const { data: categoryList, error } = useFetchJsonData(fileName);
 
-  console.log(categoryList);
-
   return (
     <Accordion type="single" collapsible defaultValue={title}>
       <AccordionItem value={title} className="">
         <AccordionTrigger
           data-state="open"
-          className="px-4 data-[state=close]:no-underline data-[state=open]:no-underline [data-state='open']"
+          className="px-4 data-[state=close]:no-underline data-[state=open]:no-underline"
         >
           <div className="flex justify-between items-center gap-5 py-4 px-5">
             <img src={getImgUrl(icon)} className="size-10" />
@@ -96,7 +50,11 @@ const CategoryColList = ({
             )}
             {categoryList &&
               categoryList.map((info) => (
-                <CatagoryCard key={info.name} {...info} folder={info.postID} />
+                <CatagoryColListCard
+                  key={info.name}
+                  {...info}
+                  folder={info.postID}
+                />
               ))}
           </div>
         </AccordionContent>

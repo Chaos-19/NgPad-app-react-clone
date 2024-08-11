@@ -17,7 +17,7 @@ const DetailContent = ({ content, lang }: Props) => {
       <ReactMarkdown
         rehypePlugins={[rehypeRaw]}
         children={content}
-        className="prose dark:prose-invert prose-code:not-prose"
+        className="prose dark:prose-invert prose-pre:not-prose"
         components={{
           code(props) {
             const { children, className, node, ...rest } = props;
@@ -34,6 +34,7 @@ const DetailContent = ({ content, lang }: Props) => {
                 language="javascript"
                 children={String(children).replace(/\n$/, "")}
                 style={docco}
+                className="not-prose"
               />
             );
           },

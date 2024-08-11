@@ -1,5 +1,19 @@
 import React from 'react';
 
+interface CategoryRowListProps {
+  title: string;
+  icon: string;
+  fileName: string;
+}
+
+interface CategoryRowListCardProps {
+  name: React.ReactNode;
+  courseInfo: string;
+  icon: string;
+  slug: string;
+  postID: string;
+}
+
 export interface CategoryColListProps {
   title: string;
   fileName: string;
