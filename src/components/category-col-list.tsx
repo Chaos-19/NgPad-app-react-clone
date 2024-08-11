@@ -68,7 +68,7 @@ const CategoryColList = ({
   console.log(categoryList);
 
   return (
-    <Accordion type="single" collapsible>
+    <Accordion type="single" collapsible defaultValue={title}>
       <AccordionItem value={title} className="">
         <AccordionTrigger
           data-state="open"
