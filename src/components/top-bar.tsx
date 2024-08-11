@@ -14,13 +14,9 @@ const TobBar = ({ style }: Props) => {
   return (
     <header className="w-full">
       <nav
-        className={cn(
-          "flex items-center gap-5 p-4",
-          { 
-          "bg-[#092032]":!style ,
-          style:style
-          }
-        )}
+        className={`flex items-center gap-5 p-4 ${
+          style ? style : "bg-[#092032]"
+        }`}
       >
         <ArrowLeft
           size={22}
