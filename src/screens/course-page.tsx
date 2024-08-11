@@ -17,7 +17,7 @@ const CoursePage = (props: Props) => {
 
   return (
     <section className="overflow-y-hidden">
-      <TobBar style="bg-transparent" />
+      <TobBar style="" />
       <ScrollArea>
         <div className="h-[700px] max-w-[96vw] mx-auto">
           <DetailContent content={content} />
