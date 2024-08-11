@@ -1,9 +1,9 @@
-import React from 'react';
-import { useLocation, Link } from 'react-router-dom';
+import React from "react";
+import { useLocation, Link } from "react-router-dom";
 
-import { RegularContentCard, NestedContentCard } from './course-cards';
-import { getImgUrl } from '../lib/utils';
-import useFetchJsonData from '../hooks/fetchJsonData';
+import { RegularContentCard, NestedContentCard } from "./course-cards";
+import { getImgUrl } from "../lib/utils";
+import useFetchJsonData from "../hooks/fetchJsonData";
 
 interface Props {}
 
@@ -28,15 +28,15 @@ const CourseContent = (props: Props) => {
   let path = isNested
     ? `nested_categories/${postID}`
     : taxonomy
-      ? `nested_posts/${postID}`
-      : `posts/${postID}`;
+    ? `nested_posts/${postID}`
+    : `posts/${postID}`;
 
   const { data: courseContents } = useFetchJsonData(path);
 
   return (
-    <div className="w-full">
+    <div className="w-full pb-32">
       <div className="py-5 mt-3 px-5">
-        <img src={icon ? getImgUrl(icon) : ''} className="size-16" />
+        <img src={icon ? getImgUrl(icon) : ""} className="size-16" />
       </div>
       <div className="px-6 py-1">
         <p className="text-muted-foreground text-[13px] font-semibold">
@@ -62,7 +62,11 @@ const CourseContent = (props: Props) => {
             {courseContents &&
               !taxonomy &&
               courseContents.map((element, index) => (
-                <RegularContentCard courseDetail={element} index={index + 1} lang={folder}/>
+                <RegularContentCard
+                  courseDetail={element}
+                  index={index + 1}
+                  lang={folder}
+                />
               ))}
           </>
         )}

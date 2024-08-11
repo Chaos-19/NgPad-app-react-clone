@@ -9,7 +9,7 @@ const DetailContentLayout = (props: Props) => {
     <section className="overflow-y-hidden w-full">
       <TobBar />
       <ScrollArea>
-        <div className="h-[calc(100vh_-_80px)]">
+        <div className="h-[calc(100vh_-_140px)]">
           <CourseContent />
         </div>
       </ScrollArea>

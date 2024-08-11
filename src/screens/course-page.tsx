@@ -22,7 +22,7 @@ const CoursePage = (props: Props) => {
     <section className="overflow-y-hidden">
       <TobBar style="bg-white-0 bg-clip-padding backdrop-filter backdrop-blur-none bg-opacity-0 z-50 fixed top-0 inset-x-0" />
       <ScrollArea>
-        <div className="h-[calc(100vh_-_80px)] mb-20 max-w-[92vw] mx-auto flex flex-col gap-5">
+        <div className="h-[calc(100vh_-_80px)] max-w-[92vw] mx-auto flex flex-col gap-5">
           <div className="mx-2 flex items-center justify-between pt-24 pb-5 border-b-2 border-border gap-7">
             <h2 className="text-xl font-bold break-words pr-2">
               {courseDetail.title.rendered}

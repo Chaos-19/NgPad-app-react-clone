@@ -9,7 +9,7 @@ const NestedContentDetail = (props: Props) => {
     <section className="overflow-y-hidden w-full">
       <TobBar style=" bg-transparent" />
       <ScrollArea>
-        <div className="h-[calc(100vh_-_120px)]] pb-32 max-w-none">
+        <div className="h-[calc(100vh_-_120px)] max-w-none">
           <NestedCourseContent />
         </div>
       </ScrollArea>

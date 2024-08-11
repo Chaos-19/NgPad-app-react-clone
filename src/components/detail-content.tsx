@@ -14,7 +14,7 @@ interface Props {
 
 const DetailContent = ({ content, lang }: Props) => {
   return (
-    <div className="">
+    <div className="pb-28">
       <ReactMarkdown
         rehypePlugins={[rehypeRaw]}
         children={content}
