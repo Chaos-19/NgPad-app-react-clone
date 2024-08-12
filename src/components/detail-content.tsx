@@ -27,22 +27,28 @@ const DetailContent = ({ content, lang }: Props) => {
                 ? `language-${lang.toLowerCase()}`
                 : `language-js` || ""
             );
+            console.log("children.........");
+            console.log(children);
 
             return (
-              <CopyBlock
-                text={String(
-                  typeof children == "object"
-                    ? children.props.children
-                    : children
-                ).replace(/\n$/, "")}
-                language={
-                  ["html", "css"].includes(lang.toLowerCase())
-                    ? "html"
-                    : "typescript"
-                }
-                codeBlock
-                theme={dracula}
-              />
+              children && (
+                <CopyBlock
+                  text={String(
+                    Array.isArray(children)
+                      ? children[1].props.children
+                      : typeof children == "object"
+                      ? children.props.children
+                      : children
+                  ).replace(/\n$/, "")}
+                  language={
+                    ["html", "css"].includes(lang?.toLowerCase())
+                      ? "html"
+                      : "typescript"
+                  }
+                  codeBlock
+                  theme={dracula}
+                />
+              )
             );
           },
         }}

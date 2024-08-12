@@ -19,13 +19,13 @@ const CategoryColList = ({
   bannerIcon,
   icon,
 }: CategoryColListProps) => {
+  
   const { data: categoryList, error } = useFetchJsonData(fileName);
 
   return (
     <Accordion type="single" collapsible defaultValue={title}>
       <AccordionItem value={title} className="">
         <AccordionTrigger
-          data-state="open"
           className="px-4 data-[state=close]:no-underline data-[state=open]:no-underline"
         >
           <div className="flex justify-between items-center gap-5 py-4 px-5">
