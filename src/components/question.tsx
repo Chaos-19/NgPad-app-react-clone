@@ -1,6 +1,5 @@
 import React from "react";
-import quiz from "../../assets/quiz.json";
-import Lottie from "lottie-react";
+
 import { Card, CardContent } from "@/components/ui/card";
 import {
   Carousel,
@@ -10,19 +9,11 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 
-import QuizList from "../../components/quiz-list";
-
-import quizLists from "../../assets/quiz/angular/all_quiz";
-
-interface Props {
-  // Define your props here
-}
-
-const QuizPage = (props: Props) => {
+export default function Question() {
   return (
-    <div className="flex flex-col">
-      <Lottie animationData={quiz} loop={true} className="size-[80%] mx-auto" />
-      <Carousel className="w-full max-w-xs">
+    <div className="w-full border-2 border-red-800">
+      {" "}
+      <Carousel className="w-full max-w-xs mx-auto">
         <CarouselContent>
           {Array.from({ length: 5 }).map((_, index) => (
             <CarouselItem key={index}>
@@ -39,11 +30,6 @@ const QuizPage = (props: Props) => {
         <CarouselPrevious />
         <CarouselNext />
       </Carousel>
-      <div className="">
-        <QuizList quizList={quizLists} />
-      </div>
     </div>
   );
-};
-
-export default QuizPage;
+}
