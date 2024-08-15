@@ -19,7 +19,7 @@ interface QuizeCardProps {
 
 const QuizCard = ({ quizNo, remainQuizNo, title, options }: QuizeCardProps) => {
   return (
-    <div className="w-full">
+    <div className="">
       <div className="flex items-center justify-between py-2">
         <h3>Quiz#{quizNo}</h3>
         <h3>Remaining:{remainQuizNo}</h3>
@@ -46,8 +46,8 @@ const Quiz = () => {
   const { data: quizzess } = useFetchJsonData("quiz/angular/javascript");
 
   return (
-    <div className="w-full border-red-800">
-      <Carousel className="w-full" watchDrag={false}>
+    <div className="w-[calc(100vw_-_1px)]">
+      <Carousel opts={{ watchDrag: false, align: "start" }}>
         <CarouselContent>
           {quizzess &&
             quizzess.map((_, index) => (
