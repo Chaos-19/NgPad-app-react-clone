@@ -1,17 +1,17 @@
-import React from "react";
+import React from 'react';
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from "@/components/ui/accordion";
-import { Link } from "react-router-dom";
-import { Card } from "@/components/ui/card";
-import { CatagoryColListCard } from "./category-list-cards";
+} from '@/components/ui/accordion';
+import { Link } from 'react-router-dom';
+import { Card } from '@/components/ui/card';
+import { CatagoryColListCard } from './category-list-cards';
 
-import useFetchJsonData from "../hooks/fetchJsonData";
-import type { CategoryColListProps } from "../types";
-import { getImgUrl } from "../lib/utils";
+import useFetchJsonData from '../hooks/fetchJsonData';
+import type { CategoryColListProps } from '../types';
+import { getImgUrl } from '../lib/utils';
 
 const CategoryColList = ({
   title,
@@ -19,15 +19,12 @@ const CategoryColList = ({
   bannerIcon,
   icon,
 }: CategoryColListProps) => {
-  
   const { data: categoryList, error } = useFetchJsonData(fileName);
 
   return (
     <Accordion type="single" collapsible defaultValue={title}>
       <AccordionItem value={title} className="">
-        <AccordionTrigger
-          className="px-4 data-[state=close]:no-underline data-[state=open]:no-underline"
-        >
+        <AccordionTrigger className="px-4 data-[state=close]:no-underline data-[state=open]:no-underline">
           <div className="flex justify-between items-center gap-5 py-4 px-5">
             <img src={getImgUrl(icon)} className="size-10" />
             <h2 className="text-base font-semibold text-foreground capitalize text-left">

@@ -5,11 +5,7 @@ interface Props {
 }
 
 const NewsPage = (props: Props) => {
-  return (
-    <div>
-      news-page
-    </div>
-  );
+  return <div>news-page</div>;
 };
 
 export default NewsPage;

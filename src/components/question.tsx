@@ -1,18 +1,18 @@
-import React from "react";
+import React from 'react';
 
-import { Card, CardContent } from "@/components/ui/card";
+import { Card, CardContent } from '@/components/ui/card';
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
-} from "@/components/ui/carousel";
+} from '@/components/ui/carousel';
 
 export default function Question() {
   return (
     <div className="w-full border-2 border-red-800">
-      {" "}
+      {' '}
       <Carousel className="w-full max-w-xs mx-auto">
         <CarouselContent>
           {Array.from({ length: 5 }).map((_, index) => (

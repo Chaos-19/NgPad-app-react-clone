@@ -1,8 +1,8 @@
-import React from "react";
-import { useLocation } from "react-router-dom";
-import { ScrollArea } from "@/components/ui/scroll-area";
-import { TobBar, DetailContent } from "../components";
-import { Bookmark } from "lucide-react";
+import React from 'react';
+import { useLocation } from 'react-router-dom';
+import { ScrollArea } from '@/components/ui/scroll-area';
+import { TobBar, DetailContent } from '../components';
+import { Bookmark } from 'lucide-react';
 
 interface Props {}
 

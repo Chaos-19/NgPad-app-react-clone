@@ -5,13 +5,13 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
+} from '@/components/ui/card';
 import type {
   CategoryColListCardProps,
   CategoryRowListCardProps,
-} from "../types";
-import { Link } from "react-router-dom";
-import { getImgUrl } from "../lib/utils";
+} from '../types';
+import { Link } from 'react-router-dom';
+import { getImgUrl } from '../lib/utils';
 
 export const CatagoryColListCard = ({
   name,
@@ -82,7 +82,7 @@ export const CategoryRowListCard = ({
           <img src={getImgUrl(icon)} alt={name} className="size-14" />
         </div>
         <div className="">
-          <h2 className="text-lg font-bold">{name.replace("&amp;", "&")}</h2>
+          <h2 className="text-lg font-bold">{name.replace('&amp;', '&')}</h2>
           <p className="text-xs text-muted-foreground line-clamp-3">
             {courseInfo}
           </p>

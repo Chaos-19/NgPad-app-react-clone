@@ -5,11 +5,7 @@ interface Props {
 }
 
 const InterviewPage = (props: Props) => {
-  return (
-    <div>
-      interview-page
-    </div>
-  );
+  return <div>interview-page</div>;
 };
 
 export default InterviewPage;

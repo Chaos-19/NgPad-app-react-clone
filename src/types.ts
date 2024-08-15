@@ -1,7 +1,5 @@
 import React from 'react';
 
-
-
 interface CategoryRowListProps {
   title: string;
   icon: string;
@@ -47,7 +45,7 @@ export interface NestedContentCardProps {
 export interface RegularContentCardProps {
   courseDetail: Post;
   index: number;
-  lang?:string
+  lang?: string;
 }
 
 export type Post = {

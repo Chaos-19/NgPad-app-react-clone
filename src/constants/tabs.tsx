@@ -6,42 +6,42 @@ import {
   InterviewPage,
   LearnMorePage,
   HelpCenterPage,
-} from "../screens";
+} from '../screens';
 
 export const TABS = [
   {
-    title: "home",
-    pageName: "home",
+    title: 'home',
+    pageName: 'home',
     component: <Home />,
   },
   {
-    title: "tutorials",
-    pageName: "tutorials",
+    title: 'tutorials',
+    pageName: 'tutorials',
     component: <TutorialPage />,
   },
   {
-    title: "quize",
-    pageName: "quize",
+    title: 'quize',
+    pageName: 'quize',
     component: <QuizPage />,
   },
   {
-    title: "interview",
-    pageName: "interview",
+    title: 'interview',
+    pageName: 'interview',
     component: <InterviewPage />,
   },
   {
-    title: "news",
-    pageName: "news",
+    title: 'news',
+    pageName: 'news',
     component: <NewsPage />,
   },
   {
-    title: "learn more",
-    pageName: "learn more",
+    title: 'learn more',
+    pageName: 'learn more',
     component: <LearnMorePage />,
   },
   {
-    title: "help center",
-    pageName: "help center",
+    title: 'help center',
+    pageName: 'help center',
     component: <HelpCenterPage />,
   },
 ];

@@ -1,6 +1,6 @@
-import React from "react";
-import { Card } from "@/components/ui/card";
-import { getImgUrl } from "../lib/utils";
+import React from 'react';
+import { Card } from '@/components/ui/card';
+import { getImgUrl } from '../lib/utils';
 
 interface Props {
   quizList: any[];

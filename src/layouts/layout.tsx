@@ -1,13 +1,13 @@
-import React from "react";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { ScrollArea } from "@/components/ui/scroll-area";
-import Lottie from "lottie-react";
+import React from 'react';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { ScrollArea } from '@/components/ui/scroll-area';
+import Lottie from 'lottie-react';
 
-import { Navbar, NavigationDrawer } from "../components";
-import { TABS } from "../constants/tabs";
-import Home from "../screens/home-page";
+import { Navbar, NavigationDrawer } from '../components';
+import { TABS } from '../constants/tabs';
+import Home from '../screens/home-page';
 
-import java from "../assets/tuts.json";
+import java from '../assets/tuts.json';
 
 interface Props {
   children: React.ReactNode;

@@ -1,44 +1,37 @@
-export const TABS = [{
-  title: 'home',
-  pageName: 'home',
-  component: ""
-},
+export const TABS = [
+  {
+    title: 'home',
+    pageName: 'home',
+    component: '',
+  },
   {
     title: 'tutorials',
     pageName: 'tutorials',
-    component: ""
-
-
+    component: '',
   },
   {
     title: 'quize',
     pageName: 'quize',
-    component: ""
-
-
+    component: '',
   },
   {
     title: 'interview',
     pageName: 'interview',
-    component: ""
-
-
+    component: '',
   },
   {
     title: 'news',
     pageName: 'news',
-    component: ""
-
-
+    component: '',
   },
   {
     title: 'learn more',
     pageName: 'learn more',
-    component: ""
+    component: '',
   },
   {
     title: 'help center',
     pageName: 'help center',
-    component: ""
+    component: '',
   },
 ];

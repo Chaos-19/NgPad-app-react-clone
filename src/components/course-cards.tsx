@@ -74,14 +74,14 @@ export const NestedContentCard = ({
 export const RegularContentCard = ({
   courseDetail,
   index,
-  lang
+  lang,
 }: RegularContentCardProps) => {
   console.log(courseDetail);
 
   return (
     <Link
       to={`detail-content/${courseDetail.slug}`}
-      state={{ courseDetail: courseDetail,lang }}
+      state={{ courseDetail: courseDetail, lang }}
     >
       <Card className="shadow border drop-shadow backdrop-brightness-100 p-5 py-7">
         <div className="flex items-center gap-8  py-1">

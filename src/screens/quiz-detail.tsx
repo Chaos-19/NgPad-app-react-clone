@@ -1,20 +1,22 @@
 import React from 'react';
-import { TobBar, CourseContent } from '../components';
+import { TobBar, Quiz } from '../components';
 import { ScrollArea } from '@/components/ui/scroll-area';
 
-interface Props {}
+interface Props {
+  // Define your props here
+}
 
-const DetailContentLayout = (props: Props) => {
+const QuizDetail = (props: Props) => {
   return (
     <section className="overflow-y-hidden w-full">
       <TobBar />
       <ScrollArea>
         <div className="h-[calc(100vh_-_140px)]">
-          <CourseContent />
+          <Quiz />
         </div>
       </ScrollArea>
     </section>
   );
 };
 
-export default DetailContentLayout;
+export default QuizDetail;

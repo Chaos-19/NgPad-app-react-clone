@@ -5,11 +5,7 @@ interface Props {
 }
 
 const HelpCenterPage = (props: Props) => {
-  return (
-    <div>
-      HelpCenterPage
-    </div>
-  );
+  return <div>HelpCenterPage</div>;
 };
 
 export default HelpCenterPage;

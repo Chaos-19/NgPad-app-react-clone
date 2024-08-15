@@ -1,10 +1,10 @@
-import React from "react";
-import { useLocation, Link } from "react-router-dom";
+import React from 'react';
+import { useLocation, Link } from 'react-router-dom';
 
-import { getImgUrl } from "../lib/utils";
-import { RegularContentCard } from "./course-cards";
+import { getImgUrl } from '../lib/utils';
+import { RegularContentCard } from './course-cards';
 
-import useFetchJsonData from "../hooks/fetchJsonData";
+import useFetchJsonData from '../hooks/fetchJsonData';
 
 interface Props {}
 
@@ -33,7 +33,7 @@ const NestedCourseContent = (props: Props) => {
   return (
     <div className="w-full pb-32">
       <div className="py-5 mt-3 px-5">
-        <img src={icon ? getImgUrl(icon) : ""} className="size-16" />
+        <img src={icon ? getImgUrl(icon) : ''} className="size-16" />
       </div>
       <div className="px-6 py-1 flex flex-col gap-2">
         <p className="text-sm font-medium">Section {index + 1}</p>

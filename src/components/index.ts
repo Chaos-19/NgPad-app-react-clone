@@ -6,6 +6,7 @@ import CategoryColList from './category-col-list';
 import CategoryRowList from './category-row-list';
 import NestedCourseContent from './nested-course-content';
 import DetailContent from './detail-content';
+import Quiz from './quiz';
 
 export {
   Navbar,
@@ -16,4 +17,5 @@ export {
   CourseContent,
   NestedCourseContent,
   DetailContent,
+  Quiz,
 };
