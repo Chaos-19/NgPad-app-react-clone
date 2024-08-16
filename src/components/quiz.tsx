@@ -1,5 +1,5 @@
-import React from "react";
-
+import React, { useEffect, useState } from "react";
+import { Checkbox } from "@/components/ui/checkbox";
 import { Card, CardContent } from "@/components/ui/card";
 import {
   Carousel,
@@ -7,6 +7,7 @@ import {
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
+  type CarouselApi,
 } from "@/components/ui/carousel";
 import useFetchJsonData from "../hooks/fetchJsonData";
 
@@ -15,9 +16,16 @@ interface QuizeCardProps {
   remainQuizNo: number;
   title: string;
   options: { [key: string]: string }[];
+  scroll: () => void;
 }
 
-const QuizCard = ({ quizNo, remainQuizNo, title, options }: QuizeCardProps) => {
+const QuizCard = ({
+  quizNo,
+  remainQuizNo,
+  title,
+  options,
+  scroll,
+}: QuizeCardProps) => {
   return (
     <div className="">
       <div className="flex items-center justify-between py-2">
@@ -33,7 +41,7 @@ const QuizCard = ({ quizNo, remainQuizNo, title, options }: QuizeCardProps) => {
                 <p>{option[0]}</p>
                 <p>{option[1]}</p>
               </div>
-              <input type="checkbox" />
+              <Checkbox onClick={scroll} />
             </div>
           </Card>
         ))}
@@ -43,11 +51,20 @@ const QuizCard = ({ quizNo, remainQuizNo, title, options }: QuizeCardProps) => {
 };
 
 const Quiz = () => {
+  const [api, setApi] = useState<CarouselApi>();
+  const [scrollOnChoice, setScrollOnChoice] = useState<number>(1);
+
   const { data: quizzess } = useFetchJsonData("quiz/angular/javascript");
+
+  const handleNextClick = () => {
+    if (api) {
+      api.scrollNext();
+    }
+  };
 
   return (
     <div className="w-[calc(100vw_-_1px)]">
-      <Carousel opts={{ watchDrag: false, align: "start" }}>
+      <Carousel opts={{ watchDrag: false, align: "start" }} setApi={setApi}>
         <CarouselContent>
           {quizzess &&
             quizzess.map((_, index) => (
@@ -55,7 +72,8 @@ const Quiz = () => {
                 <div className="">
                   <QuizCard
                     quizNo={index + 1}
-                    remainQuizNo={quizzess.length}
+                    remainQuizNo={quizzess.length - (index + 1)}
+                    scroll={handleNextClick}
                     {..._}
                   />
                 </div>
