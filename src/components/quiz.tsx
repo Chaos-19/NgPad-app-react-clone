@@ -17,8 +17,8 @@ interface QuizeCardProps {
   remainQuizNo: number;
   title: string;
   options: { [key: string]: string }[];
-  correct:string
-  scroll: (choice:string,correct:string) => void;
+  correct: string;
+  scroll: (choice: string, correct: string) => void;
 }
 
 const QuizCard = ({
@@ -27,7 +27,7 @@ const QuizCard = ({
   title,
   options,
   scroll,
-  correct
+  correct,
 }: QuizeCardProps) => {
   return (
     <div className="">
@@ -44,7 +44,10 @@ const QuizCard = ({
                 <p className="text-base capitalize">{option[0]}.</p>
                 <p>{option[1]}</p>
               </div>
-              <Checkbox onClick={()=>scroll(option[0],correct)} />
+              <Checkbox
+                id={option[0]}
+                onClick={() => scroll(option[0].toUpperCase(), correct)}
+              />
             </div>
           </Card>
         ))}
@@ -60,43 +63,52 @@ export async function loader({ params }) {
 
 const Quiz = () => {
   const [api, setApi] = useState<CarouselApi>();
-  const [choice, setChoice] = useState<{[key:string]:string}| undefined>(undefined);
+  const [choice, setChoice] = useState<{ [key: number | string]: string }[]>(
+    []
+  );
+  const [questionNo, setQuestionNo] = useState<number>(1);
+  const [score, setScore] = useState<number>(0)
 
   const { data: quizzess } = useLoaderData();
 
-  const handleNextClick = (choice:string,correct:string) => {
+  const handleNextClick = (userChoice: string, correct: string) => {
+    
     if (api) {
-      api.scrollNext();
-      setChoice({"userChoice":choice,correct})
+     if(!api.canScrollNext()){
+      setScore(choice.filter((val:any,index:string)=> val[`${index+1}`] == val['correct']).length)
+      }
+      setChoice([...choice, { [questionNo]: userChoice, correct }]);
+      setQuestionNo(questionNo + 1);
+      setTimeout(() => api.scrollNext(), 300);
     }
   };
-  
 
   return (
     <div className="w-[calc(100vw_-_1px)]">
       <Carousel opts={{ watchDrag: false, align: "start" }} setApi={setApi}>
         <CarouselContent>
-          {quizzess &&
-          <>
-            {quizzess.map((_, index) => (
-              <CarouselItem key={index}>
-                <div className="">
-                 <QuizCard
-                    quizNo={index + 1}
-                    remainQuizNo={quizzess.length - (index + 1)}
-                    scroll={handleNextClick}
-                    {..._}
-                  />
+          {quizzess && (
+            <>
+              {quizzess.map((_, index) => (
+                <CarouselItem key={index}>
+                  <div className="">
+                    <QuizCard
+                      quizNo={index + 1}
+                      remainQuizNo={quizzess.length - (index + 1)}
+                      scroll={handleNextClick}
+                      {..._}
+                    />
+                  </div>
+                </CarouselItem>
+              ))}
+              <CarouselItem key={"end-index"}>
+                <div cclassName="flex justify-center items-center ">
+                  <h2>End of Question</h2>
+                  <p>{JSON.stringify(choice)}</p>
                 </div>
               </CarouselItem>
-            ))}
-             <CarouselItem key={index}>
-            <div cclassName="flex justify-center items-center">
-              <h2>End of Question</h2>
-            </div>
-            </CarouselItem>
-      </>
-          }
+            </>
+          )}
         </CarouselContent>
       </Carousel>
     </div>

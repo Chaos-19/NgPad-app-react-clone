@@ -8,8 +8,7 @@ import NestedCourseContent from './components/nested-course-content';
 import CoursePage from './screens/course-page';
 
 import QuizDetail from './screens/quiz-detail';
-import {loader as quizLoader} from "./components/quiz"
-
+import { loader as quizLoader } from './components/quiz';
 
 const router = createBrowserRouter([
   {
@@ -40,7 +39,7 @@ const router = createBrowserRouter([
   {
     path: 'course/:slug/quiz',
     element: <QuizDetail />,
-    loader:quizLoader
+    loader: quizLoader,
   },
 ]);
 

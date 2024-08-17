@@ -1,11 +1,11 @@
-import React from "react";
-import ReactMarkdown from "react-markdown";
-import rehypeRaw from "rehype-raw";
-import rehypePrism from "rehype-prism-plus";
-import { Light as SyntaxHighlighter } from "react-syntax-highlighter";
-import { dark } from "react-syntax-highlighter/dist/esm/styles/prism";
-import { docco } from "react-syntax-highlighter/dist/esm/styles/hljs";
-import { CopyBlock, dracula, railscast, monokai } from "react-code-blocks";
+import React from 'react';
+import ReactMarkdown from 'react-markdown';
+import rehypeRaw from 'rehype-raw';
+import rehypePrism from 'rehype-prism-plus';
+import { Light as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { dark } from 'react-syntax-highlighter/dist/esm/styles/prism';
+import { docco } from 'react-syntax-highlighter/dist/esm/styles/hljs';
+import { CopyBlock, dracula, railscast, monokai } from 'react-code-blocks';
 
 interface Props {
   content: string;
@@ -25,9 +25,8 @@ const DetailContent = ({ content, lang }: Props) => {
             const match = /language-(\w+)/.exec(
               className + lang
                 ? `language-${lang.toLowerCase()}`
-                : `language-js` || ""
+                : `language-js` || '',
             );
-            
 
             return (
               children && (
@@ -35,14 +34,14 @@ const DetailContent = ({ content, lang }: Props) => {
                   text={String(
                     Array.isArray(children)
                       ? children[1].props.children
-                      : typeof children == "object"
-                      ? children.props.children
-                      : children
-                  ).replace(/\n$/, "")}
+                      : typeof children == 'object'
+                        ? children.props.children
+                        : children,
+                  ).replace(/\n$/, '')}
                   language={
-                    ["html", "css"].includes(lang?.toLowerCase())
-                      ? "html"
-                      : "typescript"
+                    ['html', 'css'].includes(lang?.toLowerCase())
+                      ? 'html'
+                      : 'typescript'
                   }
                   codeBlock
                   theme={dracula}
