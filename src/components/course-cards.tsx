@@ -1,5 +1,5 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Link } from "react-router-dom";
 import {
   Card,
   CardContent,
@@ -7,10 +7,21 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from '@/components/ui/card';
+} from "@/components/ui/card";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 
-import { getImgUrl } from '../lib/utils';
-import type { NestedContentCardProps, RegularContentCardProps } from '../types';
+import DetailContent from "./detail-content";
+import { getImgUrl } from "../lib/utils";
+import type {
+  NestedContentCardProps,
+  RegularContentCardProps,
+  InterviewListCardProps,
+} from "../types";
 
 export const NestedContentCard = ({
   name,
@@ -97,5 +108,40 @@ export const RegularContentCard = ({
         </div>
       </Card>
     </Link>
+  );
+};
+
+export const InterviewListCard = ({
+  index,
+  title,
+  content,
+  lang,
+}: InterviewListCardProps) => {
+  const wrappContent = (content: string) => `<div class="note">
+  ${content}
+  </div>
+  `;
+
+  return (
+    <Accordion type="single" collapsible>
+      <AccordionItem value={title} className="">
+        <AccordionTrigger className="px-4 data-[state=close]:no-underline data-[state=open]:no-underline">
+          <div cclassName="flex items-center gap-3 py-2 px-1.5">
+            <h2 className="text-lg font-black text-muted-foreground flex items-center gap-4">
+              <span>{index < 10 ? `0${index}` : index}.</span>
+              <span className="text-left">{title}</span>
+            </h2>
+          </div>
+        </AccordionTrigger>
+        <AccordionContent>
+          <div className="w-[calc(100vw_-_10px)] mx-auto px-3 py-1 h-max">
+            <DetailContent
+              content={wrappContent(content)}
+              lang={"javaScript"}
+            />
+          </div>
+        </AccordionContent>
+      </AccordionItem>
+    </Accordion>
   );
 };

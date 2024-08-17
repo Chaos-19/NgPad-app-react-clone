@@ -47,6 +47,11 @@ export interface RegularContentCardProps {
   index: number;
   lang?: string;
 }
+export interface InterviewListCardProps {
+  title: string;
+  content: string;
+  index: number;
+}
 
 export type Post = {
   id: number;

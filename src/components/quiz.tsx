@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
-import { useLoaderData } from "react-router-dom";
-import { Checkbox } from "@/components/ui/checkbox";
-import { Card, CardContent } from "@/components/ui/card";
+import React, { useEffect, useState } from 'react';
+import { useLoaderData } from 'react-router-dom';
+import { Checkbox } from '@/components/ui/checkbox';
+import { Card, CardContent } from '@/components/ui/card';
 import {
   Carousel,
   CarouselContent,
@@ -9,8 +9,8 @@ import {
   CarouselNext,
   CarouselPrevious,
   type CarouselApi,
-} from "@/components/ui/carousel";
-import { loadData } from "../lib/utils";
+} from '@/components/ui/carousel';
+import { loadData } from '../lib/utils';
 
 interface QuizeCardProps {
   quizNo: number;
@@ -64,28 +64,31 @@ export async function loader({ params }) {
 const Quiz = () => {
   const [api, setApi] = useState<CarouselApi>();
   const [choice, setChoice] = useState<{ [key: number | string]: string }[]>(
-    []
+    [],
   );
   const [questionNo, setQuestionNo] = useState<number>(1);
-  const [score, setScore] = useState<number>(0)
+  const [score, setScore] = useState<number>(0);
 
   const { data: quizzess } = useLoaderData();
 
   const handleNextClick = (userChoice: string, correct: string) => {
-    
     if (api) {
-     if(!api.canScrollNext()){
-      setScore(choice.filter((val:any,index:string)=> val[`${index+1}`] == val['correct']).length)
+      if (!api.canScrollNext()) {
       }
       setChoice([...choice, { [questionNo]: userChoice, correct }]);
       setQuestionNo(questionNo + 1);
       setTimeout(() => api.scrollNext(), 300);
+      setScore(
+        choice.filter(
+          (val: any, index: string) => val[`${index + 1}`] == val['correct'],
+        ).length,
+      );
     }
   };
 
   return (
     <div className="w-[calc(100vw_-_1px)]">
-      <Carousel opts={{ watchDrag: false, align: "start" }} setApi={setApi}>
+      <Carousel opts={{ watchDrag: false, align: 'start' }} setApi={setApi}>
         <CarouselContent>
           {quizzess && (
             <>
@@ -101,10 +104,11 @@ const Quiz = () => {
                   </div>
                 </CarouselItem>
               ))}
-              <CarouselItem key={"end-index"}>
+              <CarouselItem key={'end-index'}>
                 <div cclassName="flex justify-center items-center ">
                   <h2>End of Question</h2>
                   <p>{JSON.stringify(choice)}</p>
+                  <p>{score}</p>
                 </div>
               </CarouselItem>
             </>

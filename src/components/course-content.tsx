@@ -23,8 +23,6 @@ const CourseContent = (props: Props) => {
     },
   } = location.state;
 
-  //console.log(location.state);
-
   let path = isNested
     ? `nested_categories/${postID}`
     : taxonomy

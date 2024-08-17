@@ -1,22 +1,12 @@
 import React from 'react';
-import quiz from '../../assets/quiz.json';
 import Lottie from 'lottie-react';
-import { Card, CardContent } from '@/components/ui/card';
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from '@/components/ui/carousel';
+import quiz from '../../assets/quiz.json';
 
 import QuizList from '../../components/quiz-list';
 
 import quizLists from '../../assets/quiz/angular/all_quiz';
 
-interface Props {
-  // Define your props here
-}
+interface Props {}
 
 const QuizPage = (props: Props) => {
   return (
