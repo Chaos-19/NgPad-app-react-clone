@@ -27,6 +27,7 @@ const DetailContent = ({ content, lang }: Props) => {
                 ? `language-${lang.toLowerCase()}`
                 : `language-js` || ""
             );
+            
 
             return (
               children && (
@@ -54,36 +55,5 @@ const DetailContent = ({ content, lang }: Props) => {
     </div>
   );
 };
-/*components={{
-// Override code block rendering with custom component 
-code({ children }) { 
-  const language = children[0].props.className.split('-')[1]; 
-  // Extract language from class 
-  return (
-  <pre className={`language-${language}`}>
-  <code>{children[1]}</code> </pre>
-  ); }, }}
-  
-  
-  components={{
-          code(props) {
-            const { children, className, node, ...rest } = props;
-            const match = /language-(\w+)/.exec(className || "");
-            return match ? (
-              <SyntaxHighlighter
-                {...rest}
-                PreTag="div"
-                children={String(children).replace(/\n$/, "")}
-                language={match[1]}
-                style={dark}
-              />
-            ) : (
-              <code {...rest} className={className}>
-                {" "}
-                {children}{" "}
-              </code>
-            );
-          },
-        }}
-  */
+
 export default DetailContent;

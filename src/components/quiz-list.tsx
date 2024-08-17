@@ -1,4 +1,5 @@
-import React from 'react';
+import React from 'react'
+import {Link} from "react-router-dom"
 import { Card } from '@/components/ui/card';
 import { getImgUrl } from '../lib/utils';
 
@@ -11,11 +12,13 @@ interface QuizCardProps {
   quiz_icon: string;
 }
 
-const QuizCard = ({ quiz_icon }: QuizCardProps) => {
+const QuizCard = ({ quiz_icon,slug }: QuizCardProps) => {
   return (
+    <Link to={`course/${slug}/quiz`}>
     <Card className="p-3 p-8 flex items-center justify-center">
       <img src={getImgUrl(quiz_icon)} alt={name} className="" />
     </Card>
+    </Link>
   );
 };
 
