@@ -1,20 +1,24 @@
-import React, { useState } from 'react';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { ScrollArea } from '@/components/ui/scroll-area';
-import Lottie from 'lottie-react';
+import React, { useState } from "react";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import Lottie from "lottie-react";
 
-import { Navbar, NavigationDrawer } from '../components';
-import { TABS } from '../constants/tabs';
-import Home from '../screens/home-page';
+import { Navbar, NavigationDrawer } from "../components";
+import { TABS } from "../constants/tabs";
+import Home from "../screens/home-page";
 
-import java from '../assets/tuts.json';
+import java from "../assets/tuts.json";
 
 interface Props {
   children: React.ReactNode;
 }
 
 function AppLayout({ children }: Props) {
-  const [currentTab, setCurrentTab] = useState<string>('home');
+  const [currentTab, setCurrentTab] = useState<string>("home");
+
+  const handleChange = (value: string) => {
+    setCurrentTab(value);
+  };
 
   return (
     <section className="w-full flex h-full">
@@ -24,8 +28,10 @@ function AppLayout({ children }: Props) {
         </Navbar>
         <div className="w-full grow">
           <Tabs
-            defaultValue={currentTab}
+            defaultValue="home"
+            value={currentTab}
             className="w-full h-full flex flex-col"
+            onValueChange={handleChange}
           >
             <ScrollArea className="bg-[#092032] w-full rounded-none text-white">
               <TabsList className="bg-[#092032] w-full rounded-none text-white pl-32 overflow-x-scroll w-[100vw] import!:py-0 no-scrollbar">
@@ -33,7 +39,6 @@ function AppLayout({ children }: Props) {
                   <TabsTrigger
                     key={tab.title}
                     value={tab.title}
-                    onClick={() => setCurrentTab(tab.title)}
                     className="capitalize my-0 data-[state=active]:rounded-none"
                   >
                     {tab.pageName}
