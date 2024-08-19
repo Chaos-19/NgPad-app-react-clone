@@ -1,28 +1,22 @@
-import { Bar, BarChart } from "recharts";
-import { ChartConfig, ChartContainer } from "@/components/ui/chart";
+import { Pie } from "react-chartjs-2";
+import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 
-const chartData = [
-  { month: "January", desktop: 186, mobile: 80 },
-  { month: "February", desktop: 305, mobile: 200 },
-  { month: "March", desktop: 237, mobile: 120 },
-  { month: "April", desktop: 73, mobile: 190 },
-  { month: "May", desktop: 209, mobile: 130 },
-  { month: "June", desktop: 214, mobile: 140 },
-];
-
-const chartConfig = {
-  desktop: {
-    label: "Desktop",
-    color: "#2563eb",
-  },
-  mobile: {
-    label: "Mobile",
-    color: "#60a5fa",
-  },
-} satisfies ChartConfig;
+ChartJS.register(ArcElement, Tooltip, Legend);
 
 const QuizScore = () => {
-  return <div className="w-full">hello world</div>;
+  const data = {
+    labels: ["Customer", "Business"],
+    datasets: [
+      {
+        data: [12, 29],
+        backgroundColor: ["rgba(255, 99, 132, 0.2)", "rgba(54, 162, 235, 0.2)"],
+        borderWidth: 1,
+      },
+    ],
+  };
+
+  return <Pie data={data} />;
 };
+
 export default QuizScore;
 //

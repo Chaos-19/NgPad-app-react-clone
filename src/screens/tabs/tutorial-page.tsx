@@ -1,7 +1,7 @@
-import React from "react";
-import Lottie from "lottie-react";
+import React from 'react';
+import Lottie from 'lottie-react';
 
-import tutorial from "../../assets/tuts.json";
+import tutorial from '../../assets/tuts.json';
 
 interface Props {
   // Define your props here

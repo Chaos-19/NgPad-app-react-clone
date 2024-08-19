@@ -1,5 +1,5 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { Link } from 'react-router-dom';
 import {
   Card,
   CardContent,
@@ -7,21 +7,21 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
+} from '@/components/ui/card';
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from "@/components/ui/accordion";
+} from '@/components/ui/accordion';
 
-import DetailContent from "./detail-content";
-import { getImgUrl } from "../lib/utils";
+import DetailContent from './detail-content';
+import { getImgUrl } from '../lib/utils';
 import type {
   NestedContentCardProps,
   RegularContentCardProps,
   InterviewListCardProps,
-} from "../types";
+} from '../types';
 
 export const NestedContentCard = ({
   name,
@@ -137,7 +137,7 @@ export const InterviewListCard = ({
           <div className="w-[calc(100vw_-_10px)] mx-auto px-3 py-1 h-max">
             <DetailContent
               content={wrappContent(content)}
-              lang={"javaScript"}
+              lang={'javaScript'}
             />
           </div>
         </AccordionContent>

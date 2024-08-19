@@ -107,11 +107,11 @@ const Quiz = () => {
                 </CarouselItem>
               ))}
               <CarouselItem key={"end-index"}>
-                {/*     <div cclassName="flex justify-center items-center ">
-                  <h2>End of Question</h2>
-                  <p>{JSON.stringify(choice)}</p>
-                  <p>{score}</p>
-                </div>*/}
+                {/*  <div cclassName="flex justify-center items-center ">
+                    <h2>End of Question</h2>
+                    <p>{JSON.stringify(choice)}</p>
+                    <p>{score}</p>
+                  </div>*/}
                 {<QuizScore />}
               </CarouselItem>
             </>

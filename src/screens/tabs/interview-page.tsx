@@ -1,9 +1,9 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { Card } from "@/components/ui/card";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { Card } from '@/components/ui/card';
 
-import { getImgUrl } from "../../lib/utils";
-import interviews from "../../assets/interviews/angular/angular_home.json";
+import { getImgUrl } from '../../lib/utils';
+import interviews from '../../assets/interviews/angular/angular_home.json';
 
 interface Props {}
 

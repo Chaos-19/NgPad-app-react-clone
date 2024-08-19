@@ -1,10 +1,10 @@
-import React from "react";
-import { useLoaderData } from "react-router-dom";
-import { ScrollArea } from "@/components/ui/scroll-area";
+import React from 'react';
+import { useLoaderData } from 'react-router-dom';
+import { ScrollArea } from '@/components/ui/scroll-area';
 
-import { TobBar } from "../components";
-import { InterviewListCard } from "../components/course-cards";
-import { loadData } from "../lib/utils";
+import { TobBar } from '../components';
+import { InterviewListCard } from '../components/course-cards';
+import { loadData } from '../lib/utils';
 
 interface Props {}
 
@@ -20,7 +20,7 @@ const InterviewList = ({ interviews }: InterviewListProps) => {
           index={index + 1}
           title={interview.title.rendered}
           content={interview.content.rendered}
-          lang={"jsx"}
+          lang={'jsx'}
         />
       ))}
     </div>
