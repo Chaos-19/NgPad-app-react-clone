@@ -18,7 +18,7 @@ const QuizScore = ({ score, total }: QuizScoreProps) => {
   const percentage = (score.correct / total) * 100;
 
   return (
-    <div className="w-full flex flex-col justify-center items-center gap-4">
+    <div className="w-full flex flex-col justify-center gap-4">
       <div className="size-[200px] mx-auto mt-20">
         <CircularProgressbarWithChildren
           value={percentage}
@@ -35,21 +35,21 @@ const QuizScore = ({ score, total }: QuizScoreProps) => {
             backgroundColor: "#3e98c7",
           })}
         >
-          <div className="flex justify-center items-center">
+          <div className="flex justify-center items-center text-lg font-bold">
             {percentage.toFixed(1)}%
           </div>
         </CircularProgressbarWithChildren>
       </div>
-      <div className="flex items-center justify-evenly w-full p-2 py-3 divide-x divide-blue-900 border-2 border-red-500">
-        <div className="flex flex-col justify-center gap-2">
+      <div className="grid grid-cols-2 place-content-center py-5 divide-x-2 divide-red-700 w-full max-w-screen-2xl">
+        <div className="flex flex-col justify-center items-center gap-2">
           <div className="flex items-center gap-2">
             <img src={check} className="size-8" />
             <span className="text-lg font-black">{score.correct}</span>
           </div>
           <span className="text-base font-medium">correct</span>
         </div>
-        <div className="flex flex-col justify-center gap-2">
-          <div className="flex items-center gap-2">
+        <div className="flex flex-col justify-center items-center gap-2">
+          <div className="flex items-center justify-center gap-2">
             <img src={falseIcon} className="size-8" />
             <span className="text-lg font-black">{score.incorrect}</span>
           </div>
