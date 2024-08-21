@@ -1,4 +1,6 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import AppContextProvider from "./context/app-context"
+
 import AppLayout from './layouts/layout';
 import NestedContentDetail from './screens/nested-content-detail';
 import DetailContentLayout from './screens/detail-content-layout';
@@ -54,11 +56,13 @@ const router = createBrowserRouter([
 
 function App() {
   return (
+    <AppContextProvider>
     <main className="flex w-screen h-dvh">
       <div className="flex-1 grow w-full h-full">
         <RouterProvider router={router} />
       </div>
     </main>
+    </AppContextProvider>
   );
 }
 

@@ -3,8 +3,13 @@ import {
   CircularProgressbarWithChildren,
   buildStyles,
 } from "react-circular-progressbar";
+import { Button } from "@/components/ui/button";
+import { Share, ArrowLeft } from "lucide-react";
+import { Link } from "react-router-dom";
 import check from "../assets/check-2.png";
 import falseIcon from "../assets/false.png";
+import { quizSuggestions } from "../constants/constant";
+import { getSuggestion } from "../lib/utils";
 
 interface QuizScoreProps {
   score: {
@@ -55,6 +60,21 @@ const QuizScore = ({ score, total }: QuizScoreProps) => {
           </div>
           <span className="text-base font-medium">wrong</span>
         </div>
+      </div>
+      <div className="w-full px-3">
+        <div className="w-full text-sm w-full py-4 px-2 border shadow shadow-blue-400 text-center border">
+          {getSuggestion(percentage, quizSuggestions)}
+        </div>
+      </div>
+      <div className="flex justify-center items-center">
+        <Button variant="ghost" className="flex items-center gap-1.5">
+          <Share /> shared
+        </Button>
+        <Link to={"/"}>
+          <Button variant="link" className="flex items-center gap-1.5">
+            <ArrowLeft /> shared
+          </Button>
+        </Link>
       </div>
     </div>
   );
