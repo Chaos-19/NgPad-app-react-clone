@@ -5,15 +5,15 @@ import {
   SheetHeader,
   SheetTitle,
   SheetTrigger,
-} from '@/components/ui/sheet';
-import { ScrollArea } from '@/components/ui/scroll-area';
-import { Link } from 'react-router-dom';
-import { Menu } from 'lucide-react';
-import ModeToggle from '@/components/mode-toggle';
+} from "@/components/ui/sheet";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { Link } from "react-router-dom";
+import { Menu } from "lucide-react";
+import ModeToggle from "./mode-toggle";
 
-import { navDraweLinks } from '../constants/tabs';
+import { navDraweLinks } from "../constants/tabs";
 
-import topImg from '../assets/drawer_header.jpg';
+import topImg from "../assets/drawer_header.jpg";
 
 const NavigationDrawer = () => {
   return (
@@ -29,7 +29,10 @@ const NavigationDrawer = () => {
               <ul className="flex flex-col gap-4">
                 {navDraweLinks.map((item, index) => (
                   <li key={item.title} className="py-1.5">
-                    <Link className="flex items-center gap-3 capitalize text-base px-2">
+                    <Link
+                      to=""
+                      className="flex items-center gap-3 capitalize text-base px-2"
+                    >
                       {item.icon}
                       {item.title}
                     </Link>
