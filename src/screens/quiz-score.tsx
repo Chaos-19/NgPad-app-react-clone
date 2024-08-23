@@ -2,14 +2,14 @@ import {
   CircularProgressbar,
   CircularProgressbarWithChildren,
   buildStyles,
-} from "react-circular-progressbar";
-import { Button } from "@/components/ui/button";
-import { Share, ArrowLeft } from "lucide-react";
-import { Link } from "react-router-dom";
-import check from "../assets/check-2.png";
-import falseIcon from "../assets/false.png";
-import { quizSuggestions } from "../constants/constant";
-import { getSuggestion } from "../lib/utils";
+} from 'react-circular-progressbar';
+import { Button } from '@/components/ui/button';
+import { Share, ArrowLeft } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import check from '../assets/check-2.png';
+import falseIcon from '../assets/false.png';
+import { quizSuggestions } from '../constants/constant';
+import { getSuggestion } from '../lib/utils';
 
 interface QuizScoreProps {
   score: {
@@ -30,14 +30,14 @@ const QuizScore = ({ score, total }: QuizScoreProps) => {
           styles={buildStyles({
             // Rotation of path and trail, in number of turns (0-1)
             rotation: 0, // Whether to use rounded or flat corners on the ends - can use 'butt' or 'round'
-            strokeLinecap: "round", // Text size
-            textSize: "16px", // How long animation takes to go from one percentage to another, in seconds
+            strokeLinecap: 'round', // Text size
+            textSize: '16px', // How long animation takes to go from one percentage to another, in seconds
             pathTransitionDuration: 0.5, // Can specify path transition in more detail, or remove it entirely
             // pathTransition: 'none',   // Colors
             pathColor: `rgb(66,123,249)`,
             // textColor: "#f88",
-            trailColor: "#d6d6d6",
-            backgroundColor: "#3e98c7",
+            trailColor: '#d6d6d6',
+            backgroundColor: '#3e98c7',
           })}
         >
           <div className="flex justify-center items-center text-lg font-bold">
@@ -70,7 +70,7 @@ const QuizScore = ({ score, total }: QuizScoreProps) => {
         <Button variant="ghost" className="flex items-center gap-1.5">
           <Share /> shared
         </Button>
-        <Link to={"/"}>
+        <Link to={'/'}>
           <Button variant="link" className="flex items-center gap-1.5">
             <ArrowLeft /> shared
           </Button>

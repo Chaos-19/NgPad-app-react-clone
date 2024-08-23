@@ -1,10 +1,5 @@
-import {
-  type ClassValue,
-  clsx
-} from 'clsx';
-import {
-  twMerge
-} from 'tailwind-merge';
+import { type ClassValue, clsx } from 'clsx';
+import { twMerge } from 'tailwind-merge';
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -20,8 +15,12 @@ export const loadData = async (filePath: string) => {
 
 export function getSuggestion(score, quizSuggestions) {
   for (const key in quizSuggestions) {
-    if (score >= quizSuggestions[key].minScore && score <= quizSuggestions[key].maxScore) {
+    if (
+      score >= quizSuggestions[key].minScore &&
+      score <= quizSuggestions[key].maxScore
+    ) {
       return quizSuggestions[key].message;
     }
-  } return "";
+  }
+  return '';
 }
