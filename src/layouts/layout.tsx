@@ -1,14 +1,14 @@
-import React, { useState, useContext } from 'react';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { ScrollArea } from '@/components/ui/scroll-area';
-import Lottie from 'lottie-react';
+import React, { useState, useContext } from "react";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import Lottie from "lottie-react";
 
-import { Navbar, NavigationDrawer } from '../components';
-import { ApplicationContext } from '../context/app-context';
+import { Navbar, NavigationDrawer } from "../components";
+import { ApplicationContext } from "../context/app-context";
 
-import { TABS } from '../constants/tabs';
-import Home from '../screens/home-page';
-import java from '../assets/tuts.json';
+import { TABS } from "../constants/tabs";
+import Home from "../screens/home-page";
+import java from "../assets/tuts.json";
 
 interface Props {
   children: React.ReactNode;
@@ -35,12 +35,12 @@ function AppLayout({ children }: Props) {
             onValueChange={handleChange}
           >
             <ScrollArea className="bg-[#092032] w-full rounded-none text-white">
-              <TabsList className="bg-[#092032] w-full rounded-none text-white pl-32 overflow-x-scroll w-[100vw] import!:py-0 no-scrollbar">
+              <TabsList className="bg-[#092032] w-full rounded-none text-white pl-32 overflow-x-scroll w-[100vw] py-0 no-scrollbar h-max">
                 {TABS.map((tab) => (
                   <TabsTrigger
                     key={tab.title}
+                    className="capitalize my-0 data-[state=active]:rounded-none border-b-[#092032] border-b-4 data-[state=active]:border-b-[#0051d5]  data-[state=active]:bg-[#092032] data-[state=active]:text-white transition-all duration-1000 ease-in"
                     value={tab.title}
-                    className="capitalize my-0 data-[state=active]:rounded-none"
                   >
                     {tab.pageName}
                   </TabsTrigger>

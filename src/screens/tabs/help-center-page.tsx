@@ -1,11 +1,15 @@
-import React from 'react';
+import React from "react";
 
 interface Props {
   // Define your props here
 }
 
 const HelpCenterPage = (props: Props) => {
-  return <div>HelpCenterPage</div>;
+  return (
+    <section className="">
+      <div className="w-full py-3 bg-muted"></div>
+    </section>
+  );
 };
 
 export default HelpCenterPage;
