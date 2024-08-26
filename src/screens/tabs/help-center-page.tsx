@@ -1,7 +1,11 @@
 import React from "react";
+import {
+  Card,
+  
+} from '@/components/ui/card';
 
 interface Props {
-  // Define your props here
+
 }
 
 const HelpCenterPage = (props: Props) => {

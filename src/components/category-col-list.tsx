@@ -19,6 +19,7 @@ const CategoryColList = ({
   bannerIcon,
   icon,
 }: CategoryColListProps) => {
+  
   const { data: categoryList, error } = useFetchJsonData(fileName);
 
   return (

@@ -7,6 +7,7 @@ import { getImgUrl } from '../lib/utils';
 import { CategoryRowListCard } from './category-list-cards';
 
 const CategoryRowList = ({ title, fileName, icon }: CategoryRowListProps) => {
+  
   const { data: categoryList, error } = useFetchJsonData(fileName);
 
   return (

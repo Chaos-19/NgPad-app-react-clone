@@ -2,10 +2,7 @@ import React from 'react';
 import ReactMarkdown from 'react-markdown';
 import rehypeRaw from 'rehype-raw';
 import rehypePrism from 'rehype-prism-plus';
-import { Light as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { dark } from 'react-syntax-highlighter/dist/esm/styles/prism';
-import { docco } from 'react-syntax-highlighter/dist/esm/styles/hljs';
-import { CopyBlock, dracula, railscast, monokai } from 'react-code-blocks';
+import { CopyBlock, dracula/*, railscast, monokai,atomOneDark */} from 'react-code-blocks';
 
 interface Props {
   content: string;
