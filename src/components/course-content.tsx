@@ -8,7 +8,6 @@ import useFetchJsonData from '../hooks/fetchJsonData';
 interface Props {}
 
 const CourseContent = (props: Props) => {
-  
   const location = useLocation();
 
   const {
