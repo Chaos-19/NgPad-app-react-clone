@@ -12,13 +12,14 @@ import {
   FormControl,
   FormField,
   FormItem,
-  FormLabel,
   FormMessage,
-  FormDescription,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { toast } from "@/components/ui/use-toast";
 import { Search } from "lucide-react";
+import Lottie from 'lottie-react';
+
+import NoConnction from "../../assets/no-internet-2.json"
 
 const FormSchema = z.object({
   username: z.string().min(2, {
@@ -40,9 +41,9 @@ const HelpCenterPage = (props: Props) => {
     toast({
       title: "You submitted the following values:",
       description: (
-        <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-          <code className="text-white">{JSON.stringify(data)}</code>
-        </pre>
+        <div className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
+         <Lottie animationData={NoConnction} loop={true} className="w-[80%] mx-auto" />
+        </div>
       ),
     });
   }
@@ -58,9 +59,8 @@ const HelpCenterPage = (props: Props) => {
                 name="username"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Username</FormLabel>
                     <FormControl>
-                      <Input placeholder="shadcn" {...field} />
+                      <Input placeholder="Search..." {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
