@@ -5,15 +5,15 @@ import {
   SheetHeader,
   SheetTitle,
   SheetTrigger,
-} from '@/components/ui/sheet';
-import { ScrollArea } from '@/components/ui/scroll-area';
-import { Link } from 'react-router-dom';
-import { Menu } from 'lucide-react';
-import ModeToggle from './mode-toggle';
+} from "@/components/ui/sheet";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { Link } from "react-router-dom";
+import { Menu } from "lucide-react";
+import ModeToggle from "./mode-toggle";
 
-import { navDraweLinks } from '../constants/tabs';
+import { navDraweLinks } from "../constants/tabs";
 
-import topImg from '../assets/drawer_header.jpg';
+import topImg from "../assets/drawer_header.jpg";
 
 const NavigationDrawer = () => {
   return (
@@ -39,13 +39,13 @@ const NavigationDrawer = () => {
                   </li>
                 ))}
               </ul>
-              <div>
+              <div className="py-2">
                 <div className="py-2 border-y border-border">
-                  <span className="font-medium text-lg">setting</span>
+                  <span className="text-lg capitalize font-mono">setting</span>
                 </div>
 
-                <div className="py-2 flex items-center gap-5">
-                  <span>change theme</span>
+                <div className="py-2 flex items-center justify-between pr-4">
+                  <span className="text-base capitalize">change theme</span>
                   <ModeToggle />
                 </div>
               </div>
