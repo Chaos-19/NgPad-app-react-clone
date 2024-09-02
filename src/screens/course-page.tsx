@@ -1,8 +1,7 @@
-import React from 'react';
-import { useLocation } from 'react-router-dom';
-import { ScrollArea } from '@/components/ui/scroll-area';
-import { TobBar, DetailContent } from '../components';
-import { Bookmark } from 'lucide-react';
+import { useLocation } from "react-router-dom";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { TobBar, DetailContent } from "../components";
+import { Bookmark } from "lucide-react";
 
 interface Props {}
 
@@ -11,7 +10,7 @@ const CoursePage = (props: Props) => {
   const { courseDetail, lang } = location.state;
 
   const content = `
-  <div class="note" className="">
+  <div class="note">
   ${courseDetail.content.rendered}
   </div>
   `;
