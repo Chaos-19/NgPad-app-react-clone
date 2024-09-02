@@ -17,9 +17,10 @@ import {
 import { Input } from "@/components/ui/input";
 import { toast } from "@/components/ui/use-toast";
 import { Search } from "lucide-react";
-import Lottie from 'lottie-react';
+import Lottie from "lottie-react";
 
-import NoConnction from "../../assets/no-internet-2.json"
+import { cn } from "../../lib/utils";
+import NoConnction from "../../assets/no-internet.json";
 
 const FormSchema = z.object({
   username: z.string().min(2, {
@@ -39,10 +40,17 @@ const HelpCenterPage = (props: Props) => {
 
   function onSubmit(data: z.infer<typeof FormSchema>) {
     toast({
-      title: "You submitted the following values:",
+      //title: "You submitted the following values:",
+      className: cn(
+        "fixed inset-0 flex items-center justify-center pointer-events-none bg-transparent"
+      ),
       description: (
-        <div className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-         <Lottie animationData={NoConnction} loop={true} className="w-[80%] mx-auto" />
+        <div className="mt-2 w-[340px] rounded-md bg-slate-950/80 backdrop-blur-sm p-1.5">
+          <Lottie
+            animationData={NoConnction}
+            loop={true}
+            className="w-[99%] mx-auto"
+          />
         </div>
       ),
     });
@@ -51,9 +59,9 @@ const HelpCenterPage = (props: Props) => {
   return (
     <section className="">
       <div className="w-full p-3 flex justify-center items-center bg-muted">
-        <Card className="p-3 w-[90%] max-w-md">
+        <Card className="p-3 w-[97%] py-5 max-w-md">
           <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2">
               <FormField
                 control={form.control}
                 name="username"
