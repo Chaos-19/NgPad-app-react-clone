@@ -10,7 +10,7 @@ const CoursePage = (props: Props) => {
   const { courseDetail, lang } = location.state;
 
   const content = `
-  <div class="note">
+  <div class="note" className="!w-full">
   ${courseDetail.content.rendered}
   </div>
   `;
