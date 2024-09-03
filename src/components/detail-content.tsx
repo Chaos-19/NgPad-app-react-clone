@@ -12,8 +12,7 @@ interface Props {
 }
 
 const DetailContent = ({ content, lang }: Props) => {
-  console.log("---------content..........");
-  console.log(content);
+  
 
   return (
     <div className="pb-28 w-full">
