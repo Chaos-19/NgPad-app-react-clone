@@ -1,0 +1,802 @@
+[
+  {
+    "id": 4997,
+    "date": "2021-05-27T11:27:05",
+    "date_gmt": "2021-05-27T11:27:05",
+    "guid": {
+      "rendered": "https://angular.foobrdigital.com/?p=4997"
+    },
+    "modified": "2021-05-27T11:27:05",
+    "modified_gmt": "2021-05-27T11:27:05",
+    "slug": "api-testing-with-postman",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/api-testing-with-postman/",
+    "title": {
+      "rendered": "API Testing with Postman"
+    },
+    "content": {
+      "rendered": "\n<p>his tutorial is completely designed for you to understand Postman even though you have never heard of Postman or let say API. Since Postman is an API testing tool, we must know what is an API. So in this tutorial, we will explore the different topics around API such as</p>\n\n\n\n<ul><li><em><strong>What is an API</strong></em></li><li><em><strong>API Testing</strong></em></li><li><strong><em>Role of A software tester in API testing</em></strong></li><li><strong><em>API Testing and Unit Testing.</em></strong></li><li><strong><em>Area for covering your test</em></strong></li></ul>\n\n\n\n<p>Starting with the first, we will start our journey now with learning about APIs.</p>\n\n\n\n<h3><em><strong>What is an API?</strong></em></h3>\n\n\n\n<p>API stands for&nbsp;<em><strong>Application Programming Interface</strong></em>. Talking in technical terms an API is a set of procedures, functions, and other points of access which an application, an operating system, a library, etc., makes available to programmers in order to allow it to interact with other software. Didn\u2019t get it? Well, neither did I. Let\u2019s break these terms and explore more about APIs.</p>\n\n\n\n<p>Taking an analogy here,&nbsp;<em>let say you went to a restaurant. There is no waiter present, so you need to see the menu lying on the table and then make a request to the kitchen where the chef will prepare the dish for you. But it does not always work that way. What if the dish is not available? You will have to go to your seat again and decide something else. There will be many customers present in the restaurant which will slow the process of the chef since now he will be listening to the orders instead of preparing them. Also, how can we forget we live in this multilingual world. What if you do not understand the chef\u2019s language?</em>&nbsp;<em><strong>We need a waiter here</strong></em>. A waiter is what can be seen as an API in the internet world. The waiter will come and take your requests, give it to the chef and then in response bring back the food. This waiter is bilingual and speaks both of your (chef and you) languages fluently. What if the dish is not available? Well, waiter knows beforehand you made the wrong request, so he will tell you then and there on the table that the food item is not available. How much time and energy is saved?&nbsp;<em><strong>This is exactly what an API does.</strong></em></p>\n\n\n\n<figure class=\"wp-block-image\"><a href=\"https://toolsqa.com/wp-content/uploads/sites/1/nggallery/postman/ABCsofAPIsinfographicsideA.jpg\"><img src=\"https://cdn-anlbg.nitrocdn.com/dKKErbUyoNysjatCgltCzbTJJilTMwLi/assets/static/optimized/rev-d0d5d59/wp-content/uploads/sites/1/nggallery/postman/thumbs/thumbs_ABCsofAPIsinfographicsideA.jpg\" alt=\"API Testing with Postman\"/></a></figure>\n\n\n\n<p>As we visually depict the above analogy using an image, we can see that you are working as a user in the API world. You make the requests while the waiter works as an API who is an intermediary and takes the request to the appropriate server. This server will be processing your request and responding back to you. As said above, your server or application is the chef who is in the kitchen. He will process your request, cook your desired food and present it back to you as a response. The methods and parameters will be discussed in detail later but here in the analogy, you can think of it as the special requests you make according to your taste and liking. For example, you order something from the menu and describe explicitly that it should be extra spicy. This will help the chef to cook according to your demands.</p>\n\n\n\n<p><em><strong>An API takes your requests from the device and fetch the response from the server</strong></em>. Today, API is everywhere. We have achieved so much through APIs, it\u2019s hard to count. If you are into computer science or IT industry, there is no escape from APIs. APIs help you fetch a particular response according to the particular request.&nbsp;<em>For example, while you are booking a flight, you will require specific flight results according to the source, destination and departure date and maybe some other variables. For this, you might have to visit different airlines to check their different price.</em>&nbsp;But through APIs, this is not so difficult. Through different APIs of different airlines, we can get the response of each and every airline for that specific query at one place like GoIbibo does. Maybe now you must have got the idea of how vastly APIs are used today. We all are connected through APIs. All the services that are offered online are mostly through API. As I said, APIs are everywhere</p>\n\n\n\n<h2>API Testing</h2>\n\n\n\n<p>So now that we have established what an API is and why APIs are critical to modern interconnected, globally distributed applications and services, it is important to understand why API testing is critical.</p>\n\n\n\n<p>API testing&nbsp;creates a more reliable code. But historically, testing would take place at the GUI level. When a developer would finish their work, they would hand it off to the QA engineer. The engineers had limited time so they would test the code at the highest level \u2013 the GUI. This would cover both the front-end and the back-end development.</p>\n\n\n\n<p>This worked for manual testing and for the beginning of automation testing, but isn\u2019t right for the age of agile and continuous testing. GUI testing is too brittle, GUI automated scripts break easily and more time-consuming. But more importantly, when the application is under developed, teams can\u2019t wait for the entire system to be updated and the GUI to be ready before testing occurs.</p>\n\n\n\n<p>In the age of agile, testing must take place at a lower level, i.e at the API level as early as possible. Developers can even do it themselves.&nbsp; API\u2019s can be tested even when the GUI of the application is not yet ready. On top of that API tests, because of \u201c<em><strong>API contracts</strong></em>\u201d, can even be created before development is complete.</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://cdn-anlbg.nitrocdn.com/dKKErbUyoNysjatCgltCzbTJJilTMwLi/assets/static/optimized/rev-d0d5d59/wp-content/uploads/sites/1/nggallery/postman/API-TEsting.png\" alt=\"API TEsting\"/></figure>\n\n\n\n<p>An API or rather all the API present in the software/application should be tested perfectly. This is the job of a software tester and bears a huge responsibility. A perfect working API leads to the perfect working application. Testing the API solves lot of issues in the application which may arise at some point of time in the future. There are many software available for&nbsp;<em>API Testing</em>&nbsp;and one such software is&nbsp;<em><strong>Postman</strong></em>.</p>\n\n\n\n<h2>Roles &amp; Responsibilities of a Software tester for testing API\u2019s</h2>\n\n\n\n<p>As an API tester, you should have good architectural knowledge of various web services,&nbsp;<em>REST</em>,&nbsp;<em>SOAP</em>&nbsp;and&nbsp;<em>Micro Services</em>.</p>\n\n\n\n<ol><li><em>Should able to use all the web methods like GET, POST, DELETE, etc</em></li><li><em>Validate the response, response time, error code</em></li><li><em>Able to validate the XML and Json body by using Json parsers</em></li><li><em>Must know to use OAuth and OAuth2 authentication mechanisms</em></li><li><em>Load and Security testing on web services</em></li><li><em>Able to read and understand the API documentations</em></li><li><em>Able to derive good number of test cases and scenarios.</em></li><li><em>Should be good in SQL queries to validate API and DB data elements</em></li><li><em>Become master in a tool of your own choice SOAP UI and Postman are not Automation tools. Rest Assured, Rest Sharp, Node modules are the open source libraries for API testing.</em></li></ol>\n\n\n\n<h2>API Testing and Unit Testing</h2>\n\n\n\n<p>API testing and unit testing is considered the same thing by some testers but actually it is different.\u00a0<em><strong>Unit testing\u00a0is done by the Developers or by Test Engineers and is done on class by class basis or at the single component level.\u00a0</strong></em>Motive is to verify whether the module delivers the required functionality. The development team monitors unit testing activity and makes necessary changes wherever required. A major emphasis is on the fact whether each unit or module works perfectly fine in isolation. That is, dependency should be least to ensure a robust module design.</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://cdn-anlbg.nitrocdn.com/dKKErbUyoNysjatCgltCzbTJJilTMwLi/assets/static/optimized/rev-d0d5d59/wp-content/uploads/sites/1/nggallery/postman/Unit-Testing-Vs-Integartion-Testing.png\" alt=\"Unit Testing Vs Integartion Testing\"/></figure>\n\n\n\n<p>On the other hand,\u00a0<em>API testing</em>\u00a0is basically\u00a0<em><strong>black box testing</strong></em>which is simply concerned with the final output of the\u00a0system under test. API tests are executed only after the build is ready and portray the system as a whole as it is the user interface that an end user will interact with.</p>\n\n\n\n<p>API testing primarily aims to test the business logic layer of the system\u2019s architecture. API testing is primarily handled by the QA team, which requires them to run any API on top of a particular build meant to serve a specific purpose.</p>\n\n\n\n<p><em><strong>API testing also tests the unit as part of a system, while unit testing typically tests the unit in relative isolation from the rest of the system</strong></em>. Hence API testing is also end to end testing. This simply means when we test the complete software in API testing then the modules which make that software are also tested, obviously. But when we do unit testing, we focus only on the functionality of that module and see its working which is completely isolated from the rest of the modules/software.</p>\n\n\n\n<h2>Area for covering your test</h2>\n\n\n\n<p>When we test any API through a tool, we face a lot of errors normally. These errors are not only related to only APIs but can vary from software error to server error. This makes the job of a software tester more important and wide than it seems. Since a software is built and delivered in steps, same goes for testing it. When a software is in development stage, the tests and cases are built accordingly. This helps the developers to see any errors of server or network etc. Same goes for any other stage of software such as production stage in which you evolve and upgrade those tests cases. The area for covering your tests should be as wide as possible. It should cover every little possibility of the failure so that the software is built of premium quality and feedback team receives minimum tickets.</p>\n\n\n\n<p>With this section, we conclude this tutorial here. Next in this course we will introduce you to the software postman and will download it on our systems. I hope you will enjoy this course with me.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>his tutorial is completely designed for you to understand Postman even though you have never heard of Postman or let say API. Since Postman is an API testing tool, we must know what is an API. So in this tutorial, we will explore the different topics around API such as What is an API API [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [285],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4997"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=4997"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4997/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4998,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4997/revisions/4998"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=4997"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=4997"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=4997"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 4999,
+    "date": "2021-05-27T11:30:54",
+    "date_gmt": "2021-05-27T11:30:54",
+    "guid": {
+      "rendered": "https://angular.foobrdigital.com/?p=4999"
+    },
+    "modified": "2021-05-27T11:30:54",
+    "modified_gmt": "2021-05-27T11:30:54",
+    "slug": "download-postman-and-install-on-windows-and-macos",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/download-postman-and-install-on-windows-and-macos/",
+    "title": {
+      "rendered": "Download Postman and Install On Windows and MacOS"
+    },
+    "content": {
+      "rendered": "\n<h2>Download and Install Postman</h2>\n\n\n\n<p>Since you now know about the application and have become familiar with its working, its time to install the application on your system. In this chapter we will cover&nbsp;<em><strong>How to Download and Install Postman on Windows Machine</strong></em>.</p>\n\n\n\n<p>Postman is available for&nbsp;<em><strong>Windows, Linux and Mac</strong></em>&nbsp;as a standalone application. You can install the application in two ways.</p>\n\n\n\n<ul><li><em><strong>As a Standalone Application.</strong></em></li><li><em><strong>As a Chrome Extension</strong></em></li></ul>\n\n\n\n<p>We will be discussing both the methods in detail.</p>\n\n\n\n<h3><em><strong>Download POSTMAN as a Standalone Application</strong></em></h3>\n\n\n\n<p>A native application means the application will not be supportive of any particular application on an operating system.&nbsp;<em>For example if you install an extension from chrome webstore then that application or extension will only run on chrome and no other browser.</em>&nbsp;A native application is like any software that you install like a game or IDM or any antivirus for instance. A native application takes support of just your operating system and not another application because they are written system specific and not application specific.</p>\n\n\n\n<p>1.Go to\u00a0<em><strong>https://www.getpostman.com/apps</strong></em></p>\n\n\n\n<p><img loading=\"lazy\" alt=\"Download and Install Postman\" width=\"994\" height=\"516\" src=\"https://cdn-anlbg.nitrocdn.com/dKKErbUyoNysjatCgltCzbTJJilTMwLi/assets/static/optimized/rev-d0d5d59/wp-content/uploads/sites/1/nggallery/postman/Install-Postman-0.png\"><br><em><strong>Note:&nbsp;</strong>If you are using windows then there is an option for downloading for 32 bit system and 64 bit system. If you are using 64 bit windows then select x64 and if you are using 32 bit system then select x86. Default value is x64.</em></p>\n\n\n\n<p>2) Choose the&nbsp;<em><strong>Operating System</strong></em>&nbsp;on which you want to download PostMan and click on \u201c<em><strong>Download</strong>\u201c</em>&nbsp;button. Since I have got Windows 64-bit machine, I am going to install&nbsp;<em><strong>x64-Windows</strong></em>.</p>\n\n\n\n<figure class=\"wp-block-image\"><a href=\"https://toolsqa.com/wp-content/uploads/2018/03/windows-download.png\"><img src=\"https://cdn-anlbg.nitrocdn.com/dKKErbUyoNysjatCgltCzbTJJilTMwLi/assets/static/optimized/rev-d0d5d59/wp-content/uploads/2018/03/windows-download.png\" alt=\"select OS for postman\" class=\"wp-image-30413\"/></a></figure>\n\n\n\n<p>3.&nbsp;Once you download the exe file, you will be need to install the application.&nbsp;Since I am using Chrome browser, the downloaded exe will appear at the bottom left of the browser.</p>\n\n\n\n<figure class=\"wp-block-image\"><a href=\"https://toolsqa.com/wp-content/uploads/2018/03/Download-Postman.png\"><img src=\"https://cdn-anlbg.nitrocdn.com/dKKErbUyoNysjatCgltCzbTJJilTMwLi/assets/static/optimized/rev-d0d5d59/wp-content/uploads/2018/03/Download-Postman.png\" alt=\"Postman Chrome\" class=\"wp-image-30416\"/></a></figure>\n\n\n\n<p>3) Click on the&nbsp;<em><strong>exe file</strong></em>&nbsp;to install it on the system. First it will install the POSTMAN application.<br><img alt=\"Install Postman 8\" src=\"https://cdn-anlbg.nitrocdn.com/dKKErbUyoNysjatCgltCzbTJJilTMwLi/assets/static/optimized/rev-d0d5d59/wp-content/uploads/sites/1/nggallery/postman/Install-Postman-1.png\"></p>\n\n\n\n<p>4) There is no further steps for installing. After completion, it will automatically start opening the PostMan tool.<br><img alt=\"Install Postman 8\" src=\"https://cdn-anlbg.nitrocdn.com/dKKErbUyoNysjatCgltCzbTJJilTMwLi/assets/static/optimized/rev-d0d5d59/wp-content/uploads/sites/1/nggallery/postman/Install-Postman-2.png\"><br>5) Once you have the application window up, click on&nbsp;<em><strong>Take me straight to the app</strong>.&nbsp;<strong>I\u2019ll create an account another time&nbsp;</strong></em>as highlighted. Alternatively, you can sign up with google but it does not matter at present.</p>\n\n\n\n<figure class=\"wp-block-image\"><a href=\"https://toolsqa.com/wp-content/uploads/2018/03/Postman-Installed-1.png\"><img src=\"https://cdn-anlbg.nitrocdn.com/dKKErbUyoNysjatCgltCzbTJJilTMwLi/assets/static/optimized/rev-d0d5d59/wp-content/uploads/2018/03/Postman-Installed-1.png\" alt=\"Postman Sign up\" class=\"wp-image-30418\"/></a></figure>\n\n\n\n<p>If you see this page then you have successfully installed Postman on your system.<br><a href=\"https://toolsqa.com/wp-content/uploads/2018/03/Postman-FirstPage.png\"></a></p>\n\n\n\n<h3><em><strong>Download POSTMAN as a Chrome Extension</strong></em></h3>\n\n\n\n<p>1)Go to&nbsp;<em><strong><a href=\"https://chrome.google.com/webstore/detail/postman/fhbjgbiflinjbdggehcddcbncdddomop?\">Chrome WebStore \u2013 PostMan Tool</a></strong></em>&nbsp;and click on&nbsp;<em><strong>Add To Chrome.</strong></em><br><img alt=\"Install Postman 8\" src=\"https://cdn-anlbg.nitrocdn.com/dKKErbUyoNysjatCgltCzbTJJilTMwLi/assets/static/optimized/rev-d0d5d59/wp-content/uploads/sites/1/nggallery/postman/Install-Postman-3.png\"></p>\n\n\n\n<p>2) This will display a<em><strong>&nbsp;pop up</strong></em>&nbsp;to add extension, click on&nbsp;<em><strong>Add app</strong></em>.<br><img alt=\"Install Postman 8\" src=\"https://cdn-anlbg.nitrocdn.com/dKKErbUyoNysjatCgltCzbTJJilTMwLi/assets/static/optimized/rev-d0d5d59/wp-content/uploads/sites/1/nggallery/postman/Install-Postman-4.png\"></p>\n\n\n\n<p>3) Now it will automatically open a&nbsp;<em><strong>Chrome Apps</strong></em>&nbsp;page, where it will display all the installed apps on your chrome browser.&nbsp;Simply click on the&nbsp;<em><strong>PostMan</strong></em>&nbsp;application.<br><img alt=\"Install Postman 8\" src=\"https://cdn-anlbg.nitrocdn.com/dKKErbUyoNysjatCgltCzbTJJilTMwLi/assets/static/optimized/rev-d0d5d59/wp-content/uploads/sites/1/nggallery/postman/Install-Postman-5.png\"></p>\n\n\n\n<p>4) It will take few seconds to start, hold on till then&nbsp;<img alt=\"\ud83d\ude42\" src=\"https://s.w.org/images/core/emoji/13.0.1/svg/1f642.svg\"><br><img alt=\"Install Postman 8\" src=\"https://cdn-anlbg.nitrocdn.com/dKKErbUyoNysjatCgltCzbTJJilTMwLi/assets/static/optimized/rev-d0d5d59/wp-content/uploads/sites/1/nggallery/postman/Install-Postman-6.png\"><br>5) Once done, you would see the PostMan application&nbsp;<em><strong>registration page</strong></em>. As mentioned above, we will ignore registration as of now but not to avoid,&nbsp;<em>Registration has its own benefits, as it always stores your data and which can be accessible from different machines and location</em>. But we will cover that later.<br><img alt=\"Install Postman 8\" src=\"https://cdn-anlbg.nitrocdn.com/dKKErbUyoNysjatCgltCzbTJJilTMwLi/assets/static/optimized/rev-d0d5d59/wp-content/uploads/sites/1/nggallery/postman/Install-Postman-7.png\"></p>\n\n\n\n<h3><em><strong>Why to prefer PostMan as a Stand Alone application</strong></em></h3>\n\n\n\n<p>Although Postman was introduced first as a chrome application and was powerful earlier on, we highly recommend downloading postman as an application for your operative system(native application) rather than as an extension for chrome.</p>\n\n\n\n<p><em><strong>There are two main reason for this.</strong></em></p>\n\n\n\n<ul><li><em>First of all, postman as an application for chrome does not support all the features that the native app&nbsp;has. For example proxy cannot be captured in chrome app. You need to install another extension called&nbsp;<strong>postman interceptor</strong>&nbsp;in order to work the proxy through the browser.&nbsp;A proxy server acts as an intermediary that captures the requests that you send through your browser to the server. Requests are anything like any web address or any search query or anything that asks for a response from server. For example, when you hit \u201cSearch\u201d in google after writing something in the search bar, it is an API request or you type www.google.co.in in the address bar, it is an API request. After installing postman interceptor only you can capture the requests that you send. Moreover, Postman features less menu options in its chrome app, only those which adhere to the chrome standards. Therefore you won\u2019t be able to enjoy every feature of Postman while using it as an chrome application.</em></li><li><em>&nbsp;The second reason is the main concern for us to not recommend you, download postman, for chrome. As stated on the Postman website, Postman builders have stopped the support for the chrome application. This in simple terms means that from January 2018 onwards, there will be no updates, no bug fixes, no improvements in the chrome application. The app that is currently available on the web store is the final application. Moreover, if you are stuck on any issue, there will be no one to resolve it from Postman. This step is taken by Postman after Google announced that it will be ending support for the Chrome apps for Windows, Linux and Mac.</em></li></ul>\n\n\n\n<p><img alt=\"Install Postman 8\" src=\"https://cdn-anlbg.nitrocdn.com/dKKErbUyoNysjatCgltCzbTJJilTMwLi/assets/static/optimized/rev-d0d5d59/wp-content/uploads/sites/1/nggallery/postman/Install-Postman-8.png\"><br>As it can be seen in the below image taken from the postman website, the last update for Chrome app was in 18 Oct, 2017. So, it is better that you install the Standalone application and the same will be used by us for this course.&nbsp;<a href=\"https://toolsqa.com/wp-content/uploads/2018/03/Chrome-disadvantages.png\"></a></p>\n\n\n\n<p>In the next chapter we will run through some basics and terminologies about the Postman.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Download and Install Postman Since you now know about the application and have become familiar with its working, its time to install the application on your system. In this chapter we will cover&nbsp;How to Download and Install Postman on Windows Machine. Postman is available for&nbsp;Windows, Linux and Mac&nbsp;as a standalone application. You can install the [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [285],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4999"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=4999"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4999/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 5000,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4999/revisions/5000"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=4999"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=4999"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=4999"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 5001,
+    "date": "2021-05-27T11:31:52",
+    "date_gmt": "2021-05-27T11:31:52",
+    "guid": {
+      "rendered": "https://angular.foobrdigital.com/?p=5001"
+    },
+    "modified": "2021-05-27T11:31:52",
+    "modified_gmt": "2021-05-27T11:31:52",
+    "slug": "postman-navigation",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/postman-navigation/",
+    "title": {
+      "rendered": "Postman Navigation"
+    },
+    "content": {
+      "rendered": "\n<h2>Postman Navigation</h2>\n\n\n\n<p>Now that we have installed Postman on our system, we will navigate through the UI of Postman in this Chapter. We will become familiar with the terminologies and features that Postman offers.</p>\n\n\n\n<p>Postman navigation can be divided into four UI structures as shown below.</p>\n\n\n\n<figure class=\"wp-block-image\"><a href=\"https://toolsqa.com/wp-content/uploads/sites/1/nggallery/postman/Navigation-2.png\"><img src=\"https://cdn-anlbg.nitrocdn.com/dKKErbUyoNysjatCgltCzbTJJilTMwLi/assets/static/optimized/rev-d0d5d59/wp-content/uploads/sites/1/nggallery/postman/thumbs/thumbs_Navigation-2.png\" alt=\"Postman Navigation\"/></a></figure>\n\n\n\n<ol><li><em><strong>Sidebar section</strong></em><ul><li><em><strong>History</strong></em></li><li><em><strong>Collections</strong></em></li></ul></li><li><em><strong>Header section</strong></em><ul><li><em><strong>New</strong></em></li><li><em><strong>Import</strong></em></li><li><em><strong>Interceptor</strong></em></li><li><em><strong>Sync</strong></em></li></ul></li><li><em><strong>Builder section :&nbsp;</strong>These items will help use create a new Request. We will learn about these items in details in the coming chapters</em><ul><li><em><strong>Tabs</strong></em></li><li><em><strong>HTTP Method type</strong></em></li><li><em><strong>URL bar</strong></em></li><li><em><strong>Header\u2019s list</strong></em></li></ul></li><li><em><strong>Response section :</strong></em>&nbsp;<em>It is filled only when to invoke a REST request. This section will be populated with the details of received Response. We will learn more about it in coming chapters. Now let us see individual sections in details.</em></li></ol>\n\n\n\n<h2>PostMan \u2013 Left Sidebar Section</h2>\n\n\n\n<p>Sidebar is a very important part of the Postman. Sidebar has two main parts or tabs which are&nbsp;<em><strong>History</strong>&nbsp;</em>and&nbsp;<em><strong>Collections</strong></em>.</p>\n\n\n\n<h3><em><strong>History Tab</strong></em></h3>\n\n\n\n<p>Postman records history of your API request just like any other web browser automatically. As soon as you invoke a REST request, it is saved in the history and can be seen below the&nbsp;<em><strong>History Tab.</strong></em>&nbsp;It comes handy when you have to search for some particular request that you entered in the past without entering again.</p>\n\n\n\n<figure class=\"wp-block-image\"><a href=\"https://toolsqa.com/wp-content/uploads/sites/1/nggallery/postman/History-2.png\"><img src=\"https://cdn-anlbg.nitrocdn.com/dKKErbUyoNysjatCgltCzbTJJilTMwLi/assets/static/optimized/rev-d0d5d59/wp-content/uploads/sites/1/nggallery/postman/thumbs/thumbs_History-2.png\" alt=\"History\"/></a></figure>\n\n\n\n<h3><em><strong>Collections</strong></em></h3>\n\n\n\n<p>The concept of grouping requests is called&nbsp;<em><strong>Collections</strong>&nbsp;</em>and each&nbsp;<strong>Collection</strong>&nbsp;is displayed under the&nbsp;<strong>Collection</strong>&nbsp;Tab. As shown in the image below. A collection in Postman can be imagined similar to a folder in your system. You create a folder, for example movies, and keep movies in it so that you know where all your movies are. Similarly in Postman we save the similar kind of requests under some collection name (that we define) and when we open any collection we get all the Requests under that heading, As shown in the below image</p>\n\n\n\n<figure class=\"wp-block-image\"><a href=\"https://toolsqa.com/wp-content/uploads/sites/1/nggallery/postman/Collections-1.png\"><img src=\"https://cdn-anlbg.nitrocdn.com/dKKErbUyoNysjatCgltCzbTJJilTMwLi/assets/static/optimized/rev-d0d5d59/wp-content/uploads/sites/1/nggallery/postman/thumbs/thumbs_Collections-1.png\" alt=\"Collections\"/></a></figure>\n\n\n\n<h2>Postman \u2013 Header Section</h2>\n\n\n\n<p>Below image shows just the Header of Postman application.</p>\n\n\n\n<figure class=\"wp-block-image\"><a href=\"https://toolsqa.com/wp-content/uploads/sites/1/nggallery/postman/header-2.png\"><img src=\"https://cdn-anlbg.nitrocdn.com/dKKErbUyoNysjatCgltCzbTJJilTMwLi/assets/static/optimized/rev-d0d5d59/wp-content/uploads/sites/1/nggallery/postman/thumbs/thumbs_header-2.png\" alt=\"header\"/></a></figure>\n\n\n\n<p>Header has following items</p>\n\n\n\n<h3><em><strong>New</strong></em></h3>\n\n\n\n<p>Choosing this option will let you choose what&nbsp;<em><strong>\u201cnew\u201d</strong></em>&nbsp;you want to start. For example, a collection would open the panel where you can enter a new collection to start and its corresponding requests. Selecting \u201c<em><strong>request</strong></em>\u201d in&nbsp;<em><strong>New&nbsp;</strong></em>will open the request panel where you can enter and save the requests in to the collection of your choice. New option lets you create the following:</p>\n\n\n\n<ul><li><em><strong>Request</strong></em></li><li><em><strong>Collection</strong></em></li><li><em><strong>Environment</strong></em></li><li><em><strong>Documentation</strong></em></li><li><em><strong>Mock Server</strong></em></li><li><em><strong>Monitor</strong></em></li></ul>\n\n\n\n<h3><em><strong>Import</strong></em></h3>\n\n\n\n<p>Import option lets you import files of different format. Importing means choosing the files located in your system or through a link and running it through Postman. As can be seen from the image it allows you to import a&nbsp;<em><strong>Postman Collection</strong></em>,&nbsp;<em><strong>Environment,</strong></em>&nbsp;<em><strong>Curl</strong>&nbsp;<strong>command</strong>&nbsp;</em>etc. Importing a collection is the most common among all.</p>\n\n\n\n<figure class=\"wp-block-image\"><a href=\"https://toolsqa.com/wp-content/uploads/sites/1/nggallery/postman/import-panel-2.png\"><img src=\"https://cdn-anlbg.nitrocdn.com/dKKErbUyoNysjatCgltCzbTJJilTMwLi/assets/static/optimized/rev-d0d5d59/wp-content/uploads/sites/1/nggallery/postman/thumbs/thumbs_import-panel-2.png\" alt=\"import panel\"/></a></figure>\n\n\n\n<h3><em><strong>Interceptor</strong></em></h3>\n\n\n\n<p>Recall we learnt that if you are installing the application from chrome then a separate interceptor is required for the proxy server. This interceptor is inbuilt in the native app. You can set proxy server here to capture all the API request that you send through your browser. A proxy server can be used to capture all the requests that you send through your browser or from your phone or any other system.</p>\n\n\n\n<figure class=\"wp-block-image\"><a href=\"https://toolsqa.com/wp-content/uploads/sites/1/nggallery/postman/interceptor-1.png\"><img src=\"https://cdn-anlbg.nitrocdn.com/dKKErbUyoNysjatCgltCzbTJJilTMwLi/assets/static/optimized/rev-d0d5d59/wp-content/uploads/sites/1/nggallery/postman/thumbs/thumbs_interceptor-1.png\" alt=\"interceptor\"/></a></figure>\n\n\n\n<h3><em><strong>Sync</strong></em></h3>\n\n\n\n<p>Sync option is for synchronizing the API requests that you have sent on any machine to the Postman cloud. When you are working in Postman and making changes or sending requests, if you&nbsp;<strong>Sync</strong>&nbsp;is on, it will automatically be saved in your&nbsp;<em><strong>Postman\u2019s cloud storage</strong></em>. This way you can have them saved and whenever you sign in on different machine to use&nbsp;<em><strong>Postman</strong></em>, they will automatically appear. This feature require you to sign in&nbsp; (If you did not during the installation part).</p>\n\n\n\n<figure class=\"wp-block-image\"><a href=\"https://toolsqa.com/wp-content/uploads/sites/1/nggallery/postman/Sync.png\"><img src=\"https://cdn-anlbg.nitrocdn.com/dKKErbUyoNysjatCgltCzbTJJilTMwLi/assets/static/optimized/rev-d0d5d59/wp-content/uploads/sites/1/nggallery/postman/thumbs/thumbs_Sync.png\" alt=\"Sync\"/></a></figure>\n\n\n\n<h2>Postman \u2013 Builder Section</h2>\n\n\n\n<p>A builder part of the&nbsp;<em><strong>Postman</strong>&nbsp;</em>is basically what a cpu is to a computer. It is the main part that controls all the functionalities and methods to be incorporated inside the API.</p>\n\n\n\n<figure class=\"wp-block-image\"><a href=\"https://toolsqa.com/wp-content/uploads/sites/1/nggallery/postman/Builder.png\"><img src=\"https://cdn-anlbg.nitrocdn.com/dKKErbUyoNysjatCgltCzbTJJilTMwLi/assets/static/optimized/rev-d0d5d59/wp-content/uploads/sites/1/nggallery/postman/thumbs/thumbs_Builder.png\" alt=\"Builder\"/></a></figure>\n\n\n\n<p>A builder part has the following main parts:</p>\n\n\n\n<ul><li><em><strong>Request Type</strong></em>:</li><li><em><strong>Endpoint Address Bar</strong></em>:</li><li><em><strong>Params</strong></em>: This option let the user define different<em><strong>&nbsp;Query Parameters</strong></em>&nbsp;for the request.</li></ul>\n\n\n\n<h3><strong><em>Request Type</em></strong></h3>\n\n\n\n<p>This is the request type method for the API. It indicates the type of\u00a0<strong>HTTP Request</strong>\u00a0that has been sent. There are different kinds of requests which we will discuss as we proceeds further, but just to know, there are four main types of requests namely\u00a0<em><strong>GET</strong></em>,\u00a0<em><strong>POST</strong></em>.\u00a0<em><strong>PUT</strong></em>\u00a0and\u00a0<em><strong>DELETE</strong></em>.</p>\n\n\n\n<h3><strong><em>Endpoint Address Bar</em></strong></h3>\n\n\n\n<p>This is the box, beside request type option, to enter the&nbsp;<em><strong>EndPoint</strong></em>&nbsp;(API). It acts just like a browser with the similar interface for New tab. We enter our required endpoint into the bar which is our main URL.</p>\n\n\n\n<h3><strong><em>Params</em></strong></h3>\n\n\n\n<p>Params is the parameter option which allows us to write the parameters of the URL. The parameters are embedded into a URL and are very important to get the desired result. They also help us in getting efficient usage of the memory and bandwidth. This will be discussed in a complete chapter later on.</p>\n\n\n\n<h3><strong><em>Authorization</em></strong></h3>\n\n\n\n<p>The authorization process verifies whether you have permission to access the data you want from the server. Not all data is available for everyone inside a company, so there lies the solution as Authorization. With the authorization, server first checks whether the data you are asking can be shown to you. If it can be, you get the desired response.</p>\n\n\n\n<h3><strong><em>Header</em></strong></h3>\n\n\n\n<p>A header in the HTTP request or response is the additional information that is needed to be conveyed between the client-server. HTTP headers are mainly intended for the communication between the server and client in both directions.</p>\n\n\n\n<h2>Postman \u2013 Response Section</h2>\n\n\n\n<p>A response box is the box which shows the response from the server that we receive after requesting through API. A response box has many option in it, which won\u2019t be feasible to explain it here in this chapter. In the coming chapters you will learn about the response, although if you want you can visit the chapter\u00a0<strong><em>here.\u00a0</em></strong></p>\n\n\n\n<figure class=\"wp-block-image\"><a href=\"https://toolsqa.com/wp-content/uploads/sites/1/nggallery/postman/Response_Box-1.png\"><img src=\"https://cdn-anlbg.nitrocdn.com/dKKErbUyoNysjatCgltCzbTJJilTMwLi/assets/static/optimized/rev-d0d5d59/wp-content/uploads/sites/1/nggallery/postman/thumbs/thumbs_Response_Box-1.png\" alt=\"Response_Box\"/></a></figure>\n\n\n\n<p>In the next chapter we will start our first steps in Postman.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Postman Navigation Now that we have installed Postman on our system, we will navigate through the UI of Postman in this Chapter. We will become familiar with the terminologies and features that Postman offers. Postman navigation can be divided into four UI structures as shown below. Sidebar section History Collections Header section New Import Interceptor [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [285],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/5001"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=5001"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/5001/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 5002,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/5001/revisions/5002"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=5001"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=5001"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=5001"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 5003,
+    "date": "2021-05-27T11:32:28",
+    "date_gmt": "2021-05-27T11:32:28",
+    "guid": {
+      "rendered": "https://angular.foobrdigital.com/?p=5003"
+    },
+    "modified": "2021-05-27T11:32:28",
+    "modified_gmt": "2021-05-27T11:32:28",
+    "slug": "create-new-request-in-postman",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/create-new-request-in-postman/",
+    "title": {
+      "rendered": "Create New Request in Postman"
+    },
+    "content": {
+      "rendered": "\n<h2>How to Create New Request in Postman?</h2>\n\n\n\n<p>Now, since we have installed Postman and have become familiar with the interface, it\u2019s time to start our first steps on Postman for which Postman is actually used for. To start with this tutorial, we will start with the&nbsp;<em><strong>Header&nbsp;</strong></em>part of the Postman and follow the steps.</p>\n\n\n\n<h3><em><strong>Create New Request in Postman</strong></em></h3>\n\n\n\n<p>1.Click on the&nbsp;<em><strong>NEW</strong>&nbsp;</em>option in the header part.</p>\n\n\n\n<figure class=\"wp-block-image\"><a href=\"https://toolsqa.com/wp-content/uploads/sites/1/nggallery/postman/New_Request-1.png\"><img src=\"https://cdn-anlbg.nitrocdn.com/dKKErbUyoNysjatCgltCzbTJJilTMwLi/assets/static/optimized/rev-d0d5d59/wp-content/uploads/sites/1/nggallery/postman/thumbs/thumbs_New_Request-1.png\" alt=\"Create New Request in Postman\"/></a></figure>\n\n\n\n<p>2. Click on&nbsp;<em><strong>Request.</strong></em></p>\n\n\n\n<figure class=\"wp-block-image\"><a href=\"https://toolsqa.com/wp-content/uploads/sites/1/nggallery/postman/Select_Request.png\"><img src=\"https://cdn-anlbg.nitrocdn.com/dKKErbUyoNysjatCgltCzbTJJilTMwLi/assets/static/optimized/rev-d0d5d59/wp-content/uploads/sites/1/nggallery/postman/thumbs/thumbs_Select_Request.png\" alt=\"Select_Request\"/></a></figure>\n\n\n\n<p>3. Enter a meaningful&nbsp;<em><strong>Request Name</strong></em>, like&nbsp;<strong><em>First Api</em></strong>&nbsp;we are using. You can also use the description about the API to remember it later about what that API did for other team mates and yourself, but it\u2019s optional and we won\u2019t be using that in this tutorial.</p>\n\n\n\n<figure class=\"wp-block-image\"><a href=\"https://toolsqa.com/wp-content/uploads/sites/1/nggallery/postman/Request_Name.png\"><img src=\"https://cdn-anlbg.nitrocdn.com/dKKErbUyoNysjatCgltCzbTJJilTMwLi/assets/static/optimized/rev-d0d5d59/wp-content/uploads/sites/1/nggallery/postman/thumbs/thumbs_Request_Name.png\" alt=\"Request_Name\"/></a></figure>\n\n\n\n<p>4. Enter a meaningful Collection name in the bottom panel, like&nbsp;<strong><em>First Collec</em></strong>&nbsp;we are using and select&nbsp;<em><strong>+Create Collection</strong></em>&nbsp;as shown. Press&nbsp;<em><strong>Save</strong></em>.</p>\n\n\n\n<figure class=\"wp-block-image\"><a href=\"https://toolsqa.com/wp-content/uploads/sites/1/nggallery/postman/First_Collection.png\"><img src=\"https://cdn-anlbg.nitrocdn.com/dKKErbUyoNysjatCgltCzbTJJilTMwLi/assets/static/optimized/rev-d0d5d59/wp-content/uploads/sites/1/nggallery/postman/thumbs/thumbs_First_Collection.png\" alt=\"First_Collection\"/></a></figure>\n\n\n\n<p>5. Select&nbsp;<em>Collections</em>&nbsp;tab in sidebar, then you will notice all the collections folders, select&nbsp;<em>First Collec</em>&nbsp;and then select&nbsp;<em>First Api</em>&nbsp;under the First Collec tab.</p>\n\n\n\n<figure class=\"wp-block-image\"><a href=\"https://toolsqa.com/wp-content/uploads/sites/1/nggallery/postman/First_Steps_Select_Request-1.png\"><img src=\"https://cdn-anlbg.nitrocdn.com/dKKErbUyoNysjatCgltCzbTJJilTMwLi/assets/static/optimized/rev-d0d5d59/wp-content/uploads/sites/1/nggallery/postman/thumbs/thumbs_First_Steps_Select_Request-1.png\" alt=\"First_Steps_Select_Request\"/></a></figure>\n\n\n\n<p>6. Enter&nbsp;<em><strong>www.google.com</strong>&nbsp;</em>in the&nbsp;<em><strong>Address Bar</strong></em>&nbsp;and press&nbsp;<em><strong>Send</strong></em>.</p>\n\n\n\n<figure class=\"wp-block-image\"><a href=\"https://toolsqa.com/wp-content/uploads/sites/1/nggallery/postman/Address_Bar-1.png\"><img src=\"https://cdn-anlbg.nitrocdn.com/dKKErbUyoNysjatCgltCzbTJJilTMwLi/assets/static/optimized/rev-d0d5d59/wp-content/uploads/sites/1/nggallery/postman/thumbs/thumbs_Address_Bar-1.png\" alt=\"Address_Bar\"/></a></figure>\n\n\n\n<p>7. Press&nbsp;<em><strong>Save</strong></em>&nbsp;if you wish to overwrite \u201cFirst Api\u201d or press the dropdown as shown and Save as a new request.</p>\n\n\n\n<figure class=\"wp-block-image\"><a href=\"https://toolsqa.com/wp-content/uploads/sites/1/nggallery/postman/Save_As-1.png\"><img src=\"https://cdn-anlbg.nitrocdn.com/dKKErbUyoNysjatCgltCzbTJJilTMwLi/assets/static/optimized/rev-d0d5d59/wp-content/uploads/sites/1/nggallery/postman/thumbs/thumbs_Save_As-1.png\" alt=\"Save_As\"/></a></figure>\n\n\n\n<p>The&nbsp;<em><strong>Save As</strong></em>&nbsp;option opens the same panel which opened through&nbsp;<em>New Request</em>&nbsp;at the start of this tutorial. It gives the option to enter the name and associate the request to some collection.</p>\n\n\n\n<p>This way you have created a Request and saved it under the desired collection. In the next tutorial we will send our first&nbsp;<em><strong>GET</strong>&nbsp;</em>request.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>How to Create New Request in Postman? Now, since we have installed Postman and have become familiar with the interface, it\u2019s time to start our first steps on Postman for which Postman is actually used for. To start with this tutorial, we will start with the&nbsp;Header&nbsp;part of the Postman and follow the steps. Create New [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [285],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/5003"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=5003"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/5003/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 5004,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/5003/revisions/5004"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=5003"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=5003"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=5003"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 5005,
+    "date": "2021-05-27T11:33:15",
+    "date_gmt": "2021-05-27T11:33:15",
+    "guid": {
+      "rendered": "https://angular.foobrdigital.com/?p=5005"
+    },
+    "modified": "2021-05-27T11:33:15",
+    "modified_gmt": "2021-05-27T11:33:15",
+    "slug": "get-requests-in-postman",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/get-requests-in-postman/",
+    "title": {
+      "rendered": "GET Requests in Postman"
+    },
+    "content": {
+      "rendered": "\n<p>Since we have now walked through Postman and seen\u00a0<em><strong>How to Create and Save a new Request in postman</strong></em>, it\u2019s time to get our hands on the first\u00a0<em><strong>GET Request in Postman</strong></em>. When we request from a client machine (User) to a server machine, we follow an architecture and HTTP Protocol. I suggest you go through the below tutorials to establish a nice understanding of\u00a0<em><strong>HTTP Protocol, Request &amp; Response</strong></em>. These can be viewed here:</p>\n\n\n\n<ul><li><em><strong>Client Server Architecture and HTTP Protocol</strong></em></li><li><em><strong>HTTP Request</strong></em></li><li><em><strong>HTTP Response</strong></em></li></ul>\n\n\n\n<p>Assuming you are now familiar with the HTTP protocols and architecture, we will now talk about one specific type of request which is a&nbsp;<em><strong>GET</strong>&nbsp;</em>request. A&nbsp;<em>GET</em>&nbsp;request is used to get the information from the server and does not have any side-effects on the server.&nbsp;<em>Side-effects mean there is no updation/deletion/addition of data on the server when you are making this type of request, you just request from the server and the server responds to the request.</em></p>\n\n\n\n<p>A&nbsp;<em>GET</em>&nbsp;request has all its information inside the&nbsp;<em><strong>URL</strong></em>, and since URL is visible all the time, it is advisable not to use this type of request while you send some sensitive information such as passwords.&nbsp;<em><strong>For example</strong>, when you press search after writing anything in the search box of google.com, you actually go for a GET request because there is no sensitive information and you are just requesting the page with search results, you notice the same search string in URL.</em></p>\n\n\n\n<p>In this image, as you can see, there is a drop-down button which has different types of request types according to the API need. As of now do not worry about all of these different<em><strong>\u00a0HTTP Requests</strong></em>, as we will cover each of these in this Postman Tutorial series. But for now, just focus on the GET Request.</p>\n\n\n\n<p>1. Select&nbsp;<strong>GET</strong>&nbsp;from the list of request types.&nbsp; &nbsp; &nbsp; &nbsp;<a href=\"https://toolsqa.com/wp-content/uploads/sites/1/nggallery/postman/Get_Request-3.png\"></a></p>\n\n\n\n<p>2. Enter&nbsp;<em><strong>www.google.com</strong></em>&nbsp;in the address bar as written in the above image and&nbsp;<em>Press</em>&nbsp;<em><strong>Send.&nbsp;</strong></em>Now, look at the&nbsp;<em><strong>Status Code.</strong></em>&nbsp; &nbsp; &nbsp;<a href=\"https://toolsqa.com/wp-content/uploads/sites/1/nggallery/postman/Status_Code_200-1.png\"></a></p>\n\n\n\n<p>Different status codes have different meanings and it does not matter whether it is a GEt request or any other type of request. In this scenario, we have status code&nbsp;<em><strong>200 OK</strong></em>&nbsp;which means that EndPoint is correct and it has returned the desired results. We will show some more status codes later.</p>\n\n\n\n<p>The colourful text inside the box below is the Response from the server. If you observe closely inside the response box you will see the page code has been sent to us. The above tab says&nbsp;<em><strong>Body</strong></em>. Body means you have selected to view the response body which is been shown inside the box. In Body, you will see three options.</p>\n\n\n\n<figure class=\"wp-block-image\"><a href=\"https://toolsqa.com/wp-content/uploads/sites/1/nggallery/postman/Pretty_Raw_Preview-2.png\"><img src=\"https://cdn-anlbg.nitrocdn.com/dKKErbUyoNysjatCgltCzbTJJilTMwLi/assets/static/optimized/rev-d0d5d59/wp-content/uploads/sites/1/nggallery/postman/thumbs/thumbs_Pretty_Raw_Preview-2.png\" alt=\"Pretty_Raw_Preview\"/></a></figure>\n\n\n\n<ul><li><em><strong>Pretty:&nbsp;</strong>In this code will be shown in a colorful manner with different keywords coloured differently and will be indented for some of the formats for good reading.</em></li><li><em><strong>Raw:&nbsp;</strong>Same as pretty part with no colours and in single lines.</em></li><li><em><strong>Preview:&nbsp;</strong>This shows the preview of the page that has been sent. Don\u2019t worry about the google doodle if it has not been loaded properly. Try any other website by your self.</em></li></ul>\n\n\n\n<p>A&nbsp;<em><strong>response</strong>&nbsp;</em>is a more detailed topic than it needs to be explained in this chapter. We will be explaining the response completely in the next chapter.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Since we have now walked through Postman and seen\u00a0How to Create and Save a new Request in postman, it\u2019s time to get our hands on the first\u00a0GET Request in Postman. When we request from a client machine (User) to a server machine, we follow an architecture and HTTP Protocol. I suggest you go through the [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [285],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/5005"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=5005"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/5005/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 5006,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/5005/revisions/5006"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=5005"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=5005"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=5005"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 5007,
+    "date": "2021-05-27T11:34:30",
+    "date_gmt": "2021-05-27T11:34:30",
+    "guid": {
+      "rendered": "https://angular.foobrdigital.com/?p=5007"
+    },
+    "modified": "2021-05-27T11:34:30",
+    "modified_gmt": "2021-05-27T11:34:30",
+    "slug": "response-in-postman",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/response-in-postman/",
+    "title": {
+      "rendered": "Response in Postman"
+    },
+    "content": {
+      "rendered": "\n<p>In the last tutorial we learnt about\u00a0<em><strong>Get Request in Postman</strong></em>. In this tutorial we will understand how to deal with\u00a0<em><strong>Response in Postman</strong></em>. It will be beneficial if you understand the underlying details of an\u00a0<em><strong>HTTP Request\u00a0</strong></em>and an<em>\u00a0<strong>HTTP Response.</strong></em></p>\n\n\n\n<h3><em><strong>What is Response?</strong></em></h3>\n\n\n\n<p>A&nbsp;<em><strong>R</strong><strong>esponse</strong></em>&nbsp;is a message that is received by the server in return to a&nbsp;<em><strong>Request</strong>&nbsp;</em>that we send. When we request something, the server acts upon the&nbsp;<em><strong>Request&nbsp;</strong></em>and sends back a packet of the requested information. A response depends on the request mainly. Every request has a different kind of response and it is very important that we extract useful information from all of the responses. Postman has a beautiful interface for response and is very user-friendly. We can see a lot of information in the Postman for any response without doing much effort, or any if I might say.</p>\n\n\n\n<h1>Understanding Response in Postman</h1>\n\n\n\n<p>Talking about&nbsp;<em><strong>Response in Postman,&nbsp;</strong></em>the Response user interface contains lots of different things. We will deal with them in detail in this tutorial. The user interface has the following information blocks</p>\n\n\n\n<ul><li><em><strong>Response Status and Information</strong></em></li><li><em><strong>Response Body</strong></em></li><li><em><strong>Response Cookies</strong></em></li><li><em><strong>Response Header</strong></em></li></ul>\n\n\n\n<p>Let\u2019s start by getting a response for&nbsp;<strong><em>www.google.com</em></strong>&nbsp;which looks like this:</p>\n\n\n\n<figure class=\"wp-block-image\"><a href=\"https://toolsqa.com/wp-content/uploads/sites/1/nggallery/postman/response_with_request.png\"><img src=\"https://cdn-anlbg.nitrocdn.com/dKKErbUyoNysjatCgltCzbTJJilTMwLi/assets/static/optimized/rev-d0d5d59/wp-content/uploads/sites/1/nggallery/postman/thumbs/thumbs_response_with_request.png\" alt=\"response_with_request\"/></a></figure>\n\n\n\n<h2>Response Status and Information</h2>\n\n\n\n<h3><em><strong>Status Code :</strong></em></h3>\n\n\n\n<p>A&nbsp;<em><strong>status code</strong></em>&nbsp;tells you the status of the request. There can be a lot of mistakes in the request and without looking at the status code, we might not always get what went wrong to our request. Sometimes, there can be a typing mistake in the URL or there can be a problem at the server side, status code help us know about what went wrong (if something went wrong). There are different status codes and each of them has a different meaning.</p>\n\n\n\n<p>You can learn about the complete list of status code\u00a0<strong><em>here</em></strong>.</p>\n\n\n\n<figure class=\"wp-block-image\"><a href=\"https://toolsqa.com/wp-content/uploads/sites/1/nggallery/postman/Status_Code_200_2-1.png\"><img src=\"https://cdn-anlbg.nitrocdn.com/dKKErbUyoNysjatCgltCzbTJJilTMwLi/assets/static/optimized/rev-d0d5d59/wp-content/uploads/sites/1/nggallery/postman/thumbs/thumbs_Status_Code_200_2-1.png\" alt=\"Status_Code_200_2\"/></a></figure>\n\n\n\n<p>Status code&nbsp;<em><strong>200 OK</strong></em>&nbsp;means that the request was correct and the desired response has been sent to the client. Now, change the url to&nbsp;<strong><em>http://restapi.demoqa.com/utilities/weatherfull/city/hyderabd&nbsp;.&nbsp;</em></strong>Press Send and see the status code now.</p>\n\n\n\n<figure class=\"wp-block-image\"><a href=\"https://toolsqa.com/wp-content/uploads/sites/1/nggallery/postman/400_Bad_Request.png\"><img src=\"https://cdn-anlbg.nitrocdn.com/dKKErbUyoNysjatCgltCzbTJJilTMwLi/assets/static/optimized/rev-d0d5d59/wp-content/uploads/sites/1/nggallery/postman/thumbs/thumbs_400_Bad_Request.png\" alt=\"400_Bad_Request\"/></a></figure>\n\n\n\n<p>It says&nbsp;<em><strong>400 BAD REQUEST</strong></em>. It is so because we have changed the name of the city from&nbsp;<em><strong>Hyderabad to Hyderabd</strong></em>. This means the request was not correct, hence the bad request response. Similarly, you can see other status codes also for different requests.</p>\n\n\n\n<h3><em><strong>Time</strong></em></h3>\n\n\n\n<p><em><strong>Time</strong></em>&nbsp;is the duration which the response took after we sent the request and received the response. This is very important sometimes because many projects have Service Level Agreements(SLA) for the time it should take a web service to return a response, this time can be a used to determine the SLA of the web service endpoint.</p>\n\n\n\n<figure class=\"wp-block-image\"><a href=\"https://toolsqa.com/wp-content/uploads/sites/1/nggallery/postman/Time.png\"><img src=\"https://cdn-anlbg.nitrocdn.com/dKKErbUyoNysjatCgltCzbTJJilTMwLi/assets/static/optimized/rev-d0d5d59/wp-content/uploads/sites/1/nggallery/postman/thumbs/thumbs_Time.png\" alt=\"Time\"/></a></figure>\n\n\n\n<p><em><strong>NOTE</strong></em>:&nbsp;<em>The time given here is not the actual time that the request will take. It is just approximate but almost what it would be because there are a lot of things that Postman do after getting a response such as formatting and dividing Headers and cookies separately. As the additional work by Postman can be roughly considered as a constant time&nbsp;<strong>(WebServiceTime + Constant processing time by Postman</strong>). Therefore, it is an approximate of the time and is proportional to what the actual time will be. So you can consider this as actual time as well.</em></p>\n\n\n\n<h3><em><strong>Size</strong></em></h3>\n\n\n\n<p><em><strong>Size</strong></em>&nbsp;is just the response size when it will be saved inside the memory. This response size is the size of complete response and headers and cookies and everything that has been sent along with the response.</p>\n\n\n\n<figure class=\"wp-block-image\"><a href=\"https://toolsqa.com/wp-content/uploads/sites/1/nggallery/postman/Size_Reponse.png\"><img src=\"https://cdn-anlbg.nitrocdn.com/dKKErbUyoNysjatCgltCzbTJJilTMwLi/assets/static/optimized/rev-d0d5d59/wp-content/uploads/sites/1/nggallery/postman/thumbs/thumbs_Size_Reponse.png\" alt=\"Size_Reponse\"/></a></figure>\n\n\n\n<p><em><strong>NOTE</strong></em>:&nbsp;<em>The response size that is shown in the Postman is approximate response size and not the exact size.</em></p>\n\n\n\n<h2>Response Body</h2>\n\n\n\n<p>A&nbsp;<em><strong>body</strong></em>&nbsp;depicts the body of the response, which is the main response content, that has been sent from the server. In this case as you can see it is a web page code being sent to us as a response. Now, there lies three ways ahead of us to look at this response:</p>\n\n\n\n<figure class=\"wp-block-image\"><a href=\"https://toolsqa.com/wp-content/uploads/sites/1/nggallery/postman/Body_Types.png\"><img src=\"https://cdn-anlbg.nitrocdn.com/dKKErbUyoNysjatCgltCzbTJJilTMwLi/assets/static/optimized/rev-d0d5d59/wp-content/uploads/sites/1/nggallery/postman/thumbs/thumbs_Body_Types.png\" alt=\"Body_Types\"/></a></figure>\n\n\n\n<h3><strong><em>Pretty</em></strong></h3>\n\n\n\n<p><em><strong>Pretty</strong></em>&nbsp;is a prettier version of the content being sent. The content is prettier as it is more readable. It has coloured key words and different colours have different meanings. This makes a code more readable and look nicer. This formatting is done by the Postman itself after getting the code.</p>\n\n\n\n<figure class=\"wp-block-image\"><a href=\"https://toolsqa.com/wp-content/uploads/sites/1/nggallery/postman/pretty_response-1.png\"><img src=\"https://cdn-anlbg.nitrocdn.com/dKKErbUyoNysjatCgltCzbTJJilTMwLi/assets/static/optimized/rev-d0d5d59/wp-content/uploads/sites/1/nggallery/postman/thumbs/thumbs_pretty_response-1.png\" alt=\"pretty_response\"/></a></figure>\n\n\n\n<h3><strong><em>Raw</em></strong></h3>\n\n\n\n<p>Once you click on Preview you will get just the plain view of the content, as received from the server. It is just a raw version of the code without any colourful keywords. By looking at this code you might get why the other code is called \u201c<em><strong>Pretty</strong></em>\u201c.</p>\n\n\n\n<figure class=\"wp-block-image\"><a href=\"https://toolsqa.com/wp-content/uploads/sites/1/nggallery/postman/raw_response.png\"><img src=\"https://cdn-anlbg.nitrocdn.com/dKKErbUyoNysjatCgltCzbTJJilTMwLi/assets/static/optimized/rev-d0d5d59/wp-content/uploads/sites/1/nggallery/postman/thumbs/thumbs_raw_response.png\" alt=\"raw_response\"/></a></figure>\n\n\n\n<h3><em><strong>Preview</strong></em></h3>\n\n\n\n<p>Preview of the code will show you the preview of the page, had the page been run inside a browser. Click on preview and you will see the exact page as you would have seen inside a browser. So this would let you know the response preview without visiting the browser.</p>\n\n\n\n<figure class=\"wp-block-image\"><a href=\"https://toolsqa.com/wp-content/uploads/sites/1/nggallery/postman/preview_response-1.png\"><img src=\"https://cdn-anlbg.nitrocdn.com/dKKErbUyoNysjatCgltCzbTJJilTMwLi/assets/static/optimized/rev-d0d5d59/wp-content/uploads/sites/1/nggallery/postman/thumbs/thumbs_preview_response-1.png\" alt=\"preview_response\"/></a></figure>\n\n\n\n<h3><em><strong>Format Type</strong></em></h3>\n\n\n\n<p>As discussed above, a request has a defined response to it as defined by the&nbsp;<em><strong>Content-Type</strong></em>&nbsp;header. That response can be in any format.&nbsp;<em>For example, in this case we have the response as a HTML code file</em>.</p>\n\n\n\n<figure class=\"wp-block-image\"><a href=\"https://toolsqa.com/wp-content/uploads/sites/1/nggallery/postman/Format_Type_HTML.png\"><img src=\"https://cdn-anlbg.nitrocdn.com/dKKErbUyoNysjatCgltCzbTJJilTMwLi/assets/static/optimized/rev-d0d5d59/wp-content/uploads/sites/1/nggallery/postman/thumbs/thumbs_Format_Type_HTML.png\" alt=\"Format_Type_HTML\"/></a></figure>\n\n\n\n<p>Postman is smart enough to detect the response type and show you in the desired format, but sometimes Postman can also make a mistake.&nbsp;<em>For example, use</em>&nbsp;<em><strong>http://restapi.demoqa.com/utilities/weatherfull/city/hyderabad</strong></em>&nbsp;to get a response.</p>\n\n\n\n<p>You will see that we have received a status code 200 and still there is no response. This is because Postman has failed to recognize the format of the response and is expecting a HTML file as seen in the dropdown.</p>\n\n\n\n<p>Select&nbsp;<em><strong>Text</strong></em>&nbsp;in dropdown and you will be able to see the response now.</p>\n\n\n\n<figure class=\"wp-block-image\"><a href=\"https://toolsqa.com/wp-content/uploads/sites/1/nggallery/postman/Format_Type_Text.png\"><img src=\"https://cdn-anlbg.nitrocdn.com/dKKErbUyoNysjatCgltCzbTJJilTMwLi/assets/static/optimized/rev-d0d5d59/wp-content/uploads/sites/1/nggallery/postman/thumbs/thumbs_Format_Type_Text.png\" alt=\"Format_Type_Text\"/></a></figure>\n\n\n\n<p>Sometimes, the server sends the response in two or more different formats. The type of response will be visible to its corresponding format type.</p>\n\n\n\n<p><strong>Note:</strong>&nbsp;<em>Content-Type header defines the format of the response. For e.g. the Content-Type header may say that the response is Json, however the content being sent is XML or a malformed Json. In that case Postman will not be able to do much. Take it as an exercise to understand why Postman is not able to understand the format of response returned by<strong>http://restapi.demoqa.com/utilities/weatherfull/city/hyderabad</strong></em></p>\n\n\n\n<h3><em><strong>Copy Response</strong></em></h3>\n\n\n\n<p>The icon with two rectangles that you see in the corner is used for copying the complete response to the clipboard which is very handy to send the response to your teammates or using afterwards.</p>\n\n\n\n<figure class=\"wp-block-image\"><a href=\"https://toolsqa.com/wp-content/uploads/sites/1/nggallery/postman/Copy_Response.png\"><img src=\"https://cdn-anlbg.nitrocdn.com/dKKErbUyoNysjatCgltCzbTJJilTMwLi/assets/static/optimized/rev-d0d5d59/wp-content/uploads/sites/1/nggallery/postman/thumbs/thumbs_Copy_Response.png\" alt=\"Copy_Response\"/></a></figure>\n\n\n\n<h2>Cookie</h2>\n\n\n\n<p>Cookies are the small files which are related to the server files (website pages). Once you visit a website for the first time, a cookie is downloaded on the client\u2019s machine. This cookie contains the information which can be used by the same website when you visit again. This helps the website to get you the specific response and specific information based on your last visit. In postman we can clearly see the cookies that have been sent from the server as a response. This makes it easy for the client to see what cookies are being saved inside his browser. We cannot manipulate this cookies since they are sent from server, Postman is used just to separate it from the response and have a clear view.</p>\n\n\n\n<figure class=\"wp-block-image\"><a href=\"https://toolsqa.com/wp-content/uploads/sites/1/nggallery/postman/Cookies.png\"><img src=\"https://cdn-anlbg.nitrocdn.com/dKKErbUyoNysjatCgltCzbTJJilTMwLi/assets/static/optimized/rev-d0d5d59/wp-content/uploads/sites/1/nggallery/postman/thumbs/thumbs_Cookies.png\" alt=\"Cookies\"/></a></figure>\n\n\n\n<h2>Header</h2>\n\n\n\n<p><em><strong>Headers</strong></em>&nbsp;in a HTTP request or response is the additional information that is transferred to the user or the server. In postman, the headers can be seen in the&nbsp;<em><strong>Headers</strong>&nbsp;</em>tab.</p>\n\n\n\n<figure class=\"wp-block-image\"><a href=\"https://toolsqa.com/wp-content/uploads/sites/1/nggallery/postman/Header_Response.png\"><img src=\"https://cdn-anlbg.nitrocdn.com/dKKErbUyoNysjatCgltCzbTJJilTMwLi/assets/static/optimized/rev-d0d5d59/wp-content/uploads/sites/1/nggallery/postman/thumbs/thumbs_Header_Response.png\" alt=\"Header_Response\"/></a></figure>\n\n\n\n<p>Once you click on header you can see different information such as below. Although, every entry in the Headers tab is a header item we will just take a look at the most important ones.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>In the last tutorial we learnt about\u00a0Get Request in Postman. In this tutorial we will understand how to deal with\u00a0Response in Postman. It will be beneficial if you understand the underlying details of an\u00a0HTTP Request\u00a0and an\u00a0HTTP Response. What is Response? A&nbsp;Response&nbsp;is a message that is received by the server in return to a&nbsp;Request&nbsp;that we send. [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [285],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/5007"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=5007"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/5007/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 5008,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/5007/revisions/5008"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=5007"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=5007"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=5007"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 5009,
+    "date": "2021-05-27T11:36:26",
+    "date_gmt": "2021-05-27T11:36:26",
+    "guid": {
+      "rendered": "https://angular.foobrdigital.com/?p=5009"
+    },
+    "modified": "2021-05-27T11:36:26",
+    "modified_gmt": "2021-05-27T11:36:26",
+    "slug": "request-parameters-in-postman",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/request-parameters-in-postman/",
+    "title": {
+      "rendered": "Request Parameters in Postman"
+    },
+    "content": {
+      "rendered": "\n<h3><em><strong>What are Parameters in Request?</strong></em></h3>\n\n\n\n<p>Request Parameters are part of the URL which is used to send additional data to the Server. Let us analyze a simple URL:</p>\n\n\n\n<p>In this URL Request parameter is represented by \u201cq=ToolsQA\u201d part of the URL. Request parameter starts with a question mark (?). Request parameters follow&nbsp;<em><strong>\u201cKey=Value\u201d</strong></em>&nbsp;data format. In our example&nbsp;<em><strong>\u201cq\u201d</strong></em>&nbsp;is the Key and&nbsp;<em><strong>\u201cToolsQA\u201d</strong></em>&nbsp;is the value. Server reads the Request parameter from the URL and sends a Response based on the Request Parameter. In our example Bing will return search results for ToolsQA. If you change the Value from&nbsp;<em><strong>ToolsQA</strong>&nbsp;</em>to&nbsp;<em><strong>DemoQA</strong></em>, you will get results for&nbsp;<em><strong>DemoQA</strong>&nbsp;</em>instead of ToolsQA. Which means that Server reads the Request parameter and responds based on that.</p>\n\n\n\n<p><em>In simpler words, let us say I designed a page which can show you the student list of a particular class. Now, the list will depend on the class you select, which will be passed in the URL as a parameter while the page I designed will be same for every class. I don\u2019t have to design many pages as many as there are classes. This way we improve the efficiency and usage at both the levels.</em></p>\n\n\n\n<p><em><strong>Parameters</strong></em>\u00a0can be passed in\u00a0<em><strong>GET Request</strong></em>, if you are not sure how to do a\u00a0<em>GET Request using Postman</em>, please take a look at the previous article\u00a0<em><strong>How to make a GET Request</strong></em>. Since, now you know how to make a GET Request, we will move ahead with sending parameters in a GET Request.</p>\n\n\n\n<p>Before talking about Parameters and understanding them clearly, we will send the url in our browser.</p>\n\n\n\n<p>1.Go to your browser and write&nbsp;<em><strong>www.google.com</strong></em>&nbsp;in your address bar</p>\n\n\n\n<figure class=\"wp-block-image\"><a href=\"https://toolsqa.com/wp-content/uploads/sites/1/nggallery/postman/url_browser.png\"><img src=\"https://cdn-anlbg.nitrocdn.com/dKKErbUyoNysjatCgltCzbTJJilTMwLi/assets/static/optimized/rev-d0d5d59/wp-content/uploads/sites/1/nggallery/postman/thumbs/thumbs_url_browser.png\" alt=\"Request Parameters in Postman\"/></a></figure>\n\n\n\n<p>2. You will see the response page from Google. Type&nbsp;<em><strong>ToolsQA</strong></em>&nbsp;in the search bar and press&nbsp;<em><strong>Google Search</strong></em>.</p>\n\n\n\n<figure class=\"wp-block-image\"><a href=\"https://toolsqa.com/wp-content/uploads/sites/1/nggallery/postman/Search_ToolsQA_browser.png\"><img src=\"https://cdn-anlbg.nitrocdn.com/dKKErbUyoNysjatCgltCzbTJJilTMwLi/assets/static/optimized/rev-d0d5d59/wp-content/uploads/sites/1/nggallery/postman/thumbs/thumbs_Search_ToolsQA_browser.png\" alt=\"Search_ToolsQA_browser\"/></a></figure>\n\n\n\n<p>Now you need to understand here that the page which shows the results will remain the same just the results will differ according to the search. You just now searched for ToolsQA, this serves as a parameter in the url to tell the server that we need the results of the ToolsQA specifically. The server responds according to the search parameter.</p>\n\n\n\n<p>A url consists of many parameters such as&nbsp;<em><strong>source id</strong></em>&nbsp;and&nbsp;<em><strong>encoding format</strong></em>&nbsp;etc. See the url below and you will see&nbsp;<em><strong>&amp;q=ToolsQA</strong></em>&nbsp;which is added in the url to tell the server.</p>\n\n\n\n<figure class=\"wp-block-image\"><a href=\"https://toolsqa.com/wp-content/uploads/sites/1/nggallery/postman/ToolsQA_Seach-1.png\"><img src=\"https://cdn-anlbg.nitrocdn.com/dKKErbUyoNysjatCgltCzbTJJilTMwLi/assets/static/optimized/rev-d0d5d59/wp-content/uploads/sites/1/nggallery/postman/thumbs/thumbs_ToolsQA_Seach-1.png\" alt=\"ToolsQA_Seach\"/></a></figure>\n\n\n\n<p><em><strong>Note</strong>: here&nbsp;<strong>\u201cq\u201d</strong>&nbsp;is the&nbsp;<strong>key</strong>&nbsp;represents&nbsp;<strong>query</strong>&nbsp;and&nbsp;<strong>ToolsQA</strong>&nbsp;is the&nbsp;<strong>value</strong>&nbsp;of the key or&nbsp;<strong>search term</strong>&nbsp;for the query.</em></p>\n\n\n\n<p>Now, we will try to achieve the same results through Postman.</p>\n\n\n\n<h2>Request Parameters in Postman</h2>\n\n\n\n<p>1.Just prepare a\u00a0<em><strong>GET Request in Postman</strong></em>\u00a0with the URL\u00a0<em>www.google.com/search</em>\u00a0and then click on\u00a0<em><strong>Params.</strong></em></p>\n\n\n\n<figure class=\"wp-block-image\"><a href=\"https://toolsqa.com/wp-content/uploads/sites/1/nggallery/postman/params-3.png\"><img src=\"https://cdn-anlbg.nitrocdn.com/dKKErbUyoNysjatCgltCzbTJJilTMwLi/assets/static/optimized/rev-d0d5d59/wp-content/uploads/sites/1/nggallery/postman/thumbs/thumbs_params-3.png\" alt=\"params\"/></a></figure>\n\n\n\n<p>2. Write the following things written under&nbsp;<em><strong>Key-Value pair</strong></em>&nbsp;as shown. Again&nbsp;<em><strong>q</strong></em>&nbsp;stands for&nbsp;<em><strong>query</strong></em>&nbsp;here and ToolsQA is the search term. Now press&nbsp;<em><strong>Send</strong></em>.</p>\n\n\n\n<figure class=\"wp-block-image\"><a href=\"https://toolsqa.com/wp-content/uploads/sites/1/nggallery/postman/Q_Params-1.png\"><img src=\"https://cdn-anlbg.nitrocdn.com/dKKErbUyoNysjatCgltCzbTJJilTMwLi/assets/static/optimized/rev-d0d5d59/wp-content/uploads/sites/1/nggallery/postman/thumbs/thumbs_Q_Params-1.png\" alt=\"Q_Params\"/></a></figure>\n\n\n\n<p>3. Look at the preview, you would see that instead of the google home page we have received a response for a specific search query which is&nbsp;<em><strong>ToolsQA</strong></em>. Instead of ToolsQA you could write anything and receive it\u2019s response. This indicates that we have passed some information (<em>Parameters</em>)&nbsp; about the result we wish to see.</p>\n\n\n\n<figure class=\"wp-block-image\"><a href=\"https://toolsqa.com/wp-content/uploads/sites/1/nggallery/postman/Search_ToolsQA.png\"><img src=\"https://cdn-anlbg.nitrocdn.com/dKKErbUyoNysjatCgltCzbTJJilTMwLi/assets/static/optimized/rev-d0d5d59/wp-content/uploads/sites/1/nggallery/postman/thumbs/thumbs_Search_ToolsQA.png\" alt=\"Search_ToolsQA\"/></a></figure>\n\n\n\n<p><em><strong>NOTE</strong></em>:&nbsp;<em>As discussed above, you can see that different search queries give different results but the page design remains the same, just the content differs.</em></p>\n\n\n\n<h3><em><strong>Multiple Parameters</strong></em></h3>\n\n\n\n<p>You can also use&nbsp;<em><strong>multiple parameters</strong></em>&nbsp;inside a single query. As we discussed above while sending the search query as&nbsp;<em>ToolsQA</em>, there are many parameters that are sent in the url.&nbsp;<em>ToolsQA</em>&nbsp;was for the results that were to be shown, another parameter such as encoding format is also used to tell the server in which format can the result be encoded and sent to the client. In the above example the default encoding format used is UTF-8.</p>\n\n\n\n<p>See at the above image and focus on just the url sent to the server</p>\n\n\n\n<figure class=\"wp-block-image\"><a href=\"https://toolsqa.com/wp-content/uploads/sites/1/nggallery/postman/multiple_params_browser.png\"><img src=\"https://cdn-anlbg.nitrocdn.com/dKKErbUyoNysjatCgltCzbTJJilTMwLi/assets/static/optimized/rev-d0d5d59/wp-content/uploads/sites/1/nggallery/postman/thumbs/thumbs_multiple_params_browser.png\" alt=\"multiple_params_browser\"/></a></figure>\n\n\n\n<p>In the above url wherever you see&nbsp;<em><strong>&amp;</strong></em>&nbsp;it must be succeeded by a parameter such as<em><strong>&nbsp;&amp;ie=UTF-8</strong>&nbsp;</em>means<em><strong>&nbsp;ie</strong></em>&nbsp;is a&nbsp;<em>key</em>&nbsp;<em>parameter</em>&nbsp;with a&nbsp;<em>value</em>&nbsp;<em>UTF-8</em>. You can write each of the parameter that you see above in the postman and send a request with multiple parameter.</p>\n\n\n\n<figure class=\"wp-block-image\"><a href=\"https://toolsqa.com/wp-content/uploads/sites/1/nggallery/postman/Multiple_Params.png\"><img src=\"https://cdn-anlbg.nitrocdn.com/dKKErbUyoNysjatCgltCzbTJJilTMwLi/assets/static/optimized/rev-d0d5d59/wp-content/uploads/sites/1/nggallery/postman/thumbs/thumbs_Multiple_Params.png\" alt=\"Multiple_Params\"/></a></figure>\n\n\n\n<p>These parameters are not for our use to study in detail. Even if you change the parameters, the changes reflected will not be seen on the page and you will still get the same response as before because all these parameters are for internal activities in the server such as logging the submission.</p>\n\n\n\n<h3><em><strong>Separating parameters from URL</strong></em></h3>\n\n\n\n<p>If you are wondering how to separate a given complete URL with its parameters to use in Postman then Postman has it sorted out for you. You do not need to worry about the parameters in a URL. You can simply paste the URL and Postman will fill the parameters itself.</p>\n\n\n\n<p><em>For example, copy and paste this URL inside your postman like shown below</em>&nbsp;<strong><em>https://www.google.co.in/search?q=toolsqa&amp;oq=toolsqa&amp;aqs=chrome..69i57j69i60l5.2885j0j4&amp;sourceid=chrome&amp;ie=UTF-8</em></strong></p>\n\n\n\n<p>Now click on&nbsp;<strong>Params</strong>&nbsp;and you can see that everything is sorted out itself and the parameters are as in above image (more or less).</p>\n\n\n\n<figure class=\"wp-block-image\"><img alt=\"Multiple_Params\"/></figure>\n\n\n\n<h3><em><strong>Copy parameters to another Postman Request</strong></em></h3>\n\n\n\n<p>Another interesting feature about&nbsp;<em>Params</em>&nbsp;is that Postman removes the headache of remembering and entering the same parameters again and again to every query, instead it lets you enter once and forget about entering the same parameters again.&nbsp;<em>For example, let say you have to run the same query that we just run but with few less parameters.</em>&nbsp;For achieving the same,</p>\n\n\n\n<p>1.Click on&nbsp;<em><strong>Bulk Edit</strong>,</em>&nbsp;you will see the list of all parameters</p>\n\n\n\n<figure class=\"wp-block-image\"><a href=\"https://toolsqa.com/wp-content/uploads/sites/1/nggallery/postman/Bulk_Edit.png\"><img src=\"https://cdn-anlbg.nitrocdn.com/dKKErbUyoNysjatCgltCzbTJJilTMwLi/assets/static/optimized/rev-d0d5d59/wp-content/uploads/sites/1/nggallery/postman/thumbs/thumbs_Bulk_Edit.png\" alt=\"Bulk_Edit\"/></a></figure>\n\n\n\n<p>2. Copy everything</p>\n\n\n\n<figure class=\"wp-block-image\"><a href=\"https://toolsqa.com/wp-content/uploads/sites/1/nggallery/postman/Bulk_Edit_Panel.png\"><img src=\"https://cdn-anlbg.nitrocdn.com/dKKErbUyoNysjatCgltCzbTJJilTMwLi/assets/static/optimized/rev-d0d5d59/wp-content/uploads/sites/1/nggallery/postman/thumbs/thumbs_Bulk_Edit_Panel.png\" alt=\"Bulk_Edit_Panel\"/></a></figure>\n\n\n\n<p>3. Open new tab and write your url which is&nbsp;<em><strong>www.google.com/search</strong></em>&nbsp;in this case</p>\n\n\n\n<figure class=\"wp-block-image\"><a href=\"https://toolsqa.com/wp-content/uploads/sites/1/nggallery/postman/writing_url.png\"><img src=\"https://cdn-anlbg.nitrocdn.com/dKKErbUyoNysjatCgltCzbTJJilTMwLi/assets/static/optimized/rev-d0d5d59/wp-content/uploads/sites/1/nggallery/postman/thumbs/thumbs_writing_url.png\" alt=\"writing_url\"/></a></figure>\n\n\n\n<p>4. Click on&nbsp;<em><strong>Params</strong></em>, then&nbsp;<em><strong>Bulk Edit</strong></em></p>\n\n\n\n<figure class=\"wp-block-image\"><a href=\"https://toolsqa.com/wp-content/uploads/sites/1/nggallery/postman/bulk_edit_again.png\"><img src=\"https://cdn-anlbg.nitrocdn.com/dKKErbUyoNysjatCgltCzbTJJilTMwLi/assets/static/optimized/rev-d0d5d59/wp-content/uploads/sites/1/nggallery/postman/thumbs/thumbs_bulk_edit_again.png\" alt=\"bulk_edit_again\"/></a></figure>\n\n\n\n<p>5.&nbsp;<em><strong>Paste</strong></em>&nbsp;everything you copied in the editor and&nbsp;Click on&nbsp;<em><strong>Key-Value</strong></em>&nbsp;edit</p>\n\n\n\n<figure class=\"wp-block-image\"><a href=\"https://toolsqa.com/wp-content/uploads/sites/1/nggallery/postman/Key_Value_Edit.png\"><img src=\"https://cdn-anlbg.nitrocdn.com/dKKErbUyoNysjatCgltCzbTJJilTMwLi/assets/static/optimized/rev-d0d5d59/wp-content/uploads/sites/1/nggallery/postman/thumbs/thumbs_Key_Value_Edit.png\" alt=\"Key_Value_Edit\"/></a></figure>\n\n\n\n<p>Here you will see every parameter has been adjusted automatically to the new request.</p>\n\n\n\n<figure class=\"wp-block-image\"><a href=\"https://toolsqa.com/wp-content/uploads/sites/1/nggallery/postman/Param_Automatic.png\"><img src=\"https://cdn-anlbg.nitrocdn.com/dKKErbUyoNysjatCgltCzbTJJilTMwLi/assets/static/optimized/rev-d0d5d59/wp-content/uploads/sites/1/nggallery/postman/thumbs/thumbs_Param_Automatic.png\" alt=\"Param_Automatic\"/></a></figure>\n\n\n\n<p>This makes Postman really very efficient while using the parameter option and leaves us out of the context of its complexity. Parameter is a very important part of a URL and readers are recommended to observe the different parameters in a URL for better learning and understanding, whereas this was all about parameters usage inside Postman. Next we will see about the response in Postman.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>What are Parameters in Request? Request Parameters are part of the URL which is used to send additional data to the Server. Let us analyze a simple URL: In this URL Request parameter is represented by \u201cq=ToolsQA\u201d part of the URL. Request parameter starts with a question mark (?). Request parameters follow&nbsp;\u201cKey=Value\u201d&nbsp;data format. In our [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [285],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/5009"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=5009"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/5009/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 5010,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/5009/revisions/5010"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=5009"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=5009"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=5009"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 5011,
+    "date": "2021-05-27T11:38:54",
+    "date_gmt": "2021-05-27T11:38:54",
+    "guid": {
+      "rendered": "https://angular.foobrdigital.com/?p=5011"
+    },
+    "modified": "2021-05-27T11:38:54",
+    "modified_gmt": "2021-05-27T11:38:54",
+    "slug": "post-request-using-postman",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/post-request-using-postman/",
+    "title": {
+      "rendered": "POST Request using Postman"
+    },
+    "content": {
+      "rendered": "\n<h2>POST Request using Postman</h2>\n\n\n\n<p>In the previous tutorials, we have learnt about how to send a&nbsp;<a href=\"https://toolsqa.com/postman/get-request-in-postman/\"><strong><em>GET Request</em></strong></a>&nbsp;and we also learnt about the&nbsp;<a href=\"https://toolsqa.com/postman/request-parameters-in-postman/\"><em><strong>Request Parameters</strong></em></a>. From our Rest basics we already know what an&nbsp;<em><strong><a href=\"https://toolsqa.com/client-server/http-request/\" target=\"_blank\" rel=\"noreferrer noopener\">HTTP Request</a></strong>&nbsp;and&nbsp;<strong><a href=\"https://toolsqa.com/client-server/http-response/\" target=\"_blank\" rel=\"noreferrer noopener\">HTTP Response</a></strong></em>&nbsp;is.If you have not read these two tutorials yet, please do that before proceeding. In this chapter we will focus on another type of request method which is&nbsp;<em><strong>POST Request in Postman</strong></em>.</p>\n\n\n\n<h3><strong><em>What is a POST Request?</em></strong></h3>\n\n\n\n<p>A&nbsp;<em><strong>POST</strong>&nbsp;</em>is an&nbsp;<em><strong>HTTP Verb&nbsp;</strong></em>similar to a&nbsp;<strong>GET</strong>&nbsp;request, this specifies that a client is posting data on the given&nbsp;<strong>Endpoint</strong>. A&nbsp;<em><strong>POST</strong>&nbsp;</em>request is a method that is used when we need to send some additional information inside the body of the request to the server. When we send a POST request we generally intend to have some modification at the server such as&nbsp;<strong><em>updation, deletion or addition</em></strong>.&nbsp;<em><strong>One of the classic example of a POST request is the Login page. When you first Sign Up for anything, let say Facebook, you send your personal information such as password to the server. The server creates a new account with the same details and that account is added permanently on the Facebook server</strong></em><strong>.</strong>&nbsp;You just created a new resource on to the server.&nbsp;<em><strong>POST</strong>&nbsp;</em>requests are very popular and are mostly used whenever you are sending some sensitive information such as submitting a form or sending sensitive information to the server.</p>\n\n\n\n<p>In this tutorial we will explore different features of&nbsp;<em><strong>POST</strong>&nbsp;Requests</em>&nbsp;and how we can create them in Postman. Before we will try to use an example to get a clear idea about a&nbsp;<em><strong>POST</strong>&nbsp;Request</em>.</p>\n\n\n\n<h3><strong><em>POST Request in Postman</em></strong></h3>\n\n\n\n<p>Every&nbsp;<em><strong>REST</strong>&nbsp;<strong>endpoint</strong></em>&nbsp;has its own&nbsp;<em><strong>HTTP verb</strong></em>&nbsp;associated with it. If an endpoint specifies that it should be called using POST http verb, then clients are bound to call the Endpoint with&nbsp;<em><strong>POST HTTP verb</strong></em>&nbsp;only. Lets first check what happens when we request&nbsp;<em>GET</em>&nbsp;method instead of&nbsp;<em><strong>POST&nbsp;</strong></em>method for a&nbsp;<em><strong>POST Endpoint</strong></em>. Also to check that what happens when we do&nbsp;<em><strong>POST</strong>&nbsp;Request</em>&nbsp;without&nbsp;<em><strong>Body</strong></em>.</p>\n\n\n\n<h5><em><strong>GET Request on POST Endpoint</strong></em></h5>\n\n\n\n<p>1.Use the API&nbsp;<strong><em>http://restapi.demoqa.com/customer/register</em></strong>&nbsp;(<em>This API is used for registering a new customer</em>) in the Postman endpoint bar and press&nbsp;<em><strong>Send</strong></em>. Make sure that&nbsp;<strong>GET</strong>&nbsp;is selected in the Method type drop down.</p>\n\n\n\n<figure class=\"wp-block-image\"><a href=\"https://toolsqa.com/wp-content/uploads/sites/1/nggallery/postman/Customer_API_Example.png\"><img src=\"https://cdn-anlbg.nitrocdn.com/dKKErbUyoNysjatCgltCzbTJJilTMwLi/assets/static/optimized/rev-d0d5d59/wp-content/uploads/sites/1/nggallery/postman/thumbs/thumbs_Customer_API_Example.png\" alt=\"POST Request in Postman\"/></a></figure>\n\n\n\n<p>2. See the HTTP status code, it will be&nbsp;<em><strong>405 Method not allowed.&nbsp;</strong></em>Which means that we are hitting the endpoint with incorrect method type. Below image shows the details.</p>\n\n\n\n<figure class=\"wp-block-image\"><a href=\"https://toolsqa.com/wp-content/uploads/sites/1/nggallery/postman/IncorrectMethodTypeStatusCode.png\"><img src=\"https://cdn-anlbg.nitrocdn.com/dKKErbUyoNysjatCgltCzbTJJilTMwLi/assets/static/optimized/rev-d0d5d59/wp-content/uploads/sites/1/nggallery/postman/thumbs/thumbs_IncorrectMethodTypeStatusCode.png\" alt=\"IncorrectMethodTypeStatusCode\"/></a></figure>\n\n\n\n<p>3. See the response below under&nbsp;<em><strong>Body</strong>&nbsp;</em>tab and focus on&nbsp;<em><strong>fault error</strong></em>.</p>\n\n\n\n<figure class=\"wp-block-image\"><a href=\"https://toolsqa.com/wp-content/uploads/sites/1/nggallery/postman/Customer_API_Example_Response.png\"><img src=\"https://cdn-anlbg.nitrocdn.com/dKKErbUyoNysjatCgltCzbTJJilTMwLi/assets/static/optimized/rev-d0d5d59/wp-content/uploads/sites/1/nggallery/postman/thumbs/thumbs_Customer_API_Example_Response.png\" alt=\"Customer_API_Example_Response\"/></a></figure>\n\n\n\n<p>It means that the method type we used is not valid and another method type is expected. So we will try to change that and see if we get the correct response.</p>\n\n\n\n<h5><em><strong>POST Request without Body</strong></em></h5>\n\n\n\n<p>1. Change the method type to&nbsp;<em><strong>POST</strong></em>&nbsp;and press&nbsp;<em><strong>SEND</strong></em></p>\n\n\n\n<figure class=\"wp-block-image\"><a href=\"https://toolsqa.com/wp-content/uploads/sites/1/nggallery/postman/Customer_API_Example_Change_Method_Type-1.png\"><img src=\"https://cdn-anlbg.nitrocdn.com/dKKErbUyoNysjatCgltCzbTJJilTMwLi/assets/static/optimized/rev-d0d5d59/wp-content/uploads/sites/1/nggallery/postman/thumbs/thumbs_Customer_API_Example_Change_Method_Type-1.png\" alt=\"Customer_API_Example_Change_Method_Type\"/></a></figure>\n\n\n\n<p>2. Now, look at the&nbsp;<strong><em>Response Body</em></strong>&nbsp;and&nbsp;<strong><em>Response Status code</em></strong>.</p>\n\n\n\n<figure class=\"wp-block-image\"><a href=\"https://toolsqa.com/wp-content/uploads/sites/1/nggallery/postman/Customer_API_Example_POST_Response.png\"><img src=\"https://cdn-anlbg.nitrocdn.com/dKKErbUyoNysjatCgltCzbTJJilTMwLi/assets/static/optimized/rev-d0d5d59/wp-content/uploads/sites/1/nggallery/postman/thumbs/thumbs_Customer_API_Example_POST_Response.png\" alt=\"Customer_API_Example_POST_Response\"/></a></figure>\n\n\n\n<p><em><strong>Fault</strong></em><em><strong>&nbsp;Invalid Post Request</strong></em>&nbsp;means that the&nbsp;<em><strong>post data that we entered is not valid</strong></em>. Recall that we add the information inside the body of the request, so we need to enter something into the request body and see if that format matches the format expected. Also, you can see at the status code which says&nbsp;<em><strong>400 BAD Request</strong></em>. It means that the request parameters are not matching the server parameters to get a response.</p>\n\n\n\n<h5><em><strong>Post Request in Postman</strong></em></h5>\n\n\n\n<p>1. Now let us add a&nbsp;<strong><em>Request&nbsp;Body</em></strong>&nbsp;to our POST request. Every Endpoint will be document with what kind of Method type and the format of body that it expects. Let us see what body this request expects and how to add it. For that click on<em><strong>&nbsp;Body</strong></em>&nbsp;tab.</p>\n\n\n\n<figure class=\"wp-block-image\"><a href=\"https://toolsqa.com/wp-content/uploads/sites/1/nggallery/postman/Customer_API_Example_Body.png\"><img src=\"https://cdn-anlbg.nitrocdn.com/dKKErbUyoNysjatCgltCzbTJJilTMwLi/assets/static/optimized/rev-d0d5d59/wp-content/uploads/sites/1/nggallery/postman/thumbs/thumbs_Customer_API_Example_Body.png\" alt=\"Customer_API_Example_Body\"/></a></figure>\n\n\n\n<p>2. Click on raw and select format type as&nbsp;<em><strong>JSON</strong></em>, since we have to send in correct format which the server expects.</p>\n\n\n\n<figure class=\"wp-block-image\"><a href=\"https://toolsqa.com/wp-content/uploads/sites/1/nggallery/postman/Raw_Json_Select-1.png\"><img src=\"https://cdn-anlbg.nitrocdn.com/dKKErbUyoNysjatCgltCzbTJJilTMwLi/assets/static/optimized/rev-d0d5d59/wp-content/uploads/sites/1/nggallery/postman/thumbs/thumbs_Raw_Json_Select-1.png\" alt=\"Raw_Json_Select\"/></a></figure>\n\n\n\n<p>3.This endpoint expects a&nbsp;<em><strong>Json</strong>&nbsp;</em>body which contains the details of the new user. Below is a sample&nbsp;<em><strong>Json</strong></em>&nbsp;body. Copy and Paste the following in the body tab of Postman.</p>\n\n\n\n<p><em>{</em></p>\n\n\n\n<p><em>&nbsp; &nbsp;\u201cFirstName\u201d : \u201cvalue\u201d</em></p>\n\n\n\n<p><em>&nbsp; &nbsp;\u201cLastName\u201d : \u201cvalue\u201d,</em></p>\n\n\n\n<p><em>&nbsp; &nbsp;\u201cUserName\u201d : \u201cvalue\u201d,</em></p>\n\n\n\n<p><em>&nbsp; &nbsp;\u201cPassword\u201d : \u201cvalue\u201d,</em></p>\n\n\n\n<p><em>&nbsp; &nbsp;\u201cEmail\u201d&nbsp; &nbsp; &nbsp; &nbsp; : \u201cValue\u201d</em></p>\n\n\n\n<p><em>&nbsp;}</em></p>\n\n\n\n<p>Change the attribute&nbsp;<em><strong>value</strong></em>&nbsp;to any value you want (take reference from the below image).</p>\n\n\n\n<figure class=\"wp-block-image\"><a href=\"https://toolsqa.com/wp-content/uploads/sites/1/nggallery/postman/Customer_API_Example_JSON_String.png\"><img src=\"https://cdn-anlbg.nitrocdn.com/dKKErbUyoNysjatCgltCzbTJJilTMwLi/assets/static/optimized/rev-d0d5d59/wp-content/uploads/sites/1/nggallery/postman/thumbs/thumbs_Customer_API_Example_JSON_String.png\" alt=\"Customer_API_Example_JSON_String\"/></a></figure>\n\n\n\n<p>4. Press&nbsp;<em><strong>Send</strong>&nbsp;</em>and see the&nbsp;<em>Response Body</em>&nbsp;and&nbsp;<em>Response Status</em>.</p>\n\n\n\n<figure class=\"wp-block-image\"><a href=\"https://toolsqa.com/wp-content/uploads/sites/1/nggallery/postman/Customer_API_Example_User_Already_Exist.png\"><img src=\"https://cdn-anlbg.nitrocdn.com/dKKErbUyoNysjatCgltCzbTJJilTMwLi/assets/static/optimized/rev-d0d5d59/wp-content/uploads/sites/1/nggallery/postman/thumbs/thumbs_Customer_API_Example_User_Already_Exist.png\" alt=\"Customer_API_Example_User_Already_Exist\"/></a></figure>\n\n\n\n<p>The error&nbsp;<strong><em>Fault User Already Exits&nbsp;</em></strong>means that in the database, the similar entry has already been created by you or anyone else earlier. Where as if you see that the&nbsp;<em>Response Status</em>&nbsp;is&nbsp;<em><strong>200 OK</strong></em>, which means that server accepted the request and sent back a success response. We can also infer from this that the response body was correct and server was able to interpret the response body. Now in this API Request, Email and Username should be unique. So you can change those values (any one will also work).</p>\n\n\n\n<p>If the values are unique, you will get this response</p>\n\n\n\n<figure class=\"wp-block-image\"><a href=\"https://toolsqa.com/wp-content/uploads/sites/1/nggallery/postman/Customer_API_Example_Success.png\"><img src=\"https://cdn-anlbg.nitrocdn.com/dKKErbUyoNysjatCgltCzbTJJilTMwLi/assets/static/optimized/rev-d0d5d59/wp-content/uploads/sites/1/nggallery/postman/thumbs/thumbs_Customer_API_Example_Success.png\" alt=\"Customer_API_Example_Success\"/></a></figure>\n\n\n\n<p><em><strong>Operation completed successfully</strong></em>&nbsp;means that your&nbsp;<strong><em>entry has been created successfully in the database</em>.</strong></p>\n\n\n\n<p>So, by this example, it is clear that whenever we need to send a&nbsp;<em>POST request</em>, it should be accompanied with the Body. The body should be in correct format and with correct keys to get a correct response from the server. Now, we will learn in detail about every feature of Post request in Postman.</p>\n\n\n\n<h2>Different ways to send the data in a POST Request in Postman</h2>\n\n\n\n<p>As we discussed earlier, sending a POST request means sending a request with the data wrapped inside the body of the request. There can be different types of data and similarly, there are different ways of sending a data. As you will follow these steps, you will learn in detail about it.</p>\n\n\n\n<p>1.Select the method request type as&nbsp;<strong><em>POST</em></strong>&nbsp;in the builder as shown.</p>\n\n\n\n<figure class=\"wp-block-image\"><a href=\"https://toolsqa.com/wp-content/uploads/sites/1/nggallery/postman/Post_Method.png\"><img src=\"https://cdn-anlbg.nitrocdn.com/dKKErbUyoNysjatCgltCzbTJJilTMwLi/assets/static/optimized/rev-d0d5d59/wp-content/uploads/sites/1/nggallery/postman/thumbs/thumbs_Post_Method.png\" alt=\"Post_Method\"/></a></figure>\n\n\n\n<p>As soon as you select the POST request type in Postman you will see that the option Body is enabled which has different options to send the data inside the body. These options are:</p>\n\n\n\n<ul><li><em><strong>Form-data</strong></em></li><li><em><strong>X-www-form-urlencoded</strong></em></li><li><em><strong>Raw</strong></em></li><li><em><strong>Binary</strong></em></li></ul>\n\n\n\n<figure class=\"wp-block-image\"><a href=\"https://toolsqa.com/wp-content/uploads/sites/1/nggallery/postman/Body_Request_Types.png\"><img src=\"https://cdn-anlbg.nitrocdn.com/dKKErbUyoNysjatCgltCzbTJJilTMwLi/assets/static/optimized/rev-d0d5d59/wp-content/uploads/sites/1/nggallery/postman/thumbs/thumbs_Body_Request_Types.png\" alt=\"Body_Request_Types\"/></a></figure>\n\n\n\n<h3><em><strong>Form Data</strong></em></h3>\n\n\n\n<p><em>Form data</em>&nbsp;as the name suggests is used to send the data that you are wrapping inside the form like the details you enter when you fill a form. These details are sent by writing them as&nbsp;<strong><em>KEY-VALUE</em></strong>&nbsp;pairs where the key is the \u201c<em><strong>name</strong></em>\u201d of the entry you are sending and&nbsp;<em><strong>value</strong>&nbsp;</em>is it\u2019s value. The following steps will make it clear.</p>\n\n\n\n<p>1.Select&nbsp;<em><strong>form-data</strong></em></p>\n\n\n\n<figure class=\"wp-block-image\"><a href=\"https://toolsqa.com/wp-content/uploads/sites/1/nggallery/postman/form_data.png\"><img src=\"https://cdn-anlbg.nitrocdn.com/dKKErbUyoNysjatCgltCzbTJJilTMwLi/assets/static/optimized/rev-d0d5d59/wp-content/uploads/sites/1/nggallery/postman/thumbs/thumbs_form_data.png\" alt=\"form_data\"/></a></figure>\n\n\n\n<p>2. Add the following&nbsp;<em>KEY-VALUE</em>&nbsp;pair</p>\n\n\n\n<ul><li><em><strong>First name</strong>: Harish</em></li><li><em><strong>Last name</strong>:&nbsp; Rajora</em></li></ul>\n\n\n\n<figure class=\"wp-block-image\"><a href=\"https://toolsqa.com/wp-content/uploads/sites/1/nggallery/postman/form_data_fill.png\"><img src=\"https://cdn-anlbg.nitrocdn.com/dKKErbUyoNysjatCgltCzbTJJilTMwLi/assets/static/optimized/rev-d0d5d59/wp-content/uploads/sites/1/nggallery/postman/thumbs/thumbs_form_data_fill.png\" alt=\"form_data_fill\"/></a></figure>\n\n\n\n<p>Here, first name is the field of some form (text field here) that is needed to be enter and&nbsp;<em><strong>Harish</strong></em>&nbsp;is it\u2019s value i.e. the value the user has entered. Similarly goes for Last name id.</p>\n\n\n\n<h3><em><strong>x-www-form-urlencoded</strong></em></h3>\n\n\n\n<p><em>Form data</em>&nbsp;and&nbsp;<strong>x-www-form-urlencoded&nbsp;</strong>are very similar. They both are used for almost the same purposes. But the difference between the form data and&nbsp;<em><strong>x-www-form-urlencoded</strong></em>&nbsp;is that the url will be encoded when sent through&nbsp;<em><strong>x-www-form-urlencoded</strong></em>. Encoded means the data which is sent will be encoded to different characters so that it is unrecognizable even if it is under attack.</p>\n\n\n\n<figure class=\"wp-block-image\"><a href=\"https://toolsqa.com/wp-content/uploads/sites/1/nggallery/postman/x-www-form-urlencoded.png\"><img src=\"https://cdn-anlbg.nitrocdn.com/dKKErbUyoNysjatCgltCzbTJJilTMwLi/assets/static/optimized/rev-d0d5d59/wp-content/uploads/sites/1/nggallery/postman/thumbs/thumbs_x-www-form-urlencoded.png\" alt=\"x-www-form-urlencoded\"/></a></figure>\n\n\n\n<h3><em><strong>Raw</strong></em></h3>\n\n\n\n<p>Raw is the most used part or option while sending the body in the POST method. It is important from the point of view of Postman. Raw means the body message is shown as a stream of bits representing the request body. These bits will be interpreted as a string server.</p>\n\n\n\n<p>1. Click on the dropdown besides&nbsp;<em><strong>binary</strong></em>&nbsp;and there can be seen all the options in which you can send the request</p>\n\n\n\n<figure class=\"wp-block-image\"><a href=\"https://toolsqa.com/wp-content/uploads/sites/1/nggallery/postman/Select_Raw_Method.png\"><img src=\"https://cdn-anlbg.nitrocdn.com/dKKErbUyoNysjatCgltCzbTJJilTMwLi/assets/static/optimized/rev-d0d5d59/wp-content/uploads/sites/1/nggallery/postman/thumbs/thumbs_Select_Raw_Method.png\" alt=\"Select_Raw_Method\"/></a></figure>\n\n\n\n<p>2. Click on&nbsp;<em><strong>JSON(application/json)</strong></em></p>\n\n\n\n<figure class=\"wp-block-image\"><a href=\"https://toolsqa.com/wp-content/uploads/sites/1/nggallery/postman/Raw_Json_Select.png\"><img src=\"https://cdn-anlbg.nitrocdn.com/dKKErbUyoNysjatCgltCzbTJJilTMwLi/assets/static/optimized/rev-d0d5d59/wp-content/uploads/sites/1/nggallery/postman/thumbs/thumbs_Raw_Json_Select.png\" alt=\"Raw_Json_Select\"/></a></figure>\n\n\n\n<p>3. In the editor below copy and paste this</p>\n\n\n\n<p><em>{</em></p>\n\n\n\n<p><em>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \u201cfirst name\u201d: \u201cHarish\u201d,</em></p>\n\n\n\n<p><em>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; \u201clast name\u201d: \u201cRajora\u201d</em></p>\n\n\n\n<p><em>}</em></p>\n\n\n\n<figure class=\"wp-block-image\"><a href=\"https://toolsqa.com/wp-content/uploads/sites/1/nggallery/postman/Raw_Type_Json.png\"><img src=\"https://cdn-anlbg.nitrocdn.com/dKKErbUyoNysjatCgltCzbTJJilTMwLi/assets/static/optimized/rev-d0d5d59/wp-content/uploads/sites/1/nggallery/postman/thumbs/thumbs_Raw_Type_Json.png\" alt=\"Raw_Type_Json\"/></a></figure>\n\n\n\n<p>This is the same data that was sent previously with form-data but instead it is now sent with the JSON format.</p>\n\n\n\n<h3><em><strong>Binary</strong></em></h3>\n\n\n\n<p>Binary is designed to send the information in a format that cannot be entered manually. Since everything in a computer is converted to binary, we use these options which cannot be written manually such as an image, a file etc. To use this option</p>\n\n\n\n<p>1.Click on&nbsp;<em><strong>binary</strong></em>, a&nbsp;<em>CHOOSE FILES</em>&nbsp;option will be available</p>\n\n\n\n<figure class=\"wp-block-image\"><a href=\"https://toolsqa.com/wp-content/uploads/sites/1/nggallery/postman/Binary_Choose_File.png\"><img src=\"https://cdn-anlbg.nitrocdn.com/dKKErbUyoNysjatCgltCzbTJJilTMwLi/assets/static/optimized/rev-d0d5d59/wp-content/uploads/sites/1/nggallery/postman/thumbs/thumbs_Binary_Choose_File.png\" alt=\"Binary_Choose_File\"/></a></figure>\n\n\n\n<p>2. Choose any file, such as an image file.</p>\n\n\n\n<figure class=\"wp-block-image\"><a href=\"https://toolsqa.com/wp-content/uploads/sites/1/nggallery/postman/Binary_File_Chosen.png\"><img src=\"https://cdn-anlbg.nitrocdn.com/dKKErbUyoNysjatCgltCzbTJJilTMwLi/assets/static/optimized/rev-d0d5d59/wp-content/uploads/sites/1/nggallery/postman/thumbs/thumbs_Binary_File_Chosen.png\" alt=\"Binary_File_Chosen\"/></a></figure>\n\n\n\n<p><em><strong>Note</strong></em>:&nbsp;<em>If you wish to send to the server some data along with the file then it can also be done in the form-data</em>.</p>\n\n\n\n<p>Click on the&nbsp;<em><strong>form-data</strong></em></p>\n\n\n\n<figure class=\"wp-block-image\"><a href=\"https://toolsqa.com/wp-content/uploads/sites/1/nggallery/postman/form_data_2.png\"><img src=\"https://cdn-anlbg.nitrocdn.com/dKKErbUyoNysjatCgltCzbTJJilTMwLi/assets/static/optimized/rev-d0d5d59/wp-content/uploads/sites/1/nggallery/postman/thumbs/thumbs_form_data_2.png\" alt=\"form_data_2\"/></a></figure>\n\n\n\n<p>Enter&nbsp;<em><strong>file</strong></em>&nbsp;as a key</p>\n\n\n\n<figure class=\"wp-block-image\"><a href=\"https://toolsqa.com/wp-content/uploads/sites/1/nggallery/postman/file_key_form_data.png\"><img src=\"https://cdn-anlbg.nitrocdn.com/dKKErbUyoNysjatCgltCzbTJJilTMwLi/assets/static/optimized/rev-d0d5d59/wp-content/uploads/sites/1/nggallery/postman/thumbs/thumbs_file_key_form_data.png\" alt=\"file_key_form_data\"/></a></figure>\n\n\n\n<p>and you will see a hidden drop-down which says Text as default. You can choose any file format and then select the file from the system.</p>\n\n\n\n<p>Always remember what your server is expecting. You cannot send another format than what your server expects, otherwise there will be no response or incorrect response which can obviously be seen by the status code of the response. So now, we have learnt about the POST method and how to use it in Postman. We will move on to the next tutorial now which is&nbsp;<em><strong>Collections</strong></em>.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>POST Request using Postman In the previous tutorials, we have learnt about how to send a&nbsp;GET Request&nbsp;and we also learnt about the&nbsp;Request Parameters. From our Rest basics we already know what an&nbsp;HTTP Request&nbsp;and&nbsp;HTTP Response&nbsp;is.If you have not read these two tutorials yet, please do that before proceeding. In this chapter we will focus on another [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [285],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/5011"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=5011"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/5011/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 5012,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/5011/revisions/5012"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=5011"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=5011"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=5011"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  }
+]

@@ -1,51 +1,51 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { ThemeProvider } from "@/components/theme-provider";
-import AppContextProvider from "./context/app-context";
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { ThemeProvider } from '@/components/theme-provider';
+import AppContextProvider from './context/app-context';
 
-import AppLayout from "./layouts/layout";
-import NestedContentDetail from "./screens/nested-content-detail";
-import DetailContentLayout from "./screens/detail-content-layout";
-import DetailContent from "./components/detail-content";
-import { Toaster } from "@/components/ui/toaster";
-import NestedCourseContent from "./components/nested-course-content";
-import CoursePage from "./screens/course-page";
+import AppLayout from './layouts/layout';
+import NestedContentDetail from './screens/nested-content-detail';
+import DetailContentLayout from './screens/detail-content-layout';
+import DetailContent from './components/detail-content';
+import { Toaster } from '@/components/ui/toaster';
+import NestedCourseContent from './components/nested-course-content';
+import CoursePage from './screens/course-page';
 
-import QuizDetail from "./screens/quiz-detail";
+import QuizDetail from './screens/quiz-detail';
 import InterviewDeatil, {
   loader as interviewsLoader,
-} from "./screens/interview-deatil";
+} from './screens/interview-deatil';
 
-import { loader as quizLoader } from "./components/quiz";
+import { loader as quizLoader } from './components/quiz';
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: '/',
     element: <AppLayout />,
   },
   {
-    path: "course/content/:slug",
+    path: 'course/content/:slug',
     element: <DetailContentLayout />,
     children: [],
   },
   {
-    path: "course/content/:slug/nested_content/:slug/content",
+    path: 'course/content/:slug/nested_content/:slug/content',
     element: <NestedContentDetail />,
   },
   {
-    path: "course/content/:slug/nested_content/:slug/content/detail-content/:slug",
+    path: 'course/content/:slug/nested_content/:slug/content/detail-content/:slug',
     element: <CoursePage />,
   },
   {
-    path: "course/content/:slug/detail-content/:slug",
+    path: 'course/content/:slug/detail-content/:slug',
     element: <CoursePage />,
   },
   {
-    path: "course/:slug/quiz",
+    path: 'course/:slug/quiz',
     element: <QuizDetail />,
     loader: quizLoader,
   },
   {
-    path: "course/:slug/interview/questions",
+    path: 'course/:slug/interview/questions',
     element: <InterviewDeatil />,
     loader: interviewsLoader,
   },

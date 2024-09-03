@@ -1,0 +1,302 @@
+[
+  {
+    "id": 4740,
+    "date": "2021-02-27T10:48:38",
+    "date_gmt": "2021-02-27T10:48:38",
+    "guid": {
+      "rendered": "http://angular.foobrdigital.com/?p=4740"
+    },
+    "modified": "2021-02-27T10:48:38",
+    "modified_gmt": "2021-02-27T10:48:38",
+    "slug": "intro-9",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/intro-9/",
+    "title": {
+      "rendered": "Intro"
+    },
+    "content": {
+      "rendered": "\n<p>Angular has built-in support to help prevent two common HTTP vulnerabilities, cross-site request forgery (CSRF or XSRF) and cross-site script inclusion (XSSI). Both of these must be mitigated primarily on the server side, but Angular provides helpers to make integration on the client side easier.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Angular has built-in support to help prevent two common HTTP vulnerabilities, cross-site request forgery (CSRF or XSRF) and cross-site script inclusion (XSSI). Both of these must be mitigated primarily on the server side, but Angular provides helpers to make integration on the client side easier.</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [256],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4740"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=4740"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4740/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4741,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4740/revisions/4741"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=4740"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=4740"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=4740"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 4739,
+    "date": "2021-02-27T10:49:08",
+    "date_gmt": "2021-02-27T10:49:08",
+    "guid": {
+      "rendered": "http://angular.foobrdigital.com/?p=4739"
+    },
+    "modified": "2021-02-27T10:49:08",
+    "modified_gmt": "2021-02-27T10:49:08",
+    "slug": "cross-site-request-forgery",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/cross-site-request-forgery/",
+    "title": {
+      "rendered": "Cross-site request forgery"
+    },
+    "content": {
+      "rendered": "\n<p>In a cross-site request forgery (CSRF or XSRF), an attacker tricks the user into visiting a different web page (such as&nbsp;<code>evil.com</code>) with malignant code that secretly sends a malicious request to the application&#8217;s web server (such as&nbsp;<code>example-bank.com</code>).</p>\n\n\n\n<p>Assume the user is logged into the application at&nbsp;<code>example-bank.com</code>. The user opens an email and clicks a link to&nbsp;<code>evil.com</code>, which opens in a new tab.</p>\n\n\n\n<p>The&nbsp;<code>evil.com</code>&nbsp;page immediately sends a malicious request to&nbsp;<code>example-bank.com</code>. Perhaps it&#8217;s a request to transfer money from the user&#8217;s account to the attacker&#8217;s account. The browser automatically sends the&nbsp;<code>example-bank.com</code>&nbsp;cookies (including the authentication cookie) with this request.</p>\n\n\n\n<p>If the&nbsp;<code>example-bank.com</code>&nbsp;server lacks XSRF protection, it can&#8217;t tell the difference between a legitimate request from the application and the forged request from&nbsp;<code>evil.com</code>.</p>\n\n\n\n<p>To prevent this, the application must ensure that a user request originates from the real application, not from a different site. The server and client must cooperate to thwart this attack.</p>\n\n\n\n<p>In a common anti-XSRF technique, the application server sends a randomly generated authentication token in a cookie. The client code reads the cookie and adds a custom request header with the token in all subsequent requests. The server compares the received cookie value to the request header value and rejects the request if the values are missing or don&#8217;t match.</p>\n\n\n\n<p>This technique is effective because all browsers implement the&nbsp;<em>same origin policy</em>. Only code from the website on which cookies are set can read the cookies from that site and set custom headers on requests to that site. That means only your application can read this cookie token and set the custom header. The malicious code on&nbsp;<code>evil.com</code>&nbsp;can&#8217;t.</p>\n\n\n\n<p>Angular&#8217;s\u00a0<code>HttpClient</code>\u00a0has built-in support for the client-side half of this technique. Read about it more in the\u00a0HttpClient guide.</p>\n\n\n\n<p>For information about CSRF at the Open Web Application Security Project (OWASP), see\u00a0Cross-Site Request Forgery (CSRF)\u00a0and\u00a0Cross-Site Request Forgery (CSRF) Prevention Cheat Sheet. The Stanford University paper\u00a0Robust Defenses for Cross-Site Request Forgery\u00a0is a rich source of detail.</p>\n\n\n\n<p>See also Dave Smith&#8217;s easy-to-understand\u00a0talk on XSRF at AngularConnect 2016.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>In a cross-site request forgery (CSRF or XSRF), an attacker tricks the user into visiting a different web page (such as&nbsp;evil.com) with malignant code that secretly sends a malicious request to the application&#8217;s web server (such as&nbsp;example-bank.com). Assume the user is logged into the application at&nbsp;example-bank.com. The user opens an email and clicks a link [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [256],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4739"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=4739"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4739/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4742,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4739/revisions/4742"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=4739"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=4739"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=4739"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 4738,
+    "date": "2021-02-27T10:49:29",
+    "date_gmt": "2021-02-27T10:49:29",
+    "guid": {
+      "rendered": "http://angular.foobrdigital.com/?p=4738"
+    },
+    "modified": "2021-02-27T10:49:29",
+    "modified_gmt": "2021-02-27T10:49:29",
+    "slug": "cross-site-script-inclusion-xssi",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/cross-site-script-inclusion-xssi/",
+    "title": {
+      "rendered": "Cross-site script inclusion (XSSI)"
+    },
+    "content": {
+      "rendered": "\n<p>Cross-site script inclusion, also known as JSON vulnerability, can allow an attacker&#8217;s website to read data from a JSON API. The attack works on older browsers by overriding native JavaScript object constructors, and then including an API URL using a&nbsp;<code>&lt;script&gt;</code>&nbsp;tag.</p>\n\n\n\n<p>This attack is only successful if the returned JSON is executable as JavaScript. Servers can prevent an attack by prefixing all JSON responses to make them non-executable, by convention, using the well-known string&nbsp;<code>\")]}',\\n\"</code>.</p>\n\n\n\n<p>Angular&#8217;s\u00a0<code>HttpClient</code>\u00a0library recognizes this convention and automatically strips the string\u00a0<code>\")]}',\\n\"</code>\u00a0from all responses before further parsing.</p>\n\n\n\n<p>For more information, see the XSSI section of this\u00a0Google web security blog post.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Cross-site script inclusion, also known as JSON vulnerability, can allow an attacker&#8217;s website to read data from a JSON API. The attack works on older browsers by overriding native JavaScript object constructors, and then including an API URL using a&nbsp;&lt;script&gt;&nbsp;tag. This attack is only successful if the returned JSON is executable as JavaScript. Servers can [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [256],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4738"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=4738"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4738/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4743,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4738/revisions/4743"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=4738"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=4738"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=4738"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  }
+]

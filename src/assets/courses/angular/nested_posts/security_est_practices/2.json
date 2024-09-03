@@ -1,0 +1,902 @@
+[
+  {
+    "id": 4715,
+    "date": "2021-02-27T10:39:09",
+    "date_gmt": "2021-02-27T10:39:09",
+    "guid": {
+      "rendered": "http://angular.foobrdigital.com/?p=4715"
+    },
+    "modified": "2021-02-27T10:39:09",
+    "modified_gmt": "2021-02-27T10:39:09",
+    "slug": "intro-8",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/intro-8/",
+    "title": {
+      "rendered": "Intro"
+    },
+    "content": {
+      "rendered": "\n<p><a href=\"https://en.wikipedia.org/wiki/Cross-site_scripting\">Cross-site scripting (XSS)</a>&nbsp;enables attackers to inject malicious code into web pages. Such code can then, for example, steal user data (in particular, login data) or perform actions to impersonate the user. This is one of the most common attacks on the web.</p>\n\n\n\n<p>To block XSS attacks, you must prevent malicious code from entering the DOM (Document Object Model). For example, if attackers can trick you into inserting a&nbsp;<code>&lt;script&gt;</code>&nbsp;tag in the DOM, they can run arbitrary code on your website. The attack isn&#8217;t limited to&nbsp;<code>&lt;script&gt;</code>&nbsp;tags\u2014many elements and properties in the DOM allow code execution, for example,&nbsp;<code>&lt;img onerror=\"...\"&gt;</code>&nbsp;and&nbsp;<code>&lt;a href=\"javascript:...\"&gt;</code>. If attacker-controlled data enters the DOM, expect security vulnerabilities.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Cross-site scripting (XSS)&nbsp;enables attackers to inject malicious code into web pages. Such code can then, for example, steal user data (in particular, login data) or perform actions to impersonate the user. This is one of the most common attacks on the web. To block XSS attacks, you must prevent malicious code from entering the DOM [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [263],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4715"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=4715"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4715/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4725,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4715/revisions/4725"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=4715"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=4715"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=4715"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 4716,
+    "date": "2021-02-27T10:39:30",
+    "date_gmt": "2021-02-27T10:39:30",
+    "guid": {
+      "rendered": "http://angular.foobrdigital.com/?p=4716"
+    },
+    "modified": "2021-02-27T10:39:30",
+    "modified_gmt": "2021-02-27T10:39:30",
+    "slug": "angulars-cross-site-scripting-security-model",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/angulars-cross-site-scripting-security-model/",
+    "title": {
+      "rendered": "Angular\u2019s cross-site scripting security model"
+    },
+    "content": {
+      "rendered": "\n<p>To systematically block XSS bugs, Angular treats all values as untrusted by default. When a value is inserted into the DOM from a template binding, or interpolation, Angular sanitizes and escapes untrusted values. If a value was already sanitized outside of Angular and is considered safe, you can communicate this to Angular by marking the&nbsp;<a href=\"https://angular.io/guide/security#bypass-security-apis\">value as trusted</a>.</p>\n\n\n\n<p>Unlike values to be used for rendering, Angular templates are considered trusted by default, and should be treated as executable code. Never generate templates by concatenating user input and template syntax. Doing this would enable attackers to\u00a0inject arbitrary code\u00a0into your application. To prevent these vulnerabilities, always use the default\u00a0AOT template compiler\u00a0in production deployments.</p>\n\n\n\n<p>An additional layer of protection can be provided through the use of Content security policy and Trusted Types. These web platform features operate at the DOM level which is the most effective place to prevent XSS issues because they can&#8217;t be bypassed using other, lower-level APIs. For this reason, we strongly encourage developers to take advantage of these features by configuring the\u00a0content security policy\u00a0for their application and enabling\u00a0trusted types enforcement.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>To systematically block XSS bugs, Angular treats all values as untrusted by default. When a value is inserted into the DOM from a template binding, or interpolation, Angular sanitizes and escapes untrusted values. If a value was already sanitized outside of Angular and is considered safe, you can communicate this to Angular by marking the&nbsp;value [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [263],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4716"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=4716"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4716/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4726,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4716/revisions/4726"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=4716"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=4716"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=4716"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 4717,
+    "date": "2021-02-27T10:40:02",
+    "date_gmt": "2021-02-27T10:40:02",
+    "guid": {
+      "rendered": "http://angular.foobrdigital.com/?p=4717"
+    },
+    "modified": "2021-02-27T10:40:02",
+    "modified_gmt": "2021-02-27T10:40:02",
+    "slug": "sanitization-and-security-contexts",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/sanitization-and-security-contexts/",
+    "title": {
+      "rendered": "Sanitization and security contexts"
+    },
+    "content": {
+      "rendered": "\n<p><em>Sanitization</em>&nbsp;is the inspection of an untrusted value, turning it into a value that&#8217;s safe to insert into the DOM. In many cases, sanitization doesn&#8217;t change a value at all. Sanitization depends on context: a value that&#8217;s harmless in CSS is potentially dangerous in a URL.</p>\n\n\n\n<p>Angular defines the following security contexts:</p>\n\n\n\n<ul><li><strong>HTML</strong>&nbsp;is used when interpreting a value as HTML, for example, when binding to&nbsp;<code>innerHtml</code>.</li><li><strong>Style</strong>&nbsp;is used when binding CSS into the&nbsp;<code><a href=\"https://angular.io/api/animations/style\">style</a></code>&nbsp;property.</li><li><strong>URL</strong>&nbsp;is used for URL properties, such as&nbsp;<code>&lt;a href&gt;</code>.</li><li><strong>Resource URL</strong>&nbsp;is a URL that will be loaded and executed as code, for example, in&nbsp;<code>&lt;script src&gt;</code>.</li></ul>\n\n\n\n<p>Angular sanitizes untrusted values for HTML, styles, and URLs; sanitizing resource URLs isn&#8217;t possible because they contain arbitrary code. In development mode, Angular prints a console warning when it has to change a value during sanitization.</p>\n\n\n\n<h3 id=\"sanitization-example\">Sanitization example</h3>\n\n\n\n<p>The following template binds the value of&nbsp;<code>htmlSnippet</code>, once by interpolating it into an element&#8217;s content, and once by binding it to the&nbsp;<code>innerHTML</code>&nbsp;property of an element:src/app/inner-html-binding.component.html</p>\n\n\n\n<pre class=\"wp-block-code\"><code>content_copy<code>&lt;h3&gt;Binding innerHTML&lt;/h3&gt;\n&lt;p&gt;Bound value:&lt;/p&gt;\n&lt;p class=\"e2e-inner-html-interpolated\"&gt;{{htmlSnippet}}&lt;/p&gt;\n&lt;p&gt;Result of binding to innerHTML:&lt;/p&gt;\n&lt;p class=\"e2e-inner-html-bound\" &#91;innerHTML]=\"htmlSnippet\"&gt;&lt;/p&gt;</code></code></pre>\n\n\n\n<p>Interpolated content is always escaped\u2014the HTML isn&#8217;t interpreted and the browser displays angle brackets in the element&#8217;s text content.</p>\n\n\n\n<p>For the HTML to be interpreted, bind it to an HTML property such as&nbsp;<code>innerHTML</code>. But binding a value that an attacker might control into&nbsp;<code>innerHTML</code>&nbsp;normally causes an XSS vulnerability. For example, one could execute JavaScript in a following way:src/app/inner-html-binding.component.ts (class)</p>\n\n\n\n<pre class=\"wp-block-code\"><code>content_copy<code>export class InnerHtmlBindingComponent {\n  // For example, a user/attacker-controlled value from a URL.\n  htmlSnippet = 'Template &lt;script&gt;alert(\"0wned\")&lt;/script&gt; &lt;b&gt;Syntax&lt;/b&gt;';\n}</code></code></pre>\n\n\n\n<p>Angular recognizes the value as unsafe and automatically sanitizes it, which removes the&nbsp;<code>script</code>&nbsp;element but keeps safe content such as the&nbsp;<code>&lt;b&gt;</code>&nbsp;element.</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://angular.io/generated/images/guide/security/binding-inner-html.png\" alt=\"A screenshot showing interpolated and bound HTML values\"/></figure>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Sanitization&nbsp;is the inspection of an untrusted value, turning it into a value that&#8217;s safe to insert into the DOM. In many cases, sanitization doesn&#8217;t change a value at all. Sanitization depends on context: a value that&#8217;s harmless in CSS is potentially dangerous in a URL. Angular defines the following security contexts: HTML&nbsp;is used when interpreting [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [263],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4717"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=4717"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4717/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4727,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4717/revisions/4727"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=4717"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=4717"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=4717"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 4718,
+    "date": "2021-02-27T10:40:42",
+    "date_gmt": "2021-02-27T10:40:42",
+    "guid": {
+      "rendered": "http://angular.foobrdigital.com/?p=4718"
+    },
+    "modified": "2021-02-27T10:40:42",
+    "modified_gmt": "2021-02-27T10:40:42",
+    "slug": "direct-use-of-the-dom-apis-and-explicit-sanitization-calls",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/direct-use-of-the-dom-apis-and-explicit-sanitization-calls/",
+    "title": {
+      "rendered": "Direct use of the DOM APIs and explicit sanitization calls"
+    },
+    "content": {
+      "rendered": "\n<p>Unless you enforce Trusted Types, the built-in browser DOM APIs don&#8217;t automatically protect you from security vulnerabilities. For example,&nbsp;<code>document</code>, the node available through&nbsp;<code><a href=\"https://angular.io/api/core/ElementRef\">ElementRef</a></code>, and many third-party APIs contain unsafe methods. In the same way, if you interact with other libraries that manipulate the DOM, you likely won&#8217;t have the same automatic sanitization as with Angular interpolations. Avoid directly interacting with the DOM and instead use Angular templates where possible.</p>\n\n\n\n<p>For cases where this is unavoidable, use the built-in Angular sanitization functions. Sanitize untrusted values with the\u00a0DomSanitizer.sanitize\u00a0method and the appropriate\u00a0<code>SecurityContext</code>. That function also accepts values that were marked as trusted using the\u00a0<code>bypassSecurityTrust</code>&#8230; functions, and will not sanitize them.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Unless you enforce Trusted Types, the built-in browser DOM APIs don&#8217;t automatically protect you from security vulnerabilities. For example,&nbsp;document, the node available through&nbsp;ElementRef, and many third-party APIs contain unsafe methods. In the same way, if you interact with other libraries that manipulate the DOM, you likely won&#8217;t have the same automatic sanitization as with Angular [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [263],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4718"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=4718"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4718/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4728,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4718/revisions/4728"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=4718"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=4718"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=4718"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 4719,
+    "date": "2021-02-27T10:42:22",
+    "date_gmt": "2021-02-27T10:42:22",
+    "guid": {
+      "rendered": "http://angular.foobrdigital.com/?p=4719"
+    },
+    "modified": "2021-02-27T10:44:47",
+    "modified_gmt": "2021-02-27T10:44:47",
+    "slug": "trusting-safe-values",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/trusting-safe-values/",
+    "title": {
+      "rendered": "Trusting safe values"
+    },
+    "content": {
+      "rendered": "\n<p>Sometimes applications genuinely need to include executable code, display an&nbsp;<code>&lt;iframe&gt;</code>&nbsp;from some URL, or construct potentially dangerous URLs. To prevent automatic sanitization in any of these situations, you can tell Angular that you inspected a value, checked how it was generated, and made sure it will always be secure. But&nbsp;<em>be careful</em>. If you trust a value that might be malicious, you are introducing a security vulnerability into your application. If in doubt, find a professional security reviewer.</p>\n\n\n\n<p>To mark a value as trusted, inject&nbsp;<code><a href=\"https://angular.io/api/platform-browser/DomSanitizer\">DomSanitizer</a></code>&nbsp;and call one of the following methods:</p>\n\n\n\n<ul><li><code>bypassSecurityTrustHtml</code></li><li><code>bypassSecurityTrustScript</code></li><li><code>bypassSecurityTrustStyle</code></li><li><code>bypassSecurityTrustUrl</code></li><li><code>bypassSecurityTrustResourceUrl</code></li></ul>\n\n\n\n<p>Remember, whether a value is safe depends on context, so choose the right context for your intended use of the value. Imagine that the following template needs to bind a URL to a&nbsp;<code>javascript:alert(...)</code>&nbsp;call:src/app/bypass-security.component.html (URL)</p>\n\n\n\n<pre class=\"wp-block-code\"><code>content_copy<code>&lt;h4&gt;An untrusted URL:&lt;/h4&gt;\n&lt;p&gt;&lt;a class=\"e2e-dangerous-url\" &#91;href]=\"dangerousUrl\"&gt;Click me&lt;/a&gt;&lt;/p&gt;\n&lt;h4&gt;A trusted URL:&lt;/h4&gt;\n&lt;p&gt;&lt;a class=\"e2e-trusted-url\" &#91;href]=\"trustedUrl\"&gt;Click me&lt;/a&gt;&lt;/p&gt;</code></code></pre>\n\n\n\n<p>Normally, Angular automatically sanitizes the URL, disables the dangerous code, and in development mode, logs this action to the console. To prevent this, mark the URL value as a trusted URL using the&nbsp;<code>bypassSecurityTrustUrl</code>&nbsp;call:src/app/bypass-security.component.ts (trust-url)</p>\n\n\n\n<pre class=\"wp-block-code\"><code>content_copy<code>constructor(private sanitizer: <a href=\"https://angular.io/api/platform-browser/DomSanitizer\">DomSanitizer</a>) {\n  // javascript: URLs are dangerous if attacker controlled.\n  // Angular sanitizes them in data binding, but you can\n  // explicitly tell Angular to trust this value:\n  this.dangerousUrl = 'javascript:alert(\"Hi there\")';\n  this.trustedUrl = sanitizer.bypassSecurityTrustUrl(this.dangerousUrl);</code></code></pre>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://angular.io/generated/images/guide/security/bypass-security-component.png\" alt=\"A screenshot showing an alert box created from a trusted URL\"/></figure>\n\n\n\n<p>If you need to convert user input into a trusted value, use a component method. The following template allows users to enter a YouTube video ID and load the corresponding video in an&nbsp;<code>&lt;iframe&gt;</code>. The&nbsp;<code>&lt;iframe src&gt;</code>&nbsp;attribute is a resource URL security context, because an untrusted source can, for example, smuggle in file downloads that unsuspecting users could execute. So call a method on the component to construct a trusted video URL, which causes Angular to allow binding into&nbsp;<code>&lt;iframe src&gt;</code>:src/app/bypass-security.component.html (iframe)</p>\n\n\n\n<pre class=\"wp-block-code\"><code>content_copy<code>&lt;h4&gt;Resource URL:&lt;/h4&gt;\n&lt;p&gt;Showing: {{dangerousVideoUrl}}&lt;/p&gt;\n&lt;p&gt;Trusted:&lt;/p&gt;\n&lt;iframe class=\"e2e-iframe-trusted-src\" width=\"640\" height=\"390\" &#91;src]=\"videoUrl\"&gt;&lt;/iframe&gt;\n&lt;p&gt;Untrusted:&lt;/p&gt;\n&lt;iframe class=\"e2e-iframe-untrusted-src\" width=\"640\" height=\"390\" &#91;src]=\"dangerousVideoUrl\"&gt;&lt;/iframe&gt;</code></code></pre>\n\n\n\n<p>src/app/bypass-security.component.ts (trust-video-url)</p>\n\n\n\n<pre class=\"wp-block-code\"><code>content_copy<code>updateVideoUrl(id: string) {\n  // Appending an ID to a YouTube URL is safe.\n  // Always make sure to construct <a href=\"https://angular.io/api/platform-browser/SafeValue\">SafeValue</a> objects as\n  // close as possible to the input data so\n  // that it's easier to check if the value is safe.\n  this.dangerousVideoUrl = 'https://www.youtube.com/embed/' + id;\n  this.videoUrl =\n      this.sanitizer.bypassSecurityTrustResourceUrl(this.dangerousVideoUrl);\n}</code></code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Sometimes applications genuinely need to include executable code, display an&nbsp;&lt;iframe&gt;&nbsp;from some URL, or construct potentially dangerous URLs. To prevent automatic sanitization in any of these situations, you can tell Angular that you inspected a value, checked how it was generated, and made sure it will always be secure. But&nbsp;be careful. If you trust a value [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [263],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4719"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=4719"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4719/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4729,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4719/revisions/4729"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=4719"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=4719"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=4719"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 4730,
+    "date": "2021-02-27T10:42:57",
+    "date_gmt": "2021-02-27T10:42:57",
+    "guid": {
+      "rendered": "http://angular.foobrdigital.com/?p=4730"
+    },
+    "modified": "2021-02-27T10:42:57",
+    "modified_gmt": "2021-02-27T10:42:57",
+    "slug": "content-security-policy",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/content-security-policy/",
+    "title": {
+      "rendered": "Content security policy"
+    },
+    "content": {
+      "rendered": "\n<p>Content Security Policy (CSP) is a defense-in-depth technique to prevent XSS. To enable CSP, configure your web server to return an appropriate\u00a0<code>Content-Security-Policy</code>\u00a0HTTP header. Read more about content security policy at the\u00a0Web Fundamentals guide\u00a0on the Google Developers website.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Content Security Policy (CSP) is a defense-in-depth technique to prevent XSS. To enable CSP, configure your web server to return an appropriate\u00a0Content-Security-Policy\u00a0HTTP header. Read more about content security policy at the\u00a0Web Fundamentals guide\u00a0on the Google Developers website.</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [263],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4730"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=4730"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4730/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4731,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4730/revisions/4731"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=4730"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=4730"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=4730"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 4732,
+    "date": "2021-02-27T10:43:48",
+    "date_gmt": "2021-02-27T10:43:48",
+    "guid": {
+      "rendered": "http://angular.foobrdigital.com/?p=4732"
+    },
+    "modified": "2021-02-27T10:43:48",
+    "modified_gmt": "2021-02-27T10:43:48",
+    "slug": "enforcing-trusted-types",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/enforcing-trusted-types/",
+    "title": {
+      "rendered": "Enforcing Trusted Types"
+    },
+    "content": {
+      "rendered": "\n<p>We recommend the use of&nbsp;<a href=\"https://w3c.github.io/webappsec-trusted-types/dist/spec/\">Trusted Types</a>&nbsp;as a way to help secure your applications from cross-site scripting attacks. Trusted Types is a&nbsp;<a href=\"https://en.wikipedia.org/wiki/Web_platform\">web platform</a>&nbsp;feature that can help you prevent cross-site scripting attacks by enforcing safer coding practices. Trusted Types can also help simplify the auditing of application code.</p>\n\n\n\n<p>Trusted Types might not yet be available in all browsers your application targets. In the case your Trusted-Types-enabled application runs in a browser that doesn&#8217;t support Trusted Types, the functionality of the application will be preserved, and your application will be guarded against XSS via Angular&#8217;s DomSanitizer. See&nbsp;<a href=\"https://caniuse.com/trusted-types\">caniuse.com/trusted-types</a>&nbsp;for the current browser support.</p>\n\n\n\n<p>To enforce Trusted Types for your application, you must configure your application&#8217;s web server to emit HTTP headers with one of the following Angular policies:</p>\n\n\n\n<ul><li><code>angular</code>&nbsp;&#8211; This policy is used in security-reviewed code that is internal to Angular, and is required for Angular to function when Trusted Types are enforced. Any inline template values or content sanitized by Angular is treated as safe by this policy.</li><li><code>angular#unsafe-bypass</code>&nbsp;&#8211; This policy is used for applications that use any of the methods in Angular&#8217;s&nbsp;<a href=\"https://angular.io/api/platform-browser/DomSanitizer\">DomSanitizer</a>&nbsp;that bypass security, such as&nbsp;<code>bypassSecurityTrustHtml</code>. Any application that uses these methods must enable this policy.</li><li><code>angular#unsafe-jit</code>&nbsp;&#8211; This policy is used by the&nbsp;<a href=\"https://angular.io/api/core/Compiler\">JIT compiler</a>. You must enable this policy if your application interacts directly with the JIT compiler or is running in JIT mode using the&nbsp;<a href=\"https://angular.io/api/platform-browser-dynamic/platformBrowserDynamic\">platform browser dynamic</a>.</li></ul>\n\n\n\n<p>You should configure the HTTP headers for Trusted Types in the following locations:</p>\n\n\n\n<ul><li>Production serving infrastructure</li><li>Angular CLI (<code>ng serve</code>), using the&nbsp;<code>headers</code>&nbsp;property in the&nbsp;<code>angular.json</code>&nbsp;file, for local development and end-to-end testing</li><li>Karma (<code>ng test</code>), using the&nbsp;<code>customHeaders</code>&nbsp;property in the&nbsp;<code>karma.config.js</code>&nbsp;file, for unit testing</li></ul>\n\n\n\n<p>The following is an example of a header specifically configured for Trusted Types and Angular:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>content_copy<code>Content-Security-Policy: trusted-types angular; require-trusted-types-for 'script';</code></code></pre>\n\n\n\n<p>The following is an example of a header specifically configured for Trusted Types and Angular applications that use any of the methods in Angular&#8217;s&nbsp;<a href=\"https://angular.io/api/platform-browser/DomSanitizer\">DomSanitizer</a>&nbsp;that bypasses security.</p>\n\n\n\n<pre class=\"wp-block-preformatted\">content_copy<code>Content-Security-Policy: trusted-types angular angular#unsafe-bypass; require-trusted-types-for 'script';</code></pre>\n\n\n\n<p>The following is an example of a header specifically configured for Trusted Types and Angular applications using JIT:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>content_copy<code>Content-Security-Policy: trusted-types angular angular#unsafe-jit; require-trusted-types-for 'script';</code></code></pre>\n\n\n\n<p>COMMUNITY CONTRIBUTIONS</p>\n\n\n\n<p>To learn more about troubleshooting Trusted Type configurations, the following resource might be helpful:</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>We recommend the use of&nbsp;Trusted Types&nbsp;as a way to help secure your applications from cross-site scripting attacks. Trusted Types is a&nbsp;web platform&nbsp;feature that can help you prevent cross-site scripting attacks by enforcing safer coding practices. Trusted Types can also help simplify the auditing of application code. Trusted Types might not yet be available in all [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [263],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4732"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=4732"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4732/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4735,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4732/revisions/4735"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=4732"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=4732"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=4732"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 4733,
+    "date": "2021-02-27T10:44:10",
+    "date_gmt": "2021-02-27T10:44:10",
+    "guid": {
+      "rendered": "http://angular.foobrdigital.com/?p=4733"
+    },
+    "modified": "2021-02-27T10:44:10",
+    "modified_gmt": "2021-02-27T10:44:10",
+    "slug": "use-the-aot-template-compiler",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/use-the-aot-template-compiler/",
+    "title": {
+      "rendered": "Use the AOT template compiler"
+    },
+    "content": {
+      "rendered": "\n<p>The AOT template compiler prevents a whole class of vulnerabilities called template injection, and greatly improves application performance. The AOT template compiler is the default compiler used by Angular CLI applications, and you should use it in all production deployments.</p>\n\n\n\n<p>An alternative to the AOT compiler is the JIT compiler which compiles templates to executable template code within the browser at runtime. Angular trusts template code, so dynamically generating templates and compiling them, in particular templates containing user data, circumvents Angular&#8217;s built-in protections and is a security anti-pattern. For information about dynamically constructing forms in a safe way, see the&nbsp;<a href=\"https://angular.io/guide/dynamic-form\">Dynamic Forms</a>&nbsp;guide.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>The AOT template compiler prevents a whole class of vulnerabilities called template injection, and greatly improves application performance. The AOT template compiler is the default compiler used by Angular CLI applications, and you should use it in all production deployments. An alternative to the AOT compiler is the JIT compiler which compiles templates to executable [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [263],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4733"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=4733"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4733/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4736,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4733/revisions/4736"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=4733"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=4733"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=4733"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 4734,
+    "date": "2021-02-27T10:44:28",
+    "date_gmt": "2021-02-27T10:44:28",
+    "guid": {
+      "rendered": "http://angular.foobrdigital.com/?p=4734"
+    },
+    "modified": "2021-02-27T10:44:28",
+    "modified_gmt": "2021-02-27T10:44:28",
+    "slug": "server-side-xss-protection",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/server-side-xss-protection/",
+    "title": {
+      "rendered": "Server-side XSS protection"
+    },
+    "content": {
+      "rendered": "\n<p>HTML constructed on the server is vulnerable to injection attacks. Injecting template code into an Angular application is the same as injecting executable code into the application: it gives the attacker full control over the application. To prevent this, use a templating language that automatically escapes values to prevent XSS vulnerabilities on the server. Don&#8217;t generate Angular templates on the server side using a templating language; doing this carries a high risk of introducing template-injection vulnerabilities.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>HTML constructed on the server is vulnerable to injection attacks. Injecting template code into an Angular application is the same as injecting executable code into the application: it gives the attacker full control over the application. To prevent this, use a templating language that automatically escapes values to prevent XSS vulnerabilities on the server. Don&#8217;t [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [263],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4734"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=4734"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4734/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4737,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4734/revisions/4737"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=4734"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=4734"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=4734"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  }
+]

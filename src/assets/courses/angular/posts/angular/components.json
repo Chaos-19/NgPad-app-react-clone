@@ -1,0 +1,802 @@
+[
+  {
+    "id": 3485,
+    "date": "2020-11-30T05:59:36",
+    "date_gmt": "2020-11-30T05:59:36",
+    "guid": {
+      "rendered": "http://angular.foobrdigital.com/?p=3485"
+    },
+    "modified": "2020-12-12T06:48:00",
+    "modified_gmt": "2020-12-12T06:48:00",
+    "slug": "angular-components-2",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/angular-components-2/",
+    "title": {
+      "rendered": "Angular Components"
+    },
+    "content": {
+      "rendered": "\n<h2>What is an Angular Component</h2>\n\n\n\n<p>The Component is the main building block of an Angular Application.</p>\n\n\n\n<p>The component contains the data &amp; user interaction logic that defines how the View looks and behaves. A view in Angular refers to a template (HTML).</p>\n\n\n\n<p>The Angular Components are plain javascript classes and defined using&nbsp;<strong>@component Decorator</strong>. This Decorator provides the component with the View to display &amp; Metadata about the class</p>\n\n\n\n<p>The Component is responsible to provide the data to the view. The Angular does this by using data binding to get the data from the Component to the View.&nbsp;This is done using the special HTML markup knows as the Angular Template Syntax. The Component can also get notified when the View Changes.</p>\n\n\n\n<p>The Angular applications will have lots of components. Each component handles&nbsp;a small part of UI. These components work together to produce the complete user interface of the application</p>\n\n\n\n<p>The Components consists of three main building blocks</p>\n\n\n\n<ul><li>Template</li><li>Class</li><li>MetaData</li></ul>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://www.tektutorialshub.com/wp-content/uploads/2016/09/Angular-Component.png\" alt=\"Building Blocks of Angular Component Template, Metadata and Class\" class=\"wp-image-5713\"/></figure>\n\n\n\n<h2>Building blocks of the Angular Component</h2>\n\n\n\n<h3>Template (View)</h3>\n\n\n\n<p>The template defines the layout of the View and defines what is rendered on the page. &nbsp;Without the template, &nbsp;there is nothing for Angular to render to the DOM.</p>\n\n\n\n<p>The Templates are created with HTML. You can add Angular directives and bindings on the template.</p>\n\n\n\n<p>There are two ways you can specify the Template in Angular.</p>\n\n\n\n<ol><li>Defining the Template Inline</li><li>Provide an external Template</li></ol>\n\n\n\n<h3>Class</h3>\n\n\n\n<p>The class is the code associated with Template (View). The Class is created with the Typescript, but you can also use javascript directly in the class. Class Contains the Properties &amp; Methods.</p>\n\n\n\n<p>The Properties of a&nbsp;class can be bind to the view using Data Binding.</p>\n\n\n\n<p>The simple Angular Class</p>\n\n\n\n<pre class=\"wp-block-code\"><code>export class AppComponent\n{\n    title : string =\"app\"\n}</code></pre>\n\n\n\n<p>The Component classes in Angular are prefixed with the name “Component”, To easily identify them.</p>\n\n\n\n<h3>Metadata</h3>\n\n\n\n<p>Metadata Provides additional information about the component to the Angular. Angular uses this information to process the class. The Metadata is defined with a&nbsp;<strong>decorator</strong>.</p>\n\n\n\n<p>A decorator is a function that adds metadata to class, its methods &amp; to its properties. The Components are defined with a&nbsp;@component class decorator. It is @component decorator, which defines the class as Component to the Angular</p>\n\n\n\n<h4>@Component decorator</h4>\n\n\n\n<p>A class becomes a Component&nbsp;when Component Decorator is used. A Decorator is always prefixed with @. The Decorator must be positioned immediately before the class definition. We can also build our own decorators. The decorators are Similar to attributes in C#</p>\n\n\n\n<h4>Important Component metadata properties</h4>\n\n\n\n<h5>Selector</h5>\n\n\n\n<p>Selector specifies the simple CSS selector, where our view representing the component is placed by the Angular.</p>\n\n\n\n<h5>Providers</h5>\n\n\n\n<p>The Providers are the services, that our component going to use. The Services provide service to the Components or to the other Services.</p>\n\n\n\n<h5>Directives</h5>\n\n\n\n<p>The directives that this component going to use are listed here.</p>\n\n\n\n<h5>Styles/styleUrls</h5>\n\n\n\n<p>The CSS Styles or style sheets, that this component needs. Here we can use either external stylesheet (using styleUrls) or inline styles (using Styles). The styles used here are specific to the component</p>\n\n\n\n<h5>template/templateUrl</h5>\n\n\n\n<p>The HTML template that defines our View. It tells Angular how to render the Component’s view. The templates can be inline (using a&nbsp;template) or we can use an&nbsp;external template (using a templateUrl). The Component can have only one template. You can either use inline template or external template and not both</p>\n\n\n\n<h2>Creating the Component</h2>\n\n\n\n<p>We have already shown how to create the Angular Application using Angular CLI in&nbsp;how to create first Angular application&nbsp;tutorial. &nbsp;The Angular CLI has automatically created the root component&nbsp;<strong>app.component.ts</strong>.</p>\n\n\n\n<p>In this tutorial, we will not create the Angular Component, but let us see the Component creation process in detail. The creation of the Angular component requires you to follow these steps</p>\n\n\n\n<ol><li>Create the Component file</li><li>Import the required external Classes/Functions</li><li>Create the Component class and export it</li><li>Add @Component decorator</li><li>Add metadata to @Component decorator</li><li>Create the Template</li><li>Create the CSS Styles</li><li>Register the Component in Angular Module</li></ol>\n\n\n\n<h3>1. Creating the Component File</h3>\n\n\n\n<p>The Component&nbsp;<em>app.component.ts</em>. is already been created for us by Angular CLI under the folder src.</p>\n\n\n\n<p>By Convention, the file name starts with the&nbsp;<strong>feature name</strong>&nbsp;(app) and then followed by the&nbsp;<strong>type of class&nbsp;</strong>(component). These are separated by a dot. The extension used is&nbsp;<strong>ts</strong>&nbsp;indicating that this is a typescript module file.</p>\n\n\n\n<p>You can read more about naming conventions from the Angular Style Guide</p>\n\n\n\n<h3>2. Import the Angular Component Object</h3>\n\n\n\n<p>Before we use any Angular (or external) functions or classes, we need to tell Angular how and where to find it. This is done using the Import statement. The Import statement is similar to the using statement in c#, which allows us to use the external modules in our class</p>\n\n\n\n<p>To define the Component class, we need to use the&nbsp;@Component decorator. This function is found in the Angular core library. So we import it in our class as shown below</p>\n\n\n\n<pre class=\"wp-block-code\"><code>import { Component } from '@angular/core';</code></pre>\n\n\n\n<h3>3. Create the Component Class and export it</h3>\n\n\n\n<p>The third step is to create the Component class using the export keyword. The Export keyword allows this component class to be used in other components by importing. The AppComponent class is shown below</p>\n\n\n\n<pre class=\"wp-block-code\"><code>export class AppComponent {\n  title = 'app';\n}</code></pre>\n\n\n\n<p>Note we are using Pascal case naming conventions for the class name. In the above class defines a Property named title and assign a default value “app”</p>\n\n\n\n<h3>4. Add @Component decorator</h3>\n\n\n\n<p>The next step is to inform the Angular that this is a Component class. This is done by adding the @Component decorator to the above class. The decorator must be added immediately above the class as shown below</p>\n\n\n\n<pre class=\"wp-block-code\"><code>@Component({\n})\nexport class AppComponent {\n  title = 'app';\n}</code></pre>\n\n\n\n<h3>5. Add meta data to @Component decorator</h3>\n\n\n\n<p>The next step is to add the metadata to the @component decorator. Add the following to the component metadata</p>\n\n\n\n<pre class=\"wp-block-code\"><code>@Component({\n  selector: 'app-root',\n  templateUrl: './app.component.html',\n  styleUrls: &#91;'./app.component.css']\n})</code></pre>\n\n\n\n<h4>selector</h4>\n\n\n\n<p>The angular places the view (template) inside the selector app-root</p>\n\n\n\n<h4>templateUrl</h4>\n\n\n\n<p>In the above example, we have used an external template using templateUrl metadata. The templateUrl points to the external HTML file<strong>&nbsp;app.component.html</strong>.</p>\n\n\n\n<h4>styleUrls</h4>\n\n\n\n<p>Defines the styles for our template. The metadata points to the external CSS file<strong>&nbsp;app.component.css</strong>. The Component specific CSS styles can be specified here</p>\n\n\n\n<h3>6. Create the Template (View)</h3>\n\n\n\n<p>Template is nothing but an HTML file, which component must display it to the user</p>\n\n\n\n<p>The Angular knows which template display, using the templateUrl metadata, which points to&nbsp;<strong>app.component.html</strong>.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;!--The content below is only a placeholder and can be replaced.--&gt;\n&lt;div style=\"text-align:center\"&gt;\n  &lt;h1&gt;\n    Welcome to {{title}}!\n  &lt;/h1&gt;\n  &lt;img width=\"300\" src=\"data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAxOS4xLjAsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjxzdmcgdmVyc2lvbj0iMS4xIiBpZD0iTGF5ZXJfMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgeD0iMHB4IiB5PSIwcHgiDQoJIHZpZXdCb3g9IjAgMCAyNTAgMjUwIiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCAyNTAgMjUwOyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+DQo8c3R5bGUgdHlwZT0idGV4dC9jc3MiPg0KCS5zdDB7ZmlsbDojREQwMDMxO30NCgkuc3Qxe2ZpbGw6I0MzMDAyRjt9DQoJLnN0MntmaWxsOiNGRkZGRkY7fQ0KPC9zdHlsZT4NCjxnPg0KCTxwb2x5Z29uIGNsYXNzPSJzdDAiIHBvaW50cz0iMTI1LDMwIDEyNSwzMCAxMjUsMzAgMzEuOSw2My4yIDQ2LjEsMTg2LjMgMTI1LDIzMCAxMjUsMjMwIDEyNSwyMzAgMjAzLjksMTg2LjMgMjE4LjEsNjMuMiAJIi8+DQoJPHBvbHlnb24gY2xhc3M9InN0MSIgcG9pbnRzPSIxMjUsMzAgMTI1LDUyLjIgMTI1LDUyLjEgMTI1LDE1My40IDEyNSwxNTMuNCAxMjUsMjMwIDEyNSwyMzAgMjAzLjksMTg2LjMgMjE4LjEsNjMuMiAxMjUsMzAgCSIvPg0KCTxwYXRoIGNsYXNzPSJzdDIiIGQ9Ik0xMjUsNTIuMUw2Ni44LDE4Mi42aDBoMjEuN2gwbDExLjctMjkuMmg0OS40bDExLjcsMjkuMmgwaDIxLjdoMEwxMjUsNTIuMUwxMjUsNTIuMUwxMjUsNTIuMUwxMjUsNTIuMQ0KCQlMMTI1LDUyLjF6IE0xNDIsMTM1LjRIMTA4bDE3LTQwLjlMMTQyLDEzNS40eiIvPg0KPC9nPg0KPC9zdmc+DQo=\"&gt;\n&lt;/div&gt;\n&lt;h2&gt;Here are some links to help you start: &lt;/h2&gt;\n&lt;ul&gt;\n  &lt;li&gt;\n    &lt;h2&gt;&lt;a target=\"_blank\" href=\"https://angular.io/tutorial\"&gt;Tour of Heroes&lt;/a&gt;&lt;/h2&gt;\n  &lt;/li&gt;\n  &lt;li&gt;\n    &lt;h2&gt;&lt;a target=\"_blank\" href=\"https://github.com/angular/angular-cli/wiki\"&gt;CLI Documentation&lt;/a&gt;&lt;/h2&gt;\n  &lt;/li&gt;\n  &lt;li&gt;\n    &lt;h2&gt;&lt;a target=\"_blank\" href=\"https://blog.angular.io//\"&gt;Angular blog&lt;/a&gt;&lt;/h2&gt;\n  &lt;/li&gt;\n&lt;/ul&gt;</code></pre>\n\n\n\n<p>By Convention, the file is named after the component file it is bound to with HTML extension.</p>\n\n\n\n<p>This is a simple HTML file, except for the initial h1 tag</p>\n\n\n\n<pre class=\"wp-block-code\"><code>\n  &lt;h1&gt;\n    Welcome to {{title}}!\n  &lt;/h1&gt;\n </code></pre>\n\n\n\n<p>Note that&nbsp;<strong>title</strong><strong><em>&nbsp;inside the double curly bracket</em></strong>. When rendering the view, the Angular looks for&nbsp;<strong>title Property</strong>&nbsp;in our component and binds the property to our view. This is called data binding.</p>\n\n\n\n<p>The double curly bracket syntax is known as interpolation, which we will look at in our next tutorial</p>\n\n\n\n<h3>7. Add the Styles</h3>\n\n\n\n<p>The next step is to add the CSS Styles. The styleUrls metadata tells Angular,&nbsp;where to find the CSS File. This property points to external file&nbsp;<strong>app.component.css</strong></p>\n\n\n\n<p>By Convention, the file is named after the component file it is bound to with .css extension</p>\n\n\n\n<p>Note that&nbsp;styleUrls metadata can accept multiple CSS Files.</p>\n\n\n\n<h3>8. Register the Angular Component in Angular Module</h3>\n\n\n\n<p>We have created the Angular Component. The next step is to register it with the Angular Module</p>\n\n\n\n<p>The Angular Module organizes the components,&nbsp;directives,&nbsp;pipes, and&nbsp;services&nbsp;that are related and arrange them into cohesive blocks of functionality.</p>\n\n\n\n<p>It is a class that is adorned with @ngModule decorator</p>\n\n\n\n<pre class=\"wp-block-code\"><code>import { BrowserModule } from '@angular/platform-browser';\nimport { NgModule } from '@angular/core';\n \nimport { AppComponent } from './app.component';\n \n@NgModule({\n  declarations: &#91;\n    AppComponent\n  ],\n  imports: &#91;\n    BrowserModule\n  ],\n  providers: &#91;],\n  bootstrap: &#91;AppComponent]\n})\nexport class AppModule { }</code></pre>\n\n\n\n<p>We use&nbsp;@NgModule class decorator to define a Module and provide metadata about the Modules.</p>\n\n\n\n<p>We add all the components,&nbsp;pipes&nbsp;and&nbsp;directives&nbsp;that are part of this module to the declarations array. We add all the other modules that are used by this module to imports array. We include the services in the providers’ array.</p>\n\n\n\n<p>The Component that angular should load, when the app.module is loaded is assigned to the bootstrap property.</p>\n\n\n\n<p>The AppComponent imported</p>\n\n\n\n<pre class=\"wp-block-code\"><code>import { AppComponent } from './app.component';\n</code></pre>\n\n\n\n<p>and then added to the declarations array.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>@NgModule({ \n  declarations: &#91; AppComponent ],</code></pre>\n\n\n\n<p>We want appComponent to be loaded when Angular starts, thus we assign it to bootstrap property</p>\n\n\n\n<pre class=\"wp-block-code\"><code>bootstrap: &#91;AppComponent]\n</code></pre>\n\n\n\n<p>Thats it</p>\n\n\n\n<p>Finally, run the application from the command line using&nbsp;<strong>ng serve&nbsp;</strong>( or&nbsp;npm start). You should see this</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://www.tektutorialshub.com/wp-content/uploads/2018/11/First-Angular-Application.png\" alt=\"\" class=\"wp-image-9710\"/></figure>\n\n\n\n<h2>Creating the inline Template &amp; StyleUrls</h2>\n\n\n\n<p>In the above example, we have used the external template &amp; Styles.</p>\n\n\n\n<p>We can also specify the Template, Styles inline using the template and styles property of @Component metadata as shown below.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>import { Component } from '@angular/core';\n \n@Component({\n  selector: 'app-root',\n  template: '&lt;h1&gt; {{title}} works &lt;/h1&gt;',\n  styles: &#91;'h1 { font-weight: bold; }']\n})\nexport class AppComponent {\n  title = 'app';\n}</code></pre>\n\n\n\n<p>The Template can get pretty long. In the case of a Multi-line template, you can use&nbsp;<strong>BackTicks</strong>&nbsp;(&nbsp;<strong>`&nbsp;</strong>) to enclose the template string.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>import { Component } from '@angular/core';\n \n@Component({\n  selector: 'app-root',\n  template: `\n          &lt;h1&gt; {{title}} works &lt;/h1&gt;\n          &lt;p&gt; a long inline template &lt;/p&gt;\n           `,\n  styles: &#91;'h1 { font-weight: bold; }']\n})\nexport class AppComponent {\n  title = 'app';\n}</code></pre>\n\n\n\n<p>Specifying the Templates and styles inline has few disadvantageous. The Template can get pretty big and clutter your code. You will also not get the IntelliSense help&nbsp;while editing the template. In such a&nbsp;case&nbsp;you can write&nbsp;your Html template in an external file and link that file in your component code.</p>\n\n\n\n<h2>The component selector</h2>\n\n\n\n<p>The Angular renders the components view in the DOM inside the&nbsp;<strong>CSS selector</strong>, that we defined in the&nbsp;Component decorator</p>\n\n\n\n<pre class=\"wp-block-code\"><code>\n@Component({\n  selector: 'app-root',</code></pre>\n\n\n\n<p>The selector&nbsp;<strong>&lt;app-root&gt;&lt;/app-root&gt;</strong>&nbsp;&nbsp;is in the&nbsp;<strong>index.html</strong>&nbsp;(under src folder)</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;!doctype html&gt; \n&lt;html lang=\"en\"&gt; \n  &lt;head&gt; \n    &lt;metacharset=\"utf-8\"&gt; \n    &lt;title&gt;Angular4&lt;/title&gt; \n    &lt;basehref=\"/\"&gt; \n    &lt;metaname=\"viewport\"content=\"width=device-width, initial-scale=1\"&gt; \n    &lt;linkrel=\"icon\"type=\"image/x-icon\"href=\"favicon.ico\"&gt; \n  &lt;/head&gt; \n  &lt;body&gt; \n    &lt;app-root&gt;&lt;/app-root&gt; \n  &lt;/body&gt; \n&lt;/html&gt;</code></pre>\n\n\n\n<p>When we build Angular Components, we are actually building new HTML elements. We specify the name of the HTML element in the selector property of the component metadata. &nbsp;And then we use it in our HTML.</p>\n\n\n\n<p>The Angular, when instantiating the component, searches for the selector in the HTML file and renders the Template associated with the component.</p>\n\n\n\n<p>That gives several options to use our component selector</p>\n\n\n\n<h4>Using the CSS class name</h4>\n\n\n\n<pre class=\"wp-block-code\"><code>@Component({     \n  selector: '.app-root' \n})</code></pre>\n\n\n\n<p>And in the HTML markup use the CSS class name</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;div class=\"app-root\"&gt;&lt;/div&gt;</code></pre>\n\n\n\n<p>Using attribute name and value</p>\n\n\n\n<pre class=\"wp-block-code\"><code> @Component({     \n   selector: 'div&#91;app=components]' \n}) \n </code></pre>\n\n\n\n<p>now you can use it as follows</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;div app=\"components\"&gt;&lt;/div&gt;\n\n</code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>What is an Angular Component The Component is the main building block of an Angular Application. The component contains the data &amp; user interaction logic that defines how the View looks and behaves. A view in Angular refers to a template (HTML). The Angular Components are plain javascript classes and defined using&nbsp;@component Decorator. This Decorator [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [125],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3485"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=3485"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 3,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3485/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3957,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3485/revisions/3957"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=3485"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=3485"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=3485"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 3481,
+    "date": "2020-11-30T06:04:32",
+    "date_gmt": "2020-11-30T06:04:32",
+    "guid": {
+      "rendered": "http://angular.foobrdigital.com/?p=3481"
+    },
+    "modified": "2020-12-08T12:21:15",
+    "modified_gmt": "2020-12-08T12:21:15",
+    "slug": "data-binding-in-angular",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/data-binding-in-angular/",
+    "title": {
+      "rendered": "Data Binding in Angular"
+    },
+    "content": {
+      "rendered": "\n<h2>What is Angular Data Binding</h2>\n\n\n\n<p>Data binding is a technique, where the data stays in sync between the component and the view. Whenever the user updates the data in the view, Angular updates the component. When the component gets new data, the Angular updates the view.</p>\n\n\n\n<p>There are many uses of data binding. You can show models to the user, dynamically Change element style, respond to user events, etc</p>\n\n\n\n<h2>Data Binding in Angular</h2>\n\n\n\n<p>The data binding in Angular can be broadly classified into two groups.&nbsp;<em>One way binding</em>&nbsp;or&nbsp;<em>two-way binding</em></p>\n\n\n\n<h2>One way binding</h2>\n\n\n\n<p>In one way binding data flows from one direction. Either from view to component or from component to view.</p>\n\n\n\n<h3>From Component to View</h3>\n\n\n\n<p>To bind data from component to view, we make use of Interpolation &amp; Property Binding.</p>\n\n\n\n<h4>Interpolation</h4>\n\n\n\n<p>Interpolation allows us to include expressions as part of any string literal, which we use in our HTML. The angular evaluates the expressions into a string and replaces it in the original string and updates the view. You can use interpolation wherever you use a string literal in the view</p>\n\n\n\n<p>The Angular uses the&nbsp;<code>{{ }}</code>&nbsp;(double curly braces) in the template to denote the interpolation. The syntax is as shown below</p>\n\n\n\n<p><code>{{ templateExpression }}</code></p>\n\n\n\n<p>The content inside the double braces is called&nbsp;<strong>Template Expression</strong></p>\n\n\n\n<p>The Angular first evaluates the Template Expression and converts it into a string. Then it replaces Template expression with the result in the original string in the HTML. Whenever the template expression changes, the Angular updates the original string again</p>\n\n\n\n<p>Example</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Welcome,  {{firstName}} {{lastName}}</code></pre>\n\n\n\n<pre class=\"wp-block-code\"><code>import { Component } from '@angular/core';\n \n@Component({\n  selector: 'app-root',\n  templateUrl: './app.component.html',\n  styleUrls: &#91;'./app.component.css']\n})\nexport class AppComponent {\n  firstName= 'Sachin';\n  lastName=”Tendulkar”\n}\n </code></pre>\n\n\n\n<p>Run the app and you will see&nbsp;<code>Welcome, Sachin Tendulkar</code>&nbsp;in the output. The Angular replaces both&nbsp;<code>{{firstName}}</code>&nbsp;&amp;&nbsp;<code>{{lastName}}</code>&nbsp;with the values of&nbsp;<code>firstName</code>&nbsp;&amp;&nbsp;<code>lastName</code>&nbsp;variable from the component.</p>\n\n\n\n<p>Also, whenever the values of&nbsp;<code>firstName</code>&nbsp;&amp;&nbsp;<code>lastName</code>&nbsp;change, Angular updates the view. But not the other way around.</p>\n\n\n\n<p><strong>Read More</strong><br>Interpolation in Angular</p>\n\n\n\n<h4>Property binding</h4>\n\n\n\n<p>The Property binding allows us to bind HTML element property to a property in the component. Whenever the value of the component changes, the Angular updates the element property in the View. You can set the properties such as class, href, src, textContent, etc using property binding. You can also use it to set the properties of custom components or directives (properties decorated with @Input).</p>\n\n\n\n<p>The Property Binding uses the following Syntax</p>\n\n\n\n<p><code>[binding-target]=”binding-source”</code></p>\n\n\n\n<p>The&nbsp;<code>binding-target</code>&nbsp;(or target property) is enclosed in a square bracket&nbsp;<code>[]</code>. It should match the name of the property of the enclosing element.</p>\n\n\n\n<p><code>Binding-source</code>&nbsp;is enclosed in quotes and we assign it to the&nbsp;<code>binding-target</code>. The Binding source must be a template expression. It can be property in the component, method in component, a template reference variable or an expression containing all of them.</p>\n\n\n\n<p>Whenever the value of Binding-source changes, the view is updated by the Angular.</p>\n\n\n\n<p><br>BEST ANGULAR BOOKS<br><strong>The Top 8 Best Angular Books, which helps you to get started with Angular </strong> </p>\n\n\n\n<p>Example</p>\n\n\n\n<p>app.component.html</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;h1 &#91;innerText]=\"title\">&lt;/h1>\n&lt;h2>Example 1&lt;/h2>\n&lt;button &#91;disabled]=\"isDisabled\">I am disabled&lt;/button></code></pre>\n\n\n\n<p>&lt;h1 [innerText]=&#8221;title&#8221;&gt;&lt;/h1&gt;&lt;h2&gt;Example 1&lt;/h2&gt;&lt;button [disabled]=&#8221;isDisabled&#8221;&gt;I am disabled&lt;/button&gt;</p>\n\n\n\n<pre class=\"wp-block-code\"><code>import { Component } from '@angular/core';\n \n@Component({\n  selector: 'app-root',\n  templateUrl: './app.component.html',\n  styleUrls: &#91;'./app.component.css']\n})\nexport class AppComponent {\n  title=\"Angular Property Binding Example\"\n  \n  //Example 1\n  isDisabled= true;\n \n}</code></pre>\n\n\n\n<p>The&nbsp;<code>title</code>&nbsp;property of the component class is bound to the&nbsp;<code>innerText</code>&nbsp;property of the&nbsp;<code>h1</code>&nbsp;tag.&nbsp;<code>Disabled</code>&nbsp;Property of the&nbsp;<code>button</code>&nbsp;is bound to the&nbsp;<code>isDisabled</code>&nbsp;Property of the component</p>\n\n\n\n<p>Whenever we modify the&nbsp;<code>title</code>&nbsp;or&nbsp;<code>isDisabled</code>&nbsp;in the component, the Angular automatically updates the view.</p>\n\n\n\n<p>The property binding has special syntaxes for setting the class &amp; styles. Also, both interpolation &amp; property binding does not set the attributes of the HTML elements. Hence we have an attribute binding to such situations</p>\n\n\n\n<p><strong>Read More</strong><br>Angular Property Binding</p>\n\n\n\n<h5>Class Binding</h5>\n\n\n\n<p>You can set the class in the following ways. Click on the links to find out more</p>\n\n\n\n<ul><li>ClassName Property binding</li><li>Set the Class attribute with class binding</li><li>ngClass directive</li></ul>\n\n\n\n<h5>Style Binding</h5>\n\n\n\n<p>You can set the class in the following ways. Click on the links to find out more</p>\n\n\n\n<ul><li>Style Binding</li><li>ngStyle directive</li></ul>\n\n\n\n<h5>Attribute binding</h5>\n\n\n\n<p>Sometimes there is no HTML element property to bind to. The examples are aria (accessibility) Attributes &amp; SVG. In such cases, you can make use of attribute binding</p>\n\n\n\n<p>The attribute syntax starts with&nbsp;<code>attr</code>&nbsp;followed by a&nbsp;<code>dot</code>&nbsp;and then the name of the attribute as shown below</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;button &#91;attr.aria-label]=\"closeLabel\" (onclick)=\"closeMe()\">X&lt;/button></code></pre>\n\n\n\n<p><strong>Read More</strong></p>\n\n\n\n<ol><li>ngClass Directive</li><li>Style Binding</li><li>ngStyle directive</li></ol>\n\n\n\n<h3>From View to Component</h3>\n\n\n\n<h4>Event Binding</h4>\n\n\n\n<p>Event binding allows us to bind events such as keystroke, clicks, hover, touch, etc to a method in component. It is one way from view to component. By tracking the user events in the view and responding to it, we can keep our component in sync with the view. For Example, when the user changes a input in a text box, we can update the model in the component, run some validations, etc. When the user submits the button, we can then save the model to the backend server.</p>\n\n\n\n<p>Angular uses the following syntax for event binding</p>\n\n\n\n<p><code>&lt;target-event)=\"TemplateStatement\"</code></p>\n\n\n\n<p>Angular event binding syntax consists of a target event name within parentheses on the left of an equal sign, and a quoted template statement on the right.</p>\n\n\n\n<p>For Example,</p>\n\n\n\n<pre class=\"wp-block-code\"><code> &lt;button (click)=\"onSave()\">Save&lt;/button>\n</code></pre>\n\n\n\n<p>The above example, binds the&nbsp;<code>click</code>&nbsp;event of a&nbsp;<code>button</code>&nbsp;to a&nbsp;<code>onSave()</code>&nbsp;method in the component class. Whenever user clicks on the button, the Angular invokes the&nbsp;<code>onSave()</code>&nbsp;method.</p>\n\n\n\n<p><strong>Read More</strong></p>\n\n\n\n<p>Event Binding in Angular</p>\n\n\n\n<h2>Two Way binding</h2>\n\n\n\n<p>Two-way binding means that changes made to our model in the component are propagated to the view and that any changes made in the view are immediately updated in the underlying component</p>\n\n\n\n<p>Two-way binding is useful in data entry forms. Whenever a user makes changes to a form field, we would like to update our model. Similarly, when we update the model with new data, we would like to update the view as well</p>\n\n\n\n<p>The two-way binding uses the special syntax known as a banana in a box&nbsp;<code>[()]</code></p>\n\n\n\n<p><code>&lt;someElement [(someProperty)]=\"value\"&gt;&lt;/someElement&gt;</code>.</p>\n\n\n\n<p>The above syntax sets up both property binding &amp; event binding. But to make use of it, the property must have the change event with the name&nbsp;<code>&lt;propertyName&gt;Change</code></p>\n\n\n\n<p>But, angular has a special directive ngModel, which sets up the two-way binding</p>\n\n\n\n<h3>ngModel</h3>\n\n\n\n<p>The Angular uses the&nbsp;<code>ngModel</code>&nbsp;directive to achieve the two-way binding on HTML Form elements. It binds to a form element like&nbsp;<code>input</code>,&nbsp;<code>select</code>,&nbsp;<code>selectarea</code>. etc.</p>\n\n\n\n<p>The&nbsp;<code>ngModel</code>&nbsp;directive is not part of the Angular Core library. It is part of the&nbsp;<code>@angular/forms</code>. You need to import the FormsModule package into your Angular module.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>import { FormsModule } from '@angular/forms';\n</code></pre>\n\n\n\n<p>Then you can use it using the two-way binding syntax as shown below</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;input type=\"text\" name=\"value\" &#91;(ngModel)]=\"value\">\n</code></pre>\n\n\n\n<p>When you bind to a&nbsp;<code>ngModel</code>&nbsp;directive, behind the scene it sets up property binding &amp; event binding. It binds to the&nbsp;<code>value</code>&nbsp;property of the element using property binding. It then uses the&nbsp;<code>ngModelChange</code>&nbsp;event to sets up the event binding to listen to the changes to the value.</p>\n\n\n\n<p><strong>Read More</strong></p>\n\n\n\n<p>Two way binding in Angular</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>What is Angular Data Binding Data binding is a technique, where the data stays in sync between the component and the view. Whenever the user updates the data in the view, Angular updates the component. When the component gets new data, the Angular updates the view. There are many uses of data binding. You can [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [125],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3481"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=3481"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 2,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3481/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3808,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3481/revisions/3808"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=3481"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=3481"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=3481"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 3491,
+    "date": "2020-11-30T06:11:41",
+    "date_gmt": "2020-11-30T06:11:41",
+    "guid": {
+      "rendered": "http://angular.foobrdigital.com/?p=3491"
+    },
+    "modified": "2020-12-08T12:22:04",
+    "modified_gmt": "2020-12-08T12:22:04",
+    "slug": "interpolation-in-angular",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/interpolation-in-angular/",
+    "title": {
+      "rendered": "Interpolation in Angular"
+    },
+    "content": {
+      "rendered": "\n<h2>What is Interpolation in Angular</h2>\n\n\n\n<p>Interpolation allows us to include expressions as part of any string literal, which we use in our HTML. The angular evaluates the expressions into a string and replaces it in the original string and updates the view. You can use interpolation wherever you use a string literal in the view.</p>\n\n\n\n<p>Angular interpolation is also known by the name&nbsp;<em><strong>string interpolation</strong></em>. Because you incorporate expressions inside another string.</p>\n\n\n\n<h2>Interpolation syntax</h2>\n\n\n\n<p>The Angular uses the&nbsp;<code>{{ }}</code>&nbsp;(double curly braces) in the template to denote the interpolation. The syntax is as shown below</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{{ templateExpression }}</code></pre>\n\n\n\n<p>The content inside the double braces is called&nbsp;<code>Template Expression</code></p>\n\n\n\n<p>The Angular first evaluates the&nbsp;<code>Template Expression</code>&nbsp;and converts it into a string. Then it replaces&nbsp;<code>Template expression</code>&nbsp;with the result in the original string in the HTML. Whenever the template expression changes, the Angular updates the original string again</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://www.tektutorialshub.com/wp-content/uploads/2020/03/Angular-Interpolation-Example.png\" alt=\"Angular Interpolation example\" class=\"wp-image-16899\"/></figure>\n\n\n\n<h2>Interpolation Example</h2>\n\n\n\n<p>Create a new angular application using the following command</p>\n\n\n\n<pre class=\"wp-block-code\"><code>ng new interpolation \n</code></pre>\n\n\n\n<p>Open the&nbsp;<code>app.component.html</code>&nbsp;and just add the following code</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{{title}}\n</code></pre>\n\n\n\n<p>Open the&nbsp;<code>app.component.ts</code>&nbsp;and add the following code</p>\n\n\n\n<pre class=\"wp-block-code\"><code>import { Component } from '@angular/core';\n \n@Component({\n  selector: 'app-root',\n  templateUrl: './app.component.html',\n  styleUrls: &#91;'./app.component.css']\n})\nexport class AppComponent {\n  title = 'Angular Interpolation Example';\n}</code></pre>\n\n\n\n<p>Run the app. You will see the&nbsp;<code>“Angular Interpolation Example”</code>&nbsp;on the screen</p>\n\n\n\n<p>In the example above the&nbsp;<code>title</code>&nbsp;is the Template Expression. We also have&nbsp;<code>title</code>&nbsp;property in the component. The Angular evaluates&nbsp;<code>{{title}}</code>&nbsp;and replaces it with the value of the title property from the component class.</p>\n\n\n\n<p>If the user changes the&nbsp;<code>title</code>&nbsp;in the component class, the Angular updates the view accordingly.</p>\n\n\n\n<p>The interpolation is much more powerful than just getting the property of the component. You can use it to invoke any method on the component class or to do some mathematical operations etc.</p>\n\n\n\n<h2>Notes on Interpolation</h2>\n\n\n\n<h3>Interpolation is one-way binding</h3>\n\n\n\n<p>Interpolation is one way as values go from the component to the template. When the component values change, the Angular updates the view. But if the values changes in the view components are not updated.</p>\n\n\n\n<h3>Should not change the state of the app</h3>\n\n\n\n<p>The Template expression should not change the state of the application. The Angular uses it to read the values from the component and populate the view. If the Template expression changes the component values, then the rendered view would be inconsistent with the model</p>\n\n\n\n<p>It means that you cannot make use of the following</p>\n\n\n\n<ul><li>Assignments&nbsp;<code>(=, +=, -=, …)</code></li><li>Keywords like&nbsp;<code>new</code>,&nbsp;<code>typeof</code>,&nbsp;<code>instanceof</code>, etc</li><li>Chaining expressions with&nbsp;<code>;</code>&nbsp;or&nbsp;<code>,</code></li><li>The increment and decrement operators&nbsp;<code>++</code>&nbsp;and&nbsp;<code>--</code></li><li>bitwise operators such as&nbsp;<code>|</code>&nbsp;and&nbsp;<code>&amp;</code></li></ul>\n\n\n\n<h3>The expression must result in a string</h3>\n\n\n\n<p>Interpolation expression must result in a string. If we return an object it will not work. If you want to bind the expression that is other than a string (for example – boolean), then Property Binding is the best option.</p>\n\n\n\n<h3>Works only on Properties &amp; not attributes</h3>\n\n\n\n<p>Interpolation and property binding can set only properties, not attributes. For Attributes use attribute binding</p>\n\n\n\n<h2>Examples of interpolation</h2>\n\n\n\n<p>You can use interpolation to invoke a method in the component, Concatenate two string, perform some mathematical operations or change the property of the DOM element like color, etc.</p>\n\n\n\n<p><br>BEST ANGULAR BOOKS<br><strong>The Top 8 Best Angular Books, which helps you to get started with Angular </strong> </p>\n\n\n\n<h3>Invoke a method in the component</h3>\n\n\n\n<p>We can invoke the component’s methods using interpolation.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>//Template\n \n{{getTitle()}}\n \n \n//Component\ntitle = 'Angular Interpolation Example';\ngetTitle(): string {\n     return this.title;\n }</code></pre>\n\n\n\n<p>Concatenate two string</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;p>Welcome to {{title}}&lt;/p>\n&lt;p>{{ 'Hello &amp; Welcome to '+ ' Angular Interpolation '}}&lt;/p>\n&lt;p>Welcome {{firstName}}, {{lastName}}&lt;/p>\n&lt;p>Welcome {{getFirstName()}}, {{getLastName()}}&lt;/p>\n</code></pre>\n\n\n\n<p>Perform some mathematical operations</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;h2>Mathematical Operations&lt;/h2>\n \n&lt;p>100x80 = {{100*80}}&lt;/p>\n&lt;p>Largest: {{max(100, 200)}}&lt;/p>\n \n//Component\nmax(first: number, second: number): number {\n  return Math.max(first, second);\n}</code></pre>\n\n\n\n<h3>Bind to an element property</h3>\n\n\n\n<p>We can use it to bind to a property of the HTML element, a component, or a directive. in the following code, we bind to the&nbsp;<code>style.color</code>&nbsp;property of the&nbsp;<code>&lt;p&gt;</code>&nbsp;element. We can bind to any property that accepts a string.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;p>Show me &lt;span class = \"{{giveMeRed}}\">red&lt;/span>&lt;/p>\n&lt;p style.color={{giveMeRed}}>This is red&lt;/p>\n</code></pre>\n\n\n\n<p><strong>Bind to an image source</strong></p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;div>&lt;img src=\"{{itemImageUrl}}\">&lt;/div>\n</code></pre>\n\n\n\n<p><strong>href</strong></p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;a href=\"/product/{{productID}}\">{{productName}}&lt;/a>\n</code></pre>\n\n\n\n<h3>Use a template reference variable</h3>\n\n\n\n<p>You can also use the template reference variable. The following example creates a template variable <code>#name</code> to an input box. You can use it get the value of the input field <code>{{name.value}}</code></p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;label>Enter Your Name&lt;/label>\n&lt;input (keyup)=\"0\" #name>\n&lt;p>Welcome {{name.value}} &lt;/p>\n</code></pre>\n\n\n\n<p>We also use&nbsp;<code>(keyup)=\"0\"</code>&nbsp;on the&nbsp;<code>input</code>&nbsp;element. It does nothing but it forces the angular run the change detection, which in turn updates the view.</p>\n\n\n\n<p>The Angular updates the view, when it runs the change detection. The change detection runs only in response to asynchronous events, such as the arrival of HTTP responses, raising of events, etc. In the example above whenever you type on the input box, it raises the&nbsp;<code>keyup</code>&nbsp;event. It forces the angular run the change detection, hence the view gets the latest values.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>//Template\n \n&lt;p>items&lt;/p>\n&lt;ul>\n  &lt;li *ngFor=\"let d of items\">\n    {{ d.name }}\n    &lt;/li>\n&lt;/ul>\n \n//Component\n  items= &#91;\n    new item(1, 'Mobile'),\n    new item(2, 'Laptop'),\n    new item(3, 'Desktop'),\n    new item(4, 'Printer')\n  ]\n \nclass item {\n  code:string\n  name:string\n \n  constructor(code,name) {\n    this.code=code;\n    this.name=name\n  }\n}\n </code></pre>\n\n\n\n<h2>Cross-site Scripting or XSS</h2>\n\n\n\n<p>Angular Sanitizes everything before inserting into DOM, thus preventing Cross-Site Scripting Security bugs (XSS). For example values from the component property, attribute, style, class binding, or interpolation, etc are sanitized. The&nbsp;<code>script</code>&nbsp;in the following example is not invoked but shown as it is.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>//Template\n&lt;p>{{script}}&lt;/p>\n&lt;p>{{div}}&lt;/p>\n \n//Component\nscript ='&lt;script>alert(\"You are hacked\")&lt;/script>'\ndiv='&lt;div>this is a div&lt;/div>';</code></pre>\n\n\n\n<h2>NgNonBindable</h2>\n\n\n\n<p>Use&nbsp;<code>ngNonBindable</code>&nbsp;to tell Angular not to compile or bind the contents of the current DOM element. I.e any expression is not evaluated but shown as it is.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;p>Evaluate: {{variable}}&lt;/p>\n&lt;p ngNonBindable>Do not evaluate: {{variable}}&lt;/p>\n \n \n&lt;p>Angular uses {{ variable }} syntax for Interpolation&lt;/p>\n&lt;p ngNonBindable>Angular uses {{ variable }} syntax for Interpolation&lt;/p></code></pre>\n\n\n\n<h2>Use Pipes</h2>\n\n\n\n<p>You can make use of Angular Pipes to transform the expression result. Like converting to an uppercase, date formats, adding currency symbols, etc</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;p>uppercase pipe: {{title | uppercase}}&lt;/p>\n&lt;p>pipe chain: {{title | uppercase | lowercase}}&lt;/p>\n&lt;p>json pipe: {{items | json}}&lt;/p></code></pre>\n\n\n\n<h2>The safe navigation operator ( ? )</h2>\n\n\n\n<p>You can make use of a safe navigation operator ( ? ) to guards against&nbsp;<code>null</code>&nbsp;and&nbsp;<code>undefined</code>&nbsp;values.</p>\n\n\n\n<p>The following code results in an error because there is no&nbsp;<code>nullItem</code></p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;p>The item name is: {{nullItem?.Name}}&lt;/p>     \n \nTypeError: Cannot read property 'itemName' of undefined</code></pre>\n\n\n\n<p>Use a safe navigation operator and the error goes away. Angular replace it with an empty string</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;p>The null item name is {{nullItem.itemName}}&lt;/p>\n</code></pre>\n\n\n\n<h2>The non-null assertion operator</h2>\n\n\n\n<p>Typescript enforces the strict null checking if you enable the&nbsp;<code>--strictNullChecks</code>&nbsp;flag in your&nbsp;<code>tsconfig.json</code>. Under strict null check any variable not defined or null results in a compiler error. The type checker also throws an error if it can’t determine whether a variable will be null or undefined at runtime</p>\n\n\n\n<p>You can use the non-null assertion operator to inform typescript not to throw any compile errors. Note that it is a compile-time feature &amp; not runtime.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>The item's name is: {{item!.name}}\n</code></pre>\n\n\n\n<h2>References</h2>\n\n\n\n<ul><li>Angular Data Binding</li><li>Template Syntax</li><li>Property Binding</li><li>Event Binding</li><li>Two-way binding</li><li>Template Reference Variable</li><li>Angular Pipes</li><li>Cross-Site Scripting</li><li>String Interpolation in Typescript</li></ul>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>What is Interpolation in Angular Interpolation allows us to include expressions as part of any string literal, which we use in our HTML. The angular evaluates the expressions into a string and replaces it in the original string and updates the view. You can use interpolation wherever you use a string literal in the view. [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [125],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3491"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=3491"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 2,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3491/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3809,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3491/revisions/3809"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=3491"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=3491"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=3491"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 3492,
+    "date": "2020-11-30T06:20:41",
+    "date_gmt": "2020-11-30T06:20:41",
+    "guid": {
+      "rendered": "http://angular.foobrdigital.com/?p=3492"
+    },
+    "modified": "2020-12-08T12:22:48",
+    "modified_gmt": "2020-12-08T12:22:48",
+    "slug": "property-binding-in-angular",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/property-binding-in-angular/",
+    "title": {
+      "rendered": "Property Binding in Angular"
+    },
+    "content": {
+      "rendered": "\n<h2>Property Binding Syntax</h2>\n\n\n\n<p>The Property Binding uses the following Syntax</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&#91;binding-target]=”binding-source”\n</code></pre>\n\n\n\n<p>The&nbsp;<code>binding-target</code>&nbsp;(or target property) is enclosed in a square bracket&nbsp;<code>[]</code>. It should match the name of the property of the enclosing element.</p>\n\n\n\n<p><code>Binding-source</code>&nbsp;is enclosed in quotes and we assign it to the&nbsp;<code>binding-target</code>. The Binding source must be a&nbsp;<code>template expression</code>. It can be property in the component, method in component, a template reference variable or an expression containing all of them.</p>\n\n\n\n<p>Whenever the value of&nbsp;<code>Binding-source</code>&nbsp;changes, the view is updated by the Angular.</p>\n\n\n\n<h2>Property Binding Example</h2>\n\n\n\n<p>Create a new application</p>\n\n\n\n<pre class=\"wp-block-code\"><code>ng new property\n</code></pre>\n\n\n\n<p>Open&nbsp;<code>app.component.html</code></p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;h1 &#91;innerText]=\"title\">&lt;/h1>\n&lt;h2>Example 1&lt;/h2>\n&lt;button &#91;disabled]=\"isDisabled\">I am disabled&lt;/button>\n</code></pre>\n\n\n\n<p>Open the&nbsp;<code>app.component.ts</code></p>\n\n\n\n<pre class=\"wp-block-code\"><code>import { Component } from '@angular/core';\n \n@Component({\n  selector: 'app-root',\n  templateUrl: './app.component.html',\n  styleUrls: &#91;'./app.component.css']\n})\nexport class AppComponent {\n  title=\"Angular Property Binding Example\"\n  \n  //Example 1\n  isDisabled= true;\n \n}</code></pre>\n\n\n\n<p>We have two property binding in the example above</p>\n\n\n\n<p>The&nbsp;<code>title</code>&nbsp;property of the component class is bound to the&nbsp;<code>innerText</code>&nbsp;property of the&nbsp;<code>h1</code>&nbsp;tag.&nbsp;<code>Disabled</code>&nbsp;Property of the button is bound to the&nbsp;<code>isDisabled</code>&nbsp;Property of the component</p>\n\n\n\n<p>Whenever we modify the&nbsp;<code>title</code>&nbsp;or&nbsp;<code>isDisabled</code>&nbsp;is the component, the Angular automatically updates the view.</p>\n\n\n\n<h2>Property Binding is one way</h2>\n\n\n\n<p>Property binding is one way as values go from the component to the template. When the component values change, the Angular updates the view. But if the values changes in the view, the Angular does not update the component.</p>\n\n\n\n<h2>Should not change the state of the app</h2>\n\n\n\n<p>The Angular evaluates the template expression (binding-source) to read the values from the component. It then populates the view. If the expression changes any of the component values, then the view would be inconsistent with the model. Hence we need to avoid using expression which will alter the component state.</p>\n\n\n\n<p>It means that you cannot make use of the following</p>\n\n\n\n<ul><li>Assignments&nbsp;<code>(=, +=, -=, …)</code></li><li>Keywords like&nbsp;<code>new</code>,&nbsp;<code>typeof</code>,&nbsp;<code>instanceof</code>, etc</li><li>Chaining expressions with&nbsp;<code>;</code>&nbsp;or&nbsp;<code>,</code></li><li>The increment and decrement operators&nbsp;<code>++</code>&nbsp;and&nbsp;<code>--</code></li><li>bitwise operators such as&nbsp;<code>|</code>&nbsp;and&nbsp;<code>&amp;</code></li></ul>\n\n\n\n<h2>Return the proper type</h2>\n\n\n\n<p>The binding expression should return the correct type. The type that the target property expects. Otherwise, it will not work</p>\n\n\n\n<h2>Property name in camel case</h2>\n\n\n\n<p>There are few element property names in the camel case, while their corresponding attributes are not. For example&nbsp;<code>rowSpan</code>&nbsp;&amp;&nbsp;<code>colSpan</code>&nbsp;properties of the table are in the camel case. The HTML attributes are all lowercase (<code>rowspan</code>&nbsp;&amp;&nbsp;<code>colspan</code>)</p>\n\n\n\n<p><br>BEST ANGULAR BOOKS<br><strong>The Top 8 Best Angular Books, which helps you to get started with Angular </strong> </p>\n\n\n\n<h2>Remember the brackets</h2>\n\n\n\n<p>The brackets,&nbsp;<code>[]</code>, tell Angular to evaluate the template expression. If you omit the brackets, Angular treats the expression as a constant string and initializes the target property with that string:</p>\n\n\n\n<h2>Content Security</h2>\n\n\n\n<p>Angular inspects the template expression for untrusted values and sanitizes them if found any. For example, the following component variable&nbsp;<code>evilText</code>&nbsp;contains the&nbsp;<code>script</code>&nbsp;tag. This is what we call the script injection attack.&nbsp;<strong>The Angular&nbsp;does not&nbsp;allow HTML with script tags</strong>. It treats the entire content as string and displays as it is.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Component\n \nevilText = 'Template &lt;script>alert(\"You are hacked\")&lt;/script> Syntax';\n \nTemplate\n \n&lt;p &#91;textContent]=\"evilText\">&lt;/p> </code></pre>\n\n\n\n<h2>DOM Properties, not attributes</h2>\n\n\n\n<p>The property binding binds to the&nbsp;<em>properties</em>&nbsp;of DOM elements, components, and directives and not to HTML attributes. The angular has a special syntax for attribute binding.</p>\n\n\n\n<h2>Special Binding</h2>\n\n\n\n<p>The Angular has a special syntax for class, styles &amp; attribute binding</p>\n\n\n\n<p>The classes &amp; styles are special because they contain a list of classes or styles. The bindings need to be more flexible in managing them. Hence we have a class &amp; style binding.</p>\n\n\n\n<p>The Property bindings cover all the properties, but there are certain HTML attributes that do not have any corresponding HTML property. Hence we have attribute binding</p>\n\n\n\n<h3>Class binding</h3>\n\n\n\n<p>You can set the class in the following ways. Click on the links to find out more</p>\n\n\n\n<ul><li>ClassName Property binding</li><li>Set the Class attribute<em> </em>with class binding</li><li>ngClass directive</li></ul>\n\n\n\n<h3>Style Binding</h3>\n\n\n\n<p>Similar to the class, the style also can be set using the following ways. Click on the links to find out more</p>\n\n\n\n<ul><li>Style Property Binding</li><li>ngStyle directive</li></ul>\n\n\n\n<h3>Attribute Binding</h3>\n\n\n\n<p>Sometimes there is no HTML element property to bind to. The examples are aria (accessibility) Attributes &amp; SVG. In such cases, you can make use of attribute binding</p>\n\n\n\n<p>The attribute syntax starts with&nbsp;<code>attr</code>&nbsp;followed by a&nbsp;<code>dot</code>&nbsp;and then the name of the attribute as shown below</p>\n\n\n\n<pre class=\"wp-block-code\"><code>//Template\n \n//Setting aria label\n&lt;button &#91;attr.aria-label]=\"closeLabel\" (onclick)=\"closeMe()\">X&lt;/button>\n \n//Table colspan\n&lt;table border=\"1\">\n  &lt;tr>\n    &lt;td>Col 1&lt;/td>\n    &lt;td>Col 2&lt;/td>\n    &lt;td>Col 3&lt;/td>\n  &lt;/tr>\n  &lt;tr>\n      &lt;td &#91;attr.colspan]=\"2\">Col 1 &amp; 2&lt;/td> \n      &lt;td>Col 3&lt;/td>\n  &lt;/tr>\n  &lt;tr>\n      &lt;td>Col 1&lt;/td>\n      &lt;td bind-attr.colspan = \"getColspan()\">Col 2 &amp; 3 &lt;/td>\n  &lt;/tr>\n  &lt;tr>\n      &lt;td>Col 1&lt;/td>\n      &lt;td>Col 2&lt;/td>\n      &lt;td>Col 3&lt;/td>\n    &lt;/tr>\n  \n&lt;/table></code></pre>\n\n\n\n<pre class=\"wp-block-code\"><code>//Component\n \ncloseLabel=\"close\";\ngetColspan() {\n   return \"2\"\n}</code></pre>\n\n\n\n<h2>Property Binding Vs Interpolation</h2>\n\n\n\n<p>Everything that can be done from interpolation can also be done using the Property binding. Interpolation is actually a shorthand for binding to the&nbsp;<code>textContent</code>&nbsp;property of an element.</p>\n\n\n\n<p>For example the following interpolation</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;h1> {{ title }} &lt;/h1>\n</code></pre>\n\n\n\n<p>Is same as the following Property binding</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;h1 &#91;innerText]=\"title\">&lt;/h1>\n</code></pre>\n\n\n\n<p>In fact, Angular automatically translates interpolations into the corresponding property bindings before rendering the view.</p>\n\n\n\n<p>Interpolation is simple and readable. For example, the above example of setting the&nbsp;<code>h1</code>&nbsp;tag, the in interpolation is intuitive and readable than the property binding syntax</p>\n\n\n\n<p>Interpolation requires the expression to return a string. If you want to set an element property to a non-string data value, you must use property binding.</p>\n\n\n\n<h2>Property Binding Example</h2>\n\n\n\n<p><strong>Binding to innerHTML with HTML tags</strong></p>\n\n\n\n<p>Here the Angular parses the&nbsp;<code>b</code>&nbsp;&amp;<code>p</code>&nbsp;tags and renders it in the view.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>//Template\n&lt;p &#91;innerHTML]=\"text1\">&lt;/p>\n&lt;div &#91;innerHTML]=\"text2\">&lt;/div>\n </code></pre>\n\n\n\n<pre class=\"wp-block-code\"><code></code></pre>\n\n\n\n<pre class=\"wp-block-code\"><code>//Component\n text1=\"The &lt;b>Angular&lt;/b> is printed in bold\"\ntext2=\"&lt;p>This is first para&lt;/p>&lt;p>This is second para&lt;/p> \"</code></pre>\n\n\n\n<p><strong>img</strong></p>\n\n\n\n<pre class=\"wp-block-code\"><code> \n//Template\n \n&lt;img &#91;src]=\"itemImageUrl\">\n&lt;img bind-src=\"itemImageUrl\"></code></pre>\n\n\n\n<pre class=\"wp-block-code\"><code>//Component\nitemImageUrl=\"https://angular.io/assets/images/logos/angular/logo-nav@2x.png\"\n</code></pre>\n\n\n\n<p><em>//Component</em>itemImageUrl=&#8221;https://angular.io/assets/images/logos/angular/logo-nav@2x.png&#8221;</p>\n\n\n\n<pre class=\"wp-block-code\"><code>//Component\nitemImageUrl=\"https://angular.io/assets/images/logos/angular/logo-nav@2x.png\"\n</code></pre>\n\n\n\n<p><strong>Mathematical expressions</strong></p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;p &#91;innerText]=\"100*80\">&lt;/p>\n</code></pre>\n\n\n\n<p><strong>setting the color</strong></p>\n\n\n\n<pre class=\"wp-block-code\"><code>//template\n&lt;p &#91;style.color]=\"color\">This is red&lt;/p>\n</code></pre>\n\n\n\n<pre class=\"wp-block-code\"><code>//Component\ncolor='red'\n</code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Property Binding Syntax The Property Binding uses the following Syntax The&nbsp;binding-target&nbsp;(or target property) is enclosed in a square bracket&nbsp;[]. It should match the name of the property of the enclosing element. Binding-source&nbsp;is enclosed in quotes and we assign it to the&nbsp;binding-target. The Binding source must be a&nbsp;template expression. It can be property in the component, [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [125],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3492"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=3492"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 2,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3492/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3810,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3492/revisions/3810"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=3492"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=3492"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=3492"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 3493,
+    "date": "2020-11-30T06:27:34",
+    "date_gmt": "2020-11-30T06:27:34",
+    "guid": {
+      "rendered": "http://angular.foobrdigital.com/?p=3493"
+    },
+    "modified": "2020-11-30T06:27:34",
+    "modified_gmt": "2020-11-30T06:27:34",
+    "slug": "event-binding-in-angular",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/event-binding-in-angular/",
+    "title": {
+      "rendered": "Event Binding in Angular"
+    },
+    "content": {
+      "rendered": "\n<h2>Event Binding</h2>\n\n\n\n<p>Event binding allows us to bind events such as keystroke, clicks, hover, touche, etc to a method in component. It is one way from view to component. By tracking the user events in the view and responding to it, we can keep our component in sync with the view. For Example, when the user changes to an input in a text box, we can update the model in the component, run some validations, etc. When the user submits the button, we can then save the model to the backend server.</p>\n\n\n\n<h2>Syntax</h2>\n\n\n\n<p>The Angular event binding consists of two parts</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;target-event)=\"TemplateStatement\"\r\n</code></pre>\n\n\n\n<ul><li>We enclose the target event name in parentheses on the left side</li><li>Assign it to a template statement within a quote on the right side</li></ul>\n\n\n\n<p>Angular event binding syntax consists of a target event name within parentheses on the left of an equal sign, and a quoted template statement on the right.</p>\n\n\n\n<p>The following event binding listens for the button’s <code>click</code> events, calling the component’s <code>onSave()</code> method whenever a click occurs</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;button (click)=\"onSave()\">Save&lt;/button>\r\n</code></pre>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://www.tektutorialshub.com/wp-content/uploads/2020/03/Event-Binding-in-Angular.png\" alt=\"Event Binding in Angular\" class=\"wp-image-16909\"/></figure>\n\n\n\n<h2>Event Binding Example</h2>\n\n\n\n<p>Create a new angular application</p>\n\n\n\n<pre class=\"wp-block-code\"><code>  ng new event \r\n</code></pre>\n\n\n\n<p>Copy the following code to <code>app.component.html</code></p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;h1 &#91;innerText]=\"title\">&lt;/h1>\r\n \r\n&lt;h2>Example 1&lt;/h2>\r\n&lt;button (click)=\"clickMe()\">Click Me&lt;/button>\r\n&lt;p>You have clicked {{clickCount}}&lt;/p></code></pre>\n\n\n\n<p>Add the following code to the <code>app.component.ts</code></p>\n\n\n\n<pre class=\"wp-block-code\"><code>clickCount=0\r\n  clickMe() {\r\n    this.clickCount++;\r\n  }</code></pre>\n\n\n\n<p>In the above example, the component listens to the click event on the button. It then executes the&nbsp;<code>clickMe()</code>&nbsp;method and increases the&nbsp;<code>clickCount</code>&nbsp;by one.</p>\n\n\n\n<h2>Template statements have side effects</h2>\n\n\n\n<p>Unlike the Property Binding &amp; Interpolation, where we use the template expression is used, in case of event binding we use template statement.</p>\n\n\n\n<p>The Template statement can change the state of the component. Angular runs the change detection and updates the view so as to keep it in sync with the component.</p>\n\n\n\n<h2>on-</h2>\n\n\n\n<p>Instead of parentheses, you can also use the <code>on-</code> syntax as shown below.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;button on-click=\"clickMe()\">Click Me&lt;/button>\r\n</code></pre>\n\n\n\n<h2>Multiple event handlers</h2>\n\n\n\n<p>You can also bind an unlimited number of event handlers on the same event by separating them with a semicolon&nbsp;<code>:</code></p>\n\n\n\n<p>Add a new component property</p>\n\n\n\n<pre class=\"wp-block-code\"><code>  clickCount1=0;\r\n</code></pre>\n\n\n\n<p>And in the template, call <code>clickMe()</code> method and then an assignment <code>clickCount1=clickCount</code></p>\n\n\n\n<pre class=\"wp-block-code\"><code>//Template\r\n \r\n&lt;h2>Example 2&lt;/h2>\r\n&lt;button (click)=\"clickMe(); clickCount1=clickCount\">Click Me&lt;/button>\r\n&lt;p>You have clicked {{clickCount1}}&lt;/p></code></pre>\n\n\n\n<h2>$event Payload</h2>\n\n\n\n<p>DOM Events carries the event payload. I.e the information about the event. We can access the event payload by using <code>$event</code> as an argument to the handler function.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;input (input)=\"handleInput($event)\">\r\n&lt;p>You have entered {{value}}&lt;/p></code></pre>\n\n\n\n<p>And in the component</p>\n\n\n\n<pre class=\"wp-block-code\"><code>value=\"\"\r\nhandleInput(event) {\r\n  this.value=event.target.value;\r\n}</code></pre>\n\n\n\n<p>The properties of a&nbsp;<code>$event</code>&nbsp;object vary depending on the type of DOM event. For example, a mouse event includes different information than an input box editing event.</p>\n\n\n\n<p>Remember you need to use the variable as&nbsp;<code>$event</code>&nbsp;in the Template statement. Example&nbsp;<code>handleInput($event)</code>. Otherwise, it will result in an error</p>\n\n\n\n<h2>Template reference variable</h2>\n\n\n\n<p>We can also make use of the template reference variable to pass the value instead of <code>$event</code>.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;h2>Template Reference Variable&lt;/h2>\r\n&lt;input #el (input)=\"handleInput1(el)\">\r\n&lt;p>You have entered {{val}}&lt;/p></code></pre>\n\n\n\n<p>In the template</p>\n\n\n\n<pre class=\"wp-block-code\"><code>val=\"\";\r\nhandleInput1(element) {\r\n  this.val=element.value;\r\n}</code></pre>\n\n\n\n<h2>Key event filtering (with key.enter)</h2>\n\n\n\n<p>We use keyup/keydown events to listen for keystrokes. The following example does that</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;input (keyup)=\"value1=$event.target.value\">\r\n&lt;p>You entered {{value1}}&lt;/p>\r\n </code></pre>\n\n\n\n<p>But Angular also offers a feature, where it helps to filter out certain keys. For Example, if you want to listen only to the <code>enter</code> keys you can do it easily</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;input (keyup.enter)=\"value2=$event.target.value\">\r\n&lt;p>You entered {{value2}}&lt;/p></code></pre>\n\n\n\n<p>Here is an interesting example. On pressing <code>enter</code> key it updates the <code>value3</code> variable and on <code>escape</code> clears the variable.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;input (keyup.enter)=\"value3=$event.target.value\" (keyup.escape)=\"$event.target.value='';value3=''\">\r\n&lt;p>You entered {{value3}}&lt;/p></code></pre>\n\n\n\n<p>Angular calls these pseudo-events.</p>\n\n\n\n<p>You can also listen for the key combination</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;input (keyup.control.shift.enter)=\"value4=$event.target.value\">\r\n&lt;p>You entered {{value4}}&lt;/p>\r\n</code></pre>\n\n\n\n<h2>Custom events with EventEmitter</h2>\n\n\n\n<p>Directives &amp; components can also raise events with EventEmitter. Using EventEmiiiter you can create a property and raise it using the&nbsp;<code>EventEmitter.emit(payload)</code>. The Parent component can listen to these events using the event binding and also read the payload using the&nbsp;<code>$event</code>&nbsp;argument</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Event Binding Event binding allows us to bind events such as keystroke, clicks, hover, touche, etc to a method in component. It is one way from view to component. By tracking the user events in the view and responding to it, we can keep our component in sync with the view. For Example, when the [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [125],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3493"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=3493"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3493/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3501,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3493/revisions/3501"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=3493"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=3493"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=3493"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 3494,
+    "date": "2020-11-30T06:31:05",
+    "date_gmt": "2020-11-30T06:31:05",
+    "guid": {
+      "rendered": "http://angular.foobrdigital.com/?p=3494"
+    },
+    "modified": "2020-12-12T06:49:00",
+    "modified_gmt": "2020-12-12T06:49:00",
+    "slug": "ngmodel-two-way-data-binding-in-angular",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/ngmodel-two-way-data-binding-in-angular/",
+    "title": {
+      "rendered": "ngModel &#038; Two way Data binding in Angular"
+    },
+    "content": {
+      "rendered": "\n<h2>What is Two way data binding</h2>\n\n\n\n<p>Two way data binding means that changes made to our model in the component are propagated to the view and that any changes made in the view are immediately updated in the underlying component data.</p>\n\n\n\n<p>Two way data binding is useful in data entry forms. Whenever a user makes changes to a form field, we would like to update our model. Similarly, when we update the model with new data, we would like to update the view as well</p>\n\n\n\n<p>The two way data binding nothing but both property binding &amp; event binding applied together. Property Binding is one way from view to component. The event binding is one way from component to view. If we combine both we will get the Two-way binding.</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://www.tektutorialshub.com/wp-content/uploads/2020/03/two-way-binding.png\" alt=\"Angular Two way binding using Property and event binding \" class=\"wp-image-16896\"/></figure>\n\n\n\n<h2>Two way using property &amp; Event Binding</h2>\n\n\n\n<p>The following example shows how we can achieve two-way binding using the combination of property binding &amp; event binding</p>\n\n\n\n<p>Create a new Angular application</p>\n\n\n\n<p>copy the following code to&nbsp;<code>app.component.html</code></p>\n\n\n\n<pre class=\"wp-block-code\"><code>h2&gt;Example 1&lt;/h2&gt;\n&lt;input type=\"text\" &#91;value]=\"name\" (input)=\"name=$event.target.value\"&gt;\n&lt;p&gt; You entered {{name}}&lt;/p&gt;\n&lt;button (click)=\"clearName()\"&gt;Clear&lt;/button&gt;</code></pre>\n\n\n\n<p>Update the&nbsp;<code>app.component.ts</code>&nbsp;with the following code.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>name=\"\"\n clearName() {\n   this.name=\"\";\n }\n </code></pre>\n\n\n\n<p>We bind the&nbsp;<code>name</code>&nbsp;property to the input element ([<code>value]=\"name\"</code>). We also use the event binding&nbsp;<code>(input)=\"name=$event.target.value\"</code>. It updates the&nbsp;<code>name</code>&nbsp;property whenever the input changes. The Angular interpolation updates the&nbsp;<code>{{name}}</code>, so we know the value of&nbsp;<code>name</code>&nbsp;property.</p>\n\n\n\n<h2>Two-way binding syntax</h2>\n\n\n\n<p>The above example uses the event &amp; property binding combination to achieve the two-way binding. But Angular does provide a way to achieve the two-way binding using the syntax&nbsp;<code>[()]</code>. Note that both square &amp; parentheses are used here. This is now known as&nbsp;<strong>Banana in a box</strong>&nbsp;syntax. The square indicates the Property binding &amp; parentheses indicates the event binding.</p>\n\n\n\n<p>For Example</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;someElement &#91;(someProperty)]=\"value\"&gt;&lt;/someElement&gt;\n</code></pre>\n\n\n\n<p>The above syntax sets up both property &amp; event binding. But to make use of it, the property must follow the following naming convention.</p>\n\n\n\n<p>If we are binding to a settable property called&nbsp;<code>someProperty</code>&nbsp;of an element, then the element must have the corresponding change event named&nbsp;<code>somePropertyChange</code></p>\n\n\n\n<p><br>BEST ANGULAR BOOKS<br><strong>The Top 8 Best Angular Books, which helps you to get started with Angular </strong> </p>\n\n\n\n<p>But most HTML elements have a&nbsp;<code>value</code>&nbsp;property. But do not have a&nbsp;<code>valueChange</code>&nbsp;event, instead, they usually have an&nbsp;<code>input</code>&nbsp;event. Hence they cannot be used in the above syntax</p>\n\n\n\n<p>For Example, the following will not work as there is no&nbsp;<code>valueChange</code>&nbsp;event supported by the&nbsp;<code>input</code>&nbsp;element.</p>\n\n\n\n<p>Hence we have a&nbsp;<code>ngModel</code>&nbsp;directive.</p>\n\n\n\n<h2>What is ngModel</h2>\n\n\n\n<p>The Angular uses the&nbsp;<code>ngModel</code>&nbsp;directive to achieve the two-way binding on HTML Form elements. It binds to a form element like&nbsp;<code>input</code>,&nbsp;<code>select</code>,&nbsp;<code>selectarea</code>. etc.</p>\n\n\n\n<p>Internally It uses the&nbsp;<code>ngModel</code>&nbsp;in property, binding to bind to the&nbsp;<code>value</code>&nbsp;property and&nbsp;<code>ngModelChange</code>&nbsp;which binds to the input event.</p>\n\n\n\n<h3>How to use ngModel</h3>\n\n\n\n<p>The&nbsp;<code>ngModel</code>&nbsp;directive is not part of the Angular Core library. It is part of the&nbsp;<code>FormsModule</code>&nbsp;library. You need to import the&nbsp;<code>FormsModule</code>&nbsp;package into your Angular module.</p>\n\n\n\n<p>In the template use the following syntax</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;input type=\"text\" name=\"value\" &#91;(ngModel)]=\"value\"&gt;\n</code></pre>\n\n\n\n<p>The&nbsp;<code>ngModel</code>&nbsp;directive placed inside the square &amp; parentheses as shown above. This is assigned to the Template Expression. Template Expression is the property in the component class</p>\n\n\n\n<h2>ngModel Example</h2>\n\n\n\n<h3>Import FormsModule</h3>\n\n\n\n<p>Open the&nbsp;<code>app.module.ts</code>&nbsp;and make the following changes</p>\n\n\n\n<pre class=\"wp-block-code\"><code>import { FormsModule } from '@angular/forms';\n</code></pre>\n\n\n\n<p><strong>Template</strong></p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;h2&gt;Example 2&lt;/h2&gt;\n&lt;input type=\"text\" name=\"value\" &#91;(ngModel)]=\"value\"&gt;\n&lt;p&gt; You entered {{value}}&lt;/p&gt;\n&lt;button (click)=\"clearValue()\"&gt;Clear&lt;/button&gt;\n</code></pre>\n\n\n\n<p><strong>Component</strong></p>\n\n\n\n<pre class=\"wp-block-code\"><code>value=\"\";\n clearValue() {\n   this.value=\"\";\n }</code></pre>\n\n\n\n<p>The&nbsp;<code>ngModel</code>&nbsp;data property sets the element’s value property and the&nbsp;<code>ngModelChange</code>&nbsp;event property listens for changes to the element’s value.</p>\n\n\n\n<p>Run the project and see that as you modify the name, the component class model is automatically updated.</p>\n\n\n\n<h2>Custom Two-way binding</h2>\n\n\n\n<p>As we mentioned earlier the&nbsp;<code>[()]</code>&nbsp;to work, we need to have a&nbsp;<code>property</code>&nbsp;with the change event as<code>&lt;nameofProperty&gt;Change.</code></p>\n\n\n\n<p>We do not have any HTML Elements which follows the above naming conventions, but we can create a custom component</p>\n\n\n\n<p>create a new component and name it as&nbsp;<code>counter.component.ts</code>. Copy the following code.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>import { Component, Input, Output, EventEmitter } from '@angular/core';\n@Component({\n selector: 'counter',\n template: `\n     &lt;div&gt;\n       &lt;p&gt;\n         Count: {{ count }}\n         &lt;button (click)=\"increment()\"&gt;Increment&lt;/button&gt;\n       &lt;/p&gt;\n     &lt;/div&gt;\n   `\n})\nexport class CounterComponent {\n \n  @Input() count: number = 0;\n  @Output() countChange: EventEmitter&lt;number&gt; = new EventEmitter&lt;number&gt;();\n \n  increment() {\n   this.count++;\n   this.countChange.emit(this.count);\n }\n}\n </code></pre>\n\n\n\n<p>The component has two properties one is input property count decorated with&nbsp;<code>@Input()</code>. The other in is an event (or output property), which we decorate with&nbsp;<code>@Output()</code>. We name the input property as&nbsp;<code>count</code>. Hence the output property becomes&nbsp;<code>countChange</code></p>\n\n\n\n<p>Now we can use this component and create two-way binding to the&nbsp;<code>count</code>&nbsp;property using the syntax&nbsp;<code>[(count)]</code>.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;h2&gt;Example 3&lt;/h2&gt;\n&lt;counter &#91;(count)]=\"count\"&gt;&lt;/counter&gt;\n&lt;p&gt; Current Count {{count}}&lt;/p&gt;\n&lt;button (click)=\"clearCount()\"&gt;Clear&lt;/button&gt;</code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>What is Two way data binding Two way data binding means that changes made to our model in the component are propagated to the view and that any changes made in the view are immediately updated in the underlying component data. Two way data binding is useful in data entry forms. Whenever a user makes [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [125],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3494"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=3494"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 2,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3494/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3958,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3494/revisions/3958"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=3494"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=3494"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=3494"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 3495,
+    "date": "2020-11-30T06:36:32",
+    "date_gmt": "2020-11-30T06:36:32",
+    "guid": {
+      "rendered": "http://angular.foobrdigital.com/?p=3495"
+    },
+    "modified": "2020-12-12T06:49:22",
+    "modified_gmt": "2020-12-12T06:49:22",
+    "slug": "ngmodelchange-change-event-in-angular",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/ngmodelchange-change-event-in-angular/",
+    "title": {
+      "rendered": "NgModelChange &#038; Change Event in Angular"
+    },
+    "content": {
+      "rendered": "\n<h2>NgModelChange Example</h2>\n\n\n\n<p>The following is the simple example of&nbsp;<code>ngModelChange</code>.</p>\n\n\n\n<p>We assign the method in the component class (handler function) to the <code>ngModelChange</code> using the event binding syntax</p>\n\n\n\n<pre class=\"wp-block-code\"><code>//Template\n \nName:\n&lt;input type=\"text\" name=\"name\" ngModel (ngModelChange)=\"nameChanged($event)\"&gt;</code></pre>\n\n\n\n<p><code>nameChanged</code>&nbsp;is the handler function, which we need to define in the component class. We can access the&nbsp;<em>new value</em>&nbsp;by using the&nbsp;<code>$event</code>&nbsp;as an argument to the handler function.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>//Component\nnameChanged(arg) {\n  console.log(\"modelchanged \" + arg);\n}</code></pre>\n\n\n\n<h3>ngModel</h3>\n\n\n\n<p>We usually use the ngModel as follows to achieve the two-way binding. <code>[(ngModel)]=\"email\"</code> keeps the email property in the component class in sync with the template.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> &lt;input type=\"text\" name=\"email\" &#91;(ngModel)]=\"email\"&gt;\n</code></pre>\n\n\n\n<p>Internally, Angular converts the above syntax to the following syntax.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;input &#91;ngModel]=\"email\" (ngModelChange)=\"email = $event\"&gt;\n</code></pre>\n\n\n\n<p>The component property <code>email</code> is bound to the <code>input</code> element using the property binding ( <code>[ngModel]=\"email\"</code>). Any changes made to the input is updated in the component using the <code>(ngModelChange)=\"email = $event\"</code> event binding.</p>\n\n\n\n<h3>ngModelChange with ngModel</h3>\n\n\n\n<p>Consider the following example</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;input &#91;(ngModel)]=\"firstName\" (ngModelChange)=\"firstNameChanged($event)\"/&gt;\n</code></pre>\n\n\n\n<p>The Angular converts the above to the following syntax. We end up with the two&nbsp;<code>ngModelChange</code>&nbsp;event bindings.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;input &#91;ngModel]=\"firstName (ngModelChange)=\"firstName = $event\"   (ngModelChange)=\"firstNameChanged($event)\"/&gt;\n</code></pre>\n\n\n\n<p>Here the&nbsp;<code>ngModelChange</code>&nbsp;fires in the order it is specified. Hence the&nbsp;<code>(ngModelChange)=\"firstName = $event\"</code>&nbsp;fires first.&nbsp;<code>(ngModelChange)=\"firstNameChanged($event)\"</code>&nbsp;fires later.</p>\n\n\n\n<p>Hence in the component class, the arg &amp; this.firstName is always the same.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>firstName\n;\n \nfirstNameChanged(arg) {\n  console.log(\n      \"firstNameChanged  argument \" + arg + \"  component \" + this.firstName\n  );\n}\n </code></pre>\n\n\n\n<p>But if you put&nbsp;<code>ngModelChange</code>&nbsp;ahead of the&nbsp;<code>ngModel</code>&nbsp;as in the example below</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;input (ngModelChange)=\"lastNameChanged($event)\" &#91;(ngModel)]=\"lastName\" /&gt;\n</code></pre>\n\n\n\n<p>Angular internally converts it as follows</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;input (ngModelChange)=\"lastNameChanged($event)\" &#91;ngModel]=\"lastName\" (ngModelChange)=\"lastName= $event\"   /&gt;\n</code></pre>\n\n\n\n<p>Here&nbsp;<code>(ngModelChange)=\"lastNameChanged($event)\"</code>&nbsp;fires first. Hence in the component class&nbsp;<code>arg</code>&nbsp;contains the latest value of the, while&nbsp;<code>this.lastName</code>&nbsp;<strong>still holds the previous value</strong></p>\n\n\n\n<pre class=\"wp-block-code\"><code>lastName\n;\n \nlastNameChanged(arg) {\n  console.log(\n      \"lastNameChanged  argument \" + arg + \"  component \" + this.lastName\n  );\n}</code></pre>\n\n\n\n<h2>Change Event</h2>\n\n\n\n<p>The&nbsp;<code>(change)</code>&nbsp;is a DOM event fires when changes to the form fields like&nbsp;<code>&lt;input&gt;</code>,&nbsp;<code>&lt;select&gt;</code>, and&nbsp;<code>&lt;textarea&gt;</code>&nbsp;is committed by the user.</p>\n\n\n\n<p>This event fires when</p>\n\n\n\n<ul><li>user changes the input &amp; moves the focus away from the text box (blur event)</li><li>On&nbsp;<code>&lt;select&gt;</code>&nbsp;it fires when the user selects a new option either by a mouse click or using a keyboard.</li><li>Fires when the state of a check box or radio button change due to users action</li></ul>\n\n\n\n<h2>Change Event Example</h2>\n\n\n\n<p>The following example shows how to use the&nbsp;<code>change</code>&nbsp;event in Angular.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Name\n&lt;input type=\"text\" name=\"name1\" (change)=\"name1Changed($event)\"&gt;\n \n \n&lt;br&gt;\ncountry\n&lt;select name=\"country1\" (change)=\"country1Changed($event)\" &gt;\n  &lt;option &#91;ngValue]=\"null\" disabled&gt;Select Country&lt;/option&gt;\n  &lt;option *ngFor=\"let country of countries\" &#91;ngValue]=\"country.id\"&gt;{{country.name}}&lt;/option&gt;\n&lt;/select&gt;</code></pre>\n\n\n\n<p>Component class</p>\n\n\n\n<pre class=\"wp-block-code\"><code>name1Changed(arg) {\n console.log(\"name1Changed \" + arg.target.value);\n console.log(arg);\n}\n \ncountry1Changed(arg) {\n  console.log(\"country1Changed \" + arg.target.value);\n  console.log(arg);\n}</code></pre>\n\n\n\n<p>The change event for text element fires when we move the focus away from the element (blurred&nbsp;the input). This is different from the ngModelChange, which fires the event for each input change.</p>\n\n\n\n<p>The other import point is the&nbsp;<code>$event</code>&nbsp;parameter. In the&nbsp;<code>ngModelChange</code>, it is always the new value. But in the case of a change event, it is event data. The event data is an object containing data about the event. We need to use the&nbsp;<code>target.value</code>&nbsp;to access the value.</p>\n\n\n\n<h2>NgModelChange Vs Change</h2>\n\n\n\n<figure id=\"tablepress-116\" class=\"wp-block-table\"><table><thead><tr><th>NgModelChange</th><th>Change</th></tr></thead><tbody><tr><td>NgModelChange is Angular specific event</td><td>Change is a DOM Event and has nothing to do with the Angular.</td></tr><tr><td>We must use the ngModelChange along with the ngModel directive</td><td>You can use change event on &lt;input&gt;, &lt;select&gt;, and &lt;textarea&gt; form elements.</td></tr><tr><td>ngModelChange event passes new value</td><td>Change event passes event parameter, Use the&nbsp;<code>target.value</code>&nbsp;to access the new value</td></tr><tr><td>ngModelChange will trigger with each input change</td><td>Change event fires when you remove the focus from input text after changing the content.</td></tr></tbody></table></figure>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>NgModelChange Example The following is the simple example of&nbsp;ngModelChange. We assign the method in the component class (handler function) to the ngModelChange using the event binding syntax nameChanged&nbsp;is the handler function, which we need to define in the component class. We can access the&nbsp;new value&nbsp;by using the&nbsp;$event&nbsp;as an argument to the handler function. ngModel We usually use the ngModel [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [125],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3495"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=3495"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 2,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3495/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3959,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3495/revisions/3959"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=3495"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=3495"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=3495"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 3496,
+    "date": "2020-11-30T06:42:03",
+    "date_gmt": "2020-11-30T06:42:03",
+    "guid": {
+      "rendered": "http://angular.foobrdigital.com/?p=3496"
+    },
+    "modified": "2020-12-12T06:50:22",
+    "modified_gmt": "2020-12-12T06:50:22",
+    "slug": "child-nested-components-in-angular",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/child-nested-components-in-angular/",
+    "title": {
+      "rendered": "Child/Nested Components in Angular"
+    },
+    "content": {
+      "rendered": "\n<h2>What is a Child/Nested Component</h2>\n\n\n\n<p>The Angular follows component-based Architecture, where each component manages a specific task or workflow. Each component is an independent block of the reusable unit.</p>\n\n\n\n<p>In real life, angular applications will contain many components. The task of the root component is to just host these child components. These child components, in turn, can host the more child components creating a Tree-like structure called Component Tree.</p>\n\n\n\n<p>In this tutorial, we will learn how to create a Child or nested components and host it in the App Component.</p>\n\n\n\n<h2>Create a new application</h2>\n\n\n\n<p>Create a new Angular application using the following command</p>\n\n\n\n<pre class=\"wp-block-code\"><code>ng new childComponent\n</code></pre>\n\n\n\n<p>Run the app and verify everything is ok.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>ng serve\n</code></pre>\n\n\n\n<h2>How to add Child Component</h2>\n\n\n\n<ol><li>Create the Child Component.&nbsp;In the child Component, metadata specify the selector to be used</li><li>Import the Child Component in the module class and declare it in declaration Array</li><li>Use the CSS Selector to specify in the Parent Component Template, where you want to display the Child Component</li></ol>\n\n\n\n<h2>Adding a Child Component in Angular</h2>\n\n\n\n<p>Now, let us add a Child Component to our project. In our child component, let us display a list of customers.</p>\n\n\n\n<h3>Create the Child Component</h3>\n\n\n\n<p>Creating the Child Component is no different from creating any other Parent Component. But, first, we need a customer class</p>\n\n\n\n<h4>Customer Class</h4>\n\n\n\n<p>Go to the app folder and create a file and name it as&nbsp;<code>customer.ts</code>. Copy the following code</p>\n\n\n\n<pre class=\"wp-block-code\"><code>export class Customer {\n \n  customerNo: number;\n  name:string ;\n  address:string;\n  city:string;\n  state:string;\n  country:string;\n \n}</code></pre>\n\n\n\n<p>Note that we have used the&nbsp;<code>export</code>&nbsp;keyword. This enables us to use the above class in our components by importing it.</p>\n\n\n\n<p><br>BEST ANGULAR BOOKS<br><strong>The Top 8 Best Angular Books, which helps you to get started with Angular </strong> </p>\n\n\n\n<h4>Create Child Component</h4>\n\n\n\n<p>In the&nbsp;<code>app</code>&nbsp;folder and create a new file and name it as&nbsp;<code>customer-list.component.ts</code>.</p>\n\n\n\n<p>The code for&nbsp;<code>component-list.component.ts</code>&nbsp;is shown below</p>\n\n\n\n<pre class=\"wp-block-code\"><code>\n \nimport { Component } from '@angular/core';\nimport { Customer } from './customer';\n \n@Component({\n  selector: 'customer-list',\n  templateUrl: './customer-list.component.html'\n})\nexport class CustomerListComponent\n{\n  customers: Customer&#91;] = &#91;\n \n    {customerNo: 1, name: 'Rahuld Dravid', address: '', city: 'Banglaore', state: 'Karnataka', country: 'India'},\n    {customerNo: 2, name: 'Sachin Tendulkar', address: '', city: 'Mumbai', state: 'Maharastra', country: 'India'},\n    {customerNo: 3, name: 'Saurrav Ganguly', address: '', city: 'Kolkata', state: 'West Bengal', country: 'India'},\n    {customerNo: 4, name: 'Mahendra Singh Dhoni', address: '', city: 'Ranchi', state: 'Bihar', country: 'India'},\n    {customerNo: 5, name: 'Virat Kohli', address: '', city: 'Delhi', state: 'Delhi', country: 'India'},\n \n  ]\n}</code></pre>\n\n\n\n<p>First, we import the required modules &amp; classes. Our component requires&nbsp;<code>Customer</code>&nbsp;class, hence we import it along with the Component.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>import { Component } from '@angular/core';\nimport { Customer } from './customer';\n</code></pre>\n\n\n\n<p>The next step is to add the @Component directive. The selector clause has the value <code>customer-list</code>. We need to use this in our parent view to display our view. The <code>templateURL</code> is <code>customer-list.component.html</code>, which we yet to build.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>@Component({\n  selector: 'customer-list',\n  templateUrl: './customer-list.component.html'\n})\n</code></pre>\n\n\n\n<p>The last step is to create the Component class. We name it as <code>CustomerListComponent</code>. The class consists of a single property, which is a collection of <code>customers</code>. We initialize the customers collection with some default values. In real-life situations, you will make use of the HTTP Client to get the data from the back end server.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>export class CustomerListComponent\n{\n  customers: Customer&#91;] = &#91;\n \n    {customerNo: 1, name: 'Rahuld Dravid', address: '', city: 'Banglaore', state: 'Karnataka', country: 'India'},\n    {customerNo: 2, name: 'Sachin Tendulkar', address: '', city: 'Mumbai', state: 'Maharastra', country: 'India'},\n    {customerNo: 3, name: 'Saurrav Ganguly', address: '', city: 'Kolkata', state: 'West Bengal', country: 'India'},\n    {customerNo: 4, name: 'Mahendra Singh Dhoni', address: '', city: 'Ranchi', state: 'Bihar', country: 'India'},\n    {customerNo: 5, name: 'Virat Kohli', address: '', city: 'Delhi', state: 'Delhi', country: 'India'},\n \n  ]\n}</code></pre>\n\n\n\n<h5>Creating the View</h5>\n\n\n\n<p>The next step is to create the View to display the list of customer. Go to the&nbsp;<code>app</code>&nbsp;folder and create the file with the name&nbsp;<code>customer-list.component.html</code></p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;h2&gt;List of Customers&lt;/h2&gt;\n \n&lt;table class='table'&gt;\n  &lt;thead&gt;\n    &lt;tr&gt;\n      &lt;th&gt;No&lt;/th&gt;\n      &lt;th&gt;Name&lt;/th&gt;\n      &lt;th&gt;Address&lt;/th&gt;\n      &lt;th&gt;City&lt;/th&gt;\n      &lt;th&gt;State&lt;/th&gt;\n    &lt;/tr&gt;\n  &lt;/thead&gt;\n  &lt;tbody&gt;\n    &lt;tr *ngFor=\"let customer of customers;\"&gt;\n      &lt;td&gt;{{customer.customerNo}}&lt;/td&gt;\n      &lt;td&gt;{{customer.name}}&lt;/td&gt;\n      &lt;td&gt;{{customer.address}}&lt;/td&gt;\n      &lt;td&gt;{{customer.city}}&lt;/td&gt;\n      &lt;td&gt;{{customer.state}}&lt;/td&gt;\n    &lt;/tr&gt;\n  &lt;/tbody&gt;\n&lt;/table&gt;</code></pre>\n\n\n\n<p>To iterate through the Customer collection, we have used the ngFor Directive provided by the Angular. We have a separate tutorial, which discusses the ngFor Directive</p>\n\n\n\n<p>The syntax for&nbsp;<code>ngFor</code>&nbsp;directive starts with&nbsp;<code>*ngFor</code>. The&nbsp;<code>*</code>&nbsp;indicates that it is a structural directive. i.e a directive that adds or removes the HTML elements to or from the DOM.</p>\n\n\n\n<p>The expression&nbsp;<code>let customer of customers</code>&nbsp;is assigned to&nbsp;<code>*ngFor</code>. The&nbsp;<code>let</code>&nbsp;clause assigns the instance of&nbsp;<code>customer</code>&nbsp;object from the&nbsp;<code>Customers</code>&nbsp;collection to the template reference variable or local variable&nbsp;<code>customer</code>.</p>\n\n\n\n<p>We use the template reference variable&nbsp;<code>customer</code>&nbsp;is to build the template to display the details of the customer to the user. The&nbsp;<code>ngFor</code>&nbsp;directive is applied to the&nbsp;<code>tr</code>&nbsp;element of the table. The Angular repeats everything inside the&nbsp;<code>tr</code>&nbsp;element in the DOM tree.</p>\n\n\n\n<p><code>{{customer.customerNo}}</code>&nbsp;is stands for&nbsp;<code>interpolation in Angular</code>. Angular evaluates everything within the&nbsp;<code>{{ }}</code>&nbsp;and replaces the string with the result.</p>\n\n\n\n<h3>Import the Child Component in the Module</h3>\n\n\n\n<p>Every Component, directive, pipes we build must belong to an Angular Module. To do that we need to register our component in the Module. A Component, directive, pipes cannot be part of more than one module.</p>\n\n\n\n<p>The Angular Modules (or NgModules) are Angular ways of organizing related components, directives, pipes and services, etc into a group. To add a component to a module, you need to declare it in the declarations metadata of the Angular Module</p>\n\n\n\n<p>Angular creates a top-level root module (<code>AppModule</code>&nbsp;in file&nbsp;<code>app.module.ts</code>) when we create a new Angular app. That is where we need to register our&nbsp;<code>CustomerListComponent</code></p>\n\n\n\n<p>Open the&nbsp;<code>app.module.ts</code>&nbsp;under the&nbsp;<code>app</code>&nbsp;folder and update the code as shown below</p>\n\n\n\n<pre class=\"wp-block-code\"><code>import { BrowserModule } from '@angular/platform-browser';\nimport { NgModule } from '@angular/core';\n \nimport {NgbModule} from '@ng-bootstrap/ng-bootstrap';\n \nimport { AppComponent } from './app.component';\nimport {CustomerListComponent} from './customer-list.component';\n \n@NgModule({\n  declarations: &#91;\n    AppComponent, CustomerListComponent\n  ],\n  imports: &#91;\n    BrowserModule,NgbModule.forRoot()\n  ],\n  providers: &#91;],\n  bootstrap: &#91;AppComponent]\n})\nexport class AppModule { }</code></pre>\n\n\n\n<p>Registering the component or directive in the module requires two steps</p>\n\n\n\n<p>First, import it</p>\n\n\n\n<pre class=\"wp-block-code\"><code>@NgModule({\ndeclarations: &#91;\n   AppComponent, CustomerListComponent\n]</code></pre>\n\n\n\n<p>Applies to: Angular 5 to the latest edition i.e. Angular 8, Angular 9. Angular 10</p>\n\n\n\n<h3>Tell angular where to display the component</h3>\n\n\n\n<p>Finally, we need to inform the Angular, where to display the child Component</p>\n\n\n\n<p>We want our child Component as the child of the&nbsp;<code>AppComponent</code>. Open the&nbsp;<code>app.component.html</code>&nbsp;and add the following template</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;h1&gt;{{title}}. &lt;/h1&gt;\n \n&lt;customer-list&gt;&lt;/customer-list&gt;\n</code></pre>\n\n\n\n<p>The&nbsp;<code>@Component</code>&nbsp;decorator of the&nbsp;<code>CustomerListComponent</code>&nbsp;, we used the&nbsp;<code>customer-list</code>&nbsp;as the&nbsp;<code>selector</code>in the metadata for the component. This CSS selector name must match the element tag that specified within the parent component’s template.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;customer-list&gt;&lt;/customer-list&gt;\n</code></pre>\n\n\n\n<p>Run the application from the command line using&nbsp;<strong>ng Serve</strong></p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>What is a Child/Nested Component The Angular follows component-based Architecture, where each component manages a specific task or workflow. Each component is an independent block of the reusable unit. In real life, angular applications will contain many components. The task of the root component is to just host these child components. These child components, in [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [125],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3496"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=3496"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 2,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3496/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3960,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3496/revisions/3960"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=3496"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=3496"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=3496"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  }
+]

@@ -1,0 +1,190 @@
+[
+  {
+    "id": 4140,
+    "date": "2020-11-28T11:25:28",
+    "date_gmt": "2020-11-28T11:25:28",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3324"
+    },
+    "modified": "2020-11-28T11:25:28",
+    "modified_gmt": "2020-11-28T11:25:28",
+    "slug": "interface-2",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/interface-2/",
+    "title": {
+      "rendered": "Interface"
+    },
+    "content": {
+      "rendered": "\n<h2>Introduction to TypeScript interfaces</h2>\n\n\n\n<p>TypeScript interfaces define the contracts within your code. They also provide explicit names for type checking.</p>\n\n\n\n<p>Let\u2019s start with a simple example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function getFullName(person: {\n    firstName: string;\n    lastName: string\n}) {\n    return `${person.firstName} ${person.lastName}`;\n}\n\nlet person = {\n    firstName: 'John',\n    lastName: 'Doe'\n};\n\nconsole.log(getFullName(person));\n</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>John Doe</code></pre>\n\n\n\n<p>In this example, the TypeScript compiler checks the argument that you pass into the&nbsp;<code>getFullName()</code>&nbsp;function.</p>\n\n\n\n<p>If the argument has two properties whose types are string, then the TypeScript compiler passes the check. Otherwise, it\u2019ll issue an error<code>.</code></p>\n\n\n\n<p>As you can see clearly from the code, the&nbsp;<a href=\"https://www.typescripttutorial.net/typescript-tutorial/typescript-type-annotations/\">type annotation</a>&nbsp;of the function argument makes the code difficult to read.</p>\n\n\n\n<p>To solve this, TypeScript introduces the concept of interfaces.</p>\n\n\n\n<p>The following uses an interface called&nbsp;<code>Person</code>&nbsp;that has two string properties:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>interface Person {\n    firstName: string;\n    lastName: string;\n}</code></pre>\n\n\n\n<p>By convention, the interface names are in the camel case. They use a single capitalized letter to separate words in there names. For example,&nbsp;<code>Person</code>,&nbsp;<code>UserProfile</code>, and&nbsp;<code>FullName</code>.</p>\n\n\n\n<p>After defining the&nbsp;<code>Person</code>&nbsp;interface, you can use it as a type. And you can annotate the function parameter with the interface name:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function getFullName(person: Person) {\n    return `${person.firstName} ${person.lastName}`;\n}\n\nlet john = {\n    firstName: 'John',\n    lastName: 'Doe'\n};\n\nconsole.log(getFullName(john));</code></pre>\n\n\n\n<p>The code now is easier to read than before.</p>\n\n\n\n<p>The&nbsp;<code>getFullName()</code>&nbsp;function will accept any argument that has two string properties. And it doesn\u2019t have to have exactly two string properties. See the following example:</p>\n\n\n\n<p>The following code declares an object that has four properties:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let jane = {\n   firstName: 'Jane',\n   middleName: 'K.'\n   lastName: 'Doe',\n   age: 22\n};</code></pre>\n\n\n\n<p>Since the&nbsp;<code>jane</code>&nbsp;object has two string properties&nbsp;<code>firstName</code>&nbsp;and&nbsp;<code>lastName</code>, you can pass it into the&nbsp;<code>getFullName()</code>&nbsp;function as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let fullName = getFullName(jane);\nconsole.log(fullName); // Jane Doe</code></pre>\n\n\n\n<h2>Optional properties</h2>\n\n\n\n<p>An interface may have optional properties. To declare an optional property, you use the question mark (<code>?)</code>&nbsp;at the end of the property name in the declaration, like this:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>interface Person {\n    firstName: string;\n    middleName?: string;\n    lastName: string;\n}</code></pre>\n\n\n\n<p>In this example, the&nbsp;<code>Person</code>&nbsp;interface has two required properties and one optional property.</p>\n\n\n\n<p>And the following shows how to use the&nbsp;<code>Person</code>&nbsp;interface in the&nbsp;<code>getFullName()</code>&nbsp;function:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function getFullName(person: Person) {\n    if (person.middleName) {\n        return `${person.firstName} ${person.middleName} ${person.lastName}`;\n    }\n    return `${person.firstName} ${person.lastName}`;\n}\n</code></pre>\n\n\n\n<h2>Readonly properties</h2>\n\n\n\n<p>If properties should be modifiable only when the object first created, you can use the&nbsp;<code>readonly</code>&nbsp;keyword before the name of the property:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>interface Person {\n    readonly ssn: string;\n    firstName: string;\n    lastName: string;    \n}\n\nlet person: Person;\nperson = {\n    ssn: '171-28-0926',\n    firstName: 'John',\n    lastName: 'Doe'\n}</code></pre>\n\n\n\n<p>In this example, the&nbsp;<code>ssn</code>&nbsp;property cannot be changed:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>person.ssn = '171-28-0000';</code></pre>\n\n\n\n<p>Error:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>error TS2540: Cannot assign to 'ssn' because it is a read-only property.</code></pre>\n\n\n\n<h2>Function types</h2>\n\n\n\n<p>In addition to describing an object with properties, interfaces also allow you to describe\u00a0function types.</p>\n\n\n\n<p>To describe a function type, you assign the interface to the function signature that contains the parameter list with types and returned types. For example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>interface StringFormat {\n    (str: string, isUpper: boolean): string\n}</code></pre>\n\n\n\n<p>Now, you can use this function type interface.</p>\n\n\n\n<p>The following illustrates how to declare a variable of a function type and assign it a function value of the same type:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let format: StringFormat;\n\nformat = function (str: string, isUpper: boolean) {\n    return isUpper ? str.toLocaleUpperCase() : str.toLocaleLowerCase();\n};\n\nconsole.log(format('hi', true));</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>HI</code></pre>\n\n\n\n<p>Note that the parameter names don\u2019t need to match the function signature. The following example is equivalent to the above example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let format: StringFormat;\n\nformat = function (src: string, upper: boolean) {\n    return upper ? src.toLocaleUpperCase() : src.toLocaleLowerCase();\n};\n\nconsole.log(format('hi', true));</code></pre>\n\n\n\n<p>The\u00a0<code>StringFormat</code>\u00a0interface ensures that all the callers of the function that implements it pass in the required arguments: a\u00a0<code>string</code>\u00a0and a\u00a0<code>boolean</code>.</p>\n\n\n\n<p>The following code also works perfectly fine even though the&nbsp;<code>lowerCase</code>&nbsp;is assigned to a function that doesn\u2019t have the second argument:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let lowerCase: StringFormat;\nlowerCase = function (str: string) {\n    return str.toLowerCase();\n}\n\nconsole.log(lowerCase('Hi', false));</code></pre>\n\n\n\n<p>Notice that the second argument is passed when the&nbsp;<code>lowerCase()</code>&nbsp;function is called.</p>\n\n\n\n<h2>Class Types</h2>\n\n\n\n<p>If you have worked with Java or C#, you can find that the main use of the interface is to define a contract between unrelated classes.</p>\n\n\n\n<p>For example, the following&nbsp;<code>Json</code>&nbsp;interface can be implemented by any unrelated classes:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>interface Json {\n   toJSON(): string\n}</code></pre>\n\n\n\n<p>The following declares a class that implements the&nbsp;<code>Json</code>&nbsp;interface:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>class Person implements Json {\n    constructor(private firstName: string,\n        private lastName: string) {\n    }\n    toJson(): string {\n        return JSON.stringify(this);\n    }\n}\n</code></pre>\n\n\n\n<p>In the&nbsp;<code>Person</code>&nbsp;class, we implemented the&nbsp;<code>toJson()</code>&nbsp;method of the&nbsp;<code>Json</code>&nbsp;interface.</p>\n\n\n\n<p>The following example shows how to use the&nbsp;<code>Person</code>&nbsp;class:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let person = new Person('John', 'Doe');\nconsole.log(person.toJson());</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{\"firstName\":\"John\",\"lastName\":\"Doe\"}</code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Introduction to TypeScript interfaces TypeScript interfaces define the contracts within your code. They also provide explicit names for type checking. Let\u2019s start with a simple example: Output: In this example, the TypeScript compiler checks the argument that you pass into the&nbsp;getFullName()&nbsp;function. If the argument has two properties whose types are string, then the TypeScript compiler [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [212],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4140"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=4140"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4140/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=4140"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=4140"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=4140"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 4141,
+    "date": "2020-11-28T11:26:29",
+    "date_gmt": "2020-11-28T11:26:29",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3326"
+    },
+    "modified": "2020-11-28T11:26:29",
+    "modified_gmt": "2020-11-28T11:26:29",
+    "slug": "extend-interfaces-in-typescript",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/extend-interfaces-in-typescript/",
+    "title": {
+      "rendered": "Extend Interfaces in TypeScript"
+    },
+    "content": {
+      "rendered": "\n<h2>Interfaces extending one interface</h2>\n\n\n\n<p>Suppose that you have an\u00a0interface\u00a0called\u00a0<code>Mailable</code>\u00a0that contains two methods called\u00a0<code>send()</code>\u00a0and\u00a0<code>queue()</code>\u00a0as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>interface Mailable {\n    send(email: string): boolean\n    queue(email: string): boolean\n}</code></pre>\n\n\n\n<p>And you have many\u00a0classes\u00a0that already implemented the\u00a0<code>Mailable</code>\u00a0interface.</p>\n\n\n\n<p>Now, you want to add a new method to the&nbsp;<code>Mailable</code>&nbsp;interface that sends an email later like this:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>later(email: string, after: number): void</code></pre>\n\n\n\n<p>However, adding the&nbsp;<code>later()</code>&nbsp;method to the&nbsp;<code>Mailable</code>&nbsp;interface would break the current code.</p>\n\n\n\n<p>To avoid this, you can create a new interface that extends the&nbsp;<code>Mailable</code>&nbsp;interface:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>interface FutureMailable extends Mailable {\n    later(email: string, after: number): boolean\n}</code></pre>\n\n\n\n<p>To extend an interface, you use the&nbsp;<code>extends</code>&nbsp;keyword with the following syntax:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>interface A {\n    a(): void\n}\n\ninterface B extends A {\n    b(): void\n}\n</code></pre>\n\n\n\n<p>The interface&nbsp;<code>B</code>&nbsp;extends the interface&nbsp;<code>A</code>, which then have both methods&nbsp;<code>a()</code>&nbsp;and&nbsp;<code>b()</code>&nbsp;.</p>\n\n\n\n<p>Like classes, the&nbsp;<code>FutureMailable</code>&nbsp;interface inherits the&nbsp;<code>send()</code>&nbsp;and&nbsp;<code>queue()</code>&nbsp;methods from the&nbsp;<code>Mailable</code>&nbsp;interface.</p>\n\n\n\n<p>The following shows how to implement the&nbsp;<code>FutureMailable</code>&nbsp;interface:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>class Mail implements FutureMailable {\n    later(email: string, after: number): boolean {\n        console.log(`Send email to ${email} in ${after} ms.`);\n        return true;\n    }\n    send(email: string): boolean {\n        console.log(`Sent email to ${email} after ${after} ms. `);\n        return true;\n    }\n    queue(email: string): boolean {\n        console.log(`Queue an email to ${email}.`);\n        return true;\n    }\n}</code></pre>\n\n\n\n<h2>Interfaces extending multiple interfaces</h2>\n\n\n\n<p>An interface can extend multiple interfaces, creating a combination of all the interfaces. For example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>interface C {\n    c(): void\n}\n\ninterface D extends B, C {\n    d(): void\n}\n</code></pre>\n\n\n\n<p>In this example, the interface&nbsp;<code>D</code>&nbsp;extends the interfaces&nbsp;<code>B</code>&nbsp;and&nbsp;<code>C</code>. So&nbsp;<code>D</code>&nbsp;has all the methods of&nbsp;<code>B</code>&nbsp;and&nbsp;<code>C</code>&nbsp;interfaces, which are&nbsp;<code>a()</code>,&nbsp;<code>b()</code>, and&nbsp;<code>c()</code>&nbsp;methods.</p>\n\n\n\n<h2>Interfaces extending classes</h2>\n\n\n\n<p>TypeScript allows an interface to extend a class. In this case, the interface inherits the properties and methods of the class. Also, the interface can inherit the private and protected members of the class, not just the public members.</p>\n\n\n\n<p>It means that when an interface extends a class with private or protected members, the interface can only be implemented by that class or subclasses of that class from which the interface extends.</p>\n\n\n\n<p>By doing this, you restrict the usage of the interface to only class or subclasses of the class from which the interface extends. If you attempt to implement the interface from a class that is not a subclass of the class that the interface inherited, you\u2019ll get an error. For example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>class Control {\n    private state: boolean;\n}\n\ninterface StatefulControl extends Control {\n    enable(): void\n}\n\nclass Button extends Control implements StatefulControl {\n    enable() { }\n}\nclass TextBox extends Control implements StatefulControl {\n    enable() { }\n}\nclass Label extends Control { }\n\n\n// Error: cannot implement\nclass Chart implements StatefulControl {\n    enable() { }\n\n}</code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Interfaces extending one interface Suppose that you have an\u00a0interface\u00a0called\u00a0Mailable\u00a0that contains two methods called\u00a0send()\u00a0and\u00a0queue()\u00a0as follows: And you have many\u00a0classes\u00a0that already implemented the\u00a0Mailable\u00a0interface. Now, you want to add a new method to the&nbsp;Mailable&nbsp;interface that sends an email later like this: However, adding the&nbsp;later()&nbsp;method to the&nbsp;Mailable&nbsp;interface would break the current code. To avoid this, you can create a [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [212],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4141"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=4141"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4141/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=4141"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=4141"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=4141"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  }
+]

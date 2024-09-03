@@ -1,0 +1,1412 @@
+[
+  {
+    "id": 4106,
+    "date": "2020-11-28T07:58:50",
+    "date_gmt": "2020-11-28T07:58:50",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3250"
+    },
+    "modified": "2020-11-28T07:58:50",
+    "modified_gmt": "2020-11-28T07:58:50",
+    "slug": "type-annotations",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/type-annotations/",
+    "title": {
+      "rendered": "Type Annotations"
+    },
+    "content": {
+      "rendered": "\n<h2>What is Type Annotation in TypeScript</h2>\n\n\n\n<p>TypeScript uses type annotations to explicitly specify types for identifiers such variables, functions, objects, etc.</p>\n\n\n\n<p>TypeScript uses the syntax&nbsp;<code>: type</code>&nbsp;after an identifier as the type annotation, where&nbsp;<code>type</code>&nbsp;can be any valid type.</p>\n\n\n\n<p>Once an identifier is annotated with a type, it can be used as that type only. If the identifier is used as a different type, the TypeScript compiler will issue an error.</p>\n\n\n\n<h2>Type annotations in variables and constants</h2>\n\n\n\n<p>The following syntax shows how to specify type annotations for variables and constants:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let variableName: type;\nlet variableName: type = value;\nconst constantName: type = value;</code></pre>\n\n\n\n<p>In this syntax, the type annotation comes after the variable or constant name and is preceded by a colon (<code>:</code>).</p>\n\n\n\n<p>The following example uses\u00a0<code>number</code>\u00a0annotation for a variable:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let counter: number;</code></pre>\n\n\n\n<p>After this, you can only assign a number to the&nbsp;<code>counter</code>&nbsp;variable:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>counter = 1;</code></pre>\n\n\n\n<p>If you assign a string to the&nbsp;<code>counter</code>&nbsp;variable, you\u2019ll get an error:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let counter: number;\ncounter = 'Hello'; // compile error </code></pre>\n\n\n\n<p>Error:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Type '\"Hello\"' is not assignable to type 'number'.</code></pre>\n\n\n\n<p>You can both use a type annotation for a variable and initialize it in a single statement like this:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let counter: number = 1;</code></pre>\n\n\n\n<p>In this example, we use the number annotation for the&nbsp;<code>counter</code>&nbsp;variable and initialize it to one.</p>\n\n\n\n<p>The following shows other examples of primitive type annotations:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let name: string = 'John';\nlet age: number = 25;\nlet active: boolean = true;</code></pre>\n\n\n\n<p>In this example, the\u00a0<code>name</code>\u00a0variable gets the\u00a0<code>string</code>\u00a0type, the\u00a0<code>age</code>\u00a0variable gets the\u00a0<code>number</code>\u00a0type, and the\u00a0<code>active</code>\u00a0variable gets the\u00a0<code>boolean</code>\u00a0type.</p>\n\n\n\n<h2>Type annotation examples</h2>\n\n\n\n<h3>Arrays</h3>\n\n\n\n<p>To annotate an\u00a0array type\u00a0you use use a specific type followed by a square bracket\u00a0<code>: type[]</code>\u00a0:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let arrayName: type&#91;];</code></pre>\n\n\n\n<p>For example, the following declares an array of strings:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let names: string&#91;] = &#91;'John', 'Jane', 'Peter', 'David', 'Mary'];</code></pre>\n\n\n\n<h2>Objects</h2>\n\n\n\n<p>To specify a type for an object, you use the object type annotation. For example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let person: {\n   name: string;\n   age: number\n};\n\nperson = {\n   name: 'John',\n   age: 25\n}; // valid</code></pre>\n\n\n\n<p>In this example, the&nbsp;<code>person</code>&nbsp;object only accepts an object that has two properties:&nbsp;<code>name</code>&nbsp;with the&nbsp;<code>string</code>&nbsp;type and&nbsp;<code>age</code>&nbsp;with the&nbsp;<code>number</code>&nbsp;type.</p>\n\n\n\n<h2>Function arguments &amp; return types</h2>\n\n\n\n<p>The following shows a function annotation with parameter type annotation and return type annotation:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let greeting : (name: string) => string;</code></pre>\n\n\n\n<p>In this example, you can assign any function that accepts a string and returns a string to the&nbsp;<code>greeting</code>&nbsp;variable:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>greeting = function (name: string) {\n    return `Hi ${name}`;\n};</code></pre>\n\n\n\n<p>The following causes an error because the function that is assigned to the\u00a0<code>greeting</code>\u00a0variable doesn\u2019t match with its\u00a0function type.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>greeting = function () {\n    console.log('Hello');\n};</code></pre>\n\n\n\n<p>Error:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Type '() => void' is not assignable to type '(name: string) => string'. Type 'void' is not assignable to type 'string'.</code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>What is Type Annotation in TypeScript TypeScript uses type annotations to explicitly specify types for identifiers such variables, functions, objects, etc. TypeScript uses the syntax&nbsp;: type&nbsp;after an identifier as the type annotation, where&nbsp;type&nbsp;can be any valid type. Once an identifier is annotated with a type, it can be used as that type only. If the [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [208],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4106"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=4106"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4106/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=4106"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=4106"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=4106"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 4107,
+    "date": "2020-11-28T08:00:10",
+    "date_gmt": "2020-11-28T08:00:10",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3252"
+    },
+    "modified": "2020-11-28T08:00:10",
+    "modified_gmt": "2020-11-28T08:00:10",
+    "slug": "number",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/number/",
+    "title": {
+      "rendered": "Number"
+    },
+    "content": {
+      "rendered": "\n<h2>The number type</h2>\n\n\n\n<p>The following shows how to declare a variable that holds a floating-point value:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let price: number;</code></pre>\n\n\n\n<p>Or you can initialize the price variable to a number:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let price = 9.95;</code></pre>\n\n\n\n<p>As in JavaScript, TypeScript supports the number literals for decimal, hexadecimal, binary, and octal literals:</p>\n\n\n\n<h3>Decimal numbers</h3>\n\n\n\n<p>The following shows some decimal numbers:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let counter: number = 0;\nlet x: number = 100, \n    y: number = 200;</code></pre>\n\n\n\n<h3>Binary Numbers</h3>\n\n\n\n<p>The binary number uses a leading zero followed by a lowercase or uppercase letter \u201cB\u201d e.g.,&nbsp;<code>0b</code>&nbsp;or&nbsp;<code>0B</code>&nbsp;:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let bin = 0b100;\nlet anotherBin: number = 0B010;</code></pre>\n\n\n\n<p>Note that the digit after&nbsp;<code>0b</code>&nbsp;or&nbsp;<code>0B</code>&nbsp;must be&nbsp;<code>0</code>&nbsp;or&nbsp;<code>1</code>.</p>\n\n\n\n<h3>Octal Numbers</h3>\n\n\n\n<p>An octal number uses a leading zero followed the letter&nbsp;<code>o</code>&nbsp;(since ES2015)&nbsp;<code>0o</code>. The digits after&nbsp;<code>0o</code>&nbsp;are numbers in the range&nbsp;<code>0</code>&nbsp;through&nbsp;<code>7</code>:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let octal: number = 0o10;</code></pre>\n\n\n\n<h3>Hexadecimal numbers</h3>\n\n\n\n<p>Hexadecimal numbers use a leading zero followed by a lowercase or uppercase letter&nbsp;<code>X</code>&nbsp;(<code>0x</code>&nbsp;or&nbsp;<code>0X</code>). The digits after the&nbsp;<code>0x</code>&nbsp;must be in the range (<code>0123456789ABCDEF</code>). For example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let hexadecimal: number = 0XA;</code></pre>\n\n\n\n<p>JavaScript has the&nbsp;<code>Number</code>&nbsp;type (with the letter&nbsp;<code>N</code>&nbsp;in uppercase) that refers to the non-primitive boxed object. You should not use this&nbsp;<code>Number</code>&nbsp;type as much as possible in TypeScript.</p>\n\n\n\n<h2>Big Integers</h2>\n\n\n\n<p>The big integers represent the whole numbers larger than 2<sup>53</sup>&nbsp;\u2013 1. A Big integer literal has the&nbsp;<code>n</code>&nbsp;character at the end of an integer literal like this:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let big: bigint = 9007199254740991n;</code></pre>\n\n\n\n<h2>Summary</h2>\n\n\n\n<ul><li>All numbers in TypeScript are either floating-point values that get the number type or big integers that get the&nbsp;<code>bigint</code>&nbsp;type.</li><li>Avoid using the Number type as much as possible.</li></ul>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>The number type The following shows how to declare a variable that holds a floating-point value: Or you can initialize the price variable to a number: As in JavaScript, TypeScript supports the number literals for decimal, hexadecimal, binary, and octal literals: Decimal numbers The following shows some decimal numbers: Binary Numbers The binary number uses [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [208],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4107"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=4107"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4107/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=4107"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=4107"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=4107"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 4108,
+    "date": "2020-11-28T08:00:48",
+    "date_gmt": "2020-11-28T08:00:48",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3254"
+    },
+    "modified": "2020-11-28T08:00:48",
+    "modified_gmt": "2020-11-28T08:00:48",
+    "slug": "string",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/string/",
+    "title": {
+      "rendered": "String"
+    },
+    "content": {
+      "rendered": "\n<p>Like JavaScript, TypeScript uses double quotes (<code>\"</code>) or single quotes (<code>'</code>) to surround string literals:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let firstName: string = 'John';\nlet title: string = \"Web Developer\";</code></pre>\n\n\n\n<p>TypeScript also supports template strings that use the backtick (`) to surround characters.</p>\n\n\n\n<p>The template strings allow you to create multi-line strings and provide the string interpolation features.</p>\n\n\n\n<p>The following example shows how to create multi-line string using the backtick (`):</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let description = `This TypeScript string can \nspan multiple \nlines\n`;</code></pre>\n\n\n\n<p>String interpolations allow you to embed the variables into the string like this:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let firstName: string = `John`;\nlet title: string = `Web Developer`;\nlet profile: string = `I'm ${firstName}. \nI'm a ${title}`;\n\nconsole.log(profile);</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>I'm John. \nI'm a Web Developer.</code></pre>\n\n\n\n<h2>Summary</h2>\n\n\n\n<ul><li>In TypeScript, all strings get the&nbsp;<code>string</code>&nbsp;type.</li><li>Like JavaScript, TypeScript uses double quotes (<code>\"</code>), single quotes (<code>'</code>), and backtick (`) to surround string literals.</li></ul>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Like JavaScript, TypeScript uses double quotes (&#8220;) or single quotes (&#8216;) to surround string literals: TypeScript also supports template strings that use the backtick (`) to surround characters. The template strings allow you to create multi-line strings and provide the string interpolation features. The following example shows how to create multi-line string using the backtick [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [208],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4108"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=4108"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4108/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=4108"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=4108"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=4108"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 4109,
+    "date": "2020-11-28T08:02:00",
+    "date_gmt": "2020-11-28T08:02:00",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3256"
+    },
+    "modified": "2020-11-28T08:02:00",
+    "modified_gmt": "2020-11-28T08:02:00",
+    "slug": "boolean",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/boolean/",
+    "title": {
+      "rendered": "Boolean"
+    },
+    "content": {
+      "rendered": "\n<p>The TypeScript&nbsp;<code>boolean</code>&nbsp;type allows two values:&nbsp;<code>true</code>&nbsp;and&nbsp;<code>false</code>. It\u2019s one of the primitive types in TypeScript. For example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let pending: boolean;\npending = true;\n// after a while\n// ..\npending = false;</code></pre>\n\n\n\n<p>JavaScript has the&nbsp;<code>Boolean</code>&nbsp;type that refers to the non-primitive boxed object. The&nbsp;<code>Boolean</code>&nbsp;type has the letter&nbsp;<code>B</code>&nbsp;in uppercase, which is different from the&nbsp;<code>boolean</code>&nbsp;type.</p>\n\n\n\n<p>It\u2019s a good practice to avoid using the&nbsp;<code>Boolean</code>&nbsp;type.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>The TypeScript&nbsp;boolean&nbsp;type allows two values:&nbsp;true&nbsp;and&nbsp;false. It\u2019s one of the primitive types in TypeScript. For example: JavaScript has the&nbsp;Boolean&nbsp;type that refers to the non-primitive boxed object. The&nbsp;Boolean&nbsp;type has the letter&nbsp;B&nbsp;in uppercase, which is different from the&nbsp;boolean&nbsp;type. It\u2019s a good practice to avoid using the&nbsp;Boolean&nbsp;type.</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [208],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4109"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=4109"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4109/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=4109"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=4109"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=4109"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 4110,
+    "date": "2020-11-28T08:02:43",
+    "date_gmt": "2020-11-28T08:02:43",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3258"
+    },
+    "modified": "2020-11-28T08:02:43",
+    "modified_gmt": "2020-11-28T08:02:43",
+    "slug": "object-type",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/object-type/",
+    "title": {
+      "rendered": "Object Type"
+    },
+    "content": {
+      "rendered": "\n<h2>Introduction to TypeScript object type</h2>\n\n\n\n<p>The TypeScript&nbsp;<code>object</code>&nbsp;type represents all values that are not in primitive types.</p>\n\n\n\n<p>The following are primitive types in TypeScript:</p>\n\n\n\n<ul><li><code>number</code></li><li><code>bigint</code></li><li><code>string</code></li><li><code>boolean</code></li><li><code>null</code></li><li><code>undefined</code></li><li><code>symbol</code></li></ul>\n\n\n\n<p>The following shows how to declare a variable that holds an object:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let employee: object;\n\nemployee = {\n    firstName: 'John',\n    lastName: 'Doe',\n    age: 25,\n    jobTitle: 'Web Developer'\n};\n\nconsole.log(employee);</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{\n  firstName: 'John',       \n  lastName: 'Doe',\n  age: 25,\n  jobTitle: 'Web Developer'\n}</code></pre>\n\n\n\n<p>If you reassign a primitive value to the&nbsp;<code>employee</code>&nbsp;object, you\u2019ll get an error :</p>\n\n\n\n<pre class=\"wp-block-code\"><code>employee = \"Jane\";</code></pre>\n\n\n\n<p>Error:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>error TS2322: Type '\"Jane\"' is not assignable to type 'object'.</code></pre>\n\n\n\n<p>The&nbsp;<code>employee</code>&nbsp;object is an&nbsp;<code>object</code>&nbsp;type with a fixed list of properties. If you attempt to access a property that doesn\u2019t exist on the&nbsp;<code>employee</code>&nbsp;object, you\u2019ll get an error:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>console.log(employee.hireDate);</code></pre>\n\n\n\n<p>Error:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>error TS2339: Property 'hireDate' does not exist on type 'object'.</code></pre>\n\n\n\n<p>Note that the above statement works perfectly fine in JavaScript and returns&nbsp;<code>undefined</code>&nbsp;instead.</p>\n\n\n\n<p>To explicitly specify properties of the&nbsp;<code>employee</code>&nbsp;object, you first use the following syntax to declare the&nbsp;<code>employee</code>&nbsp;object:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let employee: {\n    firstName: string;\n    lastName: string;\n    age: number;\n    jobTitle: string;\n};</code></pre>\n\n\n\n<p>And then you assign the&nbsp;<code>employee</code>&nbsp;object to a literal object with the described properties:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>employee = {\n    firstName: 'John',\n    lastName: 'Doe',\n    age: 25,\n    jobTitle: 'Web Developer'\n};</code></pre>\n\n\n\n<p>Or you can combine both syntaxes in the same statement like this:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let employee: {\n    firstName: string;\n    lastName: string;\n    age: number;\n    jobTitle: string;\n} = {\n    firstName: 'John',\n    lastName: 'Doe',\n    age: 25,\n    jobTitle: 'Web Developer'\n};</code></pre>\n\n\n\n<h2>object vs. Object</h2>\n\n\n\n<p>TypeScript has another type called&nbsp;<code>Object</code>&nbsp;with the letter&nbsp;<code>O</code>&nbsp;in uppercase. It\u2019s important to understand the differences between them.</p>\n\n\n\n<p>The&nbsp;<code>object</code>&nbsp;type represents all non-primitive values while the&nbsp;<code>Object</code>&nbsp;type describes the functionality of all objects.</p>\n\n\n\n<p>For example, the&nbsp;<code>Object</code>&nbsp;type has the&nbsp;<code>toString()</code>&nbsp;and&nbsp;<code>valueOf()</code>&nbsp;methods that can be accessible by any object.</p>\n\n\n\n<h2>The empty type {}</h2>\n\n\n\n<p>TypeScript has another type called empty type denoted by&nbsp;<code>{}</code>&nbsp;, which is quite similar to the object type.</p>\n\n\n\n<p>The empty type&nbsp;<code>{}</code>&nbsp;describes an object that has no property on its own. If you try to access a property on such object, TypeScript will issue a compile-time error:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let vacant: {};\nvacant.firstName = 'John';</code></pre>\n\n\n\n<p>Error:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>error TS2339: Property 'firstName' does not exist on type '{}'.</code></pre>\n\n\n\n<p>But you can access all properties and methods declared on the\u00a0<code>Object</code>\u00a0type, which is available on the object via\u00a0prototype chain:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let vacant: {} = {};\n\nconsole.log(vacant.toString());</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&#91;object Object]</code></pre>\n\n\n\n<h2>Summary</h2>\n\n\n\n<ul><li>The TypeScript&nbsp;<code>object</code>&nbsp;type represents any value that is not a primitive value.</li><li>The&nbsp;<code>Object</code>&nbsp;type, however, describes functionality that available on all objects.</li><li>The empty type&nbsp;<code>{}</code>&nbsp;refers to an object that has no property on its own.</li></ul>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Introduction to TypeScript object type The TypeScript&nbsp;object&nbsp;type represents all values that are not in primitive types. The following are primitive types in TypeScript: number bigint string boolean null undefined symbol The following shows how to declare a variable that holds an object: Output: If you reassign a primitive value to the&nbsp;employee&nbsp;object, you\u2019ll get an error [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [208],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4110"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=4110"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4110/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=4110"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=4110"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=4110"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 3260,
+    "date": "2020-11-28T08:03:29",
+    "date_gmt": "2020-11-28T08:03:29",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3260"
+    },
+    "modified": "2020-11-28T08:03:29",
+    "modified_gmt": "2020-11-28T08:03:29",
+    "slug": "array",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/array/",
+    "title": {
+      "rendered": "Array"
+    },
+    "content": {
+      "rendered": "\n<h2>Introduction to TypeScript array type</h2>\n\n\n\n<p>A TypeScript&nbsp;<code>array</code>&nbsp;is an ordered list of data. To declare an array that holds values of a specific type, you use the following syntax:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let arrayName: type&#91;];</code></pre>\n\n\n\n<p>For example, the following declares an array of\u00a0strings:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let skills: string&#91;];</code></pre>\n\n\n\n<p>And you can add one or more strings to the array:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>skills&#91;0] = \"Problem Solving\";\nskills&#91;1] = \"Programming\";</code></pre>\n\n\n\n<p>or use the&nbsp;<code>push()</code>&nbsp;method:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>skills.push('Software Design');</code></pre>\n\n\n\n<p>The following declares a variable and assigns an array of strings to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let skills = &#91;'Problem Sovling','Software Design','Programming'];</code></pre>\n\n\n\n<p>In this example, TypeScript\u00a0infers\u00a0the\u00a0<code>skills</code>\u00a0array as an array of strings. It is equivalent to the following:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let skills: string&#91;];\nskills = &#91;'Problem Sovling','Software Design','Programming'];</code></pre>\n\n\n\n<p>Once you define an array of a specific type, TypeScript will prevent you from adding incompatible values to the array.</p>\n\n\n\n<p>The following will cause an error:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>skills.push(100);</code></pre>\n\n\n\n<p>\u2026 because we\u2019re trying to add a number to the string array.</p>\n\n\n\n<p>Error:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Argument of type 'number' is not assignable to parameter of type 'string'.\n</code></pre>\n\n\n\n<p>When you extract an element from the array, TypeScript can do\u00a0type inference. For example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let skill = skills&#91;0];\nconsole.log(typeof(skill));</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>string </code></pre>\n\n\n\n<p>In this example, we extract the first element of the&nbsp;<code>skills</code>&nbsp;array and assign it to the&nbsp;<code>skill</code>&nbsp;variable.</p>\n\n\n\n<p>Since an element in a string array is a string, TypeScript infers the type of the&nbsp;<code>skill</code>&nbsp;variable to string as shown in the output.</p>\n\n\n\n<h2>TypeScript array properties and methods</h2>\n\n\n\n<p>TypeScript arrays can access the properties and methods of a JavaScript. For example, the following uses the length property to get the number of element in an array:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let series = &#91;1, 2, 3];\nconsole.log(series.length); // 3</code></pre>\n\n\n\n<p>And you can use all the useful array method such as&nbsp;<code>forEach()</code>,&nbsp;<code>map()</code>,&nbsp;<code>reduce()</code>, and&nbsp;<code>filter()</code>. For example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let series = &#91;1, 2, 3];\nlet doubleIt = series.map(e => e* 2);\nconsole.log(doubleIt);</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&#91; 2, 4, 6 ] </code></pre>\n\n\n\n<h2>Storing values of mixed types</h2>\n\n\n\n<p>The following illustrates how to declare an array that hold both strings and numbers:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let scores = &#91;'Programming', 5, 'Software Design', 4]; </code></pre>\n\n\n\n<p>In this case, TypeScript infers the&nbsp;<code>scores</code>&nbsp;array as an array of&nbsp;<code>string | number</code>.</p>\n\n\n\n<p>It\u2019s equivalent to the following:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let scores : (string | number)&#91;];\nscores = &#91;'Programming', 5, 'Software Design', 4]; </code></pre>\n\n\n\n<h2>Summary</h2>\n\n\n\n<ul><li>In TypeScript, an array is an ordered list of values. An array can store a mixed type of values.</li><li>To declare an array of a specific type, you use the&nbsp;<code>let arr: type[]</code>&nbsp;syntax.</li></ul>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Introduction to TypeScript array type A TypeScript&nbsp;array&nbsp;is an ordered list of data. To declare an array that holds values of a specific type, you use the following syntax: For example, the following declares an array of\u00a0strings: And you can add one or more strings to the array: or use the&nbsp;push()&nbsp;method: The following declares a variable [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [208],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3260"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=3260"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3260/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=3260"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=3260"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=3260"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 4111,
+    "date": "2020-11-28T08:04:00",
+    "date_gmt": "2020-11-28T08:04:00",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3262"
+    },
+    "modified": "2020-11-28T08:04:00",
+    "modified_gmt": "2020-11-28T08:04:00",
+    "slug": "tuple",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/tuple/",
+    "title": {
+      "rendered": "Tuple"
+    },
+    "content": {
+      "rendered": "\n<h2>Introduction to TypeScript Tuple type</h2>\n\n\n\n<p>A tuple works like an\u00a0array\u00a0with some additional considerations:</p>\n\n\n\n<ul><li>The number of elements in the tuple is fixed.</li><li>The types of elements are known, and need not be the same.</li></ul>\n\n\n\n<p>For example, you can use a tuple to represent a value as a pair of a&nbsp;<code>string</code>&nbsp;and a&nbsp;<code>number</code>:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let skill: &#91;string, number];\nskill = &#91;'Programming', 5];</code></pre>\n\n\n\n<p>The order of values in a tuple is important. If you change the order of values of the&nbsp;<code>skill</code>&nbsp;tuple to&nbsp;<code>[5, \"Programming\"]</code>, you\u2019ll get an error:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let skill: &#91;string, number];\nskill = &#91;5, 'Programming'];</code></pre>\n\n\n\n<p>Error:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>error TS2322: Type 'string' is not assignable to type 'number'.</code></pre>\n\n\n\n<p>For this reason, it\u2019s a good practice to use tuples with data that is related to each other in a specific order.</p>\n\n\n\n<p>For example, you can use a tuple to define an RGB color that always comes in a three-number pattern:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>(r,g,b)</code></pre>\n\n\n\n<p>For example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let color: &#91;number, number, number] = &#91;255, 0, 0];</code></pre>\n\n\n\n<p>The&nbsp;<code>color[0]</code>,&nbsp;<code>color[1]</code>, and&nbsp;<code>color[2]</code>&nbsp;would be logicially map to&nbsp;<code>Red</code>,&nbsp;<code>Green</code>&nbsp;and&nbsp;<code>Blue</code>&nbsp;color values.</p>\n\n\n\n<h2>Optional Tuple Elements</h2>\n\n\n\n<p>Since TypeScript 3.0, a tuple can have optional elements specified using the question mark (?) postfix.</p>\n\n\n\n<p>For example, you can define an RGBA tuple with the optional alpha channel value:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let bgColor, headerColor: &#91;number, number, number, number?];\nbgColor = &#91;0, 255, 255, 0.5];\nheaderColor = &#91;0, 255, 255];</code></pre>\n\n\n\n<p>Note that the RGBA defines colors using the red, green, blue, and alpha model. The alpha specifies the opacity of the color.</p>\n\n\n\n<h2>Summary</h2>\n\n\n\n<ul><li>A tupple is an array with a fixed number of elements whose types are known.</li></ul>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Introduction to TypeScript Tuple type A tuple works like an\u00a0array\u00a0with some additional considerations: The number of elements in the tuple is fixed. The types of elements are known, and need not be the same. For example, you can use a tuple to represent a value as a pair of a&nbsp;string&nbsp;and a&nbsp;number: The order of values [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [208],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4111"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=4111"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4111/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=4111"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=4111"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=4111"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 4112,
+    "date": "2020-11-28T08:04:39",
+    "date_gmt": "2020-11-28T08:04:39",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3264"
+    },
+    "modified": "2020-11-28T08:04:39",
+    "modified_gmt": "2020-11-28T08:04:39",
+    "slug": "enum",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/enum/",
+    "title": {
+      "rendered": "Enum"
+    },
+    "content": {
+      "rendered": "\n<h2>What is an enum</h2>\n\n\n\n<p>An enum is a group of named constant values. Enum stands for enumerated type.</p>\n\n\n\n<p>To define an enum, you follow these steps:</p>\n\n\n\n<ul><li>First, use the&nbsp;<code>enum</code>&nbsp;keyword followed by the name of the enum.</li><li>Then, define constant values for the enum.</li></ul>\n\n\n\n<p>The following shows the syntax for defining an enum:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>enum name {constant1, constant2, ...};</code></pre>\n\n\n\n<p>In this syntax, the&nbsp;<code>constant1</code>,&nbsp;<code>constant2</code>, etc., are also known as the members of the enum.</p>\n\n\n\n<h2>TypeScript enum type example</h2>\n\n\n\n<p>The following example creates an enum that represents the months of the year:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>enum Month {\n    Jan,\n    Feb,\n    Mar,\n    Apr,\n    May,\n    Jun,\n    Jul,\n    Aug,\n    Sep,\n    Oct,\n    Nov,\n    Dec\n};</code></pre>\n\n\n\n<p>In this example, the enum name is&nbsp;<code>Month</code>&nbsp;and constant values are&nbsp;<code>Jan</code>,&nbsp;<code>Feb</code>,&nbsp;<code>Mar</code>, and so on.</p>\n\n\n\n<p>The following declares a function that uses the&nbsp;<code>Month</code>&nbsp;enum as the type of the&nbsp;<code>month</code>&nbsp;parameter:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function isItSummer(month: Month) {\n    let isSummer: boolean;\n    switch (month) {\n        case Month.Jun:\n        case Month.Jul:\n        case Month.Aug:\n            isSummer = true;\n            break;\n        default:\n            isSummer = false;\n            break;\n    }\n    return isSummer;\n}</code></pre>\n\n\n\n<p>And you can call it like so:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>console.log(isItSummer(Month.Jun)); // true</code></pre>\n\n\n\n<p>This example uses constant values including&nbsp;<code>Jan</code>,&nbsp;<code>Feb</code>,&nbsp;<code>Mar</code>, \u2026 in the enum rather than magic values like&nbsp;<code>1</code>,&nbsp;<code>2</code>,&nbsp;<code>3</code>,\u2026 This makes the code more obvious.</p>\n\n\n\n<h2>How TypeScript enum works</h2>\n\n\n\n<p>It is a good practice to use the constant values defined by enums in the code.</p>\n\n\n\n<p>However, the following example passes a number instead of an enum to the&nbsp;<code>isItSummer()</code>&nbsp;function. And it works.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>console.log(isItSummer(6)); // true</code></pre>\n\n\n\n<p>This example uses a number (<code>6</code>) instead of a constant defined by the&nbsp;<code>Month</code>&nbsp;enum. and it works.</p>\n\n\n\n<p>Let\u2019s check the generated Javascript code of the Month enum:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>var Month;\n(function (Month) {\n    Month&#91;Month&#91;\"Jan\"] = 0] = \"Jan\";\n    Month&#91;Month&#91;\"Feb\"] = 1] = \"Feb\";\n    Month&#91;Month&#91;\"Mar\"] = 2] = \"Mar\";\n    Month&#91;Month&#91;\"Apr\"] = 3] = \"Apr\";\n    Month&#91;Month&#91;\"May\"] = 4] = \"May\";\n    Month&#91;Month&#91;\"Jun\"] = 5] = \"Jun\";\n    Month&#91;Month&#91;\"Jul\"] = 6] = \"Jul\";\n    Month&#91;Month&#91;\"Aug\"] = 7] = \"Aug\";\n    Month&#91;Month&#91;\"Sep\"] = 8] = \"Sep\";\n    Month&#91;Month&#91;\"Oct\"] = 9] = \"Oct\";\n    Month&#91;Month&#91;\"Nov\"] = 10] = \"Nov\";\n    Month&#91;Month&#91;\"Dec\"] = 11] = \"Dec\";\n})(Month || (Month = {}));</code></pre>\n\n\n\n<p>And you can output the&nbsp;<code>Month</code>&nbsp;variable to the console:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{\n  '0': 'Jan', \n  '1': 'Feb', \n  '2': 'Mar', \n  '3': 'Apr', \n  '4': 'May', \n  '5': 'Jun', \n  '6': 'Jul', \n  '7': 'Aug', \n  '8': 'Sep', \n  '9': 'Oct', \n  '10': 'Nov',\n  '11': 'Dec',\n  Jan: 0,     \n  Feb: 1,     \n  Mar: 2,     \n  Apr: 3,     \n  May: 4,\n  Jun: 5,\n  Jul: 6,\n  Aug: 7,\n  Sep: 8,\n  Oct: 9,\n  Nov: 10,\n  Dec: 11\n}</code></pre>\n\n\n\n<p>As you can see clearly from the output, a TypeScript enum is an object in JavaScript. This object has named properties declared in the enum. For example,&nbsp;<code>Jan</code>&nbsp;is&nbsp;<code>0</code>&nbsp;and&nbsp;<code>Feb</code>&nbsp;is&nbsp;<code>1</code>.</p>\n\n\n\n<p>The generated object also has number keys with string values representing the named constants.</p>\n\n\n\n<p>That\u2019s why you can pass a number into the function that accepts an enum. In other words, an enum member is both a number and a defined constant.</p>\n\n\n\n<h2>Specifying enum members\u2019 numbers</h2>\n\n\n\n<p>TypeScript defines the numeric value of an enum\u2019s member based on the order of that member that appears in the enum definition. For example,&nbsp;<code>Jan</code>&nbsp;takes 0,&nbsp;<code>Feb</code>&nbsp;gets 1, etc.</p>\n\n\n\n<p>It\u2019s possible to explicitly specify numbers for the members of an enum like this:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>enum Month {\n    Jan = 1,\n    Feb,\n    Mar,\n    Apr,\n    May,\n    Jun,\n    Jul,\n    Aug,\n    Sep,\n    Oct,\n    Nov,\n    Dec\n};</code></pre>\n\n\n\n<p>In this example, the&nbsp;<code>Jan</code>&nbsp;constant value takes 1 instead of 0. The&nbsp;<code>Feb</code>&nbsp;takes 2, and the&nbsp;<code>Mar</code>&nbsp;takes 3, etc.</p>\n\n\n\n<h2>When to use an enum</h2>\n\n\n\n<p>You should use an enum when you:</p>\n\n\n\n<ul><li>Have a small set of fixed values that are closely related</li><li>And these values are known at compile time.</li></ul>\n\n\n\n<p>For example, you can use an enum for the approval status:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>enum ApprovalStatus {\n    draft,\n    submitted,\n    approved,\n    rejected\n};</code></pre>\n\n\n\n<p>Then, you can use the&nbsp;<code>ApprovalStatus</code>&nbsp;enum like this:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>const request =  {\n    id: 1,\n    status: ApprovalStatus.approved,\n    description: 'Please approve this request'\n};\n\nif(request.status === ApprovalStatus.approved) {\n    // send an email\n    console.log('Send email to the Applicant...');\n}</code></pre>\n\n\n\n<h2>Summary</h2>\n\n\n\n<ul><li>A TypeScript enum is a group of constant values.</li><li>Under the hood, an enum a JavaScript object with named properties declared in the enum definition.</li><li>Do use an enum when you have a small set of fixed values that are closely related and known at compile time.</li></ul>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>What is an enum An enum is a group of named constant values. Enum stands for enumerated type. To define an enum, you follow these steps: First, use the&nbsp;enum&nbsp;keyword followed by the name of the enum. Then, define constant values for the enum. The following shows the syntax for defining an enum: In this syntax, [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [208],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4112"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=4112"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4112/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=4112"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=4112"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=4112"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 4113,
+    "date": "2020-11-28T10:37:16",
+    "date_gmt": "2020-11-28T10:37:16",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3267"
+    },
+    "modified": "2020-11-28T10:37:16",
+    "modified_gmt": "2020-11-28T10:37:16",
+    "slug": "any-type",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/any-type/",
+    "title": {
+      "rendered": "Any Type"
+    },
+    "content": {
+      "rendered": "\n<h2>Introduction to TypeScript any type</h2>\n\n\n\n<p>Sometimes, you may need to store a value in a variable. But you don\u2019t know its type at the time of writing the program. And the unknown value may come from a third party API or user input.</p>\n\n\n\n<p>In this case, you want to opt-out of the type checking and allow the value to pass through the compile-time check.</p>\n\n\n\n<p>To do so, you use the&nbsp;<code>any</code>&nbsp;type. The&nbsp;<code>any</code>&nbsp;type allows you to assign a value of any type to a variable:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>// json may come from a third-party API\nconst json = `{\"latitude\": 10.11, \"longitude\":12.12}`;\n\n// parse JSON to find location\nconst currentLocation = JSON.parse(json);\nconsole.log(currentLocation);\n</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{ latitude: 10.11, longitude: 12.12 }</code></pre>\n\n\n\n<p>In this example, the&nbsp;<code>currentLocation</code>&nbsp;variable is assigned to an object returned by the&nbsp;<code>JSON.parse()</code>&nbsp;function.</p>\n\n\n\n<p>However, when you use the currentLocation to access object properties, TypeScript also won\u2019t carry any check:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>console.log(currentLocation.x);\n</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>undefined</code></pre>\n\n\n\n<p>The TypeScript compiler doesn\u2019t complain or issue any error.</p>\n\n\n\n<p>The&nbsp;<code>any</code>&nbsp;type provides you with a way to work with existing JavaScript codebase. It allows you to gradually opt-in and opt-out of type checking during compilation. Therefore, you can use the&nbsp;<code>any</code>&nbsp;type for migrating a JavaScript project over to TypeScript.</p>\n\n\n\n<h2>TypeScript any: implicit typing</h2>\n\n\n\n<p>If you declare a variable without specifying a type, TypeScript assumes that you use the\u00a0<code>any</code>\u00a0type. This feature is called\u00a0type inference. Basically, TypeScript guesses the type of the variable. For example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let result;</code></pre>\n\n\n\n<p>In this example, TypeScript infers the type for you. This practice is called implicit typing.</p>\n\n\n\n<p>Note that to disable implicit typing to the&nbsp;<code>any</code>&nbsp;type, you change the&nbsp;<code>noImplicitAny</code>&nbsp;option in the&nbsp;<code>tsconfig.json</code>&nbsp;file to true. You\u2019ll learn more about the&nbsp;<code>tsconfig.json</code>&nbsp;in the later tutorial.</p>\n\n\n\n<h2>TypeScript any vs. object</h2>\n\n\n\n<p>If you declare a variable with the\u00a0<code>object</code>\u00a0type, you can also assign it any value.</p>\n\n\n\n<p>However, you cannot call a method on it even the method actually exists. For example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let result: any;\nresult = 10.123;\nconsole.log(result.toFixed());\nresult.willExist(); //</code></pre>\n\n\n\n<p>In this example, the TypeScript compiler doesn\u2019t issue any warning even the&nbsp;<code>willExist()</code>&nbsp;method doesn\u2019t exist at compile time because the&nbsp;<code>willExist()</code>&nbsp;method might available at runtime.</p>\n\n\n\n<p>However, if you change the type of the&nbsp;<code>result</code>&nbsp;variable to&nbsp;<code>object</code>, the TypeScript compiler will issue an error:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let result: object;\nresult = 10.123;\nresult.toFixed();</code></pre>\n\n\n\n<p>Error:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>error TS2339: Property 'toFixed' does not exist on type 'object'.</code></pre>\n\n\n\n<h2>Summary</h2>\n\n\n\n<ul><li>The TypeScript&nbsp;<code>any</code>&nbsp;type allows you to store a value of any type. It instructs the compiler to skip type checking.</li><li>Use the&nbsp;<code>any</code>&nbsp;type to store a value that you don\u2019t actually know its type at the compile-time or when you migrate a JavaScript project over to a TypeScript project.</li></ul>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Introduction to TypeScript any type Sometimes, you may need to store a value in a variable. But you don\u2019t know its type at the time of writing the program. And the unknown value may come from a third party API or user input. In this case, you want to opt-out of the type checking and [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [208],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4113"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=4113"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4113/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=4113"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=4113"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=4113"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 4114,
+    "date": "2020-11-28T10:38:10",
+    "date_gmt": "2020-11-28T10:38:10",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3270"
+    },
+    "modified": "2020-11-28T10:38:10",
+    "modified_gmt": "2020-11-28T10:38:10",
+    "slug": "void-type",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/void-type/",
+    "title": {
+      "rendered": "Void Type"
+    },
+    "content": {
+      "rendered": "\n<h2>Introduction to TypeScript void type</h2>\n\n\n\n<p>The\u00a0<code>void</code>\u00a0type denotes the absence of having any type at all. It is a little like the opposite of the\u00a0<code>any</code>\u00a0type.</p>\n\n\n\n<p>Typically, you use the&nbsp;<code>void</code>&nbsp;type as the return type of functions that do not return a value. For example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function log(message): void {\n    console.log(messsage);\n}</code></pre>\n\n\n\n<p>It is a good practice to add the&nbsp;<code>void</code>&nbsp;type as the return type of a function or a method that doesn\u2019t return any value. By doing this, you can gain the following benefits:</p>\n\n\n\n<ul><li>Improve clarity of the code: you do not have to read the whole function body to see if it returns anything.</li><li>Ensure type-safe: you will never assign the function with the&nbsp;<code>void</code>&nbsp;return type to a variable.</li></ul>\n\n\n\n<p>Notice that if you use the&nbsp;<code>void</code>&nbsp;type for a variable, you can only assign&nbsp;<code>undefined</code>&nbsp;to that variable. In this case, the&nbsp;<code>void</code>&nbsp;type is not useful. For example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let useless: void = undefined;\nuseless = 1; // error</code></pre>\n\n\n\n<p>If the&nbsp;<code>--strictNullChecks</code>&nbsp;flag is not specified, you can assign the&nbsp;<code>useless</code>&nbsp;to&nbsp;<code>null</code>.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>useless = null; // OK if --strictNullChecks is not specified</code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Introduction to TypeScript void type The\u00a0void\u00a0type denotes the absence of having any type at all. It is a little like the opposite of the\u00a0any\u00a0type. Typically, you use the&nbsp;void&nbsp;type as the return type of functions that do not return a value. For example: It is a good practice to add the&nbsp;void&nbsp;type as the return type of [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [208],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4114"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=4114"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4114/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=4114"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=4114"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=4114"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 4115,
+    "date": "2020-11-28T10:39:08",
+    "date_gmt": "2020-11-28T10:39:08",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3272"
+    },
+    "modified": "2020-11-28T10:39:08",
+    "modified_gmt": "2020-11-28T10:39:08",
+    "slug": "never-type",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/never-type/",
+    "title": {
+      "rendered": "Never Type"
+    },
+    "content": {
+      "rendered": "\n<p>The&nbsp;<code>never</code>&nbsp;type is a type that contains no values. Because of this, you cannot assign any value to a variable with a&nbsp;<code>never</code>&nbsp;type.</p>\n\n\n\n<p>Typically, you use the&nbsp;<code>never</code>&nbsp;type to represent the return type of a function that always throws an error. For example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function raiseError(message: string): never {\n    throw new Error(message);\n}</code></pre>\n\n\n\n<p>The return type of the following function is inferred to the&nbsp;<code>never</code>&nbsp;type:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function reject() { \n   return raiseError('Rejected');\n}</code></pre>\n\n\n\n<p>If you have a function expression that contains an indefinite loop, its return type is also the&nbsp;<code>never</code>&nbsp;type. For example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let loop = function forever() {\n    while (true) {\n        console.log('Hello');\n    }\n}</code></pre>\n\n\n\n<p>In this example, the type of the return type of the&nbsp;<code>forever()</code>&nbsp;function is&nbsp;<code>never</code>.</p>\n\n\n\n<p>If you see that the return type of a function is&nbsp;<code>never</code>, then you should ensure that it is not what you intended to do.</p>\n\n\n\n<p>Variables can also acquire the\u00a0<code>never</code>\u00a0type when you narrow its type by a\u00a0type guard\u00a0that can never be true.</p>\n\n\n\n<p>For example, without the&nbsp;<code>never</code>&nbsp;type, the following function causes an error because not all code paths return a value.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function fn(a: string | number): boolean {\n  if (typeof a === \"string\") {\n    return true;\n  } else if (typeof a === \"number\") {\n    return false;\n  }   \n}</code></pre>\n\n\n\n<p>To make the code valid, you can return a function whose return type is the&nbsp;<code>never</code>&nbsp;type.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function fn(a: string | number): boolean {\n  if (typeof a === \"string\") {\n    return true;\n  } else if (typeof a === \"number\") {\n    return false;\n  }  \n  // make the function valid\n  return neverOccur();\n}\n\nlet neverOccur = () => {\n   throw new Error('Never!');\n} </code></pre>\n\n\n\n<h2>Summary</h2>\n\n\n\n<ul><li>The&nbsp;<code>never</code>&nbsp;type contains no value.</li><li>The&nbsp;<code>never</code>&nbsp;type represents the return type of a function that always throws an error or a function that contains an indefinite loop.</li></ul>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>The&nbsp;never&nbsp;type is a type that contains no values. Because of this, you cannot assign any value to a variable with a&nbsp;never&nbsp;type. Typically, you use the&nbsp;never&nbsp;type to represent the return type of a function that always throws an error. For example: The return type of the following function is inferred to the&nbsp;never&nbsp;type: If you have a [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [208],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4115"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=4115"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4115/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=4115"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=4115"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=4115"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 4116,
+    "date": "2020-11-28T10:41:06",
+    "date_gmt": "2020-11-28T10:41:06",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3274"
+    },
+    "modified": "2020-11-28T10:41:06",
+    "modified_gmt": "2020-11-28T10:41:06",
+    "slug": "union-type",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/union-type/",
+    "title": {
+      "rendered": "Union Type"
+    },
+    "content": {
+      "rendered": "\n<h2>Introduction to TypeScript union type</h2>\n\n\n\n<p>Sometimes, you will run into a function that expects a parameter that is either a number or a string. For example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function add(a: any, b: any) {\n    if (typeof a === 'number' &amp;&amp; typeof b === 'number') {\n        return a + b;\n    }\n    if (typeof a === 'string' &amp;&amp; typeof b === 'string') {\n        return a.concat(b);\n    }\n    throw new Error('Parameters must be numbers or strings');\n}</code></pre>\n\n\n\n<p>In this example, the&nbsp;<code>add()</code>&nbsp;function will calculate the sum of its parameters if they are numbers.</p>\n\n\n\n<p>In case the parameters are strings, the&nbsp;<code>add()</code>&nbsp;function will concatenate them into a single string.</p>\n\n\n\n<p>If the parameters are neither numbers nor strings, the&nbsp;<code>add()</code>&nbsp;function throws an error.</p>\n\n\n\n<p>The problem with the parameters of the\u00a0<code>add()</code>\u00a0function is that its parameters have the\u00a0<code>any</code>\u00a0type. It means that you can call the function with arguments that are neither numbers nor strings, the TypeScript will be fine with it.</p>\n\n\n\n<p>This code will be compiled successfully but cause an error at runtime:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>add(true, false);</code></pre>\n\n\n\n<p>To resolve this, you can use the TypeScript union type. The union type allows you to combine multiple types into one type.</p>\n\n\n\n<p>For example, the following variable is of type&nbsp;<code>number</code>&nbsp;or&nbsp;<code>string</code>:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let result: number | string;\nresult = 10; // OK\nresult = 'Hi'; // also OK\nresult = false; // a boolean value, not OK</code></pre>\n\n\n\n<p>A union type describes a value that can be one of several types, not just two. For example&nbsp;<code>number | string | boolean</code>&nbsp;is the type of a value that can be a number, a string, or a boolean.</p>\n\n\n\n<p>Back to the&nbsp;<code>add()</code>&nbsp;function example, you can change the types of the parameters from the&nbsp;<code>any</code>&nbsp;to union like this:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function add(a: number | string, b: number | string) {\n    if (typeof a === 'number' &amp;&amp; typeof b === 'number') {\n        return a + b;\n    }\n    if (typeof a === 'string' &amp;&amp; typeof b === 'string') {\n        return a.concat(b);\n    }\n    throw new Error('Parameters must be numbers or strings');\n}</code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Introduction to TypeScript union type Sometimes, you will run into a function that expects a parameter that is either a number or a string. For example: In this example, the&nbsp;add()&nbsp;function will calculate the sum of its parameters if they are numbers. In case the parameters are strings, the&nbsp;add()&nbsp;function will concatenate them into a single string. [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [208],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4116"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=4116"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4116/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=4116"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=4116"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=4116"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 4117,
+    "date": "2020-11-28T10:41:35",
+    "date_gmt": "2020-11-28T10:41:35",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3276"
+    },
+    "modified": "2020-11-28T10:41:35",
+    "modified_gmt": "2020-11-28T10:41:35",
+    "slug": "type-aliases",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/type-aliases/",
+    "title": {
+      "rendered": "Type Aliases"
+    },
+    "content": {
+      "rendered": "\n<h2>Introduction to TypeScript type aliases</h2>\n\n\n\n<p>Type aliases allow you to create a new name for an existing type. The following shows the syntax of the type alias:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>type alias = existingType;</code></pre>\n\n\n\n<p>The existing type can be any valid TypeScript type.</p>\n\n\n\n<p>The following example use the type alias chars for the string type:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>type chars = string;\nlet messsage: chars; // same as string type</code></pre>\n\n\n\n<p>It\u2019s useful to create type aliases for union types. For example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>type alphanumeric = string | number;\nlet input: alphanumeric;\ninput = 100; // valid\ninput = 'Hi'; // valid\ninput = false; // Compiler error</code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Introduction to TypeScript type aliases Type aliases allow you to create a new name for an existing type. The following shows the syntax of the type alias: The existing type can be any valid TypeScript type. The following example use the type alias chars for the string type: It\u2019s useful to create type aliases for [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [208],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4117"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=4117"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4117/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=4117"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=4117"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=4117"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 4118,
+    "date": "2020-11-28T10:42:09",
+    "date_gmt": "2020-11-28T10:42:09",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3278"
+    },
+    "modified": "2020-11-28T10:42:09",
+    "modified_gmt": "2020-11-28T10:42:09",
+    "slug": "string-literal-types",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/string-literal-types/",
+    "title": {
+      "rendered": "String Literal Types"
+    },
+    "content": {
+      "rendered": "\n<p>The string literal types allow you to define a type that accepts only one specified string literal.</p>\n\n\n\n<p>The following defines a string literal type that accepts a literal string&nbsp;<code>'click'</code>:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let click: 'click';</code></pre>\n\n\n\n<p>The&nbsp;<code>click</code>&nbsp;is a string literal type that accepts only the string literal&nbsp;<code>'click'</code>. If you assign the literal string&nbsp;<code>click</code>&nbsp;to the&nbsp;<code>click</code>, it will be valid:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>click = 'click'; // valid</code></pre>\n\n\n\n<p>However, when you assign another string literal to the&nbsp;<code>click</code>, the TypeScript compiler will issue an error. For example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>click = 'dblclick'; // compiler error</code></pre>\n\n\n\n<p>Error:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Type '\"dblclick\"' is not assignable to type '\"click\"'.</code></pre>\n\n\n\n<p>The string literal type is useful to limit a possible string value in a variable.</p>\n\n\n\n<p>The string literal types can combine nicely with the\u00a0union types\u00a0to define a finite set of string literal values for a variable:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let mouseEvent: 'click' | 'dblclick' | 'mouseup' | 'mousedown';\nmouseEvent = 'click'; // valid\nmouseEvent = 'dblclick'; // valid\nmouseEvent = 'mouseup'; // valid\nmouseEvent = 'mousedown'; // valid\nmouseEvent = 'mouseover'; // compiler error</code></pre>\n\n\n\n<p>If you use the string literal types in multiple places, they will be very verbose.</p>\n\n\n\n<p>To avoid this, you can use the type aliases. For example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>type MouseEvent: 'click' | 'dblclick' | 'mouseup' | 'mousedown';\nlet mouseEvent: MouseEvent;\nmouseEvent = 'click'; // valid\nmouseEvent = 'dblclick'; // valid\nmouseEvent = 'mouseup'; // valid\nmouseEvent = 'mousedown'; // valid\nmouseEvent = 'mouseover'; // compiler error\n\nlet anotherEvent: MouseEvent;</code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>The string literal types allow you to define a type that accepts only one specified string literal. The following defines a string literal type that accepts a literal string&nbsp;&#8216;click&#8217;: The&nbsp;click&nbsp;is a string literal type that accepts only the string literal&nbsp;&#8216;click&#8217;. If you assign the literal string&nbsp;click&nbsp;to the&nbsp;click, it will be valid: However, when you assign [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [208],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4118"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=4118"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4118/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=4118"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=4118"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=4118"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 4119,
+    "date": "2020-11-28T10:44:40",
+    "date_gmt": "2020-11-28T10:44:40",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3281"
+    },
+    "modified": "2020-11-28T10:44:40",
+    "modified_gmt": "2020-11-28T10:44:40",
+    "slug": "type-inference",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/type-inference/",
+    "title": {
+      "rendered": "Type Inference"
+    },
+    "content": {
+      "rendered": "\n<h2>Basic type inference</h2>\n\n\n\n<p>When you declare a variable, you can use a\u00a0type annotation\u00a0to explicitly specify a type for it. For example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let counter: number;</code></pre>\n\n\n\n<p>However, if you initialize the&nbsp;<code>counter</code>&nbsp;variable to a number, TypeScript will infer the type the&nbsp;<code>counter</code>&nbsp;to be&nbsp;<code><a href=\"https://www.typescripttutorial.net/typescript-tutorial/typescript-number/\">number</a></code>. For example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let counter = 0;</code></pre>\n\n\n\n<p>It is equivalent to the following statement:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let counter: number = 0;</code></pre>\n\n\n\n<p>Likewise, when you assign a function parameter a value, TypeScript infers the type of the parameter to the type of the default value. For example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function setCounter(max=100) {\n    // ...\n}</code></pre>\n\n\n\n<p>In this example, TypeScript infers type of the&nbsp;<code>max</code>&nbsp;parameter to be&nbsp;<code>number</code>.</p>\n\n\n\n<p>Similarly, TypeScript infers the following return type of the&nbsp;<code>increment()</code>&nbsp;function as&nbsp;<code>number</code>:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function increment(counter: number) {\n    return counter++;\n}\n</code></pre>\n\n\n\n<p>It is the same as:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function increment(counter: number) : number {\n    return counter++;\n}</code></pre>\n\n\n\n<h2>The best common type algorithm</h2>\n\n\n\n<p>Consider the following assignment:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let items = &#91;1, 2, 3, null];</code></pre>\n\n\n\n<p>To infer the type of&nbsp;<code>items</code>&nbsp;variable, TypeScript needs to consider the type of each element in the array.</p>\n\n\n\n<p>It uses the best common type algorithm to analyze each candidate type and select the type that is compatible with all other candidates.</p>\n\n\n\n<p>In this case, TypeScript selects the number\u00a0array type\u00a0(<code>number[]</code>) as the best common type.</p>\n\n\n\n<p>If you add a string to the&nbsp;<code>items</code>&nbsp;array, TypeScript will infer the type for the items as an array of numbers and strings:&nbsp;<code>(number | string)[]</code></p>\n\n\n\n<pre class=\"wp-block-code\"><code>let items = &#91;0, 1, null, 'Hi'];</code></pre>\n\n\n\n<p>When TypeScript cannot find the best common type, it returns the union array type. For example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let arr = &#91;new Date(), new RegExp('\\d+')];</code></pre>\n\n\n\n<p>In this example, TypeScript infers the type for&nbsp;<code>arr</code>&nbsp;to be&nbsp;<code>(RegExp | Date)[]</code>.</p>\n\n\n\n<h2>Contextual typing</h2>\n\n\n\n<p>TypeScript uses locations of variables to infer their types. This mechanism is known as contextual typing. For example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>document.addEventListener('click', function (event) {\n    console.log(event.button); // \n});</code></pre>\n\n\n\n<p>In this example, TypeScript knows that the&nbsp;<code>event</code>&nbsp;parameter is an instance of&nbsp;<code>MouseEvent</code>&nbsp;because of the&nbsp;<code>click</code>&nbsp;event.</p>\n\n\n\n<p>However, when you change the&nbsp;<code>click</code>&nbsp;event to the&nbsp;<code>scroll</code>&nbsp;event, TypeScript will issue an error:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>document.addEventListener('scroll', function (event) {\n    console.log(event.button); // compiler error\n});</code></pre>\n\n\n\n<p>Error:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Property 'button' does not exist on type 'Event'.(2339)</code></pre>\n\n\n\n<p>TypeScript knows that the&nbsp;<code>event</code>&nbsp;in this case, is an instance of&nbsp;<code>UIEvent</code>, not a&nbsp;<code>MouseEvent</code>. And&nbsp;<code>UIEvent</code>&nbsp;does not have the&nbsp;<code>button</code>&nbsp;property, therefore, TypeScript throws an error.</p>\n\n\n\n<p>You will find contextual typing in may cases such as arguments to function calls, type assertions, members of objects and array literals, return statements, and right-hand sides of assignments.</p>\n\n\n\n<h2>Type inference vs. Type annotations</h2>\n\n\n\n<p>The following show the difference between type inference and type annotations:</p>\n\n\n\n<figure class=\"wp-block-table\"><table><tbody><tr><td><strong>Type inference</strong></td><td><strong>Type annotations</strong></td></tr><tr><td>TypeScript guesses the type</td><td>You explicitly tell TypeScript the type</td></tr></tbody></table></figure>\n\n\n\n<p>So, when do you use type inference and type annotations?</p>\n\n\n\n<p>In practice, you should always use the type inference as much as possible. And you use the type annotation in the folowing cases:</p>\n\n\n\n<ul><li>When you declare a variable and assign it a value later.</li><li>When you want a variable that can\u2019t be inferred.</li><li>When a function returns the\u00a0<code>any</code>\u00a0type and you need to clarify the value.</li></ul>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Basic type inference When you declare a variable, you can use a\u00a0type annotation\u00a0to explicitly specify a type for it. For example: However, if you initialize the&nbsp;counter&nbsp;variable to a number, TypeScript will infer the type the&nbsp;counter&nbsp;to be&nbsp;number. For example: It is equivalent to the following statement: Likewise, when you assign a function parameter a value, TypeScript [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [208],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4119"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=4119"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4119/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=4119"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=4119"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=4119"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  }
+]

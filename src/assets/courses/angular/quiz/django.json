@@ -1,0 +1,256 @@
+[
+	{
+		"title" : "What happens when url.py file is edited while the development server is still running?",
+		"detail" : "",
+		"output" : "The development server automatically restarts.",
+		"options" : {
+			"a" : " Development server terminates.",
+			"b" : " The development server automatically restarts.",
+			"c" : " The development server does nothing.",
+			"d" : " The web page is automatically reloaded."
+		},
+		"correct": "B"
+	},
+
+		{
+		"title" : "Which setting contains the parameter of main-urls file?",
+		"detail" : "",
+		"output" : "ROOT_URLCONF",
+		"options" : {
+			"a" : " ROOT_URLCONF",
+			"b" : " MAIN_URLCONF",
+			"c" : " STATIC_URL",
+			"d" : " MEDIA_URL"
+		},
+		"correct": "A"
+	},
+
+		{
+		"title" : "Django is based on which framework?",
+		"detail" : "MVT or MTV (Model-View-Template)",
+		"output" : "Ahead-Of-Time Compilation",
+		"options" : {
+			"a" : "MVC",
+			"b" : " MVVM",
+			"c" : "MVT or MTV (Model-View-Template)",
+			"d" : " None of the above"
+		},
+		"correct": "C"
+	},
+
+		{
+		"title" : "What is the purpose of __init__.py in project directories?",
+		"detail" : "",
+		"output" : "It allows Python to recognise the folder as package.",
+		"options" : {
+			"a" : "It allows Python to recognise the folder as package.",
+			"b" : " It is useless and can be deleted.",
+			"c" : " It is used to initialise any empty values.",
+			"d" : "None of the above"
+		},
+		"correct": "A"
+	},
+
+		{
+		"title" : "Which method is used instead of path() in urls.py to pass in regular expressions as routes?",
+		"detail" : "",
+		"output" : "url()",
+		"options" : {
+			"a" : " static()",
+			"b" : " re_path()",
+			"c" : " include()",
+			"d" : " url()"
+		},
+		"correct": "D"
+	},
+
+		{
+		"title" : "What is the use of os.path.dirname(__file__) in this method?",
+		"detail" : "",
+		"output" : "It is used to pass the value of current file in which this line is written.",
+		"options" : {
+			"a" : " It is the default value and points to Django settings.py.",
+			"b" : "It is passing some value defined before.",
+			"c" : " It is used to pass the value of current file in which this line is written.",
+			"d" : " None of the above"
+		},
+		"correct": "C"
+	},
+
+		{
+		"title" : "What is the value of DEBUG when website is online/ or deployed?",
+		"detail" : "",
+		"output" : "False",
+		"options" : {
+			"a" : "  False",
+			"b" : "  True",
+			"c" : " None",
+			"d" : "Null"
+		},
+		"correct": "A"
+	},
+
+		{
+		"title" : "What does {{ name }} this mean in Django Templates?",
+		"detail" : "",
+		"output" : "The name will be replaced with values of Python variable.",
+		"options" : {
+			"a" : " It will be displayed as name in HTML.",
+			"b" : " The name will be replaced with values of Python variable.",
+			"c" : " {{ name }} will be the output.",
+			"d" : " None of the above"
+		},
+		"correct": "B"
+	},
+
+	{
+		"title" : "Check in-valid template tag.",
+		"detail" : "",
+		"output" : "{% while %} – wrong",
+		"options" : {
+			"a" : " {% If %}/ {% else %}",
+			"b" : " {% ifequal %}",
+			"c" : "{% while %} – wrong",
+			"d" : "{% for key in dictionary %}"
+		},
+		"correct": "C"
+	},
+
+		{
+		"title" : "What does {{ forloop.counter }} prints?",
+		"detail" : "",
+		"output" : "It prints the integer value of no. of times the loop executed.",
+		"options" : {
+			"a" : " It will not print if for loop variable is not defined.",
+			"b" : " It will count the number of times loop ran.",
+			"c" : "It prints the integer value of no. of times the loop executed.",
+			"d" : "None of the above"
+		},
+		"correct": "C"
+	},
+
+		{
+		"title" : "This template {# #} is used for?",
+		"detail" : "",
+		"output" : "It is comment in template language.",
+		"options" : {
+			"a" : " It is comment in template language.",
+			"b" : " It is used for business logic.",
+			"c" : " It will raise an exception.",
+			"d" : "None of the above"
+		},
+		"correct": "A"
+	},
+
+	
+
+		{
+		"title" : "From the previous question, suppose we want to implement the Query in the template. Choose one option which provides an optimal solution.",
+		"detail" : "",
+		"output" : "{{ books.count }}",
+		"options" : {
+			"a" : " {{ books | length }}",
+			"b" : "{{ books.count }}",
+			"c" : " {{ forloop.counter }} inside forloop over books Context Variable",
+			"d" : " None of the above"
+		},
+		"correct": "B"
+	},
+
+		{
+		"title" : "Which of these are not built-in Validators in Django?",
+		"detail" : "",
+		"output" : "None of the above",
+		"options" : {
+			"a" : " MinLengthValidator",
+			"b" : "EmailValidator",
+			"c" : " ProhibitNullCharacterValidator",
+			"d" : "None of the above"
+		},
+		"correct": "D"
+	},
+	
+
+
+	{
+		"title" : "Which of these is not a step in Form Validation?",
+		"detail" : "",
+		"output" : "clear()",
+		"options" : {
+			"a" : " to_python() method",
+			"b" : " run_validators()",
+			"c" : " clear()",
+			"d" : " clean()"
+		},
+		"correct": "C"
+	},
+
+		{
+		"title" : "When we execute form.clean() on a form object and suppose at any point validation error is raised by a validator. What happens after the Validation Error occurs?",
+		"detail" : "",
+		"output" : "The clean() method stops validation and returns a list of validation errors.",
+		"options" : {
+			"a" : " The program stops executing and Django server stops.",
+			"b" : "The clean() method stops validation and returns a list of validation errors.",
+			"c" : "The clean() method continues execution and catches all the validation errors in that form.",
+			"d" : " The clean() method catches the validation error and corrects it."
+		},
+		"correct": "B"
+	},
+
+		{
+		"title" : "Which of these commands are used to print the SQL query of the model?",
+		"detail" : "",
+		"output" : "sqlmigrations",
+		"options" : {
+			"a" : " migrate",
+			"b" : " makemigrations",
+			"c" : "sqlmigrations",
+			"d" : " showmigration"
+		},
+		"correct": "C"
+	},
+
+		{
+		"title" : "Which of these is not a valid backend for caching in Django?",
+		"detail" : "",
+		"output" : "django.core.cache.backends.sys.memory",
+		"options" : {
+			"a" : " django.core.cache.backends.db.DatabaseCache",
+			"b" : " django.core.cache.backends.sys.memory",
+			"c" : " django.core.cache.backends.filebased.FileBasedCache",
+			"d" : " django.core.cache.backends.locmem.LocMemCache"
+		},
+		"correct": "B"
+	},
+
+		{
+		"title" : "What is per-site caching?",
+		"detail" : "",
+		"output" : "Caching of the whole website",
+		"options" : {
+			"a" : " Caching of the whole website",
+			"b" : " Caching of all the views on a website",
+			"c" : "Caching of all the static files",
+			"d" : " None of the above"
+		},
+		"correct": "A"
+	},
+
+		{
+		"title" : "Which of these is not a logging framework message level?",
+		"detail" : "",
+		"output" : "Important",
+		"options" : {
+			"a" : " Error",
+			"b" : "Critical",
+			"c" : " Important",
+			"d" : " Debug"
+		},
+		"correct": "C"
+	}
+
+		
+
+
+]

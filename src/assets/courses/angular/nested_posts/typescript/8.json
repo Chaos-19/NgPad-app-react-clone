@@ -1,0 +1,378 @@
+[
+  {
+    "id": 4150,
+    "date": "2020-11-28T11:33:36",
+    "date_gmt": "2020-11-28T11:33:36",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3336"
+    },
+    "modified": "2020-11-28T11:33:36",
+    "modified_gmt": "2020-11-28T11:33:36",
+    "slug": "generics",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/generics/",
+    "title": {
+      "rendered": "Generics"
+    },
+    "content": {
+      "rendered": "\n<h2>Introduction to TypeScript Generics</h2>\n\n\n\n<p>TypeScript generics allow you to write the reusable and generalized form of functions,\u00a0classes, and\u00a0interfaces. In this tutorial, you\u2019re focusing on developing generic functions.</p>\n\n\n\n<p>It\u2019ll be easier to explain TypeScript generics through a simple example.</p>\n\n\n\n<p>Suppose you need to develop a function that returns a random element in an\u00a0array\u00a0of\u00a0numbers.</p>\n\n\n\n<p>The following&nbsp;<code>getRandomNumberElement()</code>&nbsp;function takes an array of numbers as its parameter and returns a random element from the array:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function getRandomNumberElement(items: number&#91;]): number {\n    let randomIndex = Math.floor(Math.random() * items.length);\n    return items&#91;randomIndex];\n}</code></pre>\n\n\n\n<p>To get a random element of an array, you need to:</p>\n\n\n\n<ul><li>Find the random index first.</li><li>Get the random element based on the random index.</li></ul>\n\n\n\n<p>To find the random index of an array, we used the&nbsp;<code>Math.random()</code>&nbsp;that returns a random number between 0 and 1, multiplied it with the length of the array, and applied the&nbsp;<code>Math.floor()</code>&nbsp;on the result.</p>\n\n\n\n<p>The following shows how to use the&nbsp;<code>getRandomNumberElement()</code>&nbsp;function:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let numbers = &#91;1, 5, 7, 4, 2, 9];\nconsole.log(getRandomNumberElement(numbers));</code></pre>\n\n\n\n<p>Assuming that you need to get a random element from an array of\u00a0strings. This time, you may come up with a new function:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function getRandomStringElement(items: string&#91;]): string {\n    let randomIndex = Math.floor(Math.random() * items.length);\n    return items&#91;randomIndex];\n}</code></pre>\n\n\n\n<p>The logic of the&nbsp;<code>getRandomStringElement()</code>&nbsp;function is the same as the one in the&nbsp;<code>getRandomNumberElement()</code>&nbsp;function.</p>\n\n\n\n<p>This example shows how to use the&nbsp;<code>getRandomStringElement()</code>&nbsp;function:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let colors = &#91;'red', 'green', 'blue'];\nconsole.log(getRandomStringElement(colors));</code></pre>\n\n\n\n<p>Later you may need to get a random element in an array of objects. Creating a new function every time you want to get a random element from a new array type is not scalable.</p>\n\n\n\n<h3>Using the any type</h3>\n\n\n\n<p>One solution for this issue is to set the type of the array argument as&nbsp;<code>any[]</code>. By doing this, you need to write just one function that works with an array of any type.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function getRandomAnyElement(items: any&#91;]): any {\n    let randomIndex = Math.floor(Math.random() * items.length);\n    return items&#91;randomIndex];\n}</code></pre>\n\n\n\n<p>The&nbsp;<code>getRandomAnyElement()</code>&nbsp;works with an array of the&nbsp;<code>any</code>&nbsp;type including an array of numbers, strings, objects, etc.:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let numbers = &#91;1, 5, 7, 4, 2, 9];\nlet colors = &#91;'red', 'green', 'blue'];\n\nconsole.log(getRandomAnyElement(numbers));\nconsole.log(getRandomAnyElement(colors));</code></pre>\n\n\n\n<p>This solution works fine. However, it has a drawback.</p>\n\n\n\n<p>It doesn\u2019t allow you to enforce the type of the returned element. In other words, it isn\u2019t type-safe.</p>\n\n\n\n<p>A better solution to avoid code duplication while preserving the type is to use generics.</p>\n\n\n\n<h3>TypeScript generics come to rescue</h3>\n\n\n\n<p>The following shows a generic function that returns the random element from an array of type&nbsp;<code>T</code>:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function getRandomElement&lt;T>(items: T&#91;]): T {\n    let randomIndex = Math.floor(Math.random() * items.length);\n    return items&#91;randomIndex];\n}</code></pre>\n\n\n\n<p>This function uses type variable&nbsp;<code>T</code>. The&nbsp;<code>T</code>&nbsp;allows you to capture the type that is provided at the time of calling the function. Also, the function uses the&nbsp;<code>T</code>&nbsp;type variable as its return type.</p>\n\n\n\n<p>This&nbsp;<code>getRandomElement()</code>&nbsp;function is generic because it can work with any data type including string, number, objects,\u2026</p>\n\n\n\n<p>By convention, we use the letter&nbsp;<code>T</code>&nbsp;as the type variable. However, you can freely use other letters such as&nbsp;<code>A</code>,&nbsp;<code>B</code>&nbsp;<code>C</code>, \u2026</p>\n\n\n\n<h2>Calling a generic function</h2>\n\n\n\n<p>The following shows how to use the&nbsp;<code>getRandomElement()</code>&nbsp;with an array of numbers:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let numbers = &#91;1, 5, 7, 4, 2, 9];\nlet randomEle = getRandomElement&lt;number>(numbers); \nconsole.log(randomEle);</code></pre>\n\n\n\n<p>This example explicitly passes&nbsp;<code>number</code>&nbsp;as the&nbsp;<code>T</code>&nbsp;type into the&nbsp;<code>getRandomElement()</code>&nbsp;function.</p>\n\n\n\n<p>In practice, you\u2019ll use\u00a0type inference\u00a0for the argument. It means that you let the TypeScript compiler set the value of\u00a0<code>T</code>\u00a0automatically based on the type of argument that you pass into, like this:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let numbers = &#91;1, 5, 7, 4, 2, 9];\nlet randomEle = getRandomElement(numbers); \nconsole.log(randomEle);</code></pre>\n\n\n\n<p>In this example, we didn\u2019t pass the\u00a0<code>number</code>\u00a0type to the\u00a0<code>getRandomElement()</code>\u00a0explicitly. The compiler just looks at the argument and sets\u00a0<code>T</code>\u00a0to its type.</p>\n\n\n\n<p>Now, the&nbsp;<code>getRandomElement()</code>&nbsp;function is also type-safe. For example, if you assign the returned value to a string variable, you\u2019ll get an error:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let numbers = &#91;1, 5, 7, 4, 2, 9];\nlet returnElem: string;\nreturnElem = getRandomElement(numbers);  // compiler error</code></pre>\n\n\n\n<h2>Generic functions with multiple types</h2>\n\n\n\n<p>The following illustrates how to develop a generic function with two type variables&nbsp;<code>U</code>&nbsp;and&nbsp;<code>V</code>:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function merge&lt;U, V>(obj1: U, obj2: V) {\n    return {\n        ...obj1,\n        ...obj2\n    };\n}</code></pre>\n\n\n\n<p>The&nbsp;<code>merge()</code>&nbsp;function merges two objects with the type&nbsp;<code>U</code>&nbsp;and&nbsp;<code>V</code>. It combines the properties of the two objects into a single object.</p>\n\n\n\n<p>Type inference infers the returned value of the&nbsp;<code>merge()</code>&nbsp;function as an intersection type of&nbsp;<code>U</code>&nbsp;and&nbsp;<code>V</code>, which is&nbsp;<code>U &amp; V</code></p>\n\n\n\n<p>The following illustrates how to use the&nbsp;<code>merge()</code>&nbsp;function that merges two objects:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let result = merge(\n    { name: 'John' },\n    { jobTitle: 'Frontend Developer' }\n);\n\nconsole.log(result);</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{ name: 'John', jobTitle: 'Frontend Developer' }</code></pre>\n\n\n\n<h2>Benefits of TypeScript generics</h2>\n\n\n\n<p>The following are benefits of TypeScript generics:</p>\n\n\n\n<ul><li>Leverage type checks at the compile time.</li><li>Eliminate\u00a0type castings.</li><li>Allow you to implement generic algorithms.</li></ul>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Introduction to TypeScript Generics TypeScript generics allow you to write the reusable and generalized form of functions,\u00a0classes, and\u00a0interfaces. In this tutorial, you\u2019re focusing on developing generic functions. It\u2019ll be easier to explain TypeScript generics through a simple example. Suppose you need to develop a function that returns a random element in an\u00a0array\u00a0of\u00a0numbers. The following&nbsp;getRandomNumberElement()&nbsp;function takes [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [214],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4150"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=4150"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4150/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=4150"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=4150"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=4150"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 4151,
+    "date": "2020-11-28T11:34:12",
+    "date_gmt": "2020-11-28T11:34:12",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3338"
+    },
+    "modified": "2020-11-28T11:34:12",
+    "modified_gmt": "2020-11-28T11:34:12",
+    "slug": "generic-constraints",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/generic-constraints/",
+    "title": {
+      "rendered": "Generic Constraints"
+    },
+    "content": {
+      "rendered": "\n<h2>Introduction to generic constraints in TypeScript</h2>\n\n\n\n<p>Consider the following example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function merge&lt;U, V>(obj1: U, obj2: V) {\n    return {\n        ...obj1,\n        ...obj2\n    };\n}</code></pre>\n\n\n\n<p>The&nbsp;<code>merge()</code>&nbsp;is a generic function that merges two objects. For example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let person = merge(\n    { name: 'John' },\n    { age: 25 }\n);\n\nconsole.log(result);</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{ name: 'John', age: 25 }</code></pre>\n\n\n\n<p>It works perfectly fine.</p>\n\n\n\n<p>The&nbsp;<code>merge()</code>&nbsp;function expects two objects. However, it doesn\u2019t prevent you from passing a non-object like this:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let person = merge(\n    { name: 'John' },\n    25\n);\n\nconsole.log(person);</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{ name: 'John' }</code></pre>\n\n\n\n<p>TypeScript doesn\u2019t issue any error.</p>\n\n\n\n<p>Instead of working with all types, you may want to add a constraint to the&nbsp;<code>merge()</code>&nbsp;function so that it works with objects only.</p>\n\n\n\n<p>To do this, you need to list out the requirement as a constraint on what&nbsp;<code>U</code>&nbsp;and&nbsp;<code>V</code>&nbsp;types can be.</p>\n\n\n\n<p>In order to denote the constraint, you use the&nbsp;<code>extends</code>&nbsp;keyword. For example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function merge&lt;U extends object, V extends object>(obj1: U, obj2: V) {\n    return {\n        ...obj1,\n        ...obj2\n    };\n}\n</code></pre>\n\n\n\n<p>Because the&nbsp;<code>merge()</code>&nbsp;function is now constrained, it will no longer work with all types. Instead, it works with the&nbsp;<code>object</code>&nbsp;type only.</p>\n\n\n\n<p>The following will result in an error:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let person = merge(\n    { name: 'John' },\n    25\n);</code></pre>\n\n\n\n<p>Error:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Argument of type '25' is not assignable to parameter of type 'object'.</code></pre>\n\n\n\n<h2>Using type parameters in generic constraints</h2>\n\n\n\n<p>TypeScript allows you to declare a type parameter constrained by another type parameter.</p>\n\n\n\n<p>The following&nbsp;<code>prop()</code>&nbsp;function accepts an object and a property name. It returns the value of the property.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function prop&lt;T, K>(obj: T, key: K) {\n    return obj&#91;key];\n}</code></pre>\n\n\n\n<p>The compiler issues the following error:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Type 'K' cannot be used to index type 'T'.</code></pre>\n\n\n\n<p>To fix this error, you add a constraint to&nbsp;<code>K</code>&nbsp;to ensure that it is a key of&nbsp;<code>T</code>&nbsp;as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function prop&lt;T, K extends keyof T>(obj: T, key: K) {\n    return obj&#91;key];\n}</code></pre>\n\n\n\n<p>If you pass into the&nbsp;<code>prop</code>&nbsp;function a property name that exists on the&nbsp;<code>obj</code>, the compiler won\u2019t complain. For example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let str = prop({ name: 'John' }, 'name');\nconsole.log(str);</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>John</code></pre>\n\n\n\n<p>However, if you pass a key that doesn\u2019t exist on the first argument, the compiler will issue an error:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let str = prop({ name: 'John' }, 'age');\n</code></pre>\n\n\n\n<p>Error:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Argument of type '\"age\"' is not assignable to parameter of type '\"name\"'.</code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Introduction to generic constraints in TypeScript Consider the following example: The&nbsp;merge()&nbsp;is a generic function that merges two objects. For example: Output: It works perfectly fine. The&nbsp;merge()&nbsp;function expects two objects. However, it doesn\u2019t prevent you from passing a non-object like this: Output: TypeScript doesn\u2019t issue any error. Instead of working with all types, you may want [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [214],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4151"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=4151"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4151/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=4151"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=4151"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=4151"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 3340,
+    "date": "2020-11-28T11:35:20",
+    "date_gmt": "2020-11-28T11:35:20",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3340"
+    },
+    "modified": "2020-11-28T11:35:20",
+    "modified_gmt": "2020-11-28T11:35:20",
+    "slug": "generic-classes",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/generic-classes/",
+    "title": {
+      "rendered": "Generic Classes"
+    },
+    "content": {
+      "rendered": "\n<h2>Introduction to TypeScript generic classes</h2>\n\n\n\n<p>A\u00a0generic\u00a0class has a generic type parameter list in an angle brackets\u00a0<code>&lt;></code>\u00a0that follows the name of the class:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>class className&lt;T>{\n    //... \n}</code></pre>\n\n\n\n<p>TypeScript allows you to have multiple generic types in the type parameter list. For example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>class className&lt;K,T>{\n    //...\n}\n</code></pre>\n\n\n\n<p>The\u00a0generic constraints\u00a0are also applied to the generic types in the class:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>class className&lt;T extends TypeA>{\n    //...\n}\n</code></pre>\n\n\n\n<p>Placing the type parameter on the class allows you to develop methods and properties that work with the same type.</p>\n\n\n\n<h2>TypeScript generic classes example</h2>\n\n\n\n<p>In this example, we will develop a generic Stack class.</p>\n\n\n\n<p>A stack is a data structure that works on the last-in-first-out (or LIFO) principle. It means that the first element you place into the stack is the last element you can get from the stack.</p>\n\n\n\n<p>Typically, a stack has a size. By default, it is empty. The stack has two main operations:</p>\n\n\n\n<ul><li>Push: push an element into the stack.</li><li>Pop: pop an element from the stack.</li></ul>\n\n\n\n<p>The following shows a complete generic Stack class called&nbsp;<code>Stack&lt;T&gt;</code>:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>class Stack&lt;T> {\n    private elements: T&#91;] = &#91;];\n\n    constructor(private size: number) {\n    }\n    isEmpty(): boolean {\n        return this.elements.length === 0;\n    }\n    isFull(): boolean {\n        return this.elements.length === this.size;\n    }\n    push(element: T): void {\n        if (this.elements.length === this.size) {\n            throw new Error('The stack is overflow!');\n        }\n        this.elements.push(element);\n\n    }\n    pop(): T {\n        if (this.elements.length == 0) {\n            throw new Error('The stack is empty!');\n        }\n        return this.elements.pop();\n    }\n}\n</code></pre>\n\n\n\n<p>The following creates a new stack of numbers:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let numbers = new Stack&lt;number>(5);\n</code></pre>\n\n\n\n<p>This function returns a random number between two numbers,&nbsp;<code>low</code>&nbsp;and&nbsp;<code>high</code>:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function randBetween(low: number, high: number): number {\n    return Math.floor(Math.random() * (high - low + 1) + low);\n}\n</code></pre>\n\n\n\n<p>Now, you can use the&nbsp;<code>randBetween()</code>&nbsp;function to generate random numbers for pushing into the&nbsp;<code>numbers</code>&nbsp;stack:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let numbers = new Stack&lt;number>(5);\n\nwhile (!numbers.isFull()) {\n    let n = randBetween(1, 10);\n    console.log(`Push ${n} into the stack.`)\n    numbers.push(n);\n}</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Push 3 into the stack.\nPush 2 into the stack. \nPush 1 into the stack. \nPush 8 into the stack. \nPush 9 into the stack. </code></pre>\n\n\n\n<p>The following shows how to pop elements from the stack until it is empty:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>while (!numbers.isEmpty()) {\n    let n = numbers.pop();\n    console.log(`Pop ${n} from the stack.`);\n}</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Pop 9 from the stack.\nPop 8 from the stack.\nPop 1 from the stack.\nPop 2 from the stack.\nPop 3 from the stack.\n</code></pre>\n\n\n\n<p>Similarly, you can create a stack of strings. For example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let words = 'The quick brown fox jumps over the lazy dog'.split(' ');\n\nlet wordStack = new Stack&lt;string>(words.length);\n\n// push words into the stack\nwords.forEach(word => wordStack.push(word));\n\n// pop words from the stack\nwhile (!wordStack.isEmpty()) {\n    console.log(wordStack.pop());\n}\n</code></pre>\n\n\n\n<p>How it works:</p>\n\n\n\n<ul><li>First, split the sentences into words.</li><li>Second, create a stack whose size is equal to the number of words in the words array.</li><li>Third, push elements of the words array into the stack.</li><li>Finally, pop words from the stack until it is empty.</li></ul>\n\n\n\n<p>In this tutorial, you have learned how to develop generic classes in TypeScript.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Introduction to TypeScript generic classes A\u00a0generic\u00a0class has a generic type parameter list in an angle brackets\u00a0&lt;>\u00a0that follows the name of the class: TypeScript allows you to have multiple generic types in the type parameter list. For example: The\u00a0generic constraints\u00a0are also applied to the generic types in the class: Placing the type parameter on the class [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [214],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3340"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=3340"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3340/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=3340"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=3340"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=3340"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 3342,
+    "date": "2020-11-28T11:36:00",
+    "date_gmt": "2020-11-28T11:36:00",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3342"
+    },
+    "modified": "2020-11-28T11:36:00",
+    "modified_gmt": "2020-11-28T11:36:00",
+    "slug": "generic-interfaces",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/generic-interfaces/",
+    "title": {
+      "rendered": "Generic Interfaces"
+    },
+    "content": {
+      "rendered": "\n<h2>Introduction to TypeScript generic interfaces</h2>\n\n\n\n<p>Like classes, interfaces also can be generic. A generic interface has generic type parameter list in an angle brackets&nbsp;<code>&lt;&gt;</code>&nbsp;following the name of the interface:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>interface interfaceName&lt;T> {\n    // ...\n}</code></pre>\n\n\n\n<p>This make the type parameter&nbsp;<code>T</code>&nbsp;visible to all members of the interface.</p>\n\n\n\n<p>The type parameter list can have one or multiple types. For example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>interface interfaceName&lt;U,V> {\n    // ...\n}\n</code></pre>\n\n\n\n<h2>TypeScript generic interface examples</h2>\n\n\n\n<p>Let\u2019s take some examples of declaring generic interfaces.</p>\n\n\n\n<h3>1) Generic interfaces that describe object properties</h3>\n\n\n\n<p>The following show how to declare a generic interface that consists of two members key and value with the corresponding types&nbsp;<code>K</code>&nbsp;and&nbsp;<code>V</code>:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>interface Pair&lt;K, V> {\n    key: K;\n    value: V;\n}\n</code></pre>\n\n\n\n<p>Now, you can use the Pair interface for defining any key/value pair with any type. For example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let month: Pair&lt;string, number> = {\n    key: 'Jan',\n    value: 1\n};\n\nconsole.log(month);</code></pre>\n\n\n\n<p>In this example, we declare a month key-value pair whose key is a string and value is a number.</p>\n\n\n\n<h3>2) Generic interfaces that describe methods</h3>\n\n\n\n<p>The following declares a generic interface with two methods add() and remove():</p>\n\n\n\n<pre class=\"wp-block-code\"><code>interface Collection&lt;T> {\n    add(o: T): void;\n    remove(o: T): void;\n}\n</code></pre>\n\n\n\n<p>And this&nbsp;<code>List&lt;T&gt;</code>&nbsp;generic class implements the&nbsp;<code>Collection&lt;T&gt;</code>&nbsp;generic interface:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>class List&lt;T> implements Collection&lt;T>{\n    private items: T&#91;] = &#91;];\n\n    add(o: T): void {\n        this.items.push(o);\n    }\n    remove(o: T): void {\n        let index = this.items.indexOf(o);\n        if (index > -1) {\n            this.items.splice(index, 1);\n        }\n    }\n}\n</code></pre>\n\n\n\n<p>From the&nbsp;<code>List&lt;T&gt;</code>&nbsp;class, you can create a list of values of the various type e.g., numbers, or strings.</p>\n\n\n\n<p>For example, the following shows how to use the List&lt;T&gt; generic class to create a list of numbers:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let list = new List&lt;number>();\n\nfor (let i = 0; i &lt; 10; i++) {\n    list.add(i);\n}\n</code></pre>\n\n\n\n<h3>3) Generic interfaces that describe index types</h3>\n\n\n\n<p>The following declare an interface that describes an index type:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>interface Options&lt;T> {\n    &#91;name: string]: T\n}\n\nlet inputOptions: Options&lt;boolean> = {\n    'disabled': false,\n    'visible': true\n};\n</code></pre>\n\n\n\n<p>In this tutorial, you have learned about the TypeScript generic interfaces.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Introduction to TypeScript generic interfaces Like classes, interfaces also can be generic. A generic interface has generic type parameter list in an angle brackets&nbsp;&lt;&gt;&nbsp;following the name of the interface: This make the type parameter&nbsp;T&nbsp;visible to all members of the interface. The type parameter list can have one or multiple types. For example: TypeScript generic interface [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [214],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3342"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=3342"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3342/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=3342"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=3342"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=3342"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  }
+]

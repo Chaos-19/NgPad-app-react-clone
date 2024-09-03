@@ -1,0 +1,102 @@
+[
+  {
+    "id": 4745,
+    "date": "2021-02-27T10:53:09",
+    "date_gmt": "2021-02-27T10:53:09",
+    "guid": {
+      "rendered": "http://angular.foobrdigital.com/?p=4745"
+    },
+    "modified": "2021-02-27T10:53:09",
+    "modified_gmt": "2021-02-27T10:53:09",
+    "slug": "building-a-custom-progress-bar",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/building-a-custom-progress-bar/",
+    "title": {
+      "rendered": "Building a custom progress bar"
+    },
+    "content": {
+      "rendered": "\n<p>The following example shows how to make a simple progress bar accessible by using host binding to control accessibility-related attributes.</p>\n\n\n\n<ul><li>The component defines an accessibility-enabled element with both the standard HTML attribute&nbsp;<code>role</code>, and ARIA attributes. The ARIA attribute&nbsp;<code>aria-valuenow</code>&nbsp;is bound to the user&#8217;s input.src/app/progress-bar.component.tscontent_copy<code>import { <a href=\"https://angular.io/api/core/Component\">Component</a>, <a href=\"https://angular.io/api/core/Input\">Input</a> } from '@angular/core'; /** * Example progressbar component. */ @<a href=\"https://angular.io/api/core/Component\">Component</a>({ selector: 'app-example-progressbar', template: `&lt;div class=\"bar\" [style.width.%]=\"value\"&gt;&lt;/div&gt;`, styleUrls: ['./progress-bar.component.css'], host: { // Sets the role for this component to \"progressbar\" role: 'progressbar', // Sets the minimum and maximum values for the progressbar role. 'aria-valuemin': '0', 'aria-valuemax': '100', // Binding that updates the current value of the progressbar. '[attr.aria-valuenow]': 'value', } }) export class ExampleProgressbarComponent { /** Current value of the progressbar. */ @<a href=\"https://angular.io/api/core/Input\">Input</a>() value = 0; }</code></li><li>In the template, the&nbsp;<code>aria-label</code>&nbsp;attribute ensures that the control is accessible to screen readers.src/app/app.component.htmlcontent_copy<code>&lt;label&gt; Enter an example progress value &lt;input type=\"number\" min=\"0\" max=\"100\" [value]=\"progress\" (input)=\"setProgress($event)\"&gt; &lt;/label&gt; &lt;!-- The user of the progressbar sets an aria-label to communicate what the progress means. --&gt; &lt;app-example-progressbar [value]=\"progress\" aria-label=\"Example of a progress bar\"&gt; &lt;/app-example-progressbar&gt;</code></li></ul>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>The following example shows how to make a simple progress bar accessible by using host binding to control accessibility-related attributes. The component defines an accessibility-enabled element with both the standard HTML attribute&nbsp;role, and ARIA attributes. The ARIA attribute&nbsp;aria-valuenow&nbsp;is bound to the user&#8217;s input.src/app/progress-bar.component.tscontent_copyimport { Component, Input } from &#8216;@angular/core&#8217;; /** * Example progressbar component. */ [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [259],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4745"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=4745"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4745/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4754,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4745/revisions/4754"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=4745"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=4745"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=4745"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  }
+]

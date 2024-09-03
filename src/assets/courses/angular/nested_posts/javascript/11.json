@@ -1,0 +1,848 @@
+[
+  {
+    "id": 3445,
+    "date": "2020-11-30T06:34:59",
+    "date_gmt": "2020-11-30T06:34:59",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3445"
+    },
+    "modified": "2020-11-30T06:34:59",
+    "modified_gmt": "2020-11-30T06:34:59",
+    "slug": "regular-expression",
+    "status": "publish",
+    "type": "post",
+    "link": "https://computerprogramming.foobrdigital.com/regular-expression/",
+    "title": {
+      "rendered": "Regular Expression"
+    },
+    "content": {
+      "rendered": "\n<h2>Introduction to regular expressions in JavaScript</h2>\n\n\n\n<p>A regular expression is a string that describes a pattern e.g., email addresses and phone numbers.</p>\n\n\n\n<p>In JavaScript, regular expressions are objects. JavaScript provides the built-in&nbsp;<code>RegExp</code>&nbsp;type that allows you to work with regular expressions effectively.</p>\n\n\n\n<p>Regular expressions are useful for searching and replacing strings that match a pattern. They have many useful applications.</p>\n\n\n\n<p>For example, you can use regular expressions to extract useful information in web scraping like product prices. Or you can use regular expressions to validate form fields like email addresses and phone numbers.</p>\n\n\n\n<h2>Creating a regular expression</h2>\n\n\n\n<p>To create a regular expression in JavaScript, you enclose its pattern in forward-slash (<code>/</code>) characters like this:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let re = /hi/;</code></pre>\n\n\n\n<p>Note that a regular expression doesn’t have single quotes or double quotes like a regular string.</p>\n\n\n\n<p>Or you can use the&nbsp;<code>RegExp</code>&nbsp;constructor:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let re = new RegExp('hi');</code></pre>\n\n\n\n<p>Both regular expressions are the instances of the&nbsp;<code>RegExp</code>&nbsp;type. They match the string&nbsp;<code>'hi'</code>.</p>\n\n\n\n<h2>Testing for matching</h2>\n\n\n\n<p>The&nbsp;<code>RegExp</code>&nbsp;object has many useful methods. One of them is the&nbsp;<code>test()</code>&nbsp;method that allows you to test if a string contains a match of the pattern in the regular expression.</p>\n\n\n\n<p>The&nbsp;<code>test()</code>&nbsp;method returns&nbsp;<code>true</code>&nbsp;if the string argument contains a match.</p>\n\n\n\n<p>The following example shows how to use the&nbsp;<code>test()</code>&nbsp;method:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let re = /hi/;\nlet result = re.test('hi John');\n\nconsole.log(result); // true</code></pre>\n\n\n\n<h2>Using pattern flags</h2>\n\n\n\n<p>Besides a pattern, a&nbsp;<code>RegExp</code>&nbsp;object also accepts an optional flag parameter. Flags are settings that change the searching behavior.</p>\n\n\n\n<h3>1) The ignore flag (<code>i</code>)</h3>\n\n\n\n<p>Regular expressions have many flags. For example, the ignore or&nbsp;<code>i</code>&nbsp;flag ignores cases when searching.</p>\n\n\n\n<p>By default, searches are case-sensitive. For example&nbsp;<code>/hi/</code>&nbsp;only matches the string&nbsp;<code>hi</code>&nbsp;not&nbsp;<code>Hi</code>, or&nbsp;<code>HI</code>.</p>\n\n\n\n<p>To search for a string with any cases, you use the&nbsp;<code>i</code>&nbsp;flag:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let re = /hi/i;\nlet result = re.test('Hi John');\n\nconsole.log(result); // true</code></pre>\n\n\n\n<p>In this example, the&nbsp;<code>/hi/i</code>&nbsp;will match any string&nbsp;<code>hi</code>,&nbsp;<code>Hi</code>, and&nbsp;<code>HI</code>.</p>\n\n\n\n<p>The following shows how to use the pattern flag in the&nbsp;<code>RegExp</code>&nbsp;constructor:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let re = new RegExp('hi','i');\nlet result = re.test('HI John');\n\nconsole.log(result); // true</code></pre>\n\n\n\n<h3>2) The global flag (<code>g</code>)</h3>\n\n\n\n<p>Another commonly used flag is the global or&nbsp;<code>g</code>&nbsp;flag.</p>\n\n\n\n<p>Without the global flag, the&nbsp;<code>RegExp</code>&nbsp;object only checks if there is a match in a string and returns the first match.</p>\n\n\n\n<p>When the&nbsp;<code>g</code>&nbsp;flag is available, the&nbsp;<code>RegExp</code>&nbsp;looks for all matches and returns all of them.</p>\n\n\n\n<p>It’s possible to combine flags e.g.,&nbsp;<code>gi</code>&nbsp;flags combine the ignore (i) and the global flag (<code>g</code>) flags.</p>\n\n\n\n<p>The&nbsp;<code>exec()</code>&nbsp;method of the&nbsp;<code>RegExp</code>&nbsp;performs a search for a match in a string and returns an array that contains detailed information about the match.</p>\n\n\n\n<p>The&nbsp;<code>exec()</code>&nbsp;method returns null if it could not find any match. However, it returns a single match at once. To get all matches, you need to execute the&nbsp;<code>exec()</code>&nbsp;multiple times.</p>\n\n\n\n<p>The following example uses the <code>exec()</code> method with a <code>while</code> loop to return all the matches:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let message = 'Hi, are you there? hi, HI...';\nlet re = /hi/gi;\n\nlet matches = &#91;];\nlet match;\ndo {\n    match = re.exec(message);\n    if(match) {\n      matches.push(match);\n    }\n} while(match != null)\n\nconsole.dir(matches);</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n\n\n\n\n<p>How it works:</p>\n\n\n\n<ul><li>First, declare a&nbsp;<code>message</code>&nbsp;string that will be used for searching.</li><li>Then, create a regular expression object with the pattern&nbsp;<code>/hi/gi</code>. The ignore flag (<code>i</code>) allows&nbsp;<code>re</code>&nbsp;object to ignore cases when executing the search and the global flag (<code>g</code>) instructs the&nbsp;<code>re</code>&nbsp;object to find all matches, not just the first one.</li><li>Third, execute the&nbsp;<code>exec()</code>&nbsp;method until no match found.</li><li>Finally, show the result array in the console.</li></ul>\n\n\n\n<h2>Searching strings</h2>\n\n\n\n<p>The method&nbsp;<code>str.match(regexp)</code>&nbsp;returns all matches of&nbsp;<code>regexp</code>&nbsp;in the string&nbsp;<code>str</code>.</p>\n\n\n\n<p>To find all matches, you use the global flag (<code>g</code>). And to find the matches regardless of cases, you use the ignore flag (<code>i</code>).</p>\n\n\n\n<p>The following example shows how to use the&nbsp;<code>match()</code>&nbsp;method:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let str = \"Are you Ok? Yes, I'm OK\";\nlet result = str.match(/OK/gi);\n\nconsole.log(result);</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&#91;\"Ok\", \"OK\"]</code></pre>\n\n\n\n<h2>Replacing strings</h2>\n\n\n\n<p>The following example uses the&nbsp;<code>replace()</code>&nbsp;method to replace the first occurrence of the string&nbsp;<code>'Ok'</code>&nbsp;in the string&nbsp;<code>str</code>:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let str = \"Are you OK? Yes, I'm OK.\";\nlet result = str.replace('Ok','fine');\n\nconsole.log(result);</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Are you fine? Yes, I'm OK</code></pre>\n\n\n\n<p>To replace all occurrences of&nbsp;<code>OK</code>, you use a regular expression with the global flag (<code>g</code>):</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let str = \"Are you OK? Yes, I'm OK.\";\nlet result = str.replace(/OK/g,'fine');\n\nconsole.log(result);</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Are you fine? Yes, I'm fine.</code></pre>\n\n\n\n<p>The following example uses both ignore and global flags to replace all occurrences of&nbsp;<code>OK</code>&nbsp;regardless of cases with the string&nbsp;<code>fine</code>:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let str = \"Are you Ok? Yes, I'm OK.\";\nlet result = str.replace(/OK/gi,'fine');\n\nconsole.log(result);</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Are you fine? Yes, I'm fine.</code></pre>\n\n\n\n<h2>Summary</h2>\n\n\n\n<ul><li>Use&nbsp;<code>/ /</code>&nbsp;or&nbsp;<code>RegExp</code>&nbsp;constructor to create a regular expression.</li><li>Use the pattern flag e.g., ignore (<code>i</code>) and global (<code>g</code>) to modify the matching behavior.</li><li>Use the&nbsp;<code>RegExp.test()</code>&nbsp;method to determine if a pattern is found in a string.</li><li>Use the&nbsp;<code>RegExp.exec()</code>&nbsp;method to find the match and return an array that contains the information of the match.</li><li>Some string methods such as&nbsp;<code>match()</code>&nbsp;and&nbsp;<code>replace()</code>&nbsp;support the regular expressions.</li></ul>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Introduction to regular expressions in JavaScript A regular expression is a string that describes a pattern e.g., email addresses and phone numbers. In JavaScript, regular expressions are objects. JavaScript provides the built-in&nbsp;RegExp&nbsp;type that allows you to work with regular expressions effectively. Regular expressions are useful for searching and replacing strings that match a pattern. They have many [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [42],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3445"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/comments?post=3445"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3445/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/media?parent=3445"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/categories?post=3445"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/tags?post=3445"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 3447,
+    "date": "2020-11-30T06:35:39",
+    "date_gmt": "2020-11-30T06:35:39",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3447"
+    },
+    "modified": "2020-11-30T06:35:39",
+    "modified_gmt": "2020-11-30T06:35:39",
+    "slug": "replace",
+    "status": "publish",
+    "type": "post",
+    "link": "https://computerprogramming.foobrdigital.com/replace/",
+    "title": {
+      "rendered": "Replace( )"
+    },
+    "content": {
+      "rendered": "\n<h2>Introduction to the JavaScript String replace() method</h2>\n\n\n\n<p>The following shows the syntax of the&nbsp;<code>replace()</code>&nbsp;method:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let newStr = str.replace(substr, newSubstr);</code></pre>\n\n\n\n<p>The JavaScript String <code>replace()</code> method returns a new string with a substring (<code>substr</code>) replaced by a new one (<code>newSubstr</code>).</p>\n\n\n\n<p>Note that the&nbsp;<code>replace()</code>&nbsp;method doesn’t change the original string. It returns a new string.</p>\n\n\n\n<h2>JavaScript String replace() examples</h2>\n\n\n\n<p>The following example uses the&nbsp;<code>replace()</code>&nbsp;to replace the&nbsp;<code>JS</code>&nbsp;in the string&nbsp;<code>'JS will, JS will rock you'</code>&nbsp;wit the new substring&nbsp;<code>JavaScript</code>:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let str = 'JS will, JS will rock you!';\nlet newStr = str.replace('JS','JavaScript');\n\nconsole.log(newStr);</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>JavaScript will, JS will rock you!</code></pre>\n\n\n\n<p>As you can see from the output, only the first occurrence of the substring&nbsp;<code>JS</code>&nbsp;was replaced with the new substring&nbsp;<code>JavaScript</code>.</p>\n\n\n\n<p>To replace all occurrences of a substring in a string with a new one, you must use a regular expression.</p>\n\n\n\n<h2>Using regular expressions</h2>\n\n\n\n<p>The&nbsp;<code>replace()</code>&nbsp;method fully supports regular expressions:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let newStr = str.replace(regexp, newSubstr);</code></pre>\n\n\n\n<p>In this syntax, the&nbsp;<code>replace()</code>&nbsp;method find all matches in the str, replaces them by the&nbsp;<code>newSubstr</code>, and returns a new string (<code>newStr</code>).</p>\n\n\n\n<p>The following example uses the global flag (<code>g</code>) to replace all occurrences of the&nbsp;<code>JS</code>&nbsp;in the&nbsp;<code>str</code>&nbsp;by the&nbsp;<code>JavaScript</code>:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let str = 'JS will, JS will rock you!';\nlet newStr = str.replace(/JS/g,'JavaScript');\n\nconsole.log(newStr);\n</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>JavaScript will, JavaScript will rock you!</code></pre>\n\n\n\n<p>If you want to ignore cases for searching and replacement, you can use the ignore flag (<code>i</code>) in the regular expression like this:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let str = 'JS will, Js will rock you!';\nlet newStr = str.replace(/JS/gi,'JavaScript');\n\nconsole.log(newStr);</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>JavaScript will, JavaScript will rock you!</code></pre>\n\n\n\n<h2>Using a replacement function</h2>\n\n\n\n<p>Instead of passing a&nbsp;<code>newSubstr</code>&nbsp;to the second parameter of the&nbsp;<code>replace()</code>&nbsp;method, you can pass a replacement function as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let newStr = str.replace(substr | regexp, replacer);</code></pre>\n\n\n\n<p>In this syntax, the&nbsp;<code>replace()</code>&nbsp;method will invoke the&nbsp;<code>replacer</code>&nbsp;function after the match has been performed. It then uses the result of this function as the replacement string.</p>\n\n\n\n<p>If you use the global flag (<code>g</code>) in the regular expression, the&nbsp;<code>replace()</code>&nbsp;method will invoke the&nbsp;<code>replacer</code>&nbsp;function for every match. For example, if there are three matches, the&nbsp;<code>replace()</code>&nbsp;method will invoke the&nbsp;<code>replacer()</code>&nbsp;function three times.</p>\n\n\n\n<p>The&nbsp;<code>replacer()</code>&nbsp;function has the following syntax:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function replacer(match, p1, p2, ..., offset, string);</code></pre>\n\n\n\n<p>The following are the meaning of each parameter:</p>\n\n\n\n<ul><li><code>match</code>: is the matched substring.</li><li><code>p1</code>,&nbsp;<code>p2</code>, …<code>pn</code>&nbsp;are the nth string found by a parenthesized capture group provided by the regular expression.</li><li><code>offset</code>: is the offset of the matched substring within the whole string being searched.</li><li><code>string</code>: is the whole string being examined.</li></ul>\n\n\n\n<p>The following example uses the&nbsp;<code>replace()</code>&nbsp;function to change the substrings&nbsp;<code>apples</code>&nbsp;and&nbsp;<code>bananas</code>&nbsp;to uppercase. It passes a replacer function into the&nbsp;<code>replace()</code>&nbsp;function:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let str = \"I like to eat, eat, eat apples and bananas\";\nlet re = /apples|bananas/gi;\n\nlet newStr = str.replace(re, (match) => { \n    console.log({match}); \n    return match.toUpperCase();\n});\n\nconsole.log(newStr);</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{match: \"apples\"}\n{match: \"bananas\"}\nI like to eat, eat, eat APPLES and BANANAS\n</code></pre>\n\n\n\n<h2>Summary</h2>\n\n\n\n<ul><li>Use the&nbsp;<code>replace()</code>&nbsp;method to return a new string with a substring replaced by a new one.</li><li>Use a regular expression with the global flag (<code>g</code>) to replace all occurrences of a substring with a new one.</li></ul>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Introduction to the JavaScript String replace() method The following shows the syntax of the&nbsp;replace()&nbsp;method: The JavaScript String replace() method returns a new string with a substring (substr) replaced by a new one (newSubstr). Note that the&nbsp;replace()&nbsp;method doesn’t change the original string. It returns a new string. JavaScript String replace() examples The following example uses the&nbsp;replace()&nbsp;to replace the&nbsp;JS&nbsp;in the string&nbsp;&#8216;JS [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [42],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3447"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/comments?post=3447"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3447/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/media?parent=3447"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/categories?post=3447"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/tags?post=3447"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 3449,
+    "date": "2020-11-30T06:36:31",
+    "date_gmt": "2020-11-30T06:36:31",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3449"
+    },
+    "modified": "2020-11-30T06:36:31",
+    "modified_gmt": "2020-11-30T06:36:31",
+    "slug": "match",
+    "status": "publish",
+    "type": "post",
+    "link": "https://computerprogramming.foobrdigital.com/match/",
+    "title": {
+      "rendered": "Match( )"
+    },
+    "content": {
+      "rendered": "\n<h2>Introduction to the JavaScript String match() method</h2>\n\n\n\n<p>The String <code>match()</code> method matches a string against a regular expression:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>str.match(regexp);\n</code></pre>\n\n\n\n<p>If the <code>regexp</code> is not a regular expression, the <code>match()</code> will convert it to a regular expression using the <code>RegExp()</code> constructor. The <code>match()</code> returns an array depending on whether the regular expression uses the global flag (<code>g</code>) flag or not:</p>\n\n\n\n<ul><li>If the regexp uses the g flag, then&nbsp;<code>match()</code>&nbsp;method returns an array that stores all the matching results. The result does not contain the capturing groups.</li><li>If the regexp doesn’t use the g flag, the&nbsp;<code>match()</code>&nbsp;will return the first match and its related capturing group. The result of the match is the same result as&nbsp;<code>RegExp.exec()</code>&nbsp;with additional properties. See the example below for the details.</li></ul>\n\n\n\n<p>The&nbsp;<code>match()</code>&nbsp;returns&nbsp;<code>null</code>&nbsp;if it does not find any matches.</p>\n\n\n\n<h2>JavaScript String match() method</h2>\n\n\n\n<p>Let’s take some examples of using the&nbsp;<code>match()</code>&nbsp;method.</p>\n\n\n\n<h3>1) Using the match() method with the expression that has the global flag</h3>\n\n\n\n<p>The following example shows how to use the&nbsp;<code>match()</code>&nbsp;method with the global flag. It returns an array of matches:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let str = \"Price: $5–$10\";\nlet result = str.match(/\\$\\d+/g);\nconsole.log(result);\n</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&#91;\"$5\", \"$10\"]\n</code></pre>\n\n\n\n<p>In this example, the&nbsp;<code>match()</code>&nbsp;searches for any number that follows the&nbsp;<code>$</code>&nbsp;sign.</p>\n\n\n\n<h3>2) Using the match() method with the expression that has the global flag</h3>\n\n\n\n<p>The following example illustrates how to use the&nbsp;<code>match()</code>&nbsp;method with a regular expression that doesn’t have a global flag. It returns an array of the first match with additional properties.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let str = \"Price: $5–$10\";\nlet result = str.match(/\\$\\d+/);\nconsole.log(result);\n</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n\n\n\n\n<p>The additional properties are:</p>\n\n\n\n<ul><li><code>index</code>: is the index at which the match was found.</li><li><code>input</code>: a copy of the search string.</li><li><code>groups</code>: is the object of named capturing groups whose keys and values are the names and the capturing groups respectively. In this example, it is&nbsp;<code>undefined</code>&nbsp;because we did to define any named capturing groups.</li></ul>\n\n\n\n<h3>3) Using the&nbsp;<code>match()</code>&nbsp;method with the named capturing group</h3>\n\n\n\n<p>The following shows how to use the&nbsp;<code>match()</code>&nbsp;method with the named capture group. It captures the&nbsp;<code>\"yellow\"</code>&nbsp;into a group named&nbsp;<code>\"color\"</code>:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let str = 'I like yellow color palette!';\n\nlet re = /(?&lt;color>yellow) color/;\nlet result = str.match(re);\n\nconsole.log(result);\n</code></pre>\n\n\n\n<p>Output:&nbsp;</p>\n\n\n\n\n\n\n\n<p>In this tutorial, you have learned how to use the JavaScript String&nbsp;<code>match()</code>&nbsp;method to match a string against a regular expression.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Introduction to the JavaScript String match() method The String match() method matches a string against a regular expression: If the regexp is not a regular expression, the match() will convert it to a regular expression using the RegExp() constructor. The match() returns an array depending on whether the regular expression uses the global flag (g) flag or not: If the regexp uses the g flag, then&nbsp;match()&nbsp;method returns an array that [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [42],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3449"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/comments?post=3449"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3449/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/media?parent=3449"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/categories?post=3449"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/tags?post=3449"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 3451,
+    "date": "2020-11-30T06:37:26",
+    "date_gmt": "2020-11-30T06:37:26",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3451"
+    },
+    "modified": "2020-11-30T06:37:26",
+    "modified_gmt": "2020-11-30T06:37:26",
+    "slug": "search",
+    "status": "publish",
+    "type": "post",
+    "link": "https://computerprogramming.foobrdigital.com/search/",
+    "title": {
+      "rendered": "Search( )"
+    },
+    "content": {
+      "rendered": "\n<h2>Introduction to the JavaScript String search() function</h2>\n\n\n\n<p>The <code>search()</code> method accepts a regular expression and returns the index of the first match in a string:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let index = str.search(regexp);</code></pre>\n\n\n\n<p>In this syntax, the&nbsp;<code>regexp</code>&nbsp;is a regular expression. If you pass a non-RegExp into the method, it will convert that value to a&nbsp;<code>RegExp</code>.</p>\n\n\n\n<p>If the&nbsp;<code>search()</code>&nbsp;doesn’t find any match, it returns -1.</p>\n\n\n\n<h2>JavaScript String search() method examples</h2>\n\n\n\n<p>The following example uses the&nbsp;<code>search()</code>&nbsp;method to return the first occurrence of any capital letter:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let re = /&#91;A-Z]/;\nlet str = 'hi There! How are you?';\nlet index = str.search(re);\n\nconsole.log(index);\n</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>3</code></pre>\n\n\n\n<p>It returns 3 which is the index of the capital letter&nbsp;<code>T</code>.</p>\n\n\n\n<p>The following example returns&nbsp;<code>-1</code>&nbsp;because there is no number in the string:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let re = /&#91;0-9]/;\nlet str = 'Hello, JavaScript!';\nlet index = str.search(re);\n\nconsole.log(index);</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>-1</code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Introduction to the JavaScript String search() function The search() method accepts a regular expression and returns the index of the first match in a string: In this syntax, the&nbsp;regexp&nbsp;is a regular expression. If you pass a non-RegExp into the method, it will convert that value to a&nbsp;RegExp. If the&nbsp;search()&nbsp;doesn’t find any match, it returns -1. JavaScript String search() method [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [42],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3451"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/comments?post=3451"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3451/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/media?parent=3451"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/categories?post=3451"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/tags?post=3451"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 3453,
+    "date": "2020-11-30T06:38:15",
+    "date_gmt": "2020-11-30T06:38:15",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3453"
+    },
+    "modified": "2020-11-30T06:38:15",
+    "modified_gmt": "2020-11-30T06:38:15",
+    "slug": "character-classes",
+    "status": "publish",
+    "type": "post",
+    "link": "https://computerprogramming.foobrdigital.com/character-classes/",
+    "title": {
+      "rendered": "Character Classes"
+    },
+    "content": {
+      "rendered": "\n<h2>Introduction to the character classes</h2>\n\n\n\n<p>A character class allows you to match any symbol from a certain character set. A character class is also called a character set. Suppose that you have a phone number like this:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>+1-(408)-555-0105</code></pre>\n\n\n\n<p>And you want to turn it into a plain number:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>14085550105</code></pre>\n\n\n\n<p>Character classes in&nbsp;<a href=\"https://www.javascripttutorial.net/javascript-regular-expression/\">regular expressions</a>&nbsp;can help you to achieve this.</p>\n\n\n\n<p>Let’s explore the digit character class first. The digit character class is denoted by&nbsp;<code>\\d</code>&nbsp;which matches any single digit:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>\\d</code></pre>\n\n\n\n<p>The following example uses the&nbsp;<code>\\d</code>&nbsp;to match the first number in the phone number:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let phone = '+1-(408)-555-0105';\nlet re = /\\d/;\n\nconsole.log(phone.match(re));</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&#91;\"1\"]</code></pre>\n\n\n\n<p>When you add the global flag (<code>g</code>), the regular expression will search for all numbers, not the first one:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let phone = '+1-(408)-555-0105';\nlet re = /\\d/g;\n\nconsole.log(phone.match(re));</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&#91;\"1\", \"4\", \"0\", \"8\", \"5\", \"5\", \"5\", \"0\", \"1\", \"0\", \"5\"]\n</code></pre>\n\n\n\n<p>Now, you can turn the phone number into a plain number as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let phone = '+1-(408)-555-0105';\nlet re = /\\d/g;\n\nlet numbers = phone.match(re);\nlet phoneNo = numbers.join('');\n\nconsole.log(phoneNo);\n</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>14085550105\n</code></pre>\n\n\n\n<p>To make it short, you can chain the&nbsp;<code>match()</code>&nbsp;and&nbsp;<code>join()</code>&nbsp;methods like this:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>console.log('+1-(408)-555-0105'.match(/\\d/g).join(''));\n</code></pre>\n\n\n\n<p>Besides the character class for digits (<code>\\d</code>), regular expressions support other character classes.</p>\n\n\n\n<p>The most commonly used character classes are:</p>\n\n\n\n<ul><li><code>\\d</code>&nbsp;– match a digit or a character from 0 to 9.</li><li><code>\\s</code>&nbsp;– match a whitespace symbol such a space, a tab (\\t), a newline (\\n), etc.</li><li><code>\\w</code>&nbsp;–&nbsp;<code>w</code>&nbsp;stands for word character. It matches the ASCII character&nbsp;<code>[A-Za-z0-9_]</code>&nbsp;including Latin alphabets, digits, and the underscore (<code>_</code>)</li></ul>\n\n\n\n<p>In practice, you often combine the character classes to form a powerful match.</p>\n\n\n\n<p>For example&nbsp;<code>\\w\\d</code>&nbsp;matches any word followed by a digit like&nbsp;<code>O2</code>:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let str = 'O2 is oxygen';\nlet re = /\\w\\d/g\n\nconsole.log(str.match(re));\n</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>O2\n</code></pre>\n\n\n\n<p>A regular expression may contain both regular characters and character classes. For example, the&nbsp;<code>ES\\d</code>&nbsp;regular expression matches&nbsp;<code>ES</code>&nbsp;followed by a digit like&nbsp;<code>ES6</code>:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let str = 'ES6 Tutorial';\nlet re = /ES\\d/g\n\nconsole.log(str.match(re));</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&#91;\"ES6\"]\n</code></pre>\n\n\n\n<h2>Inverse Classes</h2>\n\n\n\n<p>A character class has an inverse class with the same letter but in the uppercase e.g.,&nbsp;<code>\\D</code>&nbsp;is the inverse of&nbsp;<code>\\d</code>. The inverse class matches all the other characters. For example, the&nbsp;<code>\\D</code>&nbsp;match any character except a digit (or&nbsp;<code>\\d</code>). The following are the inverse classes:</p>\n\n\n\n<ul><li><code>\\D</code>&nbsp;– matches any character except digits e.g., a letter.</li><li><code>\\S</code>&nbsp;– matches any character except whitespace e.g., a letter</li><li><code>\\W</code>&nbsp;– matches any character except word character e.g., non-Latin letter or space.</li></ul>\n\n\n\n<p>Back to the phone number example, you can use the&nbsp;<code>\\d</code>&nbsp;with the global flag (<code>g</code>):</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let phone = '+1-(408)-555-0105';\nlet re = /\\d/g;\n\nconsole.log(phone.match(re).join(''));</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>14085550105\n</code></pre>\n\n\n\n<p>Or you can remove the non-digit using the <code>\\D</code> inverse class and replace all non-digit characters with blank, like this:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let phone = '+1-(408)-555-0105';\nlet re = /\\D/g;\n\nconsole.log(phone.replace(re,''));</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>14085550105</code></pre>\n\n\n\n<h2>The dot (.) character class</h2>\n\n\n\n<p>The dot (<code>.</code>) is a special character class that matches any character except a newline:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let re = /E.6/\nconsole.log('ES6'.match(re)); </code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&#91;\"ES6\", index: 0, input: \"ES6\", groups: undefined]\n</code></pre>\n\n\n\n<p>However, the following example returns&nbsp;<code>null</code>:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let re = /ES.6/\nconsole.log('ES\\n6'.match(re));</code></pre>\n\n\n\n<p>If you want to use the dot (<code>.</code>) character class to match any character including the newline, you can use the&nbsp;<code>s</code>&nbsp;flag:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let re = /ES.6/s\nconsole.log('ES\\n6'.match(re));</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&#91;\"ES\n6\"]</code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Introduction to the character classes A character class allows you to match any symbol from a certain character set. A character class is also called a character set. Suppose that you have a phone number like this: And you want to turn it into a plain number: Character classes in&nbsp;regular expressions&nbsp;can help you to achieve [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [42],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3453"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/comments?post=3453"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3453/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/media?parent=3453"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/categories?post=3453"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/tags?post=3453"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 3455,
+    "date": "2020-11-30T06:38:51",
+    "date_gmt": "2020-11-30T06:38:51",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3455"
+    },
+    "modified": "2020-11-30T06:38:51",
+    "modified_gmt": "2020-11-30T06:38:51",
+    "slug": "anchors",
+    "status": "publish",
+    "type": "post",
+    "link": "https://computerprogramming.foobrdigital.com/anchors/",
+    "title": {
+      "rendered": "Anchors"
+    },
+    "content": {
+      "rendered": "\n<p>Anchors have special meaning in regular expressions. They do not match any character. Instead, they match a position before or after characters:</p>\n\n\n\n<ul><li>&nbsp;<code>^</code>&nbsp;– The caret anchor matches the beginning of the text.</li><li>&nbsp;<code>$</code>&nbsp;– The dollar anchor matches the end of the text.</li></ul>\n\n\n\n<p>See the following example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let str = 'JavaScript';\nconsole.log(/^J/.test(str));</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>true</code></pre>\n\n\n\n<p>The&nbsp;<code>/^J/</code>&nbsp;match any text that starts with the letter&nbsp;<code>J</code>. It returns&nbsp;<code>true</code>.</p>\n\n\n\n<p>The following example returns&nbsp;<code>false</code>&nbsp;because the string&nbsp;<code>JavaScript</code>&nbsp;doesn’t start with the letter&nbsp;<code>S</code>:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let str = 'JavaScript';\nconsole.log(/^S/.test(str));\n</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>false\n</code></pre>\n\n\n\n<p>Similarly, the following example returns&nbsp;<code>true</code>&nbsp;because the string&nbsp;<code>JavaScript</code>&nbsp;ends with the letter&nbsp;<code>t</code>:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let str = 'JavaScript';\nconsole.log(/t$/.test(str));</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>true\n</code></pre>\n\n\n\n<p>You will often need to use anchors&nbsp;<code>^</code>&nbsp;and&nbsp;<code>$</code>&nbsp;to check if a string fully matches a pattern.</p>\n\n\n\n<p>The following example checks if an input string matches a time format&nbsp;<code>hh:mm</code>&nbsp;like&nbsp;<code>12:05</code>:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let isValid = /^\\d\\d:\\d\\d$/.test('12:05');\nconsole.log(isValid);</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>true</code></pre>\n\n\n\n<p>The following example returns&nbsp;<code>false</code>:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let valid = /^\\d\\d:\\d\\d$/.test('12:105');\nconsole.log(valid);</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>false</code></pre>\n\n\n\n<h2>Multiline mode of anchors&nbsp;<code>^</code>&nbsp;and&nbsp;<code>$</code>: the m flag</h2>\n\n\n\n<p>The default of the anchor&nbsp;<code>^</code>&nbsp;or&nbsp;<code>$</code>&nbsp;is the single-line mode. In the single-line mode, the anchor&nbsp;<code>^</code>&nbsp;and&nbsp;<code>$</code>&nbsp;matches the beginning or the end of the input text.</p>\n\n\n\n<p>To enable the multiline mode, you use&nbsp;<code>m</code>&nbsp;flag. In the multiline mode, the&nbsp;<code>^</code>&nbsp;or&nbsp;<code>$</code>&nbsp;anchor matches the beginning or end of the input text as well as the beginning or end of lines.</p>\n\n\n\n<p>The following example returns only the first digit of the multiline string:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let str = `1st line\n2nd line\n3rd line`;\n\nlet re = /^\\d/g;\nlet matches = str.match(re);\n\nconsole.log(matches);</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&#91;\"1\"]</code></pre>\n\n\n\n<p>If you add the flag&nbsp;<code>m</code>, the anchor&nbsp;<code>^</code>&nbsp;will also match the digit at the beginning of the line, like this:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let str = `1st line\n2nd line\n3rd line`;\n\nlet re = /^\\d/gm;\nlet matches = str.match(re);\n\nconsole.log(matches);</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&#91;\"1\", \"2\", \"3\"]</code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Anchors have special meaning in regular expressions. They do not match any character. Instead, they match a position before or after characters: &nbsp;^&nbsp;– The caret anchor matches the beginning of the text. &nbsp;$&nbsp;– The dollar anchor matches the end of the text. See the following example: Output: The&nbsp;/^J/&nbsp;match any text that starts with the letter&nbsp;J. It [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [42],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3455"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/comments?post=3455"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3455/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/media?parent=3455"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/categories?post=3455"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/tags?post=3455"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 3457,
+    "date": "2020-11-30T06:39:34",
+    "date_gmt": "2020-11-30T06:39:34",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3457"
+    },
+    "modified": "2020-11-30T06:39:34",
+    "modified_gmt": "2020-11-30T06:39:34",
+    "slug": "sets-and-ranges",
+    "status": "publish",
+    "type": "post",
+    "link": "https://computerprogramming.foobrdigital.com/sets-and-ranges/",
+    "title": {
+      "rendered": "Sets and Ranges"
+    },
+    "content": {
+      "rendered": "\n<h2>Sets</h2>\n\n\n\n<p>The square brackets search for any character in a set. For example,&nbsp;<code>[aeiou]</code>&nbsp;matches any of the five characters:&nbsp;<code>'a'</code>,&nbsp;<code>'e'</code>,&nbsp;<code>'i'</code>,&nbsp;<code>'o'</code>&nbsp;and&nbsp;<code>'u'</code>. The&nbsp;<code>[...]</code>&nbsp;is called a set.</p>\n\n\n\n<p>For example, the regular expression&nbsp;<code>/[cbr]ats/g</code>&nbsp;matches&nbsp;<code>cats</code>,&nbsp;<code>bats</code>, and&nbsp;<code>rats</code>:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let str = 'How cats, rats, and bats became Halloween animals';\nlet re = /&#91;cbr]ats/g;\nlet results = str.match(re);\n\nconsole.log(results);</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&#91;\"cats\", \"rats\", \"bats\"]</code></pre>\n\n\n\n<h2>Ranges</h2>\n\n\n\n<p>The square brackets can contain character ranges. For example,&nbsp;<code>[a-z]</code>&nbsp;is a character range from&nbsp;<code>a</code>&nbsp;to&nbsp;<code>z</code>. And&nbsp;<code>[0-9]</code>&nbsp;is a digit from 0 to 9.</p>\n\n\n\n<p>The&nbsp;<code>[a-zA-Z0-9_]</code>&nbsp;is the same as&nbsp;<code>\\w</code>. The&nbsp;<code>[0-9]</code>&nbsp;is the same as&nbsp;<code>\\d</code>.</p>\n\n\n\n<h2>Excluding ranges</h2>\n\n\n\n<p>To negate a range, you use the excluding range like:&nbsp;<code>[^...]</code>.</p>\n\n\n\n<p>For example,&nbsp;<code>[^0-9]</code>&nbsp;matches any character except a digit. It is the same as&nbsp;<code>\\D</code>.</p>\n\n\n\n<p>Or, the&nbsp;<code>[^aeiou]</code>&nbsp;matches any character except&nbsp;<code>'a'</code>,&nbsp;<code>'e'</code>,&nbsp;<code>'i'</code>,&nbsp;<code>'o'</code>&nbsp;and&nbsp;<code>'u'</code>.</p>\n\n\n\n<h2>Escape special characters</h2>\n\n\n\n<p>Typically, you use a backslash to escape a special character e.g.,&nbsp;<code>\\.</code>. However, in square brackets, you don’t need to escape most of the special characters except they have a meaning for the square brackets.</p>\n\n\n\n<p>For example, if the caret (<code>^</code>) is at the beginning of a string, you need to escape it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&#91;\\^#$]</code></pre>\n\n\n\n<p>If the caret is not at the beginning of a string (<code>^</code>), you do not need to escape:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&#91;#^$]</code></pre>\n\n\n\n<h2>The flag&nbsp;<code>u</code></h2>\n\n\n\n<p>If a set has surrogate pair, you need to add the flag&nbsp;<code>u</code>&nbsp;to the regular expression to make it work correctly:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let result = 'It is &#x1f34e;'.match(/&#91;&#x1f34e;&#x1f345;&#x1f353;]/);\n\nconsole.log(result);</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&#91;\"�\"]</code></pre>\n\n\n\n<p>In this example, the [&#x1f34e;&#x1f345;&#x1f353;] has six characters, not three:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let str = '&#x1f34e;&#x1f345;&#x1f353;';\n\nfor(let i=0; i&lt;str.length; i++) {\n    console.log(str.charCodeAt(i));\n}</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>55356\n57166\n55356\n57157\n55356\n57171</code></pre>\n\n\n\n<p>If you add the flag&nbsp;<code>u</code>, then the behavior will be correct:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let result = 'It is &#x1f34e;'.match(/&#91;&#x1f34e;&#x1f345;&#x1f353;]/u);\n\nconsole.log(result);</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&#91;\"&#x1f34e;\"]</code></pre>\n\n\n\n<p>In this tutorial, you have learned about the sets and ranges in the regular expressions.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Sets The square brackets search for any character in a set. For example,&nbsp;[aeiou]&nbsp;matches any of the five characters:&nbsp;&#8216;a&#8217;,&nbsp;&#8216;e&#8217;,&nbsp;&#8216;i&#8217;,&nbsp;&#8216;o&#8217;&nbsp;and&nbsp;&#8216;u&#8217;. The&nbsp;[&#8230;]&nbsp;is called a set. For example, the regular expression&nbsp;/[cbr]ats/g&nbsp;matches&nbsp;cats,&nbsp;bats, and&nbsp;rats: Output: Ranges The square brackets can contain character ranges. For example,&nbsp;[a-z]&nbsp;is a character range from&nbsp;a&nbsp;to&nbsp;z. And&nbsp;[0-9]&nbsp;is a digit from 0 to 9. The&nbsp;[a-zA-Z0-9_]&nbsp;is the same as&nbsp;\\w. The&nbsp;[0-9]&nbsp;is [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [42],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3457"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/comments?post=3457"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3457/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/media?parent=3457"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/categories?post=3457"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/tags?post=3457"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 3459,
+    "date": "2020-11-30T06:40:17",
+    "date_gmt": "2020-11-30T06:40:17",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3459"
+    },
+    "modified": "2020-11-30T06:40:17",
+    "modified_gmt": "2020-11-30T06:40:17",
+    "slug": "word-boundaries",
+    "status": "publish",
+    "type": "post",
+    "link": "https://computerprogramming.foobrdigital.com/word-boundaries/",
+    "title": {
+      "rendered": "Word Boundaries"
+    },
+    "content": {
+      "rendered": "\n<p>The <code>(\\b</code>) is an anchor like the caret (<code>^</code>) and the dollar sign (<code>$</code>). It matches a position that is called a “word boundary”. The word boundary match is zero-length.</p>\n\n\n\n<p>The following three positions that qualify as word boundaries:</p>\n\n\n\n<ul><li>Before the first character in a string if the first character is a word character.</li><li>After the last character in a string if the last character is a word character.</li><li>Between two characters in a string if one is a word character and the other is not.</li></ul>\n\n\n\n<p>Simply put, the word boundary <code>\\b</code> allows you to carry the match the whole word using a regular expression in the following form:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>\\bword\\b</code></pre>\n\n\n\n<p>For example, in the string&nbsp;<code>Hello, JS!</code>&nbsp;the following positions qualify as a word boundary:</p>\n\n\n\n\n\n\n\n<p>The following example returns&nbsp;<code>'JS'</code>&nbsp;because&nbsp;<code>'Hello, JS!'</code>&nbsp;matches the regular expression&nbsp;<code>/\\bJS\\b/</code>:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>console.log('Hello, JS!'.match(/\\bJS\\b/)); // true</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&#91;\"JS\"]</code></pre>\n\n\n\n<p>However, the&nbsp;<code>'Hello, JScript'</code>&nbsp;doesn’t match&nbsp;<code>/\\bJS\\b/</code>:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>console.log('Hello, JSscript!'.match(/\\bJS\\b/)); // null</code></pre>\n\n\n\n<p>Note that without&nbsp;<code>\\b</code>, the&nbsp;<code>/JS/</code>&nbsp;matches both&nbsp;<code>'Hello, JS'</code>&nbsp;and&nbsp;<code>'Hello, JScript'</code>:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>console.log('Hello, JSscript!'.match(/JS/)); // &#91;\"JS\"]\nconsole.log('Hello, JS!'.match(/JS/)); // &#91;\"JS\"]</code></pre>\n\n\n\n<p>It’s possible to use the word boundary with digits.</p>\n\n\n\n<p>For example, the regular expression&nbsp;<code>\\b\\d\\d\\d\\d\\b</code>&nbsp;matches a 4-digit number surrounded by characters different from&nbsp;<code>\\w</code>:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>console.log('ES 2015'.match(/\\b\\d\\d\\d\\d\\b/));\n</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&#91;\"2015\"]\n</code></pre>\n\n\n\n<p>The following example uses the word boundary to find the time that has the format&nbsp;<code>hh:mm</code>&nbsp;e.g.,&nbsp;<code>09:15</code>:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let str = 'I start coding JS at 05:30 AM';\nlet re = /\\b\\d\\d:\\d\\d\\b/;\nlet result = str.match(re);\n\nconsole.log(result);</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&#91;\"05:30\"]</code></pre>\n\n\n\n<p>It’s important to note that the&nbsp;<code>\\b</code>&nbsp;doesn’t work for non-Latin alphabets.</p>\n\n\n\n<p>As you have seen so far, the patterns&nbsp;<code>\\d\\d\\d\\d</code>&nbsp;and&nbsp;<code>\\d\\d</code>&nbsp;has been used to match a four-digit or a two-digit number.</p>\n\n\n\n<p>It’ll be easier and more flexible if you use quantifiers that will be covered in the quantifiers tutorial. Basically, you can use <code>\\d{4}</code> instead of <code>\\d\\d\\d\\d</code>, which is much shorter.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>The (\\b) is an anchor like the caret (^) and the dollar sign ($). It matches a position that is called a “word boundary”. The word boundary match is zero-length. The following three positions that qualify as word boundaries: Before the first character in a string if the first character is a word character. After the last character [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [42],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3459"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/comments?post=3459"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3459/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/media?parent=3459"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/categories?post=3459"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/tags?post=3459"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 3461,
+    "date": "2020-11-30T06:42:24",
+    "date_gmt": "2020-11-30T06:42:24",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3461"
+    },
+    "modified": "2020-11-30T06:42:24",
+    "modified_gmt": "2020-11-30T06:42:24",
+    "slug": "quantifiers",
+    "status": "publish",
+    "type": "post",
+    "link": "https://computerprogramming.foobrdigital.com/quantifiers/",
+    "title": {
+      "rendered": "Quantifiers"
+    },
+    "content": {
+      "rendered": "\n<h2>Quantity</h2>\n\n\n\n<h3>Exact count&nbsp;<code>{n}</code></h3>\n\n\n\n<p>A number in curly braces&nbsp;<code>{n}</code>is the simplest quantifier. When you append it to a character or character class, it specifies how many characters or character classes you want to match.</p>\n\n\n\n<p>For example, the regular expression&nbsp;<code>/\\d{4}/</code>&nbsp;matches a four-digit number. It is the same as&nbsp;<code>/\\d\\d\\d\\d/</code>:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let str = 'ECMAScript 2020';\nlet re = /\\d{4}/;\n\nlet result = str.match(re);\n\nconsole.log(result);\n</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&#91;\"2020\"]</code></pre>\n\n\n\n<h3>The range&nbsp;<code>{n,m}</code></h3>\n\n\n\n<p>The range matches a character or character class from&nbsp;<code>n</code>&nbsp;to&nbsp;<code>m</code>&nbsp;times.</p>\n\n\n\n<p>For example, to find numbers that have two, three or four digits, you use the regular expression&nbsp;<code>/\\d{2,4}/g</code>:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let str = 'The official name of ES11 is ES2020';\nlet re = /\\d{2,4}/g;\n\nlet result = str.match(re);\nconsole.log(result);\n</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&#91;\"11\", \"2020\"]\n</code></pre>\n\n\n\n<p>Because the upper limit is optional, the&nbsp;<code>{n,}</code>&nbsp;searches for a sequence of&nbsp;<code>n</code>&nbsp;or more times.</p>\n\n\n\n<p>For example, the regular expression&nbsp;<code>/\\d{2,}/</code>&nbsp;will match any number that has two or more digits.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let str = 'The official name of ES6 is ES2015';\nlet re = /\\d{2,}/g;\n\nlet result = str.match(re);\nconsole.log(result);\n</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&#91;\"2015\"]\n</code></pre>\n\n\n\n<p>The following example uses the regular expression&nbsp;<code>/\\d{1,}/g</code>&nbsp;to match any numbers that have one or more digits in a phone number:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let numbers = '+1-(408)-555-0105'.match(/\\d{1,}/g);\nconsole.log(numbers);\n</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&#91;\"1\", \"408\", \"555\", \"0105\"]\n</code></pre>\n\n\n\n<h2>Shorthands</h2>\n\n\n\n<h3>+</h3>\n\n\n\n<p>The quantifier&nbsp;<code>{1,}</code>&nbsp;means one or more which has the shorthand as&nbsp;<code>+</code>. For example, the&nbsp;<code>\\d+</code>&nbsp;searches for numbers:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let phone = \"+1-(408)-555-0105\";\nlet result = phone.match(/\\d+/g);\n\nconsole.log(result);\n</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&#91;\"1\", \"408\", \"555\", \"0105\"]\n</code></pre>\n\n\n\n<h3>?</h3>\n\n\n\n<p>The quantifier&nbsp;<code>?</code>&nbsp;means zero or one. It is the same as&nbsp;<code>{0,1}</code>. For example,&nbsp;<code>/colou?r/</code>&nbsp;will match both&nbsp;<code>color</code>&nbsp;and&nbsp;<code>colour</code>:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let str = 'Is this color or colour?';\nlet result = str.match(/colou?r/g);\n\nconsole.log(result);\n</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&#91;\"color\", \"colour\"]\n</code></pre>\n\n\n\n<h3>*</h3>\n\n\n\n<p>The quantifier&nbsp;<code>*</code>&nbsp;means zero or more. It is the same as&nbsp;<code>{0,}</code>. The following example shows how to use the quantifier&nbsp;<code>*</code>&nbsp;to match the string&nbsp;<code>Java</code>&nbsp;followed by any word character:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let str = 'JavaScript is not Java';\nlet re = /Java\\w*/g\n\nlet results = str.match(re);\n\nconsole.log(results);\n</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&#91;\"JavaScript\", \"Java\"]\n</code></pre>\n\n\n\n<p>We often use the quantifiers to form complex regular expressions. The following shows some regular expression examples that include quantifiers:</p>\n\n\n\n<ul><li>Whole numbers:<code>/^\\d+$/</code></li><li>Decimal numbers:<code>/^\\d*.\\d+$/</code></li><li>Whole numbers and decimal numbers:<code>/^\\d*(.\\d+)?$/</code></li><li>Negative, positive whole numbers &amp; decimal numbers:<code>/^-?\\d*(.\\d+)?$/</code></li></ul>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Quantity Exact count&nbsp;{n} A number in curly braces&nbsp;{n}is the simplest quantifier. When you append it to a character or character class, it specifies how many characters or character classes you want to match. For example, the regular expression&nbsp;/\\d{4}/&nbsp;matches a four-digit number. It is the same as&nbsp;/\\d\\d\\d\\d/: Output: The range&nbsp;{n,m} The range matches a character or [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [42],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3461"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/comments?post=3461"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3461/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/media?parent=3461"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/categories?post=3461"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/tags?post=3461"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  }
+]

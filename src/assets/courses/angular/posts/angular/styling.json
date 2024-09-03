@@ -1,0 +1,518 @@
+[
+  {
+    "id": 3774,
+    "date": "2020-12-08T10:56:46",
+    "date_gmt": "2020-12-08T10:56:46",
+    "guid": { "rendered": "http://angular.foobrdigital.com/?p=3774" },
+    "modified": "2020-12-09T11:12:15",
+    "modified_gmt": "2020-12-09T11:12:15",
+    "slug": "angular-global-css-styles",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/angular-global-css-styles/",
+    "title": { "rendered": "Angular Global CSS styles" },
+    "content": {
+      "rendered": "\n<h2>Example Application</h2>\n\n\n\n<p>First, create an example application using the following command</p>\n\n\n\n<pre class=\"wp-block-code\"><code> ng new GlobalStyle </code></pre>\n\n\n\n<p>Let us add new component</p>\n\n\n\n<pre class=\"wp-block-code\"><code> ng g c test </code></pre>\n\n\n\n<p>The above command will create the&nbsp;<code>TestComponent</code>&nbsp;under the folder&nbsp;<code>test</code>&nbsp;and adds it to the&nbsp;<code>AppModule</code>. You can learn more such Angular CLI Commands from the&nbsp;Angular CLI Tutorial.</p>\n\n\n\n<p>Open the&nbsp;<code>test.component.html</code>&nbsp;and add the following HTML</p>\n\n\n\n<pre class=\"wp-block-code\"><code> &lt;p>  this para is from test component&lt;/p> </code></pre>\n\n\n\n<p>Now open the&nbsp;<code>app.component.html</code>&nbsp;add copy the following HTML</p>\n\n\n\n<pre class=\"wp-block-code\"><code>h1>\r\n  Welcome to {{ title }}!\r\n&lt;/h1>\r\n \r\n&lt;p>This para is from app component&lt;/p>\r\n \r\n&lt;app-test>&lt;/app-test></code></pre>\n\n\n\n<p><strong>app.component.ts</strong></p>\n\n\n\n<pre class=\"wp-block-code\"><code>import { Component } from '@angular/core';\r\n \r\n@Component({\r\n  selector: 'app-root',\r\n  templateUrl: './app.component.html',\r\n  styleUrls: &#91;'./app.component.css']\r\n})\r\nexport class AppComponent {\r\n  title = 'Angular Global Style';\r\n}</code></pre>\n\n\n\n<p>Run the app and you will see the following</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://www.tektutorialshub.com/wp-content/uploads/2019/01/Angular-Global-CSS-Style-Example.png\" alt=\"\" class=\"wp-image-11091\"/></figure>\n\n\n\n<p>Now let us add the&nbsp;<strong>global CSS Styles</strong>&nbsp;to the above example application</p>\n\n\n\n<h2>Adding global CSS styles</h2>\n\n\n\n<h3>Using Angular-CLI</h3>\n\n\n\n<p>If you have created the Angular App using&nbsp;Angular CLI, then you can add the custom CSS files in&nbsp;<code>angular.json</code>&nbsp;under the&nbsp;<code>styles</code>&nbsp;array</p>\n\n\n\n<p><code>angular.json</code>&nbsp;was known as&nbsp;<code>angular-cli.json</code>&nbsp;in angular 5 and below</p>\n\n\n\n<p>You will find it under the node&nbsp;<em>projects-&gt; GlobalStyle -&gt; architect -&gt; build -&gt; options -&gt; styles</em></p>\n\n\n\n<p>By default, the angular adds the&nbsp;<code>styles.css</code>&nbsp;under the&nbsp;<code>src</code>&nbsp;folder.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> ],\r\n            \"styles\": &#91;\r\n              \"src/styles.css\"\r\n            ],</code></pre>\n\n\n\n<p>The reference to the CSS file is relative to where&nbsp;<code>angular.json</code>&nbsp;file is stored. which is project root folder</p>\n\n\n\n<p>Open the&nbsp;<code>styles.css</code>&nbsp;and add the following CSS rule</p>\n\n\n\n<pre class=\"wp-block-code\"><code> p { color : blue} </code></pre>\n\n\n\n<p><br>BEST ANGULAR BOOKS<br><strong>The Top 8&nbsp;Best Angular Books, which helps you to get started with Angular&nbsp;</strong>&nbsp;</p>\n\n\n\n<p>When you add CSS files using the&nbsp;<code>angular.json</code>&nbsp;configuration file, the CSS rules are bundled into the&nbsp;<code>styles.bundle.js</code>&nbsp;and injected into the&nbsp;<code>head</code>&nbsp;section</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://www.tektutorialshub.com/wp-content/uploads/2019/01/Global-CSS-Style-is-applied-on-Angular-Components.png\" alt=\"\" class=\"wp-image-11094\"/></figure>\n\n\n\n<h4>Adding multiple style sheet</h4>\n\n\n\n<p>Create a&nbsp;<code>morestyles.css</code>&nbsp;under the folder&nbsp;<code>src/assets/css</code>&nbsp;and add the following CSS style</p>\n\n\n\n<pre class=\"wp-block-code\"><code> p { color : red} </code></pre>\n\n\n\n<p>Next, add the CSS file to the&nbsp;<code>angular.json</code>&nbsp;as shown below.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>\r\n\"styles\": &#91;\r\n  \"src/styles.css\",\r\n  \"src/assets/css/morestyles.css\"\r\n],\r\n </code></pre>\n\n\n\n<p>Order of the styles sheets are important as the last one overrides the previously added CSS rules.</p>\n\n\n\n<h4>Adding external style sheet</h4>\n\n\n\n<p>There are three ways you add the external style sheets.</p>\n\n\n\n<h5>Copy them locally</h5>\n\n\n\n<p>For example to include bootstrap 4 you can copy the latest version from the link&nbsp;<code>https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css</code>&nbsp;and copy it under the folder&nbsp;<code>assets/css/bootstrap.min.css</code></p>\n\n\n\n<pre class=\"wp-block-code\"><code> \r\n\"styles\": &#91;\r\n  \"src/styles.css\",\r\n  \"src/assets/css/morestyles.css\",\r\n  \"src/assets/css/bootstrap.min.css\"\r\n],\r\n </code></pre>\n\n\n\n<p>The other option is to install the&nbsp;<em>npm package</em>&nbsp;provided by the third party libraries. The CSS files are copied under the&nbsp;<em>node_modules</em>&nbsp;folder. For Example to install bootstrap run the following&nbsp;<em>npm</em>&nbsp;command</p>\n\n\n\n<pre class=\"wp-block-code\"><code> npm install bootstrap </code></pre>\n\n\n\n<p>And then add it to the&nbsp;<code>angular.json</code>&nbsp;as shown below</p>\n\n\n\n<pre class=\"wp-block-code\"><code>\"styles\": &#91;\r\n  \"src/styles.css\",\r\n  \"src/assets/css/morestyles.css\",\r\n  \"node_modules/bootstrap/dist/css/bootstrap.min.css\"\r\n],</code></pre>\n\n\n\n<h5>Import it in one of the style sheets</h5>\n\n\n\n<p>You can import them directly in one of the style sheets. For Example open the&nbsp;<code>styles.css</code>&nbsp;and add the following import statement&nbsp;<strong>at the top.</strong></p>\n\n\n\n<pre class=\"wp-block-code\"><code> @import \"https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css\"; </code></pre>\n\n\n\n<h3>Adding Styles directly</h3>\n\n\n\n<p>If you are not using&nbsp;angular-cli, then you an go old school and link it directly in the&nbsp;<code>index.html</code>&nbsp;file as shown below. You can use this even if you are using the&nbsp;angular-cli.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;link rel=\"stylesheet\" href=\"https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css\"></code></pre>\n\n\n\n<p>The following includes the local CSS files.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> &lt;link rel=\"stylesheet\" href=\"assets/css/morestyles.css\"> </code></pre>\n\n\n\n<p>The path must be with reference to the&nbsp;<code>index.html</code></p>\n\n\n\n<p>These styles sheets are not included in the bundle, but loaded separately unlike when you are using angular-cli.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Example Application First, create an example application using the following command Let us add new component The above command will create the&nbsp;TestComponent&nbsp;under the folder&nbsp;test&nbsp;and adds it to the&nbsp;AppModule. You can learn more such Angular CLI Commands from the&nbsp;Angular CLI Tutorial. Open the&nbsp;test.component.html&nbsp;and add the following HTML Now open the&nbsp;app.component.html&nbsp;add copy the following HTML app.component.ts Run [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [138],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3774" }
+      ],
+      "collection": [
+        { "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=3774"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 2,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3774/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3890,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3774/revisions/3890"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=3774"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=3774"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=3774"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3776,
+    "date": "2020-12-08T11:00:26",
+    "date_gmt": "2020-12-08T11:00:26",
+    "guid": { "rendered": "http://angular.foobrdigital.com/?p=3776" },
+    "modified": "2020-12-09T11:15:09",
+    "modified_gmt": "2020-12-09T11:15:09",
+    "slug": "view-encapsulation-in-angular",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/view-encapsulation-in-angular/",
+    "title": { "rendered": "View Encapsulation in Angular" },
+    "content": {
+      "rendered": "\n<h2>What is Encapsulation ?</h2>\n\n\n\n<p>One of the fundamental concept in object oriented programming (OOP) is&nbsp;<em>Encapsulation.</em>&nbsp;It defines the idea that all the data and methods that operate on that data are kept private in a single unit (or class). It is like hiding the implementation detail from the outside world. The consumer of encapsulated object know that it works, but do not know how it works.</p>\n\n\n\n<h2 id=\"mce_2\">What is View Encapsulation in Angular ?</h2>\n\n\n\n<p>The View Encapsulation in Angular is a strategy which determines how angular hides (encapsulates) the styles defined in the component from bleeding over to the the other parts of the application.</p>\n\n\n\n<p>The following three strategies provided by the Angular to determine how styles are applied.</p>\n\n\n\n<ul><li>ViewEncapsulation.None</li><li>ViewEncapsulation.Emulated</li><li>ViewEncapsulation.ShadowDOM</li></ul>\n\n\n\n<p>The&nbsp;<code>viewEncapsulation Native</code>&nbsp;is deprecated since Angular version 6.0.8, and is replaced by&nbsp;<code>viewEncapsulation ShadowDom</code></p>\n\n\n\n<h3>Adding View Encapsulation to components</h3>\n\n\n\n<p>The Encapsulation methods are added using the&nbsp;<code>encapsulation</code>&nbsp;metadata of the&nbsp;<code>@Component</code>&nbsp;decorator as shown below</p>\n\n\n\n<pre class=\"wp-block-code\"><code> \r\n@Component({\r\n  template: `&lt;p>Using Emulator&lt;/p>`,\r\n  styles: &#91;'p { color:red}'],\r\n  encapsulation: ViewEncapsulation.Emulated     //This is default\r\n//encapsulation: ViewEncapsulation.None\r\n//encapsulation: ViewEncapsulation.ShadowDOM\r\n})\n </code></pre>\n\n\n\n<p><code>ViewEncapsulation.Emulated</code>&nbsp;is the default encapsulation method.</p>\n\n\n\n<h2>Example Application</h2>\n\n\n\n<p>Create an angular application using the</p>\n\n\n\n<p><code>app.component.ts</code></p>\n\n\n\n<pre class=\"wp-block-code\"><code>  \r\nimport { Component } from '@angular/core';\r\n \r\n@Component({\r\n  selector: 'app-root',\r\n  templateUrl: './app.component.html',\r\n  styleUrls: &#91;'./app.component.css']\r\n})\r\nexport class AppComponent {\r\n  title = 'View Encapsulation in Angular';\r\n}\r\n </code></pre>\n\n\n\n<p>Open the&nbsp;<code>app.component.html</code></p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;h1>{{title}}&lt;/h1>&lt;p>I am a paragraph in green&lt;/p></code></pre>\n\n\n\n<p>open the&nbsp;<code>src/styles.css</code>&nbsp;and the following CSS</p>\n\n\n\n<pre class=\"wp-block-code\"><code> p  {color: green;} </code></pre>\n\n\n\n<p>Run the app and you should able to see the paragraph in green.</p>\n\n\n\n<p>Open the chrome developer tools and check the elements section. The CSS rules are inserted in the&nbsp;<code>head</code>&nbsp;section of the page</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://www.tektutorialshub.com/wp-content/uploads/2019/01/Angular-View-Encapsulation-example.png\" alt=\"Angular View Encapsulation example\" class=\"wp-image-11140\"/></figure>\n\n\n\n<h2>ViewEncapsulation.None</h2>\n\n\n\n<p>The&nbsp;<code>ViewEncapsulation.None</code>&nbsp;is used, when we do not want any encapsulation. When you use this, the styles defined in one component affects the elements of the other components.</p>\n\n\n\n<p>Now, let us look at&nbsp;<code>ViewEncapsulation.None</code>&nbsp;does.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> \r\nimport { Component,ViewEncapsulation } from '@angular/core';\r\n \r\n@Component({\r\n  selector: 'app-none',\r\n  template: `&lt;p>I am not encapsulated and in blue \r\n             (ViewEncapsulation.None) &lt;/p>`,\r\n  styles: &#91;'p { color:blue}'],\r\n  encapsulation: ViewEncapsulation.None\r\n})\r\nexport class ViewNoneComponent {\r\n}\r\n </code></pre>\n\n\n\n<p>We have added&nbsp;<code>encapsulation: ViewEncapsulation.None</code>. We have also defined the inline style&nbsp;<code>p { color:blue}</code></p>\n\n\n\n<p>Do not forget to import &amp; declare the component in&nbsp;<code>AppModule</code>. You also need to add the&nbsp;<code>&lt;app-none&gt;&lt;/app-none&gt;</code>&nbsp;selector in&nbsp;<code>app.component.html</code></p>\n\n\n\n<pre class=\"wp-block-code\"><code> &lt;h1>\n{{title}}&lt;/h1>&lt;p>I am a paragraph in green&lt;/p> &lt;app-none>\n&lt;/app-none> </code></pre>\n\n\n\n<p>Run the code and as expected both the paragraphs&nbsp;<em>turn blue</em>.</p>\n\n\n\n<p>That is because, the global scope of CSS styles. The style defined in the&nbsp;<code>ViewNoneComponent</code>&nbsp;is injected to the global style and overrides any previously defined style. The style&nbsp;<code>p {color: blue;}</code>&nbsp;overrides the style&nbsp;<code>p {color: green;}</code>&nbsp;defined in the&nbsp;<code>styles.css</code>.</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://www.tektutorialshub.com/wp-content/uploads/2019/01/ViewEncapsulation.None-in-Angular.png\" alt=\"ViewEncapsulation.None in Angular\" class=\"wp-image-11132\"/></figure>\n\n\n\n<p>The important points are</p>\n\n\n\n<ul><li>The styles defined in the component affect the other components</li><li>The global styles affect the element styles in the component</li></ul>\n\n\n\n<h2>ViewEncapsulation.Emulated</h2>\n\n\n\n<p>In a HTML page, we can easily add a&nbsp;<code>id</code>&nbsp;or a&nbsp;<code>class</code>&nbsp;to the element to increase the specificity of the CSS rules so that the CSS rules do not interfere with each other..</p>\n\n\n\n<p>The&nbsp;<code>ViewEncapsulation.Emulated</code>&nbsp;strategy in angular adds the unique HTML attributes to the component CSS styles and to the markup so as to achieve the encapsulation. This is not true encapsulation. The Angular Emulates the encapsulation, Hence the name Emulated.</p>\n\n\n\n<p>If you do not specify encapsulations in components, the angular uses the&nbsp;<code>ViewEncapsulation.Emulated</code>&nbsp;strategy</p>\n\n\n\n<p>Create a new component in Angular app and name it as&nbsp;<code>ViewEmulatedComponent</code>. as shown below</p>\n\n\n\n<pre class=\"wp-block-code\"><code> \r\nimport { Component,ViewEncapsulation } from '@angular/core';\r\n \r\n@Component({\r\n  selector: 'app-emulated',\r\n  template: `&lt;p>Using Emulator&lt;/p>`,\r\n  styles: &#91;'p { color:red}'],\r\n  encapsulation: ViewEncapsulation.Emulated\r\n})\r\nexport class ViewEmulatedComponent {\r\n}</code></pre>\n\n\n\n<p>We have not added any&nbsp;<code>id</code>&nbsp;in the above component. Only change this component has with one&nbsp;<code>ViewNoneComponent</code>&nbsp;was&nbsp;<em>encapsulation mode</em>, which is set to&nbsp;<code>ViewEncapsulation.Emulated</code></p>\n\n\n\n<p>Update&nbsp;<code>app.component.html</code></p>\n\n\n\n<pre class=\"wp-block-code\"><code>  \r\n&lt;h1>{{title}}&lt;/h1>\r\n \r\n&lt;p>I am a paragraph in green&lt;/p>\r\n \r\n&lt;app-none>&lt;/app-none>\r\n \r\n&lt;app-emulated>&lt;/app-emulated></code></pre>\n\n\n\n<p>Now, you can see that the style does not spill out to other components, when you use emulated mode. i.e because angular adds&nbsp;<code>_ngcontent-c#</code>&nbsp;attributes to the emulated components and makes necessary changes in the generated styles</p>\n\n\n\n<p>You can see this by opening the chrome developer console</p>\n\n\n\n<p><code>_ngcontent-c2</code>&nbsp;attribute is added in the style and to the&nbsp;<code>p</code>&nbsp;element, making the style local to the component</p>\n\n\n\n<pre class=\"wp-block-code\"><code> &lt;style>p&#91;_ngcontent-c2] { color:red}&lt;/style></code></pre>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;app-emulated _ngcontent-c0 _nghost-c2>\r\n    &lt;p _ngcontent-c2>Using Emulator&lt;/p>\r\n&lt;/app-emulated></code></pre>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://www.tektutorialshub.com/wp-content/uploads/2019/01/View-encapsulation.emulated-in-Angular.png\" alt=\"\" class=\"wp-image-11134\"/></figure>\n\n\n\n<p>The important points are</p>\n\n\n\n<ul><li>This strategy isolates the component styles. They do not bleed out to other components.</li><li>The global styles may affect the element styles in the component</li><li>The Angular adds the attributes to the styles and mark up</li></ul>\n\n\n\n<h2>ViewEncapsulation.ShadowDOM</h2>\n\n\n\n<p>The Shadow DOM is a scoped sub-tree of the DOM. It is attached to a element (called shadow host) of the DOM tree. The shadow dom do not appear as child node of the shadow host, when you traverse the main DOM.</p>\n\n\n\n<p>The browser keeps the shadow DOM separate from the main DOM. The rendering of the Shadow dom and the main DOM happens separately. The browser flattens them together before displaying it to the user. The feature, state &amp; style of the Shadow DOM stays private and not affected by the main DOM. Hence it achieves the true encapsulation.</p>\n\n\n\n<p>The Shadow DOM is part of the Web Components standard. Not all browsers support shadow dom. Use google chrome for the following examples</p>\n\n\n\n<p><em>Further Reading</em>&nbsp;on Shadow DOM</p>\n\n\n\n<ul><li><strong>Shadow&nbsp;DOM</strong></li><li>Using Shadow DOM</li></ul>\n\n\n\n<p>To create shadow dom in angular , all we need to do is to add the&nbsp;<code>ViewEncapsulation.ShadowDom</code>&nbsp;as the encapsulation strategy.</p>\n\n\n\n<p>Create a new component&nbsp;<code>ViewShadowdomComponent</code>&nbsp;and add the following code</p>\n\n\n\n<pre class=\"wp-block-code\"><code> \r\niimport { Component,ViewEncapsulation } from '@angular/core';\r\n \r\n@Component({\r\n  selector: 'app-shadowdom',\r\n  template: `&lt;p>I am encapsulated inside a Shadow DOM ViewEncapsulation.ShadowDom&lt;/p>`,\r\n  styles: &#91;'p { color:brown}'],\r\n  encapsulation: ViewEncapsulation.ShadowDom\r\n})\r\nexport class ViewShadowdomComponent {\r\n \r\n}</code></pre>\n\n\n\n<p>The component renders as follows</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://www.tektutorialshub.com/wp-content/uploads/2019/01/Viee-Encapsulation.ShadowDOM.png\" alt=\"\" class=\"wp-image-11197\"/></figure>\n\n\n\n<p>The angular renders the component inside the&nbsp;<code>#shadow root</code>&nbsp;element. The styles from the component along with the styles from the parent and other components are also injected inside the shadow root</p>\n\n\n\n<h3>Shadow dom terminology</h3>\n\n\n\n<p>The&nbsp;<code>app-shadowdom</code>&nbsp;is the CSS selector in the&nbsp;<code>ViewShadowdomComponent</code>. We used it in our&nbsp;<code>app-component.html</code>. The Angular renders component as shadow dom and attaches it to the&nbsp;<code>app-shadowdom</code>&nbsp;selector. Hence, we call the element as&nbsp;<strong>Shadow host</strong></p>\n\n\n\n<p>The Shadow DOM starts from&nbsp;<code>#shadow-root</code>&nbsp;element. Hence, we call this element as&nbsp;<strong>shadow root</strong>.&nbsp;The&nbsp;Angular&nbsp;injects&nbsp;the&nbsp;component&nbsp;into&nbsp;the&nbsp;shadow&nbsp;root.</p>\n\n\n\n<p>The&nbsp;<strong>Shadow boundary</strong>&nbsp;starts from the&nbsp;<code>#shadow-root</code>. The browser encapsulates everything inside this element including the node&nbsp;<code>#shadow-root</code></p>\n\n\n\n<p>The shadow dom archives the true encapsulation. It truly isolates the component from the styles from the other parts of the app.</p>\n\n\n\n<p>The styles from the parent component &amp; sibling components are still injected into the shadow dom. but that is an angular feature. The angular wants the component to share the parent &amp; sibling styles. Without this the component may look out of place with the other component</p>\n\n\n\n<p>The important points are</p>\n\n\n\n<ul><li>The shadow dom achieves the true encapsulation</li><li>The parent and sibling styles still affect the component. but that is angular’s implementation of shadow dom</li></ul>\n\n\n\n<p></p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>What is Encapsulation ? One of the fundamental concept in object oriented programming (OOP) is&nbsp;Encapsulation.&nbsp;It defines the idea that all the data and methods that operate on that data are kept private in a single unit (or class). It is like hiding the implementation detail from the outside world. The consumer of encapsulated object know [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [138],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3776" }
+      ],
+      "collection": [
+        { "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=3776"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 2,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3776/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3891,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3776/revisions/3891"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=3776"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=3776"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=3776"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3778,
+    "date": "2020-12-08T11:04:58",
+    "date_gmt": "2020-12-08T11:04:58",
+    "guid": { "rendered": "http://angular.foobrdigital.com/?p=3778" },
+    "modified": "2020-12-09T11:17:51",
+    "modified_gmt": "2020-12-09T11:17:51",
+    "slug": "style-binding-in-angular",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/style-binding-in-angular/",
+    "title": { "rendered": "Style binding in Angular" },
+    "content": {
+      "rendered": "\n<h2>Syntax</h2>\n\n\n\n<p>The syntax of the style binding is similar to the&nbsp;property binding.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&#91;style.style-property] = \"style-value\" </code></pre>\n\n\n\n<p>The Style Binding uses the&nbsp;<code>[]</code>&nbsp;brackets. Place the CSS Style property (binding target) inside the square bracket. The CSS Style property must begin with ‘Style’ followed by a dot (.) and then style name.</p>\n\n\n\n<p>For Example, to set the color of&nbsp;<code>p</code>&nbsp;element.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> &lt;p &#91;style.color]=\"'red'\">Give me red&lt;/p> </code></pre>\n\n\n\n<h2>Style binding Example</h2>\n\n\n\n<p>Setting the background color of a paragraph</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;p &#91;style.background-color]=\"'grey'\">some paragraph with grey background&lt;/p> </code></pre>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;button &#91;style.border]=\"'5px solid yellow'\">Save&lt;/button> \n</code></pre>\n\n\n\n<h3>Conditionally setting the styles</h3>\n\n\n\n<p>Define a variable status in the component</p>\n\n\n\n<pre class=\"wp-block-code\"><code> status:string='error'; </code></pre>\n\n\n\n<p>And use that variable in the template to set the&nbsp;<code>color</code>&nbsp;of button either to&nbsp;<strong>red</strong>&nbsp;and&nbsp;<strong>blue</strong>&nbsp;depending on the value of the&nbsp;<code>status</code>&nbsp;variable.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> &lt;button &#91;style.color]=\"status=='error' ? 'red': 'blue'\">Button 1&lt;/button>  </code></pre>\n\n\n\n<p>Another way is to create the&nbsp;<code>getColor()</code>&nbsp;method and use it in the template as shown below.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> getColor() {  return 'yellow';} </code></pre>\n\n\n\n<pre class=\"wp-block-code\"><code> &lt;button &#91;style.color]=\"getColor()\">Button 2&lt;/button> </code></pre>\n\n\n\n<h3>Setting the units</h3>\n\n\n\n<p>The styles like&nbsp;<code>font-size</code>,&nbsp;<code>width</code>&nbsp;etc have unit extension. The following example conditionally sets the&nbsp;<code>font-size</code>&nbsp;in&nbsp;<code>“px”</code>&nbsp;unit</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;button &#91;style.font-size.px]=\"'20'\" >Big Button&lt;/button> </code></pre>\n\n\n\n<p>The&nbsp;<em>style property</em>&nbsp;name can be written in either&nbsp;dash-case (font-size), as shown in above example, or&nbsp;camelCase (fontSize) as shown below.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;button &#91;style.fontSize.px]=\"'20'\" >Big Button&lt;/button> </code></pre>\n\n\n\n<h3>Setting Multiple styles</h3>\n\n\n\n<p>To change the multiple styles, we need to add each one separately as shown below.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;p &#91;style.color]=\"getColor()\" \r\n   &#91;style.font-size.px]=\"'20'\"      \r\n   &#91;style.background-color]=\"status=='error' ? 'red': 'blue'\">\r\n   paragraph with multiple styles\r\n&lt;/p></code></pre>\n\n\n\n<p>The style binding is the easy way to set a single style of a HTML element. Although you can use it to set several inline styles as shown in the above example, the better way is to use the&nbsp;ngStyle&nbsp;directive.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Syntax The syntax of the style binding is similar to the&nbsp;property binding. The Style Binding uses the&nbsp;[]&nbsp;brackets. Place the CSS Style property (binding target) inside the square bracket. The CSS Style property must begin with ‘Style’ followed by a dot (.) and then style name. For Example, to set the color of&nbsp;p&nbsp;element. Style binding Example [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [138],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3778" }
+      ],
+      "collection": [
+        { "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=3778"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 2,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3778/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3893,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3778/revisions/3893"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=3778"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=3778"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=3778"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3780,
+    "date": "2020-12-08T11:07:37",
+    "date_gmt": "2020-12-08T11:07:37",
+    "guid": { "rendered": "http://angular.foobrdigital.com/?p=3780" },
+    "modified": "2020-12-08T11:07:37",
+    "modified_gmt": "2020-12-08T11:07:37",
+    "slug": "class-binding-in-angular",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/class-binding-in-angular/",
+    "title": { "rendered": "Class Binding in Angular" },
+    "content": {
+      "rendered": "\n<h2>Class binding with ClassName</h2>\n\n\n\n<p>The&nbsp;<code>ClassName</code>&nbsp;is the property name of HTML Element. Hence we can make use of Property binding to assign the class name to any HTML element.</p>\n\n\n\n<p>The following example assigns CSS Class red to the div element.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> &lt;div &#91;className]=\"'red'\">Test&lt;/div> </code></pre>\n\n\n\n<p>You can also add more than one class by separating them using the</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;div &#91;className]=\"'red size20'\">Test&lt;/div> </code></pre>\n\n\n\n<h3>HTML Class attribute</h3>\n\n\n\n<p>You can also add class using the normal HTML way.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> &lt;div class=\"red\">red&lt;/div> </code></pre>\n\n\n\n<p>but, mixing both <code>class</code> and <code>[className]</code> results in removal of <code>class</code> attribute. You cannot use both.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> &lt;div class=\"red\" &#91;className]=\"'size20'\">red&lt;/div> </code></pre>\n\n\n\n<h3>Conditionally apply Classes</h3>\n\n\n\n<p>We can also bind the class name dynamically.</p>\n\n\n\n<p>To do that first create a variable in your component class.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> cssStringVar: string= 'red size20'; </code></pre>\n\n\n\n<p>And then use it in the Template as shown below.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> &lt;div &#91;className]=\"cssStringVar\">Test&lt;/div> </code></pre>\n\n\n\n<p>You can create a function, which returns the class based on some condition.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> getClass() {  return 'red';} </code></pre>\n\n\n\n<p>and then use it in the template as shown below.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> &lt;div &#91;className]=\"getClass()\">getClass&lt;/div> </code></pre>\n\n\n\n<p>The following example uses the Conditional (Ternary) Operator.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> &lt;div &#91;className]=\"hasError() ? 'red' : 'size20'\"> conditonal operator &lt;/div> </code></pre>\n\n\n\n<h2>Class binding with Class</h2>\n\n\n\n<p>There are another shorthand way to bind CSS Class to HTML element.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> &lt;div &#91;class.&lt;className>]=\"condition\">&lt;/div> </code></pre>\n\n\n\n<p>Where</p>\n\n\n\n<p><code><strong>className</strong></code>&nbsp;is name of the class, which you want to bind to.</p>\n\n\n\n<p><code><strong>condition</strong></code>&nbsp;must return true or false. A return value of true adds the class and a false removes the class.</p>\n\n\n\n<p>In the following example, the class <code>red</code> and <code>size20</code> is added to the <code>div</code> element.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> &lt;div &#91;class.red]=\"true\" &#91;class.size20]=\"true\">Test&lt;/div> </code></pre>\n\n\n\n<h3>Conditionally binding class</h3>\n\n\n\n<p>To dynamically or conditionally bind a class, First create a variable in the component class as shown below.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> hasError:false; </code></pre>\n\n\n\n<pre class=\"wp-block-code\"><code> &lt;div &#91;class.red]=\"hasError\" &#91;class.size20]=\"hasError\">Test&lt;/div> </code></pre>\n\n\n\n<p>You can also create a function <code>hasError()</code>, which should return true or false as shown below.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> hasError() {   return false} </code></pre>\n\n\n\n<p>And use it in the template as shown below.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> &lt;div &#91;class.red]=\"hasError()\" &#91;class.size20]=\"hasError()\">Test&lt;/div> </code></pre>\n\n\n\n<h2>Class binding with NgClass</h2>\n\n\n\n<p>Another way to add class is to use the <code>NgClass</code> directive. It is offers a more flexibility, like easily adding multiple classes etc. You can read about ngClass in Angular.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Class binding with ClassName The&nbsp;ClassName&nbsp;is the property name of HTML Element. Hence we can make use of Property binding to assign the class name to any HTML element. The following example assigns CSS Class red to the div element. You can also add more than one class by separating them using the HTML Class attribute [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [138],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3780" }
+      ],
+      "collection": [
+        { "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=3780"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3780/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3781,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3780/revisions/3781"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=3780"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=3780"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=3780"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3782,
+    "date": "2020-12-08T11:10:40",
+    "date_gmt": "2020-12-08T11:10:40",
+    "guid": { "rendered": "http://angular.foobrdigital.com/?p=3782" },
+    "modified": "2020-12-09T11:19:50",
+    "modified_gmt": "2020-12-09T11:19:50",
+    "slug": "angular-component-styles",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/angular-component-styles/",
+    "title": { "rendered": "Angular Component Styles" },
+    "content": {
+      "rendered": "\n<h2>Example Application</h2>\n\n\n\n<p>Create a new angular application</p>\n\n\n\n<pre class=\"wp-block-code\"><code> ng new ComponentStyle </code></pre>\n\n\n\n<p>Create three component as shown below</p>\n\n\n\n<pre class=\"wp-block-code\"><code> ng g c homeng g c test1ng g c test2 </code></pre>\n\n\n\n<p>Copy the following code to AppRoutingModule.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> \r\nimport { NgModule } from '@angular/core';\r\nimport { Routes, RouterModule } from '@angular/router';\r\nimport { Test1Component } from './test1/test1.component';\r\nimport { Test2Component } from './test2/test2.component';\r\nimport { HomeComponent } from './home/home.component';\r\n \r\nconst routes: Routes = &#91;\r\n    {path:'',redirectTo:'home',pathMatch:'full'},\r\n    {path:'home',component:HomeComponent},\r\n    {path:'test1',component:Test1Component},\r\n    {path:'test2',component:Test2Component},\r\n];\r\n \r\n@NgModule({\r\n  imports: &#91;RouterModule.forRoot(routes)],\r\n  exports: &#91;RouterModule]\r\n})\r\nexport class AppRoutingModule { }\r\n </code></pre>\n\n\n\n<p>Copy the following code to app.component.html</p>\n\n\n\n<pre class=\"wp-block-code\"><code> \r\n&lt;!--The content below is only a placeholder and can be replaced.-->\r\n  &lt;h1>\r\n    Welcome to {{ title }}!\r\n  &lt;/h1>\r\n \r\n  &lt;p>This para is from app component&lt;/p>\r\n \r\n&lt;ul>\r\n  &lt;li>&lt;a &#91;routerLink]=\"&#91;'/home']\" routerLinkActive=\"router-link-active\">Home&lt;/a> &lt;/li>\r\n  &lt;li>&lt;a &#91;routerLink]=\"&#91;'/test1']\" routerLinkActive=\"router-link-active\">Test1&lt;/a> &lt;/li>\r\n  &lt;li> &lt;a &#91;routerLink]=\"&#91;'/test2']\" routerLinkActive=\"router-link-active\" >Test2&lt;/a>&lt;/li>\r\n&lt;/ul>\r\n \r\n&lt;router-outlet>&lt;/router-outlet></code></pre>\n\n\n\n<h2>How to add styles to Angular Components</h2>\n\n\n\n<p>The Angular allow us the specify the component specific styles. There are four ways you can apply style.</p>\n\n\n\n<ol><li>Component Inline style</li><li>Component External Style</li><li>Template using link directive</li><li>Template using style directive</li></ol>\n\n\n\n<p>How these styles affect the component and other components depend on the ViewEncapsulation strategy used by the component. By default, Angular uses the&nbsp;<code>ViewEncapsulation.Emulated</code>&nbsp;, which ensures that the component styles do not bleed out to other components. Click to find out more about&nbsp;View Encapsulation in Angular.</p>\n\n\n\n<h3><strong>Component&nbsp;Inline&nbsp;Style</strong></h3>\n\n\n\n<p>Use the&nbsp;<code>styles:</code>&nbsp;metadata of the&nbsp;<code>@Component</code>&nbsp;or&nbsp;<code>@Directive</code>&nbsp;to specify the CSS rules as shown below.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> @Component({  selector: 'app-test1',  templateUrl: './test1.component.html',  styles: &#91;    `p { color:blue}`  ],})  </code></pre>\n\n\n\n<p>Use&nbsp;<strong><em>backtick&nbsp;</em></strong>character to enter the multi-line style.</p>\n\n\n\n<p>You can add multiple styles by separating each other using a comma as shown below</p>\n\n\n\n<pre class=\"wp-block-code\"><code> styles: &#91;    `p { color:blue}`,    `h1 {color:blue}`    ], </code></pre>\n\n\n\n<h3>Component External Style</h3>\n\n\n\n<p>Specify the external style sheets using the&nbsp;<code>styleUrls:</code>&nbsp;meta data of the&nbsp;<code>@Component</code>&nbsp;decorator or&nbsp;<code>@directive</code>&nbsp;directive.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>@Component({\r\n  selector: 'app-test1',\r\n  templateUrl: './test1.component.html',\r\n  styles: &#91;\r\n    `p { color:blue}`\r\n  ],\r\n})</code></pre>\n\n\n\n<p>You can add multiple styles by separating each other using a comma as shown below</p>\n\n\n\n<pre class=\"wp-block-code\"><code> styleUrls: &#91;'./test2.component.css','.another.stylesheet.css'], </code></pre>\n\n\n\n<p>You can specify both Component inline &amp; Component External style together as shown below</p>\n\n\n\n<pre class=\"wp-block-code\"><code>@Component({\r\n  selector: 'app-test2',\r\n  templateUrl: './test2.component.html',\r\n  styles:&#91;`p {color:yellow}`],\r\n  styleUrls: &#91;'./test2.component.css'],\r\n})\r\n </code></pre>\n\n\n\n<p>The Angular inserts component inline style first and then inserts the component external style. Hence, component external styles takes precedence over the component inline styles.</p>\n\n\n\n<h3>Template Inline Style using style tag</h3>\n\n\n\n<p>We can also specify style within the component template file by using the&nbsp;<code>&lt;style&gt;</code>&nbsp;or&nbsp;<code>&lt;link&gt;</code>&nbsp;tags as shown below</p>\n\n\n\n<p><strong>test2.component.html</strong></p>\n\n\n\n<pre class=\"wp-block-code\"><code> &lt;style>  p {    color: purple;  }  &lt;/style> &lt;p>  test2 works!&lt;/p>  </code></pre>\n\n\n\n<h3>Template Inline Style using link tag</h3>\n\n\n\n<p>You can add the external style sheets using the the&nbsp;<code>link</code>&nbsp;tag as shown below. The path must be relative to the index.html</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;link rel=\"stylesheet\" href=\"assets/css/morestyles.css\">\r\n&lt;p>\r\n  test2 works!\r\n&lt;/p></code></pre>\n\n\n\n<p>You can also load the CSS from an external source as shown below</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;link rel=\"stylesheet\" href=\"https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css\">\r\n \r\n&lt;p>\r\n  test2 works!\r\n&lt;/p>\r\n </code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Example Application Create a new angular application Create three component as shown below Copy the following code to AppRoutingModule. Copy the following code to app.component.html How to add styles to Angular Components The Angular allow us the specify the component specific styles. There are four ways you can apply style. Component Inline style Component External [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [138],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3782" }
+      ],
+      "collection": [
+        { "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=3782"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 2,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3782/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3894,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3782/revisions/3894"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=3782"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=3782"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=3782"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3784,
+    "date": "2020-12-08T11:22:47",
+    "date_gmt": "2020-12-08T11:22:47",
+    "guid": { "rendered": "http://angular.foobrdigital.com/?p=3784" },
+    "modified": "2020-12-08T11:22:47",
+    "modified_gmt": "2020-12-08T11:22:47",
+    "slug": "how-to-install-use-angular-fontawesome",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/how-to-install-use-angular-fontawesome/",
+    "title": { "rendered": "How to Install &#038; Use Angular FontAwesome" },
+    "content": {
+      "rendered": "\n<h2>Installing FontAwesome</h2>\n\n\n\n<p>The main package is <code>@fortawesome/angular-fontawesome</code>. You can install the latest version using the following command.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>npm install @fortawesome/angular-fontawesome </code></pre>\n\n\n\n<p>Or You can install a particular version as shown below</p>\n\n\n\n<pre class=\"wp-block-code\"><code> npm install @fortawesome/angular-fontawesome@&lt;version> </code></pre>\n\n\n\n<p>But before installing you need to know which version to install. Not all versions are compatible with the various Angular versions. The following table should give you an idea</p>\n\n\n\n<figure id=\"tablepress-80\" class=\"wp-block-table\"><table><thead><tr><th>Angular Fontawesome Version</th><th>Angular Version</th></tr></thead><tbody><tr><td>0.1.x</td><td>5.x</td></tr><tr><td>0.2.x</td><td><br>6.x</td></tr><tr><td>0.3.x</td><td>6.x &amp;&amp; 7.x</td></tr><tr><td>0.4.x, 0.5.x</td><td>8.x</td></tr><tr><td>0.6.x</td><td>9.x</td></tr></tbody></table></figure>\n\n\n\n<h2>Installing Icons</h2>\n\n\n\n<p>Next, we need to install icons. There are five icon sets available in FontAwesome. They are <code>Solid</code>, <code>Regular</code>, <code>Light</code>, <code>Duotone</code> &amp; <code>Brands</code>. Out of which <code>Solid</code>, <code>Regular</code> &amp; <code>Brands</code> has free icons. <code>Light</code> and <code>Duotone</code> only available as pro packages</p>\n\n\n\n<pre class=\"wp-block-code\"><code> //Icon core packagenpm install @fortawesome/fontawesome-svg-core --save </code></pre>\n\n\n\n<pre class=\"wp-block-code\"><code>\r \r\n//icons\r\n \r\nnpm install @fortawesome/free-solid-svg-icons --save\r\nnpm install @fortawesome/free-regular-svg-icons --save\r\nnpm install @fortawesome/free-brands-svg-icons --save</code></pre>\n\n\n\n<h2>Using FontAswesome</h2>\n\n\n\n<p>Now there are two ways by which you can use the&nbsp;<code>FontAwesome</code></p>\n\n\n\n<ol><li>Directly in Component</li><li>Using Icon library</li></ol>\n\n\n\n<h3>Directly in Component</h3>\n\n\n\n<p>This method is useful when you use the&nbsp;<code>FontAwesome</code>&nbsp;in a few select components.</p>\n\n\n\n<p><strong><code>app.module.ts</code></strong></p>\n\n\n\n<p>Open the <code>app.module.ts</code> and import the <code>FontAwesomeModule</code> Module from the <code>@fortawesome/angular-fontawesome</code> library. Add it to <code>imports</code> metadata.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> \r\nimport { BrowserModule } from '@angular/platform-browser';\r\nimport { NgModule } from '@angular/core';\r\n \r\nimport { AppRoutingModule } from './app-routing.module';\r\nimport { AppComponent } from './app.component';\r\n \r\nimport { FontAwesomeModule } from '@fortawesome/angular-fontawesome'      //Import here\r\n \r\n@NgModule({\r\n  declarations: &#91;\r\n    AppComponent\r\n  ],\r\n  imports: &#91;\r\n    BrowserModule,\r\n    AppRoutingModule,\r\n    FontAwesomeModule                        //add to imports array\r\n  ],\r\n  providers: &#91;],\r\n  bootstrap: &#91;AppComponent]\r\n})\r\nexport class AppModule { \r\n}\r\n </code></pre>\n\n\n\n<p>In the component file import the icon. For example, we have imported the <code>faCoffee</code> icon from the <code>solid</code> icons package.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> \r\nimport { Component } from '@angular/core';\r\nimport { faCoffee } from '@fortawesome/free-solid-svg-icons';                //import icon\r\n \r\n@Component({\r\n selector: 'app-root',\r\n templateUrl: './app.component.html',\r\n styleUrls: &#91;'./app.component.css']\r\n})\r\nexport class AppComponent {\r\n   faCoffee =faCoffee                              //assign it to a component variable\r\n}</code></pre>\n\n\n\n<p><strong><code>app.component.html</code></strong></p>\n\n\n\n<p>You can use it as shown below in the template. We use the <code>fa-icon</code> directive. Pass the icon to the <code>icon</code> property using the property binding.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;h1>{{title}}&lt;/h1> &lt;fa-icon &#91;icon]=\"faCoffee\">&lt;/fa-icon>  \n                  //use it in the component </code></pre>\n\n\n\n<h4>Example</h4>\n\n\n\n<p>The following example shows how to use multiple icons</p>\n\n\n\n<p><strong><code>app.component.ts</code></strong></p>\n\n\n\n<pre class=\"wp-block-code\"><code>import { Component } from '@angular/core';\r\n \r\nimport { faCircle,faSquare } from '@fortawesome/free-solid-svg-icons';\r\nimport { faCircle as farCircle,faSquare as farSquare } from '@fortawesome/free-regular-svg-icons';\r\nimport { faStackOverflow, faGithub, faMedium } from '@fortawesome/free-brands-svg-icons';\r\n \r\n \r\n@Component({\r\n  selector: 'app-root',\r\n  templateUrl: './app.component.html',\r\n  styleUrls: &#91;'./app.component.css']\r\n})\r\nexport class AppComponent {\r\n  faCircle=faCircle;\r\n  farCircle=farCircle;\r\n \r\n  faSquare=faSquare;\r\n  farSquare=farSquare\r\n \r\n  faStackOverflow=faStackOverflow\r\n  faGithub=faGithub\r\n  faMedium=faMedium\r\n \r\n  title = 'Angular FontAwesome Example';\r\n}\r\n </code></pre>\n\n\n\n<p><code><strong>app.component.html</strong></code></p>\n\n\n\n<pre class=\"wp-block-code\"><code> \r\n&lt;h1>{{title}}&lt;/h1>\r\n \r\n&lt;h2>Icons&lt;/h2>\r\n&lt;table>\r\n  &lt;thead>\r\n    &lt;tr>\r\n      &lt;td>&lt;/td>\r\n      &lt;td>Solid Icons&lt;/td>\r\n      &lt;td>Regular Icons&lt;/td>\r\n    &lt;/tr>\r\n  &lt;/thead>\r\n  &lt;tbody>\r\n    &lt;tr>\r\n      &lt;td>Circle&lt;/td>\r\n      &lt;td>&lt;fa-icon &#91;icon]=\"faCircle\">&lt;/fa-icon>&lt;/td>\r\n      &lt;td>&lt;fa-icon &#91;icon]=\"farCircle\">&lt;/fa-icon>&lt;/td>\r\n    &lt;/tr>\r\n    &lt;tr>\r\n      &lt;td>Square&lt;/td>\r\n      &lt;td>&lt;fa-icon &#91;icon]=\"faSquare\">&lt;/fa-icon>&lt;/td>\r\n      &lt;td>&lt;fa-icon &#91;icon]=\"farSquare\">&lt;/fa-icon>&lt;/td>\r\n    &lt;/tr>\r\n  &lt;/tbody>\r\n&lt;/table>\r\n \r\n&lt;h2>Brands&lt;/h2>\r\n \r\n&lt;p>StackOverflow : &lt;fa-icon &#91;icon]=\"faStackOverflow\">&lt;/fa-icon>\r\n&lt;/p>\r\n&lt;p>GitHub &lt;fa-icon &#91;icon]=\"faGithub\">&lt;/fa-icon>\r\n&lt;/p>\r\n&lt;p>Medium &lt;fa-icon &#91;icon]=\"faMedium\">&lt;/fa-icon>\r\n&lt;/p></code></pre>\n\n\n\n<h2>Using Icon library</h2>\n\n\n\n<p>This method allows you to define the icons once in&nbsp;<code>app.module</code>&nbsp;and use it across the application. We add the icons using the&nbsp;<code>addIcons()</code>&nbsp;or&nbsp;<code>addIconPacks()</code>&nbsp;methods of the&nbsp;<code>FaIconLibrary</code></p>\n\n\n\n<p><strong><code>app.module.ts</code></strong></p>\n\n\n\n<ol><li>Import&nbsp;<code>FontAwesomeModule</code>&nbsp;&amp;&nbsp;<code>FaIconLibrary</code>&nbsp;library.</li><li>Import the icons, which you want to use from the icons packages.</li><li>Inject the&nbsp;<code>FaIconLibrary</code>&nbsp;in the&nbsp;<code>app.module</code>&nbsp;constructor.</li><li>Finally, add the icons to the&nbsp;<code>FaIconLibrary</code>&nbsp;library using the&nbsp;<code>addIcons</code>&nbsp;method.</li></ol>\n\n\n\n<p>The following example shows, how we can add icons to the icons library.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>import { BrowserModule } from '@angular/platform-browser';\r\nimport { NgModule } from '@angular/core';\r\n \r\nimport { AppRoutingModule } from './app-routing.module';\r\nimport { AppComponent } from './app.component';\r\n \r\nimport { FontAwesomeModule, FaIconLibrary  } from '@fortawesome/angular-fontawesome'\r\nimport { faCircle,faSquare } from '@fortawesome/free-solid-svg-icons';\r\nimport { faCircle as farCircle,faSquare as farSquare } from '@fortawesome/free-regular-svg-icons';\r\nimport { faStackOverflow, faGithub, faMedium } from '@fortawesome/free-brands-svg-icons';\r\n \r\n \r\n@NgModule({\r\n  declarations: &#91;\r\n    AppComponent\r\n  ],\r\n  imports: &#91;\r\n    BrowserModule,\r\n    AppRoutingModule,\r\n    FontAwesomeModule\r\n  ],\r\n  providers: &#91;],\r\n  bootstrap: &#91;AppComponent]\r\n})\r\nexport class AppModule { \r\n \r\n  constructor(library: FaIconLibrary) {\r\n \r\n    // Add an icon to the library for convenient access in other components\r\n    library.addIcons(faCircle,faSquare,farCircle,farSquare\r\n          ,faStackOverflow,faGithub,faMedium);\r\n  }\r\n \r\n}</code></pre>\n\n\n\n<p><code><strong>app.component.ts</strong></code></p>\n\n\n\n<p>No need to import anything the component class.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>\r\nimport { Component } from '@angular/core';\r\n \r\n@Component({\r\n  selector: 'app-root',\r\n  templateUrl: './app.component.html',\r\n  styleUrls: &#91;'./app.component.css']\r\n})\r\nexport class AppComponent {\r\n  title = 'Angular FontAwesome Example';\r\n}\r\n </code></pre>\n\n\n\n<p><strong><code>app.component.html</code></strong></p>\n\n\n\n<p>In the template use the <code>fa-icon</code> directive. Pass the icon along with the package prefix to the <code>icon</code> property using the property binding. The syntax is <code>[icon]=\"[prefix, iconName]\"</code>. The prefixes are <code>fas</code>, <code>far</code> &amp; <code>fab</code> for <code>Solid</code>, <code>Regular</code> and <code>Brands</code> icons respectively.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;h1>{{title}}&lt;/h1>\r\n \r\n&lt;h2>Icons&lt;/h2>\r\n&lt;table>\r\n  &lt;thead>\r\n    &lt;tr>\r\n      &lt;td>&lt;/td>\r\n      &lt;td>Solid Icons&lt;/td>\r\n      &lt;td>Regular Icons&lt;/td>\r\n    &lt;/tr>\r\n  &lt;/thead>\r\n  &lt;tbody>\r\n    &lt;tr>\r\n      &lt;td>Circle&lt;/td>\r\n      &lt;td>&lt;fa-icon &#91;icon]=\"&#91;'fas','circle']\">&lt;/fa-icon>&lt;/td>\r\n      &lt;td>&lt;fa-icon &#91;icon]=\"&#91;'far','circle']\">&lt;/fa-icon>&lt;/td>\r\n    &lt;/tr>\r\n    &lt;tr>\r\n      &lt;td>Square&lt;/td>\r\n      &lt;td>&lt;fa-icon &#91;icon]=\"&#91;'fas','square']\">&lt;/fa-icon>&lt;/td>\r\n      &lt;td>&lt;fa-icon &#91;icon]=\"&#91;'far','square']\">&lt;/fa-icon>&lt;/td>\r\n    &lt;/tr>\r\n  &lt;/tbody>\r\n&lt;/table>\r\n \r\n&lt;h2>Brands&lt;/h2>\r\n \r\n&lt;p>StackOverflow : &lt;fa-icon &#91;icon]=\"&#91;'fab','stack-overflow']\">&lt;/fa-icon>\r\n&lt;/p>\r\n&lt;p>GitHub &lt;fa-icon &#91;icon]=\"&#91;'fab','github']\">&lt;/fa-icon>\r\n&lt;/p>\r\n&lt;p>Medium &lt;fa-icon &#91;icon]=\"&#91;'fab','medium']\">&lt;/fa-icon>\r\n&lt;/p></code></pre>\n\n\n\n<h2>Search for Icons</h2>\n\n\n\n<p>You can search for icons from this link.</p>\n\n\n\n<h2>Features of FontAwesome</h2>\n\n\n\n<h3>size</h3>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;h2>Size&lt;/h2>\r\n \r\n&lt;fa-icon &#91;icon]=\"&#91;'far', 'square']\" size=\"xs\">&lt;/fa-icon>\r\n&lt;fa-icon &#91;icon]=\"&#91;'far', 'square']\" size=\"sm\">&lt;/fa-icon>\r\n&lt;fa-icon &#91;icon]=\"&#91;'far', 'square']\">&lt;/fa-icon>\r\n&lt;fa-icon &#91;icon]=\"&#91;'far', 'square']\" size=\"1x\">&lt;/fa-icon>\r\n&lt;fa-icon &#91;icon]=\"&#91;'far', 'square']\" size=\"lg\">&lt;/fa-icon>\r\n&lt;fa-icon &#91;icon]=\"&#91;'far', 'square']\" size=\"2x\">&lt;/fa-icon>\r\n&lt;fa-icon &#91;icon]=\"&#91;'far', 'square']\" size=\"3x\">&lt;/fa-icon>\r\n&lt;fa-icon &#91;icon]=\"&#91;'far', 'square']\" size=\"4x\">&lt;/fa-icon>\r\n&lt;fa-icon &#91;icon]=\"&#91;'far', 'square']\" size=\"5x\">&lt;/fa-icon>\r\n&lt;fa-icon &#91;icon]=\"&#91;'far', 'square']\" size=\"6x\">&lt;/fa-icon>\r\n&lt;fa-icon &#91;icon]=\"&#91;'far', 'square']\" size=\"7x\">&lt;/fa-icon></code></pre>\n\n\n\n<h3>Rotate</h3>\n\n\n\n<pre class=\"wp-block-code\"><code>\r\n&lt;fa-icon &#91;icon]=\"&#91;'fab','github']\"  size=\"4x\" >&lt;/fa-icon>\r\n&lt;fa-icon &#91;icon]=\"&#91;'fab','github']\"  size=\"4x\" rotate=\"90\">&lt;/fa-icon>\r\n&lt;fa-icon &#91;icon]=\"&#91;'fab','github']\"  size=\"4x\" rotate=\"180\">&lt;/fa-icon>\r\n&lt;fa-icon &#91;icon]=\"&#91;'fab','github']\"  size=\"4x\" rotate=\"270\">&lt;/fa-icon></code></pre>\n\n\n\n<h3>Flip</h3>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;fa-icon &#91;icon]=\"&#91;'fab','github']\"  size=\"4x\">&lt;/fa-icon>\r\n&lt;fa-icon &#91;icon]=\"&#91;'fab','github']\"  size=\"4x\" flip=\"horizontal\">&lt;/fa-icon>\r\n&lt;fa-icon &#91;icon]=\"&#91;'fab','github']\"  size=\"4x\" flip=\"vertical\">&lt;/fa-icon>\r\n&lt;fa-icon &#91;icon]=\"&#91;'fab','github']\"  size=\"4x\" flip=\"both\">&lt;/fa-icon></code></pre>\n\n\n\n<h3>Animations</h3>\n\n\n\n<pre class=\"wp-block-code\"><code> &lt;fa-icon &#91;icon]=\"&#91;'fas','spinner']\"  size=\"4x\" spin=\"true\">&lt;/fa-icon>\r\n&lt;fa-icon &#91;icon]=\"&#91;'fas','spinner']\"  size=\"4x\" pulse=\"true\">&lt;/fa-icon>\r\n </code></pre>\n\n\n\n<h3>Border</h3>\n\n\n\n<pre class=\"wp-block-code\"><code>  \r\n&lt;fa-icon &#91;icon]=\"&#91;'fas','coffee']\" size=\"4x\" border=\"true\">&lt;/fa-icon>\r\n&lt;fa-icon &#91;icon]=\"&#91;'far','circle']\" size=\"4x\" border=\"true\">&lt;/fa-icon>\r\n&lt;fa-icon &#91;icon]=\"&#91;'fab','stack-overflow']\" size=\"4x\" border=\"true\">&lt;/fa-icon></code></pre>\n\n\n\n<h3>Pull</h3>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;fa-icon &#91;icon]=\"&#91;'fas','coffee']\" size=\"4x\" border=\"true\">&lt;/fa-icon>\r\n&lt;fa-icon &#91;icon]=\"&#91;'fas','coffee']\" size=\"4x\" border=\"true\" pull=\"left\">&lt;/fa-icon>\r\n&lt;fa-icon &#91;icon]=\"&#91;'fas','coffee']\" size=\"4x\" border=\"true\" pull=\"right\">&lt;/fa-icon></code></pre>\n\n\n\n<h3>Styles</h3>\n\n\n\n<pre class=\"wp-block-code\"><code> &lt;fa-icon &#91;icon]=\"&#91;'fas','coffee']\" size=\"4x\" border=\"true\" &#91;styles]=\"{'stroke': 'red', 'color': 'red'}\">&lt;/fa-icon></code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Installing FontAwesome The main package is @fortawesome/angular-fontawesome. You can install the latest version using the following command. Or You can install a particular version as shown below But before installing you need to know which version to install. Not all versions are compatible with the various Angular versions. The following table should give you an idea [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [138],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3784" }
+      ],
+      "collection": [
+        { "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=3784"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 2,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3784/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3786,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3784/revisions/3786"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=3784"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=3784"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=3784"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  }
+]

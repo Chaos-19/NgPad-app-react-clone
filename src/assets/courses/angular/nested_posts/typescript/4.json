@@ -1,0 +1,566 @@
+[
+  {
+    "id": 4127,
+    "date": "2020-11-28T11:13:35",
+    "date_gmt": "2020-11-28T11:13:35",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3297"
+    },
+    "modified": "2020-11-28T11:13:35",
+    "modified_gmt": "2020-11-28T11:13:35",
+    "slug": "functions-2",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/functions-2/",
+    "title": {
+      "rendered": "Functions"
+    },
+    "content": {
+      "rendered": "\n<h2>Introduction to TypeScript functions</h2>\n\n\n\n<p>TypeScript functions are the building blocks of readable, maintainable, and reusable code.</p>\n\n\n\n<p>Like JavaScript, you use the&nbsp;<code>function</code>&nbsp;keyword to declare a function in TypeScript:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function name(parameter: type, parameter:type,...): returnType {\n   // do something\n}</code></pre>\n\n\n\n<p>Unlike JavaScript, TypeScript allows you to use\u00a0type annotations\u00a0in parameters and return value of a function.</p>\n\n\n\n<p>Let\u2019s see the following&nbsp;<code>add()</code>&nbsp;function example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function add(a: number, b: number): number {\n    return a + b;\n}</code></pre>\n\n\n\n<p>In this example, the\u00a0<code>add()</code>\u00a0function accepts two parameters with the\u00a0<code>number</code>\u00a0type.</p>\n\n\n\n<p>When you call the&nbsp;<code>add()</code>&nbsp;function, the TypeScript compiler will check each argument passed to the function to ensure that they are numbers.</p>\n\n\n\n<p>In the&nbsp;<code>add()</code>&nbsp;function example, you can only pass numbers into it, not the values of other types.</p>\n\n\n\n<p>The following code will result in an error because it passes two strings instead of two numbers into the&nbsp;<code>add()</code>&nbsp;function:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let sum = add('10', '20');</code></pre>\n\n\n\n<p>Error:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>error TS2345: Argument of type '\"10\"' is not assignable to parameter of type 'number'</code></pre>\n\n\n\n<p>The types of the function parameters are also available within the function body for type checking.</p>\n\n\n\n<p>The&nbsp;<code>: number</code>&nbsp;after the parentheses indicate the return type. The&nbsp;<code>add()</code>&nbsp;function returns a value of the&nbsp;<code>number</code>&nbsp;type in this case.</p>\n\n\n\n<p>When a function has a return type, TypeScript compiler checks every&nbsp;<code>return</code>&nbsp;statement against the return type to ensure that the return value is compatible with it.</p>\n\n\n\n<p>If a function does not return a value, you can use the&nbsp;<code>void</code>&nbsp;type as the return type. The&nbsp;<code>void</code>&nbsp;keyword indicates that the function doesn\u2019t return any value. For example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function echo(message: string): void {\n    console.log(message.toUpperCase());\n}</code></pre>\n\n\n\n<p>The&nbsp;<code>void</code>&nbsp;prevents the code inside the function from returning a value and stops the calling code from assigning the result of the function to a variable.</p>\n\n\n\n<p>When you do not annotate the return type, TypeScript will try to infer an appropriate type. For example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function add(a: number, b: number) {\n    return a + b;\n}</code></pre>\n\n\n\n<p>In this example, the TypeScript compiler tries to infer the return type of the&nbsp;<code>add()</code>&nbsp;function to the&nbsp;<code>number</code>&nbsp;type, which is expected.</p>\n\n\n\n<p>However, if a function has different branches that return different types, the TypeScript compiler may infer the\u00a0<code>union</code>\u00a0type or\u00a0<code>any</code>\u00a0type.</p>\n\n\n\n<p>Therefore, it is important to add type annotations to a function as much as possible.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Introduction to TypeScript functions TypeScript functions are the building blocks of readable, maintainable, and reusable code. Like JavaScript, you use the&nbsp;function&nbsp;keyword to declare a function in TypeScript: Unlike JavaScript, TypeScript allows you to use\u00a0type annotations\u00a0in parameters and return value of a function. Let\u2019s see the following&nbsp;add()&nbsp;function example: In this example, the\u00a0add()\u00a0function accepts two parameters with [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [210],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4127"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=4127"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4127/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=4127"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=4127"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=4127"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 4128,
+    "date": "2020-11-28T11:14:33",
+    "date_gmt": "2020-11-28T11:14:33",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3299"
+    },
+    "modified": "2020-11-28T11:14:33",
+    "modified_gmt": "2020-11-28T11:14:33",
+    "slug": "function-types",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/function-types/",
+    "title": {
+      "rendered": "Function Types"
+    },
+    "content": {
+      "rendered": "\n<h2>Introduction to TypeScript function types</h2>\n\n\n\n<p>A function type has two parts: parameters and return type. When declaring a function type, you need to specify both parts with the following syntax:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>(parameter: type, parameter:type,...) => type</code></pre>\n\n\n\n<p>The following example shows how to declare a variable which has a function type that accepts two numbers and returns a number:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let add: (x: number, y: number) => number;</code></pre>\n\n\n\n<p>In this example:</p>\n\n\n\n<ul><li>The function type accepts two arguments:\u00a0<code>x</code>\u00a0and\u00a0<code>y</code>\u00a0with the type\u00a0<code>number</code>.</li><li>The type of the return value is\u00a0<code>number</code>\u00a0that follows the fat arrow (<code>=></code>) appeared between parameters and return type.</li></ul>\n\n\n\n<p>Note that the parameter names (<code>x</code>&nbsp;and&nbsp;<code>y</code>) are just for readability purposes. As long as the types of parameters match, it is a valid type for the function.</p>\n\n\n\n<p>Once annotating a variable with a function type, you can assign the function with the same type to the variable.</p>\n\n\n\n<p>TypeScript compiler will match the number of parameters with their types and the return type.</p>\n\n\n\n<p>The following example shows how to assign a function to the&nbsp;<code>add</code>&nbsp;variable:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>add = function (x: number, y: number) {\n    return x + y;\n};</code></pre>\n\n\n\n<p>Also, you can declare a variable and assign a function to a variable like this:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let add: (a: number, b: number) => number =\n    function (x: number, y: number) {\n        return x + y;\n    };</code></pre>\n\n\n\n<p>If you assign other functions whose type doesn\u2019t match to the&nbsp;<code>add</code>&nbsp;variable, TypeScript will issue an error:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>add = function (x: string, y: string): number {\n    return x.concat(y).length;\n};</code></pre>\n\n\n\n<p>In this example, we reassigned a function, whose type doesn\u2019t match, to the&nbsp;<code>add</code>&nbsp;function variable.</p>\n\n\n\n<h2>Inferring function types</h2>\n\n\n\n<p>TypeScript compiler can figure out the function type when you have the type on one side of the equation. This form of\u00a0type inference\u00a0is called contextual typing. For example:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://www.typescripttutorial.net/wp-content/uploads/2020/06/TypeScript-Function-Type-Example.png\" alt=\"\" class=\"wp-image-222\"/></figure>\n\n\n\n<p>In this example, the&nbsp;<code>add</code>&nbsp;function will take the type&nbsp;<code>(x: number, y:number) =&gt; number</code>.</p>\n\n\n\n<p>By using the type inference, you can significantly reduce the amount of code with annotations.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Introduction to TypeScript function types A function type has two parts: parameters and return type. When declaring a function type, you need to specify both parts with the following syntax: The following example shows how to declare a variable which has a function type that accepts two numbers and returns a number: In this example: [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [210],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4128"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=4128"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4128/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=4128"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=4128"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=4128"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 4129,
+    "date": "2020-11-28T11:15:24",
+    "date_gmt": "2020-11-28T11:15:24",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3301"
+    },
+    "modified": "2020-11-28T11:15:24",
+    "modified_gmt": "2020-11-28T11:15:24",
+    "slug": "optional-parameters",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/optional-parameters/",
+    "title": {
+      "rendered": "Optional Parameters"
+    },
+    "content": {
+      "rendered": "\n<p>In JavaScript, you can call a function without passing any arguments even though the function specifies parameters. Therefore, JapanScript supports the optional parameters by default.</p>\n\n\n\n<p>In TypeScript, the compiler checks every function call and issues an error in the following cases:</p>\n\n\n\n<ul><li>The number of arguments is different from the number of parameters specified in the function.</li><li>Or the types of arguments are not compatible with the types of function parameters.</li></ul>\n\n\n\n<p>Because the compiler thoroughly checks the passing arguments, you need to annotate optional parameters to instruct the compiler to not issue an error when you omit the arguments.</p>\n\n\n\n<p>To make a function parameter optional, you use the&nbsp;<code>?</code>&nbsp;after the parameter name. For example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function multiply(a: number, b: number, c?: number): number {\n\n    if (typeof c !== 'undefined') {\n        return a * b * c;\n    }\n    return a * b;\n}</code></pre>\n\n\n\n<p>How it works:</p>\n\n\n\n<ul><li>First, use the&nbsp;<code>?</code>&nbsp;after the&nbsp;<code>c</code>&nbsp;parameter.</li><li>Second, check if the argument is passed to the function by using the expression&nbsp;<code>typeof c !== 'undefined'</code>.</li></ul>\n\n\n\n<p>Note that if you use the expression&nbsp;<code>if(c)</code>&nbsp;to check if an argument is not initialized, you would find that empty string or zero would be treated as&nbsp;<code>undefined</code>.</p>\n\n\n\n<p>The optional parameters must appear after the required parameters in the parameter list.</p>\n\n\n\n<p>For example, if you make the&nbsp;<code>b</code>&nbsp;parameter optional, and&nbsp;<code>c</code>&nbsp;parameter required the TypeScript compiler will issue an error:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function multiply(a: number, b?: number, c: number): number {\n\n    if (typeof c !== 'undefined') {\n        return a * b * c;\n    }\n    return a * b;\n}</code></pre>\n\n\n\n<p>Error:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>error TS1016: A required parameter cannot follow an optional parameter.</code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>In JavaScript, you can call a function without passing any arguments even though the function specifies parameters. Therefore, JapanScript supports the optional parameters by default. In TypeScript, the compiler checks every function call and issues an error in the following cases: The number of arguments is different from the number of parameters specified in the [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [210],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4129"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=4129"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4129/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=4129"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=4129"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=4129"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 4130,
+    "date": "2020-11-28T11:16:11",
+    "date_gmt": "2020-11-28T11:16:11",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3303"
+    },
+    "modified": "2020-11-28T11:16:11",
+    "modified_gmt": "2020-11-28T11:16:11",
+    "slug": "default-parameters",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/default-parameters/",
+    "title": {
+      "rendered": "Default Parameters"
+    },
+    "content": {
+      "rendered": "\n<h2>Introduction to TypeScript default parameters</h2>\n\n\n\n<p>JavaScript supported\u00a0default parameters\u00a0since ES2015 (or ES6) with the following syntax:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function name(parameter1=defaultValue1,...) {\n   // do something\n}</code></pre>\n\n\n\n<p>In this syntax, if you don\u2019t pass arguments or pass the&nbsp;<code>undefined</code>&nbsp;into the function when calling it, the function will take the default initialized values for the omitted parameters. For example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function applyDiscount(price, discount = 0.05) {\n    return price * (1 - discount);\n}\n\nconsole.log(applyDiscount(100)); // 95</code></pre>\n\n\n\n<p>In this example, the&nbsp;<code>applyDiscount()</code>&nbsp;function has the discount parameter as a default parameter.</p>\n\n\n\n<p>When you don\u2019t pass the&nbsp;<code>discount</code>&nbsp;argument into the&nbsp;<code>applyDiscount()</code>&nbsp;function, the function uses a default value which is&nbsp;<code>0.05</code>.</p>\n\n\n\n<p>Similar to JavaScript, you can use default parameters in TypeScript with the same syntax:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function name(parameter1:type=defaultvalue1, parameter2:type=defaultvalue2,...) {\n   //\n}</code></pre>\n\n\n\n<p>The following example uses default parameters for the&nbsp;<code>applyDiscount()</code>&nbsp;function:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function applyDiscount(price: number, discount: number = 0.05): number {\n    return price * (1 - discount);\n}\n\nconsole.log(applyDiscount(100)); // 95</code></pre>\n\n\n\n<p>Notice that you cannot include default parameters in function type definitions. The following code will result in an error:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let promotion: (price: number, discount: number = 0.05) => number;</code></pre>\n\n\n\n<p>Error:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>error TS2371: A parameter initializer is only allowed in a function or constructor implementation.</code></pre>\n\n\n\n<h2>Default parameters and Optional parameters</h2>\n\n\n\n<p>Like\u00a0optional parameters, default parameters are also optional. It means that you can omit the default parameters when calling the function.</p>\n\n\n\n<p>In addition, both the default parameters and trailing default parameters share the same type. For example, the following function:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function applyDiscount(price: number, discount: number = 0.05): number {\n  // ...\n}</code></pre>\n\n\n\n<p>and</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function applyDiscount(price: number, discount?: number): number {\n  // ...\n}</code></pre>\n\n\n\n<p>share the same type:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>(price: number, discount?: number) => number</code></pre>\n\n\n\n<p>Optional parameters must come after the required parameters. However, default parameters don\u2019t need to appear after the required parameters.</p>\n\n\n\n<p>When a default parameter appears before a required parameter, you need to explicitly pass&nbsp;<code>undefined</code>&nbsp;to get the default initialized value.</p>\n\n\n\n<p>The following function returns the number of days in a specified month and year:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function getDay(year: number = new Date().getFullYear(), month: number): number {\n    let day = 0;\n    switch (month) {\n        case 1:\n        case 3:\n        case 5:\n        case 7:\n        case 8:\n        case 10:\n        case 12:\n            day = 31;\n            break;\n        case 4:\n        case 6:\n        case 9:\n        case 11:\n            day = 30;\n            break;\n        case 2:\n            // leap year\n            if (((year % 4 == 0) &amp;&amp;\n                !(year % 100 == 0))\n                || (year % 400 == 0))\n                day = 29;\n            else\n                day = 28;\n            break;\n        default:\n            throw Error('Invalid month');\n    }\n    return day;\n}</code></pre>\n\n\n\n<p>In this example, the default value of the year is the current year if you don\u2019t pass an argument or pass the undefined value.</p>\n\n\n\n<p>The following example uses the&nbsp;<code>getDay()</code>&nbsp;function to get the number of days in Feb 2019:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let day = getDay(2019, 2);\nconsole.log(day); // 28</code></pre>\n\n\n\n<p>To get the number of days in Feb of the current year, you need to pass undefined to the year parameter like this:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let day = getDay(undefined, 2);\nconsole.log(day);</code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Introduction to TypeScript default parameters JavaScript supported\u00a0default parameters\u00a0since ES2015 (or ES6) with the following syntax: In this syntax, if you don\u2019t pass arguments or pass the&nbsp;undefined&nbsp;into the function when calling it, the function will take the default initialized values for the omitted parameters. For example: In this example, the&nbsp;applyDiscount()&nbsp;function has the discount parameter as a [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [210],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4130"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=4130"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4130/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=4130"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=4130"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=4130"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 4131,
+    "date": "2020-11-28T11:16:53",
+    "date_gmt": "2020-11-28T11:16:53",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3305"
+    },
+    "modified": "2020-11-28T11:16:53",
+    "modified_gmt": "2020-11-28T11:16:53",
+    "slug": "rest-parameters",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/rest-parameters/",
+    "title": {
+      "rendered": "Rest Parameters"
+    },
+    "content": {
+      "rendered": "\n<p>A rest parameter allows you a function to accept zero or more arguments of the specified type. In TypeScript, rest parameters follow these rules:</p>\n\n\n\n<ul><li>A function has only one rest parameter.</li><li>The rest parameter appears last in the parameter list.</li><li>The type of the rest parameter is an\u00a0array type.</li></ul>\n\n\n\n<p>To declare a rest parameter, you prefix the parameter name with three dots and use the array type as the type annotation:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function fn(...rest: type&#91;]) {\n   //...\n}</code></pre>\n\n\n\n<p>The following example shows how to use the rest parameter:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function getTotal(...numbers: number&#91;]): number {\n    let total = 0;\n    numbers.forEach((num) => total += num);\n    return total;\n}</code></pre>\n\n\n\n<p>In this example, the&nbsp;<code>getTotal()</code>&nbsp;calculates the total of numbers passed into it.</p>\n\n\n\n<p>Since the numbers parameter is a rest parameter, you can pass one or more numbers to calculate the total:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>console.log(getTotal()); // 0\nconsole.log(getTotal(10, 20)); // 30\nconsole.log(getTotal(10, 20, 30)); // 60</code></pre>\n\n\n\n<p>In this tutorial, you have learned about the TypeSript rest parameters that allow you to represent an indefinite number of arguments as an array.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>A rest parameter allows you a function to accept zero or more arguments of the specified type. In TypeScript, rest parameters follow these rules: A function has only one rest parameter. The rest parameter appears last in the parameter list. The type of the rest parameter is an\u00a0array type. To declare a rest parameter, you [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [210],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4131"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=4131"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4131/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=4131"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=4131"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=4131"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 4132,
+    "date": "2020-11-28T11:17:36",
+    "date_gmt": "2020-11-28T11:17:36",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3307"
+    },
+    "modified": "2020-11-28T11:17:36",
+    "modified_gmt": "2020-11-28T11:17:36",
+    "slug": "function-overloadings",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/function-overloadings/",
+    "title": {
+      "rendered": "Function Overloadings"
+    },
+    "content": {
+      "rendered": "\n<h2>Introduction to TypeScript function overloadings</h2>\n\n\n\n<p>In TypeScript, function overloadings allow you to establish the relationship between the parameter types and result types of a function.</p>\n\n\n\n<p>Note that TypeScript function overloadings are different from the function overloadings supported by other statically-typed languages such as C# and Java.</p>\n\n\n\n<p>Let\u2019s start with some simple functions:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function addNumbers(a: number, b: number): number {\n    return a + b;\n}\n\nfunction addStrings(a: string, b: string): string {\n    return a + b;\n}</code></pre>\n\n\n\n<p>In this example:</p>\n\n\n\n<ul><li>The&nbsp;<code>addNumbers()</code>&nbsp;function returns the sum of two numbers.</li><li>The&nbsp;<code>addStrings()</code>&nbsp;function returns the concatenation of two strings.</li></ul>\n\n\n\n<p>It\u2019s possible to use a\u00a0union type\u00a0to define a range of types for function parameters and results:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function add(a: number | string, b: number | string): number | string {\n    if (typeof a === 'number' &amp;&amp; typeof b === 'number')\n        return a + b;\n\n    if (typeof a === 'string' &amp;&amp; typeof b === 'string')\n        return a + b;\n}</code></pre>\n\n\n\n<p>However, the union type doesn\u2019t express the relationship between the parameter types and results accurately.</p>\n\n\n\n<p>The&nbsp;<code>add()</code>&nbsp;function tells the compiler that it will accept either numbers or strings and return a number or string. It fails to describe that the function returns a number when the parameters are numbers and return a string if the parameters are strings.</p>\n\n\n\n<p>To better describe the relationships between the types used by a function, TypeScript supports function overloadings. For example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function add(a: number, b: number): number;\nfunction add(a: string, b: string): string;\nfunction add(a: any, b: any): any {\n   return a + b;\n}</code></pre>\n\n\n\n<p>In this example, we added two overloads to the&nbsp;<code>add()</code>&nbsp;function. The first overload tells the compiler that when the arguments are numbers, the&nbsp;<code>add()</code>&nbsp;function should return a number. The second overload does the same but for a string.</p>\n\n\n\n<p>Each function overload defines a combination of types supported by the&nbsp;<code>add()</code>&nbsp;function. It describes the mapping between the parameters and the result they return.</p>\n\n\n\n<p>Now, when you call the&nbsp;<code>add()</code>&nbsp;function, the code editor suggests that there is an overload function available as shown in the following picture:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://www.typescripttutorial.net/wp-content/uploads/2020/06/typescript-function-overloadings-1024x86.png\" alt=\"\" class=\"wp-image-343\"/></figure>\n\n\n\n<h2>Function overloading with optional parameters</h2>\n\n\n\n<p>When you overload a function, the number of required parameters must be the same. If an overload has more parameters than the other, you have to make the additional parameters optional. For example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function sum(a: number, b: number): number;\nfunction sum(a: number, b: number, c: number): number;\nfunction sum(a: number, b: number, c?: number): number {\n    if (c) return a + b + c;\n    return a + b;\n}\n</code></pre>\n\n\n\n<p>The&nbsp;<code>sum()</code>&nbsp;function accepts either two or three numbers. The third parameter is optional. If you don\u2019t make it optional, you will get an error.</p>\n\n\n\n<h2>Method overloading</h2>\n\n\n\n<p>When a function is a property of a class, it is called a method. TypeScript also supports method overloading. For example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>class Counter {\n    private current: number = 0;\n    count(): number;\n    count(target: number): number&#91;];\n    count(target?: number): number | number&#91;] {\n        if (target) {\n            let values = &#91;];\n            for (let start = this.current; start &lt;= target; start++) {\n                values.push(start);\n            }\n            this.current = target;\n            return values;\n        }\n        return ++this.current;\n    }\n}</code></pre>\n\n\n\n<p>The&nbsp;<code>count()</code>&nbsp;function can return a number or an array depending on the number of argument that you pass into it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let counter = new Counter();\n\nconsole.log(counter.count()); // return a number\nconsole.log(counter.count(20)); // return an array</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>1\n&#91;\n   1,  2,  3,  4,  5,  6,  7,\n   8,  9, 10, 11, 12, 13, 14,\n  15, 16, 17, 18, 19, 20     \n]</code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Introduction to TypeScript function overloadings In TypeScript, function overloadings allow you to establish the relationship between the parameter types and result types of a function. Note that TypeScript function overloadings are different from the function overloadings supported by other statically-typed languages such as C# and Java. Let\u2019s start with some simple functions: In this example: [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [210],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4132"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=4132"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4132/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=4132"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=4132"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=4132"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  }
+]

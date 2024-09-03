@@ -1,0 +1,660 @@
+[
+  {
+    "id": 4133,
+    "date": "2020-11-28T11:18:57",
+    "date_gmt": "2020-11-28T11:18:57",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3309"
+    },
+    "modified": "2020-11-28T11:18:57",
+    "modified_gmt": "2020-11-28T11:18:57",
+    "slug": "class-2",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/class-2/",
+    "title": {
+      "rendered": "Class"
+    },
+    "content": {
+      "rendered": "\n<h2>Introduction to the TypeScript Class</h2>\n\n\n\n<p>JavaScript does not have a concept of class like other programming languages such as Java and C#. In ES5, you can use a constructor function and\u00a0prototype inheritance\u00a0to create a \u201cclass\u201d.</p>\n\n\n\n<p>For example, to create a&nbsp;<code>Person</code>&nbsp;class that has three properties ssn, first name, and last name, you use the following constructor function:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function Person(ssn, firstName, lastName) {\n    this.ssn = ssn;\n    this.firstName = firstName;\n    this.lastName = lastName;\n}</code></pre>\n\n\n\n<p>Next, you can define a prototype method to get the full name of the person by concatenating first name and last name like this:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Person.prototype.getFullName = function () {\n    return `${this.firstName} ${this.lastName}`;\n}</code></pre>\n\n\n\n<p>Then, you can use the Person \u201cclass\u201d by creating a new object:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let person = new Person('171-28-0926','John','Doe');\nconsole.log(person.getFullName());</code></pre>\n\n\n\n<p>It would output the following to the console:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>John Doe</code></pre>\n\n\n\n<p>ES6 allowed you to define a class\u00a0which is simply syntactic sugar for creating constructor function and prototypal inheritance:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>class Person {\n    ssn;\n    firstName;\n    lastName;\n\n    constructor(ssn, firstName, lastName) {\n        this.ssn = ssn;\n        this.firstName = firstName;\n        this.lastName = lastName;\n    }\n}</code></pre>\n\n\n\n<p>In the class syntax, the constructor is clearly defined and placed inside the class. The following adds the&nbsp;<code>getFullName()</code>&nbsp;method:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>class Person {\n    ssn;\n    firstName;\n    lastName;\n\n    constructor(ssn, firstName, lastName) {\n        this.ssn = ssn;\n        this.firstName = firstName;\n        this.lastName = lastName;\n    }\n\n    getFullName() {\n        return `${this.firstName} ${this.lastName}`;\n    }\n}</code></pre>\n\n\n\n<p>Using the&nbsp;<code>Person</code>&nbsp;class is the same as the&nbsp;<code>Person</code>&nbsp;constructor function:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let person = new Person('171-28-0926','John','Doe');\nconsole.log(person.getFullName());</code></pre>\n\n\n\n<p>TypeScript class adds\u00a0type annotations\u00a0to the properties and methods of the class. The following shows the\u00a0<code>Person</code>\u00a0class in TypeScript:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>class Person {\n    ssn: string;\n    firstName: string;\n    lastName: string;\n\n    constructor(ssn: string, firstName: string, lastName: string) {\n        this.ssn = ssn;\n        this.firstName = firstName;\n        this.lastName = lastName;\n    }\n\n    getFullName(): string {\n        return `${this.firstName} ${this.lastName}`;\n    }\n}</code></pre>\n\n\n\n<p>When you annotate types to properties, constructor, and method, TypeScript compiler will carry the corresponding type checks.</p>\n\n\n\n<p>For example, you cannot initialize the&nbsp;<code>ssn</code>&nbsp;with a&nbsp;<code>number</code>. The following code will result in an error:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let person = new Person(171280926, 'John', 'Doe');</code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Introduction to the TypeScript Class JavaScript does not have a concept of class like other programming languages such as Java and C#. In ES5, you can use a constructor function and\u00a0prototype inheritance\u00a0to create a \u201cclass\u201d. For example, to create a&nbsp;Person&nbsp;class that has three properties ssn, first name, and last name, you use the following constructor [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [211],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4133"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=4133"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4133/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=4133"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=4133"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=4133"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 4134,
+    "date": "2020-11-28T11:19:34",
+    "date_gmt": "2020-11-28T11:19:34",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3311"
+    },
+    "modified": "2020-11-28T11:19:34",
+    "modified_gmt": "2020-11-28T11:19:34",
+    "slug": "access-modifiers-2",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/access-modifiers-2/",
+    "title": {
+      "rendered": "Access Modifiers"
+    },
+    "content": {
+      "rendered": "\n<p>Access modifiers change the visibility of the properties and methods of a\u00a0class. TypeScript provides three access modifiers:</p>\n\n\n\n<ul><li>private</li><li>protected</li><li>public</li></ul>\n\n\n\n<p>Note that TypeScript controls the access logically during compilation time, not at runtime.</p>\n\n\n\n<h3>The private modifier</h3>\n\n\n\n<p>The&nbsp;<code>private</code>&nbsp;modifier limits the visibility to the same-class only. When you add the&nbsp;<code>private</code>&nbsp;modifier to a property or method, you can access that property or method within the same class. Any attempt to access private properties or methods outside the class will result in an error at compile time.</p>\n\n\n\n<p>The following example shows how to use the&nbsp;<code>private</code>&nbsp;modifier to the&nbsp;<code>snn</code>,&nbsp;<code>firstName</code>, and&nbsp;<code>lastName</code>&nbsp;properties of the&nbsp;<code>person</code>&nbsp;class:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>class Person {\n    private ssn: string;\n    private firstName: string;\n    private lastName: string;\n    // ...\n}</code></pre>\n\n\n\n<p>Once the&nbsp;<code>private</code>&nbsp;property is in place, you can access the&nbsp;<code>ssn</code>&nbsp;property in the constructor or methods of the&nbsp;<code>Person</code>&nbsp;class. For example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>class Person {\n    private ssn: string;\n    private firstName: string;\n    private lastName: string;\n\n    constructor(ssn: string, firstName: string, lastName: string) {\n        this.ssn = ssn;\n        this.firstName = firstName;\n        this.lastName = lastName;\n    }\n\n    getFullName(): string {\n        return `${this.firstName} ${this.lastName}`; \n    }\n}</code></pre>\n\n\n\n<p>The following attempts to access the&nbsp;<code>ssn</code>&nbsp;property outside the class:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let person = new Person('153-07-3130', 'John', 'Doe');\nconsole.log(person.ssn); // compile error</code></pre>\n\n\n\n<h3>The public modifier</h3>\n\n\n\n<p>The public modifier allows class properties and methods to be accessible from all locations. If you don\u2019t specify any access modifier for properties and methods, they will take the public modifier by default.</p>\n\n\n\n<p>For example, the&nbsp;<code>getFullName()</code>&nbsp;method of the&nbsp;<code>Person</code>&nbsp;class has the&nbsp;<code>public</code>&nbsp;modifier. The following explicitly adds the public modifier to the&nbsp;<code>getFullName()</code>&nbsp;method:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>class Person {\n    // ...\n    public getFullName(): string {\n        return `${this.firstName} ${this.lastName}`; \n    }\n    // ...\n}</code></pre>\n\n\n\n<p>It has the same effect as if the&nbsp;<code>public</code>&nbsp;keyword were omitted.</p>\n\n\n\n<h3>The protected modifier</h3>\n\n\n\n<p>The&nbsp;<code>protected</code>&nbsp;modifier allows properties and methods of a class to be accessible within same class and within subclasses.</p>\n\n\n\n<p>When a class (child class) inherits from another class (parent class), it is a subclass of the parent class.</p>\n\n\n\n<p>The TypeScript compiler will issue an error if you attempt to access the protected properties or methods from anywhere else.</p>\n\n\n\n<p>To add the protected modifier to a property or a method, you use the&nbsp;<code>protected</code>&nbsp;keyword. For example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>class Person {\n\n    protected ssn: string;\n    \n    // other code\n}\n</code></pre>\n\n\n\n<p>The&nbsp;<code>ssn</code>&nbsp;property now is protected. It will be accessible within the&nbsp;<code>Person</code>&nbsp;class and in any class that inherits from the&nbsp;<code>Person</code>&nbsp;class. You\u2019ll learn more about inheritance here.</p>\n\n\n\n<p>The&nbsp;<code>Person</code>&nbsp;class&nbsp;declares&nbsp;the&nbsp;two private&nbsp;properties and one protected property.&nbsp;Its&nbsp;constructor&nbsp;initializes&nbsp;these&nbsp;properties&nbsp;to&nbsp;three&nbsp;arguments.&nbsp;</p>\n\n\n\n<p>To&nbsp;make&nbsp;the&nbsp;code&nbsp;shorter,&nbsp;TypeScript&nbsp;allows&nbsp;you&nbsp;to&nbsp;both&nbsp;declare&nbsp;properties&nbsp;and&nbsp;initialize&nbsp;them&nbsp;in&nbsp;the&nbsp;constructor&nbsp;like&nbsp;this:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>class Person {\n    constructor(protected ssn: string, private firstName: string, private lastName: string) {\n        this.ssn = ssn;\n        this.firstName = firstName;\n        this.lastName = lastName;\n    }\n\n    getFullName(): string {\n        return `${this.firstName} ${this.lastName}`;\n    }\n}</code></pre>\n\n\n\n<p>When you consider the visibility of properties and methods, it is a good practice to start with the least visible access modifier, which is private.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Access modifiers change the visibility of the properties and methods of a\u00a0class. TypeScript provides three access modifiers: private protected public Note that TypeScript controls the access logically during compilation time, not at runtime. The private modifier The&nbsp;private&nbsp;modifier limits the visibility to the same-class only. When you add the&nbsp;private&nbsp;modifier to a property or method, you can [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [211],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4134"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=4134"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4134/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=4134"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=4134"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=4134"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 4135,
+    "date": "2020-11-28T11:21:33",
+    "date_gmt": "2020-11-28T11:21:33",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3314"
+    },
+    "modified": "2020-11-28T11:21:33",
+    "modified_gmt": "2020-11-28T11:21:33",
+    "slug": "the-readonly-modifier",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/the-readonly-modifier/",
+    "title": {
+      "rendered": "The readonly Modifier"
+    },
+    "content": {
+      "rendered": "\n<p>TypeScript provides the readonly modifier that allows you to mark the properties of a class immutable. The assignment to a readonly property can only occur in one of two places:</p>\n\n\n\n<ul><li>In the property declaration.</li><li>In the constructor of the same class.</li></ul>\n\n\n\n<p>To mark a property as immutable, you use the&nbsp;<code>readonly</code>&nbsp;keyword. The following shows how to declare a readonly property in the&nbsp;<code>Person</code>&nbsp;class:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>class Person {\n    readonly birthDate: Date;\n\n    constructor(birthDate: Date) {\n        this.birthDate = birthDate;\n    }\n}</code></pre>\n\n\n\n<p>In this example, the&nbsp;<code>birthdate</code>&nbsp;property is a readonly property that is initialized in the constructor of the&nbsp;<code>Person</code>&nbsp;class.</p>\n\n\n\n<p>The following attempts to reassign the&nbsp;<code>birthDate</code>&nbsp;property that results in an error:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let person = new Person(new Date(1990, 12, 25));\nperson.birthDate = new Date(1991, 12, 25); // Compile error</code></pre>\n\n\n\n<p>Like other\u00a0access modifiers, you can consolidate the declaration and initialization of a readonly property in the constructor like this:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>class Person {\n    constructor(readonly birthDate: Date) {\n        this.birthDate = birthDate;\n    }\n}</code></pre>\n\n\n\n<h2>Readonly vs. const</h2>\n\n\n\n<p>The following shows the differences between readonly and const:</p>\n\n\n\n<figure class=\"wp-block-table\"><table><tbody><tr><td></td><td><code>readonly</code></td><td><code>const</code></td></tr><tr><td>Use for</td><td>Class properties</td><td>Variables</td></tr><tr><td>Initialization</td><td>In the declaration or in the constructor of the same class</td><td>In the declaration</td></tr></tbody></table></figure>\n\n\n\n<h2>Summary</h2>\n\n\n\n<ul><li>Use the readonly access modifier to mark a class property as immutable.</li><li>A readonly property must be initialized as a part of the declaration or in the constructor of the same class.</li></ul>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>TypeScript provides the readonly modifier that allows you to mark the properties of a class immutable. The assignment to a readonly property can only occur in one of two places: In the property declaration. In the constructor of the same class. To mark a property as immutable, you use the&nbsp;readonly&nbsp;keyword. The following shows how to [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [211],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4135"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=4135"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4135/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=4135"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=4135"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=4135"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 4136,
+    "date": "2020-11-28T11:22:17",
+    "date_gmt": "2020-11-28T11:22:17",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3316"
+    },
+    "modified": "2020-11-28T11:22:17",
+    "modified_gmt": "2020-11-28T11:22:17",
+    "slug": "getters-and-setters",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/getters-and-setters/",
+    "title": {
+      "rendered": "Getters and Setters"
+    },
+    "content": {
+      "rendered": "\n<h2>Introduction to TypeScript Getters and Setters</h2>\n\n\n\n<p>The following shows a simple&nbsp;<code>Person</code>&nbsp;class with three properties:&nbsp;<code>age</code>,&nbsp;<code>firstName</code>, and&nbsp;<code>lastName</code>:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>class Person {\n    public age: number;\n    public firstName: string;\n    public lastName: string;\n}\n</code></pre>\n\n\n\n<p>To access any property of the&nbsp;<code>Person</code>&nbsp;class, you can simply do like this:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let person = new Person();\nperson.age = 26;\n</code></pre>\n\n\n\n<p>Suppose that you assign a value that comes from user input to the&nbsp;<code>age</code>&nbsp;property:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>person.age = inputAge;\n</code></pre>\n\n\n\n<p>The&nbsp;<code>inputAge</code>&nbsp;can be any number. To ensure the validity of the age, you can carry a check before assignment as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>if( inputAge > 0 &amp;&amp; inputAge &lt; 200 ) {\n    person.age = inputAge;\n}\n</code></pre>\n\n\n\n<p>Using this check all over places is redundant and tedious.</p>\n\n\n\n<p>To avoid repeating the check, you can use setters and getters. The getters and setters allow you to control the access to the properties of a class.</p>\n\n\n\n<p>For each property:</p>\n\n\n\n<ul><li>A getter method returns the value of the property\u2019s value. A getter is also called an accessor.</li><li>A setter method updates the property\u2019s value. A setter is also known as a mutator.</li></ul>\n\n\n\n<p>A getter method starts with the keyword&nbsp;<code>get</code>&nbsp;and a setter method starts with the keyword&nbsp;<code>set</code>.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>class Person {\n    private _age: number;\n    private _firstName: string;\n    private _lastName: string;\n\n \n    public get age() {\n        return this._age;\n    }\n\n    public set age(theAge: number) {\n        if (theAge &lt;= 0 || theAge >= 200) {\n            throw new Error('The age is invalid');\n        }\n        this._age = theAge;\n    }\n\n    public getFullName(): string {\n        return `${this._firstName} ${this._lastName}`;\n    }\n}\n</code></pre>\n\n\n\n<p>How it works.</p>\n\n\n\n<ul><li>First, change the access modifiers of the&nbsp;<code>age</code>,&nbsp;<code>firstName</code>, and&nbsp;<code>lastName</code>&nbsp;properties from&nbsp;<code>public</code>&nbsp;to&nbsp;<code>private</code>.</li><li>Second, change the property&nbsp;<code>age</code>&nbsp;to&nbsp;<code>_age</code>.</li><li>Third, create getter and setter methods for the&nbsp;<code>_age</code>&nbsp;property. In the setter method, check the validity of the input age before assigning it to the&nbsp;<code>_age</code>&nbsp;property.</li></ul>\n\n\n\n<p>Now, you can access the&nbsp;<code>age</code>&nbsp;setter method as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let person = new Person();\nperson.age = 10;</code></pre>\n\n\n\n<p>Notice that the call to the setter doesn\u2019t have parentheses like a regular method. When you call&nbsp;<code>person.age</code>, the&nbsp;<code>age</code>&nbsp;setter method is invoked. If you assign an invalid&nbsp;<code>age</code>&nbsp;value, the setter will throw an error:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>person.age = 0;</code></pre>\n\n\n\n<p>Error:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Error: The age is invalid</code></pre>\n\n\n\n<p>When you access the&nbsp;<code>person.age</code>, the&nbsp;<code>age</code>&nbsp;getter is invoked.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>console.log(person.age);</code></pre>\n\n\n\n<p>The following adds the getters and setters to the&nbsp;<code>firstName</code>&nbsp;and&nbsp;<code>lastName</code>&nbsp;properties.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>class Person {\n    private _age: number;\n    private _firstName: string;\n    private _lastName: string;\n\n    public get age() {\n        return this._age;\n    }\n\n    public set age(theAge: number) {\n        if (theAge &lt;= 0 || theAge >= 200) {\n            throw new Error('The age is invalid');\n        }\n        this._age = theAge;\n    }\n\n    public get firstName() {\n        return this._firstName;\n    }\n\n    public set firstName(theFirstName: string) {\n        if (!theFirstName) {\n            throw new Error('Invalid first name.');\n        }\n        this._firstName = theFirstName;\n    }\n\n    public get lastName() {\n        return this._lastName;\n    }\n\n    public set lastName(theLastName: string) {\n        if (!theLastName) {\n            throw new Error('Invalid last name.');\n        }\n        this._lastName = theLastName;\n    }\n\n    public getFullName(): string {\n        return `${this.firstName} ${this.lastName}`;\n    }\n}\n</code></pre>\n\n\n\n<h2>More TypeScript Getters/Setters Examples</h2>\n\n\n\n<p>As you can see from the code, the setters are useful when you want to validate the data before assigning it to the properties. In addition, you can perform complex logic.</p>\n\n\n\n<p>The following shows how to create the&nbsp;<code>fullname</code>&nbsp;getter and setter.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>class Person {\n    // ... other code \n    public get fullName() {\n        return `${this.firstName} ${this.lastName}`;\n    }\n\n    public set fullName(name: string) {\n        let parts = name.split(' ');\n        if (parts.length != 2) {\n            throw new Error('Invalid name format: first last');\n        }\n        this.firstName = parts&#91;0];\n        this.lastName = parts&#91;1];\n    }\n}</code></pre>\n\n\n\n<p>How it works.</p>\n\n\n\n<ul><li>The getter method returns the concatenation of the first name and last name.</li><li>The setter method accepts a string as the full name with the format:&nbsp;<code>first last</code>&nbsp;and assign the first part to the first name property and second part to the last name property.</li></ul>\n\n\n\n<p>Now, you can access the&nbsp;<code>fullname</code>&nbsp;setter and getter like a regular class property:</p>\n\n\n\n<pre class=\"wp-block-code\"><code> let person = new Person();\n person.fullname = 'John Doe';\n \n console.log(person.fullName);</code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Introduction to TypeScript Getters and Setters The following shows a simple&nbsp;Person&nbsp;class with three properties:&nbsp;age,&nbsp;firstName, and&nbsp;lastName: To access any property of the&nbsp;Person&nbsp;class, you can simply do like this: Suppose that you assign a value that comes from user input to the&nbsp;age&nbsp;property: The&nbsp;inputAge&nbsp;can be any number. To ensure the validity of the age, you can carry a [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [211],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4136"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=4136"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4136/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=4136"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=4136"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=4136"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 4137,
+    "date": "2020-11-28T11:23:03",
+    "date_gmt": "2020-11-28T11:23:03",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3318"
+    },
+    "modified": "2020-11-28T11:23:03",
+    "modified_gmt": "2020-11-28T11:23:03",
+    "slug": "inheritance-2",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/inheritance-2/",
+    "title": {
+      "rendered": "Inheritance"
+    },
+    "content": {
+      "rendered": "\n<h2>Introduction to the TypeScript inheritance</h2>\n\n\n\n<p>A\u00a0class\u00a0can reuse the properties and methods of another class. This is called inheritance in TypeScript.</p>\n\n\n\n<p>The class which inherits properties and methods is called the&nbsp;<strong>child class</strong>. And the class whose properties and methods are inherited is known as the&nbsp;<strong>parent class</strong>. These names come from the nature that children inherit genes from parents.</p>\n\n\n\n<p>Inheritance allows you to reuse the functionality of an existing class without rewriting it.</p>\n\n\n\n<p>JavaScript uses\u00a0prototypal inheritance, not classical inheritance like Java or C#. ES6 introduces the\u00a0class\u00a0syntax that is simply the syntactic sugar of the prototypal inheritance. TypeScript supports inheritance like ES6.</p>\n\n\n\n<p>Suppose you have the following&nbsp;<code>Person</code>&nbsp;class:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>class Person {\n    constructor(private firstName: string, private lastName: string) {\n        this.firstName = firstName;\n        this.lastName = lastName;\n    }\n    getFullName(): string {\n        return `${this.firstName} ${this.lastName}`;\n    }\n    describe(): string {\n        return `This is ${this.firstName} ${this.lastName}.`;\n    }\n}\n</code></pre>\n\n\n\n<p>To inherit a class, you use the&nbsp;<code>extends</code>&nbsp;keyword. For example the following&nbsp;<code>Employee</code>&nbsp;class inherits the&nbsp;<code>Person</code>&nbsp;class:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>class Employee extends Person {\n    //..\n}</code></pre>\n\n\n\n<p>In this example, the&nbsp;<code>Employee</code>&nbsp;is a child class and the&nbsp;<code>Person</code>&nbsp;is the parent class.</p>\n\n\n\n<h2>Constructor</h2>\n\n\n\n<p>Because the&nbsp;<code>Person</code>&nbsp;class has a constructor that initializes the&nbsp;<code>firstName</code>&nbsp;and&nbsp;<code>lastName</code>&nbsp;properties, you need to initialize these properties in the constructor of the Employee class by calling its parent class\u2019 constructor.</p>\n\n\n\n<p>To call the constructor of the parent class in the constructor of the child class, you use the&nbsp;<code>super()</code>&nbsp;syntax. For example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>class Employee extends Person {\n    constructor(\n        firstName: string,\n        lastName: string,\n        private jobTitle: string) {\n        \n        // call the constructor of the Person class:\n        super(firstName, lastName);\n    }\n}</code></pre>\n\n\n\n<p>The following creates an instance of the&nbsp;<code>Employee</code>&nbsp;class:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let employee = new Employee('John','Doe','Front-end Developer');\n</code></pre>\n\n\n\n<p>Because the&nbsp;<code>Employee</code>&nbsp;class inherits properties and methods of the&nbsp;<code>Person</code>&nbsp;class, you can call the&nbsp;<code>getFullName()</code>&nbsp;and&nbsp;<code>describe()</code>&nbsp;methods on the&nbsp;<code>employee</code>&nbsp;object as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let employee = new Employee('John', 'Doe', 'Web Developer');\n\nconsole.log(employee.getFullName());\nconsole.log(employee.describe());\n</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>John Doe\nThis is John Doe.</code></pre>\n\n\n\n<h2>Method overriding</h2>\n\n\n\n<p>When you call the&nbsp;<code>employee.describe()</code>&nbsp;method on the&nbsp;<code>employee</code>&nbsp;object, the&nbsp;<code>describe()</code>&nbsp;method of the&nbsp;<code>Person</code>&nbsp;class is executed that shows the message:&nbsp;<code>This is John Doe</code>.</p>\n\n\n\n<p>If you want the&nbsp;<code>Employee</code>&nbsp;class has its own version of the&nbsp;<code>describe()</code>&nbsp;method, you can define it in the&nbsp;<code>Employee</code>&nbsp;class like this:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>class Employee extends Person {\n    constructor(\n        firstName: string,\n        lastName: string,\n        private jobTitle: string) {\n\n        super(firstName, lastName);\n    }\n\n    describe(): string {\n        return super.describe() + `I'm a ${this.jobTitle}.`;\n    }\n}</code></pre>\n\n\n\n<p>In the&nbsp;<code>describe()</code>&nbsp;method, we called the&nbsp;<code>describe()</code>&nbsp;method of the parent class using the syntax&nbsp;<code>super.methodInParentClass()</code>.</p>\n\n\n\n<p>If you call the&nbsp;<code>describe()</code>&nbsp;method on the&nbsp;<code>employee</code>&nbsp;object, the&nbsp;<code>describe()</code>&nbsp;method in the&nbsp;<code>Employee</code>&nbsp;class is invoked:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let employee = new Employee('John', 'Doe', 'Web Developer');\nconsole.log(employee.describe());</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>This is John Doe.I'm a Web Developer.</code></pre>\n\n\n\n<h2>Summary</h2>\n\n\n\n<ul><li>Use the&nbsp;<code>extends</code>&nbsp;keyword to allow a class to inherit from another class.</li><li>Use&nbsp;<code>super()</code>&nbsp;in the constructor of the child class to call the constructor of the parent class. Also, use the&nbsp;<code>super.methodInParentClass()</code>&nbsp;syntax to invoke the&nbsp;<code>methodInParentClass()</code>&nbsp;in the method of the child class.</li></ul>\n\n\n\n<p></p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Introduction to the TypeScript inheritance A\u00a0class\u00a0can reuse the properties and methods of another class. This is called inheritance in TypeScript. The class which inherits properties and methods is called the&nbsp;child class. And the class whose properties and methods are inherited is known as the&nbsp;parent class. These names come from the nature that children inherit genes [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [211],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4137"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=4137"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4137/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=4137"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=4137"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=4137"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 4138,
+    "date": "2020-11-28T11:23:45",
+    "date_gmt": "2020-11-28T11:23:45",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3320"
+    },
+    "modified": "2020-11-28T11:23:45",
+    "modified_gmt": "2020-11-28T11:23:45",
+    "slug": "static-methods-and-properties",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/static-methods-and-properties/",
+    "title": {
+      "rendered": "Static Methods and Properties"
+    },
+    "content": {
+      "rendered": "\n<h3>Static properties</h3>\n\n\n\n<p>Unlike an instance property, a static property is shared among all instances of a class.</p>\n\n\n\n<p>To declare a static property, you use the&nbsp;<code>static</code>&nbsp;keyword. To access a static property, you use the&nbsp;<code>className.propertyName</code>&nbsp;syntax. For example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>class Employee {\n    static headcount: number = 0;\n\n    constructor(\n        private firstName: string,\n        private lastName: string,\n        private jobTitle: string) {\n\n        Employee.headcount++;\n    }\n}</code></pre>\n\n\n\n<p>In this example, the&nbsp;<code>headcount</code>&nbsp;is a static property that initialized to zero. Its value is increased by 1 whenever a new object is created.</p>\n\n\n\n<p>The following creates two&nbsp;<code>Employee</code>&nbsp;objects and shows the value of the&nbsp;<code>headcount</code>&nbsp;property. It returns two as expected.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let john = new Employee('John', 'Doe', 'Front-end Developer');\nlet jane = new Employee('Jane', 'Doe', 'Back-end Developer');\n\nconsole.log(Employee.headcount); // 2\n</code></pre>\n\n\n\n<h3>Static methods</h3>\n\n\n\n<p>Similar to the static property, a static method is also shared across instances of the class. To declare a static method, you use the&nbsp;<code>static</code>&nbsp;keyword before the method name. For example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>class Employee {\n    private static headcount: number = 0;\n\n    constructor(\n        private firstName: string,\n        private lastName: string,\n        private jobTitle: string) {\n\n        Employee.headcount++;\n    }\n\n    public static getHeadcount() {\n        return Employee.headcount;\n    }\n}</code></pre>\n\n\n\n<p>In this example:</p>\n\n\n\n<ul><li>First, change the access modifier of the&nbsp;<code>headcount</code>&nbsp;static property from&nbsp;<code>public</code>&nbsp;to&nbsp;<code>private</code>&nbsp;so that its value cannot be changed outside of the class without creating a new&nbsp;<code>Employee</code>&nbsp;object.</li><li>Second, add the&nbsp;<code>getHeadcount()</code>&nbsp;static method that returns the value of the&nbsp;<code>headcount</code>&nbsp;static property.</li></ul>\n\n\n\n<p>To call a static method, you use the&nbsp;<code>className.staticMethod()</code>&nbsp;syntax. For example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let john = new Employee('John', 'Doe', 'Front-end Developer');\nlet jane = new Employee('Jane', 'Doe', 'Back-end Developer');\n\nconsole.log(Employee.getHeadcount); // 2\n</code></pre>\n\n\n\n<p>In practice, you will find the library that contains many static properties and methods like the&nbsp;<code>Math</code>&nbsp;object. It has&nbsp;<code>PI</code>,&nbsp;<code>E</code>, \u2026 static properties and&nbsp;<code>abs()</code>,&nbsp;<code>round()</code>, etc., static methods.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Static properties Unlike an instance property, a static property is shared among all instances of a class. To declare a static property, you use the&nbsp;static&nbsp;keyword. To access a static property, you use the&nbsp;className.propertyName&nbsp;syntax. For example: In this example, the&nbsp;headcount&nbsp;is a static property that initialized to zero. Its value is increased by 1 whenever a new [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [211],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4138"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=4138"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4138/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=4138"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=4138"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=4138"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 4139,
+    "date": "2020-11-28T11:24:24",
+    "date_gmt": "2020-11-28T11:24:24",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3322"
+    },
+    "modified": "2020-11-28T11:24:24",
+    "modified_gmt": "2020-11-28T11:24:24",
+    "slug": "abstract-classes",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/abstract-classes/",
+    "title": {
+      "rendered": "Abstract Classes"
+    },
+    "content": {
+      "rendered": "\n<h2>Introduction to TypeScript abstract classes</h2>\n\n\n\n<p>An abstract class is typically used to define common behaviors for derived classes to extend. Unlike a regular\u00a0class, an abstract class cannot be instantiated directly.</p>\n\n\n\n<p>To declare an abstract class, you use the&nbsp;<code>abstract</code>&nbsp;keyword:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>abstract class Employee {\n    //...\n}\n</code></pre>\n\n\n\n<p>Typically, an abstract class contains one or more abstract methods.</p>\n\n\n\n<p>An abstract method does not contain implementation. It only defines the signature of the method without including the method body. An abstract method must be implemented in the derived class.</p>\n\n\n\n<p>The following shows the&nbsp;<code>Employee</code>&nbsp;abstract class that has the&nbsp;<code>getSalary()</code>&nbsp;abstract method:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>abstract class Employee {\n    constructor(private firstName: string, private lastName: string) {\n    }\n    abstract getSalary(): number\n    get fullName(): string {\n        return `${this.firstName} ${this.lastName}`;\n    }\n    compensationStatement(): string {\n        return `${this.fullName} makes ${this.getSalary()} a month.`;\n    }\n}</code></pre>\n\n\n\n<p>In the&nbsp;<code>Employee</code>&nbsp;class:</p>\n\n\n\n<ul><li>The constructor declares the&nbsp;<code>firstName</code>&nbsp;and&nbsp;<code>lastName</code>&nbsp;properties.</li><li>The&nbsp;<code>getSalary()</code>&nbsp;method is an abstract method. The derived class will implement the logic based on the type of employee.</li><li>The&nbsp;<code>getFullName()</code>&nbsp;and&nbsp;<code>compensationStatement()</code>&nbsp;methods contain detailed implementation. Note that the&nbsp;<code>compensationStatement()</code>&nbsp;method calls the&nbsp;<code>getSalary()</code>&nbsp;method.</li></ul>\n\n\n\n<p>Because the&nbsp;<code>Employee</code>&nbsp;class is abstract, you cannot create a new object from it. The following statement causes an error:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let employee = new Employee('John','Doe');</code></pre>\n\n\n\n<p>Error:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>error TS2511: Cannot create an instance of an abstract class.</code></pre>\n\n\n\n<p>The following&nbsp;<code>FullTimeEmployee</code>&nbsp;class inherits from the&nbsp;<code>Employee</code>&nbsp;class:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>class FullTimeEmployee extends Employee {\n    constructor(firstName: string, lastName: string, private salary: number) {\n        super(firstName, lastName);\n    }\n    getSalary(): number {\n        return this.salary;\n    }\n}</code></pre>\n\n\n\n<p>In this&nbsp;<code>FullTimeEmployee</code>&nbsp;class, the salary is set in the constructor. Because the&nbsp;<code>getSalary()</code>&nbsp;is an abstract method of the&nbsp;<code>Employee</code>&nbsp;class, the&nbsp;<code>FullTimeEmployee</code>&nbsp;class needs to implement this method. In this example, it just returns the salary without any calculation.</p>\n\n\n\n<p>The following shows the&nbsp;<code>Contractor</code>&nbsp;class that also inherits from the&nbsp;<code>Employee</code>&nbsp;class:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>class Contractor extends Employee {\n    constructor(firstName: string, lastName: string, private rate: number, private hours: number) {\n        super(firstName, lastName);\n    }\n    getSalary(): number {\n        return this.rate * this.hours;\n    }\n}</code></pre>\n\n\n\n<p>In the&nbsp;<code>Contractor</code>&nbsp;class, the constructor initializes the rate and hours. The&nbsp;<code>getSalary()</code>&nbsp;method calculates the salary by multiplying the rate with the hours.</p>\n\n\n\n<p>The following first creates a&nbsp;<code>FullTimeEmployee</code>&nbsp;object and a&nbsp;<code>Contractor</code>&nbsp;object and then shows the compensation statements to the console:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let john = new FullTimeEmployee('John', 'Doe', 12000);\nlet jane = new Contractor('Jane', 'Doe', 100, 160);\n\nconsole.log(john.compensationStatement());\nconsole.log(jane.compensationStatement());</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>John Doe makes 12000 a month.\nJane Doe makes 16000 a month.</code></pre>\n\n\n\n<p>It\u2019s a good practice to use abstract classes when you want to share code among some related classes.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Introduction to TypeScript abstract classes An abstract class is typically used to define common behaviors for derived classes to extend. Unlike a regular\u00a0class, an abstract class cannot be instantiated directly. To declare an abstract class, you use the&nbsp;abstract&nbsp;keyword: Typically, an abstract class contains one or more abstract methods. An abstract method does not contain implementation. [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [211],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4139"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=4139"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4139/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=4139"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=4139"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=4139"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  }
+]

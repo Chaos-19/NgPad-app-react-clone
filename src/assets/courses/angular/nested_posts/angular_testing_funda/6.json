@@ -1,0 +1,202 @@
+[
+  {
+    "id": 4631,
+    "date": "2021-02-25T11:41:10",
+    "date_gmt": "2021-02-25T11:41:10",
+    "guid": {
+      "rendered": "http://angular.foobrdigital.com/?p=4631"
+    },
+    "modified": "2021-02-25T11:41:10",
+    "modified_gmt": "2021-02-25T11:41:10",
+    "slug": "intro-4",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/intro-4/",
+    "title": {
+      "rendered": "Intro"
+    },
+    "content": {
+      "rendered": "\n<p>An&nbsp;<em>attribute directive</em>&nbsp;modifies the behavior of an element, component or another directive. Its name reflects the way the directive is applied: as an attribute on a host element.</p>\n\n\n\n<p>For the sample app that the testing guides describe, see the&nbsp;<a target=\"_blank\" href=\"https://angular.io/generated/live-examples/testing/stackblitz.html\" rel=\"noreferrer noopener\">sample app</a>.</p>\n\n\n\n<p>For the tests features in the testing guides, see&nbsp;<a target=\"_blank\" href=\"https://angular.io/generated/live-examples/testing/specs.stackblitz.html\" rel=\"noreferrer noopener\">tests</a>.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>An&nbsp;attribute directive&nbsp;modifies the behavior of an element, component or another directive. Its name reflects the way the directive is applied: as an attribute on a host element. For the sample app that the testing guides describe, see the&nbsp;sample app. For the tests features in the testing guides, see&nbsp;tests.</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [245],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4631"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=4631"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4631/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4642,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4631/revisions/4642"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=4631"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=4631"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=4631"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 4630,
+    "date": "2021-02-25T11:41:58",
+    "date_gmt": "2021-02-25T11:41:58",
+    "guid": {
+      "rendered": "http://angular.foobrdigital.com/?p=4630"
+    },
+    "modified": "2021-02-25T11:41:58",
+    "modified_gmt": "2021-02-25T11:41:58",
+    "slug": "testing-the-highlightdirective",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/testing-the-highlightdirective/",
+    "title": {
+      "rendered": "Testing the HighlightDirective"
+    },
+    "content": {
+      "rendered": "\n<p>The sample application&#8217;s&nbsp;<code>HighlightDirective</code>&nbsp;sets the background color of an element based on either a data bound color or a default color (lightgray). It also sets a custom property of the element (<code>customProperty</code>) to&nbsp;<code>true</code>&nbsp;for no reason other than to show that it can.app/shared/highlight.directive.ts</p>\n\n\n\n<pre class=\"wp-block-code\"><code>content_copy<code>import { <a href=\"https://angular.io/api/core/Directive\">Directive</a>, <a href=\"https://angular.io/api/core/ElementRef\">ElementRef</a>, <a href=\"https://angular.io/api/core/Input\">Input</a>, <a href=\"https://angular.io/api/core/OnChanges\">OnChanges</a> } from '@angular/core';\n\n@<a href=\"https://angular.io/api/core/Directive\">Directive</a>({ selector: '&#91;highlight]' })\n/**\n * Set backgroundColor for the attached element to highlight color\n * and set the element's customProperty to true\n */\nexport class HighlightDirective implements <a href=\"https://angular.io/api/core/OnChanges\">OnChanges</a> {\n\n  defaultColor =  'rgb(211, 211, 211)'; // lightgray\n\n  @<a href=\"https://angular.io/api/core/Input\">Input</a>('highlight') bgColor: string;\n\n  constructor(private el: <a href=\"https://angular.io/api/core/ElementRef\">ElementRef</a>) {\n    el.nativeElement.style.customProperty = true;\n  }\n\n  ngOnChanges() {\n    this.el.nativeElement.style.backgroundColor = this.bgColor || this.defaultColor;\n  }\n}</code></code></pre>\n\n\n\n<p>It&#8217;s used throughout the application, perhaps most simply in the&nbsp;<code>AboutComponent</code>:app/about/about.component.ts</p>\n\n\n\n<pre class=\"wp-block-code\"><code>content_copy<code>import { <a href=\"https://angular.io/api/core/Component\">Component</a> } from '@angular/core';\n@<a href=\"https://angular.io/api/core/Component\">Component</a>({\n  template: `\n  &lt;h2 highlight=\"skyblue\"&gt;About&lt;/h2&gt;\n  &lt;h3&gt;Quote of the day:&lt;/h3&gt;\n  &lt;twain-quote&gt;&lt;/twain-quote&gt;\n  `\n})\nexport class AboutComponent { }</code></code></pre>\n\n\n\n<p>Testing the specific use of the&nbsp;<code>HighlightDirective</code>&nbsp;within the&nbsp;<code>AboutComponent</code>&nbsp;requires only the techniques explored in the&nbsp;<a href=\"https://angular.io/guide/testing-components-scenarios#nested-component-tests\">&#8220;Nested component tests&#8221;</a>&nbsp;section of&nbsp;<a href=\"https://angular.io/guide/testing-components-scenarios\">Component testing scenarios</a>.app/about/about.component.spec.ts</p>\n\n\n\n<pre class=\"wp-block-code\"><code>content_copy<code>beforeEach(() =&gt; {\n  fixture = TestBed.configureTestingModule({\n    declarations: &#91; AboutComponent, HighlightDirective ],\n    schemas:      &#91; <a href=\"https://angular.io/api/core/NO_ERRORS_SCHEMA\">NO_ERRORS_SCHEMA</a> ]\n  })\n  .createComponent(AboutComponent);\n  fixture.detectChanges(); // initial binding\n});\n\nit('should have skyblue &lt;h2&gt;', () =&gt; {\n  const h2: HTMLElement = fixture.nativeElement.querySelector('h2');\n  const bgColor = h2.style.backgroundColor;\n  expect(bgColor).toBe('skyblue');\n});</code></code></pre>\n\n\n\n<p>However, testing a single use case is unlikely to explore the full range of a directive&#8217;s capabilities. Finding and testing all components that use the directive is tedious, brittle, and almost as unlikely to afford full coverage.</p>\n\n\n\n<p><em>Class-only tests</em>&nbsp;might be helpful, but attribute directives like this one tend to manipulate the DOM. Isolated unit tests don&#8217;t touch the DOM and, therefore, do not inspire confidence in the directive&#8217;s efficacy.</p>\n\n\n\n<p>A better solution is to create an artificial test component that demonstrates all ways to apply the directive.app/shared/highlight.directive.spec.ts (TestComponent)</p>\n\n\n\n<pre class=\"wp-block-code\"><code>content_copy<code>@<a href=\"https://angular.io/api/core/Component\">Component</a>({\n  template: `\n  &lt;h2 highlight=\"yellow\"&gt;Something Yellow&lt;/h2&gt;\n  &lt;h2 highlight&gt;The Default (Gray)&lt;/h2&gt;\n  &lt;h2&gt;No Highlight&lt;/h2&gt;\n  &lt;input #box &#91;highlight]=\"box.value\" value=\"cyan\"/&gt;`\n})\nclass TestComponent { }</code></code></pre>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://angular.io/generated/images/guide/testing/highlight-directive-spec.png\" alt=\"HighlightDirective spec in action\"/></figure>\n\n\n\n<p>The&nbsp;<code>&lt;input&gt;</code>&nbsp;case binds the&nbsp;<code>HighlightDirective</code>&nbsp;to the name of a color value in the input box. The initial value is the word &#8220;cyan&#8221; which should be the background color of the input box.</p>\n\n\n\n<p>Here are some tests of this component:app/shared/highlight.directive.spec.ts (selected tests)</p>\n\n\n\n<pre class=\"wp-block-code\"><code>content_copy<code>beforeEach(() =&gt; {\n  fixture = TestBed.configureTestingModule({\n    declarations: &#91; HighlightDirective, TestComponent ]\n  })\n  .createComponent(TestComponent);\n\n  fixture.detectChanges(); // initial binding\n\n  // all elements with an attached HighlightDirective\n  des = fixture.debugElement.queryAll(By.directive(HighlightDirective));\n\n  // the h2 without the HighlightDirective\n  bareH2 = fixture.debugElement.query(By.css('h2:not(&#91;highlight])'));\n});\n\n// color tests\nit('should have three highlighted elements', () =&gt; {\n  expect(des.length).toBe(3);\n});\n\nit('should color 1st &lt;h2&gt; background \"yellow\"', () =&gt; {\n  const bgColor = des&#91;0].nativeElement.style.backgroundColor;\n  expect(bgColor).toBe('yellow');\n});\n\nit('should color 2nd &lt;h2&gt; background w/ default color', () =&gt; {\n  const dir = des&#91;1].injector.get(HighlightDirective) as HighlightDirective;\n  const bgColor = des&#91;1].nativeElement.style.backgroundColor;\n  expect(bgColor).toBe(dir.defaultColor);\n});\n\nit('should bind &lt;input&gt; background to value color', () =&gt; {\n  // easier to work with nativeElement\n  const input = des&#91;2].nativeElement as HTMLInputElement;\n  expect(input.style.backgroundColor).toBe('cyan', 'initial backgroundColor');\n\n  input.value = 'green';\n\n  // Dispatch a DOM event so that Angular responds to the input value change.\n  // In older browsers, such as IE, you might need a CustomEvent instead. See\n  // https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent/CustomEvent#Polyfill\n  input.dispatchEvent(new <a href=\"https://angular.io/api/router/Event\">Event</a>('input'));\n  fixture.detectChanges();\n\n  expect(input.style.backgroundColor).toBe('green', 'changed backgroundColor');\n});\n\n\nit('bare &lt;h2&gt; should not have a customProperty', () =&gt; {\n  expect(bareH2.properties.customProperty).toBeUndefined();\n});</code></code></pre>\n\n\n\n<p>A few techniques are noteworthy:</p>\n\n\n\n<ul><li>The&nbsp;<code>By.directive</code>&nbsp;predicate is a great way to get the elements that have this directive&nbsp;<em>when their element types are unknown</em>.</li><li>The&nbsp;<a href=\"https://developer.mozilla.org/en-US/docs/Web/CSS/:not\"><code>:not</code>&nbsp;pseudo-class</a>&nbsp;in&nbsp;<code>By.css('h2:not([highlight])')</code>&nbsp;helps find&nbsp;<code>&lt;h2&gt;</code>&nbsp;elements that&nbsp;<em>do not</em>&nbsp;have the directive.&nbsp;<code>By.css('*:not([highlight])')</code>&nbsp;finds&nbsp;<em>any</em>&nbsp;element that does not have the directive.</li><li><code><a href=\"https://angular.io/api/core/DebugElement#styles\">DebugElement.styles</a></code>&nbsp;affords access to element styles even in the absence of a real browser, thanks to the&nbsp;<code><a href=\"https://angular.io/api/core/DebugElement\">DebugElement</a></code>&nbsp;abstraction. But feel free to exploit the&nbsp;<code>nativeElement</code>&nbsp;when that seems easier or more clear than the abstraction.</li><li>Angular adds a directive to the injector of the element to which it is applied. The test for the default color uses the injector of the second&nbsp;<code>&lt;h2&gt;</code>&nbsp;to get its&nbsp;<code>HighlightDirective</code>&nbsp;instance and its&nbsp;<code>defaultColor</code>.</li><li><code><a href=\"https://angular.io/api/core/DebugElement#properties\">DebugElement.properties</a></code>&nbsp;affords access to the artificial custom property that is set by the directive.</li></ul>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>The sample application&#8217;s&nbsp;HighlightDirective&nbsp;sets the background color of an element based on either a data bound color or a default color (lightgray). It also sets a custom property of the element (customProperty) to&nbsp;true&nbsp;for no reason other than to show that it can.app/shared/highlight.directive.ts It&#8217;s used throughout the application, perhaps most simply in the&nbsp;AboutComponent:app/about/about.component.ts Testing the specific use [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [245],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4630"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=4630"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4630/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4643,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4630/revisions/4643"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=4630"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=4630"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=4630"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  }
+]

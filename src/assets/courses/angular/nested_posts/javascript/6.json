@@ -1,0 +1,1506 @@
+[
+  {
+    "id": 3355,
+    "date": "2020-11-30T05:25:38",
+    "date_gmt": "2020-11-30T05:25:38",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3355"
+    },
+    "modified": "2020-11-30T05:25:38",
+    "modified_gmt": "2020-11-30T05:25:38",
+    "slug": "javascript-arrays",
+    "status": "publish",
+    "type": "post",
+    "link": "https://computerprogramming.foobrdigital.com/javascript-arrays/",
+    "title": {
+      "rendered": "JavaScript Arrays"
+    },
+    "content": {
+      "rendered": "\n<h2>Introduction to JavaScript arrays</h2>\n\n\n\n<p>In JavaScript, an array is an ordered list of values. Each value is called an element specified by an index.</p>\n\n\n\n\n\n\n\n<p>An JavaScript array has the following characteristics:</p>\n\n\n\n<ol><li>First,&nbsp;an array can hold values of different types. For example, you can have an array that stores the number and string, and boolean values.</li><li>Second, the length of an&nbsp;array is dynamically sized and auto-growing. In other words, you don’t need to specify the array size upfront.</li></ol>\n\n\n\n<h2>Creating JavaScript arrays</h2>\n\n\n\n<p>JavaScript provides you with two ways to&nbsp;create an array.&nbsp;The first one is to use the&nbsp;<code>Array</code>&nbsp;constructor as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let scores = new Array();</code></pre>\n\n\n\n<p>The&nbsp;<code>scores</code>&nbsp;array is empty i.e. it holds no element.</p>\n\n\n\n<p>If you know the number of elements that the array will hold, you can create an array with an initial size as shown in the following example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let scores = Array(10);</code></pre>\n\n\n\n<p>To create an array with some elements, you pass the elements as a comma-separated list into the&nbsp;<code>Array()</code>&nbsp;constructor.</p>\n\n\n\n<p>For example, the following creates the&nbsp;<code>scores</code>&nbsp;array that has five elements (or numbers):</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let scores = new Array(9,10,8,7,6);</code></pre>\n\n\n\n<p>It’s important to notice that if you use the array constructor to create an array and pass into a number, you are creating an array with an initial size.</p>\n\n\n\n<p>However,&nbsp;when you pass a value of another type like&nbsp;<code>string</code>&nbsp;into the&nbsp;<code>Array()</code>&nbsp;constructor, you create an array with an element of that value. For example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let athletes = new Array(3); // creates an array with initial size 3\nlet scores = new Array(1, 2, 3); // create an array with three numbers 1,2 3\nlet signs = new Array('Red'); // creates an array with one element 'Red'</code></pre>\n\n\n\n<p>JavaScript allows you to omit the&nbsp;<code>new</code>&nbsp;operator when you use the array constructor. For example, the following statement creates the&nbsp;<code>artists</code>&nbsp;array.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let artists = Array();</code></pre>\n\n\n\n<p>In practice, you’ll rarely use the&nbsp;<code>Array()</code>&nbsp;constructor to create an array.</p>\n\n\n\n<p>The more preferred way to create an array is to use the array literal notation:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let arrayName = &#91;element1, element2, element3, ...];</code></pre>\n\n\n\n<p>The array literal form uses the square brackets&nbsp;<code>[]</code>&nbsp;to wrap&nbsp;a comma-separated&nbsp;list of elements.</p>\n\n\n\n<p>The following example creates the&nbsp;<code>colors</code>&nbsp;array that hold three strings:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let colors = &#91;'red', 'green', 'blue'];</code></pre>\n\n\n\n<p>To create an empty array, you use square brackets without specifying any element like this:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let emptyArray = &#91;];</code></pre>\n\n\n\n<h2>Accessing JavaScript array elements</h2>\n\n\n\n<p>JavaScript arrays are zero-based indexed. In other words, the first element of an array starts at index 0, the second element starts at index 1, and so on.</p>\n\n\n\n<p>To access an element in an array, you specify an index in the square brackets&nbsp;<code>[]</code>:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>arrayName&#91;index]</code></pre>\n\n\n\n<p>The following shows&nbsp;how to access the elements of the&nbsp;<code>mountains</code>&nbsp;array:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let mountains = &#91;'Everest', 'Fuji', 'Nanga Parbat'];\n\nconsole.log(mountains&#91;0]); // 'Everest'\nconsole.log(mountains&#91;1]); // 'Fuji'\nconsole.log(mountains&#91;2]); // 'Nanga Parbat'</code></pre>\n\n\n\n<p>To change the value of an element, you assign that value to the element like this:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let mountains = &#91;'Everest', 'Fuji', 'Nanga Parbat'];\nmountains&#91;2] = 'K2';\n\nconsole.log(mountains);</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&#91; 'Everest', 'Fuji', 'K2' ]</code></pre>\n\n\n\n<h2>Getting the array size</h2>\n\n\n\n<p>Typically, the <code>length</code> property of an array returns the number of elements. The following example shows how to use the <code>length</code> property:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let mountains = &#91;'Everest', 'Fuji', 'Nanga Parbat'];\nconsole.log(mountains.length); // 3</code></pre>\n\n\n\n<h2>Basic operations on arrays</h2>\n\n\n\n<p>The following explains some basic operations on arrays. And you’ll learn advanced operations such as <code>map()</code>, <code>filter()</code>, and <code>reduce()</code> in the next tutorials.</p>\n\n\n\n<h3>1) Adding an element to the end of an array</h3>\n\n\n\n<p>To add an element to the end of an array, you use the&nbsp;<code>push()</code>&nbsp;method:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let seas = &#91;'Black Sea', 'Caribbean Sea', 'North Sea', 'Baltic Sea'];\nseas.push('Red Sea');\n\nconsole.log(seas); </code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&#91; 'Black Sea', 'Caribbean Sea', 'North Sea', 'Baltic Sea', 'Red Sea' ]</code></pre>\n\n\n\n<h3>2) Adding an element to the beginning of an array</h3>\n\n\n\n<p>To add an element to the beginning of an array, you use the&nbsp;<code>unshift()</code>&nbsp;method:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let seas = &#91;'Black Sea', 'Caribbean Sea', 'North Sea', 'Baltic Sea'];\nseas.unshift('Red Sea');\n\nconsole.log(seas);</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&#91; 'Red Sea', 'Black Sea', 'Caribbean Sea', 'North Sea', 'Baltic Sea' ]</code></pre>\n\n\n\n<h3>3) Removing an element from the end of an array</h3>\n\n\n\n<p>To remove an element from the end of an array, you use the&nbsp;<code>pop()</code>&nbsp;method:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let seas = &#91;'Black Sea', 'Caribbean Sea', 'North Sea', 'Baltic Sea'];\nconst lastElement = seas.pop();\nconsole.log(lastElement); </code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Baltic Sea</code></pre>\n\n\n\n<h3>4) Removing an element from the beginning of an array</h3>\n\n\n\n<p>To remove an element from the beginning of an array, you use the&nbsp;<code>shift()</code>&nbsp;method:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let seas = &#91;'Black Sea', 'Caribbean Sea', 'North Sea', 'Baltic Sea'];\nconst firstElement = seas.shift();\n\nconsole.log(firstElement);</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Black Sea</code></pre>\n\n\n\n<h3>5) Finding an index of an element in the array</h3>\n\n\n\n<p>To find the index of an element, you use the <code>indexOf()</code> method:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let seas = &#91;'Black Sea', 'Caribbean Sea', 'North Sea', 'Baltic Sea'];\nlet index = seas.indexOf('North Sea');\n\nconsole.log(index); // 2</code></pre>\n\n\n\n<h3>6) Check if an value is an array</h3>\n\n\n\n<p>To check if a value is an array, you use <code>Array.isArray()</code> method:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>console.log(Array.isArray(seas)); // true</code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Introduction to JavaScript arrays In JavaScript, an array is an ordered list of values. Each value is called an element specified by an index. An JavaScript array has the following characteristics: First,&nbsp;an array can hold values of different types. For example, you can have an array that stores the number and string, and boolean values. [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [37],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3355"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/comments?post=3355"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3355/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/media?parent=3355"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/categories?post=3355"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/tags?post=3355"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 3357,
+    "date": "2020-11-30T05:26:45",
+    "date_gmt": "2020-11-30T05:26:45",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3357"
+    },
+    "modified": "2020-11-30T05:26:45",
+    "modified_gmt": "2020-11-30T05:26:45",
+    "slug": "array-length",
+    "status": "publish",
+    "type": "post",
+    "link": "https://computerprogramming.foobrdigital.com/array-length/",
+    "title": {
+      "rendered": "Array Length"
+    },
+    "content": {
+      "rendered": "\n<h2>What exactly is the JavaScript Array length property</h2>\n\n\n\n<p>By definition, the <code>length</code> property of an array is an <strong>unsigned, 32-bit integer</strong> that is always <strong>numerically greater than the highest index </strong>in the array.</p>\n\n\n\n<p>The value of the length is 2<sup>32</sup>. It means that an array can hold up to 4294967296 (2<sup>32</sup>) elements.</p>\n\n\n\n<p>The&nbsp;<code>length</code>&nbsp;property behaves differently depending on the array types including dense and sparse.</p>\n\n\n\n<h3>1) Dense arrays</h3>\n\n\n\n<p>A dense array is an array where its elements have contiguous indexes starting at zero.</p>\n\n\n\n<p>For dense arrays, you can use the&nbsp;<code>length</code>&nbsp;property to get the number of elements in the array. For example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let colors = &#91;'red', 'green', 'blue'];\nconsole.log(colors.length); // 3</code></pre>\n\n\n\n<p>In this example, the&nbsp;<code>length</code>&nbsp;property returns three, which is the same as the number of elements in the&nbsp;<code>colors</code>&nbsp;array.</p>\n\n\n\n<p>The following adds one more element to the&nbsp;<code>colors</code>&nbsp;array:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>colors.push('yellow');\nconsole.log(colors.length); // 4</code></pre>\n\n\n\n<p>Now, the&nbsp;<code>length</code>&nbsp;property of the&nbsp;<code>colors</code>&nbsp;array is four.</p>\n\n\n\n<p>When you empty the&nbsp;<code>colors</code>&nbsp;array, its length is zero:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>colors = &#91;];\nconsole.log(colors.length); // 0</code></pre>\n\n\n\n<h3>2) Sparse arrays</h3>\n\n\n\n<p>A sparse array is an array whose elements don’t have contiguous indexes starting at zero.</p>\n\n\n\n<p>For example, the&nbsp;<code>[10,, 20, 30]</code>&nbsp;is a sparse array because the indexes of its elements are 0, 2, and 3.</p>\n\n\n\n<p>In a sparse array, the length property doesn’t indicate the actual number of elements. It’s a number that is greater than the highest index. For example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let numbers = &#91;10, , 20, 30];\nconsole.log(numbers.length); // 4</code></pre>\n\n\n\n<p>In this example, the number of elements in the&nbsp;<code>numbers</code>&nbsp;array is three: 10, 20, and 30. The highest index is three. Therefore, the&nbsp;<code>length</code>&nbsp;property returns four.</p>\n\n\n\n<p>The following adds an element to the&nbsp;<code>numbers</code>&nbsp;array at the index 10:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>numbers&#91;10] = 100;\nconsole.log(numbers.length); // 11</code></pre>\n\n\n\n<p>In this example, the&nbsp;<code>length</code>&nbsp;property returns 11.</p>\n\n\n\n<h2>Modifying JavaScript Array length property</h2>\n\n\n\n<p>JavaScript allows you to change the value of the array&nbsp;<code>length</code>&nbsp;property. By changing the value of the length, you can remove elements from the array or make the array sparse.</p>\n\n\n\n<h3>1) Empty an array</h3>\n\n\n\n<p>If you set length to zero, the array will be empty:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>const fruits = &#91;'Apple', 'Orange', 'Strawberry'];\nfruits.length = 0;\n\nconsole.log(fruits); // &#91;]</code></pre>\n\n\n\n<h3>2) Remove elements</h3>\n\n\n\n<p>If you set the&nbsp;<code>length</code>&nbsp;property of an array to a value that is lower than the highest index, all the elements whose index is greater than or equal to the new length are removed.</p>\n\n\n\n<p>The following example changes the&nbsp;<code>length</code>&nbsp;property of the&nbsp;<code>fruits</code>&nbsp;array to two, which removes the third element from the array:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>const fruits = &#91;'Apple', 'Orange', 'Strawberry'];\nfruits.length = 2;\n\nconsole.log(fruits); // &#91; 'Apple', 'Orange' ]</code></pre>\n\n\n\n<h3>3) Make array sparse</h3>\n\n\n\n<p>If you set the&nbsp;<code>length</code>&nbsp;property of an array to a value that is higher than the highest index, the array will be spare. For example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>const fruits = &#91;'Apple', 'Orange', 'Strawberry'];\nfruits.length = 5;\n\nconsole.log(fruits); // &#91; 'Apple', 'Orange', 'Strawberry', &lt;2 empty items> ]</code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>What exactly is the JavaScript Array length property By definition, the length property of an array is an unsigned, 32-bit integer that is always numerically greater than the highest index in the array. The value of the length is 232. It means that an array can hold up to 4294967296 (232) elements. The&nbsp;length&nbsp;property behaves differently depending on the array types including dense and [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [37],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3357"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/comments?post=3357"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3357/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/media?parent=3357"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/categories?post=3357"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/tags?post=3357"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 3359,
+    "date": "2020-11-30T05:27:35",
+    "date_gmt": "2020-11-30T05:27:35",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3359"
+    },
+    "modified": "2020-11-30T05:27:35",
+    "modified_gmt": "2020-11-30T05:27:35",
+    "slug": "stack",
+    "status": "publish",
+    "type": "post",
+    "link": "https://computerprogramming.foobrdigital.com/stack/",
+    "title": {
+      "rendered": "Stack"
+    },
+    "content": {
+      "rendered": "\n<h2>Introduction to the stack data structure</h2>\n\n\n\n<p>A stack is a data structure that holds a list of elements. A stack works based on the LIFO principle i.e., Last In, First out, meaning that the most recently added element is the first one to remove.</p>\n\n\n\n<p>A stack has two main operations that occur only at the top of the stack: push and pop. The push operation places an element at the top of stack whereas the pop operation removes an element from the top of the stack.</p>\n\n\n\n<div class=\"wp-block-image\"></div>\n\n\n\n<p>The name&nbsp;<em>stack</em>&nbsp;comes from the analogy to a set of physical items e.g., DVD disc, books, stacked on top each other.</p>\n\n\n\n<p>A&nbsp;stack has many applications. For example, the simplest one is to reverse a word. To do it, you push a word into the stack, letter by letter, and pop the letters from the stack.</p>\n\n\n\n<p>The other applications of the stack are “undo” mechanism in text editors, syntax parsing, function call, and expression conversion (infix to postfix, infix to prefix, postfix to infix, and prefix to infix).</p>\n\n\n\n<p>JavaScript Array type provides the <code>push()</code> and <code>pop()</code> methods that allow you to use an array as a stack.</p>\n\n\n\n<h2>push() method</h2>\n\n\n\n<p>The&nbsp;<code>push()</code>&nbsp;method allows you to add one or more elements to the end of the array. The&nbsp;<code>push()</code>&nbsp;method returns the value of the&nbsp;<code>length</code>&nbsp;property that specifies the number of elements in the array.</p>\n\n\n\n<p>If you consider an array as a stack, the&nbsp;<code>push()</code>&nbsp;method adds one or more element at the top of the stack. The following example creates an empty array named&nbsp;<code>stack</code>&nbsp;and&nbsp;adds five numbers, one by one, at the end of the&nbsp;<code>stack</code>&nbsp;array. It is like to push each number into the top of the stack.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let stack = &#91;];\n\nstack.push(1);\nconsole.log(stack); // &#91;1]\n\nstack.push(2);\nconsole.log(stack); // &#91;1,2]\n\nstack.push(3);\nconsole.log(stack); // &#91;1,2,3]\n\nstack.push(4);\nconsole.log(stack); // &#91;1,2,3,4]\n\nstack.push(5);\nconsole.log(stack); // &#91;1,2,3,4,5]</code></pre>\n\n\n\n<p>The following figure illustrates each step in the script above.</p>\n\n\n\n<div class=\"wp-block-image\"></div>\n\n\n\n<p>Initially, the stack is empty. Each time, we call the&nbsp;<code>push()</code>&nbsp;method to add a number to the stack. After 5 calls, the stack has 5 elements.</p>\n\n\n\n<p>Note that the&nbsp;<code>push()</code>&nbsp;method also allows you to add multiple items to the end of the&nbsp;array at a time.</p>\n\n\n\n<h2>pop() method</h2>\n\n\n\n<p>The <code>pop()</code> method removes the element at the end of the array and returns the element to the caller. If the array is empty, the <code>pop()</code> method returns undefined.</p>\n\n\n\n<p>The following example shows how to pop elements from the top of the stack using the&nbsp;<code>pop()</code>&nbsp;method.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>console.log(stack.pop()); //  5\nconsole.log(stack); // &#91;1,2,3,4];\n\nconsole.log(stack.pop()); //  4\nconsole.log(stack); // &#91;1,2,3];\n\nconsole.log(stack.pop()); //  3\nconsole.log(stack); // &#91;1,2];\n\nconsole.log(stack.pop()); //  2\nconsole.log(stack); // &#91;1];\n\nconsole.log(stack.pop()); //  1\nconsole.log(stack); // &#91;]; -> empty\n\nconsole.log(stack.pop()); //  undefined</code></pre>\n\n\n\n<p>The figure below illustrates each step in the script.</p>\n\n\n\n<p>Initially, the stack has 5 elements.&nbsp;The&nbsp;<code>pop()</code>&nbsp;method removes the element at the end of the array i.e., at the top of the stack one at a time. After five operations, the stack is empty.</p>\n\n\n\n<h2>Reverse a string using a JavaScript stack</h2>\n\n\n\n<p>The following example shows you how to reverse a string using a stack.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function reverse(str) {\n    let stack = &#91;];\n    // push letter into stack\n    for (let i = 0; i &lt; str.length; i++) {\n        stack.push(str&#91;i]);\n    }\n    // pop letter from the stack\n    let reverseStr = '';\n    while (stack.length > 0) {\n        reverseStr += stack.pop();\n    }\n    return reverseStr;\n}\nconsole.log(reverse('JavaScript Stack')); //kcatS tpircSavaJ</code></pre>\n\n\n\n<p>How the script works.</p>\n\n\n\n<p>The&nbsp;<code>reverse()</code>&nbsp;function accepts a string argument and returns its reversed version with the following logic:</p>\n\n\n\n<ol><li>First, loop through the&nbsp;<code>str</code>&nbsp;and push each letter into the&nbsp;<code>stack</code>&nbsp;array.</li><li>Second, pop each letter from the stack and construct the reversed string.</li></ol>\n\n\n\n<p>In this tutorial, we have shown you how to use an array as a JavaScript stack data structure that has two main operations: push and pop.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Introduction to the stack data structure A stack is a data structure that holds a list of elements. A stack works based on the LIFO principle i.e., Last In, First out, meaning that the most recently added element is the first one to remove. A stack has two main operations that occur only at the [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [37],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3359"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/comments?post=3359"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3359/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/media?parent=3359"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/categories?post=3359"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/tags?post=3359"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 3361,
+    "date": "2020-11-30T05:28:18",
+    "date_gmt": "2020-11-30T05:28:18",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3361"
+    },
+    "modified": "2020-11-30T05:28:18",
+    "modified_gmt": "2020-11-30T05:28:18",
+    "slug": "queue",
+    "status": "publish",
+    "type": "post",
+    "link": "https://computerprogramming.foobrdigital.com/queue/",
+    "title": {
+      "rendered": "Queue"
+    },
+    "content": {
+      "rendered": "\n<h2>Introduction to the Queue data structure</h2>\n\n\n\n<p>A queue&nbsp;is&nbsp;an ordered list of elements where an element is inserted at the end of the queue and is removed from the front of the queue.</p>\n\n\n\n<p>Unlike a stack, which works based on the last-in, first-out (LIFO) principle, a queue works based on the first-in, first-out (FIFO) principle.</p>\n\n\n\n<p>A queue has two main operations involving inserting a new element and removing an existing element.</p>\n\n\n\n<p>The insertion operation is called&nbsp;<em>enqueue</em>, and the removal operation is called&nbsp;<em>dequeue</em>. The enqueue operation inserts an element at the end of the queue, whereas the dequeue operation removes an element from the front of a queue.</p>\n\n\n\n<p>The following figure illustrates a queue:</p>\n\n\n\n\n\n\n\n<p>Another important operation of a queue is getting the element at the front called&nbsp;<em>peek</em>. Different from the&nbsp;<em>dequeue</em>&nbsp;operation, the&nbsp;<em>peek</em>&nbsp;operation just returns the element at the front without&nbsp;modifying the queue.</p>\n\n\n\n<p>The name&nbsp;<em>queue</em>&nbsp;comes from the analogy to a queue of customers at a bank. The customer who comes first will be served first, and the one who comes later is queued at the end of the queue and will be served later.</p>\n\n\n\n<h2>Implementing a&nbsp;JavaScript&nbsp;queue using an array</h2>\n\n\n\n<p>You can use an array as a queue by using two methods of the Array type:</p>\n\n\n\n<ul><li>Add an element at the end of the array using the&nbsp;<code>push()</code>&nbsp;method. This method is equivalent to the enqueue operation.</li><li>Remove an element from the&nbsp;front of an array using the&nbsp;<code>shift()</code>&nbsp;method. It is the same as the dequeue operation.</li></ul>\n\n\n\n<p>Let’s implement a JavaScript queue data structure by using an array.</p>\n\n\n\n<p>The following is the constructor of the queue:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function Queue() {\n   this.elements = &#91;];\n}</code></pre>\n\n\n\n<p>The&nbsp;<code>Queue()</code>&nbsp;constructor function uses an array to store its&nbsp;elements.</p>\n\n\n\n<p>The&nbsp;<code>enqueue()</code>&nbsp;method adds an element at the end of the queue. We use the&nbsp;<code>push()</code>&nbsp;method of the array object to insert the new element at the end of the queue.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Queue.prototype.enqueue = function (e) {\n   this.elements.push(e);\n};</code></pre>\n\n\n\n<p>The&nbsp;<code>dequeue()</code>&nbsp;method removes an element from the front of the queue. In the&nbsp;<code>dequeue()</code>&nbsp;method, we use the&nbsp;<code>shift()</code>&nbsp;method of the array to remove an element at the front of the queue.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>// remove an element from the front of the queue\nQueue.prototype.dequeue = function () {\n    return this.elements.shift();\n};</code></pre>\n\n\n\n<p>The&nbsp;<code>isEmpty()</code>&nbsp;method checks if a queue is empty by checking if the&nbsp;<code>length</code>&nbsp;property of the array is zero.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>// check if the queue is empty\nQueue.prototype.isEmpty = function () {\n    return this.elements.length == 0;\n};</code></pre>\n\n\n\n<p>The&nbsp;<code>peek()</code>&nbsp;method accesses the element at the front of the queue without modifying it.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>// get the element at the front of the queue\nQueue.prototype.peek = function () {\n    return !this.isEmpty() ? this.elements&#91;0] : undefined;\n};</code></pre>\n\n\n\n<p>To query the length of a queue, we develop the&nbsp;<code>length()</code>&nbsp;method:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Queue.prototype.length = function() {\n    return this.elements.length;\n}</code></pre>\n\n\n\n<p>To create a new queue from the&nbsp;<code>Queue()</code>&nbsp;constructor function, you use the new keyword as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let q = new Queue();</code></pre>\n\n\n\n<p>To enqueue numbers from 1 to 7, you use the following code.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>for (let i = 1; i &lt;= 7; i++) {\n    q.enqueue(i);\n}</code></pre>\n\n\n\n<p>To get the number at the front of the queue, you use the&nbsp;<code>peek()</code>&nbsp;method.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>// get the current item at the front of the queue\nconsole.log(q.peek()); // 1</code></pre>\n\n\n\n<p>To get the current length of the queue, you use the&nbsp;<code>length()</code>&nbsp;method as in the following example.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>// get the current length of queue\nconsole.log(q.length()); // 7\n</code></pre>\n\n\n\n<p>To remove the element at the front of the queue, you use the&nbsp;<code>dequeue()</code>&nbsp;method as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>// dequeue all elements\nwhile (!q.isEmpty()) {\n    console.log(q.dequeue());\n}\n\n//1\n//2\n//3\n//4\n//5\n//6\n//7</code></pre>\n\n\n\n<p>Now, you should have a good understanding of the queue data structure and know how to use the&nbsp;<code>push()</code>&nbsp;and&nbsp;<code>shift()</code>&nbsp;methods of the Array type to implement a queue in JavaScript.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Introduction to the Queue data structure A queue&nbsp;is&nbsp;an ordered list of elements where an element is inserted at the end of the queue and is removed from the front of the queue. Unlike a stack, which works based on the last-in, first-out (LIFO) principle, a queue works based on the first-in, first-out (FIFO) principle. A queue [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [37],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3361"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/comments?post=3361"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3361/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/media?parent=3361"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/categories?post=3361"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/tags?post=3361"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 3363,
+    "date": "2020-11-30T05:29:11",
+    "date_gmt": "2020-11-30T05:29:11",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3363"
+    },
+    "modified": "2020-11-30T05:29:11",
+    "modified_gmt": "2020-11-30T05:29:11",
+    "slug": "splice",
+    "status": "publish",
+    "type": "post",
+    "link": "https://computerprogramming.foobrdigital.com/splice/",
+    "title": {
+      "rendered": "Splice"
+    },
+    "content": {
+      "rendered": "\n<h2>Deleting elements using JavaScript Array’s&nbsp;<code>splice()</code>&nbsp;method</h2>\n\n\n\n<p>To &nbsp;delete elements in an array, you pass two arguments into the&nbsp;<code>splice()</code>&nbsp;method as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Array.splice(position,num);</code></pre>\n\n\n\n<p>The&nbsp;<code>position</code>&nbsp;specifies the position of the first item to delete&nbsp;and the num argument determines the number of elements to delete.</p>\n\n\n\n<p>The&nbsp;<code>splice()</code>&nbsp;method changes the original array and returns an array that contains the deleted elements.</p>\n\n\n\n<p>Let’s take a look at&nbsp;the following example.</p>\n\n\n\n<p>Suppose, you have an array&nbsp;<code>scores</code>&nbsp;that contains five numbers from 1 to 5.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let scores = &#91;1, 2, 3, 4, 5];</code></pre>\n\n\n\n<p>The following statement&nbsp;deletes three elements of the&nbsp;<code>scores</code>&nbsp;array starting from the first element.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let deletedScores = scores.splice(0, 3);</code></pre>\n\n\n\n<p>The&nbsp;<code>scores</code>&nbsp;array now contains two elements.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>console.log(scores); //  &#91;4, 5]</code></pre>\n\n\n\n<p>And the&nbsp;<code>deletedScores</code>&nbsp;array contains three elements.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>console.log(deletedScores); // &#91;1, 2, 3]</code></pre>\n\n\n\n<p>The following figure illustrates&nbsp;the&nbsp;<code>scores.splice(0,3)</code>&nbsp;method call above.</p>\n\n\n\n<h2>Inserting elements using JavaScript Array&nbsp;<code>splice()</code>&nbsp;method</h2>\n\n\n\n<p>You can insert one or more elements into an array by passing three or more arguments to the&nbsp;<code>splice()</code>&nbsp;method with the second argument is zero.</p>\n\n\n\n<p>Consider the following syntax.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Array.splice(position,0,new_element_1,new_element_2,...);</code></pre>\n\n\n\n<p>In this syntax:</p>\n\n\n\n<ul><li>The&nbsp;<code>position</code>&nbsp;specifies the starting position in the array that the new elements will be inserted.</li><li>The second argument is zero (0) that instructs the&nbsp;<code>splice()</code>&nbsp;method&nbsp;to not delete any array elements.</li><li>The third argument, fourth argument, and so on are the new elements that are inserted into the array.</li></ul>\n\n\n\n<p>Note that the&nbsp;<code>splice()</code>&nbsp;method actually changes the original array. Also, the&nbsp;<code>splice()</code>&nbsp;method does not remove&nbsp;any&nbsp;elements, therefore, it returns an empty array.&nbsp;For example:</p>\n\n\n\n<p>Assuming that you have an array&nbsp;named&nbsp;<code>colors</code>&nbsp;with three strings.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let colors = &#91;'red', 'green', 'blue'];</code></pre>\n\n\n\n<p>The following statement inserts one element after the second element.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>colors.splice(2, 0, 'purple');</code></pre>\n\n\n\n<p>The&nbsp;<code>colors</code>&nbsp;array now has four elements with the new element inserted in the second position.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>console.log(colors); // &#91;\"red\", \"green\", \"purple\", \"blue\"]</code></pre>\n\n\n\n<p>The following figure&nbsp;demonstrates the method call above.</p>\n\n\n\n<p>You can insert more than one element by passing the fourth argument, the fifth argument, and so on to the&nbsp;<code>splice()</code>&nbsp;method as in the following example.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>colors.splice(1, 0, 'yellow', 'pink');\nconsole.log(colors); \n// &#91;\"red\", \"yellow\", \"pink\", \"green\", \"purple\", \"blue\"]</code></pre>\n\n\n\n<h2>Replacing elements using JavaScript Array&nbsp;<code>splice()</code>&nbsp;method</h2>\n\n\n\n<p>The&nbsp;<code>splice()</code>&nbsp;method allows you to insert new elements into an array while deleting existing elements simultaneously.</p>\n\n\n\n<p>To do this, you pass at least three arguments with the second one that specifies the number of items to delete and the third one that indicates the elements to insert.</p>\n\n\n\n<p>Note that the number of&nbsp;elements to delete needs not to be the same as the number of elements to insert.</p>\n\n\n\n<p>Suppose you have an array of programming languages with four elements as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let languages = &#91;'C', 'C++', 'Java', 'JavaScript'];</code></pre>\n\n\n\n<p>The following statement replaces the second element by a new one.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>languages.splice(1, 1, 'Python');</code></pre>\n\n\n\n<p>The&nbsp;<code>languages</code>&nbsp;array now still has four elements with the new second argument is&nbsp;<code>'Python'</code>&nbsp;instead of&nbsp;<code>'C++'</code>.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>console.log(languages); \n// &#91;\"C\", \"Python\", \"Java\", \"JavaScript\"]</code></pre>\n\n\n\n<p>The following figure illustrates the method call above.</p>\n\n\n\n\n\n\n\n<p>You can replace one element with multiple elements by passing more arguments into the&nbsp;<code>splice()</code>&nbsp;method as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>languages.splice(2,1,'C#','Swift','Go');</code></pre>\n\n\n\n<p>The statement deletes one element from the second element i.e.,&nbsp;<code>Java</code>&nbsp;and inserts three new elements into the&nbsp;<code>languages</code>&nbsp;array. The result is as follows.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>console.log(languages); // &#91;\"C\", \"Python\", \"C#\", \"Swift\", \"Go\", \"JavaScript\"]</code></pre>\n\n\n\n<p>In this tutorial, you have learned how to use the JavaScript Array&nbsp;<code>splice()</code>&nbsp;method to delete existing elements, insert new elements, and replace elements in an array.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Deleting elements using JavaScript Array’s&nbsp;splice()&nbsp;method To &nbsp;delete elements in an array, you pass two arguments into the&nbsp;splice()&nbsp;method as follows: The&nbsp;position&nbsp;specifies the position of the first item to delete&nbsp;and the num argument determines the number of elements to delete. The&nbsp;splice()&nbsp;method changes the original array and returns an array that contains the deleted elements. Let’s take a [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [37],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3363"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/comments?post=3363"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3363/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/media?parent=3363"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/categories?post=3363"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/tags?post=3363"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 3373,
+    "date": "2020-11-30T05:41:50",
+    "date_gmt": "2020-11-30T05:41:50",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3373"
+    },
+    "modified": "2020-11-30T05:41:50",
+    "modified_gmt": "2020-11-30T05:41:50",
+    "slug": "slice",
+    "status": "publish",
+    "type": "post",
+    "link": "https://computerprogramming.foobrdigital.com/slice/",
+    "title": {
+      "rendered": "Slice( )"
+    },
+    "content": {
+      "rendered": "\n<h2>Introduction to JavaScript Array slice() method</h2>\n\n\n\n<p>The&nbsp;<code>slice()</code>&nbsp;method accepts two optional parameters as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>slice(start, stop);</code></pre>\n\n\n\n<p>Both&nbsp;<code>start&nbsp;</code>and&nbsp;<code>stop&nbsp;</code>parameters are optional.</p>\n\n\n\n<p>The&nbsp;<code>start&nbsp;</code>parameter determines the zero-based index at which to start extraction. If the&nbsp;<code>start</code>&nbsp;is&nbsp;<code>undefined</code>,&nbsp;<code>slice()</code>&nbsp;begins at&nbsp;<code>0</code>.</p>\n\n\n\n<p>The&nbsp;<code>stop&nbsp;</code>parameter, as its name implies, is a zero-based index at which to end extraction. The&nbsp;<code>slice()</code>&nbsp;method extracts up to&nbsp;<code>stop-1</code>. It means that the&nbsp;<code>slice()</code>&nbsp;method doesn’t include the element at the&nbsp;<code>stop</code>&nbsp;position in the new array. If you omit the&nbsp;<code>stop&nbsp;</code>parameter, the&nbsp;<code>slice()</code>&nbsp;method will use the length of the array for the&nbsp;<code>stop&nbsp;</code>parameter.</p>\n\n\n\n<p>The&nbsp;<code>slice()</code>&nbsp;returns a new array that contains the elements of the original array. It’s important to keep in mind that the&nbsp;<code>slice()</code>&nbsp;method performs the shallow copy of elements to the new array only. In addition, it doesn’t change the source array.</p>\n\n\n\n<h2>Clone an array</h2>\n\n\n\n<p>The&nbsp;<code>slice()</code>&nbsp;is used to clone an array as shown in the following example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>var numbers = &#91;1,2,3,4,5];\nvar newNumbers = numbers.slice();</code></pre>\n\n\n\n<p>In this example, the&nbsp;<code>newNumbers</code>&nbsp;array contains all the elements of the&nbsp;<code>numbers</code>&nbsp;array.</p>\n\n\n\n<h2>Copy a portion of an array</h2>\n\n\n\n<p>The typical use of the&nbsp;<code>slice()</code>&nbsp;method is to copy a portion of an array without modifying the source array. Here is an example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>var colors = &#91;'red','green','blue','yellow','purple'];\nvar rgb = colors.slice(0,3);\nconsole.log(rgb); // &#91;\"red\", \"green\", \"blue\"]\n</code></pre>\n\n\n\n<p>The&nbsp;<code>rgb</code>&nbsp;array contains the first three elements of the&nbsp;<code>colors</code>&nbsp;array. The source array&nbsp;<code>colors</code>&nbsp;remains intact.</p>\n\n\n\n<h2>Convert array-like objects into arrays</h2>\n\n\n\n<p>The&nbsp;<code>slice()</code>&nbsp;method is used to convert an array-like object into an array. For example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function toArray() {\n  return Array.prototype.slice.call(arguments);\n}\n\nvar classification = toArray('A','B','C');\n\nconsole.log(classification); // &#91;\"A\", \"B\", \"C\"]\n</code></pre>\n\n\n\n<p>In this example, the&nbsp;<code>arguments</code>&nbsp;of the&nbsp;<code>toArray()</code>&nbsp;function is an array-like object. Inside the&nbsp;<code>toArray()</code>&nbsp;function, we called the&nbsp;<code>slice()</code>&nbsp;method to convert the arguments object into an array.</p>\n\n\n\n<p>Every argument we pass to the&nbsp;<code>toArray()</code>&nbsp;function will be the elements of the new array.</p>\n\n\n\n<p>Another typical example that you often see is converting a&nbsp;<code>NodeList</code>&nbsp;into an array as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>var p = document.querySelectorAll('p');\nvar list = Array.prototype.slice.call(p);\n</code></pre>\n\n\n\n<p>In this example, first, we used the&nbsp;<code>document.querySelectorAll()</code>&nbsp;to get all&nbsp;<code>p</code>&nbsp;nodes of the HTML document. The result of this method is a&nbsp;<code>NodeList</code>&nbsp;object, which is an array-like object. Then, we called the&nbsp;<code>slice()</code>&nbsp;method to convert the&nbsp;<code>NodeList</code>&nbsp;object into an array.</p>\n\n\n\n<p>Sometimes, you see the following syntax:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>var list = &#91;].slice.call(document.querySelectorAll('p'));\n</code></pre>\n\n\n\n<p>In this example, we instantiated an empty array&nbsp;<code>[]</code>&nbsp;and indirectly accessed the&nbsp;<code>slice()</code>&nbsp;method of the&nbsp;<code>Array.prototype</code>&nbsp;method through the empty array. The effect is the same as the one that uses the&nbsp;<code>Array.prototype</code>&nbsp;directly.</p>\n\n\n\n<p>In this tutorial, you have learned how to use the JavaScript array&nbsp;<code>slice()</code>&nbsp;method to copy an entire or a subset of the array and convert an array-like object into an array.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Introduction to JavaScript Array slice() method The&nbsp;slice()&nbsp;method accepts two optional parameters as follows: Both&nbsp;start&nbsp;and&nbsp;stop&nbsp;parameters are optional. The&nbsp;start&nbsp;parameter determines the zero-based index at which to start extraction. If the&nbsp;start&nbsp;is&nbsp;undefined,&nbsp;slice()&nbsp;begins at&nbsp;0. The&nbsp;stop&nbsp;parameter, as its name implies, is a zero-based index at which to end extraction. The&nbsp;slice()&nbsp;method extracts up to&nbsp;stop-1. It means that the&nbsp;slice()&nbsp;method doesn’t include the element [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [37],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3373"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/comments?post=3373"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3373/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/media?parent=3373"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/categories?post=3373"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/tags?post=3373"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 3375,
+    "date": "2020-11-30T05:43:15",
+    "date_gmt": "2020-11-30T05:43:15",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3375"
+    },
+    "modified": "2020-11-30T05:43:15",
+    "modified_gmt": "2020-11-30T05:43:15",
+    "slug": "index",
+    "status": "publish",
+    "type": "post",
+    "link": "https://computerprogramming.foobrdigital.com/index/",
+    "title": {
+      "rendered": "Index( )"
+    },
+    "content": {
+      "rendered": "\n<h2>Introduction to the JavaScript array&nbsp;<code>indexOf()</code>&nbsp;method</h2>\n\n\n\n<p>To find the position of an element in an array, you use the <code>indexOf()</code> method. This method returns the index of the first occurrence the element that you want to find, or -1 if the element is not found.</p>\n\n\n\n<p>The following illustrates the syntax of the&nbsp;<code>indexOf()</code>&nbsp;method.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Array.indexOf(searchElement, fromIndex)\n</code></pre>\n\n\n\n<p>As shown above, the&nbsp;<code>indexOf()</code>&nbsp;method accepts two named arguments.</p>\n\n\n\n<ol><li>The&nbsp;<code>searchElement&nbsp;</code>argument is the element that you want to find in the array.</li><li>The&nbsp;<code>fromIndex</code>&nbsp;is an array index at which the function starts the search.</li></ol>\n\n\n\n<p>The&nbsp;<code>fromIndex</code>&nbsp;argument can be a positive or negative integer. If the&nbsp;<code>fromIndex</code>&nbsp;argument is negative, the&nbsp;<code>indexOf()</code>&nbsp;method starts searching at array’s length plus&nbsp;<code>fromIndex</code>.</p>\n\n\n\n<p>In case&nbsp;you omit the&nbsp;<code>fromIndex</code>&nbsp;argument, the&nbsp;<code>indexOf()</code>&nbsp;method starts searching from the begining of the string.</p>\n\n\n\n<p>Notice that the <code>indexOf()</code> method uses the strict equality comparison algorithm that is similar to the triple-equals operator (<code>===</code>) when comparing the <code>searchElement</code> with the elements in the array.</p>\n\n\n\n<h2>The JavaScript array&nbsp;<code>indexOf()</code>&nbsp;method examples</h2>\n\n\n\n<p>Suppose, you have an array&nbsp;<code>scores</code>&nbsp;that consists of six numbers as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>var scores = &#91;10, 20, 30, 10, 40, 20];</code></pre>\n\n\n\n<p>The following example uses the&nbsp;<code>indexOf()</code>&nbsp;method to find the elements in the&nbsp;<code>scores</code>&nbsp;array:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>console.log(scores.indexOf(10)); // 0\nconsole.log(scores.indexOf(30)); // 2\nconsole.log(scores.indexOf(50)); // -1\nconsole.log(scores.indexOf(20)); // 1</code></pre>\n\n\n\n<p>And the following example uses the&nbsp;<code>fromIndex()</code>&nbsp;with the negative values:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>console.log(scores.indexOf(20,-1)); // 5 (fromIndex = 6+ (-1) = 5)\nconsole.log(scores.indexOf(20,-5)); // 1 (fromIndex = 6+ (-5) = 1)</code></pre>\n\n\n\n<p>Assuming that you have the following array of <a href=\"https://www.javascripttutorial.net/javascript-objects/\">o</a>b<a href=\"https://www.javascripttutorial.net/javascript-objects/\">jects</a>, where each object has two properties: <code>name</code> and <code>age</code>.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>var guests = &#91;\n    {name: 'John Doe', age: 30},\n    {name: 'Lily Bush', age: 20},\n    {name: 'William Gate', age: 25}\n];</code></pre>\n\n\n\n<p>The following statement returns&nbsp;<code>-1</code>&nbsp;even though the first element of the&nbsp;<code>guests</code>&nbsp;array and the&nbsp;<code>searchElement</code>&nbsp;have the same values in the&nbsp;<code>name</code>&nbsp;and&nbsp;<code>ages</code>&nbsp;properties. This is because they are two different objects.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>console.log(guests.indexOf({\n    name: 'John Doe',\n    age: 30\n})); // -1</code></pre>\n\n\n\n<p>Sometimes, you want to find the indices of all occurrences of an element in an array. The following&nbsp;<code>find()</code>&nbsp;function uses the&nbsp;<code>indexOf()</code>&nbsp;method to do so.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function find(needle, haystack) {\n    var results = &#91;];\n    var idx = haystack.indexOf(needle);\n    while (idx != -1) {\n        results.push(idx);\n        idx = haystack.indexOf(needle, idx + 1);\n    }\n    return results;\n}</code></pre>\n\n\n\n<p>The following example uses the&nbsp;<code>find()</code>&nbsp;function above to return an array of positions of the number 10 in the&nbsp;<code>scores</code>&nbsp;array.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>console.log(find(10,scores)); // &#91;0, 3]</code></pre>\n\n\n\n<h2>JavaScript array&nbsp;<code>lastIndexOf()</code>&nbsp;method</h2>\n\n\n\n<p>The Array type has another method called <code>lastIndexOf()</code> that provides the similar functionality to the <code>indexOf()</code> method.</p>\n\n\n\n<p>The following illustrates the syntax of the&nbsp;<code>lastIndexOf()</code>&nbsp;method:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Array.lastIndexOf(searchElement&#91;, fromIndex = Array.length - 1])</code></pre>\n\n\n\n<p>The&nbsp;<code>lastIndexOf()</code>&nbsp;method returns the index of the last occurrence of the&nbsp;<code>searchElement</code>&nbsp;in the array. It returns&nbsp;<code>-1</code>&nbsp;if it cannot find the element.</p>\n\n\n\n<p>Different from the&nbsp;<code>indexOf()</code>&nbsp;method, the&nbsp;<code>lastIndexOf()</code>&nbsp;method searches for&nbsp;the element&nbsp;backward, starting at&nbsp;<code>fromIndex.</code></p>\n\n\n\n<p>The following statements return the last indices of the number 10 and 20 in the&nbsp;<code>scores</code>&nbsp;array.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>console.log(scores.lastIndexOf(10));// 3\nconsole.log(scores.lastIndexOf(20));// 5\n</code></pre>\n\n\n\n<p>Because the number 50 is not in the&nbsp;<code>scores</code>&nbsp;array, the following statement returns&nbsp;<code>-1</code>.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>console.log(scores.lastIndexOf(50));// -1</code></pre>\n\n\n\n<p>In this tutorial, you have learned how to use the JavaScript array&nbsp;<code>indexOf()</code>&nbsp;and&nbsp;<code>lastIndexOf()</code>&nbsp;methods to locate an element in the array.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Introduction to the JavaScript array&nbsp;indexOf()&nbsp;method To find the position of an element in an array, you use the indexOf() method. This method returns the index of the first occurrence the element that you want to find, or -1 if the element is not found. The following illustrates the syntax of the&nbsp;indexOf()&nbsp;method. As shown above, the&nbsp;indexOf()&nbsp;method accepts two named arguments. [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [37],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3375"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/comments?post=3375"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3375/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/media?parent=3375"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/categories?post=3375"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/tags?post=3375"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 3377,
+    "date": "2020-11-30T05:44:26",
+    "date_gmt": "2020-11-30T05:44:26",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3377"
+    },
+    "modified": "2020-11-30T05:44:26",
+    "modified_gmt": "2020-11-30T05:44:26",
+    "slug": "every",
+    "status": "publish",
+    "type": "post",
+    "link": "https://computerprogramming.foobrdigital.com/every/",
+    "title": {
+      "rendered": "Every"
+    },
+    "content": {
+      "rendered": "\n<h2>Checking array elements using the&nbsp;<code>for</code>&nbsp;loop</h2>\n\n\n\n<p>Sometimes, you need to test whether every element of an array satisfies a specified condition.</p>\n\n\n\n<p>Typically, you use a  <code>for </code>loop to iterate all elements and check each individual element against the condition. Suppose that you have an array <code>numbers</code> with three elements:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let numbers = &#91;1, 3, 5];</code></pre>\n\n\n\n<p>The following code checks if every element in the&nbsp;<code>numbers</code>&nbsp;array is greater than zero:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let numbers = &#91;1, 3, 5];\nlet result = true;\nfor (let i = 0; i &lt; numbers.length; i++) {\n    if (numbers&#91;i] &lt;= 0) {\n        result = false;\n        break;\n    }\n}\nconsole.log(result);</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>true</code></pre>\n\n\n\n<p>How it works:</p>\n\n\n\n<ul><li>First, initialize the  <code>result</code> variable to <code>true</code>.</li><li>Second, iterate over the elements of the <code>numbers</code> array and check whether each element is less than or equal zero. If it is the case, set the <code>result</code> variable to <code>false</code> and terminate the loop immediately using the <code>break</code> statement. In case no element is less than or equal zero, the value of the <code>result</code> variable remains  <code>true</code>.</li></ul>\n\n\n\n<p>This code is simple and straight forward. However, it is quite verbose.</p>\n\n\n\n<p>JavaScript&nbsp;<code>Array</code>&nbsp;type provides the&nbsp;<code>every()</code>&nbsp;method that allows you to check if every element of an array pass a test in a shorter and cleaner way.</p>\n\n\n\n<h2>Introduction to JavaScript Array&nbsp;<code>every()</code>&nbsp;method</h2>\n\n\n\n<p>Starting from ES5, JavaScript Array type provides a method <code>every()</code> that tests every element in an array.</p>\n\n\n\n<p>The following example uses the&nbsp;<code>every()</code>&nbsp;to check if every element of the numbers array is greater than zero:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let numbers = &#91;1, 3, 5];\nlet result = numbers.every(function (e) {\n    return e > 0;\n});\n\nconsole.log(result);</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>true</code></pre>\n\n\n\n<p>By using the ES6 arrow functions, the code can be even shorter:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let numbers = &#91;1, 3, 5];\n\nlet result = numbers.every( e  => e > 0);\n\nconsole.log(result);</code></pre>\n\n\n\n<p>It is also much cleaner, isn’t it?</p>\n\n\n\n<p>The following illustrates the syntax of the&nbsp;<code>every()</code>&nbsp;method.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>arrayObject.every(callback&#91;, thisArg])</code></pre>\n\n\n\n<p>The&nbsp;<code>every()</code>&nbsp;method accepts two named arguments:&nbsp;<code>callback</code>&nbsp;and&nbsp;<code>thisArg</code>.</p>\n\n\n\n<h3>1) The&nbsp;<code>callback</code>&nbsp;argument</h3>\n\n\n\n<p>The&nbsp;<code>callback</code>&nbsp;is a function that tests each element of the array. The&nbsp;<code>callback()</code>&nbsp;function has the following form:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function callback(currentElement, index, array){\n   //...\n}</code></pre>\n\n\n\n<p>The&nbsp;<code>callback()</code>&nbsp;function takes three arguments:</p>\n\n\n\n<ul><li>First, the&nbsp;<code>currentElement</code>&nbsp;is the current element that is being processed.</li><li>Second, the&nbsp;<code>index</code>&nbsp;is the index &nbsp;of the&nbsp;<code>currentElement</code>.</li><li>Third, the&nbsp;<code>array</code>&nbsp;is the array that the&nbsp;<code>every()</code>&nbsp;method was called upon.</li></ul>\n\n\n\n<p>The&nbsp;<code>currentElement</code>&nbsp;argument is required whereas the&nbsp;<code>index</code>&nbsp;and&nbsp;<code>array</code>&nbsp;arguments are optional.</p>\n\n\n\n<h3>2) The&nbsp;<code>thisArg</code>&nbsp;argument</h3>\n\n\n\n<p>The&nbsp;<code>thisArg</code>&nbsp;argument of the&nbsp;<code>every()</code>&nbsp;method is optional. If you pass the&nbsp;<code>thisArg</code>&nbsp;argument into the method, the&nbsp;<code>this</code>&nbsp;value inside the&nbsp;<code>callback</code>&nbsp;function will reference the&nbsp;<code>thisArg</code>&nbsp;argument.</p>\n\n\n\n<p>The&nbsp;<code>every()</code>&nbsp;method returns&nbsp;<code>true</code>&nbsp;if the&nbsp;<code>callback</code>&nbsp;function returns a truthy value for every array element; otherwise, it returns&nbsp;<code>false</code>.</p>\n\n\n\n<p>Note that the&nbsp;<code>every()</code>&nbsp;method executes the&nbsp;<code>callback()</code>&nbsp;function on every element in the array until it finds the one that causes the&nbsp;<code>callback()</code>&nbsp;return a falsy value.</p>\n\n\n\n<p>In other words, the&nbsp;<code>every()</code>&nbsp;will stop calling the&nbsp;<code>callback()</code>&nbsp;function and return&nbsp;<code>false</code>&nbsp;once there is an array element that causes&nbsp;<code>callback()</code>&nbsp;to return a falsy value.</p>\n\n\n\n<p>Let’s take a look at some more examples of using the&nbsp;<code>every()</code>&nbsp;method.</p>\n\n\n\n<h2>More JavaScript Array&nbsp;<code>every()</code>&nbsp;method examples</h2>\n\n\n\n<p>The following example tests whether all the array elements are the even numbers</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let numbers = &#91;1, 3, 5];\nlet isEven = numbers.every(function (e) {\n    return e % 2 == 0;\n});\n\nconsole.log(isEven);</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>false</code></pre>\n\n\n\n<p>In contrast, the following example tests if all the array elements&nbsp;are the odd numbers.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let numbers = &#91;1, 3, 5];\n\nlet isOdd = numbers.every(function (e) {\n    return Math.abs(e % 2) == 1;\n});\n\nconsole.log(isOdd);</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>true</code></pre>\n\n\n\n<p>Suppose that you have an object with two properties:&nbsp;<code>min</code>&nbsp;and&nbsp;<code>max</code>:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let range = {\n    min: 0,\n    mas: 10\n};</code></pre>\n\n\n\n<p>The following example tests whether all elements in the&nbsp;<code>numbers</code>&nbsp;array is in the range specified by the&nbsp;<code>min</code>&nbsp;and&nbsp;<code>max</code>&nbsp;of the&nbsp;<code>range</code>&nbsp;object.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let numbers = &#91;1, 3, 5];\n\nlet range = {\n    min: 0,\n    max: 10\n};\n\nlet isInRange = numbers.every(function (e) {\n    return e >= this.min &amp;&amp; e &lt;= this.max;\n}, range);</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>true</code></pre>\n\n\n\n<p>In this example, we pass the <code>range</code> object to the <code>every()</code> method as the second argument. And inside the <code>callback()</code> function, we reference the <code>range</code> object using the <code>this</code> keyword.</p>\n\n\n\n<h2>Caution: Empty arrays</h2>\n\n\n\n<p>If you call the&nbsp;<code>every()</code>&nbsp;method on an empty array, the method will always return&nbsp;<code>true</code>&nbsp;for any condition. For example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let gtZero = &#91;].every(e => e > 0); // any condition\nlet ltZero = &#91;].every(e => e &lt; 0); // any condition\n\nconsole.log('gtZero:', gtZero);\nconsole.log('ltZero:', ltZero);</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>gtZero: true\nltZero: true</code></pre>\n\n\n\n<p>In this tutorial, you have learned how to use the JavaScript Array&nbsp;<code>every()</code>&nbsp;method to test whether all elements in an array pass the test provided by a test function.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Checking array elements using the&nbsp;for&nbsp;loop Sometimes, you need to test whether every element of an array satisfies a specified condition. Typically, you use a  for loop to iterate all elements and check each individual element against the condition. Suppose that you have an array numbers with three elements: The following code checks if every element in the&nbsp;numbers&nbsp;array is greater than zero: [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [37],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3377"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/comments?post=3377"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3377/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/media?parent=3377"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/categories?post=3377"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/tags?post=3377"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 3379,
+    "date": "2020-11-30T05:45:53",
+    "date_gmt": "2020-11-30T05:45:53",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3379"
+    },
+    "modified": "2020-11-30T05:45:53",
+    "modified_gmt": "2020-11-30T05:45:53",
+    "slug": "some",
+    "status": "publish",
+    "type": "post",
+    "link": "https://computerprogramming.foobrdigital.com/some/",
+    "title": {
+      "rendered": "Some ( )"
+    },
+    "content": {
+      "rendered": "\n<h2>Introduction to the JavaScript Array&nbsp;<code>some()</code>&nbsp;method</h2>\n\n\n\n<p>Sometimes, you want to check if an array has at least one element that meets a specified condition.</p>\n\n\n\n<p>For example, to check if the following array has at least one element less than 5:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let marks = &#91; 4, 5, 7, 9, 10, 3 ];</code></pre>\n\n\n\n<p>…you typically use a <code>for</code> loop, like this:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let marks = &#91; 4, 5, 7, 9, 10, 3 ];\n\nlet lessThanFive = false;\n\nfor (let index = 0; index &lt; marks.length; index++) {\n    if (marks&#91;index] &lt; 5) {\n        lessThanFive = true;\n        break;\n    }\n}\n\nconsole.log(lessThanFive);</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>true</code></pre>\n\n\n\n<p>How it works:</p>\n\n\n\n<ul><li>First, declare a flag variable <code>lessThanFive</code> and set its value to <code>false</code>.</li><li>Second, iterate over the elements. If an element is less than 5, set the flag to <code>true</code> and immediately exit the loop using the <code>break</code> statement.</li></ul>\n\n\n\n<p>The code works as expected. However, it is quite verbose.</p>\n\n\n\n<p>The&nbsp;<code>Array</code>&nbsp;type provides you with an instance method called&nbsp;<code>some()</code>&nbsp;that allows you to test if an array has at least one element that meets a condition.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let marks = &#91; 4, 5, 7, 9, 10, 3 ];\n\nlessThanFive = marks.some(function(e) {\n    return e &lt; 5;\n});\n\nconsole.log(lessThanFive);\n</code></pre>\n\n\n\n<p>Output</p>\n\n\n\n<pre class=\"wp-block-code\"><code>true\n</code></pre>\n\n\n\n<p>The condition is implemented via a callback function passed into the <code>some()</code> method.</p>\n\n\n\n<p>Now, the code is shorter. To make it more expressive, you can use the arrow function syntax in ES6:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let marks = &#91; 4, 5, 7, 9, 10, 3 ];\n\nlet lessThanFive = marks.some(e => e &lt; 5);\n\nconsole.log(lessThanFive);</code></pre>\n\n\n\n<h2>JavaScript Array&nbsp;<code>some()</code>&nbsp;syntax</h2>\n\n\n\n<p>The following illustrates the syntax of the&nbsp;<code>some()</code>&nbsp;method:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>arrayObject.some(callback&#91;, thisArg]);\n</code></pre>\n\n\n\n<p>The&nbsp;<code>some()</code>&nbsp;method accepts two arguments:</p>\n\n\n\n<h3>1) The&nbsp;<code>callback</code>&nbsp;argument</h3>\n\n\n\n<p>The&nbsp;<code>some()</code>&nbsp;function executes the&nbsp;<code>callback</code>&nbsp;function once for each element in the array until it finds the one where the&nbsp;<code>callback</code>&nbsp;function returns a&nbsp;<code>true</code>. The&nbsp;<code>some()</code>&nbsp;method immediately returns&nbsp;<code>true</code>&nbsp;and doesn’t evaluate the remaining elements.</p>\n\n\n\n<p>If no element causes the&nbsp;<code>callback()</code>&nbsp;to return&nbsp;<code>true</code>, the&nbsp;<code>some()</code>&nbsp;method returns&nbsp;<code>false</code>.</p>\n\n\n\n<p>The&nbsp;<code>callback</code>&nbsp;function takes three arguments:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function callback(currentElement &#91;&#91;, currentIndex], array]){ // ...}\n</code></pre>\n\n\n\n<ul><li>The&nbsp;<code>currentElement</code>&nbsp;is the current element being processed in the array.</li><li>The&nbsp;<code>currentIndex</code>&nbsp;is the index of the current element being processed in the array.</li><li>The&nbsp;<code>array</code>&nbsp;is array that&nbsp;<code>some()</code>&nbsp;was called upon.</li></ul>\n\n\n\n<h3>2) The&nbsp;<code>thisArg</code>&nbsp;argument</h3>\n\n\n\n<p>The&nbsp;<code>thisArg</code>&nbsp;argument is optional. If you pass the&nbsp;<code>thisArg</code>&nbsp;into the method, you can use the&nbsp;<code>thisArg</code>&nbsp;as the&nbsp;<code>this</code>&nbsp;value inside the&nbsp;<code>callback</code>&nbsp;function.</p>\n\n\n\n<h2>JavaScript Array&nbsp;<code>some()</code>&nbsp;examples</h2>\n\n\n\n<p>Let’s take some more examples of using the&nbsp;<code>some()</code>&nbsp;method.</p>\n\n\n\n<h3>1) Check if an element exists in the array</h3>\n\n\n\n<p>The following&nbsp;<code>exists()</code>&nbsp;function uses the&nbsp;<code>some()</code>&nbsp;method to check if a value exists in an array:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function exists(value, array) {\n    return array.some(e => e === value);\n}\n\nlet marks = &#91;4, 5, 7, 9, 10, 2];\n\nconsole.log(exists(4, marks));\nconsole.log(exists(11, marks));\n</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>true\nfalse</code></pre>\n\n\n\n<h3>2) Check if an array has one element that is in a range</h3>\n\n\n\n<p>The following example shows how to check if any number in the&nbsp;<code>marks</code>&nbsp;array is in the range of (8, 10):</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let marks = &#91;4, 5, 7, 9, 10, 2];\n\nconst range = {\n    min: 8,\n    max: 10\n};\n\nlet result = marks.some(function (e) {\n    return e >= this.min &amp;&amp; e &lt;= this.max;\n}, range);\n\nconsole.log(result);\n</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>true</code></pre>\n\n\n\n<p>How it works.</p>\n\n\n\n<ul><li>First, define a range object with min and max properties.</li><li>Second, call the&nbsp;<code>some()</code>&nbsp;method on the marks array object and pass the callback and range object. Because we pass the range object as the second argument (<code>thisArg</code>), we can reference it inside the callback via the&nbsp;<code>this</code>&nbsp;value.</li></ul>\n\n\n\n<p>Notice that if you use the arrow function in this example, the&nbsp;<code>this</code>&nbsp;value inside the callback function doest not bind to the&nbsp;<code>range</code>&nbsp;object but the&nbsp;<code>global</code>&nbsp;object.</p>\n\n\n\n<h2>Caution: Empty arrays</h2>\n\n\n\n<p>If you call the&nbsp;<code>some()</code>&nbsp;method on an empty array, the result is always&nbsp;<code>false</code>&nbsp;regardless of any condition. For example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let result = &#91;].some(e => e > 0);\nconsole.log(result);\n\nresult = &#91;].some(e => e &lt;= 0);\nconsole.log(result);</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>false\nfalse</code></pre>\n\n\n\n<p>In this tutorial, you have learned how to use the JavaScrip Array&nbsp;<code>some()</code>&nbsp;method to test if an array has at least one element that meets a condition.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Introduction to the JavaScript Array&nbsp;some()&nbsp;method Sometimes, you want to check if an array has at least one element that meets a specified condition. For example, to check if the following array has at least one element less than 5: …you typically use a for loop, like this: Output: How it works: First, declare a flag variable lessThanFive and set its value [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [37],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3379"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/comments?post=3379"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3379/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/media?parent=3379"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/categories?post=3379"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/tags?post=3379"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 3381,
+    "date": "2020-11-30T05:47:25",
+    "date_gmt": "2020-11-30T05:47:25",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3381"
+    },
+    "modified": "2020-11-30T05:47:25",
+    "modified_gmt": "2020-11-30T05:47:25",
+    "slug": "sort",
+    "status": "publish",
+    "type": "post",
+    "link": "https://computerprogramming.foobrdigital.com/sort/",
+    "title": {
+      "rendered": "Sort( )"
+    },
+    "content": {
+      "rendered": "\n<h2>Introduction to JavaScript Array&nbsp;<code>sort()</code>&nbsp;method</h2>\n\n\n\n<p>The <code>sort()</code> method allows you to sort elements of an array in place. Besides returning the sorted array, the <code>sort()</code> method changes the positions of the elements in the original array.</p>\n\n\n\n<p>By default, the&nbsp;<code>sort()</code>&nbsp;method sorts the array elements in ascending order with the smallest value first and largest value last.</p>\n\n\n\n<p>The&nbsp;<code>sort()</code>&nbsp;method casts elements to strings and compares the strings to determine the orders.</p>\n\n\n\n<p>Consider the following example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let numbers = &#91;0, 1 , 2, 3, 10, 20, 30 ];\nnumbers.sort();\nconsole.log(numbers);</code></pre>\n\n\n\n<p>The output is:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&#91; 0, 1, 10, 2, 20, 3, 30 ]</code></pre>\n\n\n\n<p>In this example, the&nbsp;<code>sort()</code>&nbsp;method places 10 before 2 because the string “10” comes before “2” when doing a string comparison.</p>\n\n\n\n<p>To fix this, you need to pass a compare function to the&nbsp;<code>sort()</code>&nbsp;method. The&nbsp;<code>sort(</code>) method will use the compare function to determine the orders of elements.</p>\n\n\n\n<p>The following illustrates&nbsp;the syntax of the&nbsp;<code>sort()</code>&nbsp;method:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>array.sort(comparefunction)</code></pre>\n\n\n\n<p>The <code>sort()</code> method accepts an optional argument which is a function that compares two elements of the array.</p>\n\n\n\n<p>If you omit the compare&nbsp;function, the&nbsp;<code>sort()</code>&nbsp;method sorts the elements with the sort order based on the Unicode code point values of elements as mentioned earlier.</p>\n\n\n\n<p>The&nbsp;compare function of the&nbsp;<code>sort()</code>&nbsp;method accepts two arguments and returns a value that determines the sort order. The following illustrates the syntax of the compare function:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function compare(a,b) {\n  // ...\n}</code></pre>\n\n\n\n<p>The&nbsp;<code>compare()</code>&nbsp;function accepts two arguments&nbsp;<code>a</code>&nbsp;and&nbsp;<code>b</code>.&nbsp;The&nbsp;<code>sort()</code>&nbsp;method will sort elements based on the return value of the&nbsp;<code>compare()</code>&nbsp;function with the following rules:</p>\n\n\n\n<ol><li>If&nbsp;<code>compare(a,b)</code>&nbsp;is less than zero, the&nbsp;<code>sort()</code>&nbsp;method sorts&nbsp;<code>a</code>&nbsp;to a lower index than&nbsp;<code>b</code>. In other words,&nbsp;<code>a</code>&nbsp;will come first.</li><li>If&nbsp;<code>compare(a,b)</code>&nbsp;is greater than zero, the&nbsp;<code>sort()</code>&nbsp;method sort&nbsp;<code>b</code>&nbsp;to a lower index than&nbsp;<code>a</code>, i.e., b will come first.</li><li>If&nbsp;<code>compare(a,b)</code>&nbsp;returns zero, the&nbsp;<code>sort()</code>&nbsp;method considers a equals b and leaves their&nbsp;positions unchanged.</li></ol>\n\n\n\n<p>To fix the issue of sorting the number, you can use the following syntax:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let numbers = &#91;0, 1 , 2, 3, 10, 20, 30 ];\nnumbers.sort( function( a , b){\n    if(a > b) return 1;\n    if(a &lt; b) return -1;\n    return 0;\n});\n\nconsole.log(numbers);</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&#91; 0,  1,  2, 3, 10, 20, 30 ]</code></pre>\n\n\n\n<p>Or you can define the comparison function using the arrow function syntax:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let numbers = &#91;0, 1 , 2, 3, 10, 20, 30 ];\nnumbers.sort((a,b) => {\n    if(a > b) return 1;\n    if(a &lt; b) return -1;\n    return 0;\n});\n\nconsole.log(numbers);</code></pre>\n\n\n\n<p>And the following is the simplest since the elements of the array are numbers:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let numbers = &#91;0, 1, 2, 3, 10, 20, 30];\nnumbers.sort((a, b) => a - b);\n\nconsole.log(numbers);</code></pre>\n\n\n\n<h2>Sorting an array of strings</h2>\n\n\n\n<p>Suppose you&nbsp;have an array of string named&nbsp;<code>animals</code>&nbsp;as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let animals = &#91;\n    'cat', 'dog', 'elephant', 'bee', 'ant'\n];</code></pre>\n\n\n\n<p>To sort the elements of the&nbsp;<code>animals</code>&nbsp;array&nbsp;in ascending order alphabetically, you use the&nbsp;<code>sort()</code>&nbsp;method without passing the compare function as shown in the following example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let animals = &#91;\n    'cat', 'dog', 'elephant', 'bee', 'ant'\n];\nanimals.sort();\n\nconsole.log(animals);</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&#91; 'ant', 'bee', 'cat', 'dog', 'elephant' ]</code></pre>\n\n\n\n<p>To sort the&nbsp;<code>animals</code>&nbsp;array in descending order, you need to change the logic of the compare function and pass it&nbsp;to the&nbsp;<code>sort()</code>&nbsp;method as the&nbsp;following example.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let animals = &#91;\n    'cat', 'dog', 'elephant', 'bee', 'ant'\n];\n\nanimals.sort((a, b) => {\n    if (a > b)\n        return -1;\n    if (a &lt; b)\n        return 1;\n    return 0;\n});\n\nconsole.log(animals);</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&#91; 'elephant', 'dog', 'cat', 'bee', 'ant' ]</code></pre>\n\n\n\n<p>Suppose you have an array that contains elements in both uppercase and lowercase as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>// sorting array with mixed cases\nlet mixedCaseAnimals = &#91;\n    'Cat', 'dog', 'Elephant', 'bee', 'ant'\n];</code></pre>\n\n\n\n<p>To sort this array alphabetically, you need to use a custom compare function to convert all elements to the same case e.g., uppercase for comparison and pass that function to the&nbsp;<code>sort()</code>&nbsp;method.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let mixedCaseAnimals = &#91;\n    'Cat', 'dog', 'Elephant', 'bee', 'ant'\n];\n\nmixedCaseAnimals.sort(function (a, b) {\n    let x = a.toUpperCase(),\n        y = b.toUpperCase();\n    return x == y ? 0 : x > y ? 1 : -1;\n\n});</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&#91; 'ant', 'bee', 'Cat', 'dog', 'Elephant' ]</code></pre>\n\n\n\n<h3 id=\"Sorting_non-ASCII_characters\">Sorting an array of strings with non-ASCII characters</h3>\n\n\n\n<p>The&nbsp;<code>sort()</code>&nbsp;method is working fine with the&nbsp;strings with&nbsp;ASCII characters. However, for the strings with non-ASCII characters e.g.,&nbsp;é, è, etc., the&nbsp;<code>sort()</code>&nbsp;method will not work correctly. For example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let animaux = &#91;'zèbre', 'abeille', 'écureuil', 'chat'];\nanimaux.sort();\n\nconsole.log(animaux);</code></pre>\n\n\n\n<p>As you see, the&nbsp;<code>écureuil</code>&nbsp;string should come&nbsp;before the&nbsp;<code>zèbre</code>&nbsp;string.</p>\n\n\n\n<p>To resolve this, you use the&nbsp;<code>localeCompare()</code>&nbsp;method of the&nbsp;<code>String</code>&nbsp;object to compare strings in a specific locale, like this:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>animaux.sort(function (a, b) {\n    return a.localeCompare(b);\n});\nconsole.log(animaux);</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&#91; 'abeille', 'chat', 'écureuill', 'zèbree' ]</code></pre>\n\n\n\n<p>The elements of the&nbsp;<code>animaux</code>&nbsp;array now are in the correct order.</p>\n\n\n\n<h2>Sorting an array of numbers</h2>\n\n\n\n<p>Suppose you have an array of numbers named&nbsp;<code>scores</code>&nbsp;as in the following example.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let scores = &#91;\n    9, 80, 10, 20, 5, 70\n];</code></pre>\n\n\n\n<p>To sort an array of numbers numerically, you need to pass into a custom comparison function that compares two numbers.</p>\n\n\n\n<p>The following example sorts the&nbsp;<code>scores</code>&nbsp;array numerically in ascending order.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let scores = &#91;\n    9, 80, 10, 20, 5, 70\n];\n// sort numbers in ascending order\nscores.sort((a, b) => a - b);\n\nconsole.log(scores);</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&#91; 5, 9, 10, 20, 70, 80 ]</code></pre>\n\n\n\n<p>To sort an array of numbers numerically in descending order, you just need to reverse the logic in the compare&nbsp;function as shown in the following example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let scores = &#91;\n    9, 80, 10, 20, 5, 70\n];\n// descending order\nscores.sort((a, b) => b - a);\nconsole.log(scores);</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&#91;80, 70, 20, 10, 9, 5]</code></pre>\n\n\n\n<h2>Sorting an array of objects by a specified property</h2>\n\n\n\n<p>The following is an array of&nbsp;<code>employee</code>&nbsp;objects, where each object contains three properties:&nbsp;<code>name</code>,<code>salary</code>&nbsp;and&nbsp;<code>hireDate</code>.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let employees = &#91;\n    {name: 'John', salary: 90000, hireDate: \"July 1, 2010\"},\n    {name: 'David', salary: 75000, hireDate: \"August 15, 2009\"},\n    {name: 'Ana', salary: 80000, hireDate: \"December 12, 2011\"}\n];</code></pre>\n\n\n\n<h3>Sorting objects by a numeric property</h3>\n\n\n\n<p>The following example shows how to sort the employees by&nbsp;<code>salary</code>&nbsp;in ascending order.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>// sort by salary\nemployees.sort(function (x, y) {\n    return x.salary - y.salary;\n});\n\nconsole.table(employees);</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<p>This example is similar to the example of sorting an array of numbers in ascending order. The difference is that it compares the&nbsp;<code>salary</code>&nbsp;property of two objects instead.</p>\n\n\n\n<h3>Sorting objects by a string property</h3>\n\n\n\n<p>To sort the&nbsp;<code>employees</code>&nbsp;array by&nbsp;<code>name</code>&nbsp;property case-insensitively, you pass the compare&nbsp;function that compares two strings case-insensitively as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>employees.sort(function (x, y) {\n    let a = x.name.toUpperCase(),\n        b = y.name.toUpperCase();\n    return a == b ? 0 : a > b ? 1 : -1;\n});\n\nconsole.table(employees);</code></pre>\n\n\n\n<h3>Sorting objects by the date property</h3>\n\n\n\n<p>Suppose, you wish to sort employees based on each employee’s hire date.</p>\n\n\n\n<p>The hire date data is stored&nbsp;in the&nbsp;<code>hireDate</code>&nbsp;property of the employee object. However, it is just a string that represents a valid date, not the&nbsp;<code>Date</code>&nbsp;object.&nbsp;</p>\n\n\n\n<p>Therefore, to sort employees by hire date, you first have to create a valid&nbsp;<code>Date</code>&nbsp;object from the date string, and then compare two dates, which is the same as comparing two numbers.</p>\n\n\n\n<p>Here is the solution:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>employees.sort(function (x, y) {\n    let a = new Date(x.hireDate),\n        b = new Date(y.hireDate);\n    return a - b;\n});\n\nconsole.table(employees);</code></pre>\n\n\n\n\n\n\n\n<h2>Optimizing JavaScript Array&nbsp;<code>sort()</code>&nbsp;method</h2>\n\n\n\n<p>In&nbsp;fact, the&nbsp;<code>sort()</code>&nbsp;method calls the compare function multiple times for each element in the array.</p>\n\n\n\n<p>See the following example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let rivers = &#91;'Nile', 'Amazon', 'Congo', 'Mississippi', 'Rio-Grande'];\n\nrivers.sort(function (a, b) {\n    console.log(a, b);\n    return a.length - b.length;\n});</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Amazon Nile\nCongo Amazon\nCongo Amazon\nCongo Nile\nMississippi Congo\nMississippi Amazon\nRio-Grande Amazon\nRio-Grande Mississippi</code></pre>\n\n\n\n<p>How it works:</p>\n\n\n\n<ol><li>First, declare&nbsp;an array&nbsp;<code>rivers</code>&nbsp;that consists of the famous river names.</li><li>Second, sort&nbsp;the&nbsp;<code>rivers</code>&nbsp;array by the length of its element&nbsp;using the&nbsp;<code>sort()</code>&nbsp;method. We&nbsp;output the elements of the&nbsp;<code>rivers</code>&nbsp;array to the web console whenever the&nbsp;<code>sort()</code>&nbsp;method invokes the comparison function .</li></ol>\n\n\n\n<p>As shown in the output above, each element has been evaluated multiple times e.g., Amazon 4 times, Congo 2 times, etc.</p>\n\n\n\n<p>If the number of array elements is increasing, it will potentially decrease the performance.</p>\n\n\n\n<p>You cannot reduce the number of times that comparison function is executed. However, you can reduce the work that the comparison has to do. This technique is called Schwartzian Transform.</p>\n\n\n\n<p>To implement&nbsp;this, you follow these steps:</p>\n\n\n\n<ol><li>First, extract the actual values into a temporary array using the map() method.</li><li>Second, sort the temporary array with the elements that are already evaluated (or transformed).</li><li>Third, walk the temporary array to get an array with the right order.</li></ol>\n\n\n\n<p>Here is the solution:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>// temporary array holds objects with position\n// and length of element\nvar lengths = rivers.map(function (e, i) {\n    return {index: i, value: e.length };\n});\n\n// sorting the lengths array containing the lengths of\n// river names\nlengths.sort(function (a, b) {\n    return +(a.value > b.value) || +(a.value === b.value) - 1;\n});\n\n// copy element back to the array\nvar sortedRivers = lengths.map(function (e) {\n    return rivers&#91;e.index];\n});\n\nconsole.log(sortedRivers);</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&#91; 'Nile', 'Congo', 'Amazon', 'Rio-Grande', 'Mississippi' ]</code></pre>\n\n\n\n<p>In this tutorial, you have learned how to use the JavaScript Array&nbsp;<code>sort()</code>&nbsp;method to sort arrays of strings, numbers, dates, and objects.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Introduction to JavaScript Array&nbsp;sort()&nbsp;method The sort() method allows you to sort elements of an array in place. Besides returning the sorted array, the sort() method changes the positions of the elements in the original array. By default, the&nbsp;sort()&nbsp;method sorts the array elements in ascending order with the smallest value first and largest value last. The&nbsp;sort()&nbsp;method casts elements to strings and compares the [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [37],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3381"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/comments?post=3381"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3381/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/media?parent=3381"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/categories?post=3381"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/tags?post=3381"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 3383,
+    "date": "2020-11-30T05:48:56",
+    "date_gmt": "2020-11-30T05:48:56",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3383"
+    },
+    "modified": "2020-11-30T05:48:56",
+    "modified_gmt": "2020-11-30T05:48:56",
+    "slug": "filter",
+    "status": "publish",
+    "type": "post",
+    "link": "https://computerprogramming.foobrdigital.com/filter/",
+    "title": {
+      "rendered": "Filter( )"
+    },
+    "content": {
+      "rendered": "\n<h2>Introduction to JavaScript array&nbsp;<code>filter()</code>&nbsp;method</h2>\n\n\n\n<p>One of the most common tasks when working with an array is to create a new array that contains a subset of elements of the original array.</p>\n\n\n\n<p>Suppose you have an array of city objects where each object contains two properties:&nbsp;<code>name</code>&nbsp;and&nbsp;<code>population</code>.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let cities = &#91;\n    {name: 'Los Angeles', population: 3792621},\n    {name: 'New York', population: 8175133},\n    {name: 'Chicago', population: 2695598},\n    {name: 'Houston', population: 2099451},\n    {name: 'Philadelphia', population: 1526006}\n];</code></pre>\n\n\n\n<p>To find the city whose population is greater than 3 million, you typically loop over the array elements using a for loop and test if the value of the <code>population</code> property satisfies the condition, like this:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let bigCities = &#91;];\nfor (let i = 0; i &lt; cities.length; i++) {\n    if (cities&#91;i].population > 3000000) {\n        bigCities.push(cities&#91;i]);\n    }\n}\nconsole.log(bigCities);</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&#91;\n  { name: 'Los Angeles', population: 3792621 },\n  { name: 'New York', population: 8175133 }\n]</code></pre>\n\n\n\n<p>JavaScript Array provides the&nbsp;<code>filter()</code>&nbsp;method that allows you to do this task in a shorter and cleaner way.</p>\n\n\n\n<p>The following example returns the same result as the example above:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let bigCities = cities.filter(function (e) {\n    return e.population > 3000000;\n});\nconsole.log(bigCities);</code></pre>\n\n\n\n<p>In this example, we called the&nbsp;<code>filter()</code>&nbsp;method of the&nbsp;<code>cities</code>&nbsp;array object and passed into a function that tests each element.</p>\n\n\n\n<p>Inside the function, we checked if the&nbsp;<code>population</code>&nbsp;of the each city in the array is greater than 3 million.</p>\n\n\n\n<p>If it is the case, the function returns&nbsp;<code>true</code>; Otherwise, it returns&nbsp;<code>false</code>.&nbsp;The&nbsp;<code>filter()</code>&nbsp;method includes only the element in the result array if the element satisfies the test in the function that we pass into.</p>\n\n\n\n<p>In ES6, it is even cleaner when you use the arrow function (<code>=></code>).</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let bigCities = cities.filter(city => city.population > 3000000);\nconsole.log(bigCities);</code></pre>\n\n\n\n<h2>JavaScript Array&nbsp;<code>filter()</code>&nbsp;method in detail</h2>\n\n\n\n<p>The following illustrates the syntax of the&nbsp;<code>filter()</code>&nbsp;method:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>arrayObject.filter(callback, contextObject);</code></pre>\n\n\n\n<p>The&nbsp;<code>filter()</code>&nbsp;method creates a new array with all the elements that pass the test implemented by the&nbsp;<code>callback()</code>&nbsp;function.</p>\n\n\n\n<p>Internally, the&nbsp;<code>filter()</code>&nbsp;method iterates over each element of the array and pass each element to the&nbsp;<code>callback</code>&nbsp;function. If the&nbsp;<code>callback</code>&nbsp;function returns&nbsp;<code>true</code>, it includes the element in the return array.</p>\n\n\n\n<p>The&nbsp;<code>filter()</code>&nbsp;method accepts two named arguments: a&nbsp;<code>callback</code>&nbsp;function and an optional object.</p>\n\n\n\n<p>Like other iterative methods of the Array object such as <code>every(),</code> <code>some(),</code> <code>map()</code> and <code>forEach(),</code> the <code>callback</code> function has the following form:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function callback(currentElement, index, array){\n   // ...\n}</code></pre>\n\n\n\n<p>The&nbsp;<code>callback</code>&nbsp;function takes three arguments:</p>\n\n\n\n<ul><li>The&nbsp;<code>currentElement</code>&nbsp;argument is the current element&nbsp;in the array that is being processed by the&nbsp;<code>callback</code>&nbsp;function.</li><li>The&nbsp;<code>index</code>&nbsp;of the&nbsp;<code>currentElement</code>&nbsp;that is being processed by the&nbsp;<code>callback</code>&nbsp;function.</li><li>The&nbsp;<code>array</code>&nbsp;object being traversed.</li></ul>\n\n\n\n<p>The&nbsp;<code>index</code>&nbsp;and&nbsp;<code>array</code>&nbsp;arguments are optional.</p>\n\n\n\n<p>The&nbsp;<code>contexObject</code>&nbsp;argument of the&nbsp;<code>filter()</code>&nbsp;method is optional. If you pass the&nbsp;<code>this</code>&nbsp;value, you canreference it by using&nbsp;<code>this</code>&nbsp;keyword inside the&nbsp;<code>callback</code>&nbsp;function.</p>\n\n\n\n<p>It is important to note that the&nbsp;<code>filter()</code>&nbsp;method does not change the original array.</p>\n\n\n\n<h2>More JavaScript Array&nbsp;<code>filter()</code>&nbsp;method examples</h2>\n\n\n\n<p>Because the&nbsp;<code>filter()</code>&nbsp;method returns an a new array, you can chain the result with other iterative methods such as&nbsp;<code>sort()</code>&nbsp;and&nbsp;<code>map()</code>.</p>\n\n\n\n<p>For example, the following illustrates how to chain the three methods:&nbsp;<code>filter(),</code><code>sort(),</code>&nbsp;and&nbsp;<code>map():</code></p>\n\n\n\n<pre class=\"wp-block-code\"><code>cities\n    .filter(city => city.population &lt; 3000000)\n    .sort((c1, c2) => c1.population - c2.population)\n    .map(city => console.log(city.name + ':' + city.population));\n</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Philadelphia:1526006\nHouston:2099451\nChicago:2695598</code></pre>\n\n\n\n<p>How it works.</p>\n\n\n\n<ul><li>First, the <code>filter()</code> method returns the cities whose populations are less than 3 million.</li><li>Second, the <code>sort()</code> method sorts the resulting cities by the populations in descending order</li><li>Third, the <code>map()</code> method show each element in the result array in the web console.</li></ul>\n\n\n\n<p>The following example illustrates the use of the&nbsp;<code>contextObject</code>&nbsp;argument that specifies an object which can be referenced in the&nbsp;<code>callback()</code>&nbsp;function using the&nbsp;<code>this</code>&nbsp;keyword.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function isInRange(value) {\n    if (typeof value !== 'number') {\n        return false;\n    }\n    return value >= this.lower &amp;&amp; value &lt;= this.upper;\n}\n\nlet data = &#91;10, 20, \"30\", 1, 5, 'JavaScript filter', undefined, 'example'];\n\nlet range = {\n    lower: 1,\n    upper: 10\n};\n\nlet numberInRange = data.filter(isInRange, range);\n\nconsole.log(numberInRange); // &#91;10, 1, 5]</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&#91; 10, 1, 5 ]</code></pre>\n\n\n\n<p>How it works.</p>\n\n\n\n<ul><li>First, define the <code>isInRange()</code> function that checks if its argument is a number and in the range specified by the <code>lower</code> and <code>upper</code> properties of an object.</li><li>Next, define an array of mixed data that contains numbers, strings, and undefined.</li><li>Then, define the <code>range</code> object with two properties <code>lower</code> and <code>upper</code>.</li><li>After that, call the <code>filter()</code> methods of the <code>data</code> array and pass in the <code>isInRange()</code> function and the <code>range </code>object. Because we pass in the <code>range</code> object, inside the <code>isInRange()</code> function, the <code>this</code> keyword references to the <code>range</code> object.</li><li>Finally, show the result array in the web console.</li></ul>\n\n\n\n<p>In this tutorial, you have learned how to use the JavaScript Array&nbsp;<code>filter()</code>&nbsp;method to filter elements in an array based on a test provided by a callback function.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Introduction to JavaScript array&nbsp;filter()&nbsp;method One of the most common tasks when working with an array is to create a new array that contains a subset of elements of the original array. Suppose you have an array of city objects where each object contains two properties:&nbsp;name&nbsp;and&nbsp;population. To find the city whose population is greater than 3 million, you [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [37],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3383"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/comments?post=3383"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3383/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/media?parent=3383"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/categories?post=3383"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/tags?post=3383"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 3385,
+    "date": "2020-11-30T05:50:27",
+    "date_gmt": "2020-11-30T05:50:27",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3385"
+    },
+    "modified": "2020-11-30T05:50:27",
+    "modified_gmt": "2020-11-30T05:50:27",
+    "slug": "map-4",
+    "status": "publish",
+    "type": "post",
+    "link": "https://computerprogramming.foobrdigital.com/map-4/",
+    "title": {
+      "rendered": "Map( )"
+    },
+    "content": {
+      "rendered": "\n<h2>Introduction to JavaScript Array&nbsp;<code>map()</code>&nbsp;method</h2>\n\n\n\n<p>Sometimes, you need to take an array, transform its elements, and include the results in a new array.</p>\n\n\n\n<p>Typically, you use a <code>for</code> loop to iterate over the elements, transform each individual one, and push the results into a new array.</p>\n\n\n\n<p>Let’s take a look at an example.</p>\n\n\n\n<p>Suppose that you have an array of numbers where each element represents the radius of a circle as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let circles = &#91;\n    10, 30, 50\n];\n</code></pre>\n\n\n\n<p>The following illustrates how to calculate the area of each circle and push the result into a new array.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let areas = &#91;]; // to store areas of circles\nlet area = 0;\nfor (let i = 0; i &lt; circles.length; i++) {\n    area = Math.floor(Math.PI * circles&#91;i] * circles&#91;i]);\n    areas.push(area);\n}\nconsole.log(areas);</code></pre>\n\n\n\n<p>Output</p>\n\n\n\n<pre class=\"wp-block-preformatted\"></pre>\n\n\n\n<p>It takes a quite amount of code to accomplish this.</p>\n\n\n\n<p>Starting from ES5, JavaScript Array type provides the&nbsp;<code>map()</code>&nbsp;method that allows you to transform the array elements in a cleaner way.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function circleArea(radius) {\n    return Math.floor(Math.PI * radius * radius);\n}\nlet areas = circles.map(circleArea);\nconsole.log(areas);\n</code></pre>\n\n\n\n<p>Output</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&#91;314, 2827, 7853]</code></pre>\n\n\n\n<p>How it works.</p>\n\n\n\n<ul><li>First, define a function that calculates the area of a circle.</li><li>Then, pass the&nbsp;<code>circleArea</code>&nbsp;function to the&nbsp;<code>map()</code>&nbsp;method. The&nbsp;<code>map()</code>&nbsp;method will call the&nbsp;<code>circleArea</code>&nbsp;function on each element of the&nbsp;<code>circles</code>&nbsp;array and return a new array with the elements that have been transformed.</li></ul>\n\n\n\n<p>To make it shorter, you can pass in the&nbsp;<code>map()</code>&nbsp;method an anonymous function as follows.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let areas = circles.map(function(radius){\n    return Math.floor(Math.PI * radius * radius);\n});\nconsole.log(areas);\n</code></pre>\n\n\n\n<p>Also, you can make use of the arrow function in ES6 to achieve the same result with a cleaner code:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let areas = circles.map(radius => Math.floor(Math.PI * radius * radius));\nconsole.log(areas);</code></pre>\n\n\n\n<h2>JavaScript Array map() method in detail</h2>\n\n\n\n<p>The following illustrates the&nbsp;<code>map()</code>&nbsp;method.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>arrayObject.map(callback&#91;,contextObject]);</code></pre>\n\n\n\n<p>The <code>map()</code> method calls a callback function on every element of an array and returns a new array that contains the results.</p>\n\n\n\n<p>The&nbsp;<code>map()</code>&nbsp;method takes two named arguments,&nbsp;the first one is required whereas the second one is optional.</p>\n\n\n\n<p>Similar to the other iterative method such as  <code>every()</code>,  <code>some()</code>,  <code>filter()</code>, <code>forEach()</code> and  <code>sort()</code>, the <code>callback()</code> function has the following form:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function callback(currentElement,index,array){\n  // ... \n}</code></pre>\n\n\n\n<p>The&nbsp;<code>callback()</code>&nbsp;function takes three arguments:</p>\n\n\n\n<ul><li>The&nbsp;<code>currentElement</code>&nbsp;is the current element of the array that is being processed.</li><li>The&nbsp;<code>index</code>&nbsp;is the index of the&nbsp;<code>currentElement</code>.</li><li>The&nbsp;<code>array</code>&nbsp;is the array object being traversed.</li></ul>\n\n\n\n<p>The&nbsp;<code>currentElement</code>&nbsp;is required while the&nbsp;<code>index</code>&nbsp;and&nbsp;<code>array</code>&nbsp;arguments are optional.</p>\n\n\n\n<p>If you pass the&nbsp;<code>contextObject</code>&nbsp;to the&nbsp;<code>map()</code>&nbsp;method, you can reference the&nbsp;<code>contextObject</code>&nbsp;inside the&nbsp;<code>callback()</code>&nbsp;function using the&nbsp;<code>this</code>&nbsp;keyword.</p>\n\n\n\n<p>It’s important to note that the&nbsp;<code>map()</code>&nbsp;method does not change the original array, it creates a new array of all elements that have been transformed by the callback function.</p>\n\n\n\n<h2>More JavaScript Array&nbsp;<code>map()</code>&nbsp;examples</h2>\n\n\n\n<p>The following example shows how to transform an array of numbers by using a built-in method of the&nbsp;<code>Math</code>&nbsp;type as the&nbsp;<code>callback()</code>&nbsp;function.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let numbers = &#91;16, 25, 36];\nlet results = numbers.map(Math.sqrt);\nconsole.log(results);</code></pre>\n\n\n\n<p>Output</p>\n\n\n\n<pre class=\"wp-block-code\"><code> &#91;4, 5, 6]</code></pre>\n\n\n\n<p>The new array contains the square roots of the numbers in the&nbsp;<code>numbers</code>&nbsp;array.</p>\n\n\n\n<p>In this tutorial, you have learned how to use the JavaScript Array&nbsp;<code>map()</code>&nbsp;method to transform elements of an array according to a provided function.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Introduction to JavaScript Array&nbsp;map()&nbsp;method Sometimes, you need to take an array, transform its elements, and include the results in a new array. Typically, you use a for loop to iterate over the elements, transform each individual one, and push the results into a new array. Let’s take a look at an example. Suppose that you have an array [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [37],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3385"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/comments?post=3385"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3385/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/media?parent=3385"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/categories?post=3385"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/tags?post=3385"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 3387,
+    "date": "2020-11-30T05:51:38",
+    "date_gmt": "2020-11-30T05:51:38",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3387"
+    },
+    "modified": "2020-11-30T05:51:38",
+    "modified_gmt": "2020-11-30T05:51:38",
+    "slug": "for-each",
+    "status": "publish",
+    "type": "post",
+    "link": "https://computerprogramming.foobrdigital.com/for-each/",
+    "title": {
+      "rendered": "For Each( )"
+    },
+    "content": {
+      "rendered": "\n<h2>Introduction to JavaScript Array&nbsp;<code>forEach()</code>&nbsp;method</h2>\n\n\n\n<p>Typically, when you want to execute a function on every element of an array, you use a for loop statement.</p>\n\n\n\n<p>For example, the following code shows every element of an array to console:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let ranks = &#91;'A', 'B', 'C'];\nfor (let i = 0; i &lt; ranks.length; i++) {\n    console.log(ranks&#91;i]);\n}</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>A\nB\nC</code></pre>\n\n\n\n<p>JavaScript Array provides the&nbsp;<code>forEach()</code>&nbsp;method that allows you to run a function on every element.</p>\n\n\n\n<p>The following code uses the&nbsp;<code>forEach()</code>&nbsp;method that is equivalent to the code above:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let ranks = &#91;'A', 'B', 'C'];\n\nranks.forEach(function (e) {\n    console.log(e);\n});</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>A\nB\nC</code></pre>\n\n\n\n<p>The&nbsp;<code>forEach()</code>&nbsp;method iterates over elements in an array and executes a predefined function once per&nbsp;element.</p>\n\n\n\n<p>The following illustrates the syntax of the&nbsp;<code>forEach()</code>&nbsp;method.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Array.forEach(callback &#91;, thisArg]);</code></pre>\n\n\n\n<p>The&nbsp;<code>forEach()</code>&nbsp;method takes two arguments:</p>\n\n\n\n<h3>1) callback</h3>\n\n\n\n<p>The&nbsp;<code>callback</code>&nbsp;function that the&nbsp;<code>forEach()</code>&nbsp;method uses to execute on every element.</p>\n\n\n\n<p>The callback accepts the following arguments:</p>\n\n\n\n<ul><li><code>currentElement</code>: is the current array element being processed.</li><li><code>index</code>: the index of the&nbsp;<code>currentElement</code>&nbsp;in the array.</li><li><code>array</code>: the array that calls the&nbsp;<code>forEach()</code>&nbsp;method.</li></ul>\n\n\n\n<p>The&nbsp;<code>index</code>&nbsp;and&nbsp;<code>array</code>&nbsp;are optional.</p>\n\n\n\n<h3>2) thisArg</h3>\n\n\n\n<p>The&nbsp;<code>thisArg</code>&nbsp;is a value to use as this when executing the callback.</p>\n\n\n\n<p>Note that the <code>forEach()</code> function returns <code>undefined</code> therefore it is not chainable like other iterative methods: <code>filter(),</code> <code>map(),</code> <code>some(),</code> <code>every(),</code> and <code>sort().</code></p>\n\n\n\n<p>One limitation of the <code>forEach()</code> method in comparison with the <code>for</code> loop is that you cannot use the break or continue statement to control the loop.</p>\n\n\n\n<p>To terminate the loop in the <code>forEach()</code> method, you must throw an exception inside the <code>callback</code> function.</p>\n\n\n\n<h2>More JavaScript Array&nbsp;<code>forEach()</code>&nbsp;method example</h2>\n\n\n\n<p>Let’s take a look at an example of the&nbsp;<code>forEach()</code>&nbsp;method that uses a&nbsp;<code>contextObject</code>.</p>\n\n\n\n<p>The following illustrates&nbsp;<code>Counter</code>&nbsp;constructor function:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function Counter() {\n    this.count = 0;\n    let self = this;\n    return {\n        increase: function () {\n            self.count++;\n        },\n        current: function () {\n            return self.count;\n        },\n        reset: function () {\n            self.count = 0;\n        }\n    }\n}</code></pre>\n\n\n\n<p>This example shows how to pass the counter object to the&nbsp;<code>forEach()</code>&nbsp;method.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>var counter = new Counter();\nvar numbers = &#91;1, 2, 3];\nvar sum = 0;\nnumbers.forEach(function (e) {\n    sum += e;\n    this.increase();\n}, counter);\n\nconsole.log(sum); // 6\nconsole.log(counter.current()); // 3\n</code></pre>\n\n\n\n<p>How it works.</p>\n\n\n\n<ul><li>First, create a new&nbsp;<code>Counter</code>&nbsp;object.</li><li>Next, define an array of three numbers.</li><li>Then, declare a variable&nbsp;<code>sum</code>&nbsp;and assign it a value of zero.</li><li>After that, call the&nbsp;<code>forEach()</code>&nbsp;method on the&nbsp;<code>numbers</code>&nbsp;array. In the&nbsp;callback function, add the element to the&nbsp;<code>sum</code>&nbsp;variable and call the&nbsp;<code>increase()</code>&nbsp;method of the&nbsp;<code>counter</code>&nbsp;object. Notice that the&nbsp;<code>counter</code>&nbsp;object is referred to as&nbsp;<code>this</code>&nbsp;inside the callback function.</li><li>Finally, log the value of the sum and current value of the counter in the web console.</li></ul>\n\n\n\n<p>In this tutorial, you have learned how to use the JavaScript Array&nbsp;<code>forEach()</code>&nbsp;method to execute a callback on every element of an array.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Introduction to JavaScript Array&nbsp;forEach()&nbsp;method Typically, when you want to execute a function on every element of an array, you use a for loop statement. For example, the following code shows every element of an array to console: Output: JavaScript Array provides the&nbsp;forEach()&nbsp;method that allows you to run a function on every element. The following code uses the&nbsp;forEach()&nbsp;method that is equivalent to [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [37],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3387"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/comments?post=3387"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3387/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/media?parent=3387"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/categories?post=3387"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/tags?post=3387"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 3389,
+    "date": "2020-11-30T05:52:36",
+    "date_gmt": "2020-11-30T05:52:36",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3389"
+    },
+    "modified": "2020-11-30T05:52:36",
+    "modified_gmt": "2020-11-30T05:52:36",
+    "slug": "reduce",
+    "status": "publish",
+    "type": "post",
+    "link": "https://computerprogramming.foobrdigital.com/reduce/",
+    "title": {
+      "rendered": "Reduce ( )"
+    },
+    "content": {
+      "rendered": "\n<h2>Introduction to the JavaScript Array&nbsp;<code>reduce()</code>&nbsp;method</h2>\n\n\n\n<p>Suppose that you have an array of numbers, like this:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let numbers = &#91;1, 2, 3];</code></pre>\n\n\n\n<p>and you want to calculate the total of elements of the array.</p>\n\n\n\n<p>Typically, you use a <code>for</code> loop to iterate over the elements and add them up as shown in the following example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let numbers = &#91;1, 2, 3];\n\nlet sum = 0;\nfor (let i = 0; i &lt; numbers.length; i++) {\n    sum += numbers&#91;i];\n}\nconsole.log(sum);</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>6</code></pre>\n\n\n\n<p>The script is simple and straightforward:</p>\n\n\n\n<ul><li>First, declare an array of three numbers 1, 2 and 3.</li><li>Second, declare the <code>sum</code> variable and set its value to zero.</li><li>Third, in the <code>for</code> loop, add up the elements of the <code>numbers</code> array to the <code>sum</code> variable. After the loop, the value of the <code>sum</code> variable is 6.</li></ul>\n\n\n\n<p>What we have done was to&nbsp;<strong>reduce&nbsp;</strong>an array into a value.</p>\n\n\n\n<p>The&nbsp;<code>Array</code>&nbsp;type provides a method called&nbsp;<code>reduce()</code>&nbsp;that helps you to reduce an array to a single value, like this:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let sum = numbers.reduce(function (accumulator, current) {\n    return accumulator + current;\n});\nconsole.log(sum); // 6</code></pre>\n\n\n\n<p>It’s pretty simple, isnt’ it?</p>\n\n\n\n<p>Let’s take a look at the&nbsp;<code>reduce()</code>&nbsp;method in detail.</p>\n\n\n\n<h2>JavaScript Array&nbsp;<code>reduce()</code>&nbsp;method in detail</h2>\n\n\n\n<p>The following illustrates the syntax of the&nbsp;<code>reduce()</code>&nbsp;method.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>array.reduce(reducer &#91;, initialValue])</code></pre>\n\n\n\n<p>The <code>reduce()</code> method takes two arguments: a <code>reducer</code> callback function and an optional initial value.</p>\n\n\n\n<p>The&nbsp;<code>reduce()</code>&nbsp;method calls the&nbsp;<code>reducer()</code>&nbsp;function for every element in the array.</p>\n\n\n\n<p>The&nbsp;<code>reducer()</code>&nbsp;function returns a value which is an accumulated result, and this result is provided as an argument in the next call to the&nbsp;<code>reducer()</code>&nbsp;function.</p>\n\n\n\n<h3>1) The&nbsp;<code>reducer</code>&nbsp;function argument</h3>\n\n\n\n<p>The&nbsp;<code>reducer()</code>&nbsp;function has the following form:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function reducer(accumulator, currentValue, currentIndex, array){}</code></pre>\n\n\n\n<p>The&nbsp;<code>reducer</code>&nbsp;function takes four arguments:</p>\n\n\n\n<p><code>accumulator</code></p>\n\n\n\n<p>The value returned from the previous call of the&nbsp;<code>reducer</code>&nbsp;function. If you pass the&nbsp;<code>initialValue</code>&nbsp;to&nbsp;<code>the&nbsp;reduce()</code>&nbsp;method, &nbsp;when the&nbsp;<code>reducer</code>&nbsp;function is executed for the first time, the&nbsp;<code>accumulator</code>&nbsp;equals the&nbsp;<code>initialValue</code>.</p>\n\n\n\n<p><code>currentValue</code></p>\n\n\n\n<p>The value of the array element in the current iteration.</p>\n\n\n\n<p><code>currentIndex</code></p>\n\n\n\n<p>The index of the array element in the current iteration.</p>\n\n\n\n<p><code>array</code></p>\n\n\n\n<p>The array that the&nbsp;<code>reduce()</code>&nbsp;method was called upon.</p>\n\n\n\n<p>The&nbsp;<code>reducer()</code>&nbsp;function executes on each element and returns a value. This return value is assigned to the&nbsp;<code>accumulator</code>&nbsp;argument in each iteration. At the final iteration, the value of the&nbsp;<code>accumulator</code>&nbsp;become the single resulting value.</p>\n\n\n\n<h3>2) The&nbsp;<code>initialValue</code>&nbsp;argument</h3>\n\n\n\n<p>The&nbsp;<code>initialValue</code>&nbsp;argument is optional. If you pass in the&nbsp;<code>initialValue</code>&nbsp;argument, the&nbsp;<code>reduce()</code>&nbsp;method will assign it to the&nbsp;<code>previousValue</code>&nbsp;argument of the&nbsp;<code>reducer()</code>&nbsp;function at the first call of the&nbsp;<code>reducer</code>&nbsp;function.</p>\n\n\n\n<p>The following table illustrates the logic&nbsp;when the&nbsp;<code>reduce()</code>&nbsp;method executes the&nbsp;<code>reducer()</code>&nbsp;function for the first time according to the&nbsp;<code>initialValue</code>&nbsp;argument.</p>\n\n\n\n<figure class=\"wp-block-table\"><table><thead><tr><th><code>initialValue</code></th><th>&nbsp;<code>accumulator</code></th><th>&nbsp;<code>currentValue</code></th></tr></thead><tbody><tr><td>passed</td><td>&nbsp;<code>accumulator = initialValue</code></td><td>&nbsp;<code>currentValue = array[0]</code></td></tr><tr><td>not passed</td><td>&nbsp;<code>accumulator = array[0]</code></td><td>&nbsp;<code>currentValue = array[1]</code></td></tr></tbody></table></figure>\n\n\n\n<p>Back to the example above, the following table illustrates how the&nbsp;<code>reduce()</code>&nbsp;method&nbsp;works in detail.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let numbers = &#91;1, 2, 3];\n\nlet sum = numbers.reduce(function (accumulator, currentValue) {\n    return accumulator + currentValue;\n});\nconsole.log(sum);</code></pre>\n\n\n\n<figure class=\"wp-block-table\"><table><thead><tr><th>&nbsp;</th><th><code>accumulator</code></th><th><code>currentValue</code></th><th><code>currentIndex</code></th><th><code>currentIndex</code></th><th>return Value</th></tr></thead><tbody><tr><th>1st&nbsp;call</th><td>0</td><td>1</td><td>0</td><td>[1, 2, 3]</td><td>1</td></tr><tr><th>2nd call</th><td>1</td><td>2</td><td>1</td><td>[1, 2, 3]</td><td>3</td></tr><tr><th>3rd&nbsp;call</th><td>3</td><td>3</td><td>2</td><td>[1, 2, 3]</td><td>6</td></tr></tbody></table></figure>\n\n\n\n<h2>More JavaScript Array’s&nbsp;<code>reduce()</code>&nbsp;examples</h2>\n\n\n\n<p>Suppose that you have the following&nbsp;<code>shoppingCart</code>&nbsp;array of product objects:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let shoppingCart = &#91;{\n        product: 'phone',\n        qty: 1,\n        price: 699\n    },\n    {\n        product: 'Screen Protector',\n        qty: 1,\n        price: 9.98\n    },\n    {\n        product: 'Memory Card',\n        qty: 2,\n        price: 20.99\n    }\n];</code></pre>\n\n\n\n<p>To calculate the total amount of the products in the shopping cart, you can use the&nbsp;<code>reduce()</code>&nbsp;method, like this:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let total = shoppingCart.reduce(function (acc, curr) {\n    return acc + curr.qty * curr.price;\n},0);\n\nconsole.log(total);</code></pre>\n\n\n\n<p>Notice that in this example, we passed in the&nbsp;<code>initialValue</code>&nbsp;argument to the&nbsp;<code>reduce()</code>&nbsp;method.</p>\n\n\n\n<p>If we didn’t do so, the&nbsp;<code>reduce()</code>&nbsp;method would&nbsp;take the first element of the&nbsp;<code>shoppingCart</code>&nbsp;array, which is an object, as an initial value and perform the calculation on this object. Hence, it would cause an&nbsp;incorrect&nbsp;result.</p>\n\n\n\n<h2>JavaScript Array&nbsp;<code>reduceRight()</code>&nbsp;method</h2>\n\n\n\n<p>The&nbsp;<code>reduceRight()</code>&nbsp;method works in the same way as the&nbsp;<code>reduce()</code>&nbsp;method, but in the opposite direction.</p>\n\n\n\n<p>The&nbsp;<code>reduce()</code>&nbsp;method starts at the first element and travels&nbsp;toward the last, whereas the&nbsp;<code>reduceRight()</code>&nbsp;method starts at the last element and travels toward the first.</p>\n\n\n\n<p>See the following example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let numbers = &#91;1, 2, 3];\n\nlet sum = numbers.reduceRight(function (acc, curr) {\n    console.log('acc: ', acc, 'curr:', curr);\n    return acc + curr;\n});\nconsole.log(sum);</code></pre>\n\n\n\n<p>Output</p>\n\n\n\n<pre class=\"wp-block-code\"><code>acc:  3 curr: 2\nacc:  5 curr: 1\n6</code></pre>\n\n\n\n<p>In this example,&nbsp;<code>acc</code>&nbsp;is 5 and&nbsp;<code>curr</code>&nbsp;is 4 at the first time the&nbsp;<code>callback()</code>&nbsp;function is executed.</p>\n\n\n\n<p>The following picture illustrates the difference between the&nbsp;<code>reduce()</code>&nbsp;and&nbsp;<code>reduceRight()</code>&nbsp;methods.</p>\n\n\n\n<p>In this tutorial, you have learned how to use the JavaScript array&nbsp;<code>reduce()</code>&nbsp;and&nbsp;<code>reduceRight()</code>&nbsp;methods to reduce an array into a value.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Introduction to the JavaScript Array&nbsp;reduce()&nbsp;method Suppose that you have an array of numbers, like this: and you want to calculate the total of elements of the array. Typically, you use a for loop to iterate over the elements and add them up as shown in the following example: Output: The script is simple and straightforward: First, declare an array of [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [37],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3389"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/comments?post=3389"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3389/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/media?parent=3389"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/categories?post=3389"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/tags?post=3389"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 3391,
+    "date": "2020-11-30T05:53:26",
+    "date_gmt": "2020-11-30T05:53:26",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3391"
+    },
+    "modified": "2020-11-30T05:53:26",
+    "modified_gmt": "2020-11-30T05:53:26",
+    "slug": "join",
+    "status": "publish",
+    "type": "post",
+    "link": "https://computerprogramming.foobrdigital.com/join/",
+    "title": {
+      "rendered": "Join ( )"
+    },
+    "content": {
+      "rendered": "\n<h2>Introduction to the JavaScript array join() method</h2>\n\n\n\n<p>The <code>join()</code> method allows you to concatenate all elements of an array and returns a new string:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Array.prototype.join(&#91;separator])</code></pre>\n\n\n\n<p>The&nbsp;<code>join()</code>&nbsp;method accepts a optional argument&nbsp;<code>separator</code>&nbsp;which is a string that separates each pair of adjacent elements of the array in the result string.</p>\n\n\n\n<p>The&nbsp;<code>separator</code>&nbsp;defaults to a comma if you don’t pass it to the&nbsp;<code>join()</code>&nbsp;method.</p>\n\n\n\n<p>In case the array has one element, the&nbsp;<code>join()</code>&nbsp;method returns that element as a string without using the&nbsp;<code>separator</code>.</p>\n\n\n\n<p>And if the array is empty, the&nbsp;<code>join()</code>&nbsp;method returns an empty string.</p>\n\n\n\n<p>When the elements of the array aren’t strings, the&nbsp;<code>join()</code>&nbsp;method converts them to strings before joining.</p>\n\n\n\n<p>Note that the <code>join()</code> method converts <code>undefined</code>, <code>null</code>, and empty array <code>[]</code> to an empty string.</p>\n\n\n\n<h2>JavaScript Array join() method examples</h2>\n\n\n\n<p>Let’s take some examples of using the&nbsp;<code>join()</code>&nbsp;method.</p>\n\n\n\n<h3>1) Using the JavaScript Array join() method to join CSS classes</h3>\n\n\n\n<p>The following example uses the JavaScript Array&nbsp;<code>join()</code>&nbsp;method to join CSS classes:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>const cssClasses = &#91;'btn', 'btn-primary', 'btn-active'];\nconst btnClass = cssClasses.join(' ');\n\nconsole.log(btnClass);</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>btn btn-primary btn-active</code></pre>\n\n\n\n<p>In this example, we have an array that holds a list of CSS classes. And we use the&nbsp;<code>join()</code>&nbsp;method joins all elements of the&nbsp;<code>cssClasses</code>&nbsp;array and return a string of the CSS classes separated by a space.</p>\n\n\n\n<h3>2) Using the JavaScript Array join() method to replace all occurrences of a string</h3>\n\n\n\n<p>This example uses the JavaScript Array <code>join()</code> method to replace all occurrences of the space <code>' '</code> by the hyphen (<code>-</code>):</p>\n\n\n\n<pre class=\"wp-block-code\"><code>const title = 'JavaScript array join example';\nconst url = title.split(' ')\n    .join('-')\n    .toLowerCase();\n\nconsole.log(url);</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>javascript-array-join-example</code></pre>\n\n\n\n<p>How it works:</p>\n\n\n\n<ul><li>First, split the <code>title</code> string by the space into an array by using the <code>split()</code> string method.</li><li>Second, concatenate all elements in the result array into a string by using the <code>join()</code> method.</li><li>Third, convert the result string to lower case by using the <code>toLowerCase()</code> method.</li></ul>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Introduction to the JavaScript array join() method The join() method allows you to concatenate all elements of an array and returns a new string: The&nbsp;join()&nbsp;method accepts a optional argument&nbsp;separator&nbsp;which is a string that separates each pair of adjacent elements of the array in the result string. The&nbsp;separator&nbsp;defaults to a comma if you don’t pass it to the&nbsp;join()&nbsp;method. In case the [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [37],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3391"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/comments?post=3391"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3391/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/media?parent=3391"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/categories?post=3391"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/tags?post=3391"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 3393,
+    "date": "2020-11-30T05:54:17",
+    "date_gmt": "2020-11-30T05:54:17",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3393"
+    },
+    "modified": "2020-11-30T05:54:17",
+    "modified_gmt": "2020-11-30T05:54:17",
+    "slug": "multidimensional-array",
+    "status": "publish",
+    "type": "post",
+    "link": "https://computerprogramming.foobrdigital.com/multidimensional-array/",
+    "title": {
+      "rendered": "Multidimensional Array"
+    },
+    "content": {
+      "rendered": "\n<h2>Introduction to JavaScript multidimensional array</h2>\n\n\n\n<p>JavaScript does not provide the multidimensional array natively. However, you can create a multidimensional array by defining an array of elements, where each element is also another array.</p>\n\n\n\n<p>For this reason, we can say that a JavaScript multidimensional array is an array of arrays. The easiest way to define a multidimensional array is to use the array literal notation.</p>\n\n\n\n<p>To declare an empty multidimensional array, you use the same syntax as declaring one-dimensional array:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let activities = &#91;];</code></pre>\n\n\n\n<p>The following example defines a two-dimensional array named&nbsp;<code>activities</code>:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let activities = &#91;\n    &#91;'Work', 9],\n    &#91;'Eat', 1],\n    &#91;'Commute', 2],\n    &#91;'Play Game', 1],\n    &#91;'Sleep', 7]\n];</code></pre>\n\n\n\n<p>In the&nbsp;<code>activities</code>&nbsp;array, the first dimension represents the activity and the second one shows the number of hours spent per day for each.</p>\n\n\n\n<p>To show the&nbsp;<code>activities</code>&nbsp;array in the console, you use the&nbsp;<code>console.table()</code>&nbsp;method as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>console.table(activities);</code></pre>\n\n\n\n<p>The following illustrates the output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>┌─────────┬─────────────┬───┐\n│ (index) │      0      │ 1 │\n├─────────┼─────────────┼───┤\n│    0    │   'Work'    │ 9 │\n│    1    │    'Eat'    │ 1 │\n│    2    │  'Commute'  │ 2 │\n│    3    │ 'Play Game' │ 1 │\n│    4    │   'Sleep'   │ 7 │\n└─────────┴─────────────┴───┘</code></pre>\n\n\n\n<p>Note that the&nbsp;<code>(index)</code>&nbsp;column is for the illustration that indicates the indices of the inner array.</p>\n\n\n\n<p>To access an element of the multidimensional array, you first use square brackets to access an element of the outer array that returns an inner array; and then use another square bracket to access the element of the inner array.</p>\n\n\n\n<p>The following example returns the second element of the first inner array in the&nbsp;<code>activities</code>&nbsp;array above:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>console.log(activities&#91;0]&#91;1]); // 9</code></pre>\n\n\n\n<h2>Adding elements to the JavaScript multidimensional array</h2>\n\n\n\n<p>You can use the Array methods such as <code>push()</code> and <code>splice()</code> to manipulate elements of a multidimensional array.</p>\n\n\n\n<p>For example, to add a new element at the end of the multidimensional array, you use the&nbsp;<code>push()</code>&nbsp;method as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>activities.push(&#91;'Study',2]);\n\nconsole.table(activities);</code></pre>\n\n\n\n<pre class=\"wp-block-code\"><code>┌─────────┬─────────────┬───┐\n│ (index) │      0      │ 1 │\n├─────────┼─────────────┼───┤\n│    0    │   'Work'    │ 9 │\n│    1    │    'Eat'    │ 1 │\n│    2    │  'Commute'  │ 2 │\n│    3    │ 'Play Game' │ 1 │\n│    4    │   'Sleep'   │ 7 │\n│    5    │   'Study'   │ 2 │\n└─────────┴─────────────┴───┘</code></pre>\n\n\n\n<p>To insert an element in the middle of the array, you use the&nbsp;<code>splice()</code>&nbsp;method. The following inserts an element in the second position of the activities array:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>activities.splice(1, 0, &#91;'Programming', 2]);\n\nconsole.table(activities);</code></pre>\n\n\n\n<p>Here is the output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>┌─────────┬───────────────┬───┐\n│ (index) │       0       │ 1 │\n├─────────┼───────────────┼───┤\n│    0    │    'Work'     │ 9 │\n│    1    │ 'Programming' │ 2 │\n│    2    │     'Eat'     │ 1 │\n│    3    │   'Commute'   │ 2 │\n│    4    │  'Play Game'  │ 1 │\n│    5    │    'Sleep'    │ 7 │\n│    6    │    'Study'    │ 2 │\n└─────────┴───────────────┴───┘</code></pre>\n\n\n\n<p>This example calculates the percentage of the hours spent on each activity and appends the percentage to the inner array.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>activities.forEach(activity => {\n    let percentage = ((activity&#91;1] / 24) * 100).toFixed();\n    activity&#91;2] = percentage + '%';\n});\n\nconsole.table(activities);</code></pre>\n\n\n\n<p>The following shows the output in the console:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>┌─────────┬───────────────┬───┬───────┐\n│ (index) │       0       │ 1 │   2   │\n├─────────┼───────────────┼───┼───────┤\n│    0    │    'Work'     │ 9 │ '38%' │\n│    1    │ 'Programming' │ 2 │ '8%'  │\n│    2    │     'Eat'     │ 1 │ '4%'  │\n│    3    │   'Commute'   │ 2 │ '8%'  │\n│    4    │  'Play Game'  │ 1 │ '4%'  │\n│    5    │    'Sleep'    │ 7 │ '29%' │\n│    6    │    'Study'    │ 2 │ '8%'  │\n└─────────┴───────────────┴───┴───────┘</code></pre>\n\n\n\n<h2>Removing elements from the JavaScript multidimensional&nbsp;array</h2>\n\n\n\n<p>To remove an element from an array, you use the&nbsp;<code>pop()</code>&nbsp;or&nbsp;<code>splice()</code>&nbsp;method.</p>\n\n\n\n<p>For example, the following statement removes the last element of the&nbsp;<code>activities</code>&nbsp;array.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>activities.pop();\n\nconsole.table(activities);</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>┌─────────┬───────────────┬───┬───────┐\n│ (index) │       0       │ 1 │   2   │\n├─────────┼───────────────┼───┼───────┤\n│    0    │    'Work'     │ 9 │ '38%' │\n│    1    │ 'Programming' │ 2 │ '8%'  │\n│    2    │     'Eat'     │ 1 │ '4%'  │\n│    3    │   'Commute'   │ 2 │ '8%'  │\n│    4    │  'Play Game'  │ 1 │ '4%'  │\n│    5    │    'Sleep'    │ 7 │ '29%' │\n└─────────┴───────────────┴───┴───────┘</code></pre>\n\n\n\n<p>Similarly, you can remove the elements from the inner array of the multidimensional array by using the&nbsp;<code>pop()</code>&nbsp;method. The following example removes the percentage element from the inner arrays of the&nbsp;<code>activities</code>&nbsp;array.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>activities.forEach((activity) => {\n    activity.pop(2);\n});\n\nconsole.table(activities);</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>┌─────────┬───────────────┬───┐\n│ (index) │       0       │ 1 │\n├─────────┼───────────────┼───┤\n│    0    │    'Work'     │ 9 │\n│    1    │ 'Programming' │ 2 │\n│    2    │     'Eat'     │ 1 │\n│    3    │   'Commute'   │ 2 │\n│    4    │  'Play Game'  │ 1 │\n│    5    │    'Sleep'    │ 7 │\n└─────────┴───────────────┴───┘</code></pre>\n\n\n\n<h2>Iterating over elements of the JavaScript multidimensional array</h2>\n\n\n\n<p>To iterate a multidimensional array, you use a nested for loop as in the following example.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>// loop the outer array\nfor (let i = 0; i &lt; activities.length; i++) {\n    // get the size of the inner array\n    var innerArrayLength = activities&#91;i].length;\n    // loop the inner array\n    for (let j = 0; j &lt; innerArrayLength; j++) {\n        console.log('&#91;' + i + ',' + j + '] = ' + activities&#91;i]&#91;j]);\n    }\n}</code></pre>\n\n\n\n<p>The first loop iterates over the elements of the outer array and the nested loop iterates over elements of the inner array.</p>\n\n\n\n<p>The following shows the output of the script in the console:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&#91;0,0] = Work\n&#91;0,1] = 9\n&#91;1,0] = Eat\n&#91;1,1] = 1\n&#91;2,0] = Commute\n&#91;2,1] = 2\n&#91;3,0] = Play Game\n&#91;3,1] = 1\n&#91;4,0] = Sleep\n&#91;4,1] = 7\n&#91;5,0] = Study\n&#91;5,1] = 2</code></pre>\n\n\n\n<p>Or you can use the&nbsp;<code>forEach()</code>&nbsp;method twice:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>activities.forEach((activity) => {\n    activity.forEach((data) => {\n        console.log(data);\n    });\n});</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Work\n9\nEat\n1\nCommute\n2\nPlay Game\n1\nSleep\n7\nStudy\n2</code></pre>\n\n\n\n<p>In this tutorial, you have learned how to use an array of arrays to create a JavaScript multidimensional array.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Introduction to JavaScript multidimensional array JavaScript does not provide the multidimensional array natively. However, you can create a multidimensional array by defining an array of elements, where each element is also another array. For this reason, we can say that a JavaScript multidimensional array is an array of arrays. The easiest way to define a multidimensional array [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [37],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3393"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/comments?post=3393"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3393/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/media?parent=3393"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/categories?post=3393"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/tags?post=3393"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  }
+]

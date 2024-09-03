@@ -1,0 +1,1636 @@
+[
+  {
+    "id": 3695,
+    "date": "2022-06-28T09:47:11",
+    "date_gmt": "2022-06-28T09:47:11",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3695" },
+    "modified": "2022-06-28T09:47:11",
+    "modified_gmt": "2022-06-28T09:47:11",
+    "slug": "creating-a-social-website-project",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/creating-a-social-website-project/",
+    "title": { "rendered": "Creating a social website project" },
+    "content": {
+      "rendered": "\n<p>You are going&nbsp;<a></a>to create a social application that will allow users to share images that they find on the Internet. You will need to build the following elements for this&nbsp;project:</p>\n\n\n\n<ul><li>An authentication system for users to register, log in, edit their profile, and&nbsp;change or reset their password</li><li>A follow system to allow users to follow each other on the website</li><li>A functionality to display shared images and implement a bookmarklet for&nbsp;users to share images from any website</li><li>An activity stream that allows users to see the content uploaded by the people that they follow</li></ul>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>You are going&nbsp;to create a social application that will allow users to share images that they find on the Internet. You will need to build the following elements for this&nbsp;project: An authentication system for users to register, log in, edit their profile, and&nbsp;change or reset their password A follow system to allow users to follow&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/creating-a-social-website-project/\">Continue reading <span class=\"screen-reader-text\">Creating a social website project</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [128],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3695" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3695"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3695/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3696,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3695/revisions/3696"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3695"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3695"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3695"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3697,
+    "date": "2022-06-28T09:47:42",
+    "date_gmt": "2022-06-28T09:47:42",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3697" },
+    "modified": "2022-06-28T09:47:42",
+    "modified_gmt": "2022-06-28T09:47:42",
+    "slug": "starting-your-social-website-project",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/starting-your-social-website-project/",
+    "title": { "rendered": "Starting your social website project" },
+    "content": {
+      "rendered": "\n<p>Open the&nbsp;<a></a>terminal and use the following commands to create a virtual environment for your project and activate it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>mkdir env\npython3 -m venv env/bookmarks\nsource env/bookmarks/bin/activate\n</code></pre>\n\n\n\n<p>The shell prompt will display your active virtual environment, as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>(bookmarks)laptop:~ zenx$\n</code></pre>\n\n\n\n<p>Install Django in your virtual environment with the following command:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>pip install \"Django==3.0.*\"\n</code></pre>\n\n\n\n<p>Run the following command to create a new project:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>django-admin startproject bookmarks\n</code></pre>\n\n\n\n<p>The initial project structure has been created. Use the following commands to get into your project directory and create a new application named&nbsp;<code>account</code>:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>cd bookmarks/\ndjango-admin startapp account\n</code></pre>\n\n\n\n<p>Remember that you should add the new application to your project by adding the application&#8217;s name to the&nbsp;<code>INSTALLED_APPS</code>&nbsp;setting in the&nbsp;<code>settings.py</code>&nbsp;file. Place it in&nbsp;the&nbsp;<code>INSTALLED_APPS</code>&nbsp;list before any of the other installed apps:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>INSTALLED_APPS = &#91;\n    'account.apps.AccountConfig',\n    <em># ...</em>\n]\n</code></pre>\n\n\n\n<p>You will define Django authentication templates later on. By placing your application first in the&nbsp;<code>INSTALLED_APPS</code>&nbsp;setting, you ensure that your authentication templates will be used by default instead of any other authentication templates contained in other applications. Django looks for templates by order of application appearance in the&nbsp;<code>INSTALLED_APPS</code>&nbsp;setting.</p>\n\n\n\n<p>Run the next command to sync the database with the models of the default applications included in the&nbsp;<code>INSTALLED_APPS</code>&nbsp;setting:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>python manage.py migrate\n</code></pre>\n\n\n\n<p>You will see&nbsp;<a></a>that all initial Django database migrations get applied. Next, you will build an authentication system into your project using the Django authentication framework.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Open the&nbsp;terminal and use the following commands to create a virtual environment for your project and activate it: The shell prompt will display your active virtual environment, as follows: Install Django in your virtual environment with the following command: Run the following command to create a new project: The initial project structure has been created.&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/starting-your-social-website-project/\">Continue reading <span class=\"screen-reader-text\">Starting your social website project</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [128],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3697" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3697"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3697/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3698,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3697/revisions/3698"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3697"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3697"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3697"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3699,
+    "date": "2022-06-28T09:48:58",
+    "date_gmt": "2022-06-28T09:48:58",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3699" },
+    "modified": "2022-06-28T09:48:58",
+    "modified_gmt": "2022-06-28T09:48:58",
+    "slug": "using-the-django-authentication-framework",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/using-the-django-authentication-framework/",
+    "title": { "rendered": "Using the Django authentication framework" },
+    "content": {
+      "rendered": "\n<p>Django comes with a built-in authentication framework that can handle user authentication, sessions, permissions, and user groups. The authentication system includes views&nbsp;<a></a>for common user actions such as log in, log out, password change, and password reset.</p>\n\n\n\n<p>The authentication framework is located at <code>django.contrib.auth</code> and is used by other Django <code>contrib</code> packages. Remember that you already used the authentication framework <em>Building a Blog Application</em>, to create a superuser for your blog application to access the administration site.</p>\n\n\n\n<p>When you create a new Django project using the&nbsp;<code>startproject</code>&nbsp;command, the authentication framework is included in the default settings of your project. It&nbsp;consists of the&nbsp;<code>django.contrib.auth</code>&nbsp;application and the following two middleware classes found in the&nbsp;<code>MIDDLEWARE</code>&nbsp;setting of your project:</p>\n\n\n\n<ul><li><code>AuthenticationMiddleware</code>: Associates users with requests using sessions</li><li><code>SessionMiddleware</code>: Handles the current session across requests</li></ul>\n\n\n\n<p>The authentication framework also includes the following models:</p>\n\n\n\n<ul><li><code>User</code>: A user&nbsp;<a></a>model with basic fields; the main fields of this model are&nbsp;<code>username</code>,&nbsp;<code>password</code>,&nbsp;<code>email</code>,&nbsp;<code>first_name</code>,&nbsp;<code>last_name</code>, and&nbsp;<code>is_active</code></li><li><code>Group</code>: A group&nbsp;<a></a>model to categorize users</li><li><code>Permission</code>: Flags for&nbsp;<a></a>users or groups to perform certain actions</li></ul>\n\n\n\n<p>The framework also includes default authentication views and forms, which you will&nbsp;use later.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Django comes with a built-in authentication framework that can handle user authentication, sessions, permissions, and user groups. The authentication system includes views&nbsp;for common user actions such as log in, log out, password change, and password reset. The authentication framework is located at django.contrib.auth and is used by other Django contrib packages. Remember that you already used the authentication framework Building a&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/using-the-django-authentication-framework/\">Continue reading <span class=\"screen-reader-text\">Using the Django authentication framework</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [128],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3699" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3699"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3699/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3700,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3699/revisions/3700"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3699"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3699"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3699"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3701,
+    "date": "2022-06-28T09:50:43",
+    "date_gmt": "2022-06-28T09:50:43",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3701" },
+    "modified": "2022-06-28T09:50:43",
+    "modified_gmt": "2022-06-28T09:50:43",
+    "slug": "creating-a-login-view",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/creating-a-login-view/",
+    "title": { "rendered": "Creating a login view" },
+    "content": {
+      "rendered": "\n<p>We will start&nbsp;<a></a>this section by using the Django authentication framework to allow users to log in to your website. Your view should perform the following actions to&nbsp;log in a user:</p>\n\n\n\n<ul><li>Get the username and password that is posted by the user using a login form</li><li>Authenticate the user against the data stored in the database</li><li>Check whether the user is active</li><li>Log the user into the website and start an authenticated session</li></ul>\n\n\n\n<p>First, you will create a login form. Create a new&nbsp;<code>forms.py</code>&nbsp;file in your&nbsp;<code>account</code>&nbsp;application directory and add the following lines to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>from django import forms\nclass LoginForm(forms.Form):\n    username = forms.CharField()\n    password = forms.CharField(widget=forms.PasswordInput)\n</code></pre>\n\n\n\n<p>This form will be used to authenticate users against the database. Note that you use the&nbsp;<code>PasswordInput</code>&nbsp;widget to render the&nbsp;<code>password</code>&nbsp;HTML element. This will include&nbsp;<code>type=\"password\"</code>&nbsp;in the HTML so that the browser treats it as a password input.</p>\n\n\n\n<p>Edit the&nbsp;<code>views.py</code>&nbsp;file of your&nbsp;<code>account</code>&nbsp;application and add the following code to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>from django.http import HttpResponse\nfrom django.shortcuts import render\nfrom django.contrib.auth import authenticate, login\nfrom .forms import LoginForm\ndef user_login(request):\n    if request.method == 'POST':\n        form = LoginForm(request.POST)\n        if form.is_valid():\n            cd = form.cleaned_data\n            user = authenticate(request,\n                                username=cd&#91;'username'],\n                                password=cd&#91;'password'])\n            if user is not None:\n                if user.is_active:\n                    login(request, user)\n                    return HttpResponse('Authenticated '\\\n                                        'successfully')\n                else:\n                    return HttpResponse('Disabled account')\n            else:\n                return HttpResponse('Invalid login')\n    else:\n        form = LoginForm()\n    return render(request, 'account/login.html', {'form': form})\n</code></pre>\n\n\n\n<p>This is what the basic login view does: when the&nbsp;<code>user_login</code>&nbsp;view is called with a&nbsp;<code>GET</code>&nbsp;request, you instantiate&nbsp;<a></a>a new login form with&nbsp;<code>form = LoginForm()</code>&nbsp;to display it in the template. When the user submits the form via&nbsp;<code>POST</code>, you perform the following actions:</p>\n\n\n\n<ul><li>Instantiate the form with the submitted data with&nbsp;<code>form = LoginForm(request.POST)</code>.</li><li>Check whether the form is valid with&nbsp;<code>form.is_valid()</code>. If it is not valid, you display the form errors in your template (for example, if the user didn&#8217;t fill in one of the fields).</li><li>If the submitted data is valid, you authenticate the user against the database using the&nbsp;<code>authenticate()</code>&nbsp;method. This method takes the&nbsp;<code>request</code>&nbsp;object, the&nbsp;<code>username</code>, and the&nbsp;<code>password</code>&nbsp;parameters and returns the&nbsp;<code>User</code>&nbsp;object if the user has been successfully authenticated, or&nbsp;<code>None</code>&nbsp;otherwise. If the user has not been authenticated, you return a raw&nbsp;<code>HttpResponse</code>, displaying the&nbsp;<strong>Invalid login</strong>&nbsp;message.</li><li>If the user was successfully authenticated, you check whether the user is active by accessing the&nbsp;<code>is_active</code>&nbsp;attribute. This is an attribute of Django&#8217;s user&nbsp;model. If the user is not active, you return an&nbsp;<code>HttpResponse</code>&nbsp;that displays the&nbsp;<strong>Disabled account</strong>&nbsp;message.</li><li>If the user is active, you log the user into the website. You set the user in the session by calling the&nbsp;<code>login()</code>&nbsp;method and return the&nbsp;<strong>Authenticated successfully</strong>&nbsp;message.</li></ul>\n\n\n\n<p>Note the difference between&nbsp;<code>authenticate</code>&nbsp;and&nbsp;<code>login</code>:&nbsp;<code>authenticate()</code>&nbsp;checks user credentials and returns a&nbsp;<code>User</code>&nbsp;object if they are correct;&nbsp;<code>login()</code>&nbsp;sets the user in the current session.</p>\n\n\n\n<p>Now you will need to create a URL pattern for this view. Create a new&nbsp;<code>urls.py</code>&nbsp;file in your&nbsp;<code>account</code>&nbsp;application directory and add the following code to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>from django.urls import path\nfrom . import views\nurlpatterns = &#91;\n    # post views\n    path('login/', views.user_login, name='login'),\n]\n</code></pre>\n\n\n\n<p>Edit the main&nbsp;<code>urls.py</code>&nbsp;file located in your&nbsp;<code>bookmarks</code>&nbsp;project directory, import&nbsp;<code>include</code>, and add the URL patterns of the&nbsp;<code>account</code>&nbsp;application, as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>from django.urls import path, <strong>include</strong>\nfrom django.contrib import admin\nurlpatterns = &#91;\n    path('admin/', admin.site.urls),\n    <strong>path('account/', include('account.urls'))</strong>,\n]\n</code></pre>\n\n\n\n<p>The login view&nbsp;<a></a>can now be accessed by a URL. It is time to create a template for this&nbsp;view. Since you don&#8217;t have any templates for this project, you can start by creating a base template that can be extended by the login template. Create the following files and directories inside the&nbsp;<code>account</code>&nbsp;application directory:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>templates/\n    account/\n        login.html\n    base.html\n</code></pre>\n\n\n\n<p>Edit the&nbsp;<code>base.html</code>&nbsp;template and add the following code to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{% load static %}\n&lt;!DOCTYPE html&gt;\n&lt;html&gt;\n&lt;head&gt;\n  &lt;title&gt;{% block title %}{% endblock %}&lt;/title&gt;\n  &lt;link href=\"{% static \"css/base.css\" %}\" rel=\"stylesheet\"&gt;\n&lt;/head&gt;\n&lt;body&gt;\n  &lt;div id=\"header\"&gt;\n    &lt;span class=\"logo\"&gt;Bookmarks&lt;/span&gt;\n  &lt;/div&gt;\n  &lt;div id=\"content\"&gt;\n    {% block content %}\n    {% endblock %}\n  &lt;/div&gt;\n&lt;/body&gt;\n&lt;/html&gt;\n</code></pre>\n\n\n\n<p>This will be the base template for the website. As you did in your previous project, include the CSS styles in the main template. You can find these static files in the code that comes along. Copy the <code>static/</code> directory of the <code>account</code> application from the source code to the same location in your project so that you can use the static files. You can find the directory&#8217;s contents at https://github.com/PacktPublishing/Django-3-by-Example/tree/master/bookmarks/account/static.</p>\n\n\n\n<p>The base template defines a&nbsp;<code>title</code>&nbsp;block and a&nbsp;<code>content</code>&nbsp;block that can be filled with&nbsp;content by the templates that extend from it.</p>\n\n\n\n<p>Let&#8217;s fill in&nbsp;<a></a>the template for your login form. Open the&nbsp;<code>account/login.html</code>&nbsp;template and add the following code to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{% extends \"base.html\" %}\n{% block title %}Log-in{% endblock %}\n{% block content %}\n  &lt;h1&gt;Log-in&lt;/h1&gt;\n  &lt;p&gt;Please, use the following form to log-in:&lt;/p&gt;\n  &lt;form method=\"post\"&gt;\n    {{ form.as_p }}\n    {% csrf_token %}\n    &lt;p&gt;&lt;input type=\"submit\" value=\"Log in\"&gt;&lt;/p&gt;\n  &lt;/form&gt;\n{% endblock %}\n</code></pre>\n\n\n\n<p>This template includes the form that is instantiated in the view. Since your form will be submitted via <code>POST</code>, you will include the <code>{% csrf_token %}</code> template tag for <strong>cross-site request forgery</strong> (<strong>CSRF</strong>) protection. You learned about CSRF protection. <em>Enhancing Your Blog with Advanced Features</em>.</p>\n\n\n\n<p>There are no users in your database, yet. You will need to create a superuser first in order to be able to access the administration site to manage other users. Open the command line and execute&nbsp;<code>python manage.py createsuperuser</code>. Fill in the desired username, email, and password. Then, run the development server using the&nbsp;<code>python manage.py runserver</code>&nbsp;command and open&nbsp;<code>http://127.0.0.1:8000/admin/</code>&nbsp;in your browser. Access the administration site using the credentials of the user you just created. You will see the Django administration site, including the&nbsp;<code>User</code>&nbsp;and&nbsp;<code>Group</code>&nbsp;models of the Django authentication framework.</p>\n\n\n\n<p>It will look as follows:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/14981_04_01.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 4.1: The Django administration site index page including Users and Groups</p>\n\n\n\n<p>Create a new&nbsp;<a></a>user using the administration site and open&nbsp;<code>http://127.0.0.1:8000/account/login/</code>&nbsp;in your browser. You should see the rendered template, including the login form:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/14981_04_02.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 4.2: The user login page</p>\n\n\n\n<p>Now, submit the form, leaving one of the fields empty. In this case, you will see that the form is not&nbsp;<a></a>valid and displays errors, as follows:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/14981_04_03.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 4.3: The login form with field errors</p>\n\n\n\n<p>Note that some modern browsers will prevent you from submitting the form with empty or erroneous fields. This is because of form validation done by the browser based on field types and restrictions per field. In this case, the form won&#8217;t be submitted and the browser will display an error message for the fields that are wrong.</p>\n\n\n\n<p>If you enter&nbsp;<a></a>a non-existent user or a wrong password, you will get an&nbsp;<strong>Invalid login</strong>&nbsp;message.</p>\n\n\n\n<p>If you enter valid credentials, you will get an&nbsp;<strong>Authenticated successfully</strong>&nbsp;message, like this:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/14981_04_04.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 4.4: The successful authentication plain text response</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>We will start&nbsp;this section by using the Django authentication framework to allow users to log in to your website. Your view should perform the following actions to&nbsp;log in a user: Get the username and password that is posted by the user using a login form Authenticate the user against the data stored in the database&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/creating-a-login-view/\">Continue reading <span class=\"screen-reader-text\">Creating a login view</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [128],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3701" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3701"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3701/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3702,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3701/revisions/3702"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3701"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3701"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3701"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3703,
+    "date": "2022-06-28T09:51:11",
+    "date_gmt": "2022-06-28T09:51:11",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3703" },
+    "modified": "2022-06-28T09:51:11",
+    "modified_gmt": "2022-06-28T09:51:11",
+    "slug": "using-django-authentication-views",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/using-django-authentication-views/",
+    "title": { "rendered": "Using Django authentication views" },
+    "content": {
+      "rendered": "\n<p>Django includes&nbsp;<a></a>several forms and views in the authentication framework that you&nbsp;can use right away. The login view you have created is a good exercise to understand the process of user authentication in Django. However, you can use the&nbsp;default Django authentication views in most cases.</p>\n\n\n\n<p>Django provides the following class-based views to deal with authentication. All&nbsp;of&nbsp;them are located in&nbsp;<code>django.contrib.auth.views</code>:</p>\n\n\n\n<ul><li><code>LoginView</code>: Handles a login form and logs in a user</li><li><code>LogoutView</code>: Logs out a user</li></ul>\n\n\n\n<p>Django provides the following views to handle password changes:</p>\n\n\n\n<ul><li><code>PasswordChangeView</code>: Handles a form to change the user&#8217;s password</li><li><code>PasswordChangeDoneView</code>: The success view that the user is redirected to&nbsp;after a successful password change</li></ul>\n\n\n\n<p>Django also includes the following views to enable users to reset their password:</p>\n\n\n\n<ul><li><code>PasswordResetView</code>: Allows users to reset their password. It generates a&nbsp;one-time-use link with a token and sends it to a user&#8217;s email account.</li><li><code>PasswordResetDoneView</code>: Tells users that an email—including a link to reset&nbsp;their password—has been sent to them.</li><li><code>PasswordResetConfirmView</code>: Allows users to set a new password.</li><li><code>PasswordResetCompleteView</code>: The success view that the user is redirected to&nbsp;after successfully resetting their password.</li></ul>\n\n\n\n<p>The views&nbsp;<a></a>listed in the preceding lists can save you a lot of time when creating a website with user accounts. The views use default values that you can override, such&nbsp;as the location of the template to be rendered, or the form to be used by the&nbsp;view.</p>\n\n\n\n<p>You can get more information about the built-in authentication views at https://docs.djangoproject.com/en/3.0/topics/auth/default/#all-authentication-views.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Django includes&nbsp;several forms and views in the authentication framework that you&nbsp;can use right away. The login view you have created is a good exercise to understand the process of user authentication in Django. However, you can use the&nbsp;default Django authentication views in most cases. Django provides the following class-based views to deal with authentication. All&nbsp;of&nbsp;them&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/using-django-authentication-views/\">Continue reading <span class=\"screen-reader-text\">Using Django authentication views</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [128],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3703" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3703"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3703/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3704,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3703/revisions/3704"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3703"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3703"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3703"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3705,
+    "date": "2022-06-28T09:52:08",
+    "date_gmt": "2022-06-28T09:52:08",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3705" },
+    "modified": "2022-06-28T09:52:08",
+    "modified_gmt": "2022-06-28T09:52:08",
+    "slug": "login-and-logout-views",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/login-and-logout-views/",
+    "title": { "rendered": "Login and logout views" },
+    "content": {
+      "rendered": "\n<p>Edit the&nbsp;<code>urls.py</code>&nbsp;file of your&nbsp;<a></a>account application, like this:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>from django.urls import path\n<strong>from django.contrib.auth import views as auth_views</strong>\nfrom . import views\nurlpatterns = &#91;\n    # previous login view\n    # path('login/', views.user_login, name='login'),\n    <strong>path('login/', auth_views.LoginView.as_view(), name='login')</strong>,\n    <strong>path('logout/', auth_views.LogoutView.as_view(), name='logout')</strong>,\n]\n</code></pre>\n\n\n\n<p>In the preceding code, you&nbsp;<a></a>comment out the URL pattern for the&nbsp;<code>user_login</code>&nbsp;view that you created previously to use the&nbsp;<code>LoginView</code>&nbsp;view of Django&#8217;s authentication framework. You also add a URL pattern for the&nbsp;<code>LogoutView</code>&nbsp;view.</p>\n\n\n\n<p>Create a new directory inside the&nbsp;<code>templates</code>&nbsp;directory of your&nbsp;<code>account</code>&nbsp;application and name it&nbsp;<code>registration</code>. This is the default path where the Django authentication views expect your authentication templates to be.</p>\n\n\n\n<p>The&nbsp;<code>django.contrib.admin</code>&nbsp;module includes some of the authentication templates that are used for the administration site. You have placed the&nbsp;<code>account</code>&nbsp;application at the top of the&nbsp;<code>INSTALLED_APPS</code>&nbsp;setting so that Django uses your templates by default&nbsp;<a></a>instead of any authentication templates defined in other applications.</p>\n\n\n\n<p>Create a&nbsp;<a></a>new file inside the&nbsp;<code>templates/registration</code>&nbsp;directory, name it&nbsp;<code>login.html</code>, and add the following code to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{% extends \"base.html\" %}\n{% block title %}Log-in{% endblock %}\n{% block content %}\n  &lt;h1&gt;Log-in&lt;/h1&gt;\n  {% if form.errors %}\n    &lt;p&gt;\n      Your username and password didn't match.\n      Please try again.\n    &lt;/p&gt;\n  {% else %}\n    &lt;p&gt;Please, use the following form to log-in:&lt;/p&gt;\n  {% endif %}\n  &lt;div class=\"login-form\"&gt;\n    &lt;form action=\"{% url 'login' %}\" method=\"post\"&gt;\n      {{ form.as_p }}\n      {% csrf_token %}\n      &lt;input type=\"hidden\" name=\"next\" value=\"{{ next }}\" /&gt;\n      &lt;p&gt;&lt;input type=\"submit\" value=\"Log-in\"&gt;&lt;/p&gt;\n    &lt;/form&gt;\n  &lt;/div&gt;\n{% endblock %}\n</code></pre>\n\n\n\n<p>This login template is quite similar to the one you created before. Django uses the&nbsp;<code>AuthenticationForm</code>&nbsp;form located at&nbsp;<code>django.contrib.auth.forms</code>&nbsp;by default. This form tries to authenticate the user and raises a validation error if the login was unsuccessful. In this case, you can look for errors using&nbsp;<code>{% if form.errors %}</code>&nbsp;in the template to check whether the credentials provided are wrong.</p>\n\n\n\n<p>Note that you have added a hidden HTML&nbsp;<code>&lt;input&gt;</code>&nbsp;element to submit the value of a variable called&nbsp;<code>next</code>. This variable is first set by the login view when you pass a&nbsp;<code>next</code>&nbsp;parameter in the request (for example,&nbsp;<code>http://127.0.0.1:8000/account/login/?next=/account/</code>).</p>\n\n\n\n<p>The&nbsp;<code>next</code>&nbsp;parameter has to be a URL. If this parameter is given, the Django login view will redirect the user to the given URL after a successful login.</p>\n\n\n\n<p>Now, create a&nbsp;<code>logged_out.html</code>&nbsp;template inside the&nbsp;<code>registration</code>&nbsp;template directory and make it look like this:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{% extends \"base.html\" %}\n{% block title %}Logged out{% endblock %}\n{% block content %}\n  &lt;h1&gt;Logged out&lt;/h1&gt;\n  &lt;p&gt;\n    You have been successfully logged out.\n    You can &lt;a href=\"{% url \"login\" %}\"&gt;log-in again&lt;/a&gt;.\n  &lt;/p&gt;\n{% endblock %}\n</code></pre>\n\n\n\n<p>This is the&nbsp;<a></a>template that Django will display after the user logs out.</p>\n\n\n\n<p>After adding&nbsp;<a></a>the URL patterns and the templates for login and logout views, your website is now ready for users to log in using Django authentication views.</p>\n\n\n\n<p>Now, you will create a new view to display a dashboard when users log in to their account. Open the&nbsp;<code>views.py</code>&nbsp;file of your&nbsp;<code>account</code>&nbsp;application and add the following code to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>from django.contrib.auth.decorators import login_required\n@login_required\ndef dashboard(request):\n    return render(request,\n                  'account/dashboard.html',\n                  {'section': 'dashboard'})\n</code></pre>\n\n\n\n<p>You decorate your view with the&nbsp;<code>login_required</code>&nbsp;decorator of the authentication framework. The&nbsp;<code>login_required</code>&nbsp;decorator checks whether the current user is authenticated. If the user is authenticated, it executes the decorated view; if the user is not authenticated, it redirects the user to the login URL with the originally requested URL as a&nbsp;<code>GET</code>&nbsp;parameter named&nbsp;<code>next</code>.</p>\n\n\n\n<p>By doing this, the login view redirects users to the URL that they were trying to access after they successfully log in. Remember that you added a hidden input in the&nbsp;form of your login template for this purpose.</p>\n\n\n\n<p>You can also define a&nbsp;<code>section</code>&nbsp;variable. You will use this variable to track the site&#8217;s section that the user is browsing. Multiple views may correspond to the same section. This is a simple way to define the section that each view corresponds to.</p>\n\n\n\n<p>Next, you will&nbsp;<a></a>need to create a template for the dashboard view. Create a new file inside the&nbsp;<code>templates/account/</code>&nbsp;directory and name it&nbsp;<code>dashboard.html</code>. Make it look like this:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{% extends \"base.html\" %}\n{% block title %}Dashboard{% endblock %}\n{% block content %}\n  &lt;h1&gt;Dashboard&lt;/h1&gt;\n  &lt;p&gt;Welcome to your dashboard.&lt;/p&gt;\n{% endblock %}\n</code></pre>\n\n\n\n<p>Then, add the&nbsp;<a></a>following URL pattern for this view in the&nbsp;<code>urls.py</code>&nbsp;file of the&nbsp;<code>account</code>&nbsp;application:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>urlpatterns = &#91;\n    <em># ...</em>\n    <strong>path('', views.dashboard, name='dashboard')</strong>,\n]\n</code></pre>\n\n\n\n<p>Edit the&nbsp;<code>settings.py</code>&nbsp;file of your project and add the following code to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>LOGIN_REDIRECT_URL = 'dashboard'\nLOGIN_URL = 'login'\nLOGOUT_URL = 'logout'\n</code></pre>\n\n\n\n<p>The settings defined in the preceding code are as follows:</p>\n\n\n\n<ul><li><code>LOGIN_REDIRECT_URL</code>: Tells Django which URL to redirect the user to after a&nbsp;successful login if no&nbsp;<code>next</code>&nbsp;parameter is present in the request</li><li><code>LOGIN_URL</code>: The URL to redirect the user to log in (for example, views using the&nbsp;<code>login_required</code>&nbsp;decorator)</li><li><code>LOGOUT_URL</code>: The URL to redirect the user to log out</li></ul>\n\n\n\n<p>You are using the names of the URL patterns that you previously defined using the&nbsp;<code>name</code>&nbsp;attribute of the&nbsp;<code>path()</code>&nbsp;function. Hardcoded URLs instead of URL names can also be used for these settings.</p>\n\n\n\n<p>Let&#8217;s summarize what you have done so far:</p>\n\n\n\n<ul><li>You have added the built-in Django authentication log in and log out views&nbsp;to your project</li><li>You have created custom templates for both views and defined a simple dashboard view to redirect users after they log in</li><li>Finally, you have configured your settings for Django to use these URLs by&nbsp;default</li></ul>\n\n\n\n<p>Now, you will add log in and log out links to your base template to put everything together. In order to do this, you have to determine whether the current user is logged in or not in order to&nbsp;<a></a>display the appropriate link for each case. The current user is set in the&nbsp;<code>HttpRequest</code>&nbsp;object by the authentication middleware. You can access it with&nbsp;<code>request.user</code>. You will find a&nbsp;<code>User</code>&nbsp;object in&nbsp;<a></a>the request even if the&nbsp;user is not authenticated. A non-authenticated user is set in the request as an instance of&nbsp;<code>AnonymousUser</code>. The best way to check whether the current user is authenticated is by accessing the read-only attribute&nbsp;<code>is_authenticated</code>.</p>\n\n\n\n<p>Edit your&nbsp;<code>base.html</code>&nbsp;template and modify the&nbsp;<code>&lt;div&gt;</code>&nbsp;element with a&nbsp;<code>header</code>&nbsp;ID, like&nbsp;this:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;div id=\"header\"&gt;\n  &lt;span class=\"logo\"&gt;Bookmarks&lt;/span&gt;\n  <strong>{% if request.user.is_authenticated %}</strong>\n    <strong>&lt;ul class=\"menu\"&gt;</strong>\n      <strong>&lt;li {% if section == \"dashboard\" %}class=\"selected\"{% endif %}&gt;</strong>\n        <strong>&lt;a href=\"{% url \"dashboard\" %}\"&gt;My dashboard&lt;/a&gt;</strong>\n      <strong>&lt;/li&gt;</strong>\n      <strong>&lt;li {% if section == \"images\" %}class=\"selected\"{% endif %}&gt;</strong>\n        <strong>&lt;a href=\"#\"&gt;Images&lt;/a&gt;</strong>\n      <strong>&lt;/li&gt;</strong>\n      <strong>&lt;li {% if section == \"people\" %}class=\"selected\"{% endif %}&gt;</strong>\n        <strong>&lt;a href=\"#\"&gt;People&lt;/a&gt;</strong>\n      <strong>&lt;/li&gt;</strong>\n    <strong>&lt;/ul&gt;</strong>\n  <strong>{% endif %}</strong>\n  <strong>&lt;span class=\"user\"&gt;</strong>\n    <strong>{% if request.user.is_authenticated %}</strong>\n      <strong>Hello {{ request.user.first_name }},</strong>\n      <strong>&lt;a href=\"{% url \"logout\" %}\"&gt;Logout&lt;/a&gt;</strong>\n    <strong>{% else %}</strong>\n      <strong>&lt;a href=\"{% url \"login\" %}\"&gt;Log-in&lt;/a&gt;</strong>\n    <strong>{% endif %}</strong>\n  <strong>&lt;/span&gt;</strong>\n&lt;/div&gt;\n</code></pre>\n\n\n\n<p>As you can see in the preceding code, you only display the site&#8217;s menu to authenticated users. You also check the current section to add a&nbsp;<code>selected</code>&nbsp;class attribute to the corresponding&nbsp;<code>&lt;li&gt;</code>&nbsp;item in order to highlight the current section in the menu using CSS. You display&nbsp;<a></a>the user&#8217;s first name and a link to log out if the user&nbsp;is authenticated, or a link to log in otherwise.</p>\n\n\n\n<p>Now, open&nbsp;<code>http://127.0.0.1:8000/account/login/</code>&nbsp;in your browser. You should&nbsp;see the login page. Enter a valid username and password and click on the&nbsp;<strong>Log-in</strong>&nbsp;button. You should&nbsp;<a></a>see the following output:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/14981_04_05.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 4.5: The dashboard page</p>\n\n\n\n<p>You can see that the&nbsp;<strong>My dashboard</strong>&nbsp;section is highlighted with CSS because it has a&nbsp;<code>selected</code>&nbsp;class. Since the user is authenticated, the first name of the user is displayed on the right side of the header. Click on the&nbsp;<strong>Logout</strong>&nbsp;link. You should see&nbsp;the following page:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/14981_04_06.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 4.6: The logged out page</p>\n\n\n\n<p>In the page from the preceding screenshot, you can see that the user is logged out, and, therefore, the menu&nbsp;<a></a>of the website is not being displayed anymore. Now, the link on the right side of the header shows&nbsp;<strong>Log-in</strong>.</p>\n\n\n\n<p>If you see&nbsp;<a></a>the logged out page of the Django administration site instead of your own logged out page, check the&nbsp;<code>INSTALLED_APPS</code>&nbsp;setting of your project and make sure that&nbsp;<code>django.contrib.admin</code>&nbsp;comes after the&nbsp;<code>account</code>&nbsp;application. Both templates are located in the same relative path, and the Django template loader will use the first one it finds.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Edit the&nbsp;urls.py&nbsp;file of your&nbsp;account application, like this: In the preceding code, you&nbsp;comment out the URL pattern for the&nbsp;user_login&nbsp;view that you created previously to use the&nbsp;LoginView&nbsp;view of Django&#8217;s authentication framework. You also add a URL pattern for the&nbsp;LogoutView&nbsp;view. Create a new directory inside the&nbsp;templates&nbsp;directory of your&nbsp;account&nbsp;application and name it&nbsp;registration. This is the default path where the&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/login-and-logout-views/\">Continue reading <span class=\"screen-reader-text\">Login and logout views</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [128],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3705" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3705"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3705/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3706,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3705/revisions/3706"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3705"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3705"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3705"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3707,
+    "date": "2022-06-28T09:52:42",
+    "date_gmt": "2022-06-28T09:52:42",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3707" },
+    "modified": "2022-06-28T09:52:42",
+    "modified_gmt": "2022-06-28T09:52:42",
+    "slug": "changing-password-views",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/changing-password-views/",
+    "title": { "rendered": "Changing password views" },
+    "content": {
+      "rendered": "\n<p>You also need your users to be able to change their password after they log in to your site. You will integrate&nbsp;<a></a>Django authentication views for a password change.</p>\n\n\n\n<p>Open the&nbsp;<code>urls.py</code>&nbsp;file of the&nbsp;<code>account</code>&nbsp;application and add the following URL patterns to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code># change password urls\npath('password_change/',\n     auth_views.PasswordChangeView.as_view(),\n     name='password_change'),\npath('password_change/done/',\n      auth_views.PasswordChangeDoneView.as_view(),\n      name='password_change_done'),\n</code></pre>\n\n\n\n<p>The&nbsp;<code>PasswordChangeView</code>&nbsp;view will handle the form to change the password, and the&nbsp;<code>PasswordChangeDoneView</code>&nbsp;view will display a success message after the user has successfully changed their password. Let&#8217;s create a template for each view.</p>\n\n\n\n<p>Add a new file inside the&nbsp;<code>templates/registration/</code>&nbsp;directory of your&nbsp;<code>account</code>&nbsp;application and name it&nbsp;<code>password_change_form.html</code>. Add the following code to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{% extends \"base.html\" %}\n{% block title %}Change your password{% endblock %}\n{% block content %}\n  &lt;h1&gt;Change your password&lt;/h1&gt;\n  &lt;p&gt;Use the form below to change your password.&lt;/p&gt;\n  &lt;form method=\"post\"&gt;\n    {{ form.as_p }}\n    &lt;p&gt;&lt;input type=\"submit\" value=\"Change\"&gt;&lt;/p&gt;\n    {% csrf_token %}\n  &lt;/form&gt;\n{% endblock %}\n</code></pre>\n\n\n\n<p>The&nbsp;<code>password_change_form.html</code>&nbsp;template includes the form to change the password.</p>\n\n\n\n<p>Now create&nbsp;<a></a>another file in the same directory and name it&nbsp;<code>password_change_done.html</code>. Add the following code to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{% extends \"base.html\" %}\n{% block title %}Password changed{% endblock %}\n{% block content %}\n  &lt;h1&gt;Password changed&lt;/h1&gt;\n  &lt;p&gt;Your password has been successfully changed.&lt;/p&gt;\n{% endblock %}\n</code></pre>\n\n\n\n<p>The&nbsp;<code>password_change_done.html</code>&nbsp;template only contains the success message to be&nbsp;displayed when the user has successfully changed their password.</p>\n\n\n\n<p>Open&nbsp;<code>http://127.0.0.1:8000/account/password_change/</code>&nbsp;in your browser. If&nbsp;you are not logged in, the browser will redirect you to the login page. After you are successfully authenticated, you will see the following change password page:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/14981_04_07.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 4.7: The change password form</p>\n\n\n\n<p>Fill in the&nbsp;<a></a>form with your current password and your new password, and click on the&nbsp;<strong>CHANGE</strong>&nbsp;button. You will see the following success page:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/14981_04_08.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 4.8: The successful password change page</p>\n\n\n\n<p>Log out&nbsp;<a></a>and log in again using your new password to verify that everything works as expected.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>You also need your users to be able to change their password after they log in to your site. You will integrate&nbsp;Django authentication views for a password change. Open the&nbsp;urls.py&nbsp;file of the&nbsp;account&nbsp;application and add the following URL patterns to it: The&nbsp;PasswordChangeView&nbsp;view will handle the form to change the password, and the&nbsp;PasswordChangeDoneView&nbsp;view will display a success&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/changing-password-views/\">Continue reading <span class=\"screen-reader-text\">Changing password views</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [128],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3707" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3707"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3707/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3708,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3707/revisions/3708"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3707"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3707"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3707"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3709,
+    "date": "2022-06-28T09:53:54",
+    "date_gmt": "2022-06-28T09:53:54",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3709" },
+    "modified": "2022-06-28T09:53:54",
+    "modified_gmt": "2022-06-28T09:53:54",
+    "slug": "resetting-password-views",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/resetting-password-views/",
+    "title": { "rendered": "Resetting password views" },
+    "content": {
+      "rendered": "\n<p>Add the&nbsp;<a></a>following URL patterns for password restoration to the&nbsp;<code>urls.py</code>&nbsp;file of the&nbsp;<code>account</code>&nbsp;application:</p>\n\n\n\n<pre class=\"wp-block-code\"><code># reset password urls\npath('password_reset/',\n     auth_views.PasswordResetView.as_view(),\n     name='password_reset'),\npath('password_reset/done/',\n     auth_views.PasswordResetDoneView.as_view(),\n     name='password_reset_done'),\npath('reset/&lt;uidb64&gt;/&lt;token&gt;/',\n     auth_views.PasswordResetConfirmView.as_view(),\n     name='password_reset_confirm'),\npath('reset/done/',\n     auth_views.PasswordResetCompleteView.as_view(),\n     name='password_reset_complete'),\n</code></pre>\n\n\n\n<p>Add a new file in the&nbsp;<code>templates/registration/</code>&nbsp;directory of your&nbsp;<code>account</code>&nbsp;application and name it&nbsp;<code>password_reset_form.html</code>. Add the following code to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{% extends \"base.html\" %}\n{% block title %}Reset your password{% endblock %}\n{% block content %}\n  &lt;h1&gt;Forgotten your password?&lt;/h1&gt;\n  &lt;p&gt;Enter your e-mail address to obtain a new password.&lt;/p&gt;\n  &lt;form method=\"post\"&gt;\n    {{ form.as_p }}\n    &lt;p&gt;&lt;input type=\"submit\" value=\"Send e-mail\"&gt;&lt;/p&gt;\n    {% csrf_token %}\n  &lt;/form&gt;\n{% endblock %}\n</code></pre>\n\n\n\n<p>Now create another file in the same directory and name it&nbsp;<code>password_reset_email.html</code>. Add the following code to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Someone asked for password reset for email {{ email }}. Follow the link below:\n{{ protocol }}://{{ domain }}{% url \"password_reset_confirm\" uidb64=uid token=token %}\nYour username, in case you've forgotten: {{ user.get_username }}\n</code></pre>\n\n\n\n<p>The&nbsp;<code>password_reset_email.html</code>&nbsp;template will be used to render the email sent to users to reset their password. It includes a reset token that is generated by the view.</p>\n\n\n\n<p>Create another&nbsp;<a></a>file in the same directory and name it&nbsp;<code>password_reset_done.html</code>. Add the following code to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{% extends \"base.html\" %}\n{% block title %}Reset your password{% endblock %}\n{% block content %}\n  &lt;h1&gt;Reset your password&lt;/h1&gt;\n  &lt;p&gt;We've emailed you instructions for setting your password.&lt;/p&gt;\n  &lt;p&gt;If you don't receive an email, please make sure you've entered the address you registered with.&lt;/p&gt;\n{% endblock %}\n</code></pre>\n\n\n\n<p>Create another template in the same directory and name it&nbsp;<code>password_reset_confirm.html</code>. Add the following code to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{% extends \"base.html\" %}\n{% block title %}Reset your password{% endblock %}\n{% block content %}\n  &lt;h1&gt;Reset your password&lt;/h1&gt;\n  {% if validlink %}\n    &lt;p&gt;Please enter your new password twice:&lt;/p&gt;\n    &lt;form method=\"post\"&gt;\n      {{ form.as_p }}\n      {% csrf_token %}\n      &lt;p&gt;&lt;input type=\"submit\" value=\"Change my password\" /&gt;&lt;/p&gt;\n    &lt;/form&gt;\n  {% else %}\n    &lt;p&gt;The password reset link was invalid, possibly because it has already been used. Please request a new password reset.&lt;/p&gt;\n  {% endif %}\n{% endblock %}\n</code></pre>\n\n\n\n<p>In this template, you check whether the link for resetting the password is valid by&nbsp;checking the&nbsp;<code>validlink</code>&nbsp;variable. The view&nbsp;<code>PasswordResetConfirmView</code>&nbsp;checks the validity of the token provided in the URL and passes the&nbsp;<code>validlink</code>&nbsp;variable to&nbsp;the template. If the link is valid, you display the user password reset form. Users&nbsp;can only set a new&nbsp;<a></a>password if they have a valid reset password link.</p>\n\n\n\n<p>Create another template and name it&nbsp;<code>password_reset_complete.html</code>. Enter the following code into it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{% extends \"base.html\" %}\n{% block title %}Password reset{% endblock %}\n{% block content %}\n  &lt;h1&gt;Password set&lt;/h1&gt;\n  &lt;p&gt;Your password has been set. You can &lt;a href=\"{% url \"login\" %}\"&gt;log in now&lt;/a&gt;&lt;/p&gt;\n{% endblock %}\n</code></pre>\n\n\n\n<p>Finally, edit the&nbsp;<code>registration/login.html</code>&nbsp;template of the&nbsp;<code>account</code>&nbsp;application, and add the following code after the&nbsp;<code>&lt;form&gt;</code>&nbsp;element:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;p&gt;&lt;a href=\"{% url \"password_reset\" %}\"&gt;Forgotten your password?&lt;/a&gt;&lt;/p&gt;\n</code></pre>\n\n\n\n<p>Now, open&nbsp;<code>http://127.0.0.1:8000/account/login/</code>&nbsp;in your browser and click on the&nbsp;<strong>Forgotten your password?</strong>&nbsp;link. You should see the following page:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/14981_04_09.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 4.9: The restore password form</p>\n\n\n\n<p>At this point, you need to add a <strong>Simple Mail Transfer Protocol</strong> (<strong>SMTP</strong>) configuration to the <code>settings.py</code> file of your project so that Django is able to send emails. You learned how to add email settings to your project <em>Enhancing Your Blog with Advanced Features</em>. However, during development, you can configure Django to write emails to the standard output instead of sending them through an SMTP server. Django provides an email backend to write emails to the console. Edit the <code>settings.py</code> file of your project, and add the following line:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'\n</code></pre>\n\n\n\n<p>The&nbsp;<code>EMAIL_BACKEND</code>&nbsp;setting indicates the class to use to send emails.</p>\n\n\n\n<p>Return to your browser, enter the email address of an existing user, and click on the&nbsp;<strong>SEND E-MAIL</strong>&nbsp;button. You should see the following page:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/14981_04_10.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 4.10: The reset password email sent page</p>\n\n\n\n<p>Take a look at&nbsp;<a></a>the console where you are running the development server. You will&nbsp;see the generated email, as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Content-Type: text/plain; charset=\"utf-8\"\nMIME-Version: 1.0\nContent-Transfer-Encoding: 7bit\nSubject: Password reset on 127.0.0.1:8000\nFrom: webmaster@localhost\nTo: user@domain.com\nDate: Fri, 3 Jan 2020 14:35:08 -0000\nMessage-ID: &lt;20150924143508.62996.55653@zenx.local&gt;\nSomeone asked for password reset for email user@domain.com. Follow the link below:\nhttp:&#47;&#47;127.0.0.1:8000/account/reset/MQ/45f-9c3f30caafd523055fcc/\nYour username, in case you've forgotten: zenx\n</code></pre>\n\n\n\n<p>The email is rendered using the&nbsp;<code>password_reset_email.html</code>&nbsp;template that you created earlier. The URL to reset the password includes a token that was generated dynamically by Django.</p>\n\n\n\n<p>Copy the URL and open it in your browser. You should see&nbsp;the following page:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/14981_04_11.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 4.11: The reset password form</p>\n\n\n\n<p>The page&nbsp;<a></a>to set a new password uses the&nbsp;<code>password_reset_confirm.html</code>&nbsp;template.&nbsp;Fill in a new password and click on the&nbsp;<strong>CHANGE MY PASSWORD</strong>&nbsp;button. Django creates a new hashed password and saves it in the database. You will&nbsp;see the following success page:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/14981_04_12.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 4.12: The successful password reset page</p>\n\n\n\n<p>Now you can log back into your account using your new password.</p>\n\n\n\n<p>Each token to set a new password can be used only once. If you open the link you&nbsp;received again, you will get a message stating that the token is invalid.</p>\n\n\n\n<p>You have&nbsp;<a></a>now integrated the views of the Django authentication framework into your project. These views are suitable for most cases. However, you can create your&nbsp;own views if you need a different behavior.</p>\n\n\n\n<p>Django also provides the authentication URL patterns that you just created. You can comment out the authentication URL patterns that you added to the&nbsp;<code>urls.py</code>&nbsp;file of the&nbsp;<code>account</code>&nbsp;application and include&nbsp;<code>django.contrib.auth.urls</code>&nbsp;instead, as&nbsp;follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>from django.urls import path, <strong>include</strong>\n<em># ...</em>\nurlpatterns = &#91;\n    <em># ...</em>\n    <strong>path('', include('django.contrib.auth.urls'))</strong>,\n]\n</code></pre>\n\n\n\n<p>You can see the authentication URL patterns included at https://github.com/django/django/blob/stable/3.0.x/django/contrib/auth/urls.py.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Add the&nbsp;following URL patterns for password restoration to the&nbsp;urls.py&nbsp;file of the&nbsp;account&nbsp;application: Add a new file in the&nbsp;templates/registration/&nbsp;directory of your&nbsp;account&nbsp;application and name it&nbsp;password_reset_form.html. Add the following code to it: Now create another file in the same directory and name it&nbsp;password_reset_email.html. Add the following code to it: The&nbsp;password_reset_email.html&nbsp;template will be used to render the email sent to&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/resetting-password-views/\">Continue reading <span class=\"screen-reader-text\">Resetting password views</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [128],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3709" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3709"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3709/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3710,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3709/revisions/3710"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3709"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3709"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3709"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3711,
+    "date": "2022-06-28T09:54:13",
+    "date_gmt": "2022-06-28T09:54:13",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3711" },
+    "modified": "2022-06-28T09:54:13",
+    "modified_gmt": "2022-06-28T09:54:13",
+    "slug": "user-registration-and-user-profiles",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/user-registration-and-user-profiles/",
+    "title": { "rendered": "User registration and user profiles" },
+    "content": {
+      "rendered": "\n<p>Existing users can now log in, log out, change their password, and reset their password. Now, you will need to build a view to allow visitors to create a user account.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Existing users can now log in, log out, change their password, and reset their password. Now, you will need to build a view to allow visitors to create a user account.</p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [128],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3711" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3711"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3711/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3712,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3711/revisions/3712"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3711"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3711"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3711"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3713,
+    "date": "2022-06-28T09:54:57",
+    "date_gmt": "2022-06-28T09:54:57",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3713" },
+    "modified": "2022-06-28T09:54:57",
+    "modified_gmt": "2022-06-28T09:54:57",
+    "slug": "user-registration",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/user-registration/",
+    "title": { "rendered": "User registration" },
+    "content": {
+      "rendered": "\n<p>Let&#8217;s create&nbsp;<a></a>a simple view to allow user registration on your website. Initially, you have to create a form to let the user enter a username, their real name, and a password.</p>\n\n\n\n<p>Edit the&nbsp;<code>forms.py</code>&nbsp;file located inside the&nbsp;<code>account</code>&nbsp;application directory and add the following code to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>from django.contrib.auth.models import User\nclass UserRegistrationForm(forms.ModelForm):\n    password = forms.CharField(label='Password',\n                               widget=forms.PasswordInput)\n    password2 = forms.CharField(label='Repeat password',\n                                widget=forms.PasswordInput)\n    class Meta:\n        model = User\n        fields = ('username', 'first_name', 'email')\n    def clean_password2(self):\n        cd = self.cleaned_data\n        if cd&#91;'password'] != cd&#91;'password2']:\n            raise forms.ValidationError('Passwords don\\'t match.')\n        return cd&#91;'password2']\n</code></pre>\n\n\n\n<p>You have created a model form for the user model. In your form, you include&nbsp;only the&nbsp;<code>username</code>,&nbsp;<code>first_name</code>, and&nbsp;<code>email</code>&nbsp;fields of the model. These fields&nbsp;will be validated based on their corresponding model fields. For example, if the user chooses a username that already exists, they will get a validation error because&nbsp;<code>username</code>&nbsp;is a&nbsp;field defined with&nbsp;<code>unique=True</code>.</p>\n\n\n\n<p>You have added two additional fields—<code>password</code>&nbsp;and&nbsp;<code>password2</code>—for users to set their password and confirm it. You have defined a&nbsp;<code>clean_password2()</code>&nbsp;method to check the second password against the first one and not let the form validate if the passwords don&#8217;t match. This check is done when you validate the form by calling its&nbsp;<code>is_valid()</code>&nbsp;method. You can provide a&nbsp;<code>clean_&lt;fieldname&gt;()</code>&nbsp;method to any of your form fields in order to clean the value or raise form validation errors for a specific field. Forms also include a general&nbsp;<code>clean()</code>&nbsp;method to validate the entire form, which is useful to validate fields that depend on each other. In this case, you use the field-specific&nbsp;<code>clean_password2()</code>&nbsp;validation instead of overriding the&nbsp;<code>clean()</code>&nbsp;method of the form. This avoids overriding other field-specific checks that the&nbsp;<code>ModelForm</code>&nbsp;gets from the restrictions&nbsp;<a></a>set in the model (for example, validating that the&nbsp;<code>username</code>&nbsp;is unique).</p>\n\n\n\n<p>Django also provides a&nbsp;<code>UserCreationForm</code>&nbsp;form that you can use, which resides in&nbsp;<code>django.contrib.auth.forms</code>&nbsp;and is very similar to the one you have created.</p>\n\n\n\n<p>Edit the&nbsp;<code>views.py</code>&nbsp;file of the&nbsp;<code>account</code>&nbsp;application and add the following code to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>from .forms import LoginForm, <strong>UserRegistrationForm</strong>\n<strong>def register(request):</strong>\n    <strong>if request.method == 'POST':</strong>\n        <strong>user_form = UserRegistrationForm(request.POST)</strong>\n        <strong>if user_form.is_valid():</strong>\n            <strong># Create a new user object but avoid saving it yet</strong>\n            <strong>new_user = user_form.save(commit=False)</strong>\n            <strong># Set the chosen password</strong>\n            <strong>new_user.set_password(</strong>\n                <strong>user_form.cleaned_data&#91;'password'])</strong>\n            <strong># Save the User object</strong>\n            <strong>new_user.save()</strong>\n            <strong>return render(request,</strong>\n                          <strong>'account/register_done.html',</strong>\n                          <strong>{'new_user': new_user})</strong>\n    <strong>else:</strong>\n        <strong>user_form = UserRegistrationForm()</strong>\n    <strong>return render(request,</strong>\n                  <strong>'account/register.html',</strong>\n                  <strong>{'user_form': user_form})</strong>\n</code></pre>\n\n\n\n<p>The view for creating user accounts is quite simple. For security reasons, instead of saving the raw password entered by the user, you use the&nbsp;<code>set_password()</code>&nbsp;method of the user model that handles hashing.</p>\n\n\n\n<p>Now, edit the&nbsp;<code>urls.py</code>&nbsp;file of your&nbsp;<code>account</code>&nbsp;application and add the following URL&nbsp;pattern:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>path('register/', views.register, name='register'),\n</code></pre>\n\n\n\n<p>Finally, create a new template in the&nbsp;<code>account/</code>&nbsp;template directory, name it&nbsp;<code>register.html</code>, and make it look as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{% extends \"base.html\" %}\n{% block title %}Create an account{% endblock %}\n{% block content %}\n  &lt;h1&gt;Create an account&lt;/h1&gt;\n  &lt;p&gt;Please, sign up using the following form:&lt;/p&gt;\n  &lt;form method=\"post\"&gt;\n    {{ user_form.as_p }}\n    {% csrf_token %}\n    &lt;p&gt;&lt;input type=\"submit\" value=\"Create my account\"&gt;&lt;/p&gt;\n  &lt;/form&gt;\n{% endblock %}\n</code></pre>\n\n\n\n<p>Add a template&nbsp;<a></a>file in the same directory and name it&nbsp;<code>register_done.html</code>. Add&nbsp;the following code to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{% extends \"base.html\" %}\n{% block title %}Welcome{% endblock %}\n{% block content %}\n  &lt;h1&gt;Welcome {{ new_user.first_name }}!&lt;/h1&gt;\n  &lt;p&gt;Your account has been successfully created. Now you can &lt;a href=\"{% url \"login\" %}\"&gt;log in&lt;/a&gt;.&lt;/p&gt;\n{% endblock %}\n</code></pre>\n\n\n\n<p>Now open&nbsp;<code>http://127.0.0.1:8000/account/register/</code>&nbsp;in your browser. You will see the registration page you have created:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/14981_04_13.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 4.13: The account creation form</p>\n\n\n\n<p>Fill in the&nbsp;<a></a>details for a new user and click on the&nbsp;<strong>CREATE MY ACCOUNT</strong>&nbsp;button. If all fields are valid, the user will be created, and you will get the following success message:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/14981_04_14.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 4.14: The account is successfully created page</p>\n\n\n\n<p>Click on the&nbsp;<strong>log in</strong>&nbsp;link and enter your username and password to verify that you can access your account.</p>\n\n\n\n<p>You can&nbsp;<a></a>also add a link to registration in your login template. Edit the&nbsp;<code>registration/login.html</code>&nbsp;template and find the following line:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;p&gt;Please, use the following form to log-in:&lt;/p&gt;\n</code></pre>\n\n\n\n<p>Replace it with the following:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;p&gt;Please, use the following form to log-in. <strong>If you don't have an account &lt;a href=\"{% url \"register\" %}\"&gt;register here&lt;/a&gt;</strong>&lt;/p&gt;\n</code></pre>\n\n\n\n<p>You have made the signup page accessible from the login page.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Let&#8217;s create&nbsp;a simple view to allow user registration on your website. Initially, you have to create a form to let the user enter a username, their real name, and a password. Edit the&nbsp;forms.py&nbsp;file located inside the&nbsp;account&nbsp;application directory and add the following code to it: You have created a model form for the user model. In&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/user-registration/\">Continue reading <span class=\"screen-reader-text\">User registration</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [128],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3713" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3713"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3713/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3714,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3713/revisions/3714"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3713"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3713"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3713"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3715,
+    "date": "2022-06-28T09:56:13",
+    "date_gmt": "2022-06-28T09:56:13",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3715" },
+    "modified": "2022-06-28T09:56:13",
+    "modified_gmt": "2022-06-28T09:56:13",
+    "slug": "extending-the-user-model",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/extending-the-user-model/",
+    "title": { "rendered": "Extending the user model" },
+    "content": {
+      "rendered": "\n<p>When you have to deal with user accounts, you will find that the user model of the&nbsp;Django authentication framework is suitable for common cases. However, the user model comes&nbsp;<a></a>with very basic fields. You may wish to extend it to include additional data. The best way to do this is by creating a profile model that contains all additional fields and a one-to-one relationship with the Django&nbsp;<code>User</code>&nbsp;model. A one-to-one relationship is similar to a&nbsp;<code>ForeignKey</code>&nbsp;field with the parameter&nbsp;<code>unique=True</code>. The reverse side of the relationship is an implicit one-to-one relationship with the related model instead of a manager for multiple elements. From&nbsp;each side of the relationship, you retrieve a single related object.</p>\n\n\n\n<p>Edit the&nbsp;<code>models.py</code>&nbsp;file of your&nbsp;<code>account</code>&nbsp;application and add the following code to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>from django.db import models\nfrom django.conf import settings\nclass Profile(models.Model):\n    user = models.OneToOneField(settings.AUTH_USER_MODEL,\n                                on_delete=models.CASCADE)\n    date_of_birth = models.DateField(blank=True, null=True)\n    photo = models.ImageField(upload_to='users/%Y/%m/%d/',\n                              blank=True)\n    def __str__(self):\n        return f'Profile for user {self.user.username}'\n</code></pre>\n\n\n\n<p>In order to keep your code generic, use the <code>get_user_model()</code> method to retrieve the user model and the <code>AUTH_USER_MODEL</code> setting to refer to it when defining a model&#8217;s relationship with the user model, instead of referring to the <code>auth</code> user model directly. You can read more information about this at https://docs.djangoproject.com/en/3.0/topics/auth/customizing/#django.contrib.auth.get_user_model.</p>\n\n\n\n<p>The&nbsp;<code>user</code>&nbsp;one-to-one field allows you to associate profiles with users. You use&nbsp;<code>CASCADE</code>&nbsp;for the&nbsp;<code>on_delete</code>&nbsp;parameter so that its related profile also gets deleted when a user is deleted. The&nbsp;<code>photo</code>&nbsp;field is an&nbsp;<code>ImageField</code>&nbsp;field. You will need to install the Pillow library to handle images. Install Pillow by running the following command in your shell:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>pip install Pillow==7.0.0\n</code></pre>\n\n\n\n<p>To enable&nbsp;<a></a>Django to serve media files uploaded by users with the development server, add the following settings to the&nbsp;<code>settings.py</code>&nbsp;file of your project:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>MEDIA_URL = '/media/'\nMEDIA_ROOT = os.path.join(BASE_DIR, 'media/')\n</code></pre>\n\n\n\n<p><code>MEDIA_URL</code>&nbsp;is the base URL used to serve the media files uploaded by users, and&nbsp;<code>MEDIA_ROOT</code>&nbsp;is the local path where they reside. You build the path dynamically relative to your project path to make your code more generic.</p>\n\n\n\n<p>Now, edit the main&nbsp;<code>urls.py</code>&nbsp;file of the&nbsp;<code>bookmarks</code>&nbsp;project and modify the code, as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>from django.contrib import admin\nfrom django.urls import path, include\n<strong>from django.conf import settings</strong>\n<strong>from django.conf.urls.static import static</strong>\nurlpatterns = &#91;\n    path('admin/', admin.site.urls),\n    path('account/', include('account.urls')),\n]\n<strong>if settings.DEBUG:</strong>\n    <strong>urlpatterns += static(settings.MEDIA_URL,</strong>\n                          <strong>document_root=settings.MEDIA_ROOT)</strong>\n</code></pre>\n\n\n\n<p>In this way, the Django development server will be in charge of serving the media files during development (that is when the&nbsp;<code>DEBUG</code>&nbsp;setting is set to&nbsp;<code>True</code>).</p>\n\n\n\n<p>The <code>static()</code> helper function is suitable for development, but not for production use. Django is very inefficient at serving static files. Never serve your static files with Django in a production environment. You will learn how to serve static files in a production environment <em>Going Live</em>.</p>\n\n\n\n<p>Open the&nbsp;<a></a>shell and run the following command to create the database migration for&nbsp;the new model:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>python manage.py makemigrations\n</code></pre>\n\n\n\n<p>You will get the following output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Migrations for 'account':\n  account/migrations/0001_initial.py\n    - Create model Profile\n</code></pre>\n\n\n\n<p>Next, sync the database with the following command:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>python manage.py migrate\n</code></pre>\n\n\n\n<p>You will see an output that includes the following line:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Applying account.0001_initial... OK\n</code></pre>\n\n\n\n<p>Edit the&nbsp;<code>admin.py</code>&nbsp;file of the&nbsp;<code>account</code>&nbsp;application and register the&nbsp;<code>Profile</code>&nbsp;model in&nbsp;the administration site, like this:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>from django.contrib import admin\nfrom .models import Profile\n@admin.register(Profile)\nclass ProfileAdmin(admin.ModelAdmin):\n    list_display = &#91;'user', 'date_of_birth', 'photo']\n</code></pre>\n\n\n\n<p>Run the development server using the&nbsp;<code>python manage.py runserver</code>&nbsp;command and open&nbsp;<code>http://127.0.0.1:8000/admin/</code>&nbsp;in your browser. Now you should be able to see the&nbsp;<code>Profile</code>&nbsp;model in the administration site of your project, as follows:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/14981_04_15.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 4.15: The ACCOUNT block of the administration site index page</p>\n\n\n\n<p>Next, you will let users edit their profile on the website. Add the following import and model forms to the&nbsp;<code>forms.py</code>&nbsp;file of the&nbsp;<code>account</code>&nbsp;application:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>from .models import Profile\nclass UserEditForm(forms.ModelForm):\n    class Meta:\n        model = User\n        fields = ('first_name', 'last_name', 'email')\nclass ProfileEditForm(forms.ModelForm):\n    class Meta:\n        model = Profile\n        fields = ('date_of_birth', 'photo')\n</code></pre>\n\n\n\n<p>These forms are as follows:</p>\n\n\n\n<ul><li><code>UserEditForm</code>: This will allow users to edit their first name, last name, and&nbsp;email, which are attributes of the built-in Django user model.</li><li><code>ProfileEditForm</code>: This will allow users to edit the profile data that you save&nbsp;in the custom&nbsp;<code>Profile</code>&nbsp;model. Users will be able to edit their date of birth and upload a picture for their profile.</li></ul>\n\n\n\n<p>Edit the&nbsp;<code>views.py</code>&nbsp;file of the&nbsp;<code>account</code>&nbsp;application and import the&nbsp;<code>Profile</code>&nbsp;model, like this:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>from .models import Profile\n</code></pre>\n\n\n\n<p>Then, add the following lines to the&nbsp;<code>register</code>&nbsp;view below&nbsp;<code>new_user.save()</code>:</p>\n\n\n\n<pre class=\"wp-block-code\"><code># Create the user profile\nProfile.objects.create(user=new_user)\n</code></pre>\n\n\n\n<p>When users register on your site, you will create an empty profile associated with them. You should create a&nbsp;<code>Profile</code>&nbsp;object manually using the administration site for the users that you created before.</p>\n\n\n\n<p>Now, you will let users edit their profile. Add the following code to the same file:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>from .forms import LoginForm, UserRegistrationForm, <strong>\\</strong>\n                   <strong>UserEditForm, ProfileEditForm</strong>\n<strong>@login_required</strong>\n<strong>def edit(request):</strong>\n    <strong>if request.method == 'POST':</strong>\n        <strong>user_form = UserEditForm(instance=request.user,</strong>\n                                 <strong>data=request.POST)</strong>\n        <strong>profile_form = ProfileEditForm(</strong>\n                                    <strong>instance=request.user.profile,</strong>\n                                    <strong>data=request.POST,</strong>\n                                    <strong>files=request.FILES)</strong>\n        <strong>if user_form.is_valid() and profile_form.is_valid():</strong>\n            <strong>user_form.save()</strong>\n            <strong>profile_form.save()</strong>\n    <strong>else:</strong>\n        <strong>user_form = UserEditForm(instance=request.user)</strong>\n        <strong>profile_form = ProfileEditForm(</strong>\n                                    <strong>instance=request.user.profile)</strong>\n    <strong>return render(request,</strong>\n                  <strong>'account/edit.html',</strong>\n                  <strong>{'user_form': user_form,</strong>\n                   <strong>'profile_form': profile_form})</strong>\n</code></pre>\n\n\n\n<p>You use the&nbsp;<code>login_required</code>&nbsp;decorator because users have to be authenticated to edit&nbsp;<a></a>their profile. In this case, you are using two model forms:&nbsp;<code>UserEditForm</code>&nbsp;to store the data of the built-in user model and&nbsp;<code>ProfileEditForm</code>&nbsp;to store the additional profile data in the custom&nbsp;<code>Profile</code>&nbsp;model. To validate the submitted data, you execute the&nbsp;<code>is_valid()</code>&nbsp;method of both forms. If both forms contain valid data, you save both forms, calling the&nbsp;<code>save()</code>&nbsp;method to update the corresponding objects in&nbsp;the&nbsp;database.</p>\n\n\n\n<p>Add the following URL pattern to the&nbsp;<code>urls.py</code>&nbsp;file of the&nbsp;<code>account</code>&nbsp;application:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>path('edit/', views.edit, name='edit'),\n</code></pre>\n\n\n\n<p>Finally, create a template for this view in&nbsp;<code>templates/account/</code>&nbsp;and name it&nbsp;<code>edit.html</code>. Add the following code to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{% extends \"base.html\" %}\n{% block title %}Edit your account{% endblock %}\n{% block content %}\n  &lt;h1&gt;Edit your account&lt;/h1&gt;\n  &lt;p&gt;You can edit your account using the following form:&lt;/p&gt;\n  &lt;form method=\"post\" enctype=\"multipart/form-data\"&gt;\n    {{ user_form.as_p }}\n    {{ profile_form.as_p }}\n    {% csrf_token %}\n    &lt;p&gt;&lt;input type=\"submit\" value=\"Save changes\"&gt;&lt;/p&gt;\n  &lt;/form&gt;\n{% endblock %}\n</code></pre>\n\n\n\n<p>In the preceding code, you include&nbsp;<code>enctype=\"multipart/form-data\"</code>&nbsp;in your form to enable file uploads. You&nbsp;<a></a>use an HTML form to submit both the&nbsp;<code>user_form</code>&nbsp;and the&nbsp;<code>profile_form</code>&nbsp;forms.</p>\n\n\n\n<p>Register a new user from the URL&nbsp;<code>http://127.0.0.1:8000/account/register/</code>&nbsp;and open&nbsp;<code>http://127.0.0.1:8000/account/edit/</code>. You should see the following&nbsp;page:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/14981_04_16.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 4.16: The profile edit form</p>\n\n\n\n<p>You can also edit the dashboard page and include links to the edit profile and change&nbsp;password pages. Open the&nbsp;<code>account/dashboard.html</code>&nbsp;template and find the&nbsp;following line:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;p&gt;Welcome to your dashboard.&lt;/p&gt;\n</code></pre>\n\n\n\n<p>Replace the preceding line with the following one:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;p&gt;Welcome to your dashboard. <strong>You can &lt;a href=\"{% url \"edit\" %}\"&gt;edit your profile&lt;/a&gt; or &lt;a href=\"{% url \"password_change\" %}\"&gt;change your password&lt;/a&gt;.</strong>&lt;/p&gt;\n</code></pre>\n\n\n\n<p>Users can&nbsp;<a></a>now access the form to edit their profile from their dashboard. Open&nbsp;<code>http://127.0.0.1:8000/account/</code>&nbsp;in your browser and test the new link to edit a user&#8217;s profile:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/14981_04_17.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 4.17: Dashboard page content, including links to edit a profile and change a password</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>When you have to deal with user accounts, you will find that the user model of the&nbsp;Django authentication framework is suitable for common cases. However, the user model comes&nbsp;with very basic fields. You may wish to extend it to include additional data. The best way to do this is by creating a profile model that&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/extending-the-user-model/\">Continue reading <span class=\"screen-reader-text\">Extending the user model</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [128],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3715" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3715"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3715/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3716,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3715/revisions/3716"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3715"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3715"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3715"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3717,
+    "date": "2022-06-28T10:47:31",
+    "date_gmt": "2022-06-28T10:47:31",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3717" },
+    "modified": "2022-06-28T10:47:31",
+    "modified_gmt": "2022-06-28T10:47:31",
+    "slug": "using-a-custom-user-model",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/using-a-custom-user-model/",
+    "title": { "rendered": "Using a custom user model" },
+    "content": {
+      "rendered": "\n<p>Django also offers a way to substitute the whole user model with your own custom model. Your user class should inherit from Django&#8217;s <code>AbstractUser</code> class, which provides the full implementation of the default user as an abstract model. You can read more about this method at https://docs.djangoproject.com/en/3.0/topics/auth/customizing/#substituting-a-custom-user-model.</p>\n\n\n\n<p>Using a custom user model will give you more flexibility, but it might also result in&nbsp;more difficult integration with pluggable applications that interact with Django&#8217;s&nbsp;<code>auth</code>&nbsp;user model.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Django also offers a way to substitute the whole user model with your own custom model. Your user class should inherit from Django&#8217;s AbstractUser class, which provides the full implementation of the default user as an abstract model. You can read more about this method at https://docs.djangoproject.com/en/3.0/topics/auth/customizing/#substituting-a-custom-user-model. Using a custom user model will give you more flexibility, but it might&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/using-a-custom-user-model/\">Continue reading <span class=\"screen-reader-text\">Using a custom user model</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [128],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3717" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3717"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3717/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3718,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3717/revisions/3718"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3717"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3717"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3717"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3719,
+    "date": "2022-06-28T10:51:08",
+    "date_gmt": "2022-06-28T10:51:08",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3719" },
+    "modified": "2022-06-28T10:51:08",
+    "modified_gmt": "2022-06-28T10:51:08",
+    "slug": "using-the-messages-framework",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/using-the-messages-framework/",
+    "title": { "rendered": "Using the messages framework" },
+    "content": {
+      "rendered": "\n<p>When allowing users to interact with your platform, there are many cases where you&nbsp;might want&nbsp;<a></a>to inform them about the result of their actions. Django has a built-in&nbsp;messages framework that allows you to display one-time notifications to&nbsp;your&nbsp;users.</p>\n\n\n\n<p>The messages framework is located at&nbsp;<code>django.contrib.messages</code>&nbsp;and is included in the default&nbsp;<code>INSTALLED_APPS</code>&nbsp;list of the&nbsp;<code>settings.py</code>&nbsp;file when you create new projects using&nbsp;<code>python manage.py startproject</code>. You will note that your settings file contains a middleware named&nbsp;<code>django.contrib.messages.middleware.MessageMiddleware</code>&nbsp;in the&nbsp;<code>MIDDLEWARE</code>&nbsp;settings.</p>\n\n\n\n<p>The messages framework provides a simple way to add messages to users. Messages&nbsp;are stored in a cookie by default (falling back to session storage), and they&nbsp;are displayed in the next request from the user. You can use the messages framework in your views by importing the&nbsp;<code>messages</code>&nbsp;module and adding new messages with simple shortcuts, as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>from django.contrib import messages\nmessages.error(request, 'Something went wrong')\n</code></pre>\n\n\n\n<p>You can create new messages using the&nbsp;<code>add_message()</code>&nbsp;method or any of the following shortcut methods:</p>\n\n\n\n<ul><li><code>success()</code>: Success messages to be displayed after an action has been successful</li><li><code>info()</code>: Informational messages</li><li><code>warning()</code>: Something has not yet failed but may fail imminently</li><li><code>error()</code>: An action was not successful or something failed</li><li><code>debug()</code>: Debug messages that will be removed or ignored in a production environment</li></ul>\n\n\n\n<p>Let&#8217;s add&nbsp;<a></a>messages to your platform. Since the messages framework applies globally&nbsp;to the project, you can display messages for the user in your base template. Open the&nbsp;<code>base.html</code>&nbsp;template of the&nbsp;<code>account</code>&nbsp;application and add the following code between the&nbsp;<code>&lt;div&gt;</code>&nbsp;element with the&nbsp;<code>header</code>&nbsp;ID and the&nbsp;<code>&lt;div&gt;</code>&nbsp;element with the&nbsp;<code>content</code>&nbsp;ID:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{% if messages %}\n  &lt;ul class=\"messages\"&gt;\n    {% for message in messages %}\n      &lt;li class=\"{{ message.tags }}\"&gt;\n        {{ message|safe }}\n        &lt;a href=\"#\" class=\"close\"&gt;x&lt;/a&gt;\n      &lt;/li&gt;\n    {% endfor %}\n  &lt;/ul&gt;\n{% endif %}\n</code></pre>\n\n\n\n<p>The messages framework includes the context processor&nbsp;<code>django.contrib.messages.context_processors.messages</code>, which adds a&nbsp;<code>messages</code>&nbsp;variable to the&nbsp;request context. You can find it in the&nbsp;<code>context_processors</code>&nbsp;list of the&nbsp;<code>TEMPLATES</code>&nbsp;setting of your project. You can use the&nbsp;<code>messages</code>&nbsp;variable in your templates to display all existing messages to the user.</p>\n\n\n\n<p>A context processor is a Python function that takes the <code>request</code> object as an argument and returns a dictionary that gets added to the request context. You will learn how to create your own context processors. <em>Building an Online Shop</em>.</p>\n\n\n\n<p>Let&#8217;s modify&nbsp;<a></a>your&nbsp;<code>edit</code>&nbsp;view to use the messages framework. Edit the&nbsp;<code>views.py</code>&nbsp;file of&nbsp;the&nbsp;<code>account</code>&nbsp;application, import&nbsp;<code>messages</code>, and make the&nbsp;<code>edit</code>&nbsp;view look as&nbsp;follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code><strong>from django.contrib import messages</strong>\n@login_required\ndef edit(request):\n    if request.method == 'POST':\n        # ...\n        if user_form.is_valid() and profile_form.is_valid():\n            user_form.save()\n            profile_form.save()\n            <strong>messages.success(request, 'Profile updated '\\</strong>\n                                      <strong>'successfully')</strong>\n        <strong>else:</strong>\n            <strong>messages.error(request, 'Error updating your profile')</strong>\n    else:\n        user_form = UserEditForm(instance=request.user)\n        # ...\n</code></pre>\n\n\n\n<p>You add a success message when the user successfully updates their profile. If any of the forms contain invalid data, you add an error message instead.</p>\n\n\n\n<p>Open&nbsp;<code>http://127.0.0.1:8000/account/edit/</code>&nbsp;in your browser and edit your profile. When the profile is successfully updated, you should see the following message:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/14981_04_18.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 4.18: The successful edit profile message</p>\n\n\n\n<p>When data is not valid, for example, if there is an incorrectly formatted date for the&nbsp;<strong>date of birth</strong>&nbsp;field, you should&nbsp;<a></a>see the following message:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/14981_04_19.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 4.19: The error updating profile message</p>\n\n\n\n<p>You can learn more about the messages framework at https://docs.djangoproject.com/en/3.0/ref/contrib/messages/.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>When allowing users to interact with your platform, there are many cases where you&nbsp;might want&nbsp;to inform them about the result of their actions. Django has a built-in&nbsp;messages framework that allows you to display one-time notifications to&nbsp;your&nbsp;users. The messages framework is located at&nbsp;django.contrib.messages&nbsp;and is included in the default&nbsp;INSTALLED_APPS&nbsp;list of the&nbsp;settings.py&nbsp;file when you create new projects using&nbsp;python&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/using-the-messages-framework/\">Continue reading <span class=\"screen-reader-text\">Using the messages framework</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [128],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3719" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3719"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3719/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3720,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3719/revisions/3720"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3719"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3719"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3719"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3721,
+    "date": "2022-06-28T10:54:12",
+    "date_gmt": "2022-06-28T10:54:12",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3721" },
+    "modified": "2022-06-28T10:54:12",
+    "modified_gmt": "2022-06-28T10:54:12",
+    "slug": "building-a-custom-authentication-backend",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/building-a-custom-authentication-backend/",
+    "title": { "rendered": "Building a custom authentication backend" },
+    "content": {
+      "rendered": "\n<p>Django allows&nbsp;<a></a>you to authenticate against different sources. The&nbsp;<code>AUTHENTICATION_BACKENDS</code>&nbsp;setting includes the list of authentication backends for your project. By default, this setting is set as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&#91;'django.contrib.auth.backends.ModelBackend']\n</code></pre>\n\n\n\n<p>The default&nbsp;<code>ModelBackend</code>&nbsp;authenticates users against the database using the user model of&nbsp;<code>django.contrib.auth</code>. This will suit most of your projects. However, you&nbsp;can create custom&nbsp;<a></a>backends to authenticate your user against other sources, such&nbsp;as a&nbsp;<strong>Lightweight Directory Access Protocol</strong>&nbsp;(<strong>LDAP</strong>) directory or any other&nbsp;system.</p>\n\n\n\n<p>You can read more information about customizing authentication at https://docs.djangoproject.com/en/3.0/topics/auth/customizing/#other-authentication-sources.</p>\n\n\n\n<p>Whenever you use the&nbsp;<code>authenticate()</code>&nbsp;function of&nbsp;<code>django.contrib.auth</code>, Django tries to authenticate the user against each of the backends defined in&nbsp;<code>AUTHENTICATION_BACKENDS</code>&nbsp;one by one, until one of them successfully authenticates the user. Only if all of the backends fail to authenticate will the user not be authenticated into your site.</p>\n\n\n\n<p>Django provides a simple way to define your own authentication backends. An authentication backend is a class that provides the following two methods:</p>\n\n\n\n<ul><li><code>authenticate()</code>: It takes&nbsp;<a></a>the&nbsp;<code>request</code>&nbsp;object and user credentials as parameters. It has to return a&nbsp;<code>user</code>&nbsp;object that matches those credentials if&nbsp;the credentials are valid, or&nbsp;<code>None</code>&nbsp;otherwise. The&nbsp;<code>request</code>&nbsp;parameter is an&nbsp;<code>HttpRequest</code>&nbsp;object, or&nbsp;<code>None</code>&nbsp;if it&#8217;s not provided to&nbsp;<code>authenticate()</code>.</li><li><code>get_user()</code>: This takes&nbsp;<a></a>a user ID parameter and has to return a&nbsp;<code>user</code>&nbsp;object.</li></ul>\n\n\n\n<p>Creating a custom authentication backend is as simple as writing a Python class that implements both methods. Let&#8217;s create an authentication backend to let users authenticate&nbsp;<a></a>in your site using their email address instead of their username.</p>\n\n\n\n<p>Create a new file inside your&nbsp;<code>account</code>&nbsp;application directory and name it&nbsp;<code>authentication.py</code>. Add the following code to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>from django.contrib.auth.models import User\nclass EmailAuthBackend(object):\n    \"\"\"\n    Authenticate using an e-mail address.\n    \"\"\"\n    def authenticate(self, request, username=None, password=None):\n        try:\n            user = User.objects.get(email=username)\n            if user.check_password(password):\n                return user\n            return None\n        except User.DoesNotExist:\n            return None\n    def get_user(self, user_id):\n        try:\n            return User.objects.get(pk=user_id)\n        except User.DoesNotExist:\n            return None\n</code></pre>\n\n\n\n<p>The preceding code is a simple authentication backend. The&nbsp;<code>authenticate()</code>&nbsp;method receives a&nbsp;<code>request</code>&nbsp;object and the&nbsp;<code>username</code>&nbsp;and&nbsp;<code>password</code>&nbsp;optional parameters. You could use different parameters, but you use&nbsp;<code>username</code>&nbsp;and&nbsp;<code>password</code>&nbsp;to make&nbsp;your backend work with the authentication framework views right away. The&nbsp;preceding code works as follows:</p>\n\n\n\n<ul><li><code>authenticate()</code>: You try to retrieve a user with the given email address and&nbsp;check the password using the built-in&nbsp;<code>check_password()</code>&nbsp;method of the user model. This method handles the password hashing to compare the&nbsp;given password with the password stored in the database.</li><li><code>get_user()</code>: You get a user through the ID provided in the&nbsp;<code>user_id</code>&nbsp;parameter. Django uses the backend that authenticated the user to retrieve the&nbsp;<code>User</code>&nbsp;object for the duration of the user session.</li></ul>\n\n\n\n<p>Edit the&nbsp;<code>settings.py</code>&nbsp;file of your project and add the following setting:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>AUTHENTICATION_BACKENDS = &#91;\n    'django.contrib.auth.backends.ModelBackend',\n    'account.authentication.EmailAuthBackend',\n]\n</code></pre>\n\n\n\n<p>In the preceding setting, you keep the default&nbsp;<code>ModelBackend</code>&nbsp;that is used to authenticate&nbsp;<a></a>with the username and password and include your own email-based authentication backend.</p>\n\n\n\n<p>Now open&nbsp;<code>http://127.0.0.1:8000/account/login/</code>&nbsp;in your browser. Remember that Django will try to authenticate the user against each&nbsp;of&nbsp;the backends, so now you should be able to log in seamlessly using your username or email account. User credentials will be checked using the&nbsp;<code>ModelBackend</code>&nbsp;authentication backend, and if no user is returned, the credentials&nbsp;will be checked using your custom&nbsp;<code>EmailAuthBackend</code>&nbsp;backend.</p>\n\n\n\n<p>The order of the backends listed in the&nbsp;<code>AUTHENTICATION_BACKENDS</code>&nbsp;setting matters. If the same credentials are valid for multiple backends, Django will stop at the first backend that successfully authenticates the user.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Django allows&nbsp;you to authenticate against different sources. The&nbsp;AUTHENTICATION_BACKENDS&nbsp;setting includes the list of authentication backends for your project. By default, this setting is set as follows: The default&nbsp;ModelBackend&nbsp;authenticates users against the database using the user model of&nbsp;django.contrib.auth. This will suit most of your projects. However, you&nbsp;can create custom&nbsp;backends to authenticate your user against other sources, such&nbsp;as&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/building-a-custom-authentication-backend/\">Continue reading <span class=\"screen-reader-text\">Building a custom authentication backend</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [128],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3721" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3721"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3721/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3722,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3721/revisions/3722"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3721"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3721"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3721"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3723,
+    "date": "2022-06-28T10:54:54",
+    "date_gmt": "2022-06-28T10:54:54",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3723" },
+    "modified": "2022-06-28T10:54:54",
+    "modified_gmt": "2022-06-28T10:54:54",
+    "slug": "adding-social-authentication-to-your-site",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/adding-social-authentication-to-your-site/",
+    "title": { "rendered": "Adding social authentication to your site" },
+    "content": {
+      "rendered": "\n<p>You might also want to add social authentication to your site using services such as Facebook, Twitter, or Google. Python Social Auth is a Python module that simplifies the process of&nbsp;<a></a>adding social authentication to your website. Using this module, you can let your users log in to your website using their accounts from other services.</p>\n\n\n\n<p>Social authentication is a widely used feature that makes the authentication process easier for users. You can find the code of this module at https://github.com/python-social-auth.</p>\n\n\n\n<p>This module comes with authentication backends for different Python frameworks, including Django. To install the Django package via&nbsp;<code>pip</code>, open the console and run the following command:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>pip install social-auth-app-django==3.1.0\n</code></pre>\n\n\n\n<p>Then add&nbsp;<code>social_django</code>&nbsp;to the&nbsp;<code>INSTALLED_APPS</code>&nbsp;setting in the&nbsp;<code>settings.py</code>&nbsp;file of&nbsp;your project:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>INSTALLED_APPS = &#91;\n    <em>#...</em>\n    <strong>'social_django'</strong>,\n]\n</code></pre>\n\n\n\n<p>This is the default application to add Python Social Auth to Django projects. Now run the following command to sync Python Social Auth models with your database:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>python manage.py migrate\n</code></pre>\n\n\n\n<p>You should&nbsp;<a></a>see that the migrations for the default application are applied as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Applying social_django.0001_initial... OK\nApplying social_django.0002_add_related_name... OK\n...\nApplying social_django.0008_partial_timestamp... OK\n</code></pre>\n\n\n\n<p>Python Social Auth includes backends for multiple services. You can see a list of all backends at https://python-social-auth.readthedocs.io/en/latest/backends/index.html#supported-backends.</p>\n\n\n\n<p>Let&#8217;s include authentication backends for Facebook, Twitter, and Google.</p>\n\n\n\n<p>You will need to add social login URL patterns to your project. Open the main&nbsp;<code>urls.py</code>&nbsp;file of the&nbsp;<code>bookmarks</code>&nbsp;project and include the&nbsp;<code>social_django</code>&nbsp;URL patterns as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>urlpatterns = &#91;\n    path('admin/', admin.site.urls),\n    path('account/', include('account.urls')),\n    <strong>path('social-auth/',</strong>\n         <strong>include('social_django.urls', namespace='social')),</strong>\n]\n</code></pre>\n\n\n\n<p>Several social services will not allow redirecting users to&nbsp;<code>127.0.0.1</code>&nbsp;or&nbsp;<code>localhost</code>&nbsp;after a successful authentication; they expect a domain name. In order to make social&nbsp;authentication work, you will need a domain. To fix this on Linux or macOS, edit your&nbsp;<code>/etc/hosts</code>&nbsp;file and add the following line to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>127.0.0.1 mysite.com\n</code></pre>\n\n\n\n<p>This will tell your computer to point the&nbsp;<code>mysite.com</code>&nbsp;hostname to your own machine. If you are using Windows, your&nbsp;<code>hosts</code>&nbsp;file is located at&nbsp;<code>C:\\Windows\\System32\\Drivers\\etc\\hosts</code>.</p>\n\n\n\n<p>To verify that&nbsp;<a></a>your hostname association worked, start the development server with&nbsp;<code>python manage.py runserver</code>&nbsp;and open&nbsp;<code>http://mysite.com:8000/account/login/</code>&nbsp;in your browser. You will see the following error:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/14981_04_20.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 4.20: The invalid host header message</p>\n\n\n\n<p>Django controls the hosts that are able to serve your application using the <code>ALLOWED_HOSTS</code> setting. This is a security measure to prevent HTTP host header attacks. Django will only allow the hosts included in this list to serve the application. You can learn more about the <code>ALLOWED_HOSTS</code> setting at https://docs.djangoproject.com/en/3.0/ref/settings/#allowed-hosts.</p>\n\n\n\n<p>Edit the&nbsp;<code>settings.py</code>&nbsp;file of your project and edit the&nbsp;<code>ALLOWED_HOSTS</code>&nbsp;setting as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>ALLOWED_HOSTS = &#91;<strong>'mysite.com', 'localhost', '127.0.0.1'</strong>]\n</code></pre>\n\n\n\n<p>Besides the&nbsp;<code>mysite.com</code>&nbsp;host, you explicitly include&nbsp;<code>localhost</code>&nbsp;and&nbsp;<code>127.0.0.1</code>. This is in order to be able to access the site through&nbsp;<code>localhost</code>, which is the default Django behavior when&nbsp;<code>DEBUG</code>&nbsp;is&nbsp;<code>True</code>&nbsp;and&nbsp;<code>ALLOWED_HOSTS</code>&nbsp;is empty. Now you should be able to open&nbsp;<code>http://mysite.com:8000/account/login/</code>&nbsp;in your browser.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>You might also want to add social authentication to your site using services such as Facebook, Twitter, or Google. Python Social Auth is a Python module that simplifies the process of&nbsp;adding social authentication to your website. Using this module, you can let your users log in to your website using their accounts from other services.&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/adding-social-authentication-to-your-site/\">Continue reading <span class=\"screen-reader-text\">Adding social authentication to your site</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [128],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3723" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3723"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3723/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3724,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3723/revisions/3724"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3723"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3723"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3723"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3725,
+    "date": "2022-06-28T10:55:53",
+    "date_gmt": "2022-06-28T10:55:53",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3725" },
+    "modified": "2022-06-28T10:55:53",
+    "modified_gmt": "2022-06-28T10:55:53",
+    "slug": "running-the-development-server-through-https",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/running-the-development-server-through-https/",
+    "title": { "rendered": "Running the development server through HTTPS" },
+    "content": {
+      "rendered": "\n<p>Some of&nbsp;<a></a>the social authentication methods you are going to use require an HTTPS connection. The&nbsp;<strong>Transport Layer Security</strong>&nbsp;(<strong>TLS</strong>) protocol is&nbsp;<a></a>the standard for serving websites through a secure connection. The TLS predecessor is the&nbsp;<strong>Secure Sockets Layer</strong>&nbsp;(<strong>SSL</strong>).</p>\n\n\n\n<p>Although SSL&nbsp;<a></a>is now deprecated, in multiple libraries and online documentation you&nbsp;will find references to both the terms TLS and SSL. The Django development server is not able to serve your site through HTTPS, since that is not its intended use. In order to test the social authentication functionality serving your site through HTTPS, you are going to use the RunServerPlus extension of the package Django Extensions. Django Extensions is a third-party collection of custom extensions for Django. Please note that this is never the method you should use to serve your site in&nbsp;a real environment; this is a development server.</p>\n\n\n\n<p>Use the following command to install Django Extensions:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>pip install django-extensions==2.2.5\n</code></pre>\n\n\n\n<p>Now you need to install Werkzeug, which contains a debugger layer required by the&nbsp;RunServerPlus extension. Use the following command to install it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>pip install werkzeug==0.16.0\n</code></pre>\n\n\n\n<p>Finally, use the&nbsp;<a></a>following command to install pyOpenSSL, which is required to use the SSL/TLS functionality of RunServerPlus:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>pip install pyOpenSSL==19.0.0\n</code></pre>\n\n\n\n<p>Edit the&nbsp;<code>settings.py</code>&nbsp;file of your project and add Django Extensions to the&nbsp;<code>INSTALLED_APPS</code>&nbsp;setting, as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>INSTALLED_APPS = &#91;\n    <em># ...</em>\n    <strong>'django_extensions'</strong>,\n]\n</code></pre>\n\n\n\n<p>Use the management command&nbsp;<code>runserver_plus</code>&nbsp;provided by Django Extensions to&nbsp;run the development server, as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>python manage.py runserver_plus --cert-file cert.crt\n</code></pre>\n\n\n\n<p>You provide a file name to the&nbsp;<code>runserver_plus</code>&nbsp;command for the SSL/TLS certificate. Django Extensions will generate a key and certificate automatically.</p>\n\n\n\n<p>Open&nbsp;<code>https://mysite.com:8000/account/login/</code>&nbsp;in your browser. Now you are accessing your site through HTTPS. Your browser might show a security warning because you are using a self-generated certificate. If this is the case, access the advanced information displayed by your browser and accept the self-signed certificate so that your browser trusts the certificate.</p>\n\n\n\n<p>You will see that the URL starts&nbsp;with&nbsp;<code>https://</code>&nbsp;and a security icon that indicates that the connection is secure.</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/14981_04_21.png\" alt=\"\"/></figure>\n\n\n\n<p>4.21 The URL with the secured connection icon</p>\n\n\n\n<p>You can now serve your site through HTTPS during development in order to test social authentication&nbsp;<a></a>with Facebook, Twitter, and Google.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Some of&nbsp;the social authentication methods you are going to use require an HTTPS connection. The&nbsp;Transport Layer Security&nbsp;(TLS) protocol is&nbsp;the standard for serving websites through a secure connection. The TLS predecessor is the&nbsp;Secure Sockets Layer&nbsp;(SSL). Although SSL&nbsp;is now deprecated, in multiple libraries and online documentation you&nbsp;will find references to both the terms TLS and SSL. The&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/running-the-development-server-through-https/\">Continue reading <span class=\"screen-reader-text\">Running the development server through HTTPS</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [128],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3725" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3725"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3725/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3726,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3725/revisions/3726"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3725"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3725"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3725"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3727,
+    "date": "2022-06-28T10:56:41",
+    "date_gmt": "2022-06-28T10:56:41",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3727" },
+    "modified": "2022-06-28T10:56:41",
+    "modified_gmt": "2022-06-28T10:56:41",
+    "slug": "authentication-using-facebook",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/authentication-using-facebook/",
+    "title": { "rendered": "Authentication using Facebook" },
+    "content": {
+      "rendered": "\n<p>To use&nbsp;<a></a>Facebook authentication to log in to your site, add the following line to the&nbsp;<code>AUTHENTICATION_BACKENDS</code>&nbsp;setting in the&nbsp;<code>settings.py</code>&nbsp;file of your project:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>'social_core.backends.facebook.FacebookOAuth2',\n</code></pre>\n\n\n\n<p>You will need a Facebook developer account and you will need to create a new Facebook application. Open https://developers.facebook.com/apps/ in your browser. After creating a Facebook developer account, you will see a site with the following header:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/14981_04_22.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 4.22: The Facebook developer portal menu</p>\n\n\n\n<p>Under the menu item&nbsp;<strong>My Apps</strong>, click on the button&nbsp;<strong>Create App</strong>. You will see the following form to create a new application ID:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/14981_04_23.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 4.23: The Facebook create app ID form</p>\n\n\n\n<p>Enter&nbsp;<code>Bookmarks</code>&nbsp;as the&nbsp;<strong>Display Name</strong>, add a contact email address, and click on&nbsp;<strong>Create App ID</strong>. You will see a dashboard for your new application that displays different&nbsp;<a></a>features you can set up for it. Look for the following&nbsp;<strong>Facebook Login</strong>&nbsp;box and click on&nbsp;<strong>Set Up</strong>:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/14981_04_24.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 4.24: The Facebook login product block</p>\n\n\n\n<p>You will be asked to choose the platform, as follows:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/14981_04_25.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 4.25: Platform selection for Facebook login</p>\n\n\n\n<p>Select the&nbsp;<strong>Web</strong>&nbsp;platform. You will see the following form:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/14981_04_26.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 4.26: Web platform configuration for Facebook login</p>\n\n\n\n<p>Enter&nbsp;<code>http://mysite.com:8000/</code>&nbsp;as your&nbsp;<strong>Site URL</strong>&nbsp;and click on the&nbsp;<strong>Save</strong>&nbsp;button. You can skip the&nbsp;<a></a>rest of the quickstart process. In the left-hand menu, click on&nbsp;<strong>Settings</strong>&nbsp;and then on&nbsp;<strong>Basic</strong>. You will see something similar to the following:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/14981_04_27.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 4.27: Application details for the Facebook application</p>\n\n\n\n<p>Copy the&nbsp;<strong>App ID</strong>&nbsp;and&nbsp;<strong>App Secret</strong>&nbsp;keys and add them to the&nbsp;<code>settings.py</code>&nbsp;file of your project, as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>SOCIAL_AUTH_FACEBOOK_KEY = 'XXX' # Facebook App ID\nSOCIAL_AUTH_FACEBOOK_SECRET = 'XXX' # Facebook App Secret\n</code></pre>\n\n\n\n<p>Optionally, you&nbsp;<a></a>can define a&nbsp;<code>SOCIAL_AUTH_FACEBOOK_SCOPE</code>&nbsp;setting with the extra permissions you want to ask Facebook users for:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>SOCIAL_AUTH_FACEBOOK_SCOPE = &#91;'email']\n</code></pre>\n\n\n\n<p>Now, go back to Facebook and click on&nbsp;<strong>Settings</strong>. You will see a form with multiple settings for your application. Add&nbsp;<code>mysite.com</code>&nbsp;under&nbsp;<strong>App Domains</strong>, as follows:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/14981_04_28.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 4.28: Allowed domains for the Facebook application</p>\n\n\n\n<p>Click on&nbsp;<strong>Save Changes</strong>. Then, in the left-hand menu under&nbsp;<strong>Products</strong>, click on&nbsp;<strong>Facebook Login</strong>&nbsp;and then&nbsp;<strong>Settings</strong>, as shown here:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/14981_04_29.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 4.29: The Facebook login menu</p>\n\n\n\n<p>Ensure&nbsp;<a></a>that only the following settings are active:</p>\n\n\n\n<ul><li><strong>Client OAuth Login</strong></li><li><strong>Web OAuth Login</strong></li><li><strong>Enforce HTTPS</strong></li><li><strong>Embedded Browser OAuth Login</strong></li></ul>\n\n\n\n<p>Enter&nbsp;<code>http://mysite.com:8000/social-auth/complete/facebook/</code>&nbsp;under&nbsp;<strong>Valid&nbsp;OAuth Redirect URIs</strong>. The selection should look like this:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/14981_04_30.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 4.30: Client OAuth settings for Facebook login</p>\n\n\n\n<p>Open the&nbsp;<code>registration/login.html</code>&nbsp;template of your&nbsp;<code>account</code>&nbsp;application and append the&nbsp;<a></a>following code at the bottom of the&nbsp;<code>content</code>&nbsp;block:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;div class=\"social\"&gt;\n  &lt;ul&gt;\n    &lt;li class=\"facebook\"&gt;\n      &lt;a href=\"{% url \"social:begin\" \"facebook\" %}\"&gt;Sign in with Facebook&lt;/a&gt;\n    &lt;/li&gt;\n  &lt;/ul&gt;\n&lt;/div&gt;\n</code></pre>\n\n\n\n<p>Open&nbsp;<code>https://mysite.com:8000/account/login/</code>&nbsp;in your browser. Now, the login page will look as follows:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/14981_04_31.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 4.31: The login page including the button for Facebook authentication</p>\n\n\n\n<p>Click on the&nbsp;<strong>Sign in with Facebook</strong>&nbsp;button. You will be redirected to Facebook, and you will see a&nbsp;<a></a>modal dialog asking for your permission to let the&nbsp;<em>Bookmarks</em>&nbsp;application access your public Facebook profile:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/14981_04_32.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 4.32: The modal dialog to grant application permissions</p>\n\n\n\n<p>Click on the&nbsp;<strong>Continue as</strong>&nbsp;button. You will be logged in and redirected to the dashboard page of&nbsp;<a></a>your site. Remember that you have set this URL in the&nbsp;<code>LOGIN_REDIRECT_URL</code>&nbsp;setting. As you can see, adding social authentication to your site is pretty straightforward.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>To use&nbsp;Facebook authentication to log in to your site, add the following line to the&nbsp;AUTHENTICATION_BACKENDS&nbsp;setting in the&nbsp;settings.py&nbsp;file of your project: You will need a Facebook developer account and you will need to create a new Facebook application. Open https://developers.facebook.com/apps/ in your browser. After creating a Facebook developer account, you will see a site with the following header: Figure&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/authentication-using-facebook/\">Continue reading <span class=\"screen-reader-text\">Authentication using Facebook</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [128],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3727" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3727"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3727/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3728,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3727/revisions/3728"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3727"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3727"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3727"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3729,
+    "date": "2022-06-28T10:57:22",
+    "date_gmt": "2022-06-28T10:57:22",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3729" },
+    "modified": "2022-06-28T10:57:22",
+    "modified_gmt": "2022-06-28T10:57:22",
+    "slug": "authentication-using-twitter",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/authentication-using-twitter/",
+    "title": { "rendered": "Authentication using Twitter" },
+    "content": {
+      "rendered": "\n<p>For social&nbsp;<a></a>authentication using Twitter, add the following line to the&nbsp;<code>AUTHENTICATION_BACKENDS</code>&nbsp;setting in the&nbsp;<code>settings.py</code>&nbsp;file of your project:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>'social_core.backends.twitter.TwitterOAuth',\n</code></pre>\n\n\n\n<p>You will&nbsp;<a></a>need to create a new application in your Twitter account. Open&nbsp;<a href=\"https://developer.twitter.com/en/apps/create\">https://developer.twitter.com/en/apps/create</a>&nbsp;in your browser. You will be asked several questions to create a Twitter developer account if you haven&#8217;t done that yet. Once you have a developer account, when creating a new application, you will see the following form:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/14981_04_33.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 4.33: Twitter application configuration</p>\n\n\n\n<p>Enter the&nbsp;<a></a>details of your application, including the following settings:</p>\n\n\n\n<ul><li><strong>Website</strong>:&nbsp;<code>https://mysite.com:8000/</code></li><li><strong>Callback URL</strong>:&nbsp;<code>https://mysite.com:8000/social-auth/complete/twitter/</code></li></ul>\n\n\n\n<p>Make sure that you activate&nbsp;<strong>Enable Sign in with Twitter</strong>. Then, click on&nbsp;<strong>Create</strong>. You&nbsp;will see the application details. Click on the&nbsp;<strong>Keys and tokens</strong>&nbsp;tab. You should see the following information:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/14981_04_34.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 4.34: Twitter application API keys</p>\n\n\n\n<p>Copy the&nbsp;<strong><a></a></strong><strong>API key</strong>&nbsp;and&nbsp;<strong>API secret key</strong>&nbsp;into the following settings in the&nbsp;<code>settings.py</code>&nbsp;file of your project:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>SOCIAL_AUTH_TWITTER_KEY = 'XXX' # Twitter API Key\nSOCIAL_AUTH_TWITTER_SECRET = 'XXX' # Twitter API Secret\n</code></pre>\n\n\n\n<p>Now edit the&nbsp;<code>registration/login.html</code>&nbsp;template and add the following code to the&nbsp;<code>&lt;ul&gt;</code>&nbsp;element:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;li class=\"twitter\"&gt;\n  &lt;a href=\"{% url \"social:begin\" \"twitter\" %}\"&gt;Login with Twitter&lt;/a&gt;\n&lt;/li&gt;\n</code></pre>\n\n\n\n<p>Open&nbsp;<code>https://mysite.com:8000/account/login/</code>&nbsp;in your browser and click on&nbsp;the&nbsp;<strong>Log in with Twitter</strong>&nbsp;link. You will be redirected to Twitter, and it will ask you&nbsp;to authorize the application as follows:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/14981_04_35.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 4.35: The modal dialog to grant application permissions</p>\n\n\n\n<p>Click on the&nbsp;<strong>Authorize app</strong>&nbsp;button. You will be logged in and redirected to the dashboard&nbsp;<a></a>page of your site.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>For social&nbsp;authentication using Twitter, add the following line to the&nbsp;AUTHENTICATION_BACKENDS&nbsp;setting in the&nbsp;settings.py&nbsp;file of your project: You will&nbsp;need to create a new application in your Twitter account. Open&nbsp;https://developer.twitter.com/en/apps/create&nbsp;in your browser. You will be asked several questions to create a Twitter developer account if you haven&#8217;t done that yet. Once you have a developer account, when creating&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/authentication-using-twitter/\">Continue reading <span class=\"screen-reader-text\">Authentication using Twitter</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [128],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3729" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3729"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3729/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3730,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3729/revisions/3730"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3729"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3729"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3729"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3731,
+    "date": "2022-06-28T10:58:14",
+    "date_gmt": "2022-06-28T10:58:14",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3731" },
+    "modified": "2022-06-28T10:58:14",
+    "modified_gmt": "2022-06-28T10:58:14",
+    "slug": "authentication-using-google",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/authentication-using-google/",
+    "title": { "rendered": "Authentication using Google" },
+    "content": {
+      "rendered": "\n<p>Google offers social authentication using OAuth2. You can read about Google&#8217;s OAuth2 implementation at https://developers.google.com/identity/protocols/OAuth2.</p>\n\n\n\n<p>To implement authentication using Google, add the following line to the&nbsp;<code>AUTHENTICATION_BACKENDS</code>&nbsp;setting in the&nbsp;<code>settings.py</code>&nbsp;file of your project:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>'social_core.backends.google.GoogleOAuth2',\n</code></pre>\n\n\n\n<p>First, you will need to create an API key in your Google Developer Console. Open https://console.developers.google.com/apis/credentials in your browser. Click on <strong>Select a project</strong> and then on <strong>New project</strong> create a new project, as follows:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/14981_04_36.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 4.36: The Google project creation form</p>\n\n\n\n<p>After the&nbsp;<a></a>project is created, under&nbsp;<strong>Credentials</strong>&nbsp;click on&nbsp;<strong>CREATE CREDENTIALS</strong>&nbsp;and choose&nbsp;<strong>OAuth client ID</strong>, as follows:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/14981_04_37.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 4.37: Google API creation of API credentials</p>\n\n\n\n<p>Google will ask you to configure the consent screen first:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/14981_04_38.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 4.38: The alert to configure the OAuth consent screen</p>\n\n\n\n<p>The preceding&nbsp;<a></a>page is the page that will be shown to users to give their consent to access your site with their Google account. Click on the&nbsp;<strong>Configure consent screen</strong>&nbsp;button. You will be redirected to the following screen:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/4.39.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 4.39: User type selection in the Google OAuth consent screen setup</p>\n\n\n\n<p>Choose&nbsp;<strong>External</strong>&nbsp;for&nbsp;<strong>User Type</strong>&nbsp;and click on the&nbsp;<strong>CREATE</strong>&nbsp;button. You will see the following screen:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/14981_04_39.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 4.40: Google OAuth consent screen setup</p>\n\n\n\n<p>Fill in the form with the following information:</p>\n\n\n\n<ul><li><strong>Application name</strong>: Enter&nbsp;<code>Bookmarks</code></li><li><strong>Authorised domains</strong>: Enter&nbsp;<code>mysite.com</code></li></ul>\n\n\n\n<p>Click on the&nbsp;<strong>Save</strong>&nbsp;button. The consent screen for your application will be configured and you will see the details of your application consent screen, as follows:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/4.39.2.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 4.41: Google OAuth consent screen details</p>\n\n\n\n<p>In the menu on the left sidebar, click on&nbsp;<strong>Credentials</strong>&nbsp;and click again on&nbsp;<strong>CREATE CREDENTIALS</strong>&nbsp;and then on&nbsp;<strong>OAuth client ID.</strong></p>\n\n\n\n<p>As the next step, enter the following information:</p>\n\n\n\n<ul><li><strong>Application type</strong>: Select&nbsp;<strong>Web application</strong></li><li><strong>Name</strong>: Enter&nbsp;<code>Bookmarks</code></li><li><strong>Authorised redirect URIs</strong>: Add&nbsp;<code>https://mysite.com:8000/social-auth/complete/google-oauth2/</code></li></ul>\n\n\n\n<p>The form should look like this:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/14981_04_40.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 4.42: The Google application creation form</p>\n\n\n\n<p>Click on the&nbsp;<strong>Create</strong>&nbsp;button. You&nbsp;<a></a>will get the&nbsp;<strong>Client ID</strong>&nbsp;and&nbsp;<strong>Client Secret</strong>&nbsp;keys. Add&nbsp;them to your&nbsp;<code>settings.py</code>&nbsp;file, like this:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = 'XXX' # Google Consumer Key\nSOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'XXX' # Google Consumer Secret\n</code></pre>\n\n\n\n<p>In the left-hand menu of the Google Developers Console, under the&nbsp;<strong>APIs &amp; Services</strong>&nbsp;section, click on the&nbsp;<strong>Library</strong>&nbsp;item. You will see a list that contains all Google APIs. Click on&nbsp;<strong>Google+ API</strong>&nbsp;and then click on the&nbsp;<strong>ENABLE</strong>&nbsp;button on the following page:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/14981_04_41.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 4.43: The Google+ API block</p>\n\n\n\n<p>Edit the&nbsp;<code>registration/login.html</code>&nbsp;template&nbsp;<a></a>and add the following code to the&nbsp;<code>&lt;ul&gt;</code>&nbsp;element:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;li class=\"google\"&gt;\n  &lt;a href=\"{% url \"social:begin\" \"google-oauth2\" %}\"&gt;Login with Google&lt;/a&gt;\n&lt;/li&gt;\n</code></pre>\n\n\n\n<p>Open&nbsp;<code>https://mysite.com:8000/account/login/</code>&nbsp;in your browser. The login page should now look as follows:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/14981_04_42.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 4.44: The login page including buttons for Twitter and Google authentication</p>\n\n\n\n<p>Click on the&nbsp;<strong>Login with Google</strong>&nbsp;button. You will be logged in and redirected to the&nbsp;dashboard page of your website.</p>\n\n\n\n<p>You have&nbsp;<a></a>now added social authentication to your project. You can easily implement social authentication with other popular online services using Python Social Auth.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Google offers social authentication using OAuth2. You can read about Google&#8217;s OAuth2 implementation at https://developers.google.com/identity/protocols/OAuth2. To implement authentication using Google, add the following line to the&nbsp;AUTHENTICATION_BACKENDS&nbsp;setting in the&nbsp;settings.py&nbsp;file of your project: First, you will need to create an API key in your Google Developer Console. Open https://console.developers.google.com/apis/credentials in your browser. Click on Select a project and then on New project create a new project,&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/authentication-using-google/\">Continue reading <span class=\"screen-reader-text\">Authentication using Google</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [128],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3731" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3731"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3731/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3732,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3731/revisions/3732"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3731"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3731"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3731"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  }
+]

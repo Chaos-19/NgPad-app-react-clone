@@ -1,0 +1,1102 @@
+[
+  {
+    "id": 4569,
+    "date": "2021-02-25T11:03:25",
+    "date_gmt": "2021-02-25T11:03:25",
+    "guid": {
+      "rendered": "http://angular.foobrdigital.com/?p=4569"
+    },
+    "modified": "2021-02-25T11:03:25",
+    "modified_gmt": "2021-02-25T11:03:25",
+    "slug": "intro-3",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/intro-3/",
+    "title": {
+      "rendered": "Intro"
+    },
+    "content": {
+      "rendered": "\n<p>A component, unlike all other parts of an Angular application, combines an HTML template and a TypeScript class. The component truly is the template and the class&nbsp;<em>working together</em>. To adequately test a component, you should test that they work together as intended.</p>\n\n\n\n<p>Such tests require creating the component&#8217;s host element in the browser DOM, as Angular does, and investigating the component class&#8217;s interaction with the DOM as described by its template.</p>\n\n\n\n<p>The Angular&nbsp;<code><a href=\"https://angular.io/api/core/testing/TestBed\">TestBed</a></code>&nbsp;facilitates this kind of testing as you&#8217;ll see in the sections below. But in many cases,&nbsp;<em>testing the component class alone</em>, without DOM involvement, can validate much of the component&#8217;s behavior in an easier, more obvious way.</p>\n\n\n\n<p>For the sample app that the testing guides describe, see the&nbsp;<a target=\"_blank\" href=\"https://angular.io/generated/live-examples/testing/stackblitz.html\" rel=\"noreferrer noopener\">sample app</a>.</p>\n\n\n\n<p>For the tests features in the testing guides, see&nbsp;<a target=\"_blank\" href=\"https://angular.io/generated/live-examples/testing/specs.stackblitz.html\" rel=\"noreferrer noopener\">tests</a>.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>A component, unlike all other parts of an Angular application, combines an HTML template and a TypeScript class. The component truly is the template and the class&nbsp;working together. To adequately test a component, you should test that they work together as intended. Such tests require creating the component&#8217;s host element in the browser DOM, as [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [243],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4569"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=4569"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4569/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4570,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4569/revisions/4570"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=4569"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=4569"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=4569"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 4568,
+    "date": "2021-02-25T11:04:13",
+    "date_gmt": "2021-02-25T11:04:13",
+    "guid": {
+      "rendered": "http://angular.foobrdigital.com/?p=4568"
+    },
+    "modified": "2021-02-25T11:04:13",
+    "modified_gmt": "2021-02-25T11:04:13",
+    "slug": "component-class-testing",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/component-class-testing/",
+    "title": {
+      "rendered": "Component class testing"
+    },
+    "content": {
+      "rendered": "\n<p>Test a component class on its own as you would test a service class.</p>\n\n\n\n<p>Component class testing should be kept very clean and simple. It should test only a single unit. At first glance, you should be able to understand what the test is testing.</p>\n\n\n\n<p>Consider this&nbsp;<code>LightswitchComponent</code>&nbsp;which toggles a light on and off (represented by an on-screen message) when the user clicks the button.app/demo/demo.ts (LightswitchComp)</p>\n\n\n\n<pre class=\"wp-block-code\"><code>content_copy<code>@<a href=\"https://angular.io/api/core/Component\">Component</a>({\n  selector: 'lightswitch-comp',\n  template: `\n    &lt;button (click)=\"clicked()\"&gt;Click me!&lt;/button&gt;\n    &lt;span&gt;{{message}}&lt;/span&gt;`\n})\nexport class LightswitchComponent {\n  isOn = false;\n  clicked() { this.isOn = !this.isOn; }\n  get message() { return `The light is ${this.isOn ? 'On' : 'Off'}`; }\n}</code></code></pre>\n\n\n\n<p>You might decide only to test that the&nbsp;<code>clicked()</code>&nbsp;method toggles the light&#8217;s&nbsp;<em>on/off</em>&nbsp;state and sets the message appropriately.</p>\n\n\n\n<p>This component class has no dependencies. To test these types of classes, follow the same steps as you would for a service that has no dependencies:</p>\n\n\n\n<ol><li>Create a component using the new keyword.</li><li>Poke at its API.</li><li>Assert expectations on its public state.</li></ol>\n\n\n\n<p>app/demo/demo.spec.ts (Lightswitch tests)</p>\n\n\n\n<pre class=\"wp-block-code\"><code>content_copy<code>describe('LightswitchComp', () =&gt; {\n  it('#clicked() should toggle #isOn', () =&gt; {\n    const comp = new LightswitchComponent();\n    expect(comp.isOn).toBe(false, 'off at first');\n    comp.clicked();\n    expect(comp.isOn).toBe(true, 'on after click');\n    comp.clicked();\n    expect(comp.isOn).toBe(false, 'off after second click');\n  });\n\n  it('#clicked() should set #message to \"is on\"', () =&gt; {\n    const comp = new LightswitchComponent();\n    expect(comp.message).toMatch(/is off/i, 'off at first');\n    comp.clicked();\n    expect(comp.message).toMatch(/is on/i, 'on after clicked');\n  });\n});</code></code></pre>\n\n\n\n<p>Here is the&nbsp;<code>DashboardHeroComponent</code>&nbsp;from the&nbsp;<em>Tour of Heroes</em>&nbsp;tutorial.app/dashboard/dashboard-hero.component.ts (component)</p>\n\n\n\n<pre class=\"wp-block-code\"><code>content_copy<code>export class DashboardHeroComponent {\n  @<a href=\"https://angular.io/api/core/Input\">Input</a>() hero: Hero;\n  @<a href=\"https://angular.io/api/core/Output\">Output</a>() selected = new <a href=\"https://angular.io/api/core/EventEmitter\">EventEmitter</a>&lt;Hero&gt;();\n  click() { this.selected.emit(this.hero); }\n}</code></code></pre>\n\n\n\n<p>It appears within the template of a parent component, which binds a&nbsp;<em>hero</em>&nbsp;to the&nbsp;<code>@<a href=\"https://angular.io/api/core/Input\">Input</a></code>&nbsp;property and listens for an event raised through the&nbsp;<em>selected</em>&nbsp;<code>@<a href=\"https://angular.io/api/core/Output\">Output</a></code>&nbsp;property.</p>\n\n\n\n<p>You can test that the class code works without creating the&nbsp;<code>DashboardHeroComponent</code>&nbsp;or its parent component.app/dashboard/dashboard-hero.component.spec.ts (class tests)</p>\n\n\n\n<pre class=\"wp-block-code\"><code>content_copy<code>it('raises the selected event when clicked', () =&gt; {\n  const comp = new DashboardHeroComponent();\n  const hero: Hero = {id: 42, name: 'Test'};\n  comp.hero = hero;\n\n  comp.selected.subscribe((selectedHero: Hero) =&gt; expect(selectedHero).toBe(hero));\n  comp.click();\n});</code></code></pre>\n\n\n\n<p>When a component has dependencies, you may wish to use the&nbsp;<code><a href=\"https://angular.io/api/core/testing/TestBed\">TestBed</a></code>&nbsp;to both create the component and its dependencies.</p>\n\n\n\n<p>The following&nbsp;<code>WelcomeComponent</code>&nbsp;depends on the&nbsp;<code>UserService</code>&nbsp;to know the name of the user to greet.app/welcome/welcome.component.ts</p>\n\n\n\n<pre class=\"wp-block-code\"><code>content_copy<code>export class WelcomeComponent implements <a href=\"https://angular.io/api/core/OnInit\">OnInit</a> {\n  welcome: string;\n  constructor(private userService: UserService) { }\n\n  ngOnInit(): void {\n    this.welcome = this.userService.isLoggedIn ?\n      'Welcome, ' + this.userService.user.name : 'Please log in.';\n  }\n}</code></code></pre>\n\n\n\n<p>You might start by creating a mock of the&nbsp;<code>UserService</code>&nbsp;that meets the minimum needs of this component.app/welcome/welcome.component.spec.ts (MockUserService)</p>\n\n\n\n<pre class=\"wp-block-code\"><code>content_copy<code>class MockUserService {\n  isLoggedIn = true;\n  user = { name: 'Test User'};\n}</code></code></pre>\n\n\n\n<p>Then provide and inject&nbsp;<em>both the</em>&nbsp;<strong>component</strong>&nbsp;<em>and the service</em>&nbsp;in the&nbsp;<code><a href=\"https://angular.io/api/core/testing/TestBed\">TestBed</a></code>&nbsp;configuration.app/welcome/welcome.component.spec.ts (class-only setup)</p>\n\n\n\n<pre class=\"wp-block-code\"><code>content_copy<code>beforeEach(() =&gt; {\n  TestBed.configureTestingModule({\n    // provide the component-under-test and dependent service\n    providers: &#91;\n      WelcomeComponent,\n      { provide: UserService, useClass: MockUserService }\n    ]\n  });\n  // inject both the component and the dependent service.\n  comp = TestBed.inject(WelcomeComponent);\n  userService = TestBed.inject(UserService);\n});</code></code></pre>\n\n\n\n<p>Then exercise the component class, remembering to call the&nbsp;<a href=\"https://angular.io/guide/lifecycle-hooks\">lifecycle hook methods</a>&nbsp;as Angular does when running the app.app/welcome/welcome.component.spec.ts (class-only tests)</p>\n\n\n\n<pre class=\"wp-block-code\"><code>content_copy<code>it('should not have welcome message after construction', () =&gt; {\n  expect(comp.welcome).toBeUndefined();\n});\n\nit('should welcome logged in user after Angular calls ngOnInit', () =&gt; {\n  comp.ngOnInit();\n  expect(comp.welcome).toContain(userService.user.name);\n});\n\nit('should ask user to log in if not logged in after ngOnInit', () =&gt; {\n  userService.isLoggedIn = false;\n  comp.ngOnInit();\n  expect(comp.welcome).not.toContain(userService.user.name);\n  expect(comp.welcome).toContain('log in');\n});</code></code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Test a component class on its own as you would test a service class. Component class testing should be kept very clean and simple. It should test only a single unit. At first glance, you should be able to understand what the test is testing. Consider this&nbsp;LightswitchComponent&nbsp;which toggles a light on and off (represented by [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [243],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4568"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=4568"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4568/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4571,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4568/revisions/4571"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=4568"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=4568"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=4568"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 4567,
+    "date": "2021-02-25T11:04:40",
+    "date_gmt": "2021-02-25T11:04:40",
+    "guid": {
+      "rendered": "http://angular.foobrdigital.com/?p=4567"
+    },
+    "modified": "2021-02-25T11:04:40",
+    "modified_gmt": "2021-02-25T11:04:40",
+    "slug": "component-dom-testing",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/component-dom-testing/",
+    "title": {
+      "rendered": "Component DOM testing"
+    },
+    "content": {
+      "rendered": "\n<p>Testing the component&nbsp;<em>class</em>&nbsp;is as easy as&nbsp;<a href=\"https://angular.io/guide/testing-services\">testing a service</a>.</p>\n\n\n\n<p>But a component is more than just its class. A component interacts with the DOM and with other components. The&nbsp;<em>class-only</em>&nbsp;tests can tell you about class behavior. They cannot tell you if the component is going to render properly, respond to user input and gestures, or integrate with its parent and child components.</p>\n\n\n\n<p>None of the&nbsp;<em>class-only</em>&nbsp;tests above can answer key questions about how the components actually behave on screen.</p>\n\n\n\n<ul><li>Is&nbsp;<code>Lightswitch.clicked()</code>&nbsp;bound to anything such that the user can invoke it?</li><li>Is the&nbsp;<code>Lightswitch.message</code>&nbsp;displayed?</li><li>Can the user actually select the hero displayed by&nbsp;<code>DashboardHeroComponent</code>?</li><li>Is the hero name displayed as expected (i.e, in uppercase)?</li><li>Is the welcome message displayed by the template of&nbsp;<code>WelcomeComponent</code>?</li></ul>\n\n\n\n<p>These may not be troubling questions for the simple components illustrated above. But many components have complex interactions with the DOM elements described in their templates, causing HTML to appear and disappear as the component state changes.</p>\n\n\n\n<p>To answer these kinds of questions, you have to create the DOM elements associated with the components, you must examine the DOM to confirm that component state displays properly at the appropriate times, and you must simulate user interaction with the screen to determine whether those interactions cause the component to behave as expected.</p>\n\n\n\n<p>To write these kinds of test, you&#8217;ll use additional features of the&nbsp;<code><a href=\"https://angular.io/api/core/testing/TestBed\">TestBed</a></code>&nbsp;as well as other testing helpers.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Testing the component&nbsp;class&nbsp;is as easy as&nbsp;testing a service. But a component is more than just its class. A component interacts with the DOM and with other components. The&nbsp;class-only&nbsp;tests can tell you about class behavior. They cannot tell you if the component is going to render properly, respond to user input and gestures, or integrate with [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [243],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4567"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=4567"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4567/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4572,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4567/revisions/4572"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=4567"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=4567"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=4567"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 4566,
+    "date": "2021-02-25T11:05:06",
+    "date_gmt": "2021-02-25T11:05:06",
+    "guid": {
+      "rendered": "http://angular.foobrdigital.com/?p=4566"
+    },
+    "modified": "2021-02-25T11:05:06",
+    "modified_gmt": "2021-02-25T11:05:06",
+    "slug": "cli-generated-tests",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/cli-generated-tests/",
+    "title": {
+      "rendered": "CLI-generated tests"
+    },
+    "content": {
+      "rendered": "\n<p>The CLI creates an initial test file for you by default when you ask it to generate a new component.</p>\n\n\n\n<p>For example, the following CLI command generates a&nbsp;<code>BannerComponent</code>&nbsp;in the&nbsp;<code>app/banner</code>&nbsp;folder (with inline template and styles):</p>\n\n\n\n<pre class=\"wp-block-code\"><code>content_copy<code>ng generate component banner --inline-template --inline-style --module app</code></code></pre>\n\n\n\n<p>It also generates an initial test file for the component,&nbsp;<code>banner-external.component.spec.ts</code>, that looks like this:app/banner/banner-external.component.spec.ts (initial)</p>\n\n\n\n<pre class=\"wp-block-code\"><code>content_copy<code>import { <a href=\"https://angular.io/api/core/testing/ComponentFixture\">ComponentFixture</a>, <a href=\"https://angular.io/api/core/testing/TestBed\">TestBed</a>, <a href=\"https://angular.io/api/core/testing/waitForAsync\">waitForAsync</a> } from '@angular/core/testing';\n\nimport { BannerComponent } from './banner.component';\n\ndescribe('BannerComponent', () =&gt; {\n  let component: BannerComponent;\n  let fixture: <a href=\"https://angular.io/api/core/testing/ComponentFixture\">ComponentFixture</a>&lt;BannerComponent&gt;;\n\n  beforeEach(<a href=\"https://angular.io/api/core/testing/waitForAsync\">waitForAsync</a>(() =&gt; {\n    TestBed.configureTestingModule({declarations: &#91;BannerComponent]}).compileComponents();\n  }));\n\n  beforeEach(() =&gt; {\n    fixture = TestBed.createComponent(BannerComponent);\n    component = fixture.componentInstance;\n    fixture.detectChanges();\n  });\n\n  it('should create', () =&gt; {\n    expect(component).toBeDefined();\n  });\n});</code></code></pre>\n\n\n\n<p>Because&nbsp;<code>compileComponents</code>&nbsp;is asynchronous, it uses the&nbsp;<a href=\"https://angular.io/api/core/testing/waitForAsync\"><code>waitForAsync</code></a>&nbsp;utility function imported from&nbsp;<code>@angular/core/testing</code>.</p>\n\n\n\n<p>Please refer to the&nbsp;<a href=\"https://angular.io/guide/testing-components-scenarios#waitForAsync\">waitForAsync</a>&nbsp;section for more details.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>The CLI creates an initial test file for you by default when you ask it to generate a new component. For example, the following CLI command generates a&nbsp;BannerComponent&nbsp;in the&nbsp;app/banner&nbsp;folder (with inline template and styles): It also generates an initial test file for the component,&nbsp;banner-external.component.spec.ts, that looks like this:app/banner/banner-external.component.spec.ts (initial) Because&nbsp;compileComponents&nbsp;is asynchronous, it uses the&nbsp;waitForAsync&nbsp;utility function [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [243],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4566"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=4566"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4566/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4573,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4566/revisions/4573"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=4566"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=4566"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=4566"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 4565,
+    "date": "2021-02-25T11:05:34",
+    "date_gmt": "2021-02-25T11:05:34",
+    "guid": {
+      "rendered": "http://angular.foobrdigital.com/?p=4565"
+    },
+    "modified": "2021-02-25T11:05:34",
+    "modified_gmt": "2021-02-25T11:05:34",
+    "slug": "reduce-the-setup",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/reduce-the-setup/",
+    "title": {
+      "rendered": "Reduce the setup"
+    },
+    "content": {
+      "rendered": "\n<p>Only the last three lines of this file actually test the component and all they do is assert that Angular can create the component.</p>\n\n\n\n<p>The rest of the file is boilerplate setup code anticipating more advanced tests that&nbsp;<em>might</em>&nbsp;become necessary if the component evolves into something substantial.</p>\n\n\n\n<p>You&#8217;ll learn about these advanced test features below. For now, you can radically reduce this test file to a more manageable size:app/banner/banner-initial.component.spec.ts (minimal)</p>\n\n\n\n<pre class=\"wp-block-code\"><code>content_copy<code>describe('BannerComponent (minimal)', () =&gt; {\n  it('should create', () =&gt; {\n    TestBed.configureTestingModule({declarations: &#91;BannerComponent]});\n    const fixture = TestBed.createComponent(BannerComponent);\n    const component = fixture.componentInstance;\n    expect(component).toBeDefined();\n  });\n});</code></code></pre>\n\n\n\n<p>In this example, the metadata object passed to&nbsp;<code>TestBed.configureTestingModule</code>&nbsp;simply declares&nbsp;<code>BannerComponent</code>, the component to test.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>content_copy<code>TestBed.configureTestingModule({declarations: &#91;BannerComponent]});</code></code></pre>\n\n\n\n<p>There&#8217;s no need to declare or import anything else. The default test module is pre-configured with something like the&nbsp;<code><a href=\"https://angular.io/api/platform-browser/BrowserModule\">BrowserModule</a></code>&nbsp;from&nbsp;<code>@angular/platform-browser</code>.</p>\n\n\n\n<p>Later you&#8217;ll call&nbsp;<code>TestBed.configureTestingModule()</code>&nbsp;with imports, providers, and more declarations to suit your testing needs. Optional&nbsp;<code>override</code>&nbsp;methods can further fine-tune aspects of the configuration.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Only the last three lines of this file actually test the component and all they do is assert that Angular can create the component. The rest of the file is boilerplate setup code anticipating more advanced tests that&nbsp;might&nbsp;become necessary if the component evolves into something substantial. You&#8217;ll learn about these advanced test features below. For [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [243],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4565"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=4565"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4565/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4574,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4565/revisions/4574"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=4565"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=4565"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=4565"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 4564,
+    "date": "2021-02-25T11:05:58",
+    "date_gmt": "2021-02-25T11:05:58",
+    "guid": {
+      "rendered": "http://angular.foobrdigital.com/?p=4564"
+    },
+    "modified": "2021-02-25T11:05:58",
+    "modified_gmt": "2021-02-25T11:05:58",
+    "slug": "createcomponent",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/createcomponent/",
+    "title": {
+      "rendered": "createComponent()"
+    },
+    "content": {
+      "rendered": "\n<p>After configuring&nbsp;<code><a href=\"https://angular.io/api/core/testing/TestBed\">TestBed</a></code>, you call its&nbsp;<code>createComponent()</code>&nbsp;method.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>content_copy<code>const fixture = TestBed.createComponent(BannerComponent);</code></code></pre>\n\n\n\n<p><code>TestBed.createComponent()</code>&nbsp;creates an instance of the&nbsp;<code>BannerComponent</code>, adds a corresponding element to the test-runner DOM, and returns a&nbsp;<a href=\"https://angular.io/guide/testing-components-basics#component-fixture\"><code>ComponentFixture</code></a>.</p>\n\n\n\n<p>Do not re-configure&nbsp;<code><a href=\"https://angular.io/api/core/testing/TestBed\">TestBed</a></code>&nbsp;after calling&nbsp;<code>createComponent</code>.</p>\n\n\n\n<p>The&nbsp;<code>createComponent</code>&nbsp;method freezes the current&nbsp;<code><a href=\"https://angular.io/api/core/testing/TestBed\">TestBed</a></code>&nbsp;definition, closing it to further configuration.</p>\n\n\n\n<p>You cannot call any more&nbsp;<code><a href=\"https://angular.io/api/core/testing/TestBed\">TestBed</a></code>&nbsp;configuration methods, not&nbsp;<code>configureTestingModule()</code>, nor&nbsp;<code>get()</code>, nor any of the&nbsp;<code>override...</code>&nbsp;methods. If you try,&nbsp;<code><a href=\"https://angular.io/api/core/testing/TestBed\">TestBed</a></code>&nbsp;throws an error.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>After configuring&nbsp;TestBed, you call its&nbsp;createComponent()&nbsp;method. TestBed.createComponent()&nbsp;creates an instance of the&nbsp;BannerComponent, adds a corresponding element to the test-runner DOM, and returns a&nbsp;ComponentFixture. Do not re-configure&nbsp;TestBed&nbsp;after calling&nbsp;createComponent. The&nbsp;createComponent&nbsp;method freezes the current&nbsp;TestBed&nbsp;definition, closing it to further configuration. You cannot call any more&nbsp;TestBed&nbsp;configuration methods, not&nbsp;configureTestingModule(), nor&nbsp;get(), nor any of the&nbsp;override&#8230;&nbsp;methods. If you try,&nbsp;TestBed&nbsp;throws an error.</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [243],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4564"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=4564"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4564/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4575,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4564/revisions/4575"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=4564"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=4564"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=4564"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 4549,
+    "date": "2021-02-25T11:06:13",
+    "date_gmt": "2021-02-25T11:06:13",
+    "guid": {
+      "rendered": "http://angular.foobrdigital.com/?p=4549"
+    },
+    "modified": "2021-02-25T11:06:13",
+    "modified_gmt": "2021-02-25T11:06:13",
+    "slug": "componentfixture",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/componentfixture/",
+    "title": {
+      "rendered": "ComponentFixture"
+    },
+    "content": {
+      "rendered": "\n<p>The&nbsp;<a href=\"https://angular.io/api/core/testing/ComponentFixture\">ComponentFixture</a>&nbsp;is a test harness for interacting with the created component and its corresponding element.</p>\n\n\n\n<p>Access the component instance through the fixture and confirm it exists with a Jasmine expectation:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>content_copy<code>const component = fixture.componentInstance;\nexpect(component).toBeDefined();</code></code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>The&nbsp;ComponentFixture&nbsp;is a test harness for interacting with the created component and its corresponding element. Access the component instance through the fixture and confirm it exists with a Jasmine expectation:</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [243],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4549"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=4549"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4549/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4576,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4549/revisions/4576"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=4549"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=4549"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=4549"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 4524,
+    "date": "2021-02-25T11:06:36",
+    "date_gmt": "2021-02-25T11:06:36",
+    "guid": {
+      "rendered": "http://angular.foobrdigital.com/?p=4524"
+    },
+    "modified": "2021-02-25T11:06:36",
+    "modified_gmt": "2021-02-25T11:06:36",
+    "slug": "beforeeach-2",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/beforeeach-2/",
+    "title": {
+      "rendered": "beforeEach()"
+    },
+    "content": {
+      "rendered": "\n<p>You will add more tests as this component evolves. Rather than duplicate the&nbsp;<code><a href=\"https://angular.io/api/core/testing/TestBed\">TestBed</a></code>&nbsp;configuration for each test, you refactor to pull the setup into a Jasmine&nbsp;<code>beforeEach()</code>&nbsp;and some supporting variables:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>content_copy<code>describe('BannerComponent (with beforeEach)', () =&gt; {\n  let component: BannerComponent;\n  let fixture: <a href=\"https://angular.io/api/core/testing/ComponentFixture\">ComponentFixture</a>&lt;BannerComponent&gt;;\n\n  beforeEach(() =&gt; {\n    TestBed.configureTestingModule({declarations: &#91;BannerComponent]});\n    fixture = TestBed.createComponent(BannerComponent);\n    component = fixture.componentInstance;\n  });\n\n  it('should create', () =&gt; {\n    expect(component).toBeDefined();\n  });\n});</code></code></pre>\n\n\n\n<p>Now add a test that gets the component&#8217;s element from&nbsp;<code>fixture.nativeElement</code>&nbsp;and looks for the expected text.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>content_copy<code>it('should contain \"banner works!\"', () =&gt; {\n  const bannerElement: HTMLElement = fixture.nativeElement;\n  expect(bannerElement.textContent).toContain('banner works!');\n});</code></code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>You will add more tests as this component evolves. Rather than duplicate the&nbsp;TestBed&nbsp;configuration for each test, you refactor to pull the setup into a Jasmine&nbsp;beforeEach()&nbsp;and some supporting variables: Now add a test that gets the component&#8217;s element from&nbsp;fixture.nativeElement&nbsp;and looks for the expected text.</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [243],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4524"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=4524"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4524/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4577,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4524/revisions/4577"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=4524"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=4524"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=4524"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 4580,
+    "date": "2021-02-25T11:07:46",
+    "date_gmt": "2021-02-25T11:07:46",
+    "guid": {
+      "rendered": "http://angular.foobrdigital.com/?p=4580"
+    },
+    "modified": "2021-02-25T11:07:46",
+    "modified_gmt": "2021-02-25T11:07:46",
+    "slug": "nativeelement",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/nativeelement/",
+    "title": {
+      "rendered": "nativeElement"
+    },
+    "content": {
+      "rendered": "\n<p>The value of&nbsp;<code><a href=\"https://angular.io/api/core/testing/ComponentFixture#nativeElement\">ComponentFixture.nativeElement</a></code>&nbsp;has the&nbsp;<code>any</code>&nbsp;type. Later you&#8217;ll encounter the&nbsp;<code><a href=\"https://angular.io/api/core/DebugElement#nativeElement\">DebugElement.nativeElement</a></code>&nbsp;and it too has the&nbsp;<code>any</code>&nbsp;type.</p>\n\n\n\n<p>Angular can&#8217;t know at compile time what kind of HTML element the&nbsp;<code>nativeElement</code>&nbsp;is or if it even is an HTML element. The app might be running on a&nbsp;<em>non-browser platform</em>, such as the server or a&nbsp;<a href=\"https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API\">Web Worker</a>, where the element may have a diminished API or not exist at all.</p>\n\n\n\n<p>The tests in this guide are designed to run in a browser so a&nbsp;<code>nativeElement</code>&nbsp;value will always be an&nbsp;<code>HTMLElement</code>&nbsp;or one of its derived classes.</p>\n\n\n\n<p>Knowing that it is an&nbsp;<code>HTMLElement</code>&nbsp;of some sort, you can use the standard HTML&nbsp;<code>querySelector</code>&nbsp;to dive deeper into the element tree.</p>\n\n\n\n<p>Here&#8217;s another test that calls&nbsp;<code>HTMLElement.querySelector</code>&nbsp;to get the paragraph element and look for the banner text:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>content_copy<code>it('should have &lt;p&gt; with \"banner works!\"', () =&gt; {\n  const bannerElement: HTMLElement = fixture.nativeElement;\n  const p = bannerElement.querySelector('p');\n  expect(p.textContent).toEqual('banner works!');\n});</code></code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>The value of&nbsp;ComponentFixture.nativeElement&nbsp;has the&nbsp;any&nbsp;type. Later you&#8217;ll encounter the&nbsp;DebugElement.nativeElement&nbsp;and it too has the&nbsp;any&nbsp;type. Angular can&#8217;t know at compile time what kind of HTML element the&nbsp;nativeElement&nbsp;is or if it even is an HTML element. The app might be running on a&nbsp;non-browser platform, such as the server or a&nbsp;Web Worker, where the element may have a diminished API [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [243],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4580"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=4580"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4580/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4581,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4580/revisions/4581"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=4580"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=4580"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=4580"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 4579,
+    "date": "2021-02-25T11:08:16",
+    "date_gmt": "2021-02-25T11:08:16",
+    "guid": {
+      "rendered": "http://angular.foobrdigital.com/?p=4579"
+    },
+    "modified": "2021-02-25T11:08:16",
+    "modified_gmt": "2021-02-25T11:08:16",
+    "slug": "debugelement",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/debugelement/",
+    "title": {
+      "rendered": "DebugElement"
+    },
+    "content": {
+      "rendered": "\n<p>The Angular&nbsp;<em>fixture</em>&nbsp;provides the component&#8217;s element directly through the&nbsp;<code>fixture.nativeElement</code>.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>content_copy<code>const bannerElement: HTMLElement = fixture.nativeElement;</code></code></pre>\n\n\n\n<p>This is actually a convenience method, implemented as&nbsp;<code>fixture.debugElement.nativeElement</code>.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>content_copy<code>const bannerDe: <a href=\"https://angular.io/api/core/DebugElement\">DebugElement</a> = fixture.debugElement;\nconst bannerEl: HTMLElement = bannerDe.nativeElement;</code></code></pre>\n\n\n\n<p>There&#8217;s a good reason for this circuitous path to the element.</p>\n\n\n\n<p>The properties of the&nbsp;<code>nativeElement</code>&nbsp;depend upon the runtime environment. You could be running these tests on a&nbsp;<em>non-browser</em>&nbsp;platform that doesn&#8217;t have a DOM or whose DOM-emulation doesn&#8217;t support the full&nbsp;<code>HTMLElement</code>&nbsp;API.</p>\n\n\n\n<p>Angular relies on the&nbsp;<code><a href=\"https://angular.io/api/core/DebugElement\">DebugElement</a></code>&nbsp;abstraction to work safely across&nbsp;<em>all supported platforms</em>. Instead of creating an HTML element tree, Angular creates a&nbsp;<code><a href=\"https://angular.io/api/core/DebugElement\">DebugElement</a></code>&nbsp;tree that wraps the&nbsp;<em>native elements</em>&nbsp;for the runtime platform. The&nbsp;<code>nativeElement</code>&nbsp;property unwraps the&nbsp;<code><a href=\"https://angular.io/api/core/DebugElement\">DebugElement</a></code>&nbsp;and returns the platform-specific element object.</p>\n\n\n\n<p>Because the sample tests for this guide are designed to run only in a browser, a&nbsp;<code>nativeElement</code>&nbsp;in these tests is always an&nbsp;<code>HTMLElement</code>&nbsp;whose familiar methods and properties you can explore within a test.</p>\n\n\n\n<p>Here&#8217;s the previous test, re-implemented with&nbsp;<code>fixture.debugElement.nativeElement</code>:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>content_copy<code>it('should find the &lt;p&gt; with fixture.debugElement.nativeElement)', () =&gt; {\n  const bannerDe: <a href=\"https://angular.io/api/core/DebugElement\">DebugElement</a> = fixture.debugElement;\n  const bannerEl: HTMLElement = bannerDe.nativeElement;\n  const p = bannerEl.querySelector('p');\n  expect(p.textContent).toEqual('banner works!');\n});</code></code></pre>\n\n\n\n<p>The\u00a0<code>DebugElement</code>\u00a0has other methods and properties that are useful in tests, as you&#8217;ll see elsewhere in this guide.</p>\n\n\n\n<p>You import the&nbsp;<code><a href=\"https://angular.io/api/core/DebugElement\">DebugElement</a></code>&nbsp;symbol from the Angular core library.</p>\n\n\n\n<pre class=\"wp-block-preformatted\">content_copy<code>import { DebugElement } from '@angular/core';</code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>The Angular&nbsp;fixture&nbsp;provides the component&#8217;s element directly through the&nbsp;fixture.nativeElement. This is actually a convenience method, implemented as&nbsp;fixture.debugElement.nativeElement. There&#8217;s a good reason for this circuitous path to the element. The properties of the&nbsp;nativeElement&nbsp;depend upon the runtime environment. You could be running these tests on a&nbsp;non-browser&nbsp;platform that doesn&#8217;t have a DOM or whose DOM-emulation doesn&#8217;t support the full&nbsp;HTMLElement&nbsp;API. [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [243],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4579"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=4579"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4579/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4582,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4579/revisions/4582"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=4579"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=4579"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=4579"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 4578,
+    "date": "2021-02-25T11:08:40",
+    "date_gmt": "2021-02-25T11:08:40",
+    "guid": {
+      "rendered": "http://angular.foobrdigital.com/?p=4578"
+    },
+    "modified": "2021-02-25T11:08:40",
+    "modified_gmt": "2021-02-25T11:08:40",
+    "slug": "by-css",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/by-css/",
+    "title": {
+      "rendered": "By.css()"
+    },
+    "content": {
+      "rendered": "\n<p>Although the tests in this guide all run in the browser, some apps might run on a different platform at least some of the time.</p>\n\n\n\n<p>For example, the component might render first on the server as part of a strategy to make the application launch faster on poorly connected devices. The server-side renderer might not support the full HTML element API. If it doesn&#8217;t support&nbsp;<code>querySelector</code>, the previous test could fail.</p>\n\n\n\n<p>The&nbsp;<code><a href=\"https://angular.io/api/core/DebugElement\">DebugElement</a></code>&nbsp;offers query methods that work for all supported platforms. These query methods take a&nbsp;<em>predicate</em>&nbsp;function that returns&nbsp;<code>true</code>&nbsp;when a node in the&nbsp;<code><a href=\"https://angular.io/api/core/DebugElement\">DebugElement</a></code>&nbsp;tree matches the selection criteria.</p>\n\n\n\n<p>You create a&nbsp;<em>predicate</em>&nbsp;with the help of a&nbsp;<code><a href=\"https://angular.io/api/platform-browser/By\">By</a></code>&nbsp;class imported from a library for the runtime platform. Here&#8217;s the&nbsp;<code><a href=\"https://angular.io/api/platform-browser/By\">By</a></code>&nbsp;import for the browser platform:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>content_copy<code>import { <a href=\"https://angular.io/api/platform-browser/By\">By</a> } from '@angular/platform-browser';</code></code></pre>\n\n\n\n<p>The following example re-implements the previous test with&nbsp;<code>DebugElement.query()</code>&nbsp;and the browser&#8217;s&nbsp;<code>By.css</code>&nbsp;method.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>content_copy<code>it('should find the &lt;p&gt; with fixture.debugElement.query(By.css)', () =&gt; {\n  const bannerDe: <a href=\"https://angular.io/api/core/DebugElement\">DebugElement</a> = fixture.debugElement;\n  const paragraphDe = bannerDe.query(By.css('p'));\n  const p: HTMLElement = paragraphDe.nativeElement;\n  expect(p.textContent).toEqual('banner works!');\n});</code></code></pre>\n\n\n\n<p>Some noteworthy observations:</p>\n\n\n\n<ul><li>The&nbsp;<code><a href=\"https://angular.io/api/platform-browser/By#css\">By.css()</a></code>&nbsp;static method selects&nbsp;<code><a href=\"https://angular.io/api/core/DebugElement\">DebugElement</a></code>&nbsp;nodes with a&nbsp;<a href=\"https://developer.mozilla.org/en-US/docs/Web/Guide/CSS/Getting_started/Selectors\">standard CSS selector</a>.</li><li>The query returns a&nbsp;<code><a href=\"https://angular.io/api/core/DebugElement\">DebugElement</a></code>&nbsp;for the paragraph.</li><li>You must unwrap that result to get the paragraph element.</li></ul>\n\n\n\n<p>When you&#8217;re filtering by CSS selector and only testing properties of a browser&#8217;s&nbsp;<em>native element</em>, the&nbsp;<code>By.css</code>&nbsp;approach may be overkill.</p>\n\n\n\n<p>It&#8217;s often easier and more clear to filter with a standard&nbsp;<code>HTMLElement</code>&nbsp;method such as&nbsp;<code>querySelector()</code>&nbsp;or&nbsp;<code>querySelectorAll()</code>.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Although the tests in this guide all run in the browser, some apps might run on a different platform at least some of the time. For example, the component might render first on the server as part of a strategy to make the application launch faster on poorly connected devices. The server-side renderer might not [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [243],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4578"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=4578"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4578/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4583,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4578/revisions/4583"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=4578"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=4578"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=4578"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  }
+]

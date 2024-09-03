@@ -1,0 +1,942 @@
+[
+  {
+    "id": 4066,
+    "date": "2020-11-27T10:48:54",
+    "date_gmt": "2020-11-27T10:48:54",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3027"
+    },
+    "modified": "2020-11-27T10:48:54",
+    "modified_gmt": "2020-11-27T10:48:54",
+    "slug": "let",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/let/",
+    "title": {
+      "rendered": "Let"
+    },
+    "content": {
+      "rendered": "\n<h2>Introduction to the JavaScript&nbsp;<code>let</code>&nbsp;keyword</h2>\n\n\n\n<p>In ES5, when you\u00a0declare a variable\u00a0using the\u00a0<code>var</code>\u00a0keyword, the scope of the variable is global if you declare it outside of a function or local in case you declare it inside a function.</p>\n\n\n\n<p>ES6 provides a new way of declaring a variable by using the&nbsp;<code>let</code>&nbsp;keyword. The&nbsp;<code>let</code>&nbsp;keyword is similar to the&nbsp;<code>var</code>&nbsp;keyword, except that the variables it declares are block-scoped:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let variable_name;</code></pre>\n\n\n\n<p>In JavaScript, blocks are denoted by curly braces\u00a0<code>{}</code>\u00a0, for example the\u00a0<code>if else</code>,\u00a0<code>fokr</code>,\u00a0<code>do while</code>,\u00a0<code>while</code>,\u00a0<code>try catch</code>\u00a0and so on:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>if(condition) {\n   // inside a block\n}</code></pre>\n\n\n\n<p>See the following example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let x = 10;\nif (x == 10) {\n    let x = 20;\n    console.log(x); // 20:  reference x inside the block\n}\nconsole.log(x); // 10: reference at the begining of the script</code></pre>\n\n\n\n<p>Let\u2019s explain how the script works:</p>\n\n\n\n<ul><li>First, declare a variable\u00a0<code>x</code>\u00a0and assign its value 10.</li><li>Second, declare\u00a0a new variable with the same name\u00a0<code>x</code>\u00a0inside the\u00a0<code>if</code>\u00a0block but with an initial value of 20.</li><li>Third, output the value of the variable\u00a0<code>x</code>\u00a0inside and after the \u00a0<code>if</code>\u00a0block.</li></ul>\n\n\n\n<p>Because the&nbsp;<code>let</code>&nbsp;keyword declares a&nbsp;block-scoped variable, the&nbsp;<code>x</code>&nbsp;variable inside the&nbsp;<code>if</code>&nbsp;block is a new variable and it shadows the&nbsp;<code>x</code>&nbsp;variable declared at the top of the script.&nbsp;Therefore,&nbsp;the value of&nbsp;<code>x</code>&nbsp;in the console is&nbsp;<code>20</code>.</p>\n\n\n\n<p>When JavaScript engine completes executing the&nbsp;<code>if</code>&nbsp;block,&nbsp;the&nbsp;<code>x</code>&nbsp;variable inside the&nbsp;<code>if</code>&nbsp;block is out of scope, therefore, the value of the&nbsp;<code>x</code>&nbsp;variable that following the&nbsp;<code>if&nbsp;</code>block is 10.</p>\n\n\n\n<h2>JavaScript&nbsp;<code>let</code>&nbsp;and global object</h2>\n\n\n\n<p>When you declare a global variable using the&nbsp;<code>var</code>&nbsp;keyword, you are adding that variable to the property list of the global object. In the case of the web browser, the global object is the&nbsp;<code>window</code>.</p>\n\n\n\n<p>See the following example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>var a = 10;\nconsole.log(window.a); // 10</code></pre>\n\n\n\n<p>However, when you use the&nbsp;<code>let</code>&nbsp;keyword to declare a variable, that variable is&nbsp;<strong>not</strong>&nbsp;attached to the global object as a property. Here is an example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let b = 20;\nconsole.log(window.b); // undefined</code></pre>\n\n\n\n<h2>JavaScript&nbsp;<code>let</code>&nbsp;and callback function in a&nbsp;<code>for</code>&nbsp;loop</h2>\n\n\n\n<p>See the following example.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>for (var i = 0; i &lt; 5; i++) {\n    setTimeout(function () {\n        console.log(i);\n    }, 1000);\n}</code></pre>\n\n\n\n<p>The intention of the code is to output numbers from 0 to 4&nbsp;to the console every second. However, it outputs the number&nbsp;<code>5</code>&nbsp;five times.</p>\n\n\n\n<p>The reason is that&nbsp;after five iterations, the value of the &nbsp;<code>i</code>&nbsp;variable is&nbsp;5.&nbsp;And the five instances of the callback function passed to the&nbsp;<code>setTimeOut()</code>&nbsp;function references the same variable&nbsp;<code>i</code>&nbsp;with the final value 5.</p>\n\n\n\n<p>In ES5, you fix this issue by creating another scope so that each instance of the callback function references a new variable. And to create a new scope, you need to create a function. Typically, you use the\u00a0IIFE\u00a0pattern as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>for (var i = 0; i &lt; 5; i++) {\n    (function (j) {\n        setTimeout(function () {\n            console.log(j);\n        }, 1000);\n    })(i);\n}</code></pre>\n\n\n\n<p>In ES6, the&nbsp;<code>let</code>&nbsp;keyword declares&nbsp;a new variable in each loop iteration, therefore, you just need to replace the&nbsp;<code>var</code>&nbsp;keyword by the&nbsp;<code>let</code>&nbsp;keyword to fix the issue.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>for (let i = 0; i &lt; 5; i++) {\n    setTimeout(function () {\n        console.log(i);\n    }, 1000);\n}</code></pre>\n\n\n\n<p>To make the code completely ES6 style, you can use an\u00a0arrow function\u00a0as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>for (let i = 0; i &lt; 5; i++) {\n    setTimeout(() => console.log(i), 1000);\n}</code></pre>\n\n\n\n<h2>Redeclaration</h2>\n\n\n\n<p>The&nbsp;<code>var</code>&nbsp;keyword allows you to redeclare a variable without any issue:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>var counter = 0;\nvar counter;\nconsole.log(counter); // 0</code></pre>\n\n\n\n<p>However, redeclaring a variable using the&nbsp;<code>let</code>&nbsp;keyword will result in an error:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let counter = 0;\nlet counter;\nconsole.log(counter);</code></pre>\n\n\n\n<p>Here is the error message:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Uncaught SyntaxError: Identifier 'counter' has already been declared</code></pre>\n\n\n\n<h2>JavaScript&nbsp;<code>let</code>&nbsp;variables and hoisting</h2>\n\n\n\n<p>Let\u2019s examine the following example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{\n    console.log(counter); // \n    let counter = 10;    \n}</code></pre>\n\n\n\n<p>Here is the error message:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Uncaught ReferenceError: Cannot access 'counter' before initialization</code></pre>\n\n\n\n<p>In the function, accessing the&nbsp;<code>counter</code>&nbsp;variable before declaring it causes a&nbsp;<code>ReferenceError</code>. It seems that a variable declaration using the&nbsp;<code>let</code>&nbsp;keyword does not&nbsp;<strong>hoist,&nbsp;</strong>but it does<strong>.</strong></p>\n\n\n\n<p>In fact, the JavaScript engine will hoist the variables declared using the&nbsp;<code>let</code>&nbsp;keyword to the top of the block. However, it does not initialize the variables. Therefore, when you reference uninitialized variables, you get a&nbsp;<code>ReferenceError</code>.</p>\n\n\n\n<h2 id=\"tdz\">Temporal death zone (TDZ)</h2>\n\n\n\n<p>A variable declared by the&nbsp;<code>let</code>&nbsp;keyword has a so-called temporal dead zone (TDZ). The TDZ is the time from the start of the block until the variable declaration is processed.</p>\n\n\n\n<p>The following example illustrates&nbsp;that the temporal dead zone is&nbsp;time-based not location-based<em>.</em></p>\n\n\n\n<pre class=\"wp-block-code\"><code>{ // enter new scope, TDZ starts\n    let log = function () {\n        console.log(foo); // foo declared later\n    };\n\n    // This is the TDZ and accessing foo \n    // would cause a ReferenceError\n\n    let foo = 10; // TDZ ends\n    log(); // called outside TDZ\n}</code></pre>\n\n\n\n<p>In this example:</p>\n\n\n\n<p>First, the curly brace starts a new block scope, therefore, the TDZ starts.</p>\n\n\n\n<p>Next, the&nbsp;<code>log</code>&nbsp;function expression accesses the&nbsp;<code>foo</code>&nbsp;variable. However, the&nbsp;<code>log()</code>&nbsp;function has not executed yet, therefore&nbsp;it is fine.</p>\n\n\n\n<p>Then, we declare the&nbsp;<code>foo</code>&nbsp;variable and initialize its value to 10. The time from the start of the block scope to the time that the&nbsp;<code>foo</code>&nbsp;variable is accessed is called a temporal death zone. &nbsp;Now, the JavaScript engine processed the declaration, the TDZ ends.</p>\n\n\n\n<p>After that, we call the&nbsp;<code>log()</code>&nbsp;function that accesses the&nbsp;<code>foo</code>&nbsp;variable outside of the TDZ.</p>\n\n\n\n<p>Note that if you access a variable declared by the&nbsp;<code>let</code>&nbsp;keyword in the TDZ, you get a&nbsp;<code>ReferenceError</code>&nbsp;as illustrated in the following example.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{ // TDZ starts\n    console.log(typeof bar); // undefined\n    console.log(typeof foo); // ReferenceError\n    let foo; // TDZ ends\n}</code></pre>\n\n\n\n<p>Notice that\u00a0<code>bar</code>\u00a0variable a non-existing variable, therefore, its type is\u00a0undefined.</p>\n\n\n\n<p>The temporal death zone prevents you from accidentally referencing a variable before its declaration.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Introduction to the JavaScript&nbsp;let&nbsp;keyword In ES5, when you\u00a0declare a variable\u00a0using the\u00a0var\u00a0keyword, the scope of the variable is global if you declare it outside of a function or local in case you declare it inside a function. ES6 provides a new way of declaring a variable by using the&nbsp;let&nbsp;keyword. The&nbsp;let&nbsp;keyword is similar to the&nbsp;var&nbsp;keyword, except that [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [198],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4066"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=4066"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4066/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=4066"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=4066"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=4066"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 4067,
+    "date": "2020-11-27T10:51:29",
+    "date_gmt": "2020-11-27T10:51:29",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3035"
+    },
+    "modified": "2020-11-27T10:51:29",
+    "modified_gmt": "2020-11-27T10:51:29",
+    "slug": "let-vs-var-2",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/let-vs-var-2/",
+    "title": {
+      "rendered": "Let vs. var"
+    },
+    "content": {
+      "rendered": "\n<h2>#1: Variable scopes</h2>\n\n\n\n<p>The&nbsp;<code>var</code>&nbsp;variables belong to the global scope when you define them outside a function, for example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>var counter;</code></pre>\n\n\n\n<p>In this example, the&nbsp;<code>counter</code>&nbsp;is a global variable. It means that the&nbsp;<code>counter</code>&nbsp;variable is accessible by any functions.</p>\n\n\n\n<p>When you declare a variable inside a function using the&nbsp;<code>var</code>&nbsp;keyword, the scope of the variable is local. For example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function increase() {\n    var counter = 10;\n}\n// cannot access the counter variable here</code></pre>\n\n\n\n<p>In this example, the&nbsp;<code>counter</code>&nbsp;variable is local to the&nbsp;<code>increase()</code>&nbsp;function. It cannot be accessible outside of the function.</p>\n\n\n\n<p>The following example displays four numbers from 0 to 4 inside the loop and the number 5 outside the loop.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>for (var i = 0; i &lt; 5; i++) {\n    console.log(`Inside the loop: ${i}`);\n}\n\nconsole.log(`Outside the loop: ${i}`);</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Inside the loop: 0 \nInside the loop: 1 \nInside the loop: 2 \nInside the loop: 3 \nInside the loop: 4 \nOutside the loop: 5</code></pre>\n\n\n\n<p>In this example, the\u00a0<code>i</code>\u00a0variable is a global variable. Therefore, it can be accessed from both inside and after the\u00a0<code>for</code>\u00a0loop.</p>\n\n\n\n<p>The following example changes from&nbsp;<code>var</code>&nbsp;to&nbsp;<code>let</code>&nbsp;keyword:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>for (let i = 0; i &lt; 5; i++) {\n    console.log(`Inside the loop: ${i}`);\n}\n\nconsole.log(`Outside the loop: ${i}`);</code></pre>\n\n\n\n<p>In this case, the code shows four numbers from 0 to 4 inside a loop and a reference error:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Inside the loop: 0\nInside the loop: 1\nInside the loop: 2\nInside the loop: 3\nInside the loop: 4</code></pre>\n\n\n\n<p>The error:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Uncaught ReferenceError: i is not defined</code></pre>\n\n\n\n<p>Since this example uses the&nbsp;<code>let</code>&nbsp;keyword, the variable&nbsp;<code>i</code>&nbsp;is blocked scope. It means that the variable&nbsp;<code>i</code>&nbsp;only exists and can be accessible inside the&nbsp;<code>for</code>&nbsp;loop block.</p>\n\n\n\n<p>In JavaScript, a block is delimited by a pair of curly braces&nbsp;<code>{}</code>&nbsp;like in the&nbsp;<code>if...else</code>&nbsp;and&nbsp;<code>for</code>&nbsp;statements:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>if(condition) {\n   // inside a block\n}\n\nfor(...) {\n  // inside a block\n}</code></pre>\n\n\n\n<h2>#2: Creating global properties</h2>\n\n\n\n<p>The global\u00a0<code>var</code>\u00a0variables are added to the\u00a0global object\u00a0as\u00a0properties. The global object is\u00a0<code>window</code>\u00a0on the web browser and\u00a0<code>global</code>\u00a0on Node.js:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>var counter = 0;\nconsole.log(window.counter); //  0</code></pre>\n\n\n\n<p>However, the&nbsp;<code>let</code>&nbsp;variables are not added to the global object:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let counter = 0;\nconsole.log(window.counter); // undefined</code></pre>\n\n\n\n<h2>#3: Redeclaration</h2>\n\n\n\n<p>The&nbsp;<code>var</code>&nbsp;keyword allows you to redeclare a variable without any issue:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>var counter = 10;\nvar counter;\nconsole.log(counter); // 10</code></pre>\n\n\n\n<p>However, if you redeclare a variable with the&nbsp;<code>let</code>&nbsp;keyword, you will get an error:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let counter = 10;\nlet counter; // error</code></pre>\n\n\n\n<h2>#4: The Temporal dead zone</h2>\n\n\n\n<p>The&nbsp;<code>let</code>&nbsp;variables have temporal dead zones while the&nbsp;<code>var</code>&nbsp;variables don\u2019t. To understand the temporal dead zone, let\u2019s examine the life cycles of both&nbsp;<code>var</code>&nbsp;and&nbsp;<code>let</code>&nbsp;variables, which have two steps: creation and execution.</p>\n\n\n\n<h3>The&nbsp;<code>var</code>&nbsp;variables</h3>\n\n\n\n<ul><li>In the creation phase, the&nbsp;<code>var</code>&nbsp;variables are assigned storage spaces and immediately initialized to&nbsp;<code>undefined</code>.</li><li>In the execution phase, the&nbsp;<code>var</code>&nbsp;variables are assigned the values specified by the assignments if there are ones. If there aren\u2019t, the values of the variables remain&nbsp;<code>undefined</code>.</li></ul>\n\n\n\n<p>See the\u00a0execution context\u00a0for more information.</p>\n\n\n\n<h3>The&nbsp;<code>let</code>&nbsp;variables</h3>\n\n\n\n<ul><li>In the creation phase, the<code>let</code>&nbsp;variables are assigned storage spaces but are not initialized. Referencing uninitialized variables will cause a&nbsp;<code>ReferenceError</code>.</li><li>The&nbsp;<code>let</code>&nbsp;variables have the same execution phase as the&nbsp;<code>var</code>&nbsp;variables.</li></ul>\n\n\n\n<p>The temporal dead zone starts from the block until the&nbsp;<code>let</code>&nbsp;variable declaration is processed. In other words, it is where you cannot access the&nbsp;<code>let</code>&nbsp;variables before they are defined.</p>\n\n\n\n<p>In this tutorial, you have learned about the differences between&nbsp;<code>var</code>&nbsp;and&nbsp;<code>let</code>&nbsp;keywords.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>#1: Variable scopes The&nbsp;var&nbsp;variables belong to the global scope when you define them outside a function, for example: In this example, the&nbsp;counter&nbsp;is a global variable. It means that the&nbsp;counter&nbsp;variable is accessible by any functions. When you declare a variable inside a function using the&nbsp;var&nbsp;keyword, the scope of the variable is local. For example: In this [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [198],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4067"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=4067"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4067/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=4067"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=4067"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=4067"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 4068,
+    "date": "2020-11-27T10:53:08",
+    "date_gmt": "2020-11-27T10:53:08",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3040"
+    },
+    "modified": "2020-11-27T10:53:08",
+    "modified_gmt": "2020-11-27T10:53:08",
+    "slug": "const",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/const/",
+    "title": {
+      "rendered": "Const"
+    },
+    "content": {
+      "rendered": "\n<h2>Introduction to the JavaScript const keyword</h2>\n\n\n\n<p>ES6 provides a new way of declaring a constant by using the&nbsp;<code>const</code>&nbsp;keyword.</p>\n\n\n\n<p>The&nbsp;<code>const</code>&nbsp;keyword creates a read-only reference to a value.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>const CONSTANT_NAME = value;</code></pre>\n\n\n\n<p>By convention, the constant identifiers are in uppercase.</p>\n\n\n\n<p>The\u00a0<code>const</code>\u00a0keyword works like the\u00a0let\u00a0keyword. But the\u00a0<code>const</code>\u00a0keyword creates block-scoped variables whose values can\u2019t be\u00a0<strong>reassigned</strong>.</p>\n\n\n\n<p>The variables declared by the&nbsp;<code>let</code>&nbsp;keyword are mutable. It means that you can change their values anytime you want as shown in the following example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let a = 10;\na = 20;\na = a + 5;\nconsole.log(a); // 25</code></pre>\n\n\n\n<p>However, variables created by the&nbsp;<code>const</code>&nbsp;keyword are \u201cimmutable\u201d. In other words, you can\u2019t reassign them to different values.</p>\n\n\n\n<p>Trying to reassign a constant variable will result in a&nbsp;<code>TypeError</code>&nbsp;like this:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>const RATE = 0.1;\nRATE = 0.2; // TypeError</code></pre>\n\n\n\n<p>And the variable you declare using the&nbsp;<code>const</code>&nbsp;keyword must be immediately initialized&nbsp;to a value.</p>\n\n\n\n<p>The following example causes a&nbsp;<code>SyntaxError</code>&nbsp;due to missing the initializer in the&nbsp;<code>const</code>&nbsp;variable declaration</p>\n\n\n\n<pre class=\"wp-block-code\"><code>const RED; // SyntaxError</code></pre>\n\n\n\n<p>Similar to the\u00a0<code>let</code>\u00a0keyword, the\u00a0<code>const</code>\u00a0keyword defines the constants that are block-scoped and have\u00a0temporal death zones\u00a0(TDZ).</p>\n\n\n\n<h2>JavaScript&nbsp;<code>const</code>&nbsp;and Objects</h2>\n\n\n\n<p>The&nbsp;<code>const</code>&nbsp;keyword ensures that the variable it creates is read-only.</p>\n\n\n\n<p>However, it doesn\u2019t mean that the actual value to which the&nbsp;<code>const</code>&nbsp;variable reference is immutable. For example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>const person = { age: 20 };\nperson.age = 30; // OK\nconsole.log(person.age); // 30</code></pre>\n\n\n\n<p>Even though the&nbsp;<code>person</code>&nbsp;variable is a constant, you can change the value of its property.</p>\n\n\n\n<p>However, you cannot reassign a different value to the&nbsp;<code>person</code>&nbsp;constant like this:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>person = {age: 40}; // TypeError</code></pre>\n\n\n\n<p>If you want the value of the&nbsp;<code>person</code>&nbsp;object to be immutable, you have to freeze it by using the&nbsp;<code>Object.freeze()</code>&nbsp;method:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>const person = Object.freeze({age: 20});\nperson.age = 30; // TypeError</code></pre>\n\n\n\n<p>Note that&nbsp;<code>Object.freeze()</code>&nbsp;is shallow, meaning that it can freeze the properties of the object, not the objects referenced by the properties.</p>\n\n\n\n<p>For example, the&nbsp;<code>company</code>&nbsp;object is constant and frozen.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>const company = Object.freeze({\n    name: 'ABC corp',\n    address: {\n        street: 'North 1st street',\n        city: 'San Jose',\n        state: 'CA',\n        zipcode: 95134\n    }\n});</code></pre>\n\n\n\n<p>But the&nbsp;<code>company.address</code>&nbsp;object is not immutable, you can add a new property to the&nbsp;<code>company.address</code>&nbsp;object as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>company.address.country = 'USA'; // OK</code></pre>\n\n\n\n<h2>JavaScript const and Arrays</h2>\n\n\n\n<p>Consider the following example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>const colors = &#91;'red'];\ncolors.push('green');\nconsole.log(colors); // &#91;\"red\", \"green\"]\n\ncolors.pop();\ncolors.pop();\nconsole.log(colors); // &#91;]\n\ncolors = &#91;]; // TypeError</code></pre>\n\n\n\n<p>In this example, we declare an array&nbsp;<code>colors</code>&nbsp;that has one element using the const keyword. Then, we can change the array\u2019s elements by adding the&nbsp;<code>green</code>&nbsp;color. However, we cannot reassign the array&nbsp;<code>colors</code>&nbsp;to another array.</p>\n\n\n\n<h2>JavaScript&nbsp;<code>const</code>&nbsp;in a&nbsp;<code>for</code>&nbsp;loop</h2>\n\n\n\n<p>ES6 provides a new construct called\u00a0<code>for...of</code>\u00a0that allows you to create a loop iterating over iterable objects such as\u00a0arrays,\u00a0maps, and\u00a0sets.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let scores = &#91;75, 80, 95];\nfor (let score of scores) {\n    console.log(score);\n}</code></pre>\n\n\n\n<p>If you don\u2019t intend to modify the&nbsp;<code>score</code>&nbsp;variable inside the loop, you can use the&nbsp;<code>const</code>&nbsp;keyword instead:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let scores = &#91;75, 80, 95];\nfor (const score of scores) {\n    console.log(score);\n}</code></pre>\n\n\n\n<p>In this example, the&nbsp;<code>for...of</code>&nbsp; &nbsp;creates a new binding for the&nbsp;<code>const</code>&nbsp;keyword in each loop iteration. In other words, a new&nbsp;<code>score</code>&nbsp;constant is created in each iteration.</p>\n\n\n\n<p>Notice that the\u00a0<code>const</code>\u00a0will not work in an imperative\u00a0for\u00a0loop. Trying to use the\u00a0<code>const</code>\u00a0keyword to declare a variable in the imperative\u00a0<code>for</code>\u00a0loop will result in a\u00a0<code>TypeError</code>\u00a0as shown below.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>for (const i = 0; i &lt; scores.length; i++) { // TypeError\n    console.log(scores&#91;i]);\n}</code></pre>\n\n\n\n<p>The reason is that the declaration is only evaluated once before the loop body starts.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Introduction to the JavaScript const keyword ES6 provides a new way of declaring a constant by using the&nbsp;const&nbsp;keyword. The&nbsp;const&nbsp;keyword creates a read-only reference to a value. By convention, the constant identifiers are in uppercase. The\u00a0const\u00a0keyword works like the\u00a0let\u00a0keyword. But the\u00a0const\u00a0keyword creates block-scoped variables whose values can\u2019t be\u00a0reassigned. The variables declared by the&nbsp;let&nbsp;keyword are mutable. It [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [198],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4068"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=4068"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4068/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=4068"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=4068"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=4068"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 4069,
+    "date": "2020-11-27T10:54:49",
+    "date_gmt": "2020-11-27T10:54:49",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3042"
+    },
+    "modified": "2020-11-27T10:54:49",
+    "modified_gmt": "2020-11-27T10:54:49",
+    "slug": "default-function-parameters",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/default-function-parameters/",
+    "title": {
+      "rendered": "Default function parameters"
+    },
+    "content": {
+      "rendered": "\n<h2>TL;DR</h2>\n\n\n\n<pre class=\"wp-block-code\"><code>function say(message='Hi') {\n    console.log(message);\n}\n\nsay(); // 'Hi'</code></pre>\n\n\n\n<p>The default value of the&nbsp;<code>message</code>&nbsp;paramater in the&nbsp;<code>say()</code>&nbsp;function is&nbsp;<code>'Hi'</code>.</p>\n\n\n\n<p>In JavaScript, default function parameters allow you to initialize named parameters with default values if no values or&nbsp;<code>undefined</code>&nbsp;are passed into the function.</p>\n\n\n\n<h2>Arguments vs. Parameters</h2>\n\n\n\n<p>We typically use the term argument and parameter interchangeably. However, by definition, parameters are what we specify in the\u00a0function declaration\u00a0whereas the arguments are what we pass into the function.</p>\n\n\n\n<p>Consider the following&nbsp;<code>add()</code>&nbsp;function:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function add(x, y) {\n   return x + y;\n}\n\nadd(100,200);</code></pre>\n\n\n\n<p>In this example, the&nbsp;<code>x</code>&nbsp;and&nbsp;<code>y</code>&nbsp;are the parameters of the&nbsp;<code>add()</code>&nbsp;function, and the values that we passed to the&nbsp;<code>add()</code>&nbsp;function&nbsp;<code>100</code>&nbsp;and&nbsp;<code>200</code>&nbsp;are the arguments.</p>\n\n\n\n<h2>Setting JavaScript default parameters for a function</h2>\n\n\n\n<p>In JavaScript, a parameter has a default value of\u00a0undefined. It means that if you don\u2019t pass the arguments into the\u00a0function, its parameters will have the\u00a0default values of\u00a0<code>undefined</code>.</p>\n\n\n\n<p>See the following example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function say(message) {\n    console.log(message);\n}\n\nsay(); // undefined</code></pre>\n\n\n\n<p>The&nbsp;<code>say()</code>&nbsp;function takes the&nbsp;<code>message</code>&nbsp;parameter. Because we didn\u2019t pass any argument into the&nbsp;<code>say()</code>&nbsp;function, the value of the&nbsp;<code>message</code>&nbsp;parameter is&nbsp;<code>undefined</code>.</p>\n\n\n\n<p>Suppose that you want to give the&nbsp;<code>message</code>&nbsp;parameter a default value 10.</p>\n\n\n\n<p>A typical way for achieving this is to test parameter value and assign a default value if it is&nbsp;<code>undefined</code>:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function say(message) {\n    message = typeof message !== 'undefined' ? message : 'Hi';\n    console.log(message);\n}\nsay(); // 'Hi'</code></pre>\n\n\n\n<p>In this example, we didn\u2019t pass any value into the&nbsp;<code>say()</code>&nbsp;function, therefore, its default value is&nbsp;<code>undefined</code>. However, inside the function, we reassigned the&nbsp;<code>message</code>&nbsp;variable the&nbsp;<code>Hi</code>&nbsp;string.</p>\n\n\n\n<p>ES6 provides an easier way to set the default values for the parameters of a function as shown in the following syntax:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function fn(param1=default1,param2=default2,..) {\n}</code></pre>\n\n\n\n<p>In the syntax above, you use the\u00a0assignment operator\u00a0(<code>=</code>) and the default value after the parameter name to set a default value for that parameter.</p>\n\n\n\n<p>See the following example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function say(message='Hi') {\n    console.log(message);\n}\n\nsay(); // 'Hi'\nsay(undefined); // 'Hi'\nsay('Hello'); // 'Hello'</code></pre>\n\n\n\n<p>How it works.</p>\n\n\n\n<ul><li>In the first function call, we didn\u2019t pass any argument into the&nbsp;<code>say()</code>&nbsp;function, therefore&nbsp;<code>message</code>&nbsp;parameter took the default value&nbsp;<code>'Hi'</code>.</li><li>In the second function call, we passed the&nbsp;<code>undefined</code>&nbsp;into the&nbsp;<code>say()</code>&nbsp;function, hence the&nbsp;<code>message</code>&nbsp;parameter also took the default value&nbsp;<code>'Hi'</code>.</li><li>In the third function call, we passed the&nbsp;<code>'Hello'</code>&nbsp;string into the&nbsp;<code>say()</code>&nbsp;function, therefore&nbsp;<code>message</code>&nbsp;parameter took the string&nbsp;<code>'Hello'</code>&nbsp;as the default value.</li></ul>\n\n\n\n<h2>More JavaScript default parameter examples</h2>\n\n\n\n<p>Let\u2019s look at some more examples to learn some available options for setting default values of the function parameters.</p>\n\n\n\n<h3>1) Passing the&nbsp;<code>undefined</code></h3>\n\n\n\n<p>The following&nbsp;<code>createDiv()</code>&nbsp;function creates a new&nbsp;<code>&lt;div&gt;</code>&nbsp;element in the document with a specific height, width, and border-style:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function createDiv(height = '100px', width = '100px', border = 'solid 1px red') {\n    let div = document.createElement('div');\n    div.style.height = height;\n    div.style.width = width;\n    div.style.border = border;\n    document.getElementsByTagName('body')&#91;0].appendChild(div);\n    return div;\n}</code></pre>\n\n\n\n<p>The following doesn\u2019t pass any arguments to the function so the&nbsp;<code>createDiv()</code>&nbsp;function uses the default&nbsp;values for the parameters.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>createDiv();</code></pre>\n\n\n\n<p>Suppose you want to&nbsp;use the default values for the height and width parameters and specific border style. In this case, you need to pass&nbsp;<code>undefined</code>&nbsp;values to the first two parameters as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>createDiv(undefined,undefined,'solid 5px blue');</code></pre>\n\n\n\n<h3>2) Evaluating default&nbsp;parameters</h3>\n\n\n\n<p>JavaScript engine evaluates the default arguments at the time you call the function. See the following example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function put(toy, toyBox = &#91;]) {\n    toyBox.push(toy);\n    return toyBox;\n}\n\nconsole.log(put('Toy Car'));\n// -> &#91;'Toy Car']\nconsole.log(put('Teddy Bear'));\n// -> &#91;'Teddy Bear'], not &#91;'Toy Car','Teddy Bear']</code></pre>\n\n\n\n<p>The parameter can take a default value which is a result of a function.</p>\n\n\n\n<p>Consider the following example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function date(d = today()) {\n    console.log(d);\n}\nfunction today() {\n    return (new Date()).toLocaleDateString(\"en-US\");\n}\ndate();</code></pre>\n\n\n\n<p>The&nbsp;<code>date()</code>&nbsp;function takes one parameter whose default value is the returned value of the&nbsp;<code>today()</code>&nbsp;function.&nbsp;The&nbsp;<code>today()</code>&nbsp;function returns today\u2019s date in a specified string format.</p>\n\n\n\n<p>When we declared the&nbsp;<code>date()</code>&nbsp;function, the&nbsp;<code>today()</code>&nbsp;function has not yet evaluated until we called the&nbsp;<code>date()</code>&nbsp;function.</p>\n\n\n\n<p>We can use this feature to make arguments are mandatory. If the caller doesn\u2019t pass any argument, we throw an error as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function requiredArg() {\n   throw new Error('The argument is required');\n}\nfunction add(x = requiredArg(), y = requiredArg()){\n   return x + y;\n}\n\nadd(10); // error\nadd(10,20); // OK</code></pre>\n\n\n\n<h3 id=\"_referring-to-other-parameters-in-default-values\">3) Using other parameters in default values</h3>\n\n\n\n<p>You can assign a parameter a default value that references to other default parameters as shown in the following example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function add(x = 1, y = x, z = x + y) {\n    return x + y + z;\n}\n\nconsole.log(add()); // 4</code></pre>\n\n\n\n<p>In the&nbsp;<code>add()</code>&nbsp;function:</p>\n\n\n\n<ul><li>The default value of the&nbsp;<code>y</code>&nbsp;is set to&nbsp;<code>x</code>&nbsp;parameter.</li><li>The default value of the&nbsp;<code>z</code>&nbsp;is the sum of&nbsp;<code>x</code>&nbsp;and&nbsp;<code>y</code></li><li>The&nbsp;<code>add()</code>&nbsp;function returns the sum of&nbsp;<code>x</code>,&nbsp;<code>y</code>, and&nbsp;<code>z</code>.</li></ul>\n\n\n\n<p>The parameter list seems to have its own\u00a0scope. If you reference the parameter that has not been initialized yet, you will get an error. For example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function subtract( x = y, y = 1 ) {\n    return x - y;\n}\nsubtract(10);</code></pre>\n\n\n\n<p>Error message:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Uncaught ReferenceError: Cannot access 'y' before initialization</code></pre>\n\n\n\n<h3>Using functions</h3>\n\n\n\n<p>You can use a return value of a function as a default value for a parameter. For example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let taxRate = () => 0.1;\nlet getPrice = function( price, tax = price * taxRate() ) {\n    return price + tax;\n}\n\nlet fullPrice = getPrice(100);\nconsole.log(fullPrice); // 110</code></pre>\n\n\n\n<p>In the&nbsp;<code>getPrice()</code>&nbsp;function, we called the&nbsp;<code>taxRate()</code>&nbsp;function to get the tax rate and used this tax rate to calculate the tax amount from the price.</p>\n\n\n\n<h3>The&nbsp;<code>arguments</code>&nbsp;object</h3>\n\n\n\n<p>The value of the&nbsp;<code>arguments</code>&nbsp;object inside the function is the number of actual arguments that you pass into. See this example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function add(x, y = 1, z = 2) {\n    console.log( arguments.length );\n    return x + y + z;\n}\n\nadd(10); // 1\nadd(10, 20); // 2\nadd(10, 20, 30); // 3</code></pre>\n\n\n\n<p>Now, you should have a good understanding of the JavaScript default function parameters and how to use them effectively.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>TL;DR The default value of the&nbsp;message&nbsp;paramater in the&nbsp;say()&nbsp;function is&nbsp;&#8216;Hi&#8217;. In JavaScript, default function parameters allow you to initialize named parameters with default values if no values or&nbsp;undefined&nbsp;are passed into the function. Arguments vs. Parameters We typically use the term argument and parameter interchangeably. However, by definition, parameters are what we specify in the\u00a0function declaration\u00a0whereas the [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [198],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4069"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=4069"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4069/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=4069"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=4069"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=4069"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 4070,
+    "date": "2020-11-27T10:56:04",
+    "date_gmt": "2020-11-27T10:56:04",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3046"
+    },
+    "modified": "2020-11-27T10:56:04",
+    "modified_gmt": "2020-11-27T10:56:04",
+    "slug": "rest-parameter",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/rest-parameter/",
+    "title": {
+      "rendered": "Rest parameter"
+    },
+    "content": {
+      "rendered": "\n<h2>Introduction to JavaScript rest&nbsp;parameters</h2>\n\n\n\n<p>ES6 provides a new kind of parameter so-called rest parameter that has a prefix of three dots\u00a0<code>(...)</code>.\u00a0 The rest parameter allows you to represent an indefinite number of arguments as an\u00a0array. See the following syntax:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function fn(a,b,...args) {\n   //...\n}</code></pre>\n\n\n\n<p>The last parameter \u00a0(\u00a0<code>args</code>) is prefixed with the three-dots (\u00a0<code>...</code>) is called the rest parameter (\u00a0<code>...args</code>) All the arguments that you pass in the\u00a0function\u00a0will map to the parameter list. In the syntax above, the first argument maps to\u00a0<code>a</code>, the second one maps to\u00a0<code>b</code>, and the third, the fourth, etc., will be stored in the rest parameter\u00a0<code>args</code>\u00a0as an array. For example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>fn(1,2,3,'A','B','C');</code></pre>\n\n\n\n<p>The&nbsp;<code>args</code>&nbsp;array stores the following values:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&#91;3,'A','B','C']</code></pre>\n\n\n\n<p>If you pass only the first two parameters, the rest parameter will be an empty array:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>fn(1,2);</code></pre>\n\n\n\n<p>The&nbsp;<code>args</code>&nbsp;will be:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&#91;]</code></pre>\n\n\n\n<p>Notice that the rest parameters must be at the end of the argument list. The following code causes an error:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function foo(a,...rest, b) {\n // error\n};</code></pre>\n\n\n\n<h2>More JavaScript rest parameters examples</h2>\n\n\n\n<p>See the following example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function sum(...args) {\n    let total = 0;\n    for (const a of args) {\n        total += a;\n    }\n    return total;\n}\n\nsum(1, 2, 3);</code></pre>\n\n\n\n<p>The output of the script is:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>6</code></pre>\n\n\n\n<p>In this example,\u00a0<code>args</code>\u00a0in an array, therefore, we could use the\u00a0<code>for of</code>\u00a0loop to iterate over its elements and sum them up. Assuming that the caller of the\u00a0<code>sum()</code>\u00a0function may pass arguments with various kind of\u00a0data types such as\u00a0number,\u00a0string, and\u00a0boolean, and you want to calculate the total of numbers only:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function sum(...args) {\n    return args.filter(e => typeof e === 'number')\n        .reduce((prev, curr)=> prev + curr);\n}</code></pre>\n\n\n\n<p>The following script uses the new&nbsp;<code>sum()</code>&nbsp;function to sum only numeric arguments:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let result = sum(10,'Hi',null,undefined,20); \nconsole.log(result);</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>30</code></pre>\n\n\n\n<p>Note that without the rest parameters, you have to use the&nbsp;<code>arguments</code>&nbsp;object of the function. However, the&nbsp;<code>arguments</code>&nbsp;&nbsp;object itself is not an instance of the&nbsp;<code>Array</code>&nbsp;type, therefore, you cannot use the&nbsp;<code>filter()</code>&nbsp;method directly. In ES5, you have to use&nbsp;<code>Array.prototype.filter.call()</code>&nbsp;as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function sum() {\n    return Array.prototype.filter.call(arguments, e => typeof e === 'number')\n      .reduce((prev, curr) => prev + curr);\n}</code></pre>\n\n\n\n<p>As you see, the rest parameter makes the code more elegant. Suppose you need to filter the arguments based on a specific type such as numbers, strings, boolean, and null. The following function helps you to do it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function filterBy(type, ...args) {\n    return args.filter(e => typeof e === type);\n}</code></pre>\n\n\n\n<h2>JavaScript rest parameters and arrow function</h2>\n\n\n\n<p>An\u00a0arrow function\u00a0does not have the\u00a0<code>arguments</code>\u00a0object, therefore, if you want to pass a number of arguments to the arrow function, you must use the rest parameters. See the following example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>const combine = (...args) => {\n    return args.reduce((prev, curr) => prev + ' ' + curr);\n};\nlet message = combine('JavaScript', 'Rest', 'Parameters'); // =>\nconsole.log(message); // JavaScript Rest Parameters</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>JavaScript Rest Parameters</code></pre>\n\n\n\n<p>The&nbsp;<code>combine()</code>&nbsp;function is an arrow that takes an&nbsp;indefinite number of arguments and concatenates these arguments.</p>\n\n\n\n<h2>JavaScript rest parameter in a dynamic function</h2>\n\n\n\n<p>JavaScript allows you to create dynamic functions through the\u00a0Function\u00a0constructor. And it is possible to use the rest parameter in a dynamic function. Here is an example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>var showNumbers = new Function('...numbers', 'console.log(numbers)');\nshowNumbers(1, 2, 3);</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&#91; 1, 2, 3 ]</code></pre>\n\n\n\n<p>In this tutorial, you have learned how to use the JavaScript rest parameter to&nbsp;represent an indefinite number of arguments as an array.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Introduction to JavaScript rest&nbsp;parameters ES6 provides a new kind of parameter so-called rest parameter that has a prefix of three dots\u00a0(&#8230;).\u00a0 The rest parameter allows you to represent an indefinite number of arguments as an\u00a0array. See the following syntax: The last parameter \u00a0(\u00a0args) is prefixed with the three-dots (\u00a0&#8230;) is called the rest parameter (\u00a0&#8230;args) [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [198],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4070"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=4070"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4070/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=4070"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=4070"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=4070"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 4071,
+    "date": "2020-11-27T10:57:34",
+    "date_gmt": "2020-11-27T10:57:34",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3050"
+    },
+    "modified": "2020-11-27T10:57:34",
+    "modified_gmt": "2020-11-27T10:57:34",
+    "slug": "spread-operator",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/spread-operator/",
+    "title": {
+      "rendered": "Spread operator"
+    },
+    "content": {
+      "rendered": "\n<h2>Introduction to the JavaScript spread operator</h2>\n\n\n\n<p>ES6 provides a new operator called spread operator that consists of three dots\u00a0<code>(...).</code>\u00a0The spread operator allows you to spread out elements of an iterable object such as an\u00a0array,a\u00a0\u00a0map, or a\u00a0set. For example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>const odd = &#91;1,3,5];\nconst combined = &#91;2,4,6, ...odd];\nconsole.log(combined);</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&#91; 2, 4, 6, 1, 3, 5 ]</code></pre>\n\n\n\n<p>In this example, the three dots (&nbsp;<code>...</code>) located in front of the&nbsp;<code>odd</code>&nbsp;array is the spread operator. The spread operator unpacks the elements of the&nbsp;<code>odd</code>&nbsp;array.</p>\n\n\n\n<p>Note that ES6 also has the three dots (\u00a0<code>...</code>) which is a\u00a0rest parameter\u00a0that collects all remaining arguments of a function into an array.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function f(a, b, ...args) {\n  console.log(args);\n}\n\nf(1,2,3,4,5);\n</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&#91; 3, 4, 5 ]</code></pre>\n\n\n\n<p>In this example, the rest parameter (<code>...</code>) collects the arguments 3,4 and 5 into an array&nbsp;<code>args</code>.</p>\n\n\n\n<p>So the three dots (&nbsp;<code>...</code>) represent both the spread operator and the rest parameter.</p>\n\n\n\n<p>Here are the main differences:</p>\n\n\n\n<ul><li>The spread operator unpacks elements.</li><li>The rest parametr packs elements into an array.</li></ul>\n\n\n\n<p>The rest parameters must be the last arguments of a function. However, the spread operator can be anywhere:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>const odd = &#91;1,3,5];\nconst combined = &#91;...odd, 2,4,6];\nconsole.log(combined);</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&#91; 1, 3, 5, 2, 4, 6 ]</code></pre>\n\n\n\n<p>Or</p>\n\n\n\n<pre class=\"wp-block-code\"><code>const odd = &#91;1,3,5];\nconst combined = &#91;2,...odd, 4,6];\nconsole.log(combined);</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&#91; 2, 1, 3, 5, 4, 6 ]</code></pre>\n\n\n\n<p>Note that ES2018 expands the spread operator to objects. It is known as the\u00a0object spread.</p>\n\n\n\n<p>Let\u2019s take a look at some scenarios that using the spread operators can be very useful.</p>\n\n\n\n<h2>JavaScript spread operator and&nbsp;<code>apply()</code>&nbsp;method</h2>\n\n\n\n<p>See the following&nbsp;<code>compare()</code>&nbsp;function compares two numbers:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function compare(a, b) {\n    return a - b;\n}</code></pre>\n\n\n\n<p>In ES5, to pass an array of two numbers to the&nbsp;<code>compare()</code>&nbsp;function, you often use the&nbsp;<code>apply()</code>&nbsp;method as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>var result = compare.apply(null, &#91;1, 2]);\nconsole.log(result); // -1</code></pre>\n\n\n\n<p>However, by&nbsp;using the spread operator, you can pass an array of two numbers to the&nbsp;<code>compare()</code>&nbsp;function:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let result = compare(...&#91;1, 2]);\nconsole.log(result); // -1</code></pre>\n\n\n\n<p>The spread operator spreads out the elements of the array so a = 1 and b = 2 in this case.</p>\n\n\n\n<h2>A better way to use the Array\u2019s&nbsp;<code>push()</code>&nbsp;method example</h2>\n\n\n\n<p>Sometimes, a&nbsp;function may accept an indefinite number of arguments. Filling arguments from an array is not convenient.</p>\n\n\n\n<p>For example, the&nbsp;<code>push()</code>&nbsp;method of an array object allows you to add one or more elements to an array. If you want to pass an array to the&nbsp;<code>push()</code>&nbsp;method, you need to use&nbsp;<code>apply()</code>&nbsp;method as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>var rivers = &#91;'Nile', 'Ganges', 'Yangte'];\nvar moreRivers = &#91;'Danube', 'Amazon'];\n\nArray.prototype.push.apply(rivers, moreRivers);\nconsole.log(rivers);</code></pre>\n\n\n\n<p>This solution looks verbose.</p>\n\n\n\n<p>The following example uses the spread operator to improve the readability of the code:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>rivers.push(...moreRivers);</code></pre>\n\n\n\n<p>As you can see, using the spread operator is much cleaner.</p>\n\n\n\n<h2>JavaScript spread operator and array manipulation</h2>\n\n\n\n<h3>1) Constructing array literal</h3>\n\n\n\n<p>The spread operator allows you to insert another array into the initialized array when you construct an array using the literal form. See the following example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let initialChars = &#91;'A', 'B'];\nlet chars = &#91;...initialChars, 'C', 'D'];\nconsole.log(chars); // &#91;\"A\", \"B\", \"C\", \"D\"]</code></pre>\n\n\n\n<h3>2) Concatenating arrays</h3>\n\n\n\n<p>Also, you can use the spread operator to concatenate two or more arrays:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let numbers = &#91;1, 2];\nlet moreNumbers = &#91;3, 4];\nlet allNumbers = &#91;...numbers, ...moreNumbers];\nconsole.log(allNumbers); // &#91;1, 2, 3, 4]</code></pre>\n\n\n\n<h3>3) Copying an array</h3>\n\n\n\n<p>In addition, you can copy an array instance by using the spread operator:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let scores = &#91;80, 70, 90];\nlet copiedScores = &#91;...scores];\nconsole.log(copiedScores); // &#91;80, 70, 90]</code></pre>\n\n\n\n<p>Note that the spread operator only copies the array itself to the new one, not the elements, meaning that the copy is shallow, not deep.</p>\n\n\n\n<h3>JavaScript spread operator and strings</h3>\n\n\n\n<p>Consider the following example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let chars = &#91;'A', ...'BC', 'D'];\nconsole.log(chars); // &#91;\"A\", \"B\", \"C\", \"D\"]</code></pre>\n\n\n\n<p>In this example, we constructed the&nbsp;<code>chars</code>&nbsp;array from individual strings. When we applied the spread operator to the&nbsp;<code>'BC'</code>string, it spreads out each individual character of the string&nbsp;<code>'BC'</code>&nbsp;into individual characters.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Introduction to the JavaScript spread operator ES6 provides a new operator called spread operator that consists of three dots\u00a0(&#8230;).\u00a0The spread operator allows you to spread out elements of an iterable object such as an\u00a0array,a\u00a0\u00a0map, or a\u00a0set. For example: Output: In this example, the three dots (&nbsp;&#8230;) located in front of the&nbsp;odd&nbsp;array is the spread operator. [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [198],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4071"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=4071"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4071/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=4071"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=4071"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=4071"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 4072,
+    "date": "2020-11-27T10:58:57",
+    "date_gmt": "2020-11-27T10:58:57",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3053"
+    },
+    "modified": "2020-11-27T10:58:57",
+    "modified_gmt": "2020-11-27T10:58:57",
+    "slug": "object-literal-syntax-extensions",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/object-literal-syntax-extensions/",
+    "title": {
+      "rendered": "Object literal syntax extensions"
+    },
+    "content": {
+      "rendered": "\n<p>The\u00a0object\u00a0literal is one of the most popular\u00a0patterns for creating objects in JavaScript\u00a0because of its simplicity. ES6 makes the object literal more succinct and powerful by extending the syntax in some ways.</p>\n\n\n\n<h2>Object property initializer shorthand</h2>\n\n\n\n<p>Prior to ES6, an object literal is a collection of name-value pairs. For example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function createMachine(name, status) {\n    return {\n        name: name,\n        status: status\n    };\n}</code></pre>\n\n\n\n<p>The\u00a0<code>createMachine()</code>\u00a0function\u00a0takes two arguments\u00a0<code>name</code>\u00a0and\u00a0<code>status</code>\u00a0and returns a new object literal with two properties:\u00a0<code>name</code>\u00a0and\u00a0<code>status</code>.</p>\n\n\n\n<p>The&nbsp;<code>name</code>&nbsp;and&nbsp;<code>status</code>&nbsp;properties take the values of the&nbsp;<code>name</code>&nbsp;and&nbsp;<code>status</code>&nbsp;parameters. This syntax looks redundant because&nbsp;<code>name</code>&nbsp;and&nbsp;<code>status</code>&nbsp;mentioned twice in both the name and value of properties.</p>\n\n\n\n<p>ES6 allows you to eliminate the duplication when a property of an object is the same as the local variable name by including the name without a colon and value.</p>\n\n\n\n<p>For example, you can rewrite the&nbsp;<code>createMachine()</code>&nbsp;function in ES6 as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function createMachine(name, status) {\n    return {\n        name,\n        status\n    };\n}</code></pre>\n\n\n\n<p>Internally, when a property of an object literal only has a name, the JavaScript engine searches for that variable with the same name in the surrounding scope. If it finds one, it assigns the property the value of the variable.</p>\n\n\n\n<p>In this example, the JavaScript engine assigns the&nbsp;<code>name</code>&nbsp;and&nbsp;<code>status</code>&nbsp;property values of the&nbsp;<code>name</code>&nbsp;and&nbsp;<code>status</code>&nbsp;arguments.</p>\n\n\n\n<p>Similarly, you can construct an object literal from local variables as shown in the following example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let name = 'Computer',\n    status = 'On';\n\nlet machine = {\n   name,\n   status\n};</code></pre>\n\n\n\n<h2>Computed property name</h2>\n\n\n\n<p>Prior to ES6, you could use the square brackets(&nbsp;<code>[]</code>) &nbsp;to enable the&nbsp;<strong>computed property names</strong>&nbsp;for the properties on objects.</p>\n\n\n\n<p>The square brackets allow you to use the string literals and variables as the property names.</p>\n\n\n\n<p>See the following example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let name = 'machine name';\nlet machine = {\n    &#91;name]: 'server',\n    'machine hours': 10000\n};\n\nconsole.log(machine&#91;name]); // server\nconsole.log(machine&#91;'machine hours']); // 10000</code></pre>\n\n\n\n<p>The&nbsp;<code>name</code>&nbsp;variable was initialized&nbsp;to a value of&nbsp;<code>'machine name'</code>. Since both properties of the&nbsp;<code>machine</code>&nbsp;object contains a space, you can only reference them using the square brackets.</p>\n\n\n\n<p>In ES6, the computed property name is a part of the object literal syntax, and it uses the square bracket notation.</p>\n\n\n\n<p>When a property name is placed inside the square brackets, the JavaScript engine evaluates it as a string, meaning that you can use an expression for a property. For example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let prefix = 'machine';\nlet machine = {\n    &#91;prefix + ' name']: 'server',\n    &#91;prefix + ' hours']: 10000\n};\n\nconsole.log(machine&#91;'machine name']); // server\nconsole.log(machine&#91;'machine hours']); // 10000\n</code></pre>\n\n\n\n<p>The&nbsp;<code>machine</code>&nbsp;object\u2019s properties evaluate to&nbsp;<code>'machine name'</code>&nbsp;and&nbsp;<code>'machine hours'</code>, therefore you can reference them as the properties of the&nbsp;<code>machine</code>&nbsp;object.</p>\n\n\n\n<h2>Concise&nbsp;method syntax</h2>\n\n\n\n<p>Prior to ES6, when defining a method for an object literal, you need to specify the name and full function definition as shown in the following example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let server = {\n    name: 'Server',\n    restart: function() {\n        console.log('The' + this.name + ' is restarting...');\n    }\n};</code></pre>\n\n\n\n<p>ES6 makes the syntax for making a method of the object literal more succinct by removing the colon (:) and the&nbsp;<code>function</code>&nbsp;keyword.</p>\n\n\n\n<p>The following example rewrites the&nbsp;<code>server</code>&nbsp;object above using the ES6 syntax.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let server = {\n    name: 'Server',\n    restart() {\n        console.log(`The ${this.name} is restarting...`);\n    }\n};\n</code></pre>\n\n\n\n<p>This shorthand syntax is also known as the&nbsp;<strong>concise method syntax</strong>. It\u2019s valid to have spaces in the property name. For example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let server = {\n    name: 'Server',\n    restart() {\n        console.log(`The ${this.name} is restarting!`);\n    },\n    'starting up'() {\n        console.log(`The ${this.name} is starting up!`);\n    }\n};\n\nserver&#91;'starting up']();</code></pre>\n\n\n\n<p>In this example, the method&nbsp;<code>'starting up'</code>&nbsp;is has spaces in its name. To call the method, you use the following syntax:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>object_name&#91;'property name']();</code></pre>\n\n\n\n<p>In this tutorial, you have learned how to use some new object literal syntax extensions in ES6 including property initializer shorthand, computed properties, and concise method syntax.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>The\u00a0object\u00a0literal is one of the most popular\u00a0patterns for creating objects in JavaScript\u00a0because of its simplicity. ES6 makes the object literal more succinct and powerful by extending the syntax in some ways. Object property initializer shorthand Prior to ES6, an object literal is a collection of name-value pairs. For example: The\u00a0createMachine()\u00a0function\u00a0takes two arguments\u00a0name\u00a0and\u00a0status\u00a0and returns a new [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [198],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4072"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=4072"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4072/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=4072"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=4072"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=4072"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 4073,
+    "date": "2020-11-27T11:01:07",
+    "date_gmt": "2020-11-27T11:01:07",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3058"
+    },
+    "modified": "2020-11-27T11:01:07",
+    "modified_gmt": "2020-11-27T11:01:07",
+    "slug": "forof",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/forof/",
+    "title": {
+      "rendered": "For\u2026of"
+    },
+    "content": {
+      "rendered": "\n<h2>Introduction to the JavaScript&nbsp;<code>for...of</code>&nbsp;loop</h2>\n\n\n\n<p>ES6 introduced a new construct&nbsp;<code>for...of</code>&nbsp;that creates a loop iterating over iterable objects&nbsp;that include:</p>\n\n\n\n<ul><li>Built-in\u00a0Array,\u00a0String,\u00a0Map,\u00a0Set, \u2026</li><li>Array-like objects such as\u00a0<code>arguments</code>\u00a0or\u00a0<code>NodeList</code></li><li>User-defined objects that implement the\u00a0iterator protocol.</li></ul>\n\n\n\n<p>The following illustrates the syntax of the&nbsp;<code>for...of</code>:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>for (variable of iterable) {\n   // statements \n}</code></pre>\n\n\n\n<p><em>variable</em></p>\n\n\n\n<p>In each iteration, a property of the iterable object is assigned to the\u00a0<code>variable</code>. You can use\u00a0<code>var</code>,\u00a0<code>let</code>, or\u00a0<code>const</code>\u00a0to declare the\u00a0<code>variable</code>.</p>\n\n\n\n<p><em>iterable</em></p>\n\n\n\n<p>The iterable is an object whose iterable properties are iterated.</p>\n\n\n\n<h2>JavaScript for of loop examples</h2>\n\n\n\n<p>Let\u2019s take a look at some examples of using the&nbsp;<code>for...of</code>&nbsp;loop.</p>\n\n\n\n<h3>1) Iterating over arrays</h3>\n\n\n\n<p>The following example shows how to use the&nbsp;<code>for...of</code>&nbsp;to iterate over elements of an array.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let scores = &#91;80, 90, 70];\n\nfor (let score of scores) {\n    score = score + 5;\n    console.log(score);\n}</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>85\n95\n75</code></pre>\n\n\n\n<p>In this example, the&nbsp;<code>for...of</code>&nbsp;iterates over every element of the&nbsp;<code>scores</code>&nbsp;array. It assigns every element of the&nbsp;<code>scores</code>&nbsp;array to the variable&nbsp;<code>score</code>&nbsp;in each iteration.</p>\n\n\n\n<p>If you don\u2019t change variable\u00a0inside the loop, you should use the \u00a0<code>const</code>\u00a0instead of\u00a0<code>let</code>\u00a0as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let scores = &#91;80, 90, 70];\n\nfor (const score of scores) {\n    console.log(score);\n}</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>80\n90\n70</code></pre>\n\n\n\n<p>To access the index of the array elements inside the loop, you can use the&nbsp;<code>for...lop</code>&nbsp;statement with the&nbsp;<code>entries()</code>&nbsp;method of the array.</p>\n\n\n\n<p>The&nbsp;<code>array.entries()</code>&nbsp;method returns a pair of&nbsp;<code>[index, element]</code>&nbsp;in each iteration. For example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let colors = &#91;'Red', 'Green', 'Blue'];\n\nfor (const &#91;index, color] of colors.entries()) {\n    console.log(`${color} is at index ${index}`);\n}</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Red is at index 0\nGreen is at index 1\nBlue is at index 2</code></pre>\n\n\n\n<p>In this example, we used the\u00a0array destructuring\u00a0to assign the result of the\u00a0<code>entries()</code>\u00a0method to the\u00a0<code>index</code>\u00a0and\u00a0<code>color</code>\u00a0variables in each iteration:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>const &#91;index, color] of colors.entries()</code></pre>\n\n\n\n<h3>2) In-place object destructuring with for\u2026of</h3>\n\n\n\n<p>Consider the following example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>const ratings = &#91;\n    {user: 'John',score: 3},\n    {user: 'Jane',score: 4},\n    {user: 'David',score: 5},\n    {user: 'Peter',score: 2},\n];\n\nlet sum = 0;\nfor (const {score} of ratings) {\n    sum += score;\n}\n\nconsole.log(`Total scores: ${sum}`); // 14</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Total scores: 14</code></pre>\n\n\n\n<p>How it works:</p>\n\n\n\n<ul><li>The\u00a0<code>ratings</code>\u00a0is an array of objects. Each object has two properties user and score.</li><li>The\u00a0<code>for...of</code>\u00a0iterate over the\u00a0<code>ratings</code>\u00a0array and calculate the total scores of all objects.</li><li>The expression\u00a0<code>const {score} of ratings</code>\u00a0uses\u00a0object destructing\u00a0to assign the\u00a0<code>score</code>\u00a0property of the current iterated element to the\u00a0<code>score</code>\u00a0variable.</li></ul>\n\n\n\n<h3>3) Iterating over strings</h3>\n\n\n\n<p>The following example uses the&nbsp;<code>for...of</code>&nbsp;loop to iterate over characters of a string.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let str = 'abc';\nfor (let c of str) {\n    console.log(c);\n}</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>a\nb\nc</code></pre>\n\n\n\n<h3>3) Iterating over Map objects</h3>\n\n\n\n<p>The following example illustrates how to use the&nbsp;<code>for...of</code>&nbsp;statement to iterate over a Map object.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let colors = new Map();\n\ncolors.set('red', '#ff0000');\ncolors.set('green', '#00ff00');\ncolors.set('blue', '#0000ff');\n\nfor (let color of colors) {\n    console.log(color);\n}</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&#91; 'red', '#ff0000' ]\n&#91; 'green', '#00ff00' ]\n&#91; 'blue', '#0000ff' ]</code></pre>\n\n\n\n<h3>4) Iterating over Set objects</h3>\n\n\n\n<p>The following example shows how to iterate over a Set object using the&nbsp;<code>for...of</code>&nbsp;loop:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let nums = new Set(&#91;1, 2, 3]);\n\nfor (let num of nums) {\n    console.log(num);\n}</code></pre>\n\n\n\n<h2><code>for...of</code>&nbsp;vs.&nbsp;<code>for...in</code></h2>\n\n\n\n<p>The\u00a0<code>for...in</code>\u00a0iterates over all\u00a0enumerable properties\u00a0of an object. It doesn\u2019t iterate over a collection such as\u00a0<code>Array</code>,\u00a0<code>Map</code>\u00a0or\u00a0<code>Set</code>.</p>\n\n\n\n<p>Unlike the&nbsp;<code>for...in</code>&nbsp;loop, the&nbsp;<code>for...of</code>&nbsp;iterates a collection, rather than an object.</p>\n\n\n\n<p>In fact, the\u00a0<code>for...of</code>\u00a0iterates over elements of any collection that has the\u00a0<code>[Symbol.iterator]</code>\u00a0property.</p>\n\n\n\n<p>The following example illustrates the differences between&nbsp;<code>for...of</code>&nbsp;and&nbsp;<code>for...in</code>:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>\n// 0\n// 1\n// 2\n// foo\nfor (let i of numbers) {\n    console.log(i);\n}\n// 6\n// 7\n// 8</code></pre>\n\n\n\n<p>In this tutorial, you\u2019ve learned how to use the JavaScript&nbsp;<code>for...of</code>&nbsp;loop to iterates over a collection.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Introduction to the JavaScript&nbsp;for&#8230;of&nbsp;loop ES6 introduced a new construct&nbsp;for&#8230;of&nbsp;that creates a loop iterating over iterable objects&nbsp;that include: Built-in\u00a0Array,\u00a0String,\u00a0Map,\u00a0Set, \u2026 Array-like objects such as\u00a0arguments\u00a0or\u00a0NodeList User-defined objects that implement the\u00a0iterator protocol. The following illustrates the syntax of the&nbsp;for&#8230;of: variable In each iteration, a property of the iterable object is assigned to the\u00a0variable. You can use\u00a0var,\u00a0let, or\u00a0const\u00a0to declare [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [198],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4073"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=4073"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4073/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=4073"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=4073"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=4073"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 4074,
+    "date": "2020-11-27T11:02:09",
+    "date_gmt": "2020-11-27T11:02:09",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3065"
+    },
+    "modified": "2020-11-27T11:02:09",
+    "modified_gmt": "2020-11-27T11:02:09",
+    "slug": "octal-and-binary-literals",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/octal-and-binary-literals/",
+    "title": {
+      "rendered": "Octal and binary literals"
+    },
+    "content": {
+      "rendered": "\n<p>ES5 provided numeric literals in octal (prefix&nbsp;<code>0</code>), decimal (no prefix), and hexadecimal (&nbsp;<code>0x</code>). ES6 added support for binary literals and changed the way it represents octal literals.</p>\n\n\n\n<h2>Octal literals</h2>\n\n\n\n<p>In ES5, to represent an octal literal, you use the zero prefix (&nbsp;<code>0</code>) followed by a sequence of octal digits (from 0 to 7). See the following example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let a = 051;\nconsole.log(a); // 41\n</code></pre>\n\n\n\n<p>If the octal literal contains a number that is out of range, JavaScript ignores the leading 0 and treats the octal literal as a decimal as shown in the following example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let b = 058; // invalid octal\nconsole.log(b); // 58\n</code></pre>\n\n\n\n<p>In this example, since&nbsp;<code>8</code>&nbsp;is an invalid digit for representing the octal number, JavaScript ignores 0 prefix and treats the whole number as a decimal with the value 58.</p>\n\n\n\n<p>Note you can use the octal literals in non-strict mode. If you use them in strict mode, JavaScript will throw an error.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>\"use strict\"\nlet b = 058; // invalid octal \nconsole.log(b);</code></pre>\n\n\n\n<p>Here is the error message:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>SyntaxError: Decimals with leading zeros are not allowed in strict mode.</code></pre>\n\n\n\n<p>ES6 allows you to specify the octal literal by using the prefix&nbsp;<code>0o</code>&nbsp;followed by a sequence of octal digits from 0 through 7. Here is an example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let c = 0o51;\nconsole.log(c); // 41 \n</code></pre>\n\n\n\n<p>If you use an invalid number in the octal literal, JavaScript will throw a&nbsp;<code>SyntaxError</code>&nbsp;as shown in the following example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let d = 0o58;\nconsole.log(d); // SyntaxError\n</code></pre>\n\n\n\n<h2>Binary literals</h2>\n\n\n\n<p>In ES5, JavaScript didn\u2019t provide any literal form of binary numbers. To parse a binary string you used the&nbsp;<code>parseInt()</code>&nbsp;function as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let e = parseInt('111',2);\nconsole.log(e); // 7\n</code></pre>\n\n\n\n<p>ES6 added support for binary literals by using the&nbsp;<code>0b</code>&nbsp;prefix followed by a sequence of binary numbers (0 and 1). Here is an example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let f = 0b111;\nconsole.log(f); // 7\n</code></pre>\n\n\n\n<p>In this tutorial, you have learned how to represent octal and binary literals in ES6.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>ES5 provided numeric literals in octal (prefix&nbsp;0), decimal (no prefix), and hexadecimal (&nbsp;0x). ES6 added support for binary literals and changed the way it represents octal literals. Octal literals In ES5, to represent an octal literal, you use the zero prefix (&nbsp;0) followed by a sequence of octal digits (from 0 to 7). See the [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [198],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4074"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=4074"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4074/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=4074"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=4074"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=4074"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 4075,
+    "date": "2020-11-27T11:03:14",
+    "date_gmt": "2020-11-27T11:03:14",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3068"
+    },
+    "modified": "2020-11-27T11:03:14",
+    "modified_gmt": "2020-11-27T11:03:14",
+    "slug": "template-literals",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/template-literals/",
+    "title": {
+      "rendered": "Template literals"
+    },
+    "content": {
+      "rendered": "\n<p>Prior to ES6, you use single quotes (\u2018) or double quotes (\u201c) to wrap a string literal. And the strings have very limited functionality.</p>\n\n\n\n<p>To enable you to solve more complex problems, ES6 template literals provide the syntax that allows you to work with strings in a safer and cleaner way.</p>\n\n\n\n<p>In ES6, you create a template literal by wrapping your text in backticks as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let simple = `This is a template literal`;</code></pre>\n\n\n\n<p>and you get the following features:</p>\n\n\n\n<ul><li>Multiline string: a string that can span multiple lines.</li><li>String formatting: the ability to substitute part of the string for the values of variables or expressions. This feature is also called string interpolation.</li><li>HTML escaping: the ability to transform a string so that it is safe to include in HTML.</li></ul>\n\n\n\n<h2>The basic syntax of JavaScript template literals</h2>\n\n\n\n<p>As mentioned earlier, instead of using the single or double quotes, a template literal uses backticks as shown in the following example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let str = `Template literal in ES6`;\n\nconsole.log(str);// Template literal in ES6\nconsole.log(str.length); // 23\nconsole.log(typeof str);// string</code></pre>\n\n\n\n<p>By using the backticks, you can freely use the single or double quotes in the template literal without escaping.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let anotherStr = `Here's a template literal`;</code></pre>\n\n\n\n<p>If a string contains a backtick, you must escape it using a backslash (&nbsp;<code>\\</code>) :</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let strWithBacktick = `Template literals use backticks \\` insead of quotes`;</code></pre>\n\n\n\n<h2>Multiline strings</h2>\n\n\n\n<p>Prior to ES6, you use the following technique to create a multi-line string by manually including the newline character (&nbsp;<code>\\n</code>) in the string as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>var msg = 'Multiline \\n\\\nstring';\n\nconsole.log(msg);\n//Multiline\n//string</code></pre>\n\n\n\n<p>Note that the backslash (&nbsp;<code>\\</code>) placed after the newline character (&nbsp;<code>\\n</code>) indicates the continuation of the string rather than a new line.</p>\n\n\n\n<p>This technique, however, is not consistent across JavaScript engines. Therefore, it was quite common to create a multiline string that relies on an array and string concatenation as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>var msg = &#91;'This text',\n         'can',\n         'span multiple lines'].join('\\n');</code></pre>\n\n\n\n<p>The&nbsp;template literals make multiline strings easier&nbsp;because you just need to add a new line in the string wherever you want like this:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let p =\n`This text\ncan\nspan multiple lines`;</code></pre>\n\n\n\n<p>Note that the whitespace is a part of the string, therefore, you are responsible for making sure the text line up with proper indentation. Suppose, you have a&nbsp;<code>post</code>&nbsp;object:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let post = {\n    title: 'JavaScript Template Literals',\n    excerpt: 'Introduction to JavaScript template literals in ES6',\n    body: 'Content of the post will be here...',\n    tags: &#91;'es6', 'template literals', 'javascript']\n};\n</code></pre>\n\n\n\n<p>The following code returns\u00a0the HTML code of the\u00a0<code>post</code>\u00a0object. Note that we use\u00a0the object destructuring technique\u00a0to assign the properties of the\u00a0<code>post</code>\u00a0object to individual variables :\u00a0<code>title</code>,\u00a0<code>excerpt</code>,\u00a0<code>body</code>, and\u00a0<code>tags</code>.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let {title, excerpt, body, tags} = post;\n\nvar postHtml = `&lt;article>\n&lt;header>\n    &lt;h1>${title}&lt;/h1>\n&lt;/header>\n&lt;section>\n    &lt;div>${excerpt}&lt;/div>\n    &lt;div>${body}&lt;/div>\n&lt;/section>\n&lt;footer>\n    &lt;ul>\n      ${tags.map(tag => `&lt;li>${tag}&lt;/li>`).join('\\n      ')}\n    &lt;/ul>\n&lt;/footer>`;</code></pre>\n\n\n\n<p>The following is the output of the variable&nbsp;<code>postHtml</code>. Notice how we used the spacing to indent the&nbsp;<code>&lt;li&gt;</code>&nbsp;tags properly.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;article>\n&lt;header>\n    &lt;h1>JavaScript Template Literals&lt;/h1>\n&lt;/header>\n&lt;section>\n    &lt;div>Introduction to JavaScript template literals in ES6&lt;/div>\n    &lt;div>Content of the post will be here...&lt;/div>\n&lt;/section>\n&lt;footer>\n    &lt;ul>\n      &lt;li>es6&lt;/li>\n      &lt;li>template literals&lt;/li>\n      &lt;li>javascript&lt;/li>\n    &lt;/ul>\n&lt;/footer></code></pre>\n\n\n\n<h2>Variable and expression substitutions</h2>\n\n\n\n<p>At this point, a template literal is just like a better version of a normal JavaScript string.</p>\n\n\n\n<p>The big difference between a template literal and a normal string is substitutions.</p>\n\n\n\n<p>The substitutions allow you to embed variables and expressions in the string. The JavaScript engine will automatically replace these variables and expressions by their values. This process is also known as string interpolation.</p>\n\n\n\n<p>To instruct JavaScript to substitute a variable and an expression, you place the variable and expression in a special block as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>${variable_name}</code></pre>\n\n\n\n<p>See the following example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let firstName = 'John',\n    lastName = 'Doe';\n\nlet greeting = `Hi ${firstName}, ${lastName}`;\nconsole.log(greeting); // Hi John, Doe</code></pre>\n\n\n\n<p>The substitution&nbsp;<code>${firstName}</code>&nbsp;and&nbsp;<code>${lastName}</code>&nbsp;access the variables &nbsp;<code>firstName</code>&nbsp;and&nbsp;<code>lastName</code>&nbsp;to insert their values into the&nbsp;<code>greeting&nbsp;</code>string.</p>\n\n\n\n<p>The&nbsp;<code>greeting</code>&nbsp;variable then holds the result of the substitutions. The following example substitutes&nbsp;an expression instead:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let price = 8.99,\n    tax = 0.1;\n\nvar netPrice = `Net Price:$${(price * (1 + tax)).toFixed(2)}`;\n\nconsole.log(netPrice); // netPrice:$9.89</code></pre>\n\n\n\n<h2 id=\"_tagged-template-literals\">Tagged templates</h2>\n\n\n\n<p>A template tag carries the transformation on the template literal and returns the result string.</p>\n\n\n\n<p>You place the tag at the beginning of the template before the backtick (`) character as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let greeting = tag`Hi`;</code></pre>\n\n\n\n<p>In this example,&nbsp;<code>tag</code>&nbsp;is the template tag that applies to the&nbsp;<code>Hi</code>&nbsp;template literal. The&nbsp;<code>tag</code>&nbsp;can be any function with the following signature:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function tag(literals, ...substitutions) {\n    // return a string\n}</code></pre>\n\n\n\n<p>In this function:</p>\n\n\n\n<ul><li>The&nbsp;<code>literals</code>&nbsp;parameter is an array that contains the literal strings.</li><li>The&nbsp;<code>substitutions</code>&nbsp;parameter contains the subsequent&nbsp;arguments interpreted for each substitution.</li></ul>\n\n\n\n<p>See the following example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function format(literals, ...substitutions) {\n    let result = '';\n\n    for (let i = 0; i &lt; substitutions.length; i++) {\n        result += literals&#91;i];\n        result += substitutions&#91;i];\n    }\n    // add the last literal\n    result += literals&#91;literals.length - 1];\n    return result;\n}\n\nlet quantity = 9,\n    priceEach = 8.99,\n    result = format`${quantity} items cost $${(quantity * priceEach).toFixed(2)}.`;\n\nconsole.log(result); // 9 items cost $80.91.</code></pre>\n\n\n\n<p>In this example, the&nbsp;<code>format()</code>&nbsp;function accepts three arguments: the&nbsp;<code>literals</code>&nbsp;array and two other arguments stored in the&nbsp;<code>substitutions</code>&nbsp;array.</p>\n\n\n\n<p>The first argument is the&nbsp;<code>literals</code>&nbsp;array that contains three elements:</p>\n\n\n\n<ul><li>An empty string before the first substitution (\u201d). Note that the first argument of the literals array is an empty string.</li><li>A string&nbsp;<code>'items cost'</code>&nbsp;that locates between the first and the second substitutions.</li><li>A string that follows the second substitution (<code>'.'</code>)</li></ul>\n\n\n\n<p>The&nbsp;second argument is&nbsp;<code>9</code>, which is the interpreted value of the&nbsp;<code>quantity</code>&nbsp;variable. It becomes the first element of the&nbsp;<code>substitutions</code>&nbsp;array. The third argument is&nbsp;<code>80.91</code>, which is the interpreted value of the expression&nbsp;<code>(quantity * priceEach).toFixed(2)</code>. It becomes the second element of the substitutions array.</p>\n\n\n\n<p>Now, you should have a good understanding of the JavaScript literal templates and how to apply them in your code.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Prior to ES6, you use single quotes (\u2018) or double quotes (\u201c) to wrap a string literal. And the strings have very limited functionality. To enable you to solve more complex problems, ES6 template literals provide the syntax that allows you to work with strings in a safer and cleaner way. In ES6, you create [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [198],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4075"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=4075"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4075/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=4075"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=4075"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=4075"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  }
+]

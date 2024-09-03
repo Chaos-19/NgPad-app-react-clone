@@ -1,0 +1,202 @@
+[
+  {
+    "id": 4662,
+    "date": "2021-02-27T08:41:29",
+    "date_gmt": "2021-02-27T08:41:29",
+    "guid": {
+      "rendered": "http://angular.foobrdigital.com/?p=4662"
+    },
+    "modified": "2021-02-27T08:41:29",
+    "modified_gmt": "2021-02-27T08:41:29",
+    "slug": "handling-output",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/handling-output/",
+    "title": {
+      "rendered": "Handling output"
+    },
+    "content": {
+      "rendered": "\n<p>By default, the&nbsp;<code>spawn()</code>&nbsp;method outputs everything to the process standard output and error. To make it easier to test and debug, we can forward the output to the CLI Builder logger instead. This also allows the builder itself to be executed in a separate process, even if the standard output and error are deactivated (as in an&nbsp;<a href=\"https://electronjs.org/\">Electron app</a>).</p>\n\n\n\n<p>We can retrieve a Logger instance from the context.src/my-builder.ts (handling output)</p>\n\n\n\n<pre class=\"wp-block-code\"><code>content_copy<code>import { BuilderContext, BuilderOutput, createBuilder } from '@angular-devkit/architect';\nimport { JsonObject } from '@angular-devkit/core';\nimport * as childProcess from 'child_process';\n\ninterface Options extends JsonObject {\n  command: string;\n  args: string&#91;];\n}\n\nexport default createBuilder(commandBuilder);\n\nfunction commandBuilder(\n  options: Options,\n  context: BuilderContext,\n  ): Promise&lt;BuilderOutput&gt; {\n    const child = childProcess.spawn(options.command, options.args);\n\n    child.stdout.on('data', data =&gt; {\n      context.logger.info(data.toString());\n    });\n    child.stderr.on('data', data =&gt; {\n      context.logger.error(data.toString());\n    });\n\n    return new Promise(resolve =&gt; {\n      child.on('close', code =&gt; {\n        resolve({ success: code === 0 });\n      });\n    });\n}</code></code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>By default, the&nbsp;spawn()&nbsp;method outputs everything to the process standard output and error. To make it easier to test and debug, we can forward the output to the CLI Builder logger instead. This also allows the builder itself to be executed in a separate process, even if the standard output and error are deactivated (as in [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [249],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4662"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=4662"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4662/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4663,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4662/revisions/4663"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=4662"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=4662"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=4662"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 4661,
+    "date": "2021-02-27T08:41:57",
+    "date_gmt": "2021-02-27T08:41:57",
+    "guid": {
+      "rendered": "http://angular.foobrdigital.com/?p=4661"
+    },
+    "modified": "2021-02-27T08:41:57",
+    "modified_gmt": "2021-02-27T08:41:57",
+    "slug": "progress-and-status-reporting",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/progress-and-status-reporting/",
+    "title": {
+      "rendered": "Progress and status reporting"
+    },
+    "content": {
+      "rendered": "\n<p>The CLI Builder API includes progress and status reporting tools, which can provide hints for certain functions and interfaces.</p>\n\n\n\n<p>To report progress, use the&nbsp;<code>BuilderContext.reportProgress()</code>&nbsp;method, which takes a current value, (optional) total, and status string as arguments. The total can be any number; for example, if you know how many files you have to process, the total could be the number of files, and current should be the number processed so far. The status string is unmodified unless you pass in a new string value.</p>\n\n\n\n<p>You can see an&nbsp;<a href=\"https://github.com/angular/angular-cli/blob/ba21c855c0c8b778005df01d4851b5a2176edc6f/packages/angular_devkit/build_angular/src/tslint/index.ts#L107\">example</a>&nbsp;of how the&nbsp;<code>tslint</code>&nbsp;builder reports progress.</p>\n\n\n\n<p>In our example, the shell command either finishes or is still executing, so there\u2019s no need for a progress report, but we can report status so that a parent builder that called our builder would know what\u2019s going on. Use the&nbsp;<code>BuilderContext.reportStatus()</code>&nbsp;method to generate a status string of any length. (Note that there\u2019s no guarantee that a long string will be shown entirely; it could be cut to fit the UI that displays it.) Pass an empty string to remove the status.src/my-builder.ts (progress reporting)</p>\n\n\n\n<pre class=\"wp-block-code\"><code>content_copy<code>import { BuilderContext, BuilderOutput, createBuilder } from '@angular-devkit/architect';\nimport { JsonObject } from '@angular-devkit/core';\nimport * as childProcess from 'child_process';\n\ninterface Options extends JsonObject {\n  command: string;\n  args: string&#91;];\n}\n\nexport default createBuilder(commandBuilder);\n\nfunction commandBuilder(\n  options: Options,\n  context: BuilderContext,\n  ): Promise&lt;BuilderOutput&gt; {\n    context.reportStatus(`Executing \"${options.command}\"...`);\n    const child = childProcess.spawn(options.command, options.args);\n\n    child.stdout.on('data', data =&gt; {\n      context.logger.info(data.toString());\n    });\n    child.stderr.on('data', data =&gt; {\n      context.logger.error(data.toString());\n    });\n\n    return new Promise(resolve =&gt; {\n      context.reportStatus(`Done.`);\n      child.on('close', code =&gt; {\n        resolve({ success: code === 0 });\n      });\n    });\n}</code></code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>The CLI Builder API includes progress and status reporting tools, which can provide hints for certain functions and interfaces. To report progress, use the&nbsp;BuilderContext.reportProgress()&nbsp;method, which takes a current value, (optional) total, and status string as arguments. The total can be any number; for example, if you know how many files you have to process, the [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [249],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4661"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=4661"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4661/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4664,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4661/revisions/4664"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=4661"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=4661"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=4661"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  }
+]

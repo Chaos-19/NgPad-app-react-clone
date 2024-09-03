@@ -1,0 +1,96 @@
+[
+  {
+    "id": 3344,
+    "date": "2020-11-28T11:37:31",
+    "date_gmt": "2020-11-28T11:37:31",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3344"
+    },
+    "modified": "2020-11-28T11:37:31",
+    "modified_gmt": "2020-11-28T11:37:31",
+    "slug": "typescript-modules",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/typescript-modules/",
+    "title": {
+      "rendered": "TypeScript Modules"
+    },
+    "content": {
+      "rendered": "\n<h2>Introduction to TypeScript modules</h2>\n\n\n\n<p>Since ES6, JavaScript started supporting modules\u00a0as the native part of the language. TypeScript shares the same module concept with JavaScript.</p>\n\n\n\n<p>A TypeScript module can contain both declarations and code. A module executes within its own scope, not in the global scope. It means that when you declare variables,\u00a0functions,\u00a0classes,\u00a0interfaces, etc., in a module, they are not visible outside the module unless you explicitly export them using\u00a0<code>export</code>\u00a0statement.</p>\n\n\n\n<p>On the other hand, if you want to access variables, functions, classes, etc., from a module, you need to import them using the&nbsp;<code>import</code>&nbsp;statement.</p>\n\n\n\n<p>Like ES6, when TypeScript file contains a top-level import or export, it is treated as a module.</p>\n\n\n\n<h2>Creating a new module</h2>\n\n\n\n<p>The following creates a new module called&nbsp;<code>Validator.ts</code>&nbsp;and declares an interface named&nbsp;<code>Validator</code>:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>export interface Validator {\n    isValid(s: string): boolean\n}</code></pre>\n\n\n\n<p>In this module, we place the&nbsp;<code>export</code>&nbsp;keyword before the&nbsp;<code>interface</code>&nbsp;keyword to expose it to other modules.</p>\n\n\n\n<p>In other words, if you do not use the&nbsp;<code>export</code>&nbsp;keyword, the&nbsp;<code>Validator</code>&nbsp;interface is private in the&nbsp;<code>Validator.ts</code>&nbsp;module, therefore, it cannot be used by other modules.</p>\n\n\n\n<h2>Export statements</h2>\n\n\n\n<p>Another way to export a declaration from a module is to use the&nbsp;<code>export</code>&nbsp;statement. For example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>interface Validator {\n    isValid(s: string): boolean\n}\n\nexport { Validator };</code></pre>\n\n\n\n<p>TypeScript also allows you to rename declarations for module consumers, like this:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>interface Validator {\n    isValid(s: string): boolean\n}\n\nexport { Validator as StringValidator };</code></pre>\n\n\n\n<p>In this example other modules will use the&nbsp;<code>Validator</code>&nbsp;interface as the&nbsp;<code>StringValidator</code>&nbsp;interface.</p>\n\n\n\n<h2>Importing a new module</h2>\n\n\n\n<p>To consume a module, you use the&nbsp;<code>import</code>&nbsp;statement. The following creates a new module&nbsp;<code>EmailValidator.ts</code>&nbsp;that uses the&nbsp;<code>Validator.ts</code>&nbsp;module:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>import { Validator } from './Validator';\n\nclass EmailValidator implements Validator {\n    isValid(s: string): boolean {\n        const emailRegex = /^&#91;^\\s@]+@&#91;^\\s@]+\\.&#91;^\\s@]+$/;\n        return emailRegex.test(s);\n    }\n}\n\nexport { EmailValidator };</code></pre>\n\n\n\n<p>When you import a module, you can rename it like this:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>import { Validator as StringValidator } from './Validator';</code></pre>\n\n\n\n<p>Inside the&nbsp;<code>EmailValidator</code>&nbsp;module, you use the&nbsp;<code>Validator</code>&nbsp;interface as the&nbsp;<code>StringValidator</code>&nbsp;interface instead:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>import { Validator as StringValidator } from './Validator';\n\nclass EmailValidator implements StringValidator {\n    isValid(s: string): boolean {\n        const emailRegex = /^&#91;^\\s@]+@&#91;^\\s@]+\\.&#91;^\\s@]+$/;\n        return emailRegex.test(s);\n    }\n}\n\nexport { EmailValidator };</code></pre>\n\n\n\n<p>The following illustrates how to use the&nbsp;<code>EmailValidator</code>&nbsp;module in the&nbsp;<code>App.ts</code>&nbsp;file:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>import { EmailValidator } from './EmailValidator';\n\nlet email = 'john.doe@typescripttutorial.net';\nlet validator = new EmailValidator();\nlet result = validator.isValid(email);\n\nconsole.log(result);</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>true</code></pre>\n\n\n\n<h3>Importing types</h3>\n\n\n\n<p>The following declares a type called in&nbsp;<code>Types.ts</code>&nbsp;module:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>export type alphanumeric = string | number;</code></pre>\n\n\n\n<p>To import the&nbsp;<code>alphanumeric</code>&nbsp;type from the&nbsp;<code>Types.ts</code>&nbsp;module, you can use the&nbsp;<code>import type</code>&nbsp;statement:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>import type {alphanumeric} from './Types';</code></pre>\n\n\n\n<p>Note that TypeScript has supported the&nbsp;<code>import type</code>&nbsp;statement since version 3.8. Prior to TypeScript 3.8, you need to use the&nbsp;<code>import</code>&nbsp;statement instead:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>import {alphanumeric} from './Types';</code></pre>\n\n\n\n<h3>Importing everything from a module</h3>\n\n\n\n<p>To import everything from a module, you use the following syntax:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>import * from 'module_name';\n</code></pre>\n\n\n\n<h2>Re-exports</h2>\n\n\n\n<p>The following creates a new module called&nbsp;<code>ZipCodeValidator.ts</code>&nbsp;that uses the&nbsp;<code>Validator.ts</code>&nbsp;module:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>import { Validator } from './Validator';\n\nclass ZipCodeValidator implements Validator {\n    isValid(s: string): boolean {\n        const numberRegexp = /^&#91;0-9]+$/;\n        return s.length === 5 &amp;&amp; numberRegexp.test(s);\n    }\n}\n\nexport { ZipCodeValidator };</code></pre>\n\n\n\n<p>You can wrap the&nbsp;<code>EmailValidator</code>&nbsp;and&nbsp;<code>ZipCodeValidator</code>&nbsp;modules in a new module by combining all their exports using the following syntax:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>export * from 'module_name';</code></pre>\n\n\n\n<p>The following example illustrates how to wrap the the&nbsp;<code>EmailValidator.ts</code>&nbsp;and&nbsp;<code>ZipCodeValidator.ts</code>&nbsp;modules in the&nbsp;<code>FormValidator.ts</code>&nbsp;module:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>export * from \"./EmailValidator\";\nexport * from \"./ZipCodeValidator\";</code></pre>\n\n\n\n<h2>Default Exports</h2>\n\n\n\n<p>TypeScript allows each module to have one default export. To mark an export as a default export, you use the&nbsp;<code>default</code>&nbsp;keyword.</p>\n\n\n\n<p>The following shows how to export the&nbsp;<code>ZipCodeValidator</code>&nbsp;as a default export:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>import { Validator } from './Validator';\n\nexport default class ZipCodeValidator implements Validator {\n    isValid(s: string): boolean {\n        const numberRegexp = /^&#91;0-9]+$/;\n        return s.length === 5 &amp;&amp; numberRegexp.test(s);\n    }\n}</code></pre>\n\n\n\n<p>To import a default export, you use a different&nbsp;<code>import</code>&nbsp;syntax like this:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>import default_export from 'module_name';</code></pre>\n\n\n\n<p>The following shows how to use the default export from the ZipCodeValidator in the&nbsp;<code>App.ts</code>&nbsp;file:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>import ZipCodeValidator from './ZipCodeValidator';\n\nlet validator = new ZipCodeValidator();\nlet result = validator.isValid('95134');\n\nconsole.log(result);</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>true</code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Introduction to TypeScript modules Since ES6, JavaScript started supporting modules\u00a0as the native part of the language. TypeScript shares the same module concept with JavaScript. A TypeScript module can contain both declarations and code. A module executes within its own scope, not in the global scope. It means that when you declare variables,\u00a0functions,\u00a0classes,\u00a0interfaces, etc., in a [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 3,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [215],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3344"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/3"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=3344"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3344/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=3344"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=3344"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=3344"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  }
+]

@@ -1,0 +1,1294 @@
+[
+  {
+    "id": 3867,
+    "date": "2022-06-29T06:02:30",
+    "date_gmt": "2022-06-29T06:02:30",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3867" },
+    "modified": "2022-06-29T06:02:30",
+    "modified_gmt": "2022-06-29T06:02:30",
+    "slug": "integrating-a-payment-gateway",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/integrating-a-payment-gateway/",
+    "title": { "rendered": "Integrating a payment gateway" },
+    "content": {
+      "rendered": "\n<p>A payment gateway allows you to process payments online. Using a payment gateway, you can&nbsp;<a></a>manage customers&#8217; orders and delegate payment processing to&nbsp;a&nbsp;reliable, secure third party. You won&#8217;t have to worry about processing credit cards in your own system.</p>\n\n\n\n<p>There are several payment gateway providers to choose from. You are going to integrate Braintree, which is used by popular online services such as Uber and&nbsp;Airbnb.</p>\n\n\n\n<p>Braintree provides an API that allows you to process online payments with multiple payment methods, such as credit card, PayPal, Google Pay, and Apple Pay. You can learn more about Braintree at https://www.braintreepayments.com/.</p>\n\n\n\n<p>Braintree provides different integration options. The simplest is the <em>Drop-in</em> integration, which contains a preformatted payment form. However, in order to customize the behavior and experience of your checkout, you are going to use the advanced <em>Hosted Fields</em> integration. You can learn more about this integration at https://developers.braintreepayments.com/guides/hosted-fields/overview/javascript/v3.</p>\n\n\n\n<p>Certain payment fields on the checkout page, such as the credit card number, CVV number, or expiration date, must be hosted securely. The Hosted Fields integration hosts the checkout fields on the payment gateway&#8217;s domain and renders an iframe to&nbsp;present the fields to users. This provides you with the ability to customize the look and feel of&nbsp;<a></a>the payment form, while ensuring that you are compliant with&nbsp;<strong>Payment Card Industry</strong>&nbsp;(<strong>PCI</strong>) requirements. Since you can customize the look and feel of the form fields, users won&#8217;t notice the iframe.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>A payment gateway allows you to process payments online. Using a payment gateway, you can&nbsp;manage customers&#8217; orders and delegate payment processing to&nbsp;a&nbsp;reliable, secure third party. You won&#8217;t have to worry about processing credit cards in your own system. There are several payment gateway providers to choose from. You are going to integrate Braintree, which is&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/integrating-a-payment-gateway/\">Continue reading <span class=\"screen-reader-text\">Integrating a payment gateway</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [132],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3867" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3867"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3867/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3868,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3867/revisions/3868"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3867"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3867"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3867"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3869,
+    "date": "2022-06-29T06:03:08",
+    "date_gmt": "2022-06-29T06:03:08",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3869" },
+    "modified": "2022-06-29T06:03:08",
+    "modified_gmt": "2022-06-29T06:03:08",
+    "slug": "creating-a-braintree-sandbox-account",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/creating-a-braintree-sandbox-account/",
+    "title": { "rendered": "Creating a Braintree sandbox account" },
+    "content": {
+      "rendered": "\n<p>You need a Braintree account to integrate the payment gateway into your site. Let&#8217;s create a sandbox account to test the Braintree API. Open https://www.braintreepayments.com/sandbox in your browser. You will see a form like the following one:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/B14981_08_01.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 8.1: The Braintree sandbox signup form</p>\n\n\n\n<p>Fill in the details to create a new sandbox account. You will receive an email from Braintree with a link. Follow the link and complete your account setup. Once you are done, log in at https://sandbox.braintreegateway.com/login. Your merchant ID and public/private keys will be displayed like this:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/B14981_08_02.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 8.2: The Braintree sandbox merchant ID and public/private keys</p>\n\n\n\n<p>You will&nbsp;<a></a>need this information to authenticate requests to the Braintree API. Always keep your private key secret.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>You need a Braintree account to integrate the payment gateway into your site. Let&#8217;s create a sandbox account to test the Braintree API. Open https://www.braintreepayments.com/sandbox in your browser. You will see a form like the following one: Figure 8.1: The Braintree sandbox signup form Fill in the details to create a new sandbox account. You will receive an email from&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/creating-a-braintree-sandbox-account/\">Continue reading <span class=\"screen-reader-text\">Creating a Braintree sandbox account</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [132],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3869" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3869"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3869/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3870,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3869/revisions/3870"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3869"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3869"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3869"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3872,
+    "date": "2022-06-29T06:03:57",
+    "date_gmt": "2022-06-29T06:03:57",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3872" },
+    "modified": "2022-06-29T06:03:57",
+    "modified_gmt": "2022-06-29T06:03:57",
+    "slug": "installing-the-braintree-python-module",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/installing-the-braintree-python-module/",
+    "title": { "rendered": "Installing the Braintree Python module" },
+    "content": {
+      "rendered": "\n<p>Braintree provides a Python module that simplifies dealing with its API. You are going to integrate&nbsp;<a></a>the payment gateway into your project&nbsp;<a></a>using the&nbsp;<code>braintree</code>&nbsp;module.</p>\n\n\n\n<p>Install the&nbsp;<code>braintree</code>&nbsp;module from the shell using the following command:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>pip install braintree==3.59.0\n</code></pre>\n\n\n\n<p>Add the following settings to the&nbsp;<code>settings.py</code>&nbsp;file of your project:</p>\n\n\n\n<pre class=\"wp-block-code\"><code><em># Braintree settings</em>\nBRAINTREE_MERCHANT_ID = 'XXX'  <em># Merchant ID</em>\nBRAINTREE_PUBLIC_KEY = 'XXX'   <em># Public Key</em>\nBRAINTREE_PRIVATE_KEY = 'XXX'  <em># Private key</em>\nimport braintree\nBRAINTREE_CONF = braintree.Configuration(\n    braintree.Environment.Sandbox,\n    BRAINTREE_MERCHANT_ID,\n    BRAINTREE_PUBLIC_KEY,\n    BRAINTREE_PRIVATE_KEY\n)\n</code></pre>\n\n\n\n<p>Replace&nbsp;<a></a>the&nbsp;<code>BRAINTREE_MERCHANT_ID</code>,&nbsp;<code>BRAINTREE_PUBLIC_KEY</code>, and&nbsp;<code>BRAINTREE_PRIVATE_KEY</code>&nbsp;values with the ones for your account.</p>\n\n\n\n<p>You use <code>Environment.Sandbox</code> for integrating the sandbox. Once you go live and create a real account, you will need to change this to <code>Environment.Production</code>. Braintree will provide you with a new merchant ID and private/public keys for the production environment. <em>Going Live</em>, you will learn how to configure settings for multiple environments.</p>\n\n\n\n<p>Let&#8217;s integrate the payment gateway into the checkout process.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Braintree provides a Python module that simplifies dealing with its API. You are going to integrate&nbsp;the payment gateway into your project&nbsp;using the&nbsp;braintree&nbsp;module. Install the&nbsp;braintree&nbsp;module from the shell using the following command: Add the following settings to the&nbsp;settings.py&nbsp;file of your project: Replace&nbsp;the&nbsp;BRAINTREE_MERCHANT_ID,&nbsp;BRAINTREE_PUBLIC_KEY, and&nbsp;BRAINTREE_PRIVATE_KEY&nbsp;values with the ones for your account. You use Environment.Sandbox for integrating the sandbox. Once you go&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/installing-the-braintree-python-module/\">Continue reading <span class=\"screen-reader-text\">Installing the Braintree Python module</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [132],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3872" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3872"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3872/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3873,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3872/revisions/3873"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3872"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3872"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3872"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3874,
+    "date": "2022-06-29T06:04:48",
+    "date_gmt": "2022-06-29T06:04:48",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3874" },
+    "modified": "2022-06-29T06:04:48",
+    "modified_gmt": "2022-06-29T06:04:48",
+    "slug": "integrating-the-payment-gateway",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/integrating-the-payment-gateway/",
+    "title": { "rendered": "Integrating the payment gateway" },
+    "content": {
+      "rendered": "\n<p>The checkout process will work as follows:</p>\n\n\n\n<ol><li>Add items to the shopping cart</li><li>Check out the shopping cart</li><li>Enter credit card details and pay</li></ol>\n\n\n\n<p>You are&nbsp;<a></a>going to create a new application to manage payments. Create a new application in your project using the following command:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>python manage.py startapp payment\n</code></pre>\n\n\n\n<p>Edit the&nbsp;<code>settings.py</code>&nbsp;file of your project and add the new application to the&nbsp;<code>INSTALLED_APPS</code>&nbsp;setting, as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>INSTALLED_APPS = &#91;\n    <strong><em># ...</em></strong>\n    <strong>'payment.apps.PaymentConfig'</strong>,\n]\n</code></pre>\n\n\n\n<p>The&nbsp;<code>payment</code>&nbsp;application is now active.</p>\n\n\n\n<p>After clients place an order, you need to redirect them to the payment process. Edit the&nbsp;<code>views.py</code>&nbsp;file of the&nbsp;<code>orders</code>&nbsp;application and include the following imports:</p>\n\n\n\n<pre class=\"wp-block-code\"><code><strong>from django.urls import reverse</strong>\nfrom django.shortcuts import render<strong>, redirect</strong>\n</code></pre>\n\n\n\n<p>In the same file, find the following lines of the&nbsp;<code>order_create</code>&nbsp;view:</p>\n\n\n\n<pre class=\"wp-block-code\"><code># launch asynchronous task\norder_created.delay(order.id)\nreturn render(request,\n              'orders/order/created.html',\n              locals())\n</code></pre>\n\n\n\n<p>Replace&nbsp;<a></a>them with the following:</p>\n\n\n\n<pre class=\"wp-block-code\"><code><em># launch asynchronous task</em>\norder_created.delay(order.id)\n<strong><em># set the order in the session</em></strong>\n<strong>request.session&#91;'order_id'] = order.id</strong>\n<strong><em># redirect for payment</em></strong>\n<strong>return redirect(reverse('payment:process'))</strong>\n</code></pre>\n\n\n\n<p>With this code, after successfully creating an order, you set the order ID in the current session using the&nbsp;<code>order_id</code>&nbsp;session key. Then, you redirect the user to the&nbsp;<code>payment:process</code>&nbsp;URL, which you are going to implement later. Remember that you need to run Celery in order for the&nbsp;<code>order_created</code>&nbsp;task to be queued and executed.</p>\n\n\n\n<p>Every time an order is created in Braintree, a unique transaction identifier is generated. You will add a new field to the&nbsp;<code>Order</code>&nbsp;model of the&nbsp;<code>orders</code>&nbsp;application to store the transaction ID. This will allow you to link each order with its related Braintree transaction.</p>\n\n\n\n<p>Edit the&nbsp;<code>models.py</code>&nbsp;file of the&nbsp;<code>orders</code>&nbsp;application and add the following field to the&nbsp;<code>Order</code>&nbsp;model:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>class Order(models.Model):\n    # ...\n    <strong>braintree_id = models.CharField(max_length=150, blank=True)</strong>\n</code></pre>\n\n\n\n<p>Let&#8217;s sync this field with the database. Use the following command to generate migrations:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>python manage.py makemigrations\n</code></pre>\n\n\n\n<p>You will see the following output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Migrations for 'orders':\n  orders/migrations/0002_order_braintree_id.py\n    - Add field braintree_id to order\n</code></pre>\n\n\n\n<p>Apply the migration to the database with the following command:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>python manage.py migrate\n</code></pre>\n\n\n\n<p>You will see output that ends with the following line:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Applying orders.0002_order_braintree_id... OK\n</code></pre>\n\n\n\n<p>The model&nbsp;<a></a>changes are now synced with the database. Now you are able to store the Braintree transaction ID for each order. Let&#8217;s integrate the payment gateway.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>The checkout process will work as follows: Add items to the shopping cart Check out the shopping cart Enter credit card details and pay You are&nbsp;going to create a new application to manage payments. Create a new application in your project using the following command: Edit the&nbsp;settings.py&nbsp;file of your project and add the new application&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/integrating-the-payment-gateway/\">Continue reading <span class=\"screen-reader-text\">Integrating the payment gateway</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [132],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3874" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3874"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3874/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3875,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3874/revisions/3875"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3874"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3874"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3874"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3876,
+    "date": "2022-06-29T06:05:37",
+    "date_gmt": "2022-06-29T06:05:37",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3876" },
+    "modified": "2022-06-29T06:05:37",
+    "modified_gmt": "2022-06-29T06:05:37",
+    "slug": "integrating-braintree-using-hosted-fields",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/integrating-braintree-using-hosted-fields/",
+    "title": { "rendered": "Integrating Braintree using Hosted Fields" },
+    "content": {
+      "rendered": "\n<p>The Hosted Fields integration allows you to create your own payment form using custom&nbsp;<a></a>styles and layouts. An iframe is added dynamically to the page using the Braintree JavaScript&nbsp;<strong>software development kit</strong>&nbsp;(<strong>SDK</strong>). The iframe includes the Hosted Fields payment form. When the&nbsp;<a></a>customer submits the form, Hosted Fields collects the card details securely and attempts to tokenize them. If tokenization succeeds, you can send the generated token nonce to your view to make a transaction using the Python&nbsp;<code>braintree</code>&nbsp;module. A token nonce is a secure, one-time-use reference to payment information. It allows you to send sensitive payment information to Braintree without touching the raw data.</p>\n\n\n\n<p>Let&#8217;s create a view for processing payments. The whole checkout process will work as follows:</p>\n\n\n\n<ol><li>In the view, a client token is generated using the&nbsp;<code>braintree</code>&nbsp;Python module. This token is used in the next step to instantiate the Braintree JavaScript client; it&#8217;s not the payment token nonce.</li><li>The view renders the checkout template. The template loads the Braintree JavaScript SDK using the client token and generates the iframe with the hosted payment form fields.</li><li>Users enter their credit card details and submit the form. A payment token nonce is generated with the Braintree JavaScript client. You send the token to&nbsp;your view with a&nbsp;<code>POST</code>&nbsp;request.</li><li>The payment view receives the token nonce and you use it to generate a&nbsp;transaction using the&nbsp;<code>braintree</code>&nbsp;Python module.</li></ol>\n\n\n\n<p>Let&#8217;s start with the payment checkout view. Edit the&nbsp;<code>views.py</code>&nbsp;file of the&nbsp;<code>payment</code>&nbsp;application and add the following code to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>import braintree\nfrom django.shortcuts import render, redirect, get_object_or_404\nfrom django.conf import settings\nfrom orders.models import Order\n<em># instantiate Braintree payment gateway</em>\ngateway = braintree.BraintreeGateway(settings.BRAINTREE_CONF)\ndef payment_process(request):\n    order_id = request.session.get('order_id')\n    order = get_object_or_404(Order, id=order_id)\n    total_cost = order.get_total_cost()\n    if request.method == 'POST':\n        <em># retrieve nonce</em>\n        nonce = request.POST.get('payment_method_nonce', None)\n        <em># create and submit transaction</em>\n        result = gateway.transaction.sale({\n            'amount': f'{total_cost:.2f}',\n            'payment_method_nonce': nonce,\n            'options': {\n                'submit_for_settlement': True\n            }\n        })\n        if result.is_success:\n            <em># mark the order as paid</em>\n            order.paid = True\n            <em># store the unique transaction id</em>\n            order.braintree_id = result.transaction.id\n            order.save()\n            return redirect('payment:done')\n        else:\n            return redirect('payment:canceled')\n    else:\n        <em># generate token</em>\n        client_token = gateway.client_token.generate()\n        return render(request,\n                      'payment/process.html',\n                      {'order': order,\n                       'client_token': client_token})\n</code></pre>\n\n\n\n<p>In the&nbsp;<a></a>previous code, you&nbsp;<a></a>import the&nbsp;<code>braintree</code>&nbsp;module and create an instance of the Braintree gateway using&nbsp;<code>BraintreeGateway()</code>, with the configuration defined in&nbsp;the&nbsp;<code>BRAINTREE_CONF</code>&nbsp;setting of the project.</p>\n\n\n\n<p>The&nbsp;<code>payment_process</code>&nbsp;view manages the checkout process. In this view, you take the following actions:</p>\n\n\n\n<ol><li>You get the current order from the&nbsp;<code>order_id</code>&nbsp;session key, which was stored previously in the session by the&nbsp;<code>order_create</code>&nbsp;view.</li><li>You retrieve the&nbsp;<code>Order</code>&nbsp;object for the given ID or raise an&nbsp;<code>Http404</code>&nbsp;exception if it is&nbsp;not found.</li><li>When the view is loaded with a&nbsp;<code>POST</code>&nbsp;request, you retrieve the&nbsp;<code>payment_method_nonce</code>&nbsp;to generate a new transaction using&nbsp;<code>gateway.transaction.sale()</code>. You pass the following parameters to it:<ul><li><code>amount</code>: The total amount to charge the customer. This is a string with the total amount formatted with two decimal places.</li><li><code>payment_method_nonce</code>: The token nonce generated by Braintree for the payment. It will be generated in the template using the Braintree JavaScript SDK.</li><li><code>options</code>: You send the&nbsp;<code>submit_for_settlement</code>&nbsp;option with&nbsp;<code>True</code>&nbsp;so that the transaction is automatically submitted for settlement.</li></ul></li><li>If the transaction is successfully processed, you mark the order as paid by setting its&nbsp;<code>paid</code>&nbsp;attribute to&nbsp;<code>True</code>&nbsp;and store the unique transaction ID returned by the gateway in the&nbsp;<code>braintree_id</code>&nbsp;attribute. You redirect the user to the&nbsp;<code>payment:done</code>&nbsp;URL if the payment is successful; otherwise, you redirect them&nbsp;to&nbsp;<code>payment:canceled</code>.</li><li>If the view was loaded with a&nbsp;<code>GET</code>&nbsp;request, generate a client token with&nbsp;<code>gateway.client_token.generate()</code>&nbsp;that you will use in the template to&nbsp;instantiate the Braintree JavaScript client.</li></ol>\n\n\n\n<p>Let&#8217;s create&nbsp;<a></a>basic views to&nbsp;<a></a>redirect users when their payment has been successful, or&nbsp;when it has been canceled for any reason. Add the following code to the&nbsp;<code>views.py</code>&nbsp;file of the&nbsp;<code>payment</code>&nbsp;application:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>def payment_done(request):\n    return render(request, 'payment/done.html')\ndef payment_canceled(request):\n    return render(request, 'payment/canceled.html')\n</code></pre>\n\n\n\n<p>Create a new file inside the&nbsp;<code>payment</code>&nbsp;application directory and name it&nbsp;<code>urls.py</code>. Add&nbsp;the following code to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>from django.urls import path\nfrom . import views\napp_name = 'payment'\nurlpatterns = &#91;\n    path('process/', views.payment_process, name='process'),\n    path('done/', views.payment_done, name='done'),\n    path('canceled/', views.payment_canceled, name='canceled'),\n]\n</code></pre>\n\n\n\n<p>These are&nbsp;<a></a>the URLs for the payment workflow. You have included the following URL patterns:</p>\n\n\n\n<ul><li><code>process</code>: The view that processes the payment</li><li><code>done</code>: The view to redirect the user if the payment is successful</li><li><code>canceled</code>: The view to redirect the user if the payment is not successful</li></ul>\n\n\n\n<p>Edit&nbsp;<a></a>the main&nbsp;<code>urls.py</code>&nbsp;file of the&nbsp;<code>myshop</code>&nbsp;project and include the URL patterns for the&nbsp;<code>payment</code>&nbsp;application, as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>urlpatterns = &#91;\n    # ...\n    <strong>path('payment/', include('payment.urls', namespace='payment')),</strong>\n    path('', include('shop.urls', namespace='shop')),\n]\n</code></pre>\n\n\n\n<p>Remember to place the new path before the&nbsp;<code>shop.urls</code>&nbsp;pattern to avoid an unintended pattern match with a pattern defined in&nbsp;<code>shop.urls</code>. Remember that Django runs through each URL pattern in order and stops at the first one that matches the requested URL.</p>\n\n\n\n<p>Create the following file structure inside the&nbsp;<code>payment</code>&nbsp;application directory:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>templates/\n    payment/\n        process.html\n        done.html\n        canceled.html\n</code></pre>\n\n\n\n<p>Edit the&nbsp;<code>payment/process.html</code>&nbsp;template and add the following code to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{% extends \"shop/base.html\" %}\n{% block title %}Pay by credit card{% endblock %}\n{% block content %}\n  &lt;h1&gt;Pay by credit card&lt;/h1&gt;\n  &lt;form id=\"payment\" method=\"post\"&gt;\n    &lt;label for=\"card-number\"&gt;Card Number&lt;/label&gt;\n    &lt;div id=\"card-number\" class=\"field\"&gt;&lt;/div&gt;\n    &lt;label for=\"cvv\"&gt;CVV&lt;/label&gt;\n    &lt;div id=\"cvv\" class=\"field\"&gt;&lt;/div&gt;\n    &lt;label for=\"expiration-date\"&gt;Expiration Date&lt;/label&gt;\n    &lt;div id=\"expiration-date\" class=\"field\"&gt;&lt;/div&gt;\n    &lt;input type=\"hidden\" id=\"nonce\" name=\"payment_method_nonce\" value=\"\"&gt;\n    {% csrf_token %}\n    &lt;input type=\"submit\" value=\"Pay\"&gt;\n  &lt;/form&gt;\n  <em>&lt;!-- includes the Braintree JS client SDK --&gt;</em>\n  &lt;script src=\"https://js.braintreegateway.com/web/3.44.2/js/client.min.js\"&gt;&lt;/script&gt;\n  &lt;script src=\"https://js.braintreegateway.com/web/3.44.2/js/hosted-fields.min.js\"&gt;&lt;/script&gt;\n  &lt;script&gt;\n    var form = document.querySelector('#payment');\n    var submit = document.querySelector('input&#91;type=\"submit\"]');\n    braintree.client.create({\n      authorization: '{{ client_token }}'\n    }, function (clientErr, clientInstance) {\n      if (clientErr) {\n        console.error(clientErr);\n        return;\n      }\n      braintree.hostedFields.create({\n        client: clientInstance,\n        styles: {\n          'input': {'font-size': '13px'},\n          'input.invalid': {'color': 'red'},\n          'input.valid': {'color': 'green'}\n        },\n        fields: {\n          number: {selector: '#card-number'},\n          cvv: {selector: '#cvv'},\n          expirationDate: {selector: '#expiration-date'}\n        }\n      }, function (hostedFieldsErr, hostedFieldsInstance) {\n        if (hostedFieldsErr) {\n          console.error(hostedFieldsErr);\n          return;\n        }\n        submit.removeAttribute('disabled');\n        form.addEventListener('submit', function (event) {\n          event.preventDefault();\n          hostedFieldsInstance.tokenize(function (tokenizeErr, payload) {\n            if (tokenizeErr) {\n              console.error(tokenizeErr);\n              return;\n            }\n            <em>// set nonce to send to the server</em>\n            document.getElementById('nonce').value = payload.nonce;\n            <em>// submit form</em>\n            document.getElementById('payment').submit();\n          });\n        }, false);\n      });\n    });\n  &lt;/script&gt;\n{% endblock %}\n</code></pre>\n\n\n\n<p>This is the&nbsp;<a></a>template that displays the payment form and processes the payment. You define&nbsp;<code>&lt;div&gt;</code>&nbsp;containers instead of&nbsp;<code>&lt;input&gt;</code>&nbsp;elements for the credit card input fields: the credit card number, CVV number, and expiration date. This is how you specify the fields that the Braintree&nbsp;<a></a>JavaScript client will render in the iframe. You also include an&nbsp;<code>&lt;input&gt;</code>&nbsp;element named&nbsp;<code>payment_method_nonce</code>&nbsp;that you will use to send the token nonce to your view once it is generated by the Braintree JavaScript&nbsp;client.</p>\n\n\n\n<p>In your template, you load the Braintree JavaScript SDK&nbsp;<code>client.min.js</code>&nbsp;and the Hosted Fields component&nbsp;<code>hosted-fields.min.js</code>. Then, you execute the following JavaScript code:</p>\n\n\n\n<ol><li>You instantiate the Braintree JavaScript client with the&nbsp;<code>braintree.client.create()</code>&nbsp;method, using the&nbsp;<code>client_token</code>&nbsp;generated by the&nbsp;<code>payment_process</code>&nbsp;view.</li><li>You instantiate the Hosted Fields component with the&nbsp;<code>braintree.hostedFields.create()</code>&nbsp;method.</li><li>You specify custom CSS styles for the&nbsp;<code>input</code>&nbsp;fields.</li><li>You specify the&nbsp;<code>id</code>&nbsp;selectors for the fields&nbsp;<code>card-number</code>,&nbsp;<code>cvv</code>, and&nbsp;<code>expiration-date</code>.</li><li>You use&nbsp;<code>form.addEventListener()</code>&nbsp;to add an event listener for the&nbsp;<code>submit</code>&nbsp;action of the form; this is a function that waits for the&nbsp;<code>submit</code>&nbsp;action and gets executed when it occurs. When the form is submitted, the fields are tokenized using the Braintree SDK and the token nonce is set in the&nbsp;<code>payment_method_nonce</code>&nbsp;field. Then, the form is submitted so that your view receives the nonce to process the payment.</li></ol>\n\n\n\n<p>Edit the&nbsp;<code>payment/done.html</code>&nbsp;template and add the following code to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{% extends \"shop/base.html\" %}\n{% block title %}Payment successful{% endblock %}\n{% block content %}\n  &lt;h1&gt;Your payment was successful&lt;/h1&gt;\n  &lt;p&gt;Your payment has been processed successfully.&lt;/p&gt;\n{% endblock %}\n</code></pre>\n\n\n\n<p>This is the&nbsp;<a></a>template for the page that the user is redirected to following a successful payment.</p>\n\n\n\n<p>Edit&nbsp;<a></a>the&nbsp;<code>payment/canceled.html</code>&nbsp;template and add the following code to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{% extends \"shop/base.html\" %}\n{% block title %}Payment canceled{% endblock %}\n{% block content %}\n  &lt;h1&gt;Your payment has not been processed&lt;/h1&gt;\n  &lt;p&gt;There was a problem processing your payment.&lt;/p&gt;\n{% endblock %}\n</code></pre>\n\n\n\n<p>This is the template for the page that the user is redirected to when the transaction is&nbsp;not successful. Let&#8217;s try the payment process.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>The Hosted Fields integration allows you to create your own payment form using custom&nbsp;styles and layouts. An iframe is added dynamically to the page using the Braintree JavaScript&nbsp;software development kit&nbsp;(SDK). The iframe includes the Hosted Fields payment form. When the&nbsp;customer submits the form, Hosted Fields collects the card details securely and attempts to tokenize them.&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/integrating-braintree-using-hosted-fields/\">Continue reading <span class=\"screen-reader-text\">Integrating Braintree using Hosted Fields</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [132],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3876" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3876"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3876/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3877,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3876/revisions/3877"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3876"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3876"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3876"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3878,
+    "date": "2022-06-29T06:06:26",
+    "date_gmt": "2022-06-29T06:06:26",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3878" },
+    "modified": "2022-06-29T06:06:26",
+    "modified_gmt": "2022-06-29T06:06:26",
+    "slug": "testing-payments",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/testing-payments/",
+    "title": { "rendered": "Testing payments" },
+    "content": {
+      "rendered": "\n<p>Open a&nbsp;<a></a>shell and run RabbitMQ with the following command:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>rabbitmq-server\n</code></pre>\n\n\n\n<p>Open another shell and start the Celery worker from your project directory with the following command:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>celery -A myshop worker -l info\n</code></pre>\n\n\n\n<p>Open one more shell and start the development server with this command:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>python manage.py runserver\n</code></pre>\n\n\n\n<p>Open&nbsp;<code>http://127.0.0.1:8000/</code>&nbsp;in your browser, add some products to the shopping cart, and fill in the checkout form. When you click the&nbsp;<strong>Place order</strong>&nbsp;button, the order will be persisted to the database, the order ID will be saved in the current session, and you will be redirected to the payment process page.</p>\n\n\n\n<p>The payment&nbsp;<a></a>process page retrieves the order from the session and renders the Hosted Fields form in an iframe, as follows:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/B14981_08_03.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 8.3: The payment from generated with the Braintree Hosted Fields integration</p>\n\n\n\n<p>You can take a look at the HTML source code to see the generated HTML.</p>\n\n\n\n<p>Braintree provides a list of successful and unsuccessful credit cards so that you can test all possible scenarios. You can find the list of credit cards for testing at https://developers.braintreepayments.com/guides/credit-cards/testing-go-live/python. You are going to use the VISA test card <code>4111 1111 1111 1111</code>, which returns a successful purchase. You are going to use CVV <code>123</code> and any future expiration date, such as <code>12/28</code>. Enter the credit card details as follows:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/B14981_08_04.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 8.4: The payment form with the valid test credit card details</p>\n\n\n\n<p>Click on&nbsp;<a></a>the&nbsp;<strong>Pay</strong>&nbsp;button. You will see the following page:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/B14981_08_05.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 8.5: The successful payment page</p>\n\n\n\n<p>The transaction has been successfully processed. Now you can log in to your account at https://sandbox.braintreegateway.com/login. Under <strong>Transactions</strong>, you will be able to see the transaction:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/B14981_08_06.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 8.6: The transaction stored in the Braintree panel</p>\n\n\n\n<p>Next, open&nbsp;<code>http://127.0.0.1:8000/admin/orders/order/</code>&nbsp;in your browser. The&nbsp;order should now be marked as paid and contain the related Braintree transaction ID:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/B14981_08_07.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 8.7: The Paid and Braintree id fields of the order that has been processed</p>\n\n\n\n<p>Congratulations! You have implemented a payment gateway to process credit cards.</p>\n\n\n\n<p>Note that the <code>payment_process</code> view does not handle transaction declines. Braintree provides you with the processor response codes that are returned by the credit card processor. These are especially useful to know why a transaction might have been declined. You can obtain a response code using <code>result.transaction.processor_response_code</code> and its associated response text using <code>result.transaction.processor_response_text</code>. You can find the list of payment authorization responses at https://developers.braintreepayments.com/reference/general/processor-responses/authorization-responses.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Open a&nbsp;shell and run RabbitMQ with the following command: Open another shell and start the Celery worker from your project directory with the following command: Open one more shell and start the development server with this command: Open&nbsp;http://127.0.0.1:8000/&nbsp;in your browser, add some products to the shopping cart, and fill in the checkout form. When you&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/testing-payments/\">Continue reading <span class=\"screen-reader-text\">Testing payments</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [132],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3878" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3878"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3878/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3879,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3878/revisions/3879"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3878"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3878"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3878"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3880,
+    "date": "2022-06-29T06:07:12",
+    "date_gmt": "2022-06-29T06:07:12",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3880" },
+    "modified": "2022-06-29T06:07:12",
+    "modified_gmt": "2022-06-29T06:07:12",
+    "slug": "going-live",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/going-live/",
+    "title": { "rendered": "Going live" },
+    "content": {
+      "rendered": "\n<p>Once you have tested your environment, you can create a real Braintree account at https://www.braintreepayments.com. Once you are ready to move into production, remember to change your live environment credentials in the <code>settings.py</code> file of your project and use <code>braintree.Environment.Production</code> to set up your environment. All steps to go live are summarized at https://developers.braintreepayments.com/start/go-live/python. <em>Going Live</em>, to learn how to configure project settings for multiple environments.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Once you have tested your environment, you can create a real Braintree account at https://www.braintreepayments.com. Once you are ready to move into production, remember to change your live environment credentials in the settings.py file of your project and use braintree.Environment.Production to set up your environment. All steps to go live are summarized at https://developers.braintreepayments.com/start/go-live/python. Going Live, to learn how to configure project settings for&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/going-live/\">Continue reading <span class=\"screen-reader-text\">Going live</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [132],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3880" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3880"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3880/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3881,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3880/revisions/3881"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3880"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3880"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3880"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3883,
+    "date": "2022-06-29T06:07:43",
+    "date_gmt": "2022-06-29T06:07:43",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3883" },
+    "modified": "2022-06-29T06:07:43",
+    "modified_gmt": "2022-06-29T06:07:43",
+    "slug": "exporting-orders-to-csv-files",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/exporting-orders-to-csv-files/",
+    "title": { "rendered": "Exporting orders to CSV files" },
+    "content": {
+      "rendered": "\n<p>Sometimes, you might want to export the information contained in a model to a file so that you can import it in another system. One of the most widely used formats to export/import data is <strong>comma-separated values</strong> (<strong>CSV</strong>). A CSV file is a plain text file consisting of a number of records. There is usually one record per line and some delimiter character, usually a literal comma, separating the record fields. You are going to customize the administration site to be able to export orders to CSV files.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Sometimes, you might want to export the information contained in a model to a file so that you can import it in another system. One of the most widely used formats to export/import data is comma-separated values (CSV). A CSV file is a plain text file consisting of a number of records. There is usually one record per line and&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/exporting-orders-to-csv-files/\">Continue reading <span class=\"screen-reader-text\">Exporting orders to CSV files</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [132],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3883" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3883"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3883/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3884,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3883/revisions/3884"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3883"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3883"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3883"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3885,
+    "date": "2022-06-29T06:08:29",
+    "date_gmt": "2022-06-29T06:08:29",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3885" },
+    "modified": "2022-06-29T06:08:29",
+    "modified_gmt": "2022-06-29T06:08:29",
+    "slug": "adding-custom-actions-to-the-administration-site",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/adding-custom-actions-to-the-administration-site/",
+    "title": { "rendered": "Adding custom actions to the administration site" },
+    "content": {
+      "rendered": "\n<p>Django offers a wide range of options to customize the administration site. You are going to&nbsp;<a></a>modify the object list view to include a custom administration action. You can implement custom administration actions to&nbsp;<a></a>allow staff users to apply actions to&nbsp;multiple elements at once in the change list view.</p>\n\n\n\n<p>An administration action works as follows: a user selects objects from the administration object list page with checkboxes, then they select an action to perform on all of the selected items, and execute the actions. The following screenshot shows where actions are located in the administration site:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/B14981_08_08.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 8.8: The dropdown menu for Django administration actions</p>\n\n\n\n<p>You can create a custom action by writing a regular function that receives the following parameters:</p>\n\n\n\n<ul><li>The current&nbsp;<code>ModelAdmin</code>&nbsp;being displayed</li><li>The current request object as an&nbsp;<code>HttpRequest</code>&nbsp;instance</li><li>A QuerySet for the objects selected by the user</li></ul>\n\n\n\n<p>This function&nbsp;<a></a>will be executed when the action is triggered from the administration&nbsp;site.</p>\n\n\n\n<p>You are&nbsp;<a></a>going to create a custom administration action to download a list of orders as a CSV file. Edit the&nbsp;<code>admin.py</code>&nbsp;file of the&nbsp;<code>orders</code>&nbsp;application and add the following code before the&nbsp;<code>OrderAdmin</code>&nbsp;class:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>import csv\nimport datetime\nfrom django.http import HttpResponse\ndef export_to_csv(modeladmin, request, queryset):\n    opts = modeladmin.model._meta\n    content_disposition = 'attachment; filename={opts.verbose_name}.csv'\n    response = HttpResponse(content_type='text/csv')\n    response&#91;'Content-Disposition'] = content_disposition\n    writer = csv.writer(response)\n    fields = &#91;field for field in opts.get_fields() if not \\\n    field.many_to_many and not field.one_to_many] \n<em>    # Write a first row with header information</em>\n    writer.writerow(&#91;field.verbose_name for field in fields])\n<em>    # Write data rows</em>\n    for obj in queryset:\n        data_row = &#91;]\n        for field in fields:\n            value = getattr(obj, field.name)\n            if isinstance(value, datetime.datetime):\n                value = value.strftime('%d/%m/%Y')\n            data_row.append(value)\n        writer.writerow(data_row)\n    return response\nexport_to_csv.short_description = 'Export to CSV'\n</code></pre>\n\n\n\n<p>In this code, you perform the following tasks:</p>\n\n\n\n<ol><li>You create an instance of&nbsp;<code>HttpResponse</code>, specifying the&nbsp;<code>text/csv</code>&nbsp;content type, to tell the browser that the response has to be treated as a CSV file. You also add a&nbsp;<code>Content-Disposition</code>&nbsp;header to indicate that the HTTP response contains an attached file.</li><li>You create a CSV&nbsp;<code>writer</code>&nbsp;object that will write to the&nbsp;<code>response</code>&nbsp;object.</li><li>You get the&nbsp;<code>model</code>&nbsp;fields dynamically using the&nbsp;<code>get_fields()</code>&nbsp;method of&nbsp;the model&nbsp;<code>_meta</code>&nbsp;options. You exclude many-to-many and one-to-many relationships.</li><li>You write a header row including the field names.</li><li>You iterate over the given QuerySet and write a row for each object returned by the QuerySet. You take care of formatting&nbsp;<code>datetime</code>&nbsp;objects because the output value for CSV has to be a string.</li><li>You customize the display name for the action in the actions dropdown element of the administration site by setting a&nbsp;<code>short_description</code>&nbsp;attribute on the function.</li></ol>\n\n\n\n<p>You have&nbsp;<a></a>created a generic administration action that can be added to any&nbsp;<code>ModelAdmin</code>&nbsp;class.</p>\n\n\n\n<p>Finally, add the new&nbsp;<code>export_to_csv</code>&nbsp;administration action to the&nbsp;<code>OrderAdmin</code>&nbsp;class, as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>class OrderAdmin(admin.ModelAdmin):\n    <em># ...</em>\n    <strong>actions = &#91;export_to_csv]</strong>\n</code></pre>\n\n\n\n<p>Start the&nbsp;<a></a>development server with the command&nbsp;<code>python manage.py runserver</code>&nbsp;and open&nbsp;<code>http://127.0.0.1:8000/admin/orders/order/</code>&nbsp;in your browser. The resulting administration action should look like this:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/B14981_08_09.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 8.9: Using the custom Export to CSV administration action</p>\n\n\n\n<p>Select some&nbsp;<a></a>orders and choose the&nbsp;<strong>Export to CSV</strong>&nbsp;action from the select box, then click the&nbsp;<strong>Go</strong>&nbsp;button. Your browser will download&nbsp;<a></a>the generated CSV file named&nbsp;<code>order.csv.</code>&nbsp;Open the downloaded file using a text editor. You should see content with the following format, including a header row and a row for each&nbsp;<code>Order</code>&nbsp;object you selected:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>ID,first name,last name,email,address,postal code,city,created,updated,paid,braintree id\n3,Antonio,Melé,antonio.mele@gmail.com,Bank Street,WS J11,London,04/01/2020,04/01/2020,True,2bwkx5b6\n...\n</code></pre>\n\n\n\n<p>As you can see, creating administration actions is pretty straightforward. You can learn more about generating CSV files with Django at https://docs.djangoproject.com/en/3.0/howto/outputting-csv/.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Django offers a wide range of options to customize the administration site. You are going to&nbsp;modify the object list view to include a custom administration action. You can implement custom administration actions to&nbsp;allow staff users to apply actions to&nbsp;multiple elements at once in the change list view. An administration action works as follows: a user&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/adding-custom-actions-to-the-administration-site/\">Continue reading <span class=\"screen-reader-text\">Adding custom actions to the administration site</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [132],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3885" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3885"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3885/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3886,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3885/revisions/3886"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3885"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3885"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3885"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3887,
+    "date": "2022-06-29T06:09:20",
+    "date_gmt": "2022-06-29T06:09:20",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3887" },
+    "modified": "2022-06-29T06:09:20",
+    "modified_gmt": "2022-06-29T06:09:20",
+    "slug": "extending-the-administration-site-with-custom-views",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/extending-the-administration-site-with-custom-views/",
+    "title": {
+      "rendered": "Extending the administration site with custom views"
+    },
+    "content": {
+      "rendered": "\n<p>Sometimes, you may want to customize the administration site beyond what is possible through&nbsp;<a></a>configuring&nbsp;<code>ModelAdmin</code>, creating administration actions, and overriding administration templates. You might&nbsp;<a></a>want to implement additional functionalities that are not available in existing administration views or templates. If this is the case, you need to create a custom administration view. With a custom view, you can build any functionality you want; you just have to make sure that only staff users can access your view and that you maintain the administration look and feel by making your template extend an administration template.</p>\n\n\n\n<p>Let&#8217;s create a custom view to display information about an order. Edit the&nbsp;<code>views.py</code>&nbsp;file of the&nbsp;<code>orders</code>&nbsp;application and add the following code to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>from django.contrib.admin.views.decorators import staff_member_required\nfrom django.shortcuts import get_object_or_404\nfrom .models import Order\n@staff_member_required\ndef admin_order_detail(request, order_id):\n    order = get_object_or_404(Order, id=order_id)\n    return render(request,\n                  'admin/orders/order/detail.html',\n                  {'order': order})\n</code></pre>\n\n\n\n<p>The&nbsp;<code>staff_member_required</code>&nbsp;decorator checks that both the&nbsp;<code>is_active</code>&nbsp;and&nbsp;<code>is_staff</code>&nbsp;fields of&nbsp;<a></a>the user requesting the page are set to&nbsp;<code>True</code>. In this view, you get the&nbsp;<code>Order</code>&nbsp;object with the given ID&nbsp;<a></a>and render a template to display the order.</p>\n\n\n\n<p>Next, edit the&nbsp;<code>urls.py</code>&nbsp;file of the&nbsp;<code>orders</code>&nbsp;application and add the following URL pattern to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>path('admin/order/&lt;int:order_id&gt;/', views.admin_order_detail,\n     name='admin_order_detail'),\n</code></pre>\n\n\n\n<p>Create the following file structure inside the&nbsp;<code>templates/</code>&nbsp;directory of the&nbsp;<code>orders</code>&nbsp;application:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>admin/\n    orders/\n        order/\n            detail.html\n</code></pre>\n\n\n\n<p>Edit the&nbsp;<code>detail.html</code>&nbsp;template and add the following content to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{% extends \"admin/base_site.html\" %}\n{% block title %}\n  Order {{ order.id }} {{ block.super }}\n{% endblock %}\n{% block breadcrumbs %}\n  &lt;div class=\"breadcrumbs\"&gt;\n    &lt;a href=\"{% url \"admin:index\" %}\"&gt;Home&lt;/a&gt; &amp;rsaquo;\n    &lt;a href=\"{% url \"admin:orders_order_changelist\" %}\"&gt;Orders&lt;/a&gt;\n    &amp;rsaquo;\n    &lt;a href=\"{% url \"admin:orders_order_change\" order.id %}\"&gt;Order {{ order.id }}&lt;/a&gt;\n    &amp;rsaquo; Detail\n  &lt;/div&gt;\n{% endblock %}\n{% block content %}\n&lt;h1&gt;Order {{ order.id }}&lt;/h1&gt;\n&lt;ul class=\"object-tools\"&gt;\n  &lt;li&gt;\n    &lt;a href=\"#\" onclick=\"window.print();\"&gt;Print order&lt;/a&gt;\n  &lt;/li&gt;\n&lt;/ul&gt;\n&lt;table&gt;\n  &lt;tr&gt;\n    &lt;th&gt;Created&lt;/th&gt;\n    &lt;td&gt;{{ order.created }}&lt;/td&gt;\n  &lt;/tr&gt;\n  &lt;tr&gt;\n    &lt;th&gt;Customer&lt;/th&gt;\n    &lt;td&gt;{{ order.first_name }} {{ order.last_name }}&lt;/td&gt;\n  &lt;/tr&gt;\n  &lt;tr&gt;\n    &lt;th&gt;E-mail&lt;/th&gt;\n    &lt;td&gt;&lt;a href=\"mailto:{{ order.email }}\"&gt;{{ order.email }}&lt;/a&gt;&lt;/td&gt;\n  &lt;/tr&gt;\n  &lt;tr&gt;\n    &lt;th&gt;Address&lt;/th&gt;\n  &lt;td&gt;\n    {{ order.address }}, \n    {{ order.postal_code }} {{ order.city }}\n  &lt;/td&gt; \n  &lt;/tr&gt;\n  &lt;tr&gt;\n    &lt;th&gt;Total amount&lt;/th&gt;\n    &lt;td&gt;${{ order.get_total_cost }}&lt;/td&gt;\n  &lt;/tr&gt;\n  &lt;tr&gt;\n    &lt;th&gt;Status&lt;/th&gt;\n    &lt;td&gt;{% if order.paid %}Paid{% else %}Pending payment{% endif %}&lt;/td&gt;\n  &lt;/tr&gt;\n&lt;/table&gt;\n&lt;div class=\"module\"&gt;\n  &lt;h2&gt;Items bought&lt;/h2&gt;\n  &lt;table style=\"width:100%\"&gt;\n    &lt;thead&gt;\n      &lt;tr&gt;\n        &lt;th&gt;Product&lt;/th&gt;\n        &lt;th&gt;Price&lt;/th&gt;\n        &lt;th&gt;Quantity&lt;/th&gt;\n        &lt;th&gt;Total&lt;/th&gt;\n      &lt;/tr&gt;\n    &lt;/thead&gt;\n    &lt;tbody&gt;\n      {% for item in order.items.all %}\n        &lt;tr class=\"row{% cycle \"1\" \"2\" %}\"&gt;\n          &lt;td&gt;{{ item.product.name }}&lt;/td&gt;\n          &lt;td class=\"num\"&gt;${{ item.price }}&lt;/td&gt;\n          &lt;td class=\"num\"&gt;{{ item.quantity }}&lt;/td&gt;\n          &lt;td class=\"num\"&gt;${{ item.get_cost }}&lt;/td&gt;\n        &lt;/tr&gt;\n      {% endfor %}\n      &lt;tr class=\"total\"&gt;\n        &lt;td colspan=\"3\"&gt;Total&lt;/td&gt;\n        &lt;td class=\"num\"&gt;${{ order.get_total_cost }}&lt;/td&gt;\n      &lt;/tr&gt;\n    &lt;/tbody&gt;\n  &lt;/table&gt;\n&lt;/div&gt;\n{% endblock %}\n</code></pre>\n\n\n\n<p>Make sure that no template tag is split into multiple lines.</p>\n\n\n\n<p>This is the&nbsp;<a></a>template to display the details of an order on the administration site. This template extends the&nbsp;<code>admin/base_site.html</code>&nbsp;template of Django&#8217;s administration site, which contains the main HTML structure and CSS styles. You use the blocks defined in the parent template&nbsp;<a></a>to include your own content. You display information about the order and the items bought.</p>\n\n\n\n<p>When you want to extend an administration template, you need to know its structure and identify existing blocks. You can find all administration templates at https://github.com/django/django/tree/3.0/django/contrib/admin/templates/admin.</p>\n\n\n\n<p>You can also override an administration template if you need to. To do so, copy a template into your&nbsp;<code>templates/</code>&nbsp;directory, keeping the same relative path and filename. Django&#8217;s administration site will use your custom template instead of the&nbsp;default one.</p>\n\n\n\n<p>Finally, let&#8217;s add&nbsp;<a></a>a link to each&nbsp;<code>Order</code>&nbsp;object in the list display page of the administration site. Edit the&nbsp;<code>admin.py</code>&nbsp;file of the&nbsp;<code>orders</code>&nbsp;application and add the&nbsp;following code to it, above the&nbsp;<code>OrderAdmin</code>&nbsp;class:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>from django.urls import reverse\nfrom django.utils.safestring import mark_safe\ndef order_detail(obj):\n    url = reverse('orders:admin_order_detail', args=&#91;obj.id])\n    return mark_safe(f'&lt;a href=\"{url}\"&gt;View&lt;/a&gt;')\n</code></pre>\n\n\n\n<p>This is&nbsp;<a></a>a function that takes an&nbsp;<code>Order</code>&nbsp;object as an argument and returns an HTML link for the&nbsp;<code>admin_order_detail</code>&nbsp;URL. Django escapes HTML output by default. You have to use the&nbsp;<code>mark_safe</code>&nbsp;function to avoid auto-escaping.</p>\n\n\n\n<p>Avoid using&nbsp;<code>mark_safe</code>&nbsp;on input that has come from the user to avoid&nbsp;<strong>cross-site scripting</strong>&nbsp;(<strong>XSS</strong>). XSS enables attackers to inject client-side scripts into web content viewed by other users.</p>\n\n\n\n<p>Then, edit the&nbsp;<code>OrderAdmin</code>&nbsp;class to display the link:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>class OrderAdmin(admin.ModelAdmin):\n    list_display = &#91;'id',\n                    'first_name',\n                    <em># ...</em>\n                    'updated',\n                    <strong>order_detail</strong>]\n</code></pre>\n\n\n\n<p>Start the development server with the command&nbsp;<code>python manage.py runserver</code>&nbsp;and open&nbsp;<code>http://127.0.0.1:8000/admin/orders/order/</code>&nbsp;in your browser. Each row includes a&nbsp;<strong>View</strong>&nbsp;link, as follows:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/B14981_08_10.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 8.10: The View link included in each order row</p>\n\n\n\n<p>Click on the&nbsp;<strong>View</strong>&nbsp;link for any order to load the custom order detail page. You should see a page like the following one:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/B14981_08_11.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 8.11: The custom order detail page</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Sometimes, you may want to customize the administration site beyond what is possible through&nbsp;configuring&nbsp;ModelAdmin, creating administration actions, and overriding administration templates. You might&nbsp;want to implement additional functionalities that are not available in existing administration views or templates. If this is the case, you need to create a custom administration view. With a custom view, you&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/extending-the-administration-site-with-custom-views/\">Continue reading <span class=\"screen-reader-text\">Extending the administration site with custom views</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [132],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3887" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3887"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3887/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3888,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3887/revisions/3888"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3887"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3887"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3887"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3889,
+    "date": "2022-06-29T06:09:58",
+    "date_gmt": "2022-06-29T06:09:58",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3889" },
+    "modified": "2022-06-29T06:09:58",
+    "modified_gmt": "2022-06-29T06:09:58",
+    "slug": "generating-pdf-invoices-dynamically",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/generating-pdf-invoices-dynamically/",
+    "title": { "rendered": "Generating PDF invoices dynamically" },
+    "content": {
+      "rendered": "\n<p>Now that you have a complete checkout and payment system, you can generate a PDF invoice for each order. There are several Python libraries to generate PDF files. One popular library to generate PDFs with Python code is ReportLab. You can find information about how to output PDF files with ReportLab at https://docs.djangoproject.com/en/3.0/howto/outputting-pdf/.</p>\n\n\n\n<p>In most cases, you will have to add custom styles and formatting to your PDF files. You will find it more convenient to render an HTML template and convert it into a PDF file, keeping Python away from the presentation layer. You are going to follow this approach and use a module to generate PDF files with Django. You will&nbsp;use WeasyPrint, which is a Python library that can generate PDF files from HTML&nbsp;templates.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Now that you have a complete checkout and payment system, you can generate a PDF invoice for each order. There are several Python libraries to generate PDF files. One popular library to generate PDFs with Python code is ReportLab. You can find information about how to output PDF files with ReportLab at https://docs.djangoproject.com/en/3.0/howto/outputting-pdf/. In most cases, you will&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/generating-pdf-invoices-dynamically/\">Continue reading <span class=\"screen-reader-text\">Generating PDF invoices dynamically</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [132],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3889" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3889"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3889/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3890,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3889/revisions/3890"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3889"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3889"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3889"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3891,
+    "date": "2022-06-29T06:10:22",
+    "date_gmt": "2022-06-29T06:10:22",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3891" },
+    "modified": "2022-06-29T06:10:22",
+    "modified_gmt": "2022-06-29T06:10:22",
+    "slug": "installing-weasyprint",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/installing-weasyprint/",
+    "title": { "rendered": "Installing WeasyPrint" },
+    "content": {
+      "rendered": "\n<p>First, install WeasyPrint&#8217;s dependencies for your operating system from https://weasyprint.readthedocs.io/en/latest/install.html. Then, install WeasyPrint via <code>pip</code> using the following command:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>pip install WeasyPrint==51\n</code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>First, install WeasyPrint&#8217;s dependencies for your operating system from https://weasyprint.readthedocs.io/en/latest/install.html. Then, install WeasyPrint via pip using the following command:</p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [132],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3891" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3891"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3891/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3892,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3891/revisions/3892"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3891"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3891"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3891"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3893,
+    "date": "2022-06-29T06:10:54",
+    "date_gmt": "2022-06-29T06:10:54",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3893" },
+    "modified": "2022-06-29T06:10:54",
+    "modified_gmt": "2022-06-29T06:10:54",
+    "slug": "creating-a-pdf-template",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/creating-a-pdf-template/",
+    "title": { "rendered": "Creating a PDF template" },
+    "content": {
+      "rendered": "\n<p>You need an HTML document as input for WeasyPrint. You are going to create an HTML template, render it using Django, and pass it to WeasyPrint to generate the PDF file.</p>\n\n\n\n<p>Create a&nbsp;<a></a>new template file inside the&nbsp;<code>templates/orders/order/</code>&nbsp;directory of the&nbsp;<code>orders</code>&nbsp;application and name it&nbsp;<code>pdf.html</code>. Add the following code to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;html&gt;\n&lt;body&gt;\n  &lt;h1&gt;My Shop&lt;/h1&gt;\n  &lt;p&gt;\n    Invoice no. {{ order.id }}&lt;/br&gt;\n    &lt;span class=\"secondary\"&gt;\n      {{ order.created|date:\"M d, Y\" }}\n    &lt;/span&gt;\n  &lt;/p&gt;\n  &lt;h3&gt;Bill to&lt;/h3&gt;\n  &lt;p&gt;\n    {{ order.first_name }} {{ order.last_name }}&lt;br&gt;\n    {{ order.email }}&lt;br&gt;\n    {{ order.address }}&lt;br&gt;\n    {{ order.postal_code }}, {{ order.city }}\n  &lt;/p&gt;\n  &lt;h3&gt;Items bought&lt;/h3&gt;\n  &lt;table&gt;\n    &lt;thead&gt;\n      &lt;tr&gt;\n        &lt;th&gt;Product&lt;/th&gt;\n        &lt;th&gt;Price&lt;/th&gt;\n        &lt;th&gt;Quantity&lt;/th&gt;\n        &lt;th&gt;Cost&lt;/th&gt;\n      &lt;/tr&gt;\n    &lt;/thead&gt;\n    &lt;tbody&gt;\n      {% for item in order.items.all %}\n        &lt;tr class=\"row{% cycle \"1\" \"2\" %}\"&gt;\n          &lt;td&gt;{{ item.product.name }}&lt;/td&gt;\n          &lt;td class=\"num\"&gt;${{ item.price }}&lt;/td&gt;\n          &lt;td class=\"num\"&gt;{{ item.quantity }}&lt;/td&gt;\n          &lt;td class=\"num\"&gt;${{ item.get_cost }}&lt;/td&gt;\n        &lt;/tr&gt;\n      {% endfor %}\n      &lt;tr class=\"total\"&gt;\n        &lt;td colspan=\"3\"&gt;Total&lt;/td&gt;\n        &lt;td class=\"num\"&gt;${{ order.get_total_cost }}&lt;/td&gt;\n      &lt;/tr&gt;\n    &lt;/tbody&gt;\n  &lt;/table&gt;\n    \n  &lt;span class=\"{% if order.paid %}paid{% else %}pending{% endif %}\"&gt;\n    {% if order.paid %}Paid{% else %}Pending payment{% endif %}\n  &lt;/span&gt;\n&lt;/body&gt;\n&lt;/html&gt;\n</code></pre>\n\n\n\n<p>This is the&nbsp;<a></a>template for the PDF invoice. In this template, you display all order details and an HTML&nbsp;<code>&lt;table&gt;</code>&nbsp;element including the products. You also include a&nbsp;message to display whether the order has been paid.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>You need an HTML document as input for WeasyPrint. You are going to create an HTML template, render it using Django, and pass it to WeasyPrint to generate the PDF file. Create a&nbsp;new template file inside the&nbsp;templates/orders/order/&nbsp;directory of the&nbsp;orders&nbsp;application and name it&nbsp;pdf.html. Add the following code to it: This is the&nbsp;template for the PDF invoice.&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/creating-a-pdf-template/\">Continue reading <span class=\"screen-reader-text\">Creating a PDF template</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [132],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3893" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3893"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3893/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3894,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3893/revisions/3894"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3893"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3893"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3893"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3895,
+    "date": "2022-06-29T06:12:12",
+    "date_gmt": "2022-06-29T06:12:12",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3895" },
+    "modified": "2022-06-29T06:12:12",
+    "modified_gmt": "2022-06-29T06:12:12",
+    "slug": "rendering-pdf-files",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/rendering-pdf-files/",
+    "title": { "rendered": "Rendering PDF files" },
+    "content": {
+      "rendered": "\n<p>You are&nbsp;<a></a>going to create a view to generate PDF invoices for existing orders using the administration site. Edit the&nbsp;<code>views.py</code>&nbsp;file inside the&nbsp;<code>orders</code>&nbsp;application directory and add the following code to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>from django.conf import settings\nfrom django.http import HttpResponse\nfrom django.template.loader import render_to_string\nimport weasyprint\n@staff_member_required\ndef admin_order_pdf(request, order_id):\n    order = get_object_or_404(Order, id=order_id)\n    html = render_to_string('orders/order/pdf.html',\n                            {'order': order})\n    response = HttpResponse(content_type='application/pdf')\n    response&#91;'Content-Disposition'] = f'filename=order_{order.id}.pdf'\n    weasyprint.HTML(string=html).write_pdf(response,\n        stylesheets=&#91;weasyprint.CSS(\n            settings.STATIC_ROOT + 'css/pdf.css')])\n    return response\n</code></pre>\n\n\n\n<p>This is the view to generate a PDF invoice for an order. You use the&nbsp;<code>staff_member_required</code>&nbsp;decorator to make sure only staff users can access this view.</p>\n\n\n\n<p>You get the&nbsp;<code>Order</code>&nbsp;object with the given ID and you use the&nbsp;<code>render_to_string()</code>&nbsp;function provided by Django to render&nbsp;<code>orders/order/pdf.html</code>. The rendered HTML is saved in the&nbsp;<code>html</code>&nbsp;variable.</p>\n\n\n\n<p>Then, you generate a new&nbsp;<code>HttpResponse</code>&nbsp;object specifying the&nbsp;<code>application/pdf</code>&nbsp;content type and including the&nbsp;<code>Content-Disposition</code>&nbsp;header to specify the filename. You use WeasyPrint to generate a PDF file from the rendered HTML code and write the file to the&nbsp;<code>HttpResponse</code>&nbsp;object.</p>\n\n\n\n<p>You use the static file&nbsp;<code>css/pdf.css</code>&nbsp;to add CSS styles to the generated PDF file. Then, you load it from the local path by using the&nbsp;<code>STATIC_ROOT</code>&nbsp;setting. Finally, you return the generated response.</p>\n\n\n\n<p>If you are missing the CSS styles, remember to copy the static files located in the&nbsp;<code>static/</code>&nbsp;directory of the&nbsp;<code>shop</code>&nbsp;application to the same location of your project.</p>\n\n\n\n<p>You can find the contents of the directory at https://github.com/PacktPublishing/Django-3-by-Example/tree/master/myshop/shop/static.</p>\n\n\n\n<p>Since you&nbsp;<a></a>need to use the&nbsp;<code>STATIC_ROOT</code>&nbsp;setting, you have to add it to your project. This is the project&#8217;s path where static files reside. Edit the&nbsp;<code>settings.py</code>&nbsp;file of the&nbsp;<code>myshop</code>&nbsp;project and add the following setting:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>STATIC_ROOT = os.path.join(BASE_DIR, 'static/')\n</code></pre>\n\n\n\n<p>Then, run the following command:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>python manage.py collectstatic\n</code></pre>\n\n\n\n<p>You should see output that ends likes this:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>133 static files copied to <em>'code/myshop/static'.</em>\n</code></pre>\n\n\n\n<p>The&nbsp;<code>collectstatic</code>&nbsp;command copies all static files from your applications into the directory defined in the&nbsp;<code>STATIC_ROOT</code>&nbsp;setting. This allows each application to provide its own static files using a&nbsp;<code>static/</code>&nbsp;directory containing them. You can also provide additional static files sources in the&nbsp;<code>STATICFILES_DIRS</code>&nbsp;setting. All of the directories specified in the&nbsp;<code>STATICFILES_DIRS</code>&nbsp;list will also be copied to the&nbsp;<code>STATIC_ROOT</code>&nbsp;directory when&nbsp;<code>collectstatic</code>&nbsp;is executed. Whenever you execute&nbsp;<code>collectstatic</code>&nbsp;again, you will be asked if you want to override the existing static files.</p>\n\n\n\n<p>Edit the&nbsp;<code>urls.py</code>&nbsp;file inside the&nbsp;<code>orders</code>&nbsp;application directory and add the following URL pattern to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>urlpatterns = &#91;\n    <em># ...</em>\n    <strong>path('admin/order/&lt;int:order_id&gt;/pdf/',</strong>\n<strong>         views.admin_order_pdf,</strong>\n<strong>         name='admin_order_pdf'),</strong>\n]\n</code></pre>\n\n\n\n<p>Now you can edit the administration list display page for the&nbsp;<code>Order</code>&nbsp;model to add a link to the PDF file for each result. Edit the&nbsp;<code>admin.py</code>&nbsp;file inside the&nbsp;<code>orders</code>&nbsp;application and add the following code above the&nbsp;<code>OrderAdmin</code>&nbsp;class:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>def order_pdf(obj):\n    url = reverse('orders:admin_order_pdf', args=&#91;obj.id])\n    return mark_safe(f'&lt;a href=\"{url}\"&gt;PDF&lt;/a&gt;')\norder_pdf.short_description = 'Invoice'\n</code></pre>\n\n\n\n<p>If you specify a&nbsp;<code>short_description</code>&nbsp;attribute for your callable, Django will use it for the name of the column.</p>\n\n\n\n<p>Add&nbsp;<code>order_pdf</code>&nbsp;to the&nbsp;<code>list_display</code>&nbsp;attribute of the&nbsp;<code>OrderAdmin</code>&nbsp;class, as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>class OrderAdmin(admin.ModelAdmin):\n    list_display = &#91;'id',\n                    <em># ...</em>\n                    order_detail,\n                    <strong>order_pdf</strong>]\n</code></pre>\n\n\n\n<p>Ensure the&nbsp;<a></a>development server is started. Open&nbsp;<code>http://127.0.0.1:8000/admin/orders/order/</code>&nbsp;in your browser. Each row should now include a&nbsp;<strong>PDF</strong>&nbsp;link, like this:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/B14981_08_12.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 8.12: The PDF link included in each order row</p>\n\n\n\n<p>Click on the&nbsp;<strong>PDF</strong>&nbsp;link for any order. You should see a generated PDF file like the following one for orders that have not been paid yet:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/B14981_08_13.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 8.13: The PDF invoice of an unpaid order</p>\n\n\n\n<p>For paid&nbsp;<a></a>orders, you will see the following PDF file:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/B14981_08_14.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 8.14: The PDF invoice of a paid order</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>You are&nbsp;going to create a view to generate PDF invoices for existing orders using the administration site. Edit the&nbsp;views.py&nbsp;file inside the&nbsp;orders&nbsp;application directory and add the following code to it: This is the view to generate a PDF invoice for an order. You use the&nbsp;staff_member_required&nbsp;decorator to make sure only staff users can access this view. You&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/rendering-pdf-files/\">Continue reading <span class=\"screen-reader-text\">Rendering PDF files</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [132],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3895" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3895"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3895/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3896,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3895/revisions/3896"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3895"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3895"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3895"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3897,
+    "date": "2022-06-29T06:13:21",
+    "date_gmt": "2022-06-29T06:13:21",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3897" },
+    "modified": "2022-06-29T06:13:21",
+    "modified_gmt": "2022-06-29T06:13:21",
+    "slug": "sending-pdf-files-by-email",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/sending-pdf-files-by-email/",
+    "title": { "rendered": "Sending PDF files by email" },
+    "content": {
+      "rendered": "\n<p>When a payment is successful, you will send an automatic email to your customer including&nbsp;<a></a>the generated PDF invoice. You will create an asynchronous task to perform this action.</p>\n\n\n\n<p>Create a new file inside the&nbsp;<code>payment</code>&nbsp;application directory and name it&nbsp;<code>tasks.py</code>. Add the following code to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>from io import BytesIO\nfrom celery import task\nimport weasyprint\nfrom django.template.loader import render_to_string\nfrom django.core.mail import EmailMessage\nfrom django.conf import settings\nfrom orders.models import Order\n@task\ndef payment_completed(order_id):\n    \"\"\"\n    Task to send an e-mail notification when an order is\n    successfully created.\n    \"\"\"\n    order = Order.objects.get(id=order_id)\n    <em># create invoice e-mail</em>\n    subject = f'My Shop - EE Invoice no. {order.id}'\n    message = 'Please, find attached the invoice for your recent purchase.'\n    email = EmailMessage(subject,\n                         message,\n                         'admin@myshop.com',\n                         &#91;order.email])\n    <em># generate PDF</em>\n    html = render_to_string('orders/order/pdf.html', {'order': order})\n    out = BytesIO()\n    stylesheets=&#91;weasyprint.CSS(settings.STATIC_ROOT + 'css/pdf.css')]\n    weasyprint.HTML(string=html).write_pdf(out,\n                                          stylesheets=stylesheets)\n    <em># attach PDF file</em>\n    email.attach(f'order_{order.id}.pdf',\n                 out.getvalue(),\n                 'application/pdf')\n    <em># send e-mail</em>\n    email.send()\n</code></pre>\n\n\n\n<p>You define the&nbsp;<code>payment_completed</code>&nbsp;task by using the<code>&nbsp;@task</code>&nbsp;decorator. In this task, you use the&nbsp;<code>EmailMessage</code>&nbsp;class provided by Django to create an&nbsp;<code>email</code>&nbsp;object. Then, you render&nbsp;<a></a>the template into the&nbsp;<code>html</code>&nbsp;variable. You generate the PDF file from the rendered template and output it to a&nbsp;<code>BytesIO</code>&nbsp;instance, which is an in-memory bytes buffer. Then, you attach the generated PDF file to the&nbsp;<code>EmailMessage</code>&nbsp;object using the&nbsp;<code>attach()</code>&nbsp;method, including the contents of the&nbsp;<code>out</code>&nbsp;buffer. Finally, you send the&nbsp;email.</p>\n\n\n\n<p>Remember to set up your <strong>Simple Mail Transfer Protocol</strong> (<strong>SMTP</strong>) settings in the <code>settings.py</code> file of the project to send emails. You can refer<em> to</em> <em>Enhancing Your Blog with Advanced Features</em>, to see a working example of an SMTP configuration. If you don&#8217;t want to set up email settings, you can tell Django to write emails to the console by adding the following setting to the <code>settings.py</code> file:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'\n</code></pre>\n\n\n\n<p>Let&#8217;s add the&nbsp;<code>payment_completed</code>&nbsp;task to the view. Edit the&nbsp;<code>views.py</code>&nbsp;file of the&nbsp;<code>payment</code>&nbsp;application and modify it to make it look like this:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>import braintree\nfrom django.shortcuts import render, redirect, get_object_or_404\nfrom django.conf import settings\nfrom orders.models import Order\n<strong>from .tasks import payment_completed</strong>\n<em># instantiate Braintree payment gateway</em>\ngateway = braintree.BraintreeGateway(settings.BRAINTREE_CONF)\ndef payment_process(request):\n    order_id = request.session.get('order_id')\n    order = get_object_or_404(Order, id=order_id)\n    total_cost = order.get_total_cost()\n    if request.method == 'POST':\n        <em># retrieve nonce</em>\n        nonce = request.POST.get('payment_method_nonce', None)\n        <em># create and submit transaction</em>\n        result = gateway.transaction.sale({\n            'amount': f'{total_cost:.2f}',\n            'payment_method_nonce': nonce,\n            'options': {\n                'submit_for_settlement': True\n            }\n        })\n        if result.is_success:\n            <em># mark the order as paid</em>\n            order.paid = True\n            <em># store the unique transaction id</em>\n            order.braintree_id = result.transaction.id\n            order.save()\n<strong>            <em># launch asynchronous task</em></strong>\n<strong>            payment_completed.delay(order.id)</strong>\n            return redirect('payment:done')\n        else:\n            return redirect('payment:canceled')\n    else:\n        <em># generate token</em>\n        client_token = gateway.client_token.generate()\n        return render(request,\n                      'payment/process.html',\n                      {'order': order,\n                       'client_token': client_token})\ndef payment_done(request):\n    return render(request, 'payment/done.html')\ndef payment_canceled(request):\n    return render(request, 'payment/canceled.html')\n</code></pre>\n\n\n\n<p>You call the&nbsp;<code>payment_completed</code>&nbsp;task when a payment is successfully completed. Then, you call the&nbsp;<code>delay()</code>&nbsp;method of the task to execute it asynchronously. The task will be added to&nbsp;<a></a>the queue and will be executed by a Celery worker as soon as&nbsp;possible.</p>\n\n\n\n<p>Now you can complete a new payment process in order to receive the PDF invoice into your email.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>When a payment is successful, you will send an automatic email to your customer including&nbsp;the generated PDF invoice. You will create an asynchronous task to perform this action. Create a new file inside the&nbsp;payment&nbsp;application directory and name it&nbsp;tasks.py. Add the following code to it: You define the&nbsp;payment_completed&nbsp;task by using the&nbsp;@task&nbsp;decorator. In this task, you use&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/sending-pdf-files-by-email/\">Continue reading <span class=\"screen-reader-text\">Sending PDF files by email</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [132],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3897" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3897"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3897/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3898,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3897/revisions/3898"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3897"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3897"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3897"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  }
+]

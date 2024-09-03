@@ -1,0 +1,402 @@
+[
+  {
+    "id": 3578,
+    "date": "2020-12-04T10:43:21",
+    "date_gmt": "2020-12-04T10:43:21",
+    "guid": {
+      "rendered": "http://angular.foobrdigital.com/?p=3578"
+    },
+    "modified": "2020-12-08T12:04:42",
+    "modified_gmt": "2020-12-08T12:04:42",
+    "slug": "component-life-cycle-hooks-in-angular",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/component-life-cycle-hooks-in-angular/",
+    "title": {
+      "rendered": "Component Life Cycle Hooks in Angular"
+    },
+    "content": {
+      "rendered": "\n<h2>What is Angular Component lifecycle hooks</h2>\n\n\n\n<p>When the angular application starts it creates and renders the root component. It then creates and renders its Childrens &amp; their children. It forms a&nbsp;tree of components.</p>\n\n\n\n<p>Once Angular loads the components, it starts the process of rendering the view.&nbsp; To do that it needs to check the input properties, evaluate the data bindings &amp; expressions, render the projected content etc. Angular also removes the component from the DOM, when it is no longer needs it.</p>\n\n\n\n<p>Angular lets us know when these events happen using lifecycle hooks</p>\n\n\n\n<p>The Angular life cycle hooks are nothing but callback function, which angular invokes when a certain event occurs during the component’s life cycle.</p>\n\n\n\n<p>For example,</p>\n\n\n\n<ul><li>ngOnInit&nbsp;when Angular initializes the component for the first time.</li><li>When a component’s input property change, Angular invokes&nbsp;ngOnChanges</li><li>If the component is destroyed, Angular invokes&nbsp;ngOnDestroy</li></ul>\n\n\n\n<h2>Angular lifecycle hooks</h2>\n\n\n\n<p>Here is the complete list of life cycle hooks, which angular invokes during the component life cycle. Angular invokes them when a certain event occurs.</p>\n\n\n\n<ul><li>ngOnChanges</li><li>ngOnInit</li><li>ngDoCheck</li><li>ngAfterContentInit</li><li>ngAfterContentChecked</li><li>ngAfterViewInit</li><li>ngAfterViewChecked</li><li>ngOnDestroy</li></ul>\n\n\n\n<h2>Change detection Cycle</h2>\n\n\n\n<p>Before diving into the lifecycle hooks, we need to understand the change detection cycle.</p>\n\n\n\n<p>Change detection is the mechanism by which angular keeps the template in sync with the component</p>\n\n\n\n<p>Consider the following code.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> &lt;div>Hello {{name}}&lt;/div>  </code></pre>\n\n\n\n<p>Angular updates the DOM, whenever the value of the&nbsp;<code>name</code>&nbsp;changes. And it does it instantly.</p>\n\n\n\n<p>How does angular know when the value of name changes?. It does so by running a change detection cycle on every event that may result in a change. It runs it on every input changes, DOM events, timer events like&nbsp;<code>setTimeout()</code>&nbsp;and&nbsp;<code>setInterval()</code>&nbsp;,&nbsp;<code>http</code>&nbsp;requests etc.&nbsp;</p>\n\n\n\n<p>During the change detection cycle angular checks each and every bound property in the template, with that of the component class. If it detects any changes it updates the DOM.&nbsp;</p>\n\n\n\n<p>Angular raises the life cycle hooks during the important stages of the change detection&nbsp; mechanism.</p>\n\n\n\n<h2>Constructor</h2>\n\n\n\n<p>Life Cycle of a component begins, when Angular creates the component class. First method that gets invoked is class Constructor.</p>\n\n\n\n<p>Constructor is neither a life cycle hook nor it is specific to Angular.&nbsp; It is a Javascript feature. It is a method which is invoked, when a class is created.&nbsp;</p>\n\n\n\n<p>Angular makes use of a constructor to&nbsp;inject dependencies.</p>\n\n\n\n<p>At this point, none of the components input properties are available to use. Neither its child components are constructed. Projected contents are also not available.&nbsp;</p>\n\n\n\n<p>Hence there is not much you can do in this method. And also it is recommend not to use it&nbsp;</p>\n\n\n\n<p>Once Angular instantiates the class, It kick-start the first change detection cycle of the component.</p>\n\n\n\n<h2>ngOnChanges</h2>\n\n\n\n<p>The Angular invokes&nbsp;ngOnChanges&nbsp;life cycle hook whenever any data-bound input property of the component or directive changes. Initializing the Input properties is the first task that angular carries during the change detection cycle. And if it detects any change in property, then it raises the&nbsp;ngOnChanges&nbsp;hook. It does so during every change detection cycle. This hook is not raised if change detection does not detect any changes.</p>\n\n\n\n<p>Input&nbsp;properties are those properties, which we define using the&nbsp;@Input decorator. It is one of the ways by which a parent communicates with the child component.</p>\n\n\n\n<p>In the following example, the child component declares the property&nbsp;<code>message</code>&nbsp;as the&nbsp;input property</p>\n\n\n\n<figure class=\"wp-block-table\"><table><tbody><tr><td>123</td><td>&nbsp;@Input() message:<strong>string</strong>&nbsp;</td></tr></tbody></table></figure>\n\n\n\n<p>The parent can send the data to the child using the&nbsp;property binding&nbsp;as shown below.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> &lt;app-child &#91;message]=\"message\">&lt;/app-child>  </code></pre>\n\n\n\n<p>The change detector checks if such input properties of a component are changed by the parent component. If it is then it raises the&nbsp;ngOnChanges&nbsp;hook.</p>\n\n\n\n<p>We used this life cycle hook in the tutorial&nbsp;Passing data to child component.</p>\n\n\n\n<p>The change detector uses the ===&nbsp;strict equality operator&nbsp;for detecting changes. Hence for objects, the hook is fired only if the references are changed. You can read more about it from&nbsp;Why ngOnChanges does not fire.</p>\n\n\n\n<h2>ngOnInit</h2>\n\n\n\n<p>The Angular raises the&nbsp;ngOnInit&nbsp;hook, after it creates the component and updates its input properties. It raises it after the&nbsp;ngOnChanges&nbsp;hook.</p>\n\n\n\n<p>This hook is fired&nbsp;<strong>only once</strong>&nbsp;and immediately after its creation (during the first change detection).</p>\n\n\n\n<p>This is a perfect place where you want to add any initialisation logic for your component.&nbsp; Here you have access to every input property of the component. You can use them in&nbsp; http get requests to get the data from the back end server or run some initialization logic etc.</p>\n\n\n\n<p>But note that none of child components or projected content are available at this point. Hence any properties we decorate with&nbsp;@ViewChild,&nbsp;@ViewChildren&nbsp;,&nbsp;@ContentChild&nbsp;&amp;&nbsp;@ContentChildren&nbsp;will not be available to use.</p>\n\n\n\n<h2>ngDoCheck</h2>\n\n\n\n<p>The Angular invokes the&nbsp;ngDoCheck&nbsp;hook event during every change detection cycle. This hook is invoked even if there is no change in any of the properties.</p>\n\n\n\n<p>Angular invokes it after the&nbsp;ngOnChanges&nbsp;&amp;&nbsp;ngOnInit&nbsp;hooks.</p>\n\n\n\n<p>Use this hook to Implement a custom change detection, whenever Angular fails to detect the changes made to Input properties. This hook is particularly useful when you opt for the&nbsp;<code>Onpush</code>&nbsp;change detection strategy.</p>\n\n\n\n<p>The Angular&nbsp;ngOnChanges&nbsp;hook&nbsp;does not detect all the changes made to the input properties.</p>\n\n\n\n<h2>ngAfterContentInit</h2>\n\n\n\n<p>ngAfterContentInit Life cycle hook is called after the Component’s&nbsp;projected content&nbsp;has been fully initialized. Angular also updates the properties decorated with the&nbsp;ContentChild and ContentChildren&nbsp;before raising this hook. This hook is also raised, even if there is no content to project.</p>\n\n\n\n<p>The content here refers to the external content injected from the parent component via Content Projection. </p>\n\n\n\n<p>The Angular Components can include the ng-content element, which acts as a placeholder for the content from the parent as shown below</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;h2>Child Component&lt;/h2>\r\n&lt;ng-content>&lt;/ng-content>   &lt;!-- placehodler for content from parent -->\r\n </code></pre>\n\n\n\n<p>Parent injects the content between the opening &amp; closing element.&nbsp; Angular passes this content to the child component</p>\n\n\n\n<pre class=\"wp-block-code\"><code> &lt;h1>Parent Component&lt;/h1>&lt;app-child> This &lt;b>content&lt;/b> is injected from parent&lt;/app-child>  </code></pre>\n\n\n\n<p>During the change detection cycle, Angular checks if the injected content has changed and updates the DOM.</p>\n\n\n\n<p>This is a component only hook.</p>\n\n\n\n<h2>ngAfterContentChecked</h2>\n\n\n\n<p>ngAfterContentChecked Life cycle hook is called during every change detection cycle after Angular finishes checking of component’s projected content. Angular also updates the properties decorated with the&nbsp;ContentChild and ContentChildren&nbsp;before raising this hook. Angular calls this hook even if there is no projected content in the component</p>\n\n\n\n<p>This hook is very similar to the ngAfterContentInit hook. Both are called after the external content is initialized, checked &amp; updated. Only difference is that ngAfterContentChecked is raised after every change detection cycle. While ngAfterContentInit during the first change detection cycle.</p>\n\n\n\n<p>This is a component only hook.</p>\n\n\n\n<h2>ngAfterViewInit</h2>\n\n\n\n<p>ngAfterViewInit hook is called after the Component’s View &amp; all its child views are fully initialized. Angular also updates the properties decorated with the&nbsp;ViewChild&nbsp;&amp;&nbsp;ViewChildren&nbsp;properties before raising this hook.&nbsp;</p>\n\n\n\n<p>The View here refers to the template of the current component and all its child components &amp; directives.&nbsp;</p>\n\n\n\n<p>This hook is called during the first change detection cycle, where angular initializes the view for the first time</p>\n\n\n\n<p>At this point all the lifecycle hook methods &amp; change detection&nbsp; of all child components &amp; directives are processed &amp; Component is completely ready&nbsp;&nbsp;</p>\n\n\n\n<p>This is a component only hook.</p>\n\n\n\n<h2>ngAfterViewChecked</h2>\n\n\n\n<p>The Angular fires this hook after it checks &amp; updates the component’s views and child views. This event is fired after the ngAfterViewInit and after that during every change detection cycle</p>\n\n\n\n<p>This hook is very similar to the ngAfterViewInit hook. Both are called after all the child components &amp; directives are initialized and updated. Only difference is that ngAfterViewChecked is raised during every change detection cycle. While ngAfterViewInit during the first change detection cycle.</p>\n\n\n\n<p>This is a component only hook.</p>\n\n\n\n<h2>ngOnDestroy</h2>\n\n\n\n<p>This hook is called just before the Component/Directive instance is&nbsp;destroyed by Angular</p>\n\n\n\n<p>You can Perform any cleanup logic for the Component here. This is the correct place where you would like to Unsubscribe Observables and detach event handlers to avoid memory leaks.</p>\n\n\n\n<h2>How to Use Lifecycle Hooks</h2>\n\n\n\n<ol><li>Import Hook interfaces</li><li>Declare that Component/directive Implements lifecycle hook interface</li><li>Create the hook method</li></ol>\n\n\n\n<p>Let us build a simple component, which implements the&nbsp;<strong>ngOnInit hook</strong></p>\n\n\n\n<p>Create a&nbsp;Angular Project using Angular Cli.&nbsp;Open the app.component.ts</p>\n\n\n\n<h3>Import Hook interfaces</h3>\n\n\n\n<p>Import hook interfaces from the core module. The name of the Interface is hook name without ng. For example interface of ngOnInit hook is OnInit</p>\n\n\n\n<pre class=\"wp-block-code\"><code> import { Component,OnInit } from '@angular/core' </code></pre>\n\n\n\n<h3>Component Implements lifecycle hook interface</h3>\n\n\n\n<p>Next, define the AppComponent to implement OnInit interface</p>\n\n\n\n<pre class=\"wp-block-code\"><code> export class AppComponent implements OnInit { </code></pre>\n\n\n\n<h3>Create the hook method</h3>\n\n\n\n<p>The life cycle hook methods must use the same name as the hook.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> ngOnInit() {    console.log(\"AppComponent:OnInit\");  } </code></pre>\n\n\n\n<p>The complete code for the app.component.ts.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>import { Component,OnInit } from '@angular/core';\r\n \r\n@Component({\r\n  selector: 'app-root',\r\n  template: `\r\n      &lt;h2>Life Cycle Hook&lt;/h2>` ,\r\n  styleUrls: &#91;'./app.component.css']\r\n})\r\nexport class AppComponent implements OnInit {\r\n  \r\n  constructor() {\r\n    console.log(\"AppComponent:Constructor\");\r\n  }\r\n \r\n  ngOnInit() {\r\n    console.log(\"AppComponent:OnInit\");\r\n  }\r\n \r\n}</code></pre>\n\n\n\n<p>Now, run the code and open the developer console. you will see the following</p>\n\n\n\n<pre class=\"wp-block-code\"><code>AppComponent:ConstructorAppComponent:OnInit </code></pre>\n\n\n\n<p>Note that the constructor event is fired before the OnInit hook.</p>\n\n\n\n<h2>The Order of Execution of Life Cycle Hooks</h2>\n\n\n\n<p>The Angular executes the hooks in the following order</p>\n\n\n\n<p>On Component Creation</p>\n\n\n\n<ol><li>OnChanges</li><li>OnInit</li><li>DoCheck</li><li>AfterContentInit</li><li>AfterContentChecked</li><li>AfterViewInit</li><li>AfterViewChecked</li></ol>\n\n\n\n<p>When the Component with Child Component is created</p>\n\n\n\n<ol><li>OnChanges</li><li>OnInit</li><li>DoCheck</li><li>AfterContentInit</li><li>AfterContentChecked<ol><li>Child Component -&gt; OnChanges</li><li>Child Component -&gt; OnInit</li><li>Child Component -&gt; DoCheck</li><li>Child Component -&gt; AfterContentInit</li><li>Child Component -&gt; AfterContentChecked</li><li>Child Component -&gt; AfterViewInit</li><li>Child Component -&gt; AfterViewChecked</li></ol></li><li>AfterViewInit</li><li>AfterViewChecked</li></ol>\n\n\n\n<p>After The Component is Created</p>\n\n\n\n<ol><li>OnChanges</li><li>DoCheck</li><li>AfterContentChecked</li><li>AfterViewChecked</li></ol>\n\n\n\n<p>The OnChanges hook is fired only if there is an input property defined in the component and it changes. Otherwise, it will never fire</p>\n\n\n\n<h2>Angular Lifecycle hook Example</h2>\n\n\n\n<p>Source Code</p>\n\n\n\n<p><strong><code>app.component.ts</code></strong></p>\n\n\n\n<pre class=\"wp-block-code\"><code>\r\nimport { ChangeDetectionStrategy, Component, VERSION } from \"@angular/core\";\r\n \r\n@Component({\r\n  selector: \"my-app\",\r\n  changeDetection:ChangeDetectionStrategy.Default,\r\n  template: `\r\n    &lt;h1>Angular Life Cycle Hooks&lt;/h1>\r\n    Reference :\r\n    &lt;a\r\n      href=\"https://www.tektutorialshub.com/angular/angular-component-life-cycle-hooks/#create-the-hook-method\"\r\n      >Angular Life Cycle Hooks&lt;/a\r\n    >\r\n \r\n    &lt;h1>Root Component&lt;/h1>\r\n \r\n \r\n    &lt;br />\r\n    &lt;input\r\n      type=\"text\"\r\n      name=\"message\"\r\n      &#91;(ngModel)]=\"message\"\r\n      autocomplete=\"off\"\r\n    />\r\n    &lt;br />\r\n    &lt;input\r\n      type=\"text\"\r\n      name=\"content\"\r\n      &#91;(ngModel)]=\"content\"\r\n      autocomplete=\"off\"\r\n    />\r\n \r\n \r\n    &lt;br />\r\n    hide child :\r\n    &lt;input\r\n      type=\"checkbox\"\r\n      name=\"hideChild\"\r\n      &#91;(ngModel)]=\"hideChild\"\r\n      autocomplete=\"off\"\r\n    />\r\n \r\n    &lt;br />\r\n    &lt;br />\r\n    &lt;app-child &#91;message]=\"message\" *ngIf=\"!hideChild\">\r\n      &lt;!-- Injected Content -->\r\n      &lt;b> {{ content }} &lt;/b>\r\n    &lt;/app-child>\r\n \r\n    \r\n  `\r\n})\r\nexport class AppComponent {\r\n  name = \"Angular \" + VERSION.major;\r\n \r\n  message = \"Hello\";\r\n  content = \"Hello\";\r\n  hideChild=false;\r\n \r\n  constructor() {\r\n    console.log(\"AppComponent:Contructed\");\r\n  }\r\n \r\n  ngOnChanges() {\r\n    console.log(\"AppComponent:ngOnChanges\");\r\n  }\r\n \r\n  ngOnInit() {\r\n    console.log(\"AppComponent:ngOnInit\");\r\n  }\r\n \r\n  ngDoCheck() {\r\n    console.log(\"AppComponent:DoCheck\");\r\n  }\r\n \r\n  ngAfterContentInit() {\r\n    console.log(\"AppComponent:ngAfterContentInit\");\r\n  }\r\n \r\n  ngAfterContentChecked() {\r\n    console.log(\"AppComponent:AfterContentChecked\");\r\n  }\r\n \r\n  ngAfterViewInit() {\r\n    console.log(\"AppComponent:AfterViewInit\");\r\n  }\r\n \r\n  ngAfterViewChecked() {\r\n    console.log(\"AppComponent:AfterViewChecked\");\r\n  }\r\n \r\n  ngOnDestroy() {\r\n    console.log(\"AppComponent:ngOnDestroy\");\r\n  }\r\n \r\n}\r\n     </code></pre>\n\n\n\n<ul><li>We are listening to all the hooks and logging them to the console.</li><li>There are two form fields&nbsp;<code>message</code>&nbsp;&amp;&nbsp;<code>content</code>. We pass both to the child component. One as input property &amp; the other via content projection</li><li>Using the&nbsp;<code>hideChild</code>&nbsp;form field we an add or remove the&nbsp;<code>ChildComponent</code>&nbsp;from the DOM. We are making use of the&nbsp;ngIf&nbsp;directive.</li><li>We pass the message property to&nbsp;<code>ChildComponent</code>&nbsp;using Property binding.</li><li>The&nbsp;<code>content</code>&nbsp;property is passed as projected content.</li></ul>\n\n\n\n<p><strong><code>child.component.ts</code></strong></p>\n\n\n\n<pre class=\"wp-block-code\"><code> \r\nimport { ChangeDetectionStrategy, Component, Input,  OnInit } from '@angular/core';\r\nimport { Customer } from './customer';\r\n \r\n@Component({\r\n  selector: 'app-child',\r\n  changeDetection:ChangeDetectionStrategy.Default,\r\n  template: `\r\n  \r\n      &lt;h2>child component&lt;/h2>\r\n \r\n      &lt;br>\r\n      &lt;!-- Data as a input -->\r\n      Message from Parent via @input {{message}}\r\n      &lt;br>&lt;br>\r\n      &lt;!-- Injected Content -->\r\n      Message from Parent via content injection\r\n      &lt;ng-content>&lt;/ng-content>\r\n \r\n      &lt;br>&lt;br>&lt;br>\r\n      Code :\r\n      &lt;input type=\"text\" name=\"code\" &#91;(ngModel)]=\"customer.code\" autocomplete=\"off\">\r\n      &lt;br>&lt;br>\r\n      Name:\r\n      &lt;input type=\"text\" name=\"name\" &#91;(ngModel)]=\"customer.name\" autocomplete=\"off\">\r\n \r\n      &lt;app-grand-child &#91;customer]=\"customer\">&lt;/app-grand-child>\r\n  \r\n  `\r\n  \r\n})\r\nexport class ChildComponent {\r\n \r\n  @Input() message:string\r\n \r\n  customer:Customer = new Customer()\r\n \r\n \r\nconstructor() {\r\n    console.log(\"  ChildComponent:Contructed\");\r\n  }\r\n \r\n  ngOnChanges() {\r\n    console.log(\"  ChildComponent:ngOnChanges\");\r\n  }\r\n \r\n  ngOnInit() {\r\n    console.log(\"  ChildComponent:ngOnInit\");\r\n  }\r\n \r\n  ngDoCheck() {\r\n    console.log(\"  ChildComponent:DoCheck\");\r\n  }\r\n \r\n  ngAfterContentInit() {\r\n    console.log(\"  ChildComponent:ngAfterContentInit\");\r\n  }\r\n \r\n  ngAfterContentChecked() {\r\n    console.log(\"  ChildComponent:AfterContentChecked\");\r\n  }\r\n \r\n  ngAfterViewInit() {\r\n    console.log(\"  ChildComponent:AfterViewInit\");\r\n  }\r\n \r\n  ngAfterViewChecked() {\r\n    console.log(\"  ChildComponent:AfterViewChecked\");\r\n  }\r\n \r\n  ngOnDestroy() {\r\n    console.log(\"  ChildComponent:ngOnDestroy\");\r\n  }\r\n \r\n}</code></pre>\n\n\n\n<ul><li>We are listening to all the hooks</li><li>@Input&nbsp;decorator marks the&nbsp;<code>message</code>&nbsp;as input property. It will receive the data from the parent</li><li><code>&lt;ng-content&gt;&lt;/ng-content&gt;</code>&nbsp;is the place holder to receive the projected content from the parent.</li><li>Two forms fields for&nbsp;<code>customer</code>&nbsp;object, which we pass it to the&nbsp;<code>GrandChildComponent</code></li></ul>\n\n\n\n<p><code><strong>grandchild.component.ts</strong></code></p>\n\n\n\n<pre class=\"wp-block-code\"><code>import { ChangeDetectionStrategy, Component, Input,  OnInit } from '@angular/core';\r\nimport { Customer } from './customer';\r\n \r\n@Component({\r\n  selector: 'app-grand-child',\r\n  changeDetection:ChangeDetectionStrategy.Default,\r\n  template: `\r\n  \r\n      &lt;h3>grand child component &lt;/h3>\r\n \r\n      &lt;br>\r\n      Name {{customer.name}}\r\n  \r\n  `,\r\n})\r\nexport class GrandChildComponent {\r\n \r\n \r\n  @Input() customer:Customer\r\n  \r\n  constructor() {\r\n    console.log(\"    GrandChildComponent:Contructed\");\r\n  }\r\n \r\n  ngOnChanges() {\r\n    console.log(\"    GrandChildComponent:ngOnChanges\");\r\n  }\r\n \r\n  ngOnInit() {\r\n    console.log(\"    GrandChildComponent:ngOnInit\");\r\n  }\r\n \r\n \r\n  ngDoCheck() {\r\n    console.log(\"    GrandChildComponent:DoCheck\");\r\n  }\r\n \r\n  ngAfterContentInit() {\r\n    console.log(\"    GrandChildComponent:ngAfterContentInit\");\r\n  }\r\n \r\n  ngAfterContentChecked() {\r\n    console.log(\"    GrandChildComponent:AfterContentChecked\");\r\n  }\r\n \r\n  ngAfterViewInit() {\r\n    console.log(\"    GrandChildComponent:AfterViewInit\");\r\n  }\r\n \r\n  ngAfterViewChecked() {\r\n    console.log(\"    GrandChildComponent:AfterViewChecked\");\r\n  }\r\n \r\n  ngOnDestroy() {\r\n    console.log(\"    GrandChildComponent:ngOnDestroy\");\r\n  }\r\n \r\n \r\n \r\n}\r\n </code></pre>\n\n\n\n<ul id=\"block-dde5f2d2-2440-42d2-bec8-d3db8509eec4\"><li>We are listening to all the hooks</li><li>@Input&nbsp;decorator marks the&nbsp;<code>customer</code>&nbsp;as input property. It will receive the data from the parent</li></ul>\n\n\n\n<p>Run the code and check the console for the log messages</p>\n\n\n\n<h2>Conclusion</h2>\n\n\n\n<p>We learned about Component life cycle hooks in Angular. &nbsp;The Angular generates following hooks OnChanges, OnInit, DoCheck, AfterContentInit, AfterContentChecked, AfterViewInit, AfterViewChecked &amp; OnDestroy. We then learned how to build an Application using OnInit life cycle hook. Finally, we looked at the Order of execution of these life cycle hooks</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>What is Angular Component lifecycle hooks When the angular application starts it creates and renders the root component. It then creates and renders its Childrens &amp; their children. It forms a&nbsp;tree of components. Once Angular loads the components, it starts the process of rendering the view.&nbsp; To do that it needs to check the input [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [129],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3578"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=3578"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 2,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3578/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3801,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3578/revisions/3801"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=3578"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=3578"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=3578"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 3580,
+    "date": "2020-12-04T10:48:13",
+    "date_gmt": "2020-12-04T10:48:13",
+    "guid": {
+      "rendered": "http://angular.foobrdigital.com/?p=3580"
+    },
+    "modified": "2020-12-08T12:06:15",
+    "modified_gmt": "2020-12-08T12:06:15",
+    "slug": "angular-ngoninit-and-ngondestroy-life-cycle-hook",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/angular-ngoninit-and-ngondestroy-life-cycle-hook/",
+    "title": {
+      "rendered": "Angular ngOnInit And ngOnDestroy Life Cycle hook"
+    },
+    "content": {
+      "rendered": "\n<h2>ngOnInit</h2>\n\n\n\n<p>The ngOnInit or OnInit hook is called when the component is created for the first time. This hook is called after the constructor and first ngOnChanges hook&nbsp;is fired.</p>\n\n\n\n<p>This is a perfect place where you want to add any initialization logic for your component.</p>\n\n\n\n<p>Note that ngOnChanges hook is fired before ngOnInit. Which means all the input properties are available to use when the ngOnInit is hook is called</p>\n\n\n\n<p>This hook is fired only once</p>\n\n\n\n<p>This hook is fired before any of the child directive properties are initialized.</p>\n\n\n\n<h2>ngOnDestroy</h2>\n\n\n\n<p>The ngOnDestroy or OnDestroy hook is called just before the Component/Directive instance is destroyed by Angular</p>\n\n\n\n<p>Use this hook to Perform any cleanup logic for the Component. This is the correct place where you would like to Unsubscribe Observables and detach event handlers to avoid memory leaks.</p>\n\n\n\n<h2>Example of ngOnInit</h2>\n\n\n\n<p>Let us build a Component that illustrates the use on OnInit and OnDestroy hook</p>\n\n\n\n<p>Let us build a Child component, which is conditionally displayed or destroyed based on flag from the Parent Component</p>\n\n\n\n<h3>Child Component</h3>\n\n\n\n<p>Create the child.component.ts</p>\n\n\n\n<p>First Import the OnDestroy and OnInit from the angular/core library</p>\n\n\n\n<pre class=\"wp-block-code\"><code> import { Component, OnDestroy, OnInit } from '@angular/core'; </code></pre>\n\n\n\n<p>The Component template just displays the title “Child Component”</p>\n\n\n\n<pre class=\"wp-block-code\"><code> @Component({\r\n  selector: 'child-component',\r\n  template: `\r\n      &lt;h2>Child Component&lt;/h2>\r\n      ` ,\r\n  styleUrls: &#91;'./app.component.css']\r\n})</code></pre>\n\n\n\n<p>Declare child Component implements OnInint and OnDestroy Hooks</p>\n\n\n\n<pre class=\"wp-block-code\"><code>export class ChildComponent implements OnInit, OnDestroy { </code></pre>\n\n\n\n<p>Add the constructor and add to log when the constructor is called</p>\n\n\n\n<pre class=\"wp-block-code\"><code> constructor() {    console.log('ChildComponent:Constructor');  } </code></pre>\n\n\n\n<p>Finally. Create the hook method. The method writes to the console log</p>\n\n\n\n<pre class=\"wp-block-code\"><code>   ngOnInit() {    console.log('ChildComponent:OnInit');  }   ngOnDestroy() {    console.log('ChildComponent:OnDestroy');  } </code></pre>\n\n\n\n<p>The complete code for child component</p>\n\n\n\n<pre class=\"wp-block-code\"><code> import { Component, OnDestroy, OnInit } from '@angular/core';\r\n \r\n@Component({\r\n  selector: 'child-component',\r\n  template: `\r\n      &lt;h2>Child Component&lt;/h2>\r\n      ` ,\r\n  styleUrls: &#91;'./app.component.css']\r\n})\r\nexport class ChildComponent implements OnInit, OnDestroy {\r\n \r\n  constructor() {\r\n    console.log('ChildComponent:Constructor');\r\n  }\r\n \r\n  ngOnInit() {\r\n    console.log('ChildComponent:OnInit');\r\n  }\r\n \r\n  ngOnDestroy() {\r\n    console.log('ChildComponent:OnDestroy');\r\n  }\r\n \r\n}</code></pre>\n\n\n\n<h3>Parent Component</h3>\n\n\n\n<p>Here’s how our App Component looks like</p>\n\n\n\n<pre class=\"wp-block-code\"><code>import { Component, OnInit, OnDestroy } from '@angular/core';\r\n \r\n@Component({\r\n  selector: 'app-root',\r\n  template: `\r\n      &lt;h2>Life Cycle Hook&lt;/h2>\r\n      &lt;button (click)=\"toggle()\">Hide/Show Child &lt;/button>\r\n      &lt;child-component *ngIf=\"displayChild\">&lt;/child-component>\r\n      ` ,\r\n  styleUrls: &#91;'./app.component.css']\r\n})\r\nexport class AppComponent implements OnInit, OnDestroy {\r\n \r\n  displayChild = true;\r\n \r\n  constructor() {\r\n    console.log('AppComponent:Constructor');\r\n  }\r\n \r\n  toggle() {\r\n    this.displayChild = !this.displayChild;\r\n  }\r\n \r\n  ngOnInit() {\r\n    console.log('AppComponent:OnInit');\r\n  }\r\n \r\n \r\n  ngOnDestroy() {\r\n    console.log('AppComponent:OnDestroy');\r\n  }\r\n}</code></pre>\n\n\n\n<p>Note that the parent template</p>\n\n\n\n<pre class=\"wp-block-code\"><code>template: `\r\n      &lt;h2>Life Cycle Hook&lt;/h2>\r\n      &lt;button (click)=\"toggle()\">Hide/Show Child &lt;/button>\r\n      &lt;child-component *ngIf=\"displayChild\">&lt;/child-component>\r\n      ` , ` , </code></pre>\n\n\n\n<p>We have used *ngIf directive, which hides/shows the child component based on the&nbsp;<em>displaychild</em>&nbsp;value. The toggle function toggle the status of the&nbsp;<em>displaychild</em>.</p>\n\n\n\n<p>We have added OnInit and OnDestroy hook to parent component also.</p>\n\n\n\n<p>Run the Code</p>\n\n\n\n<p>When you run the code for the first time you will see the following in the console window</p>\n\n\n\n<pre class=\"wp-block-code\"><code>AppComponent: ConstructorAppComponent: OnInitChildComponent:ConstructorChildComponent:OnInit </code></pre>\n\n\n\n<p>Click on the toggle button. The Child Component is destroyed and you will see the following logs</p>\n\n\n\n<pre class=\"wp-block-code\"><code>ChildComponent:OnDestroy </code></pre>\n\n\n\n<p>Click on the toggle button again. The Child Component is created again and you will see that the constructor of the child component is called again and then the OnInit is invoked</p>\n\n\n\n<pre class=\"wp-block-code\"><code>ChildComponent:ConstructorChildComponent:OnInit </code></pre>\n\n\n\n<p>The above code demonstrates how the OnInit &amp; OnDestroy works</p>\n\n\n\n<h2>Difference Between Constructor and ngOnInit</h2>\n\n\n\n<p>The Constructor is executed when the class is instantiated. It has nothing do with the angular. It is the feature of Javascript and Angular does not have the control over it</p>\n\n\n\n<p>The ngOnInit is Angular specific and is called when the Angular has initialized the component with all its input properties</p>\n\n\n\n<p>The @Input properties are available under the ngOnInit lifecycle hook. This will help you to do some initialization stuff like getting data from the back-end server etc to display in the view</p>\n\n\n\n<p>@Input properties are shows up as undefined inside the constructor</p>\n\n\n\n<h2>Conclusion</h2>\n\n\n\n<p>OnInit Hook is useful for Initialising the Component like getting data from back-end server, while OnDestroy hook must be used to perform clean-up operation in the Component.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>ngOnInit The ngOnInit or OnInit hook is called when the component is created for the first time. This hook is called after the constructor and first ngOnChanges hook&nbsp;is fired. This is a perfect place where you want to add any initialization logic for your component. Note that ngOnChanges hook is fired before ngOnInit. Which means [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [129],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3580"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=3580"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 2,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3580/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3802,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3580/revisions/3802"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=3580"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=3580"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=3580"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 3582,
+    "date": "2020-12-04T11:14:10",
+    "date_gmt": "2020-12-04T11:14:10",
+    "guid": {
+      "rendered": "http://angular.foobrdigital.com/?p=3582"
+    },
+    "modified": "2020-12-08T12:09:04",
+    "modified_gmt": "2020-12-08T12:09:04",
+    "slug": "angular-ngonchanges-life-cycle-hook",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/angular-ngonchanges-life-cycle-hook/",
+    "title": {
+      "rendered": "Angular ngOnChanges life Cycle Hook"
+    },
+    "content": {
+      "rendered": "\n<h2>What is nOnChanges Life cycle hook</h2>\n\n\n\n<p>The ngOnChnages is a&nbsp;life cycle hook, which angular fires when it detects changes to&nbsp;data-bound input property. This method receives a&nbsp;<code>SimpeChanges</code>&nbsp;object, which contains the current and previous property values.</p>\n\n\n\n<p>There are several ways the parent component can communicate with the child component. One of the ways is to use the&nbsp;@Input decorator. We looked at this in our tutorial&nbsp;passing data to Child Components</p>\n\n\n\n<p>Let us just recap what we have done in that tutorial</p>\n\n\n\n<p>The child Component decorates the property using the&nbsp;@Input&nbsp;decorator.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>@Input() message: string; </code></pre>\n\n\n\n<p>And then parent passes the data to the child component using&nbsp;property binding&nbsp;as shown below</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;child-component &#91;message]=message>&lt;/child-component>`</code></pre>\n\n\n\n<p>Whenever the parent changes the value of the message property, &nbsp;the Angular raises the&nbsp;<code>OnChanges</code>&nbsp;hook event in the child component, so that it can act upon it.</p>\n\n\n\n<h3>How does it work</h3>\n\n\n\n<p>The&nbsp;<code>ngOnChanges()</code>&nbsp;method takes an object that maps each changed property name to a&nbsp;<code>SimpleChange</code>&nbsp;object, which holds the current and previous property values. You can iterate over the changed properties and act upon it.</p>\n\n\n\n<h3>SimpleChange</h3>\n\n\n\n<p><code>SimpleChange</code>&nbsp;is a simple class, which has three properties</p>\n\n\n\n<figure id=\"tablepress-12\" class=\"wp-block-table\"><table><thead><tr><th>Property Name</th><th>Description</th></tr></thead><tbody><tr><td>previousValue:any</td><td>Previous value of the input property.</td></tr><tr><td>currentValue:any</td><td>New or current value of the input property.</td></tr><tr><td>FirstChange():boolean</td><td>Boolean value, which tells us whether it was the first time the change has taken place</td></tr></tbody></table></figure>\n\n\n\n<h3>SimpleChanges</h3>\n\n\n\n<p>Every&nbsp;@Input&nbsp;property of our component gets a&nbsp;<code>SimpleChange</code>&nbsp;object (if Property is changed)</p>\n\n\n\n<p><code>SimpleChanges</code>&nbsp;is the object that contains the instance of all those&nbsp;<code>SimpleChange</code>&nbsp;objects. You can access those&nbsp;<code>SimpleChange</code>&nbsp;objects using the name of the&nbsp;@Input&nbsp;property as the key</p>\n\n\n\n<p>For Example, if the two&nbsp;Input properties&nbsp;<code>message1</code>&nbsp;&amp;&nbsp;<code>message2</code>&nbsp;are changed, then the&nbsp;<code>SimpleChanges</code>&nbsp;object looks like</p>\n\n\n\n<pre class=\"wp-block-code\"><code> {\r\n  \"message1\": { \"previousValue\":\"oldvalue\",\r\n                \"currentValue\":\"newvalue\",\r\n                \"firstChange\":false }\r\n  },\r\n  \"message2\": { \"previousValue\":\"oldvalue\",\r\n                \"currentValue\":\"newvalue\",\r\n                \"firstChange\":false }\r\n  }\r\n}</code></pre>\n\n\n\n<p>And if the input property is an object (customer object with name &amp; code property) then the&nbsp;<code>SimpleChanges</code>&nbsp;would be</p>\n\n\n\n<pre class=\"wp-block-code\"><code>\r\n{\r\n \"Customer\":\r\n    {\"previousValue\":{\"name\":\"Angular\",\"code\":\"1\"},\r\n     \"currentValue\":{\"name\":\"Angular2\",\"code\":\"1\"},\r\n     \"firstChange\":false}\r\n}\r\n  </code></pre>\n\n\n\n<h2>ngOnChanges example</h2>\n\n\n\n<p>Create a class&nbsp;<code>customer.ts</code>&nbsp;under src/app folder.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> export class Customer {  code: number;  name: string;} </code></pre>\n\n\n\n<h3>Parent Component</h3>\n\n\n\n<pre class=\"wp-block-code\"><code> \r\nimport { Component} from '@angular/core';\r\nimport { Customer } from './customer';\r\n \r\n@Component({\r\n  selector: 'app-root',\r\n  template: `\r\n        &lt;h1>{{title}}!&lt;/h1>\r\n        &lt;p> Message : &lt;input type='text' &#91;(ngModel)]='message'> &lt;/p>\r\n        &lt;p> Code : &lt;input type='text' &#91;(ngModel)]='code'>&lt;/p>\r\n        &lt;p> Name : &lt;input type='text' &#91;(ngModel)]='name'>&lt;/p>\r\n        &lt;p>&lt;button (click)=\"updateCustomer()\">Update &lt;/button>\r\n        &lt;child-component &#91;message]=message &#91;customer]=customer>&lt;/child-component>\r\n        ` ,\r\n \r\n        styleUrls: &#91;'./app.component.css']\r\n})\r\nexport class AppComponent {\r\n  title = 'ngOnChanges';\r\n  message = '';\r\n  customer: Customer = new Customer();\r\n  name= '';\r\n  code= 0;\r\n \r\n  updateCustomer() {\r\n    this.customer.name = this.name;\r\n    this.customer.code = this.code;\r\n  }\r\n \r\n}</code></pre>\n\n\n\n<p>Lets us look at the code</p>\n\n\n\n<p>We have 3 user input fields for the&nbsp;<code>message</code>,&nbsp;<code>code</code>&nbsp;and&nbsp;<code>name</code>. The&nbsp;<code>UpdateCustomer</code>&nbsp;button updates the Customer object.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> &lt;p> Message : &lt;input type='text' &#91;(ngModel)]='message'> &lt;/p>\r\n&lt;p> Code : &lt;input type='text' &#91;(ngModel)]='code'>&lt;/p>\r\n&lt;p> Name : &lt;input type='text' &#91;(ngModel)]='name'>&lt;/p>\r\n&lt;p>&lt;button (click)=\"updateCustomer()\">Update &lt;/button></code></pre>\n\n\n\n<p>The&nbsp;<code>message</code>&nbsp;and&nbsp;<code>Customer</code>&nbsp;is bound to the child component using the&nbsp;property binding</p>\n\n\n\n<pre class=\"wp-block-code\"><code> &lt;child-component &#91;message]=message &#91;customer]=customer>&lt;/child-component> </code></pre>\n\n\n\n<p>The&nbsp;<code>AppComponent</code>&nbsp;class has a&nbsp;<code>message</code>&nbsp;&amp;&nbsp;<code>customer</code>&nbsp;property. We update&nbsp;<code>customer</code>&nbsp;object with new&nbsp;<code>code</code>&nbsp;&amp;&nbsp;<code>name</code>&nbsp;when user clicks the&nbsp;<code>updateCustomer</code>&nbsp;button.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>export class AppComponent {\r\n  title = 'ngOnChanges';\r\n  message = '';\r\n  customer: Customer = new Customer();\r\n  name= '';\r\n  code= 0;\r\n \r\n  updateCustomer() {\r\n    this.customer.name = this.name;\r\n    this.customer.code = this.code;\r\n  }\r\n}\r\n </code></pre>\n\n\n\n<h3>Child Component</h3>\n\n\n\n<pre class=\"wp-block-code\"><code> import { Component, Input, OnInit, OnChanges, SimpleChanges, SimpleChange,ChangeDetectionStrategy  } from '@angular/core';\r\nimport { Customer } from './customer';\r\n \r\n@Component({\r\n    selector: 'child-component',\r\n    template: `&lt;h2>Child  Component&lt;/h2>\r\n               &lt;p>Message {{ message }} &lt;/p>\r\n               &lt;p>Customer Name {{ customer.name }} &lt;/p>\r\n               &lt;ul>&lt;li *ngFor=\"let log of changelog;\"> {{ log }}&lt;/li>&lt;/ul> `\r\n})\r\nexport class ChildComponent implements OnChanges, OnInit {\r\n    @Input() message: string;\r\n    @Input() customer: Customer;\r\n    changelog: string&#91;] = &#91;];\r\n \r\n    ngOnInit() {\r\n        console.log('OnInit');\r\n    }\r\n \r\n    ngOnChanges(changes: SimpleChanges) {\r\n        console.log('OnChanges');\r\n        console.log(JSON.stringify(changes));\r\n \r\n        // tslint:disable-next-line:forin\r\n        for (const propName in changes) {\r\n             const change = changes&#91;propName];\r\n             const to  = JSON.stringify(change.currentValue);\r\n             const from = JSON.stringify(change.previousValue);\r\n             const changeLog = `${propName}: changed from ${from} to ${to} `;\r\n             this.changelog.push(changeLog);\r\n        }\r\n    }\r\n}\r\n </code></pre>\n\n\n\n<p>Let us look at each line of code in detail</p>\n\n\n\n<p>First, We import the&nbsp;<code>Input</code>,&nbsp;<code>OnInit</code>,&nbsp;<code>OnChanges</code>,&nbsp;<code>SimpleChanges</code>,&nbsp;<code>SimpleChange</code>&nbsp;from Angular Core</p>\n\n\n\n<pre class=\"wp-block-code\"><code> import { Component, Input, OnInit, OnChanges, SimpleChanges, SimpleChange } from '@angular/core'; </code></pre>\n\n\n\n<p>The Template displays the&nbsp;<code>message</code>&nbsp;&amp;&nbsp;<code>name</code>&nbsp;property from the&nbsp;<code>customer</code>&nbsp;object. Both these properties are updated from the parent component.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>template: `&lt;h2>Child  Component&lt;/h2>\r\n               &lt;p>Message {{ message }} &lt;/p>\r\n               &lt;p>Customer Name {{ customer.name }} &lt;/p></code></pre>\n\n\n\n<p>We also display the changelog using&nbsp;ngFor Directive.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;ul>&lt;li *ngFor=\"let log of changelog;\"> {{ log }}&lt;/li>&lt;/ul> ` </code></pre>\n\n\n\n<p>The child Component implements the <code>OnChanges</code> &amp; OnInit life cycle hooks.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> export class ChildComponent implements OnChanges, OnInit {   </code></pre>\n\n\n\n<p>We also define&nbsp;<code>message</code>&nbsp;&amp;&nbsp;<code>customer</code>&nbsp;property, which we decorate with the&nbsp;@Input decorator. The parent component updates these properties via&nbsp;Property Binding.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>@Input() message: string;   @Input() customer: Customer;   changelog: string&#91;] = &#91;]; </code></pre>\n\n\n\n<p>The&nbsp;OnInit hook</p>\n\n\n\n<p></p>\n\n\n\n<p>The&nbsp;<code>ngOnChnages</code>&nbsp;hook gets all the changes as an instance of&nbsp;<code>SimpleChanges</code>. This object contains the instance of&nbsp;<code>SimpleChange</code>&nbsp;for each property</p>\n\n\n\n<pre class=\"wp-block-code\"><code>    ngOnChanges(changes: SimpleChanges) {\r\n        console.log('OnChanges');\r\n        console.log(JSON.stringify(changes));</code></pre>\n\n\n\n<p>We, then loop through each property of the&nbsp;<code>SimpleChanges</code>&nbsp;object and get a reference to the&nbsp;<code>SimpleChange</code>&nbsp;object.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> for (const propName in changes) {             const change = changes&#91;propName]; </code></pre>\n\n\n\n<p>Next, we will take the current &amp; previous value of each property and add it to change log</p>\n\n\n\n<pre class=\"wp-block-code\"><code>           const to  = JSON.stringify(change.currentValue);\r\n             const from = JSON.stringify(change.previousValue);\r\n             const changeLog = `${propName}: changed from ${from} to ${to} `;\r\n             this.changelog.push(changeLog);\r\n        }\r\n    }\r\n}\r\n </code></pre>\n\n\n\n<p>That’s it.</p>\n\n\n\n<p>Now our&nbsp;<code>OnChanges</code>&nbsp;hook is ready to use.</p>\n\n\n\n<p>Now, run the code and type the&nbsp;<code>Hello</code>&nbsp;and you will see the following log</p>\n\n\n\n<pre class=\"wp-block-code\"><code>message: changed from undefined to \"\"\r\ncustomer: changed from undefined to {}\r\nmessage: changed from \"\" to \"H\"\r\nmessage: changed from \"H\" to \"He\"\r\nmessage: changed from \"He\" to \"Hel\"\r\nmessage: changed from \"Hel\" to \"Hell\"\r\nmessage: changed from \"Hell\" to \"Hello\"\r\n </code></pre>\n\n\n\n<p>Open the developer console and you should see the changes object</p>\n\n\n\n<p>Note that the first&nbsp;<code>OnChanges</code>&nbsp;fired before the&nbsp;OnInit hook.&nbsp;This ensures that initial values bound to inputs are available when&nbsp;<code>ngOnInit()</code>&nbsp;is called</p>\n\n\n\n<h2>OnChanges does not fire always</h2>\n\n\n\n<p>Now, change the customer&nbsp;<code>code</code>&nbsp;and&nbsp;<code>name</code>&nbsp;and click&nbsp;<code>UpdateCustomer</code>&nbsp;button.</p>\n\n\n\n<p>The Child Components displays customer&nbsp;<code>Name</code>, but&nbsp;<code>OnChanges</code>&nbsp;event does not fire.</p>\n\n\n\n<p>This behavior is by design.</p>\n\n\n\n<h3>Template is Updated</h3>\n\n\n\n<p>Updating the DOM is part of Angular’s change detection mechanism The change detector checks each and&nbsp;<em>every bound property</em>&nbsp;for changes and updates the DOM if it finds any changes.</p>\n\n\n\n<p>In the child component template, we have two bound properties.&nbsp;<code>{{ message }}</code>&nbsp;&amp;&nbsp;<code>{{ customer.name }}</code>. Hence the change detector checks only these two properties and updates the DOM. The customer object also has&nbsp;<code>code</code>&nbsp;property. The change detector will never check it.</p>\n\n\n\n<h3>Why onChanges does not fire?</h3>\n\n\n\n<p>The Change detector also raises the&nbsp;<code>OnChanges</code>&nbsp;hook. But it uses a different techniques for comparison.</p>\n\n\n\n<p>The change detector uses the&nbsp;=== strict equality operator&nbsp;for detecting changes to the&nbsp;input properties. For&nbsp;primitive data types&nbsp;like string, the above comparison works perfectly</p>\n\n\n\n<p>But in the case of an object like a customer, this fails. For Arrays/objects, the strict checking means that only the&nbsp;<em>references are checked</em>. Since the reference to the customer stays the same the Angular does not raise the OnChanges hook.</p>\n\n\n\n<p>That leaves us two possible solutions</p>\n\n\n\n<ol><li>Create a new customer and copy the old data to new customer</li><li>We can Perform our own change detection using the ngDoCheck lifecycle hook</li></ol>\n\n\n\n<p>Update the updateCustomer method and create a new instance of customer every time</p>\n\n\n\n<pre class=\"wp-block-code\"><code> updateCustomer() {\r\n    this.customer= new Customer();    //Add this\r\n    this.customer.name = this.name;\r\n    this.customer.code = this.code;\r\n  }</code></pre>\n\n\n\n<p>Now, run the code, you will see&nbsp;<code>onChanges</code>&nbsp;event fired when customer is updated</p>\n\n\n\n<p>The second method is to use the&nbsp;ngDoCheck&nbsp;lifecycle hook, which we will cover in the next tutorial</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>What is nOnChanges Life cycle hook The ngOnChnages is a&nbsp;life cycle hook, which angular fires when it detects changes to&nbsp;data-bound input property. This method receives a&nbsp;SimpeChanges&nbsp;object, which contains the current and previous property values. There are several ways the parent component can communicate with the child component. One of the ways is to use the&nbsp;@Input [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [129],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3582"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=3582"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 2,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3582/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3803,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3582/revisions/3803"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=3582"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=3582"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=3582"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 3584,
+    "date": "2020-12-04T11:18:08",
+    "date_gmt": "2020-12-04T11:18:08",
+    "guid": {
+      "rendered": "http://angular.foobrdigital.com/?p=3584"
+    },
+    "modified": "2020-12-08T12:12:03",
+    "modified_gmt": "2020-12-08T12:12:03",
+    "slug": "angular-ngdocheck-life-cycle-hook",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/angular-ngdocheck-life-cycle-hook/",
+    "title": {
+      "rendered": "Angular ngDoCheck Life Cycle Hook"
+    },
+    "content": {
+      "rendered": "\n<h2>What is ngDoCheck lifecycle hook</h2>\n\n\n\n<p>We looked at how&nbsp;OnChanges&nbsp;hook works in the Previous chapter. It is triggered every time when the Angular detected a change to the data-bound input property</p>\n\n\n\n<p>We also looked at how OnChanges does not fire&nbsp;when the input property is an array/object&nbsp;because Angular uses dirty checking to compare the properties.</p>\n\n\n\n<p>In such a scenario, where Angular fails to detect the changes to the input property, the DoCheck allows us to implement our custom change detection.</p>\n\n\n\n<p>The Angular Fires the DoCheck hook after each change detection</p>\n\n\n\n<h2>ngDoCheck example</h2>\n\n\n\n<p>Let us build on the code, we built in the previous tutorial on Onchanges</p>\n\n\n\n<p>customer.ts</p>\n\n\n\n<pre class=\"wp-block-code\"><code>export class Customer {    code: number;    name: string;} </code></pre>\n\n\n\n<p>There is no change in the app.component.ts</p>\n\n\n\n<pre class=\"wp-block-code\"><code>\r\nimport { Component} from '@angular/core';\r\nimport { Customer } from './customer';\r\n \r\n@Component({\r\n  selector: 'app-root',\r\n  template: `\r\n        &lt;h1>{{title}}!&lt;/h1>\r\n        &lt;p> Message : &lt;input type='text' &#91;(ngModel)]='message'> &lt;/p>\r\n        &lt;p> Code : &lt;input type='text' &#91;(ngModel)]='code'>&lt;/p>\r\n        &lt;p> Name : &lt;input type='text' &#91;(ngModel)]='name'>&lt;/p>\r\n        &lt;p>&lt;button (click)=\"updateCustomer()\">Update &lt;/button>\r\n        &lt;child-component &#91;message]=message &#91;customer]=customer>&lt;/child-component>\r\n        ` ,\r\n \r\n        styleUrls: &#91;'./app.component.css']\r\n})\r\nexport class AppComponent {\r\n  title = 'ngOnChanges';\r\n  message = '';\r\n  customer: Customer = new Customer();\r\n  name= '';\r\n  code= 0;\r\n \r\n  updateCustomer() {\r\n    this.customer.name = this.name;\r\n    this.customer.code = this.code;\r\n  }\r\n \r\n}</code></pre>\n\n\n\n<p>Child Component</p>\n\n\n\n<pre class=\"wp-block-code\"><code>import { Component, Input, OnChanges, OnInit, SimpleChanges, SimpleChange, DoCheck  } from '@angular/core';\r\nimport { Customer } from './customer';\r\n \r\n@Component({\r\n    selector: 'child-component',\r\n    template: `&lt;h2>Child  Component&lt;/h2>\r\n               &lt;p>Message {{ message }} &lt;/p>\r\n               &lt;p>Customer Name {{ customer.name }} &lt;/p>\r\n               &lt;p>Customer Code {{ customer.code }} &lt;/p>\r\n               &lt;p>Do Check count {{ DocheckCount }} &lt;/p>\r\n               &lt;ul>&lt;li *ngFor=\"let log of changelog;\"> {{ log }}&lt;/li>&lt;/ul> `\r\n})\r\nexport class ChildComponent implements OnChanges, DoCheck, OnInit {\r\n    @Input() message: string;\r\n    @Input() customer: Customer;\r\n    changelog: string&#91;] = &#91;];\r\n    oldCustomer: Customer= new Customer();\r\n    DocheckCount = 0;\r\n \r\n    ngOnInit() {\r\n        console.log('OnInit');\r\n        this.oldCustomer = Object.assign({}, this.customer);\r\n    }\r\n \r\n    ngDoCheck() {\r\n        console.log('Docheck');\r\n        this.DocheckCount++;\r\n        if (this.oldCustomer.name !== this.customer.name || this.oldCustomer.code !== this.customer.code ) {\r\n            const to  = JSON.stringify(this.customer);\r\n            const from = JSON.stringify(this.oldCustomer);\r\n            const changeLog = `DoCheck customer: changed from ${from} to ${to} `;\r\n            this.changelog.push(changeLog);\r\n \r\n            this.oldCustomer = Object.assign({}, this.customer);\r\n        }\r\n    }\r\n \r\n    ngOnChanges(changes: SimpleChanges) {\r\n        console.log('OnChanges');\r\n        console.log(JSON.stringify(changes));\r\n \r\n        // tslint:disable-next-line:forin\r\n        for (const propName in changes) {\r\n             const change = changes&#91;propName];\r\n             const to  = JSON.stringify(change.currentValue);\r\n             const from = JSON.stringify(change.previousValue);\r\n             const changeLog = `${propName}: changed from ${from} to ${to} `;\r\n             this.changelog.push(changeLog);\r\n        }\r\n    }\r\n}</code></pre>\n\n\n\n<p>First, we imported the DoCheck from the @angular/core library</p>\n\n\n\n<pre class=\"wp-block-code\"><code> import { Component, Input, OnChanges, OnInit, SimpleChanges, SimpleChange, DoCheck  } from '@angular/core';\r\nimport { Customer } from './customer';</code></pre>\n\n\n\n<p>Implement the DoCheck Interface</p>\n\n\n\n<pre class=\"wp-block-code\"><code> export class ChildComponent implements OnChanges, DoCheck, OnInit { </code></pre>\n\n\n\n<p>We have created a new property oldCustomer to store the old value of the customer. We also have DoCheckcount property, which keeps track of no of times this hook is fired</p>\n\n\n\n<pre class=\"wp-block-code\"><code>   oldCustomer: Customer= new Customer();    DocheckCount = 0; </code></pre>\n\n\n\n<p>We are cloning the customer object into the oldCustomer in the OnInit hook. The old customer values are compared with new customer to check whether the customer object has changed</p>\n\n\n\n<pre class=\"wp-block-code\"><code>   ngOnInit() {\r\n        console.log('OnInit');\r\n        this.oldCustomer = Object.assign({}, this.customer);\r\n    }</code></pre>\n\n\n\n<p>Finally, in the ngDoChek hook, we compare the new values of customer to oldCustomer values to detect any changes</p>\n\n\n\n<pre class=\"wp-block-code\"><code> ngDoCheck() {\r\n        console.log('Docheck');\r\n        this.DocheckCount++;\r\n        if (this.oldCustomer.name !== this.customer.name || this.oldCustomer.code !== this.customer.code ) {\r\n            const to  = JSON.stringify(this.customer);\r\n            const from = JSON.stringify(this.oldCustomer);\r\n            const changeLog = `DoCheck customer: changed from ${from} to ${to} `;\r\n            this.changelog.push(changeLog);\r\n \r\n            this.oldCustomer = Object.assign({}, this.customer);\r\n        }\r\n \r\n    } </code></pre>\n\n\n\n<p>That’s it</p>\n\n\n\n<p>Run the code and you will notice that whenever the customer is added,&nbsp;the our code detects the change logs it into our changeLog</p>\n\n\n\n<h3>When ngDoCheck is called</h3>\n\n\n\n<p>Notice that DoCheckCount keeps incrementing for every keystroke, mouse movements</p>\n\n\n\n<p>Angular calls this hook very frequently. This hook is called after every change detection cycle no matter where the change has occurred</p>\n\n\n\n<p>It is advisable to keep the implementation of Docheck simple and lightweight. Otherwise, it will result in bad user experience</p>\n\n\n\n<h3>Checking for changes</h3>\n\n\n\n<p>In the example above, we cloned our customer object and checked each property for a change. But what if we have large object or array.</p>\n\n\n\n<p>The Angular provides a service called differs, which evaluate the given object/array and determines what changed</p>\n\n\n\n<p>There are two types of differs, that angular provides</p>\n\n\n\n<ol><li>key-value differs</li><li>iterable differs</li></ol>\n\n\n\n<h3>key-value differs</h3>\n\n\n\n<p>The KeyValueDiffers service is a differ that tracks changes made to an object over time and also expose an API to react to these changes.</p>\n\n\n\n<p>Key-value differs should be used for dictionary-like structures, and it works at the key level. This differ will identify changes when a new key is added, when a key removed and when the value of a key changed.</p>\n\n\n\n<h3>Iterable differs</h3>\n\n\n\n<p>Iterable differs service is used when we have a list-like structure and we’re only interested in<br>knowing things that were added or removed from that list.</p>\n\n\n\n<p>It will detect if the elements are added/removed from the array. This will not detect if the changes are done to the elements of array</p>\n\n\n\n<p>To do that, you need to create a separate key value differ for the each element</p>\n\n\n\n<h3>Example of key-value differs</h3>\n\n\n\n<p>Import KeyValueDiffers from @angular/core</p>\n\n\n\n<p>Inject it into the constructor</p>\n\n\n\n<pre class=\"wp-block-code\"><code>  constructor(private differs: KeyValueDiffers) {   } </code></pre>\n\n\n\n<p>Create a differ property for customer object</p>\n\n\n\n<pre class=\"wp-block-code\"><code> differ: any; </code></pre>\n\n\n\n<p>Initaisle the differ object with initial value.</p>\n\n\n\n<p>The find() method searches for a key value differ in differs collection. If not found creates the differ and returns an instance of DefaultKeyValueDiffer</p>\n\n\n\n<pre class=\"wp-block-code\"><code>   ngOnInit() {        console.log('OnInit');        this.differ = this.differs.find(this.customer).create(null);    } </code></pre>\n\n\n\n<p>Next, using the diff method of the differ, we are checking if our object is changed.&nbsp;The object returns null if there is no change. It returns an object, which contains the changes made to the object</p>\n\n\n\n<pre class=\"wp-block-code\"><code> const customerChanges = this.differ.diff(this.customer); </code></pre>\n\n\n\n<p>We, can then use the returned object to find out what was added, changed or removed properties using the forEachChangedItem, forEachAddedItem, forEachRemovedItem as shown below</p>\n\n\n\n<pre class=\"wp-block-code\"><code>  if (customerChanges) {\r\n            console.log(customerChanges);\r\n            customerChanges.forEachChangedItem(r =>  this.changelog.push('changed ' + r.key + ' ' + JSON.stringify( r.currentValue)));\r\n            customerChanges.forEachAddedItem(r =>  this.changelog.push('added ' + r.key + ' ' + JSON.stringify( r.currentValue)));\r\n            customerChanges.forEachRemovedItem(r =>  this.changelog.push('removed ' + r.key + ' ' + JSON.stringify( r.currentValue)));\r\n        }\r\n </code></pre>\n\n\n\n<p>The Complete child component as follows</p>\n\n\n\n<pre class=\"wp-block-code\"><code> import { Component, Input, OnChanges, OnInit, SimpleChanges, SimpleChange, DoCheck, KeyValueDiffers } from '@angular/core';\r\nimport { Customer } from './customer';\r\n \r\n@Component({\r\n    selector: 'child-component',\r\n    template: `&lt;h2>Child  Component&lt;/h2>\r\n               &lt;p>Message {{ message }} &lt;/p>\r\n               &lt;p>Customer Name {{ customer.name }} &lt;/p>\r\n               &lt;p>Customer Code {{ customer.code }} &lt;/p>\r\n               &lt;p>Do Check count {{ DocheckCount }} &lt;/p>\r\n               &lt;ul>&lt;li *ngFor=\"let log of changelog;\"> {{ log }}&lt;/li>&lt;/ul> `\r\n})\r\nexport class ChildComponent implements OnChanges, DoCheck, OnInit {\r\n    @Input() message: string;\r\n    @Input() customer: Customer;\r\n    changelog: string&#91;] = &#91;];\r\n    oldCustomer: Customer= new Customer();\r\n    DocheckCount = 0;\r\n    differ: any;\r\n \r\n    constructor(private differs: KeyValueDiffers) {\r\n \r\n    }\r\n    ngOnInit() {\r\n        console.log('OnInit');\r\n        this.differ = this.differs.find(this.customer).create(null);\r\n    }\r\n \r\n    ngDoCheck() {\r\n        console.log('Docheck');\r\n        this.DocheckCount++;\r\n \r\n        const customerChanges = this.differ.diff(this.customer);\r\n \r\n        if (customerChanges) {\r\n            console.log(customerChanges);\r\n            customerChanges.forEachChangedItem(r =>  this.changelog.push('changed ' + r.key + ' ' + JSON.stringify( r.currentValue)));\r\n            customerChanges.forEachAddedItem(r =>  this.changelog.push('added ' + r.key + ' ' + JSON.stringify( r.currentValue)));\r\n            customerChanges.forEachRemovedItem(r =>  this.changelog.push('removed ' + r.key + ' ' + JSON.stringify( r.currentValue)));\r\n        }\r\n \r\n    }\r\n \r\n    ngOnChanges(changes: SimpleChanges) {\r\n        console.log('OnChanges');\r\n        console.log(JSON.stringify(changes));\r\n \r\n        // tslint:disable-next-line:forin\r\n        for (const propName in changes) {\r\n             const change = changes&#91;propName];\r\n             const to  = JSON.stringify(change.currentValue);\r\n             const from = JSON.stringify(change.previousValue);\r\n             const changeLog = `${propName}: changed from ${from} to ${to} `;\r\n             this.changelog.push(changeLog);\r\n        }\r\n    }\r\n}</code></pre>\n\n\n\n<h3>Iterable differs</h3>\n\n\n\n<p>The iterable differ behaves the same way the key-value differ but it only provides methods for items that were added or removed.</p>\n\n\n\n<p>The iterable differs works on arrays.&nbsp;Using iterable differs is no different for key value differs. Just import the IterableDiffers and inject it into the constructor. Rest of the code stays same (except&nbsp;forEachChangedItem)</p>\n\n\n\n<h2>Conclusion</h2>\n\n\n\n<p>In this tutorial, we looked at how to use ngDoCheck hook to built custom change detection for input properties. We also looked at how to use&nbsp;key-value differs and Iterable differs.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>What is ngDoCheck lifecycle hook We looked at how&nbsp;OnChanges&nbsp;hook works in the Previous chapter. It is triggered every time when the Angular detected a change to the data-bound input property We also looked at how OnChanges does not fire&nbsp;when the input property is an array/object&nbsp;because Angular uses dirty checking to compare the properties. In such [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [129],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3584"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=3584"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 2,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3584/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3804,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3584/revisions/3804"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=3584"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=3584"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=3584"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  }
+]

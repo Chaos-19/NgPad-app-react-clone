@@ -1,0 +1,362 @@
+[
+  {
+    "id": 4158,
+    "date": "2021-02-16T07:30:54",
+    "date_gmt": "2021-02-16T07:30:54",
+    "guid": { "rendered": "http://javascript.foobrdigital.com/?p=4158" },
+    "modified": "2021-02-16T07:43:40",
+    "modified_gmt": "2021-02-16T07:43:40",
+    "slug": "introduction-7",
+    "status": "publish",
+    "type": "post",
+    "link": "https://javascript.foobrdigital.com/introduction-7/",
+    "title": { "rendered": "Introduction" },
+    "content": {
+      "rendered": "\n<p>Fullscreen websites are everywhere, and it’s highly likely that you’ll wind up making <em>at least</em> one if you’re a web designer. I was building one myself not long ago, and I realized there weren’t any jQuery plugins to make this easier. So, I made my own (<a rel=\"noreferrer noopener\" href=\"https://github.com/alvarotrigo/fullPage.js\" target=\"_blank\">fullPage.js</a>) and open-sourced it. In this tutorial, I’ll show you how to create a basic full-screen scrolling website using fullPage.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Fullscreen websites are everywhere, and it’s highly likely that you’ll wind up making at least one if you’re a web designer. I was building one myself not long ago, and I realized there weren’t any jQuery plugins to make this easier. So, I made my own (fullPage.js) and open-sourced it. In this tutorial, I’ll show you how [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [157, 1],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/posts/4158"
+        }
+      ],
+      "collection": [
+        { "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        {
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/comments?post=4158"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/posts/4158/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4160,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/posts/4158/revisions/4160"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/media?parent=4158"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/categories?post=4158"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/tags?post=4158"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 4164,
+    "date": "2021-02-16T07:34:59",
+    "date_gmt": "2021-02-16T07:34:59",
+    "guid": { "rendered": "http://javascript.foobrdigital.com/?p=4164" },
+    "modified": "2021-02-16T07:43:29",
+    "modified_gmt": "2021-02-16T07:43:29",
+    "slug": "basic-structure",
+    "status": "publish",
+    "type": "post",
+    "link": "https://javascript.foobrdigital.com/basic-structure/",
+    "title": { "rendered": "Basic Structure" },
+    "content": {
+      "rendered": "\n<p>Before doing anything else, we have to create our basic HTML structure for the page. This is the same for all sites except for the DOCTYPE tag, which might change.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;!DOCTYPE html>\n&lt;html>\n\n&lt;head>\n&lt;/head>\n\n&lt;body>\n\n&lt;/body>\n&lt;/html></code></pre>\n\n\n\n<h2>Include the needed files</h2>\n\n\n\n<p>We’ll need to add four files: – jQuery – jQuery UI (Or its animation effects, at least.) – fullPage.js – fullPage’s css file</p>\n\n\n\n<p>You can include them between the&nbsp;<code>&lt;head&gt;</code>&nbsp;tags of the page, although some people prefer to add the JavaScript files just before the closing&nbsp;<code>&lt;/body&gt;</code>&nbsp;tag to improve content loading times. I wouldn’t recommend it in this case as this plugin sets the structure of the page and, unless it’s applied the content, it won’t look as expected.</p>\n\n\n\n<p>Let’s add the files.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;DOCTYPE html>\n&lt;html>\n&lt;head>\n    &lt;link rel=\"stylesheet\" type=\"text/css\" href=\"jquery.fullPage.css\" />\n    &lt;script src=\"http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js\">&lt;/script>\n    &lt;script src=\"vendors/jquery.easings.min.js\">&lt;/script>\n    &lt;script type=\"text/javascript\" src=\"jquery.fullPage.min.js\">&lt;/script>\n&lt;/head>\n\n&lt;body>\n\n&lt;/body>\n&lt;/html></code></pre>\n\n\n\n<p><strong>Be careful</strong>, the order in which you include them is important. fullPage.js plugin requires the jQuery library to work and unless you include it before the plugin, it won’t be able to work.</p>\n\n\n\n<h2>Required HTML structure</h2>\n\n\n\n<p>Once we’ve included our files we can start adding our content in the&nbsp;<code>&lt;body&gt;</code>&nbsp;section of our site. fullPage works with vertical&nbsp;<strong>sections</strong>&nbsp;and horizontal&nbsp;<strong>slides</strong>. To use them, we’ll have to use the classes&nbsp;<code>section</code>&nbsp;and&nbsp;<code>slide</code>, respectively. (Although they’re configurable if you need.)</p>\n\n\n\n<p>The plugin’s structure needs to be wrapped in another element which will be used later to initialize the plugin. For our example, we will use a wrapper with&nbsp;<code>id=\"fullpage\"</code>.</p>\n\n\n\n<p>A site with 3 vertical sections would have this structure:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;div id=\"fullpage\">\n    &lt;div class=\"section\">Section 1&lt;/div>\n    &lt;div class=\"section\">Section 2&lt;/div>\n    &lt;div class=\"section\">Section 3&lt;/div>\n&lt;/div></code></pre>\n\n\n\n<p>But to make it a bit more interesting, we are going to add also some horizontal slides in the 2nd section. It’s as simple as this:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;div id=\"fullpage\">\n    &lt;div class=\"section\">Section 1&lt;/div>\n    &lt;div class=\"section\">\n        &lt;div class=\"slide\">Section 2 Slide 1&lt;/div>\n        &lt;div class=\"slide\">Section 2 Slide 2&lt;/div>\n        &lt;div class=\"slide\">Section 2 Slide 3&lt;/div>\n    &lt;/div>\n    &lt;div class=\"section\">Section 3&lt;/div>\n&lt;/div></code></pre>\n\n\n\n<p>Our file looks like this now:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;!DOCTYPE html>\n&lt;html>\n&lt;head>\n    &lt;link rel=\"stylesheet\" type=\"text/css\" href=\"jquery.fullPage.css\" />\n    &lt;script src=\"http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js\">&lt;/script>\n    &lt;script src=\"vendors/jquery.easings.min.js\">&lt;/script>\n    &lt;script type=\"text/javascript\" src=\"jquery.fullPage.min.js\">&lt;/script>\n&lt;/head>\n\n&lt;body>\n    &lt;div id=\"fullpage\">\n        &lt;div class=\"section\">Section 1&lt;/div>\n        &lt;div class=\"section\">\n            &lt;div class=\"slide\">Section 2 Slide 1&lt;/div>\n            &lt;div class=\"slide\">Section 2 Slide 2&lt;/div>\n            &lt;div class=\"slide\">Section 2 Slide 3&lt;/div>\n        &lt;/div>\n        &lt;div class=\"section\">Section 3&lt;/div>\n    &lt;/div>            \n&lt;/body>\n&lt;/html></code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Before doing anything else, we have to create our basic HTML structure for the page. This is the same for all sites except for the DOCTYPE tag, which might change. Include the needed files We’ll need to add four files: – jQuery – jQuery UI (Or its animation effects, at least.) – fullPage.js – fullPage’s [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [157, 1],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/posts/4164"
+        }
+      ],
+      "collection": [
+        { "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        {
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/comments?post=4164"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/posts/4164/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4169,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/posts/4164/revisions/4169"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/media?parent=4164"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/categories?post=4164"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/tags?post=4164"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 4172,
+    "date": "2021-02-16T07:36:18",
+    "date_gmt": "2021-02-16T07:36:18",
+    "guid": { "rendered": "http://javascript.foobrdigital.com/?p=4172" },
+    "modified": "2021-02-16T07:37:43",
+    "modified_gmt": "2021-02-16T07:37:43",
+    "slug": "lets-start",
+    "status": "publish",
+    "type": "post",
+    "link": "https://javascript.foobrdigital.com/lets-start/",
+    "title": { "rendered": "Let&#8217;s Start" },
+    "content": {
+      "rendered": "\n<p>Now that we have all we need, lets initialize the plugin to make the magic happen. To do so, we will need to add a&nbsp;<code>&lt;script&gt;</code>&nbsp;element in the header of our site. Just after the inclusion of all the needed files:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;script type=\"text/javascript\"&gt;\n    $(document).ready(function() {\n        $('#fullpage').fullpage();\n    });\n&lt;/script&gt;</code></pre>\n\n\n\n<p>We’ve used the most simple initialization, but the plugin provides plenty of options you can configure as you can see&nbsp;<a href=\"https://github.com/alvarotrigo/fullPage.js#initialization\" target=\"_blank\" rel=\"noreferrer noopener\">in the official documentation</a>.</p>\n\n\n\n<p>As you can see, we’ve added the plugin initialization inside the&nbsp;<code>ready</code>&nbsp;function of jQuery. This is where most of the plugins get initialized as they need the structure of the page to be completely generated to start working with it.</p>\n\n\n\n<p>Here’s the result of our current file:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;!DOCTYPE html&gt;\n&lt;html&gt;\n&lt;head&gt;\n    &lt;link rel=\"stylesheet\" type=\"text/css\" href=\"jquery.fullPage.css\" /&gt;\n    &lt;script src=\"http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js\"&gt;&lt;/script&gt;\n    &lt;script src=\"vendors/jquery.easings.min.js\"&gt;&lt;/script&gt;\n    &lt;script type=\"text/javascript\" src=\"jquery.fullPage.js\"&gt;&lt;/script&gt;\n\n    &lt;script type=\"text/javascript\"&gt;\n        $(document).ready(function() {\n            $('#fullpage').fullpage();\n        });\n    &lt;/script&gt;\n&lt;/head&gt;\n\n&lt;body&gt;\n    &lt;div id=\"fullpage\"&gt;\n        &lt;div class=\"section\"&gt;Section 1&lt;/div&gt;\n        &lt;div class=\"section\"&gt;\n            &lt;div class=\"slide\"&gt;Section 2 Slide 1&lt;/div&gt;\n            &lt;div class=\"slide\"&gt;Section 2 Slide 2&lt;/div&gt;\n            &lt;div class=\"slide\"&gt;Section 2 Slide 3&lt;/div&gt;\n        &lt;/div&gt;\n        &lt;div class=\"section\"&gt;Section 3&lt;/div&gt;\n    &lt;/div&gt;            \n&lt;/body&gt;\n&lt;/html&gt;</code></pre>\n\n\n\n<p>And that’s it! We have our full-screen page working. You can save the changes in an .html file and open it in any browser to see the result.</p>\n\n\n\n<p>You might notice the text isn’t horizontally centered and it’s quite small, but you can solve this by applying some of your CSS knowledge.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>.section{\n    font-size: 6em;\n    text-align: center;\n}</code></pre>\n\n\n\n<p>Also, you may want to add some background color to each section. To do so, we can use the option <code>sectionsColor</code> provided in the plugin. It’s as simple as modifying our initialization to look like this:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>$('#fullpage').fullpage({\n    sectionsColor: &#91;'#f2f2f2', '#4BBFC3', '#7BAABE', 'whitesmoke']\n});</code></pre>\n\n\n\n<p>Now it is going to look amazingly beautiful! Here’s our final .html file:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;!DOCTYPE html>\n&lt;html>\n&lt;head>\n    &lt;link rel=\"stylesheet\" type=\"text/css\" href=\"jquery.fullPage.css\" />\n    &lt;script src=\"http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js\">&lt;/script>\n    &lt;script src=\"vendors/jquery.easings.min.js\">&lt;/script>\n    &lt;script type=\"text/javascript\" src=\"jquery.fullPage.js\">&lt;/script>\n\n    &lt;script type=\"text/javascript\">\n        $(document).ready(function() {\n            $('#fullpage').fullpage({\n                sectionsColor: &#91;'#f2f2f2', '#4BBFC3', '#7BAABE', 'whitesmoke', '#000'],\n            });\n        });\n    &lt;/script>\n\n    &lt;style>\n        .section{\n            font-size: 6em;\n            text-align: center;\n        }\n    &lt;/style>\n&lt;/head>\n\n&lt;body>\n    &lt;div id=\"fullpage\">\n        &lt;div class=\"section\">Section 1&lt;/div>\n        &lt;div class=\"section\">\n            &lt;div class=\"slide\">Section 2 Slide 1&lt;/div>\n            &lt;div class=\"slide\">Section 2 Slide 2&lt;/div>\n            &lt;div class=\"slide\">Section 2 Slide 3&lt;/div>\n        &lt;/div>\n        &lt;div class=\"section\">Section 3&lt;/div>\n    &lt;/div>            \n&lt;/body>\n&lt;/html></code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Now that we have all we need, lets initialize the plugin to make the magic happen. To do so, we will need to add a&nbsp;&lt;script&gt;&nbsp;element in the header of our site. Just after the inclusion of all the needed files: We’ve used the most simple initialization, but the plugin provides plenty of options you can [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [157, 1],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/posts/4172"
+        }
+      ],
+      "collection": [
+        { "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        {
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/comments?post=4172"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 3,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/posts/4172/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4177,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/posts/4172/revisions/4177"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/media?parent=4172"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/categories?post=4172"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/tags?post=4172"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 4191,
+    "date": "2021-02-16T07:40:14",
+    "date_gmt": "2021-02-16T07:40:14",
+    "guid": { "rendered": "http://javascript.foobrdigital.com/?p=4191" },
+    "modified": "2021-02-16T07:41:13",
+    "modified_gmt": "2021-02-16T07:41:13",
+    "slug": "linking-sections-and-slides",
+    "status": "publish",
+    "type": "post",
+    "link": "https://javascript.foobrdigital.com/linking-sections-and-slides/",
+    "title": { "rendered": "Linking sections and slides" },
+    "content": {
+      "rendered": "\n<p>It is as simple as using the URL when using the&nbsp;<code>anchors</code>&nbsp;option: For example: http://alvarotrigo.com/fullPage/#secondPage/2</p>\n\n\n\n<p>You can do it by using the index of the slide (starting by 0), or if you prefer, you can create custom anchor links for them by using the attribute data-anchor in each slide. For example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;div class=\"section\">\n    &lt;div class=\"slide\" data-anchor=\"slide1\"> Slide 1 &lt;/div>\n    &lt;div class=\"slide\" data-anchor=\"slide2\"> Slide 2 &lt;/div>\n    &lt;div class=\"slide\" data-anchor=\"slide3\"> Slide 3 &lt;/div>\n    &lt;div class=\"slide\" data-anchor=\"slide4\"> Slide 4 &lt;/div>\n&lt;/div></code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>It is as simple as using the URL when using the&nbsp;anchors&nbsp;option: For example: http://alvarotrigo.com/fullPage/#secondPage/2 You can do it by using the index of the slide (starting by 0), or if you prefer, you can create custom anchor links for them by using the attribute data-anchor in each slide. For example:</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [157, 1],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/posts/4191"
+        }
+      ],
+      "collection": [
+        { "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        {
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/comments?post=4191"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/posts/4191/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4193,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/posts/4191/revisions/4193"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/media?parent=4191"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/categories?post=4191"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://javascript.foobrdigital.com/wp-json/wp/v2/tags?post=4191"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  }
+]

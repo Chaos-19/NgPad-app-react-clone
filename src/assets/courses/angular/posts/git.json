@@ -1,0 +1,1502 @@
+[
+  {
+    "id": 2176,
+    "date": "2020-05-09T09:16:20",
+    "date_gmt": "2020-05-09T09:16:20",
+    "guid": {
+      "rendered": "http://angular.foobrdigital.com/?p=561"
+    },
+    "modified": "2020-05-09T09:16:20",
+    "modified_gmt": "2020-05-09T09:16:20",
+    "slug": "introduction-3-2",
+    "status": "publish",
+    "type": "post",
+    "link": "https://react.foobrdigital.com/introduction-3-2/",
+    "title": {
+      "rendered": "Introduction"
+    },
+    "content": {
+      "rendered": "\n<p>Git is a distributed revision control and source code management system with an emphasis on speed. Git was initially designed and developed by Linus Torvalds for Linux kernel development. Git is a free software distributed under the terms of the GNU General Public License version 2. </p>\n\n\n\n<p>This series of tutorials will explains how to use Git for project version control in a distributed environment while working on web-based and non web-based applications development.</p>\n\n\n\n<h2>Version Control System</h2>\n\n\n\n<p><strong>Version Control System (VCS)</strong>&nbsp;is a software that helps software developers to work together and maintain a complete history of their work.</p>\n\n\n\n<p>Listed below are the functions of a VCS −</p>\n\n\n\n<ul><li>Allows developers to work simultaneously.</li><li>Does not allow overwriting each other’s changes.</li><li>Maintains a history of every version.</li></ul>\n\n\n\n<p>Following are the types of VCS −</p>\n\n\n\n<ul><li>Centralized version control system (CVCS).</li><li>Distributed/Decentralized version control system (DVCS).</li></ul>\n\n\n\n<p>In this chapter, we will concentrate only on distributed version control system and especially on Git. Git falls under distributed version control system.</p>\n\n\n\n<h2>Distributed Version Control System</h2>\n\n\n\n<p>Centralized version control system  uses a central server to store all files and enables team collaboration. But the major drawback of CVCS is its single point of failure, i.e., failure of the central server. Unfortunately, if the central server goes down for an hour, then during that hour, no one can collaborate at all. </p>\n\n\n\n<p>DVCS clients not only check out the latest snapshot of the directory but they also fully mirror the repository. If the server goes down, then the repository from any client can be copied back to the server to restore it. Every checkout is a full backup of the repository. Git does not rely on the central server and that is why you can perform many operations when you are offline. </p>\n\n\n\n<p>You can commit changes, create branches, view logs, and perform other operations when you are offline. You require network connection only to publish your changes and take the latest changes.</p>\n\n\n\n<h2>Benefits of Git</h2>\n\n\n\n<p>A version control application allows us to&nbsp;<strong>keep track</strong>&nbsp;of all the changes that we make in the files of our project. Every time we make changes in files of an existing project, we can push those changes to a repository. Other developers are allowed to pull your changes from the repository and continue to work with the updates that you added to the project files.</p>\n\n\n\n<p>Some&nbsp;<strong>significant benefits</strong>&nbsp;of using Git are as follows:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://static.javatpoint.com/tutorial/git/images/git-benefits.png\" alt=\"Benefits of Git\"/></figure>\n\n\n\n<ul><li><strong>Saves Time</strong><br>Git is lightning fast technology. Each command takes only a few seconds to execute so we can save a lot of time as compared to login to a GitHub account and find out its features.</li><li><strong>Offline Working</strong><br>One of the most important benefits of Git is that it supports&nbsp;<strong>offline working</strong>. If we are facing internet connectivity issues, it will not affect our work. In Git, we can do almost everything locally. Comparatively, other CVS like SVN is limited and prefer the connection with the central repository.</li><li><strong>Undo Mistakes</strong><br>One additional benefit of Git is we can&nbsp;<strong>Undo</strong>&nbsp;mistakes. Sometimes the undo can be a savior option for us. Git provides the undo option for almost everything.</li><li><strong>Track the Changes</strong><br>Git facilitates with some exciting features such as&nbsp;<strong>Diff, Log,</strong>&nbsp;and&nbsp;<strong>Status</strong>, which allows us to track changes so we can&nbsp;<strong>check the status, compare</strong>&nbsp;our files or branches.</li></ul>\n\n\n\n<h2>DVCS Terminologies</h2>\n\n\n\n<h3>Local Repository</h3>\n\n\n\n<p>Every VCS tool provides a private workplace as a working copy. Developers make changes in their private workplace and after commit, these changes become a part of the repository. Git takes it one step further by providing them a private copy of the whole repository. Users can perform many operations with this repository such as add file, remove file, rename file, move file, commit changes, and many more.</p>\n\n\n\n<h3>Working Directory and Staging Area or Index</h3>\n\n\n\n<p>The working directory is the place where files are checked out. In other CVCS, developers generally make modifications and commit their changes directly to the repository. But Git uses a different strategy. Git doesn’t track each and every modified file. Whenever you do commit an operation, Git looks for the files present in the staging area. Only those files present in the staging area are considered for commit and not all the modified files.</p>\n\n\n\n<p>Let us see the basic workflow of Git.</p>\n\n\n\n<p><strong>Step 1</strong>&nbsp;− You modify a file from the working directory.</p>\n\n\n\n<p><strong>Step 2</strong>&nbsp;− You add these files to the staging area.</p>\n\n\n\n<p><strong>Step 3</strong>&nbsp;− You perform commit operation that moves the files from the staging area. After push operation, it stores the changes permanently to the Git repository.</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://www.tutorialspoint.com/git/images/staging_area.png\" alt=\"Git Tutorial\"/></figure>\n\n\n\n<p>Suppose you modified two files, namely “sort.c” and “search.c” and you want two different commits for each operation. You can add one file in the staging area and do commit. After the first commit, repeat the same procedure for another file.</p>\n\n\n\n<pre class=\"wp-block-code\"><code># First commit\n&#91;bash]$ git add sort.c\n\n# adds file to the staging area\n&#91;bash]$ git commit –m “Added sort operation”\n\n# Second commit\n&#91;bash]$ git add search.c\n\n# adds file to the staging area\n&#91;bash]$ git commit –m “Added search operation”</code></pre>\n\n\n\n<h3>Blobs</h3>\n\n\n\n<p>Blob stands for&nbsp;<strong>B</strong>inary&nbsp;<strong>L</strong>arge&nbsp;<strong>Ob</strong>ject. Each version of a file is represented by blob. A blob holds the file data but doesn’t contain any metadata about the file. It is a binary file, and in Git database, it is named as SHA1 hash of that file. In Git, files are not addressed by names. Everything is content-addressed.</p>\n\n\n\n<h3>Trees</h3>\n\n\n\n<p>Tree is an object, which represents a directory. It holds blobs as well as other sub-directories. A tree is a binary file that stores references to blobs and trees which are also named as&nbsp;<strong>SHA1</strong>&nbsp;hash of the tree object.</p>\n\n\n\n<h3>Commits</h3>\n\n\n\n<p>Commit holds the current state of the repository. A commit is also named by&nbsp;<strong>SHA1</strong>&nbsp;hash. You can consider a commit object as a node of the linked list. Every commit object has a pointer to the parent commit object. From a given commit, you can traverse back by looking at the parent pointer to view the history of the commit. If a commit has multiple parent commits, then that particular commit has been created by merging two branches.</p>\n\n\n\n<h3>Branches</h3>\n\n\n\n<p>Branches are used to create another line of development. By default, Git has a master branch, which is same as trunk in Subversion. Usually, a branch is created to work on a new feature. Once the feature is completed, it is merged back with the master branch and we delete the branch. Every branch is referenced by HEAD, which points to the latest commit in the branch. Whenever you make a commit, HEAD is updated with the latest commit.</p>\n\n\n\n<h3>Tags</h3>\n\n\n\n<p>Tag assigns a meaningful name with a specific version in the repository. Tags are very similar to branches, but the difference is that tags are immutable. It means, tag is a branch, which nobody intends to modify. Once a tag is created for a particular commit, even if you create a new commit, it will not be updated. Usually, developers create tags for product releases.</p>\n\n\n\n<h3>Clone</h3>\n\n\n\n<p>Clone operation creates the instance of the repository. Clone operation not only checks out the working copy, but it also mirrors the complete repository. Users can perform many operations with this local repository. The only time networking gets involved is when the repository instances are being synchronized.</p>\n\n\n\n<h3>Pull</h3>\n\n\n\n<p>Pull operation copies the changes from a remote repository instance to a local one. The pull operation is used for synchronization between two repository instances. This is same as the update operation in Subversion.</p>\n\n\n\n<h3>Push</h3>\n\n\n\n<p>Push operation copies changes from a local repository instance to a remote one. This is used to store the changes permanently into the Git repository. This is same as the commit operation in Subversion.</p>\n\n\n\n<h3>HEAD</h3>\n\n\n\n<p>HEAD is a pointer, which always points to the latest commit in the branch. Whenever you make a commit, HEAD is updated with the latest commit. The heads of the branches are stored in&nbsp;<strong>.git/refs/heads/</strong>&nbsp;directory.</p>\n\n\n\n<h3>Revision</h3>\n\n\n\n<p>Revision represents the version of the source code. Revisions in Git are represented by commits. These commits are identified by&nbsp;<strong>SHA1</strong>&nbsp;secure hashes.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Git is a distributed revision control and source code management system with an emphasis on speed. Git was initially designed and developed by Linus Torvalds for Linux kernel development. Git is a free software distributed under the terms of the GNU General Public License version 2. This series of tutorials will explains how to use [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 562,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [17],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/posts/2176"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/comments?post=2176"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/posts/2176/revisions"
+        }
+      ],
+      "wp:featuredmedia": [
+        {
+          "embeddable": true,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/media/562"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/media?parent=2176"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/categories?post=2176"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/tags?post=2176"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 2177,
+    "date": "2020-05-09T09:18:26",
+    "date_gmt": "2020-05-09T09:18:26",
+    "guid": {
+      "rendered": "http://angular.foobrdigital.com/?p=564"
+    },
+    "modified": "2020-05-09T09:18:26",
+    "modified_gmt": "2020-05-09T09:18:26",
+    "slug": "git-vs-github",
+    "status": "publish",
+    "type": "post",
+    "link": "https://react.foobrdigital.com/git-vs-github/",
+    "title": {
+      "rendered": "Git vs Github"
+    },
+    "content": {
+      "rendered": "\n<p><strong>Git is an open-source distributed version control system</strong>&nbsp;which is available for everyone at zero cost. It is designed to handle minor to major projects with speed and efficiency. It is developed to co-ordinate the work among programmers. The version control allows you to track and work together with your team member at the same workspace.</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://static.javatpoint.com/tutorial/git/images/git-vs-github.png\" alt=\"Git vs GitHub\"/></figure>\n\n\n\n<p>While&nbsp;<strong>GitHub is a Git repository hosting service</strong>. It is a web-based service. GitHub facilitates with all of the features of distributed version control and source code management (SCM) functionality of Git. It also supports some of its characteristics in a single software tool.</p>\n\n\n\n<p>To better understand the similarities and differences between Git and GitHub, look at the following points.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Git is a distributed version control tool that can manage a programmer's source code history.\tGitHub is a cloud-based tool developed around the Git tool.\nA developer installs Git tool locally.\tGitHub is an online service to store code and push from the computer running the Git tool.\nGit focused on version control and code sharing.\tGitHub focused on centralized source code hosting.\nIt is a command-line tool.\tIt is administered through the web.\nIt facilitates with a desktop interface called Git Gui.\tIt also facilitates with a desktop interface called GitHub Gui.\nGit does not provide any user management feature.\tGitHub has a built-in user management feature.\nIt has minimal tool configuration feature.</code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Git is an open-source distributed version control system&nbsp;which is available for everyone at zero cost. It is designed to handle minor to major projects with speed and efficiency. It is developed to co-ordinate the work among programmers. The version control allows you to track and work together with your team member at the same workspace. [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 565,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [17],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/posts/2177"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/comments?post=2177"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/posts/2177/revisions"
+        }
+      ],
+      "wp:featuredmedia": [
+        {
+          "embeddable": true,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/media/565"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/media?parent=2177"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/categories?post=2177"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/tags?post=2177"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 576,
+    "date": "2020-05-09T09:35:57",
+    "date_gmt": "2020-05-09T09:35:57",
+    "guid": {
+      "rendered": "http://angular.foobrdigital.com/?p=576"
+    },
+    "modified": "2020-05-09T09:35:57",
+    "modified_gmt": "2020-05-09T09:35:57",
+    "slug": "installation-2-2",
+    "status": "publish",
+    "type": "post",
+    "link": "https://react.foobrdigital.com/installation-2-2/",
+    "title": {
+      "rendered": "Installation"
+    },
+    "content": {
+      "rendered": "\n<p>Before you can use Git, you have to install and do some basic configuration changes. Below are the steps to install Git client on Ubuntu and Centos Linux.</p>\n\n\n\n<h2>Installation of Git Client</h2>\n\n\n\n<p>If you are using Debian base GNU/Linux distribution, then&nbsp;<strong>apt-get</strong>&nbsp;command will do the needful.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&#91;ubuntu ~]$ sudo apt-get install git-core\n&#91;sudo] password for ubuntu:\n\n&#91;ubuntu ~]$ git --version\ngit version 2.21.1</code></pre>\n\n\n\n<h2>Customize Git Environment</h2>\n\n\n\n<p>Git provides the git config tool, which allows you to set configuration variables. Git stores all global configurations in&nbsp;<strong>.gitconfig</strong>&nbsp;file, which is located in your home directory. To set these configuration values as global, add the&nbsp;<strong>&#8211;global</strong>&nbsp;option, and if you omit&nbsp;<strong>&#8211;global</strong>&nbsp;option, then your configurations are specific for the current Git repository.</p>\n\n\n\n<p>You can also set up system wide configuration. Git stores these values in the&nbsp;<strong>/etc/gitconfig</strong>&nbsp;file, which contains the configuration for every user and repository on the system. To set these values, you must have the root rights and use the&nbsp;<strong>&#8211;system</strong>&nbsp;option.</p>\n\n\n\n<p>When the above code is compiled and executed, it produces the following result −</p>\n\n\n\n<h3>Setting username</h3>\n\n\n\n<p>This information is used by Git for each commit.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&#91;code@git-tutorial]$ git config --global user.name \"Shahbaz Khan\"</code></pre>\n\n\n\n<h3>Setting email id</h3>\n\n\n\n<p>This information is used by Git for each commit.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&#91;code@git-tutorial]$ git config --global user.email \"shahbazchandio3691@gmail.com\"</code></pre>\n\n\n\n<h3>Avoid merge commits for pulling</h3>\n\n\n\n<p>You pull the latest changes from a remote repository, and if these changes are divergent, then by default Git creates merge commits. We can avoid this via following settings.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&#91;code@git-tutorial]$ git config --global branch.autosetuprebase always</code></pre>\n\n\n\n<h3>Color highlighting</h3>\n\n\n\n<p>The following commands enable color highlighting for Git in the console.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&#91;code@git-tutorial]$ git config --global color.ui true\n\n&#91;code@git-tutorial]$ git config --global color.status auto\n\n&#91;code@git-tutorial]$ git config --global color.branch auto</code></pre>\n\n\n\n<h3>Setting default editor</h3>\n\n\n\n<p>By default, Git uses the system default editor, which is taken from the VISUAL or EDITOR environment variable. We can configure a different one by using git config.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&#91;code@git-tutorial]$ git config --global core.editor vim</code></pre>\n\n\n\n<h3>Setting default merge tool</h3>\n\n\n\n<p>Git does not provide a default merge tool for integrating conflicting changes into your working tree. We can set default merge tool by enabling following settings.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&#91;code@git-tutorial]$ git config --global merge.tool vimdiff</code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Before you can use Git, you have to install and do some basic configuration changes. Below are the steps to install Git client on Ubuntu and Centos Linux. Installation of Git Client If you are using Debian base GNU/Linux distribution, then&nbsp;apt-get&nbsp;command will do the needful. Customize Git Environment Git provides the git config tool, which [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 597,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [17],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/posts/576"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/comments?post=576"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/posts/576/revisions"
+        }
+      ],
+      "wp:featuredmedia": [
+        {
+          "embeddable": true,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/media/597"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/media?parent=576"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/categories?post=576"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/tags?post=576"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 2178,
+    "date": "2020-05-09T09:39:58",
+    "date_gmt": "2020-05-09T09:39:58",
+    "guid": {
+      "rendered": "http://angular.foobrdigital.com/?p=599"
+    },
+    "modified": "2020-05-09T09:39:58",
+    "modified_gmt": "2020-05-09T09:39:58",
+    "slug": "git-terminology",
+    "status": "publish",
+    "type": "post",
+    "link": "https://react.foobrdigital.com/git-terminology/",
+    "title": {
+      "rendered": "Git Terminology"
+    },
+    "content": {
+      "rendered": "\n<p>Git is a tool that covered vast terminology and jargon, which can often be difficult for new users, or those who know Git basics but want to become Git masters. So, we need a little explanation of the terminology behind the tools. Let&#8217;s have a look at the commonly used terms.</p>\n\n\n\n<h3>Branch</h3>\n\n\n\n<p>A branch is a version of the repository that diverges from the main working project. It is an essential feature available in most modern version control systems. A Git project can have more than one branch. We can perform many operations on Git branch-like rename, list, delete, etc.</p>\n\n\n\n<h3>Checkout</h3>\n\n\n\n<p>In Git, the term checkout is used for the act of switching between different versions of a target entity. The&nbsp;<strong>git checkout</strong>&nbsp;command is used to switch between branches in a repository.</p>\n\n\n\n<h3>Cherry-Picking</h3>\n\n\n\n<p>Cherry-picking in Git is meant to apply some commit from one branch into another branch. In case you made a mistake and committed a change into the wrong branch, but do not want to merge the whole branch. You can revert the commit and cherry-pick it on another branch.</p>\n\n\n\n<h3>Clone</h3>\n\n\n\n<p>The&nbsp;<strong>git clone</strong>&nbsp;is a Git command-line utility. It is used to make a copy of the target repository or clone it. If I want a local copy of my repository from GitHub, this tool allows creating a local copy of that repository on your local directory from the repository URL.</p>\n\n\n\n<h3>Fetch</h3>\n\n\n\n<p>It is used to fetch branches and tags from one or more other repositories, along with the objects necessary to complete their histories. It updates the remote-tracking branches.</p>\n\n\n\n<h3>HEAD</h3>\n\n\n\n<p>HEAD is the representation of the last commit in the current checkout branch. We can think of the head like a current branch. When you switch branches with git checkout, the HEAD revision changes, and points the new branch.</p>\n\n\n\n<h3>Index</h3>\n\n\n\n<p>The Git index is a staging area between the working directory and repository. It is used as the index to build up a set of changes that you want to commit together.</p>\n\n\n\n<h3>Master</h3>\n\n\n\n<p>Master is a naming convention for Git branch. It&#8217;s a default branch of Git. After cloning a project from a remote server, the resulting local repository contains only a single local branch. This branch is called a &#8220;master&#8221; branch. It means that &#8220;master&#8221; is a repository&#8217;s &#8220;default&#8221; branch.</p>\n\n\n\n<h3>Merge</h3>\n\n\n\n<p>Merging is a process to put a forked history back together. The git merge command facilitates you to take the data created by git branch and integrate them into a single branch.</p>\n\n\n\n<h3>Origin</h3>\n\n\n\n<p>In Git, &#8220;origin&#8221; is a reference to the remote repository from a project was initially cloned. More precisely, it is used instead of that original repository URL to make referencing much easier.</p>\n\n\n\n<h3>Pull/Pull Request</h3>\n\n\n\n<p>The term Pull is used to receive data from GitHub. It fetches and merges changes on the remote server to your working directory. The&nbsp;<strong>git pull command</strong>&nbsp;is used to make a Git pull.</p>\n\n\n\n<p>Pull requests are a process for a developer to notify team members that they have completed a feature. Once their feature branch is ready, the developer files a pull request via their remote server account. Pull request announces all the team members that they need to review the code and merge it into the master branch.</p>\n\n\n\n<h3>Push</h3>\n\n\n\n<p>The push term refers to upload local repository content to a remote repository. Pushing is an act of transfer commits from your local repository to a remote repository. Pushing is capable of overwriting changes; caution should be taken when pushing.</p>\n\n\n\n<h3>Rebase</h3>\n\n\n\n<p>In Git, the term rebase is referred to as the process of moving or combining a sequence of commits to a new base commit. Rebasing is very beneficial and visualized the process in the environment of a feature branching workflow.</p>\n\n\n\n<p>From a content perception, rebasing is a technique of changing the base of your branch from one commit to another.</p>\n\n\n\n<h3>Remote</h3>\n\n\n\n<p>In Git, the term remote is concerned with the remote repository. It is a shared repository that all team members use to exchange their changes. A remote repository is stored on a code hosting service like an internal server, GitHub, Subversion and more.</p>\n\n\n\n<p>In case of a local repository, a remote typically does not provide a file tree of the project&#8217;s current state, as an alternative it only consists of the .git versioning data.</p>\n\n\n\n<h3>Repository</h3>\n\n\n\n<p>In Git, Repository is like a data structure used by VCS to store metadata for a set of files and directories. It contains the collection of the file as well as the history of changes made to those files. Repositories in Git is considered as your project folder. A repository has all the project-related data. Distinct projects have distinct repositories.</p>\n\n\n\n<h3>Stashing</h3>\n\n\n\n<p>Sometimes you want to switch the branches, but you are working on an incomplete part of your current project. You don&#8217;t want to make a commit of half-done work. Git stashing allows you to do so. The&nbsp;<strong>git stash command</strong>&nbsp;enables you to switch branch without committing the current branch.</p>\n\n\n\n<h3>Tag</h3>\n\n\n\n<p>Tags make a point as a specific point in Git history. It is used to mark a commit stage as important. We can tag a commit for future reference. </p>\n\n\n\n<h3>Upstream And Downstream</h3>\n\n\n\n<p>The term upstream and downstream is a reference of the repository. Generally, upstream is where you cloned the repository from (the origin) and downstream is any project that integrates your work with other works. However, these terms are not restricted to Git repositories.</p>\n\n\n\n<h3>Git Revert</h3>\n\n\n\n<p>In Git, the term revert is used to revert some commit. To revert a commit,&nbsp;<strong>git revert</strong>&nbsp;command is used. It is an undo type command. However, it is not a traditional undo alternative.</p>\n\n\n\n<h3>Git Reset</h3>\n\n\n\n<p>In Git, the term reset stands for undoing changes. The&nbsp;<strong>git reset</strong>&nbsp;command is used to reset the changes. The git reset command has three core forms of invocation. These forms are as follows.</p>\n\n\n\n<ul><li>Soft</li><li>Mixed</li><li>Hard</li></ul>\n\n\n\n<h3>Git Ignore</h3>\n\n\n\n<p>In Git, the term ignore used to specify intentionally untracked files that Git should ignore. It doesn&#8217;t affect the Files that already tracked by Git.</p>\n\n\n\n<h3>Git Diff</h3>\n\n\n\n<p>Git diff is a command-line utility. It&#8217;s a multi-use Git command. When it is executed, it runs a diff function on Git data sources. These data sources can be files, branches, commits, and more. It is used to show changes between commits, commit, and working tree, etc.</p>\n\n\n\n<h3>Git Cheat Sheet</h3>\n\n\n\n<p>A Git cheat sheet is a summary of Git quick references. It contains basic Git commands with quick installation. A cheat sheet or crib sheet is a brief set of notes used for quick reference. Cheat sheets are so named because the people may use it without no prior knowledge.</p>\n\n\n\n<h3>Git Flow</h3>\n\n\n\n<p>GitFlow is a&nbsp;<strong>branching model</strong>&nbsp;for Git, developed by&nbsp;<strong>Vincent Driessen</strong>. It is very well organized to collaborate and scale the development team. Git flow is a collection of Git commands. It accomplishes many repository operations with just single commands.</p>\n\n\n\n<h3>Git Squash</h3>\n\n\n\n<p>In Git, the term squash is used to squash previous commits into one. Git squash is an excellent technique to group-specific changes before forwarding them to others. You can merge several commits into a single commit with the powerful interactive rebase command.</p>\n\n\n\n<h3>Git Rm</h3>\n\n\n\n<p>In Git, the term rm stands for&nbsp;<strong>remove</strong>. It is used to remove individual files or a collection of files. The key function of git rm is to remove tracked files from the Git index. Additionally, it can be used to remove files from both the working directory and staging index.</p>\n\n\n\n<h3>Git Fork</h3>\n\n\n\n<p>A fork is a rough copy of a repository. Forking a repository allows you to freely test and debug with changes without affecting the original project.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Git is a tool that covered vast terminology and jargon, which can often be difficult for new users, or those who know Git basics but want to become Git masters. So, we need a little explanation of the terminology behind the tools. Let&#8217;s have a look at the commonly used terms. Branch A branch is [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 602,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [17],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/posts/2178"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/comments?post=2178"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/posts/2178/revisions"
+        }
+      ],
+      "wp:featuredmedia": [
+        {
+          "embeddable": true,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/media/602"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/media?parent=2178"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/categories?post=2178"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/tags?post=2178"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 2179,
+    "date": "2020-05-09T09:46:48",
+    "date_gmt": "2020-05-09T09:46:48",
+    "guid": {
+      "rendered": "http://angular.foobrdigital.com/?p=606"
+    },
+    "modified": "2020-05-09T09:46:48",
+    "modified_gmt": "2020-05-09T09:46:48",
+    "slug": "git-life-cycle",
+    "status": "publish",
+    "type": "post",
+    "link": "https://react.foobrdigital.com/git-life-cycle/",
+    "title": {
+      "rendered": "Git Life Cycle"
+    },
+    "content": {
+      "rendered": "\n<figure class=\"wp-block-image size-large\"><img src=\"https://angular.foobrdigital.com/wp-content/uploads/2020/05/git-lifecycle.png\" alt=\"\" class=\"wp-image-608\"/></figure>\n\n\n\n<p>Let&#8217;s discuss the life cycle of Git. we will cover the Git commands for each operation.</p>\n\n\n\n<p>General workflow is as follows −</p>\n\n\n\n<ul><li>You clone the Git repository as a working copy.</li><li>You modify the working copy by adding/editing files.</li><li>If necessary, you also update the working copy by taking other developer&#8217;s changes.</li><li>You review the changes before commit.</li><li>You commit changes. If everything is fine, then you push the changes to the repository.</li><li>After committing, if you realize something is wrong, then you correct the last commit and push the changes to the repository.</li></ul>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Let&#8217;s discuss the life cycle of Git. we will cover the Git commands for each operation. General workflow is as follows − You clone the Git repository as a working copy. You modify the working copy by adding/editing files. If necessary, you also update the working copy by taking other developer&#8217;s changes. You review the [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 611,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [17],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/posts/2179"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/comments?post=2179"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/posts/2179/revisions"
+        }
+      ],
+      "wp:featuredmedia": [
+        {
+          "embeddable": true,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/media/611"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/media?parent=2179"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/categories?post=2179"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/tags?post=2179"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 2180,
+    "date": "2020-05-09T10:15:38",
+    "date_gmt": "2020-05-09T10:15:38",
+    "guid": {
+      "rendered": "http://angular.foobrdigital.com/?p=615"
+    },
+    "modified": "2020-05-09T10:15:38",
+    "modified_gmt": "2020-05-09T10:15:38",
+    "slug": "create-repo",
+    "status": "publish",
+    "type": "post",
+    "link": "https://react.foobrdigital.com/create-repo/",
+    "title": {
+      "rendered": "Create Repo"
+    },
+    "content": {
+      "rendered": "\n<p>In this tutorial, let&#8217;s discuss how to create a remote Git repository, from now on, we will refer to it as Git Server. We need a Git server to allow team collaboration.</p>\n\n\n\n<h2>Creating New User</h2>\n\n\n\n<pre class=\"wp-block-code\"><code># adding new group\n&#91;root@code ~]# groupadd dev\n\n# adding new user\n&#91;root@code ~]# useradd -G devs -d /home/gituser -m -s /bin/bash gituser\n\n# changing password\n&#91;root@root@code ~]# passwd gituser</code></pre>\n\n\n\n<h2>Create a Bare Repository</h2>\n\n\n\n<p>Let us initialize a new repository by using&nbsp;<strong>init</strong>&nbsp;command followed by&nbsp;<strong>&#8211;bare</strong>&nbsp;option. It initializes the repository without a working directory. By convention, the bare repository must be named as&nbsp;<strong>.git</strong>.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&#91;gituser@code ~]$ pwd\n/home/gituser\n\n&#91;gituser@code ~]$ mkdir project.git\n\n&#91;gituser@code ~]$ cd project.git/\n\n&#91;gituser@code project.git]$ ls\n\n&#91;gituser@code project.git]$ git --bare init\nInitialized empty Git repository in /home/gituser-m/project.git/\n\n&#91;gituser@code project.git]$ ls\nbranches config description HEAD hooks info objects refs\n﻿</code></pre>\n\n\n\n<h2>Generate Public/Private RSA Key Pair</h2>\n\n\n\n<p>Let us walk through the process of configuring a Git server,&nbsp;<strong>ssh-keygen</strong>&nbsp;utility generates public/private RSA key pair, that we will use for user authentication.</p>\n\n\n\n<p>Open a terminal and enter the following command and just press enter for each input. After successful completion, it will create a&nbsp;<strong>.ssh</strong>&nbsp;directory inside the home directory.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&#91;baaz@code ~]$ pwd\n/home/code\n\n&#91;baaz@code ~]$ ssh-keygen</code></pre>\n\n\n\n<p><strong>ssh-keygen</strong>&nbsp;has generated two keys, first one is private (i.e., id_rsa) and the second one is public (i.e., id_rsa.pub).</p>\n\n\n\n<p><strong>Note:</strong>&nbsp;Never share your PRIVATE KEY with others.</p>\n\n\n\n<h2>Adding Keys to authorized_keys</h2>\n\n\n\n<p>Suppose there are two developers working on a project, namely Baaz and Mubeen. Both users have generated public keys. Let us see how to use these keys for authentication.</p>\n\n\n\n<p>Baaz added his public key to the server by using&nbsp;<strong>ssh-copy-id</strong>&nbsp;command as given below −</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&#91;baaz@code ~]$ pwd\n/home/code\n\n&#91;baaz@code ~]$ ssh-copy-id -i ~/.ssh/id_rsa.pub gituser@git.server.com\n﻿</code></pre>\n\n\n\n<p>The above command will produce the following result.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>gituser@git.server.com's password:\nNow try logging into the machine, with \"ssh 'gituser@git.server.com'\", and check in:\n.ssh/authorized_keys\nto make sure we haven't added extra keys that you weren't expecting.\n﻿</code></pre>\n\n\n\n<p>Similarly, Mubeen added his public key to the server by using ssh-copy-id command.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&#91;mubeen@Dev ~]$ pwd\n/home/mubeen\n\n&#91;mubeen@Dev ~]$ ssh-copy-id -i ~/.ssh/id_rsa gituser@git.server.com</code></pre>\n\n\n\n<p>The above command will produce the following result.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>gituser@git.server.com's password:\nNow try logging into the machine, with \"ssh 'gituser@git.server.com'\", and check in:\n.ssh/authorized_keys\nto make sure we haven't added extra keys that you weren't expecting.</code></pre>\n\n\n\n<h2>Push Changes to the Repository</h2>\n\n\n\n<p>We have created a bare repository on the server and allowed access for two users. From now on, Baaz and Mubeen can push their changes to the repository by adding it as a remote.</p>\n\n\n\n<p>Git init command creates&nbsp;<strong>.git</strong>&nbsp;directory to store metadata about the repository every time it reads the configuration from the&nbsp;<strong>.git/config</strong>&nbsp;file.</p>\n\n\n\n<p>Baaz creates a new directory, adds README file, and commits his change as initial commit. After commit, he verifies the commit message by running the <strong>git log</strong> command.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&#91;baaz@code ~]$ pwd\n/home/baaz\n\n&#91;baaz@code ~]$ mkdir baaz_repo\n\n&#91;baaz@code ~]$ cd baaz_repo/\n\n&#91;baaz@code baaz_repo]$ git init\nInitialized empty Git repository in /home/baaz/baaz_repo/.git/\n\n&#91;baaz@code baaz_repo]$ echo 'TODO: Add contents for README' > README\n\n&#91;baaz@code baaz_repo]$ git status -s\n?? README\n\n&#91;baaz@code baaz_repo]$ git add .\n\n&#91;baaz@code baaz_repo]$ git status -s\nA README\n\n&#91;baaz@code baaz_repo]$ git commit -m 'Initial commit'</code></pre>\n\n\n\n<p>The above command will produce the following result.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&#91;master (root-commit) 19ae206] Initial commit\n1 files changed, 1 insertions(+), 0 deletions(-)\ncreate mode 100644 README</code></pre>\n\n\n\n<p>Baaz checks the log message by executing the git log command.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&#91;baaz@code baaz_repo]$ git log\n</code></pre>\n\n\n\n<p>The above command will produce the following result.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>commit 19ae20683fc231db7d535cf201a1424233b0e234\nAuthor: Shahbaz Khab &lt;shahbazchandio3691@gmail.com>\nDate: Friday August 11 07:12:56 2016 +0530\n\nInitial commit</code></pre>\n\n\n\n<p>Baaz committed his changes to the local repository. Now, it’s time to push the changes to the remote repository. But before that, we have to add the repository as a remote, this is a one-time operation. After this, he can safely push the changes to the remote repository.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>In this tutorial, let&#8217;s discuss how to create a remote Git repository, from now on, we will refer to it as Git Server. We need a Git server to allow team collaboration. Creating New User Create a Bare Repository Let us initialize a new repository by using&nbsp;init&nbsp;command followed by&nbsp;&#8211;bare&nbsp;option. It initializes the repository without a [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 620,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [17],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/posts/2180"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/comments?post=2180"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/posts/2180/revisions"
+        }
+      ],
+      "wp:featuredmedia": [
+        {
+          "embeddable": true,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/media/620"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/media?parent=2180"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/categories?post=2180"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/tags?post=2180"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 2181,
+    "date": "2020-05-09T10:40:13",
+    "date_gmt": "2020-05-09T10:40:13",
+    "guid": {
+      "rendered": "http://angular.foobrdigital.com/?p=623"
+    },
+    "modified": "2020-05-09T10:40:13",
+    "modified_gmt": "2020-05-09T10:40:13",
+    "slug": "clone-repo",
+    "status": "publish",
+    "type": "post",
+    "link": "https://react.foobrdigital.com/clone-repo/",
+    "title": {
+      "rendered": "Clone Repo"
+    },
+    "content": {
+      "rendered": "\n<p>We have a bare repository on the Git server and Baaz also pushed his first version. Now, Mubeen can view his changes. The Clone operation creates an instance of the remote repository.</p>\n\n\n\n<p>Mubeen creates a new directory in his home directory and performs the clone operation.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&#91;mubeen@dev ~]$ mkdir mubeen_repo\n\n&#91;mubeen@dev ~]$ cd mubeen_repo/\n\n&#91;mubeen@dev mubeen_repo]$ git clone gituser@git.server.com:project.git</code></pre>\n\n\n\n<p>The above command will produce the following result.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Initialized empty Git repository in /home/mubeen/mubeen_repo/project/.git/\nremote: Counting objects: 3, done.\nReceiving objects: 100% (3/3), 265 bytes, done.\nremote: Total 3 (delta 0), reused 0 (delta 0)</code></pre>\n\n\n\n<p>Jerry changes the directory to new local repository and lists its directory contents.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&#91;mubeen@dev mubeen_repo]$ cd project/\n\n&#91;mubeen@dev mubeen_repo]$ ls\nREADME</code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>We have a bare repository on the Git server and Baaz also pushed his first version. Now, Mubeen can view his changes. The Clone operation creates an instance of the remote repository. Mubeen creates a new directory in his home directory and performs the clone operation. The above command will produce the following result. Jerry [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 624,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [17],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/posts/2181"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/comments?post=2181"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/posts/2181/revisions"
+        }
+      ],
+      "wp:featuredmedia": [
+        {
+          "embeddable": true,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/media/624"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/media?parent=2181"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/categories?post=2181"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/tags?post=2181"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 2182,
+    "date": "2020-05-09T10:51:29",
+    "date_gmt": "2020-05-09T10:51:29",
+    "guid": {
+      "rendered": "http://angular.foobrdigital.com/?p=627"
+    },
+    "modified": "2020-05-09T10:51:29",
+    "modified_gmt": "2020-05-09T10:51:29",
+    "slug": "git-add",
+    "status": "publish",
+    "type": "post",
+    "link": "https://react.foobrdigital.com/git-add/",
+    "title": {
+      "rendered": "Git Add"
+    },
+    "content": {
+      "rendered": "\n<p>The git add command is used to add file contents. This command updates the current content of the working tree to the staging area. It also prepares the staged content for the next commit. Every time we add or update any file in our project, it is required to forward updates to the staging area.</p>\n\n\n\n<p>The git add command is a core part of Git technology. It typically adds one file at a time, but there some options are available that can add more than one file at once.</p>\n\n\n\n<p>The &#8220;index&#8221; contains a snapshot of the working tree data. This snapshot will be forwarded for the next commit.</p>\n\n\n\n<p>The git add command can be run many times before making a commit. These all add operations can be put under one commit. The add command adds the files that are specified on command line.</p>\n\n\n\n<p>The git add command does not add the .gitignore file by default. In fact, we can ignore the files by this command.</p>\n\n\n\n<p>Let&#8217;s understand how to add files on Git?</p>\n\n\n\n<h2>Git add files</h2>\n\n\n\n<p>Git add command is a straight forward command. It adds files to the staging area. We can add single or multiple files at once in the staging area. It will be run as:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>$ git add &lt;File name>  </code></pre>\n\n\n\n<p>The above command is added to the git staging area, but yet it cannot be shared on the version control system. A commit operation is needed to share it. Let&#8217;s understand the below scenario.</p>\n\n\n\n<p>We have created a file for our newly created repository in <strong>New Directory</strong>. To create a file, use the touch command as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>$ touch file_name.txt  </code></pre>\n\n\n\n<p>And check the status whether it is untracked or not by git status command as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>$ git status </code></pre>\n\n\n\n<p>The above command will display the untracked files from the repository. These files can be added to our repository. As we know we have created a new file.txt, so to add this file, run the below command:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>$ git add  </code></pre>\n\n\n\n<h2>Git Add All</h2>\n\n\n\n<p>We can add more than one files in Git, but we have to run the add command repeatedly. Git facilitates us with a unique option of the add command by which we can add all the available files at once. To add all the files from the repository, run the add command with&nbsp;<strong>-A</strong>&nbsp;option. We can use &#8216;.&#8217; Instead of&nbsp;<strong>-A</strong>&nbsp;option. This command will stage all the files at a time. It will run as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>$ git add -A  </code></pre>\n\n\n\n<p>Or</p>\n\n\n\n<pre class=\"wp-block-code\"><code>$ git add .  </code></pre>\n\n\n\n<h2>Add all New and Updated Files Only:</h2>\n\n\n\n<p>Git allows us to stage only updated and newly created files at once. We will use the ignore removal option to do so. It will be used as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>$ git add --ignore-removal .  </code></pre>\n\n\n\n<h2>Add all Modified and Deleted Files</h2>\n\n\n\n<p>Git add facilitates us with a variety of options. There is another option that is available in Git, which allows us to stage only the modified and deleted files. It will not stage the newly created file. To stage all modified and deleted files only, run the below command:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>$ git add -u  </code></pre>\n\n\n\n<h2>Add Files by Wildcard</h2>\n\n\n\n<p>Git allows us to add all the same pattern files at once. It is another way to add multiple files together. Suppose I want to add all java files or text files, then we can use pattern .java or .txt. To do so, we will run the command as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>$ git add *.java  </code></pre>\n\n\n\n<p>The above command will stage all the Java files. The same pattern will be applied for the text files.</p>\n\n\n\n<p>The next step after adding files is committing to share it on Git.</p>\n\n\n\n<h2>Git Undo Add</h2>\n\n\n\n<p>We can undo a git add operation. However, it is not a part of git add command, but we can do it through git reset command.</p>\n\n\n\n<p>To undo an add operation, run the below command:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>$ git reset &lt;filename>  </code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>The git add command is used to add file contents. This command updates the current content of the working tree to the staging area. It also prepares the staged content for the next commit. Every time we add or update any file in our project, it is required to forward updates to the staging area. [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 628,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [17],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/posts/2182"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/comments?post=2182"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/posts/2182/revisions"
+        }
+      ],
+      "wp:featuredmedia": [
+        {
+          "embeddable": true,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/media/628"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/media?parent=2182"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/categories?post=2182"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/tags?post=2182"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 2183,
+    "date": "2020-05-12T07:09:53",
+    "date_gmt": "2020-05-12T07:09:53",
+    "guid": {
+      "rendered": "http://angular.foobrdigital.com/?p=632"
+    },
+    "modified": "2020-05-12T07:09:53",
+    "modified_gmt": "2020-05-12T07:09:53",
+    "slug": "commit",
+    "status": "publish",
+    "type": "post",
+    "link": "https://react.foobrdigital.com/commit/",
+    "title": {
+      "rendered": "Git Commit"
+    },
+    "content": {
+      "rendered": "\n<p>Commit command is used to record the changes in the repository. It is the next command after the git add. Every commit contains the index data and the commit message. Every commit forms a parent-child relationship. When we add a file in Git, it will take place in the staging area. A commit command is used to fetch updates from the staging area to the repository.</p>\n\n\n\n<p>Commits are the snapshots of the project. Every commit is recorded in the master branch of the repository. We can recall the commits or revert it to the older version. Two different commits will never overwrite because each commit has its own commit-id. This commit-id is a cryptographic number created by <strong>SHA (Secure Hash Algorithm)</strong> algorithm.</p>\n\n\n\n<h2>The git commit command</h2>\n\n\n\n<p>The commit command will commit the changes and generate a commit-id. The commit command without any argument will open the default text editor and ask for the commit message. We can specify our commit message in this text editor. It will run as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>$ git commit</code></pre>\n\n\n\n<p>The above command will prompt a default editor and ask for a commit message. </p>\n\n\n\n<h2>Git commit -a</h2>\n\n\n\n<p>The commit command also provides <strong>-a</strong> option to specify some commits. It is used to commit the snapshots of all changes. This option only consider already added files in Git. It will not commit the newly created files. </p>\n\n\n\n<pre class=\"wp-block-code\"><code>$ git commit -a</code></pre>\n\n\n\n<h2>Git commit -m</h2>\n\n\n\n<p>The -m option of commit command lets you to write the commit message on the command line. This command will not prompt the text editor. It will run as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>$ git commit -m \"Your Commit message.\"  </code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Commit command is used to record the changes in the repository. It is the next command after the git add. Every commit contains the index data and the commit message. Every commit forms a parent-child relationship. When we add a file in Git, it will take place in the staging area. A commit command is used [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 634,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [17],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/posts/2183"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/comments?post=2183"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/posts/2183/revisions"
+        }
+      ],
+      "wp:featuredmedia": [
+        {
+          "embeddable": true,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/media/634"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/media?parent=2183"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/categories?post=2183"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/tags?post=2183"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 2184,
+    "date": "2020-05-12T07:18:34",
+    "date_gmt": "2020-05-12T07:18:34",
+    "guid": {
+      "rendered": "http://angular.foobrdigital.com/?p=636"
+    },
+    "modified": "2020-05-12T07:18:34",
+    "modified_gmt": "2020-05-12T07:18:34",
+    "slug": "636",
+    "status": "publish",
+    "type": "post",
+    "link": "https://react.foobrdigital.com/636/",
+    "title": {
+      "rendered": "Git Stash"
+    },
+    "content": {
+      "rendered": "\n<p>Sometimes you want to switch the branches, but you are working on an incomplete part of your current project. You don&#8217;t want to make a commit of half-done work. Git stashing allows you to do so. The&nbsp;<strong>git stash command</strong>&nbsp;enables you to switch branches without committing the current branch.</p>\n\n\n\n<p>The below figure demonstrates the properties and role of stashing concerning repository and working directory.</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://static.javatpoint.com/tutorial/git/images/git-stash.png\" alt=\"Git Stash\"/></figure>\n\n\n\n<p>Generally, the stash&#8217;s meaning is &#8220;<strong>store something safely in a hidden place</strong>.&#8221; The sense in Git is also the same for stash; Git temporarily saves your data safely without committing.</p>\n\n\n\n<p>Stashing takes the messy state of your working directory, and temporarily save it for further use. Many options are available with git stash. Some useful options are given below:</p>\n\n\n\n<ul><li><strong>Git stash</strong></li><li><strong>Git stash save</strong></li><li><strong>Git stash list</strong></li><li><strong>Git stash apply</strong></li><li><strong>Git stash changes</strong></li><li><strong>Git stash pop</strong></li><li><strong>Git stash drop</strong></li><li><strong>Git stash clear</strong></li><li><strong>Git stash branch</strong></li></ul>\n\n\n\n<h2>Stashing Work</h2>\n\n\n\n<p>Let&#8217;s understand it with a real-time scenario. Let&#8217;s say i have made changes to my project GitDemo in two files from two distinct branches. I am in a messy state, and I have not entirely edited any file yet. So I want to save it temporarily for future use. </p>\n\n\n\n<p>We can stash it to save as its current status. To stash, let&#8217;s have a look at the repository&#8217;s current status. To check the current status of the repository, run the git status command. The git status command is used as:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>$ git status  </code></pre>\n\n\n\n<figure class=\"wp-block-image size-large\"><img src=\"https://angular.foobrdigital.com/wp-content/uploads/2020/05/New-Project-48.png\" alt=\"\" class=\"wp-image-637\"/></figure>\n\n\n\n<p>From the above output, you can see the status that there are two untracked file&nbsp;<strong>design.css</strong>&nbsp;and&nbsp;<strong>newfile.txt</strong>&nbsp;available in the repository. To save it temporarily, we can use the git stash command. The git stash command is used as:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>$ git stash  </code></pre>\n\n\n\n<figure class=\"wp-block-image size-large\"><img src=\"https://angular.foobrdigital.com/wp-content/uploads/2020/05/New-Project-49.png\" alt=\"\" class=\"wp-image-638\"/></figure>\n\n\n\n<p>In the given output, the work is saved with git stash command. We can check the status of the repository.</p>\n\n\n\n<figure class=\"wp-block-image size-large\"><img src=\"https://angular.foobrdigital.com/wp-content/uploads/2020/05/New-Project-50.png\" alt=\"\" class=\"wp-image-639\"/></figure>\n\n\n\n<p>As you can see, my work is just stashed in its current position. Now, the directory is cleaned. At this point, you can switch between branches and work on them.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Sometimes you want to switch the branches, but you are working on an incomplete part of your current project. You don&#8217;t want to make a commit of half-done work. Git stashing allows you to do so. The&nbsp;git stash command&nbsp;enables you to switch branches without committing the current branch. The below figure demonstrates the properties and [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 818,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [17],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/posts/2184"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/comments?post=2184"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/posts/2184/revisions"
+        }
+      ],
+      "wp:featuredmedia": [
+        {
+          "embeddable": true,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/media/818"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/media?parent=2184"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/categories?post=2184"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/tags?post=2184"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 2185,
+    "date": "2020-05-13T03:41:52",
+    "date_gmt": "2020-05-13T03:41:52",
+    "guid": {
+      "rendered": "http://angular.foobrdigital.com/?p=644"
+    },
+    "modified": "2020-05-13T03:41:52",
+    "modified_gmt": "2020-05-13T03:41:52",
+    "slug": "git-ignore",
+    "status": "publish",
+    "type": "post",
+    "link": "https://react.foobrdigital.com/git-ignore/",
+    "title": {
+      "rendered": "Git Ignore"
+    },
+    "content": {
+      "rendered": "\n<p>In Git, the term &#8220;ignore&#8221; is used to specify intentionally untracked files that Git should ignore. It doesn&#8217;t affect the Files that already tracked by Git.</p>\n\n\n\n<p>Sometimes you don&#8217;t want to send the files to Git service like GitHub. We can specify files in Git to ignore.</p>\n\n\n\n<p>The file system of Git is classified into three categories:</p>\n\n\n\n<p><strong>Tracked:</strong></p>\n\n\n\n<p>Tracked files are such files that are previously staged or committed.</p>\n\n\n\n<p><strong>Untracked:</strong></p>\n\n\n\n<p>Untracked files are such files that are not previously staged or committed.</p>\n\n\n\n<p><strong>Ignored:</strong></p>\n\n\n\n<p>Ignored files are such files that are explicitly ignored by git. We have to tell git to ignore such files.</p>\n\n\n\n<p>Generally, the Ignored files are artifacts and machine-generated files. These files can be derived from your repository source or should otherwise not be committed. Some commonly ignored files are as follows:</p>\n\n\n\n<ul><li>dependency caches</li><li>compiled code</li><li>build output directories, like /bin, /out, or /target</li><li>runtime file generated, like .log, .lock, or .tmp</li><li>Hidden system files, like Thumbs.db or.DS_Store</li><li>Personal IDE config files, such as .idea/workspace.xml</li></ul>\n\n\n\n<h2>Git Ignore Files</h2>\n\n\n\n<p>Git ignore files is a file that can be any file or a folder that contains all the files that we want to ignore. The developers ignore files that are not necessary to execute the project. Git itself creates many system-generated ignored files. Usually, these files are hidden files. There are several ways to specify the ignore files. The ignored files can be tracked on a&nbsp;<strong>.gitignore</strong>&nbsp;file that is placed on the root folder of the repository. No explicit command is used to ignore the file.</p>\n\n\n\n<p>There is no explicit git ignore command; instead, the .gitignore file must be edited and committed by hand when you have new files that you wish to ignore. The .gitignore files hold patterns that are matched against file names in your repository to determine whether or not they should be ignored.</p>\n\n\n\n<h3>The .gitignore file:</h3>\n\n\n\n<p>Rules for ignoring file is defined in the .gitignore file. The .gitignore file is a file that contains all the formats and files of the ignored file. We can create multiple ignore files in a different directory. Let&#8217;s understand how it works with an example:</p>\n\n\n\n<p><strong>Step1:</strong>&nbsp;Create a file named .gitignore if you do not have it already in your directory. To create a file, use the command touch or cat. It will use as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>$ touch .gitignore  </code></pre>\n\n\n\n<p>Or</p>\n\n\n\n<pre class=\"wp-block-code\"><code>$ cat .gitignore  </code></pre>\n\n\n\n<p>The above command will create a .gitignore file on your directory. Remember, you are working on your desired directory.</p>\n\n\n\n<p>The above command will create a file named .gitignored. We can track it on the repository. Consider the below image:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://static.javatpoint.com/tutorial/git/images/git-ignore2.png\" alt=\"Git Ignore\"/></figure>\n\n\n\n<p>As you can see from the above image, a .gitignore file has been created for my repository.</p>\n\n\n\n<p><strong>Step2:</strong>&nbsp;Now, add the files and directories to the&nbsp;<strong>.gitignore</strong>&nbsp;file that you want to ignore. To add the files and directory to the .git ignore the file, open the file and type the file name, directory name, and pattern to ignore files and directories. Consider the below image:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://static.javatpoint.com/tutorial/git/images/git-ignore3.png\" alt=\"Git Ignore\"/></figure>\n\n\n\n<p>In the above file, I have given one format and a directory to ignore. The above format <strong>*.txt</strong> will ignore all the text files from the repository, and <strong>/new folder/*</strong> will ignore the new folder and its sub-content. We can also give only the name of any file to ignore.</p>\n\n\n\n<p><strong>Step3</strong>:&nbsp;Now, to share it on Git, we have to commit it. The .gitignore file is still now in the staging area, we can track it by git status command.</p>\n\n\n\n<p>Now to stage it, we have to commit it. To commit it, run the below command:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>$ git add .gitignore  \n$ git commit -m \"Git ignored directory is created.\"  </code></pre>\n\n\n\n<p>Now, we have ignored a pattern file and a directory in Git.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>In Git, the term &#8220;ignore&#8221; is used to specify intentionally untracked files that Git should ignore. It doesn&#8217;t affect the Files that already tracked by Git. Sometimes you don&#8217;t want to send the files to Git service like GitHub. We can specify files in Git to ignore. The file system of Git is classified into [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 645,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [17],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/posts/2185"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/comments?post=2185"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/posts/2185/revisions"
+        }
+      ],
+      "wp:featuredmedia": [
+        {
+          "embeddable": true,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/media/645"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/media?parent=2185"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/categories?post=2185"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/tags?post=2185"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 2186,
+    "date": "2020-05-13T03:45:52",
+    "date_gmt": "2020-05-13T03:45:52",
+    "guid": {
+      "rendered": "http://angular.foobrdigital.com/?p=647"
+    },
+    "modified": "2020-05-13T03:45:52",
+    "modified_gmt": "2020-05-13T03:45:52",
+    "slug": "git-fetch",
+    "status": "publish",
+    "type": "post",
+    "link": "https://react.foobrdigital.com/git-fetch/",
+    "title": {
+      "rendered": "Git Fetch"
+    },
+    "content": {
+      "rendered": "\n<p>Git &#8220;fetch&#8221; Downloads commits, objects and refs from another repository. It fetches branches and tags from one or more repositories. It holds repositories along with the objects that are necessary to complete their histories to keep updated remote-tracking branches.</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://static.javatpoint.com/tutorial/git/images/git-fetch.png\" alt=\"Git Fetch\"/></figure>\n\n\n\n<h2>The &#8220;git fetch&#8221;command</h2>\n\n\n\n<p>The &#8220;<strong>git fetch</strong>&#8221; <strong>command</strong> is used to pull the updates from remote-tracking branches. Additionally, we can get the updates that have been pushed to our remote branches to our local machines. As we know, a branch is a variation of our repositories main code, so the remote-tracking branches are branches that have been set up to pull and push from remote repository.</p>\n\n\n\n<p>We can use fetch command with many arguments for a particular data fetch. See the below scenarios to understand the uses of fetch command.</p>\n\n\n\n<h3>To fetch the remote repository:</h3>\n\n\n\n<p>We can fetch the complete repository with the help of fetch command from a repository URL like a pull command does. </p>\n\n\n\n<pre class=\"wp-block-code\"><code>$ git fetch&lt; repository Url>  </code></pre>\n\n\n\n<h3>To fetch a specific branch:</h3>\n\n\n\n<p>We can fetch a specific branch from a repository. It will only access the element from a specific branch. </p>\n\n\n\n<pre class=\"wp-block-code\"><code>$ git fetch &lt;branch URL>&lt;branch name>  </code></pre>\n\n\n\n<h3>To fetch all the branches simultaneously:</h3>\n\n\n\n<p>The git fetch command allows us to fetch all branches simultaneously from a remote repository. </p>\n\n\n\n<pre class=\"wp-block-code\"><code>$ git fetch -all  </code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Git &#8220;fetch&#8221; Downloads commits, objects and refs from another repository. It fetches branches and tags from one or more repositories. It holds repositories along with the objects that are necessary to complete their histories to keep updated remote-tracking branches. The &#8220;git fetch&#8221;command The &#8220;git fetch&#8221; command is used to pull the updates from remote-tracking branches. Additionally, we [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 648,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [17],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/posts/2186"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/comments?post=2186"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/posts/2186/revisions"
+        }
+      ],
+      "wp:featuredmedia": [
+        {
+          "embeddable": true,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/media/648"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/media?parent=2186"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/categories?post=2186"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/tags?post=2186"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 650,
+    "date": "2020-05-13T03:48:51",
+    "date_gmt": "2020-05-13T03:48:51",
+    "guid": {
+      "rendered": "http://angular.foobrdigital.com/?p=650"
+    },
+    "modified": "2020-05-13T03:48:51",
+    "modified_gmt": "2020-05-13T03:48:51",
+    "slug": "git-pull",
+    "status": "publish",
+    "type": "post",
+    "link": "https://react.foobrdigital.com/git-pull/",
+    "title": {
+      "rendered": "Git Pull"
+    },
+    "content": {
+      "rendered": "\n<p>The term pull is used to receive data from GitHub. It fetches and merges changes from the remote server to your working directory. The&nbsp;<strong>git pull command</strong>&nbsp;is used to pull a repository.</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://static.javatpoint.com/tutorial/git/images/git-pull.png\" alt=\"Git Pull\"/></figure>\n\n\n\n<p>Pull request is a process for a developer to notify team members that they have completed a feature. Once their feature branch is ready, the developer files a pull request via their remote server account.</p>\n\n\n\n<p>The below figure demonstrates how pull acts between different locations and how it is similar or dissimilar to other related commands.</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://static.javatpoint.com/tutorial/git/images/git-pull2.png\" alt=\"Git Pull\"/></figure>\n\n\n\n<h2>The &#8220;git pull&#8221; command</h2>\n\n\n\n<p>The pull command is used to access the changes (commits)from a remote repository to the local repository. It updates the local branches with the remote-tracking branches. Remote tracking branches are branches that have been set up to push and pull from the remote repository. Generally, it is a collection of the fetch and merges command. First, it fetches the changes from remote and combined them with the local repository.</p>\n\n\n\n<p>The syntax of the git pull command is given below:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>$ git pull &lt;option> &#91;&lt;repository URL>&lt;refspec>...]  </code></pre>\n\n\n\n<p>In which:</p>\n\n\n\n<p><strong>&lt;option>:</strong> Options are the commands; these commands are used as an additional option in a particular command.</p>\n\n\n\n<p><strong>&lt;repository URL>:</strong> Repository URL is your remote repository&#8217;s URL where you have stored your original repositories like GitHub or any other git service.</p>\n\n\n\n<h2>Default git pull:</h2>\n\n\n\n<p>We can pull a remote repository by just using the git pull command. It&#8217;s a default option.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>$ git pull  </code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>The term pull is used to receive data from GitHub. It fetches and merges changes from the remote server to your working directory. The&nbsp;git pull command&nbsp;is used to pull a repository. Pull request is a process for a developer to notify team members that they have completed a feature. Once their feature branch is ready, [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 651,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [17],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/posts/650"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/comments?post=650"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/posts/650/revisions"
+        }
+      ],
+      "wp:featuredmedia": [
+        {
+          "embeddable": true,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/media/651"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/media?parent=650"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/categories?post=650"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/tags?post=650"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 653,
+    "date": "2020-05-13T03:51:25",
+    "date_gmt": "2020-05-13T03:51:25",
+    "guid": {
+      "rendered": "http://angular.foobrdigital.com/?p=653"
+    },
+    "modified": "2020-05-13T03:51:25",
+    "modified_gmt": "2020-05-13T03:51:25",
+    "slug": "git-push",
+    "status": "publish",
+    "type": "post",
+    "link": "https://react.foobrdigital.com/git-push/",
+    "title": {
+      "rendered": "Git Push"
+    },
+    "content": {
+      "rendered": "\n<p>The push term refers to upload local repository content to a remote repository. Pushing is an act of transfer commits from your local repository to a remote repository. Pushing is capable of overwriting changes; caution should be taken when pushing.</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://static.javatpoint.com/tutorial/git/images/git-push.png\" alt=\"Git Push\"/></figure>\n\n\n\n<p>Moreover, we can say the push updates the remote refs with local refs. Every time you push into the repository, it is updated with some interesting changes that you made. If we do not specify the location of a repository, then it will push to default location at&nbsp;<strong>origin master</strong>.</p>\n\n\n\n<p>The &#8220;git push&#8221; command is used to push into the repository. The push command can be considered as a tool to transfer commits between local and remote repositories. The basic syntax is given below:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>$ git push &lt;option> &#91;&lt;Remote URL>&lt;branch name>&lt;refspec>...]  </code></pre>\n\n\n\n<p>Push command supports many additional options. Some options are as follows under push tags.</p>\n\n\n\n<h2>Git Push Tags</h2>\n\n\n\n<p><strong>&lt;repository&gt;:</strong>&nbsp;The repository is the destination of a push operation. It can be either a URL or the name of a remote repository.</p>\n\n\n\n<p><strong>&lt;refspec&gt;:</strong>&nbsp;It specifies the destination ref to update source object.</p>\n\n\n\n<p><strong>&#8211;all:</strong>&nbsp;The word &#8220;all&#8221; stands for all branches. It pushes all branches.</p>\n\n\n\n<p><strong>&#8211;prune:</strong>&nbsp;It removes the remote branches that do not have a local counterpart. Means, if you have a remote branch say demo, if this branch does not exist locally, then it will be removed.</p>\n\n\n\n<p><strong>&#8211;mirror:</strong>&nbsp;It is used to mirror the repository to the remote. Updated or Newly created local refs will be pushed to the remote end. It can be force updated on the remote end. The deleted refs will be removed from the remote end.</p>\n\n\n\n<p><strong>&#8211;dry-run:</strong>&nbsp;Dry run tests the commands. It does all this except originally update the repository.</p>\n\n\n\n<p><strong>&#8211;tags:</strong>&nbsp;It pushes all local tags.</p>\n\n\n\n<p><strong>&#8211;delete:</strong>&nbsp;It deletes the specified branch.</p>\n\n\n\n<p><strong>-u:</strong>&nbsp;It creates an upstream tracking connection. It is very useful if you are going to push the branch for the first time.</p>\n\n\n\n<h2>Git Push Origin Master</h2>\n\n\n\n<p>Git push origin master is a special command-line utility that specifies the remote branch and directory. When you have multiple branches and directory, then this command assists you in determining your main branch and repository.</p>\n\n\n\n<p>Generally, the term&nbsp;<strong>origin stands</strong>&nbsp;for the remote repository, and master is considered as the main branch. So, the entire statement &#8220;<strong>git push origin master</strong>&#8221; pushed the local content on the master branch of the remote location.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>$ git push origin master  </code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>The push term refers to upload local repository content to a remote repository. Pushing is an act of transfer commits from your local repository to a remote repository. Pushing is capable of overwriting changes; caution should be taken when pushing. Moreover, we can say the push updates the remote refs with local refs. Every time [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 654,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [17],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/posts/653"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/comments?post=653"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/posts/653/revisions"
+        }
+      ],
+      "wp:featuredmedia": [
+        {
+          "embeddable": true,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/media/654"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/media?parent=653"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/categories?post=653"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/tags?post=653"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 656,
+    "date": "2020-05-13T03:55:20",
+    "date_gmt": "2020-05-13T03:55:20",
+    "guid": {
+      "rendered": "http://angular.foobrdigital.com/?p=656"
+    },
+    "modified": "2020-05-13T03:55:20",
+    "modified_gmt": "2020-05-13T03:55:20",
+    "slug": "git-iq",
+    "status": "publish",
+    "type": "post",
+    "link": "https://react.foobrdigital.com/git-iq/",
+    "title": {
+      "rendered": "Git IQ"
+    },
+    "content": {
+      "rendered": "\n<h3>1) What is GIT?</h3>\n\n\n\n<p>Git is an open source distributed version control system and source code management (SCM) system with an insistence to control small and large projects with speed and efficiency.</p>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h3>2) Which language is used in Git?</h3>\n\n\n\n<p>Git uses &#8216;C&#8217; language. Git is quick, and &#8216;C&#8217; language makes this possible by decreasing the overhead of run times contained with high-level languages.</p>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h3>3) What is a repository in Git?</h3>\n\n\n\n<p>A repository consists of a list named .git, where git holds all of its metadata for the catalog. The content of the .git file is private to Git.</p>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h3>4) What is &#8216;bare repository&#8217; in Git?</h3>\n\n\n\n<p>A &#8220;bare&#8221; repository in Git includes the version control information and no working files (no tree), and it doesn&#8217;t include the special. git sub-directory. Instead, it consists of all the contents of the .git sub-directory directly in the main directory itself, whereas working list comprises of:</p>\n\n\n\n<ol><li>A .git subdirectory with all the Git associated revision history of your repo.</li><li>A working tree, or find out copies of your project files.</li></ol>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h3>5) What is the purpose of GIT stash?</h3>\n\n\n\n<p>GIT stash takes the present state of the working file and index and puts in on the stack for next and gives you back a clean working file. So in case if you are in the middle of object and require to jump over to the other task, and at the same time you don&#8217;t want to lose your current edits, you can use GIT stash.</p>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h3>6) What is GIT stash drop?</h3>\n\n\n\n<p>When you are done with the stashed element or want to delete it from the directory, run the git &#8216;stash drop&#8217; command. It will delete the last added stash item by default, and it can also remove a specific topic if you include as an argument.</p>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h3>7) What are the advantages of using GIT?</h3>\n\n\n\n<p>Here are some of the essential advantages of Git:</p>\n\n\n\n<ul><li>Data repetition and data replication is possible</li><li>It is a much applicable service</li><li>For one depository you can have only one directory of Git</li><li>The network performance and disk application are excellent</li><li>It is effortless to collaborate on any project</li><li>You can work on any plan within the Git</li></ul>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h3>8) What is the function of &#8216;GIT PUSH&#8217; in GIT?</h3>\n\n\n\n<p>&#8216;GIT PUSH&#8217; updates remote refs along with related objects</p>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h3>9) Why do we require branching in GIT?</h3>\n\n\n\n<p>With the help of branching, you can keep your branch, and you can also jump between the different branches. You can go to your past work while at the same time keeping your recent work intact.</p>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h3>10) What is the purpose of &#8216;git config&#8217;?</h3>\n\n\n\n<p>The &#8216;Git config&#8217; is a great method to configure your choice for the Git installation. Using this command, you can describe the repository behavior, preferences, and user information.</p>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h3>11) What is the definition of &#8220;Index&#8221; or &#8220;Staging Area&#8221; in GIT?</h3>\n\n\n\n<p>When you are making the commits, you can make innovation to it, format it and review it in the common area known as &#8216;Staging Area&#8217; or &#8216;Index&#8217;.</p>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h3>12) What is a &#8216;conflict&#8217; in git?</h3>\n\n\n\n<p>A &#8216;conflict&#8217; appears when the commit that has to be combined has some change in one place, and the current act also has a change at the same place. Git will not be easy to predict which change should take precedence.</p>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h3>13) What is the difference between git pull and git fetch?</h3>\n\n\n\n<p>Git pull command pulls innovation or commits from a specific branch from your central repository and updates your object branch in your local repository.</p>\n\n\n\n<p>Git fetch is also used for the same objective, but it works in a slightly different method. When you behave a git fetch, it pulls all new commits from the desired branch and saves it in a new branch in your local repository. If you need to reflect these changes in your target branch, git fetch should be followed with a git merge. Your target branch will only be restored after combining the target branch and fetched branch. To make it simple for you, remember the equation below:</p>\n\n\n\n<p><strong>Git pull = git fetch + git merge</strong></p>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h3>14) How to resolve a conflict in Git?</h3>\n\n\n\n<p>If you need to resolve a conflict in Git, edit the list for fixing the different changes, and then you can run &#8220;git add&#8221; to add the resolved directory, and after that, you can run the &#8216;git commit&#8217; for committing the repaired merge.</p>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h3>15) What is the purpose of the git clone?</h3>\n\n\n\n<p>The git clone command generates a copy of a current Git repository. To get the copy of a central repository, &#8216;cloning&#8217; is the simplest way used by programmers.</p>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h3>16) What is git pull origin?</h3>\n\n\n\n<p>pull is a get and a consolidation. &#8216;git pull origin master&#8217; brings submits from the master branch of the source remote (into the local origin/master branch), and then it combines origin/master into the branch you currently have looked out.</p>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h3>17) What does git commit a?</h3>\n\n\n\n<p>Git commits &#8220;records changes to the storehouse&#8221; while git push &#8221; updates remote refs along with contained objects&#8221; So the first one is used in a network with your local repository, while the latter one is used to communicate with a remote repository.</p>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h3>18) Why GIT better than Subversion?</h3>\n\n\n\n<p>GIT is an open source version control framework; it will enable you to run &#8216;adaptations&#8217; of a task, which demonstrate the changes that were made to the code over time also it allows you keep the backtrack if vital and fix those changes. Multiple developers can check out, and transfer changes, and each change can then be attributed to a particular developer.</p>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h3>19) Explain what is commit message?</h3>\n\n\n\n<p>Commit message is a component of git which shows up when you submit a change. Git gives you a content tool where you can enter the adjustments made to a commit.</p>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h3>20) Why is it desirable to create an additional commit rather than amending an existing commit?</h3>\n\n\n\n<p>There are couples of reason</p>\n\n\n\n<ol><li>The correct activity will devastate the express that was recently saved in a commit. If only the commit message gets changed, that&#8217;s not a problem. But if the contents are being modified, chances of excluding something important remains more.</li><li>Abusing &#8220;git commit- amends&#8221; can cause a small commit to increase and acquire inappropriate changes.</li></ol>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h3>21) What does &#8216;hooks&#8217; comprise of in Git?</h3>\n\n\n\n<p>This index comprises of Shell contents which are enacted after running the relating git commands. For instance, Git will attempt to execute the post-commit content after you run a commit.</p>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h3>22) What is the distinction between Git and GitHub?</h3>\n\n\n\n<p>A) Git is a correction control framework, a tool to deal with your source code history.</p>\n\n\n\n<p>GitHub is a hosting function for Git storehouses.</p>\n\n\n\n<p>GitHub is a website where you can transfer a duplicate of your Git archive. It is a Git repository hosting service, which offers the majority of the distributed update control and source code management (SCM) usefulness of Git just as including its features.</p>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h3>23) In Git, how would you return a commit that has just been pushed and made open?</h3>\n\n\n\n<p>There can be two answers to this question and ensure that you incorporate both because any of the below choices can be utilized relying upon the circumstance:</p>\n\n\n\n<p>Remove or fix the bad document in another commit and push it to the remote repository. This is a unique approach to correct a mistake. Once you have necessary changes to the record, commit it to the remote repository for that I will utilize</p>\n\n\n\n<p><strong>git submit &#8211; m &#8220;commit message.&#8221;</strong></p>\n\n\n\n<p>Make another commit that fixes all changes that were made in the terrible commit. to do this, I will utilize a command</p>\n\n\n\n<p><strong>git revert &lt;name of bad commit&gt;</strong></p>\n\n\n\n<h3>24) What does the committed item contain?</h3>\n\n\n\n<p>Commit item contains the following parts; you should specify all the three present below:</p>\n\n\n\n<p>A set of records, representing to the condition of a task at a given purpose of time</p>\n\n\n\n<p>References to parent commit objects</p>\n\n\n\n<p>An SHAI name, a 40 character string that uniquely distinguishes the commit object.</p>\n\n\n\n<h3>25) Describing branching systems you have utilized?</h3>\n\n\n\n<p>This question is a challenge to test your branching knowledge with Git along these lines, inform them regarding how you have utilized branching in your past activity and what reason does it serves, you can refer the below mention points:</p>\n\n\n\n<p><strong>Feature Branching:</strong></p>\n\n\n\n<p>A component branch model keeps the majority of the changes for a specific element within a branch. At the point when the item is throughout tested and approved by automated tests, the branch is then converged into master.</p>\n\n\n\n<p><strong>Task Branching</strong></p>\n\n\n\n<p>In this model, each assignment is actualized on its branch with the undertaking key included in the branch name. It is anything but difficult to see which code actualizes which task, search for the task key in the branch name.</p>\n\n\n\n<p><strong>Release Branching</strong></p>\n\n\n\n<p>Once the create branch has procured enough features for a discharge, you can clone that branch to frame a Release branch. Making this branch begins the following discharge cycle so that no new features can be included after this point, just bug fixes, documentation age, and other release oriented assignments ought to go in this branch. When it is prepared to deliver, the release gets converged into master and labeled with a form number. Likewise, it should be converged once again into creating a branch, which may have advanced since the release was started.</p>\n\n\n\n<p>At last, disclose to them that branching methodologies fluctuate starting with one association then onto the next, so I realize essential branching activities like delete, merge, checking out a branch, etc.</p>\n\n\n\n<h3>26) By what method will you know in Git if a branch has just been combined into master?</h3>\n\n\n\n<p>The appropriate response is immediate.</p>\n\n\n\n<p>To know whether a branch has been merged into master or not you can utilize the below commands:</p>\n\n\n\n<p><strong>git branch &#8211; merged</strong>&nbsp;It records the branches that have been merged into the present branch.</p>\n\n\n\n<p><strong>git branch &#8211; no merged</strong>&nbsp;It records the branches that have not been merged.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>1) What is GIT? Git is an open source distributed version control system and source code management (SCM) system with an insistence to control small and large projects with speed and efficiency. 2) Which language is used in Git? Git uses &#8216;C&#8217; language. Git is quick, and &#8216;C&#8217; language makes this possible by decreasing the [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 657,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [17],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/posts/656"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/comments?post=656"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/posts/656/revisions"
+        }
+      ],
+      "wp:featuredmedia": [
+        {
+          "embeddable": true,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/media/657"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/media?parent=656"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/categories?post=656"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://react.foobrdigital.com/wp-json/wp/v2/tags?post=656"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  }
+]

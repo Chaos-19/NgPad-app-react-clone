@@ -1,0 +1,284 @@
+[
+  {
+    "id": 3149,
+    "date": "2020-11-28T06:09:59",
+    "date_gmt": "2020-11-28T06:09:59",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3149"
+    },
+    "modified": "2020-11-28T06:09:59",
+    "modified_gmt": "2020-11-28T06:09:59",
+    "slug": "iterators",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/iterators/",
+    "title": {
+      "rendered": "Iterators"
+    },
+    "content": {
+      "rendered": "\n<h2>The&nbsp;<code>for</code>&nbsp;loop issues</h2>\n\n\n\n<p>When you have an\u00a0array\u00a0of data, you typically use a\u00a0<code>for</code>\u00a0loop to iterate over its elements. For example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let ranks = &#91;'A', 'B', 'C'];\n\nfor (let i = 0; i &lt; ranks.length; i++) {\n    console.log(ranks&#91;i]);\n}</code></pre>\n\n\n\n<p>The&nbsp;<code>for</code>&nbsp;loop uses the variable &nbsp;<code>i</code>&nbsp;to track the index of the&nbsp;<code>ranks</code>&nbsp;array. The value of &nbsp;<code>i</code>&nbsp;increments each time the loop executes as long as the value of&nbsp;<code>i</code>&nbsp;is less than the number of elements in the&nbsp;<code>ranks</code>&nbsp;array.</p>\n\n\n\n<p>This&nbsp;code is straightforward. However, its complexity grows when you nest a loop inside another loop. In addition, keeping track of multiple variables inside the loops&nbsp;is error-prone.</p>\n\n\n\n<p>ES6 introduced a new loop construct called\u00a0<code>for...of</code>\u00a0to eliminate the standard loop\u2019s complexity and avoid the errors caused by keeping track of loop indexes.</p>\n\n\n\n<p>To iterate over the elements of the&nbsp;<code>ranks</code>&nbsp;array, you use the following&nbsp;<code>for...of</code>&nbsp;construct:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>for(let rank of ranks) {\n    console.log(rank);\n}</code></pre>\n\n\n\n<p>The&nbsp;<code>for...of</code>&nbsp;is far more elegant than the&nbsp;<code>for</code>&nbsp;loop because it shows the true intent of the code \u2013 iterate over an array to access each element in the sequence.</p>\n\n\n\n<p>On top of this, the&nbsp;<code>for...of</code>&nbsp;loop has the ability to create a loop over any&nbsp;<strong>iterable</strong>&nbsp;object, not just an array.</p>\n\n\n\n<p>To understand the iterable object, you need to understand the iteration protocols first.</p>\n\n\n\n<h2>Iteration protocols</h2>\n\n\n\n<p>There are two iteration protocols:&nbsp;<strong>iterable protocol</strong>&nbsp;and&nbsp;<strong>iterator protocol</strong>.</p>\n\n\n\n<h3>Iterator protocol</h3>\n\n\n\n<p>An object is an iterator when it implements an interface (or API) that answers two questions:</p>\n\n\n\n<ul><li>Is there any element left?</li><li>If there is, what is the element?</li></ul>\n\n\n\n<p>Technically speaking, an object is qualified as an iterator when it has a&nbsp;<code>next()</code>&nbsp;method that returns an object with two properties:</p>\n\n\n\n<ul><li>&nbsp;<code>done</code>: a boolean value indicating whether or not&nbsp; there are any more elements that could be iterated upon.</li><li>&nbsp;<code>value</code>: the current element.</li></ul>\n\n\n\n<p>Each time you call the&nbsp;<code>next()</code>, it returns the next value in the collection:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{ value: 'next value', done: false }</code></pre>\n\n\n\n<p>If you call the&nbsp;<code>next()</code>&nbsp;method after the last value has been returned, the&nbsp;<code>next()</code>&nbsp;returns the result object as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{done: true: value: undefined}</code></pre>\n\n\n\n<p>The value of the&nbsp;<code>done</code>&nbsp;property indicates that there is no more value to return and the&nbsp;<code>value</code>&nbsp;of the property is set to&nbsp;<code>undefined</code>.</p>\n\n\n\n<h3>Iterable protocol</h3>\n\n\n\n<p>An object is iterable when it contains a method called&nbsp;<code>[Symbol.iterator]</code>&nbsp;that takes no argument and returns an object which conforms to the iterator protocol.</p>\n\n\n\n<p>The\u00a0<code>[Symbol.iterator]</code>\u00a0is one of the built-in well-known\u00a0symbols\u00a0in ES6.</p>\n\n\n\n<h2>Iterators</h2>\n\n\n\n<p>Since ES6 provides built-in iterators for the collection types\u00a0\u00a0<code>Array</code>,\u00a0<code>Set</code>, and\u00a0<code>Map</code>, you don\u2019t have to create iterators for these objects.</p>\n\n\n\n<p>If you have a custom type and want to make it iterable so that you can use the&nbsp;<code>for...of</code>&nbsp;loop construct, you need to implement the iteration protocols.</p>\n\n\n\n<p>The following code creates a&nbsp;<code>Sequence</code>&nbsp;object that returns a list of numbers in the range of (&nbsp;<code>start</code>,&nbsp;<code>end</code>) with an&nbsp;<code>interval</code>&nbsp;between subsequent numbers.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>class Sequence {\n    constructor( start = 0, end = Infinity, interval = 1 ) {\n        this.start = start;\n        this.end = end;\n        this.interval = interval;\n    }\n    &#91;Symbol.iterator]() {\n        let counter = 0;\n        let nextIndex = this.start;\n        return  {\n            next: () => {\n                if ( nextIndex &lt;= this.end ) {\n                    let result = { value: nextIndex,  done: false }\n                    nextIndex += this.interval;\n                    counter++;\n                    return result;\n                }\n                return { value: counter, done: true };\n            }\n        }\n    }\n};</code></pre>\n\n\n\n<p>The following code uses the&nbsp;<code>Sequence</code>&nbsp;iterator in a&nbsp;<code>for...of</code>&nbsp;loop:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let evenNumbers = new Sequence(2, 10, 2);\n\nfor (const num of evenNumbers) {\n    console.log(num);\n}</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>2\n4\n6\n8\n10</code></pre>\n\n\n\n<p>You can explicitly access the&nbsp;<code>[Symbol.iterator]()</code>&nbsp;method as shown in the following script:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let evenNumbers = new Sequence(2, 10, 2);\nlet iterator = evenNumbers&#91;Symbol.iterator]();\n\nlet result = iterator.next();\n\nwhile( !result.done ) {\n    console.log(result.value);\n    result = iterator.next();\n}</code></pre>\n\n\n\n<h2>Cleaning up</h2>\n\n\n\n<p>In addition to the&nbsp;<code>next()</code>&nbsp;method, the&nbsp;<code>[Symbol.iterator]()</code>&nbsp;may optionally return a method called&nbsp;<code>return()</code>.</p>\n\n\n\n<p>The&nbsp;<code>return()</code>&nbsp;method is invoked automatically when the iteration is stopped prematurely. It is where you can place the code to clean up the resources.</p>\n\n\n\n<p>The following example implements the&nbsp;<code>return()</code>&nbsp;method for the&nbsp;<code>Sequence</code>&nbsp;object:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>class Sequence {\n    constructor( start = 0, end = Infinity, interval = 1 ) {\n        this.start = start;\n        this.end = end;\n        this.interval = interval;\n    }\n    &#91;Symbol.iterator]() {\n        let counter = 0;\n        let nextIndex = this.start;\n        return  {\n            next: () => {\n                if ( nextIndex &lt;= this.end ) {\n                    let result = { value: nextIndex,  done: false }\n                    nextIndex += this.interval;\n                    counter++;\n                    return result;\n                }\n                return { value: counter, done: true };\n            },\n            return: () => {\n                console.log('cleaning up...');\n                return { value: undefined, done: true };\n            }\n        }\n    }\n}</code></pre>\n\n\n\n<p>The following snippet uses the&nbsp;<code>Sequence</code>&nbsp;object to generate a sequence of odd numbers from 1 to 10. However, it prematurely stops the iteration. As a result, the&nbsp;<code>return()</code>&nbsp;method is automatically invoked.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let oddNumbers = new Sequence(1, 10, 2);\n\nfor (const num of oddNumbers) {\n    if( num > 7 ) {\n        break;\n    }\n    console.log(num);\n}</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>1\n3\n5\n7\ncleaning up...</code></pre>\n\n\n\n<p>In this tutorial, you have learned about the JavaScript iterator and how to use the iteration protocols to implement customize iteration logic.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>The&nbsp;for&nbsp;loop issues When you have an\u00a0array\u00a0of data, you typically use a\u00a0for\u00a0loop to iterate over its elements. For example: The&nbsp;for&nbsp;loop uses the variable &nbsp;i&nbsp;to track the index of the&nbsp;ranks&nbsp;array. The value of &nbsp;i&nbsp;increments each time the loop executes as long as the value of&nbsp;i&nbsp;is less than the number of elements in the&nbsp;ranks&nbsp;array. This&nbsp;code is straightforward. However, [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [204],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3149"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=3149"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3149/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=3149"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=3149"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=3149"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 3151,
+    "date": "2020-11-28T06:11:16",
+    "date_gmt": "2020-11-28T06:11:16",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3151"
+    },
+    "modified": "2020-11-28T06:11:16",
+    "modified_gmt": "2020-11-28T06:11:16",
+    "slug": "generators",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/generators/",
+    "title": {
+      "rendered": "Generators"
+    },
+    "content": {
+      "rendered": "\n<h2>Introduction to JavaScript Generators</h2>\n\n\n\n<p>In JavaScript, a regular\u00a0function\u00a0is executed based on the run-to-completion model. It cannot pause midway and then continues from where it paused. For example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function foo() {\n    console.log('I');\n    console.log('cannot');\n    console.log('pause');\n}\n</code></pre>\n\n\n\n<p>The&nbsp;<code>foo()</code>&nbsp;function executes from top to bottom. The only way to exit the&nbsp;<code>foo()</code>&nbsp;is by returning from it or throwing an error. If you invoke the&nbsp;<code>foo()</code>&nbsp;function again, it will start the execution from the top to bottom.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>foo();</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>I\ncannot\npause</code></pre>\n\n\n\n<p>ES6 introduces a new kind of function that is different from a regular function: function generator or generator.</p>\n\n\n\n<p>A generator can pause midway and then continues from where it paused. For example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function* generate() {\n    console.log('invoked 1st time');\n    yield 1;\n    console.log('invoked 2nd time');\n    yield 2;\n}</code></pre>\n\n\n\n<p>Let\u2019s examine the&nbsp;<code>generate()</code>&nbsp;function in detail.</p>\n\n\n\n<ul><li>First, you see the asterisk (<code>*</code>) after the\u00a0<code>function</code>\u00a0keyword. The asterisk denotes that the\u00a0<code>generate()</code>\u00a0is a generator, not a normal function.</li><li>Second, the\u00a0<code>yield</code>\u00a0statement returns a value and pauses the execution of the function.</li></ul>\n\n\n\n<p>The following code invokes the&nbsp;<code>generate()</code>&nbsp;generator:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let gen = generate();</code></pre>\n\n\n\n<p>When you invoke the&nbsp;<code>generate()</code>&nbsp;generator:</p>\n\n\n\n<ul><li>First, you see nothing in the console. If the&nbsp;<code>generate()</code>&nbsp;were a regular function, you would expect to see some messages.</li><li>Second, you get something back from&nbsp;<code>generate()</code>&nbsp;as a returned value.</li></ul>\n\n\n\n<p>Let\u2019s show the returned value on the console:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>console.log(gen);</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Object &#91;Generator] {}</code></pre>\n\n\n\n<p>So, a generator returns a&nbsp;<code>Generator</code>&nbsp;object without executing its body when it is invoked.</p>\n\n\n\n<p>The\u00a0<code>Generator</code>\u00a0object returns another object with two properties:\u00a0<code>done</code>\u00a0and\u00a0<code>value</code>. In other words, a\u00a0<code>Generator</code>\u00a0object is\u00a0iterable.</p>\n\n\n\n<p>The following calls the&nbsp;<code>next()</code>&nbsp;method on the&nbsp;<code>Generator</code>&nbsp;object:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let result = gen.next();\nconsole.log(result);</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>invoked 1st time\n{ value: 1, done: false }\n</code></pre>\n\n\n\n<p>As you can see, the Generator object executes its body which outputs message&nbsp;<code>'invoked 1st time'</code>&nbsp;at line 1 and returns the value 1 at line 2.</p>\n\n\n\n<p>The&nbsp;<code>yield</code>&nbsp;statement returns 1 and pauses the generator at line 2.</p>\n\n\n\n<p>Similarly, the following code invokes the&nbsp;<code>next()</code>&nbsp;method of the Generator second time:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>result = gen.next();\nconsole.log(result);\n</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>invoked 2nd time\n{ value: 2, done: false }</code></pre>\n\n\n\n<p>This time the Generator resumes its execution from line 3 that outputs the message&nbsp;<code>'invoked 2nd time'</code>&nbsp;and returns (or yield) 2.</p>\n\n\n\n<p>The following invokes the&nbsp;<code>next()</code>&nbsp;method of the generator object third time:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>result = gen.next();\nconsole.log(result);</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{ value: undefined, done: true }</code></pre>\n\n\n\n<p>Since a generator is iterable, you can use the\u00a0<code>for...of</code>\u00a0loop:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>for (const g of gen) {\n    console.log(g);\n}</code></pre>\n\n\n\n<p>Here is the output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>invoked 1st time\n1\ninvoked 2nd time\n2\n</code></pre>\n\n\n\n<h2>More generator examples</h2>\n\n\n\n<p>The following example illustrates how to use a generator to generate a never-ending sequence:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function* forever() {\n    let index = 0;\n    while (true) {\n        yield index++;\n    }\n}\n\nlet f = forever();\nconsole.log(f.next()); // 0\nconsole.log(f.next()); // 1\nconsole.log(f.next()); // 2\n</code></pre>\n\n\n\n<p>Each time you call the&nbsp;<code>next()</code>&nbsp;method of the&nbsp;<code>forever</code>&nbsp;generator, it returns the next number in the sequence starting from 0.</p>\n\n\n\n<h2>Using generators to implement iterators</h2>\n\n\n\n<p>When you implement an iterator, you have to manually define the&nbsp;<code>next()</code>&nbsp;method. In the&nbsp;<code>next()</code>&nbsp;method, you also have to manually save the state of the current element.</p>\n\n\n\n<p>Since generators are iterables, they can help you simplify the code for implementing iterator.</p>\n\n\n\n<p>The following is a\u00a0<code>Sequence</code>\u00a0iterator created in the\u00a0iterator tutorial:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>class Sequence {\n    constructor( start = 0, end = Infinity, interval = 1 ) {\n        this.start = start;\n        this.end = end;\n        this.interval = interval;\n    }\n    &#91;Symbol.iterator]() {\n        let counter = 0;\n        let nextIndex = this.start;\n        return  {\n            next: () => {\n                if ( nextIndex &lt; this.end ) {\n                    let result = { value: nextIndex,  done: false }\n                    nextIndex += this.interval;\n                    counter++;\n                    return result;\n                }\n                return { value: counter, done: true };\n            }\n        }\n    }\n}\n</code></pre>\n\n\n\n<p>And here is the new Sequence iterator that uses a generator:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>class Sequence {\n    constructor( start = 0, end = Infinity, interval = 1 ) {\n        this.start = start;\n        this.end = end;\n        this.interval = interval;\n    }\n    * &#91;Symbol.iterator]() {\n        for( let index = this.start; index &lt;= this.end; index += this.interval ) {\n            yield index;\n        }\n    }\n}</code></pre>\n\n\n\n<p>As you an see, the method\u00a0Symbol.iterator\u00a0is much simpler by using the generator.</p>\n\n\n\n<p>The following script uses the Sequence iterator to generate a sequence of odd numbers from 1 to 10:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let oddNumbers = new Sequence(1, 10, 2);\n\nfor (const num of oddNumbers) {\n    console.log(num);\n}</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>1\n3\n5\n7\n9</code></pre>\n\n\n\n<h2>Using a generator to implement the Bag data structure</h2>\n\n\n\n<p>A Bag is a data structure that has the ability to collect elements and iterate through elements. It doesn\u2019t support removing items.</p>\n\n\n\n<p>The following script implements the&nbsp;<code>Bag</code>&nbsp;data structure:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>class Bag {\n    constructor() {\n        this.elements = &#91;];\n    }\n    isEmpty() {\n        return this.elements.length === 0;\n    }\n    add(element) {\n        this.elements.push(element);\n    }\n    * &#91;Symbol.iterator]() {\n        for (let element of this.elements) {\n            yield element;\n        }\n    }\n}\n\nlet bag = new Bag();\n\nbag.add(1);\nbag.add(2);\nbag.add(3);\n\nfor (let e of bag) {\n    console.log(e);\n}</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>1\n2\n3</code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Introduction to JavaScript Generators In JavaScript, a regular\u00a0function\u00a0is executed based on the run-to-completion model. It cannot pause midway and then continues from where it paused. For example: The&nbsp;foo()&nbsp;function executes from top to bottom. The only way to exit the&nbsp;foo()&nbsp;is by returning from it or throwing an error. If you invoke the&nbsp;foo()&nbsp;function again, it will start [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [204],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3151"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=3151"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3151/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=3151"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=3151"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=3151"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 3153,
+    "date": "2020-11-28T06:12:03",
+    "date_gmt": "2020-11-28T06:12:03",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3153"
+    },
+    "modified": "2020-11-28T06:12:03",
+    "modified_gmt": "2020-11-28T06:12:03",
+    "slug": "yield",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/yield/",
+    "title": {
+      "rendered": "Yield"
+    },
+    "content": {
+      "rendered": "\n<h2>Introduction to the JavaScript&nbsp;<code>yield</code>&nbsp;keyword</h2>\n\n\n\n<p>The\u00a0<code>yield</code>\u00a0keyword allows you to pause and resume a\u00a0generator\u00a0function (<code>function*</code>).</p>\n\n\n\n<p>The following shows the syntax of the&nbsp;<code>yield</code>&nbsp;keyword:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&#91;variable_name] = yield &#91;expression];\n</code></pre>\n\n\n\n<p>In this syntax:</p>\n\n\n\n<ul><li>The&nbsp;<code>expression</code>&nbsp;specifies the value to return from a generator function via the iteration protocol. If you omit the&nbsp;<code>expression</code>, the&nbsp;<code>yield</code>&nbsp;returns&nbsp;<code>undefined</code>.</li><li>The&nbsp;<code>variable_name</code>&nbsp;stores the optional value passed to the&nbsp;<code>next()</code>&nbsp;method of the iterator object.</li></ul>\n\n\n\n<h2>JavaScript&nbsp;<code>yield</code>&nbsp;examples</h2>\n\n\n\n<p>Let\u2019s take some examples of using the&nbsp;<code>yield</code>&nbsp;keyword.</p>\n\n\n\n<h3>A) Returning a value</h3>\n\n\n\n<p>The following trivial example illustrates how to use the&nbsp;<code>yield</code>&nbsp;keyword to return a value from a generator function:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function* foo() { \n    yield 1;\n    yield 2;\n    yield 3;\n}\n\nlet f = foo();\n\nconsole.log(f.next());\n</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{ value: 1, done: false }\n</code></pre>\n\n\n\n<p>As you can see the value that follows the&nbsp;<code>yield</code>&nbsp;is added to the&nbsp;<code>value</code>&nbsp;property of the return object when the&nbsp;<code>next()</code>&nbsp;is called:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>yield 1;\n</code></pre>\n\n\n\n<h3>B) Returning&nbsp;<code>undefined</code></h3>\n\n\n\n<p>This example illustrates how to use the&nbsp;<code>yield</code>&nbsp;keyword to return&nbsp;<code>undefined</code>:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function* bar() {\n    yield;\n}\n\nlet b = bar();\nconsole.log(b.next()); \n</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{ value: undefined, done: false }\n</code></pre>\n\n\n\n<h3>C) Passing a value to the&nbsp;<code>next()</code>&nbsp;method</h3>\n\n\n\n<p>In the following example, the&nbsp;<code>yield</code>&nbsp;keyword is an expression that evaluates to the argument passed to the&nbsp;<code>next()</code>&nbsp;method:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function* generate() {\n    let result = yield;\n    console.log(`result is ${result}`);\n}\n\nlet g = generate();\nconsole.log(g.next()); \n\nconsole.log(g.next(1000));\n</code></pre>\n\n\n\n<p>The first call&nbsp;<code>g.next()</code>&nbsp;returns the following object:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{ value: undefined, done: false }\n</code></pre>\n\n\n\n<p>The second call g.next() carries the following tasks:</p>\n\n\n\n<ul><li>Evaluate&nbsp;<code>yield</code>&nbsp;to 1000.</li><li>Assign&nbsp;<code>result</code>&nbsp;the value of&nbsp;<code>yield</code>, which is&nbsp;<code>1000</code>.</li><li>Output the message and return the object</li></ul>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>result is 1000\n{ value: undefined, done: true }\n</code></pre>\n\n\n\n<h3>D) Using&nbsp;<code>yield</code>&nbsp;in an array</h3>\n\n\n\n<p>The following example uses the\u00a0<code>yield</code>\u00a0keyword as elements of an\u00a0array:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function* baz() {\n    let arr = &#91;yield, yield];\n    console.log(arr);\n}\n\nvar z = baz();\n\nconsole.log(z.next());  \nconsole.log(z.next(1)); \nconsole.log(z.next(2));\n</code></pre>\n\n\n\n<p>The first call&nbsp;<code>z.next()</code>&nbsp;sets the first element of the&nbsp;<code>arr</code>&nbsp;array to 1 and returns the following object:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{ value: undefined, done: false }\n</code></pre>\n\n\n\n<p>The second call&nbsp;<code>z.next()</code>&nbsp;sets the second of the&nbsp;<code>arr</code>&nbsp;array to 2 and returns the following object:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{ value: undefined, done: false }\n</code></pre>\n\n\n\n<p>The third call&nbsp;<code>z.next()</code>&nbsp;shows the contents of the&nbsp;<code>arr</code>&nbsp;array and returns the following object:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&#91; 1, 2 ]\n{ value: undefined, done: true }\n</code></pre>\n\n\n\n<h3>E) Using&nbsp;<code>yield</code>&nbsp;to return an array</h3>\n\n\n\n<p>The following generator function uses the&nbsp;<code>yield</code>&nbsp;keyword to return an array:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function* yieldArray() {\n    yield 1;\n    yield &#91; 20, 30, 40 ];\n}\n\nlet y = yieldArray();\n\nconsole.log(y.next()); \nconsole.log(y.next()); \nconsole.log(y.next());\n</code></pre>\n\n\n\n<p>The first call&nbsp;<code>y.next()</code>&nbsp;returns the following object:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{ value: 1, done: false }\n</code></pre>\n\n\n\n<p>The second call&nbsp;<code>y.next()</code>&nbsp;returns the following object:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{ value: &#91; 20, 30, 40 ], done: false }\n</code></pre>\n\n\n\n<p>In this case,&nbsp;<code>yield</code>&nbsp;sets the array&nbsp;<code>[ 20, 30, 40 ]</code>&nbsp;as the value of the&nbsp;<code>value</code>&nbsp;property of the return object.</p>\n\n\n\n<p>The third call&nbsp;<code>y.next()</code>&nbsp;returns the following object:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{ value: undefined, done: true }\n</code></pre>\n\n\n\n<h3>F) Using the&nbsp;<code>yield</code>&nbsp;to return individual elements of an array</h3>\n\n\n\n<p>See the following generator function:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function* yieldArrayElements() {\n    yield 1;\n    yield* &#91; 20, 30, 40 ];\n}\n\nlet a = yieldArrayElements();\n\nconsole.log(a.next()); // { value: 1, done: false }\nconsole.log(a.next()); // { value: 20, done: false }\nconsole.log(a.next()); // { value: 30, done: false }\nconsole.log(a.next()); // { value: 40, done: false }\n</code></pre>\n\n\n\n<p>In this example,&nbsp;<code>yield*</code>&nbsp;is the new syntax. The&nbsp;<code>yield*</code>&nbsp;expression is used to delegate to another iterable object or generator.</p>\n\n\n\n<p>As a result, the following expression returns the individual elements of the array&nbsp;<code>[20, 30, 40]</code>:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>yield* &#91;20, 30, 40];\n</code></pre>\n\n\n\n<p>In this tutorial, you have learned about the JavaScript&nbsp;<code>yield</code>&nbsp;keyword and how to use it in function generators.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Introduction to the JavaScript&nbsp;yield&nbsp;keyword The\u00a0yield\u00a0keyword allows you to pause and resume a\u00a0generator\u00a0function (function*). The following shows the syntax of the&nbsp;yield&nbsp;keyword: In this syntax: The&nbsp;expression&nbsp;specifies the value to return from a generator function via the iteration protocol. If you omit the&nbsp;expression, the&nbsp;yield&nbsp;returns&nbsp;undefined. The&nbsp;variable_name&nbsp;stores the optional value passed to the&nbsp;next()&nbsp;method of the iterator object. JavaScript&nbsp;yield&nbsp;examples Let\u2019s take [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [204],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3153"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=3153"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3153/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=3153"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=3153"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=3153"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  }
+]

@@ -1,0 +1,2244 @@
+[
+  {
+    "id": 3809,
+    "date": "2022-06-28T11:32:43",
+    "date_gmt": "2022-06-28T11:32:43",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3809" },
+    "modified": "2022-06-28T11:32:43",
+    "modified_gmt": "2022-06-28T11:32:43",
+    "slug": "creating-an-online-shop-project",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/creating-an-online-shop-project/",
+    "title": { "rendered": "Creating an online shop project" },
+    "content": {
+      "rendered": "\n<p>Let&#8217;s start with a new Django project to build an online shop. Your users will be able to browse through a product catalog and add products to a shopping cart. Finally, they will be able to check out the cart and place an order. </p>\n\n\n\n<ul><li>Creating the product catalog models, adding them to the administration site, and building the basic views to display the catalog</li><li>Building a shopping cart system using Django sessions to allow users to keep selected products while they browse the site</li><li>Creating the form and functionality to place orders on the site</li><li>Sending an asynchronous email confirmation to users when they place an&nbsp;order</li></ul>\n\n\n\n<p>Open a shell, create a virtual environment for the new project, and activate it with the following commands:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>mkdir env\npython3 -m venv env/myshop\nsource env/myshop/bin/activate\n</code></pre>\n\n\n\n<p>Install Django&nbsp;<a></a>in your virtual environment with the following command:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>pip install \"Django==3.0.*\"\n</code></pre>\n\n\n\n<p>Start a new project called&nbsp;<code>myshop</code>&nbsp;with an application called&nbsp;<code>shop</code>&nbsp;by opening a shell and running the following commands:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>django-admin startproject myshop\ncd myshop/\ndjango-admin startapp shop\n</code></pre>\n\n\n\n<p>Edit the&nbsp;<code>settings.py</code>&nbsp;file of your project and add the&nbsp;<code>shop</code>&nbsp;application to the&nbsp;<code>INSTALLED_APPS</code>&nbsp;setting as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>INSTALLED_APPS = &#91;\n    <em># ...</em>\n    <strong>'shop.apps.ShopConfig',</strong>\n]\n</code></pre>\n\n\n\n<p>Your application is now active for this project. Let&#8217;s define the models for the product catalog.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Let&#8217;s start with a new Django project to build an online shop. Your users will be able to browse through a product catalog and add products to a shopping cart. Finally, they will be able to check out the cart and place an order. Creating the product catalog models, adding them to the administration site, and building&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/creating-an-online-shop-project/\">Continue reading <span class=\"screen-reader-text\">Creating an online shop project</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [131],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3809" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3809"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3809/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3810,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3809/revisions/3810"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3809"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3809"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3809"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3811,
+    "date": "2022-06-28T11:33:23",
+    "date_gmt": "2022-06-28T11:33:23",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3811" },
+    "modified": "2022-06-28T11:33:23",
+    "modified_gmt": "2022-06-28T11:33:23",
+    "slug": "creating-product-catalog-models",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/creating-product-catalog-models/",
+    "title": { "rendered": "Creating product catalog models" },
+    "content": {
+      "rendered": "\n<p>The catalog of&nbsp;<a></a>your shop will consist&nbsp;<a></a>of products that are organized into different categories. Each product will have a name, an optional description, an optional image, a price, and its availability.</p>\n\n\n\n<p>Edit the&nbsp;<code>models.py</code>&nbsp;file of the&nbsp;<code>shop</code>&nbsp;application that you just created and add the following code:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>from django.db import models\n<strong>class Category(models.Model):</strong>\n    <strong>name = models.CharField(max_length=200,</strong>\n                            <strong>db_index=True)</strong>\n    <strong>slug = models.SlugField(max_length=200,</strong>\n                            <strong>unique=True)</strong>\n    <strong>class Meta:</strong>\n        <strong>ordering = ('name',)</strong>\n        <strong>verbose_name = 'category'</strong>\n        <strong>verbose_name_plural = 'categories'</strong>\n    <strong>def __str__(self):</strong>\n        <strong>return self.name</strong>\n<strong>class Product(models.Model):</strong>\n    <strong>category = models.ForeignKey(Category,</strong>\n                                 <strong>related_name='products',</strong>\n                                 <strong>on_delete=models.CASCADE)</strong>\n    <strong>name = models.CharField(max_length=200, db_index=True)</strong>\n    <strong>slug = models.SlugField(max_length=200, db_index=True)</strong>\n    <strong>image = models.ImageField(upload_to='products/%Y/%m/%d',</strong>\n                              <strong>blank=True)</strong>\n    <strong>description = models.TextField(blank=True)</strong>\n    <strong>price = models.DecimalField(max_digits=10, decimal_places=2)</strong>\n    <strong>available = models.BooleanField(default=True)</strong>\n    <strong>created = models.DateTimeField(auto_now_add=True)</strong>\n    <strong>updated = models.DateTimeField(auto_now=True)</strong>\n    <strong>class Meta:</strong>\n        <strong>ordering = ('name',)</strong>\n        <strong>index_together = (('id', 'slug'),)</strong>\n    <strong>def __str__(self):</strong>\n        <strong>return self.name</strong>\n</code></pre>\n\n\n\n<p>These&nbsp;<a></a>are the&nbsp;<code>Category</code>&nbsp;and&nbsp;<code>Product</code>&nbsp;models. The&nbsp;<code>Category</code>&nbsp;model consists of a&nbsp;<code>name</code>&nbsp;field and a unique&nbsp;<code>slug</code>&nbsp;field (<code>unique</code>&nbsp;implies the&nbsp;<a></a>creation of an index). The&nbsp;<code>Product</code>&nbsp;model fields are as follows:</p>\n\n\n\n<ul><li><code>category</code>: A&nbsp;<code>ForeignKey</code>&nbsp;to the&nbsp;<code>Category</code>&nbsp;model. This is a one-to-many relationship: a product belongs to one category and a category contains multiple products.</li><li><code>name</code>: The name of the product.</li><li><code>slug</code>: The slug for this product to build beautiful URLs.</li><li><code>image</code>: An optional product image.</li><li><code>description</code>: An optional description of the product.</li><li><code>price</code>: This field uses Python&#8217;s&nbsp;<code>decimal.Decimal</code>&nbsp;type to store a fixed-precision decimal number. The maximum number of digits (including the&nbsp;decimal places) is set using the&nbsp;<code>max_digits</code>&nbsp;attribute and decimal places&nbsp;with the&nbsp;<code>decimal_places</code>&nbsp;attribute.</li><li><code>available</code>: A Boolean value that indicates whether the product is available or not. It will be used to enable/disable the product in the catalog.</li><li><code>created</code>: This field stores when the object was created.</li><li><code>updated</code>: This field stores when the object was last updated.</li></ul>\n\n\n\n<p>For the&nbsp;<code>price</code>&nbsp;field, you use&nbsp;<code>DecimalField</code>&nbsp;instead of&nbsp;<code>FloatField</code>&nbsp;to avoid rounding&nbsp;issues.</p>\n\n\n\n<p>Always use&nbsp;<code>DecimalField</code>&nbsp;to store monetary amounts.&nbsp;<code>FloatField</code>&nbsp;uses Python&#8217;s&nbsp;<code>float</code>&nbsp;type internally, whereas&nbsp;<code>DecimalField</code>&nbsp;uses Python&#8217;s&nbsp;<code>Decimal</code>&nbsp;type. By using the&nbsp;<code>Decimal</code>&nbsp;type, you will avoid&nbsp;<code>float</code>&nbsp;rounding issues.</p>\n\n\n\n<p>In the&nbsp;<code>Meta</code>&nbsp;class of the&nbsp;<code>Product</code>&nbsp;model, you use the&nbsp;<code>index_together</code>&nbsp;meta option to&nbsp;specify an index for the&nbsp;<code>id</code>&nbsp;and&nbsp;<code>slug</code>&nbsp;fields together. You define this index because you plan to&nbsp;<a></a>query products by both&nbsp;<code>id</code>&nbsp;and&nbsp;<code>slug</code>. Both fields are indexed together to&nbsp;improve performance for queries that utilize the two fields.</p>\n\n\n\n<p>Since you&nbsp;<a></a>are going to deal with images in your models, open the shell and install&nbsp;<code>Pillow</code>&nbsp;with the following command:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>pip install Pillow==7.0.0\n</code></pre>\n\n\n\n<p>Now run the next command to create initial migrations for your project:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>python manage.py makemigrations\n</code></pre>\n\n\n\n<p>You will see the following output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Migrations for 'shop':\n  shop/migrations/0001_initial.py\n    - Create model Category\n    - Create model Product\n</code></pre>\n\n\n\n<p>Run the next command to sync the database:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>python manage.py migrate\n</code></pre>\n\n\n\n<p>You will see output that includes the following line:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Applying shop.0001_initial... OK\n</code></pre>\n\n\n\n<p>The&nbsp;<a></a>database is now synced with&nbsp;<a></a>your models.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>The catalog of&nbsp;your shop will consist&nbsp;of products that are organized into different categories. Each product will have a name, an optional description, an optional image, a price, and its availability. Edit the&nbsp;models.py&nbsp;file of the&nbsp;shop&nbsp;application that you just created and add the following code: These&nbsp;are the&nbsp;Category&nbsp;and&nbsp;Product&nbsp;models. The&nbsp;Category&nbsp;model consists of a&nbsp;name&nbsp;field and a unique&nbsp;slug&nbsp;field (unique&nbsp;implies the&nbsp;creation of&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/creating-product-catalog-models/\">Continue reading <span class=\"screen-reader-text\">Creating product catalog models</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [131],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3811" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3811"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3811/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3812,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3811/revisions/3812"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3811"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3811"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3811"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3813,
+    "date": "2022-06-28T11:33:51",
+    "date_gmt": "2022-06-28T11:33:51",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3813" },
+    "modified": "2022-06-28T11:33:51",
+    "modified_gmt": "2022-06-28T11:33:51",
+    "slug": "registering-catalog-models-on-the-administration-site",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/registering-catalog-models-on-the-administration-site/",
+    "title": {
+      "rendered": "Registering catalog models on the administration site"
+    },
+    "content": {
+      "rendered": "\n<p>Let&#8217;s add&nbsp;<a></a>your models to the&nbsp;<a></a>administration site so that you can easily manage categories and products. Edit the&nbsp;<code>admin.py</code>&nbsp;file of the&nbsp;<code>shop</code>&nbsp;application and add the&nbsp;following code to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>from django.contrib import admin\n<strong>from .models import Category, Product</strong>\n<strong>@admin.register(Category)</strong>\n<strong>class CategoryAdmin(admin.ModelAdmin):</strong>\n    <strong>list_display = &#91;'name', 'slug']</strong>\n    <strong>prepopulated_fields = {'slug': ('name',)}</strong>\n<strong>@admin.register(Product)</strong>\n<strong>class ProductAdmin(admin.ModelAdmin):</strong>\n    <strong>list_display = &#91;'name', 'slug', 'price',</strong>\n                    <strong>'available', 'created', 'updated']</strong>\n    <strong>list_filter = &#91;'available', 'created', 'updated']</strong>\n    <strong>list_editable = &#91;'price', 'available']</strong>\n    <strong>prepopulated_fields = {'slug': ('name',)}</strong>\n</code></pre>\n\n\n\n<p>Remember that you use the&nbsp;<code>prepopulated_fields</code>&nbsp;attribute to specify fields where the value is automatically set using the value of other fields. As you have seen before, this is convenient for generating slugs.</p>\n\n\n\n<p>You use the&nbsp;<code>list_editable</code>&nbsp;attribute in the&nbsp;<code>ProductAdmin</code>&nbsp;class to set the fields that can be edited from the list display page of the administration site. This will allow you to edit multiple rows at once. Any field in&nbsp;<code>list_editable</code>&nbsp;must also be listed in&nbsp;the&nbsp;<code>list_display</code>&nbsp;attribute, since only the fields displayed can be edited.</p>\n\n\n\n<p>Now create a superuser for your site using the following command:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>python manage.py createsuperuser\n</code></pre>\n\n\n\n<p>Start the development server with the command&nbsp;<code>python manage.py runserver</code>. Open&nbsp;<code>http://127.0.0.1:8000/admin/shop/product/add/</code>&nbsp;in your browser and log in with the user that you just created. Add a new category and product using the&nbsp;administration interface. The product change list page of the administration page&nbsp;will then look like this:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/B14981_07_01.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 7.1: The product change list page</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Let&#8217;s add&nbsp;your models to the&nbsp;administration site so that you can easily manage categories and products. Edit the&nbsp;admin.py&nbsp;file of the&nbsp;shop&nbsp;application and add the&nbsp;following code to it: Remember that you use the&nbsp;prepopulated_fields&nbsp;attribute to specify fields where the value is automatically set using the value of other fields. As you have seen before, this is convenient for generating&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/registering-catalog-models-on-the-administration-site/\">Continue reading <span class=\"screen-reader-text\">Registering catalog models on the administration site</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [131],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3813" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3813"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3813/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3814,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3813/revisions/3814"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3813"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3813"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3813"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3815,
+    "date": "2022-06-28T11:34:21",
+    "date_gmt": "2022-06-28T11:34:21",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3815" },
+    "modified": "2022-06-28T11:34:21",
+    "modified_gmt": "2022-06-28T11:34:21",
+    "slug": "building-catalog-views",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/building-catalog-views/",
+    "title": { "rendered": "Building catalog views" },
+    "content": {
+      "rendered": "\n<p>In order to&nbsp;<a></a>display the product catalog, you need to create&nbsp;<a></a>a view to list all the products or filter products by a given category. Edit the&nbsp;<code>views.py</code>&nbsp;file of the&nbsp;<code>shop</code>&nbsp;application and add the following code to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>from django.shortcuts import render, get_object_or_404\nfrom .models import Category, Product\ndef product_list(request, category_slug=None):\n    category = None\n    categories = Category.objects.all()\n    products = Product.objects.filter(available=True)\n    if category_slug:\n        category = get_object_or_404(Category, slug=category_slug)\n        products = products.filter(category=category)\n    return render(request,\n                  'shop/product/list.html',\n                  {'category': category,\n                   'categories': categories,\n                   'products': products})\n</code></pre>\n\n\n\n<p>In the preceding code, you filter the QuerySet with&nbsp;<code>available=True</code>&nbsp;to retrieve only available products. You use an optional&nbsp;<code>category_slug</code>&nbsp;parameter to optionally filter products by a given category.</p>\n\n\n\n<p>You also need a view to retrieve and display a single product. Add the following view to the&nbsp;<code>views.py</code>&nbsp;file:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>def product_detail(request, id, slug):\n    product = get_object_or_404(Product,\n                                id=id,\n                                slug=slug,\n                                available=True)\n    return render(request,\n                  'shop/product/detail.html',\n                  {'product': product})\n</code></pre>\n\n\n\n<p>The&nbsp;<code>product_detail</code>&nbsp;view expects the&nbsp;<code>id</code>&nbsp;and&nbsp;<code>slug</code>&nbsp;parameters in order to retrieve&nbsp;the&nbsp;<code>Product</code>&nbsp;instance. You can get this instance just through the ID, since&nbsp;it&#8217;s&nbsp;a unique attribute. However, you include the slug in the URL to build&nbsp;SEO-friendly URLs for products.</p>\n\n\n\n<p>After building&nbsp;<a></a>the product list and detail views, you have&nbsp;<a></a>to define URL patterns for&nbsp;them. Create a new file inside the&nbsp;<code>shop</code>&nbsp;application directory and name it&nbsp;<code>urls.py</code>. Add the following code to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>from django.urls import path\nfrom . import views\napp_name = 'shop'\nurlpatterns = &#91;\n    path('', views.product_list, name='product_list'),\n    path('&lt;slug:category_slug&gt;/', views.product_list,\n         name='product_list_by_category'),\n    path('&lt;int:id&gt;/&lt;slug:slug&gt;/', views.product_detail,\n         name='product_detail'),\n]\n</code></pre>\n\n\n\n<p>These are the URL patterns for your product catalog. You have defined two different URL patterns for the&nbsp;<code>product_list</code>&nbsp;view: a pattern named&nbsp;<code>product_list</code>, which calls the&nbsp;<code>product_list</code>&nbsp;view without any parameters, and a pattern named&nbsp;<code>product_list_by_category</code>, which provides a&nbsp;<code>category_slug</code>&nbsp;parameter to the view for filtering products according to a given category. You added a pattern for the&nbsp;<code>product_detail</code>&nbsp;view, which passes the&nbsp;<code>id</code>&nbsp;and&nbsp;<code>slug</code>&nbsp;parameters to the view in&nbsp;order to retrieve a specific product.</p>\n\n\n\n<p>Edit the&nbsp;<code>urls.py</code>&nbsp;file of the&nbsp;<code>myshop</code>&nbsp;project to make it look like this:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>from django.contrib import admin\nfrom django.urls import path<strong>, include</strong>\nurlpatterns = &#91;\n    path('admin/', admin.site.urls),\n    <strong>path('', include('shop.urls', namespace='shop')),</strong>\n]\n</code></pre>\n\n\n\n<p>In the&nbsp;<a></a>main URL patterns of the project, you&nbsp;<a></a>include URLs for the&nbsp;<code>shop</code>&nbsp;application under a custom namespace named&nbsp;<code>shop</code>.</p>\n\n\n\n<p>Next, edit the&nbsp;<code>models.py</code>&nbsp;file of the&nbsp;<code>shop</code>&nbsp;application, import the&nbsp;<code>reverse()</code>&nbsp;function, and add a&nbsp;<code>get_absolute_url()</code>&nbsp;method to the&nbsp;<code>Category</code>&nbsp;and&nbsp;<code>Product</code>&nbsp;models as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code><strong>from django.urls import reverse</strong>\n<em># ...</em>\nclass Category(models.Model):\n    <em># ...</em>\n    <strong>def get_absolute_url(self):</strong>\n        <strong>return reverse('shop:product_list_by_category',</strong>\n                       <strong>args=&#91;self.slug])</strong>\nclass Product(models.Model):\n    <em># ...</em>\n    <strong>def get_absolute_url(self):</strong>\n        <strong>return reverse('shop:product_detail',</strong>\n                       <strong>args=&#91;self.id, self.slug])</strong>\n</code></pre>\n\n\n\n<p>As you already know,&nbsp;<code>get_absolute_url()</code>&nbsp;is the convention to retrieve the URL&nbsp;for a given object. Here, you use the URL patterns that you just defined in the&nbsp;<code>urls.py</code>&nbsp;file.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>In order to&nbsp;display the product catalog, you need to create&nbsp;a view to list all the products or filter products by a given category. Edit the&nbsp;views.py&nbsp;file of the&nbsp;shop&nbsp;application and add the following code to it: In the preceding code, you filter the QuerySet with&nbsp;available=True&nbsp;to retrieve only available products. You use an optional&nbsp;category_slug&nbsp;parameter to optionally filter products&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/building-catalog-views/\">Continue reading <span class=\"screen-reader-text\">Building catalog views</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [131],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3815" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3815"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3815/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3816,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3815/revisions/3816"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3815"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3815"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3815"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3817,
+    "date": "2022-06-28T11:35:58",
+    "date_gmt": "2022-06-28T11:35:58",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3817" },
+    "modified": "2022-06-28T11:35:58",
+    "modified_gmt": "2022-06-28T11:35:58",
+    "slug": "creating-catalog-templates",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/creating-catalog-templates/",
+    "title": { "rendered": "Creating catalog templates" },
+    "content": {
+      "rendered": "\n<p>Now you&nbsp;<a></a>need to create templates for the product list and&nbsp;<a></a>detail views. Create the&nbsp;following directory and file structure inside the&nbsp;<code>shop</code>&nbsp;application directory:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>templates/\n    shop/\n        base.html\n        product/\n            list.html\n            detail.html\n</code></pre>\n\n\n\n<p>You need to&nbsp;<a></a>define a base template and then extend it in the&nbsp;<a></a>product list and detail templates. Edit the&nbsp;<code>shop/base.html</code>&nbsp;template and add the following code to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{% load static %}\n&lt;!DOCTYPE html&gt;\n&lt;html&gt;\n  &lt;head&gt;\n    &lt;meta charset=\"utf-8\" /&gt;\n    &lt;title&gt;{% block title %}My shop{% endblock %}&lt;/title&gt;\n    &lt;link href=\"{% static \"css/base.css\" %}\" rel=\"stylesheet\"&gt;\n  &lt;/head&gt;\n  &lt;body&gt;\n    &lt;div id=\"header\"&gt;\n      &lt;a href=\"/\" class=\"logo\"&gt;My shop&lt;/a&gt;\n    &lt;/div&gt;\n    &lt;div id=\"subheader\"&gt;\n      &lt;div class=\"cart\"&gt;\n        Your cart is empty.\n      &lt;/div&gt;\n    &lt;/div&gt;\n    &lt;div id=\"content\"&gt;\n      {% block content %}\n      {% endblock %}\n    &lt;/div&gt;\n  &lt;/body&gt;\n&lt;/html&gt;\n</code></pre>\n\n\n\n<p>This is the base template that you will use for your shop. In order to include the CSS styles and images that are used by the templates, you need to copy the static files that accompany which are located in the <code>static/</code> directory of the <code>shop</code> application. Copy them to the same location in your project. You can find the contents of the directory at https://github.com/PacktPublishing/Django-3-by-Example/tree/master/myshop/shop/static.</p>\n\n\n\n<p>Edit the&nbsp;<code>shop/product/list.html</code>&nbsp;template and add the following code to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{% extends \"shop/base.html\" %}\n{% load static %}\n{% block title %}\n  {% if category %}{{ category.name }}{% else %}Products{% endif %}\n{% endblock %}\n{% block content %}\n  &lt;div id=\"sidebar\"&gt;\n    &lt;h3&gt;Categories&lt;/h3&gt;\n    &lt;ul&gt;\n      &lt;li {% if not category %}class=\"selected\"{% endif %}&gt;\n        &lt;a href=\"{% url \"shop:product_list\" %}\"&gt;All&lt;/a&gt;\n      &lt;/li&gt;\n      {% for c in categories %}\n        &lt;li {% if category.slug == c.slug %}class=\"selected\"\n        {% endif %}&gt;\n          &lt;a href=\"{{ c.get_absolute_url }}\"&gt;{{ c.name }}&lt;/a&gt;\n        &lt;/li&gt;\n      {% endfor %}\n    &lt;/ul&gt;\n  &lt;/div&gt;\n  &lt;div id=\"main\" class=\"product-list\"&gt;\n    &lt;h1&gt;{% if category %}{{ category.name }}{% else %}Products\n    {% endif %}&lt;/h1&gt;\n    {% for product in products %}\n      &lt;div class=\"item\"&gt;\n        &lt;a href=\"{{ product.get_absolute_url }}\"&gt;\n          &lt;img src=\"{% if product.image %}{{ product.image.url }}{% else %}{% static \"img/no_image.png\" %}{% endif %}\"&gt;\n        &lt;/a&gt;\n        &lt;a href=\"{{ product.get_absolute_url }}\"&gt;{{ product.name }}&lt;/a&gt;\n        &lt;br&gt;\n        ${{ product.price }}\n      &lt;/div&gt;\n    {% endfor %}\n  &lt;/div&gt;\n{% endblock %}\n</code></pre>\n\n\n\n<p>Make sure that no template tag is split into multiple lines.</p>\n\n\n\n<p>This is the&nbsp;<a></a>product list template. It extends the&nbsp;<code>shop/base.html</code>&nbsp;template and uses the&nbsp;<code>categories</code>&nbsp;context variable to display all the categories&nbsp;<a></a>in a sidebar, and&nbsp;<code>products</code>&nbsp;to display the products of the current page. The same template is used for both listing all available products and listing products filtered by a category. Since the&nbsp;<code>image</code>&nbsp;field of the&nbsp;<code>Product</code>&nbsp;model can be blank, you need to provide a default image for the products that don&#8217;t have an image. The image is located in your static files directory with the relative path&nbsp;<code>img/no_image.png</code>.</p>\n\n\n\n<p>Since you are using&nbsp;<code>ImageField</code>&nbsp;to store product images, you need the development server to serve uploaded image files.</p>\n\n\n\n<p>Edit the&nbsp;<code>settings.py</code>&nbsp;file of&nbsp;<code>myshop</code>&nbsp;and add the following settings:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>MEDIA_URL = '/media/'\nMEDIA_ROOT = os.path.join(BASE_DIR, 'media/')\n</code></pre>\n\n\n\n<p><code>MEDIA_URL</code>&nbsp;is the base URL that serves media files uploaded by users.&nbsp;<code>MEDIA_ROOT</code>&nbsp;is the local path where these files reside, which you build by dynamically prepending the&nbsp;<code>BASE_DIR</code>&nbsp;variable.</p>\n\n\n\n<p>For Django&nbsp;<a></a>to serve the uploaded media files using the development server, edit the main&nbsp;<code>urls.py</code>&nbsp;file of&nbsp;<code>myshop</code>&nbsp;and add the following code to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code><strong>from django.conf import settings</strong>\n<strong>from django.conf.urls.static import static</strong>\nurlpatterns = &#91;\n    # ...\n]\n<strong>if settings.DEBUG:</strong>\n    <strong>urlpatterns += static(settings.MEDIA_URL,</strong>\n                          <strong>document_root=settings.MEDIA_ROOT)</strong>\n</code></pre>\n\n\n\n<p>Remember that you only serve static files this way during development. In a production environment, you should never serve static files with Django; the Django development server doesn&#8217;t serve static files in an efficient manner.<em>Going Live</em>, will teach you how to serve static files in a production environment.</p>\n\n\n\n<p>Add a couple of products to your shop using the administration site and open&nbsp;<code>http://127.0.0.1:8000/</code>&nbsp;in your browser. You will see the product list page, which will look similar to this:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/B14981_07_02.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 7.2: The product list page</p>\n\n\n\n<p>If you create&nbsp;<a></a>a product using the administration site and don&#8217;t&nbsp;<a></a>upload any image for it, the default&nbsp;<code>no_image.png</code>&nbsp;image will be displayed instead:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/B14981_07_03.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 7.3: The product list displaying a default image for products that have no image</p>\n\n\n\n<p>Edit the&nbsp;<code>shop/product/detail.html</code>&nbsp;template and add the following code to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{% extends \"shop/base.html\" %}\n{% load static %}\n{% block title %}\n  {{ product.name }}\n{% endblock %}\n{% block content %}\n  &lt;div class=\"product-detail\"&gt;\n    &lt;img src=\"{% if product.image %}{{ product.image.url }}{% else %}\n    {% static \"img/no_image.png\" %}{% endif %}\"&gt;\n    &lt;h1&gt;{{ product.name }}&lt;/h1&gt;\n    &lt;h2&gt;\n      &lt;a href=\"{{ product.category.get_absolute_url }}\"&gt;\n        {{ product.category }}\n      &lt;/a&gt;\n    &lt;/h2&gt;\n    &lt;p class=\"price\"&gt;${{ product.price }}&lt;/p&gt;\n    {{ product.description|linebreaks }}\n  &lt;/div&gt;\n{% endblock %}\n</code></pre>\n\n\n\n<p>In the preceding code, you&nbsp;<a></a>call the&nbsp;<code>get_absolute_url()</code>&nbsp;method on the related&nbsp;<a></a>category object to display the available products that belong to the same category.</p>\n\n\n\n<p>Now open&nbsp;<code>http://127.0.0.1:8000/</code>&nbsp;in your browser and click on any product to see the product detail page. It will look as follows:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/B14981_07_04.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 7.4: The product detail page</p>\n\n\n\n<p>You have now created a basic product catalog.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Now you&nbsp;need to create templates for the product list and&nbsp;detail views. Create the&nbsp;following directory and file structure inside the&nbsp;shop&nbsp;application directory: You need to&nbsp;define a base template and then extend it in the&nbsp;product list and detail templates. Edit the&nbsp;shop/base.html&nbsp;template and add the following code to it: This is the base template that you will use for&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/creating-catalog-templates/\">Continue reading <span class=\"screen-reader-text\">Creating catalog templates</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [131],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3817" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3817"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3817/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3818,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3817/revisions/3818"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3817"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3817"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3817"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3819,
+    "date": "2022-06-28T11:36:34",
+    "date_gmt": "2022-06-28T11:36:34",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3819" },
+    "modified": "2022-06-28T11:36:34",
+    "modified_gmt": "2022-06-28T11:36:34",
+    "slug": "building-a-shopping-cart",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/building-a-shopping-cart/",
+    "title": { "rendered": "Building a shopping cart" },
+    "content": {
+      "rendered": "\n<p>After building&nbsp;<a></a>the product catalog, the next step is to create a shopping cart so that users can pick the products that they want to purchase. A shopping cart allows users to select products and set the amount they want to order, and then store this information temporarily while they browse the site, until they eventually place an order. The cart has to be persisted in the session so that the cart items are&nbsp;<a></a>maintained during a user&#8217;s visit.</p>\n\n\n\n<p>You will use Django&#8217;s session framework to persist the cart. The cart will be kept in the session until it finishes or the user checks out of the cart. You will also need to build additional Django models for the cart and its items.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>After building&nbsp;the product catalog, the next step is to create a shopping cart so that users can pick the products that they want to purchase. A shopping cart allows users to select products and set the amount they want to order, and then store this information temporarily while they browse the site, until they eventually&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/building-a-shopping-cart/\">Continue reading <span class=\"screen-reader-text\">Building a shopping cart</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [131],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3819" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3819"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3819/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3820,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3819/revisions/3820"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3819"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3819"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3819"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3822,
+    "date": "2022-06-28T11:37:08",
+    "date_gmt": "2022-06-28T11:37:08",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3822" },
+    "modified": "2022-06-28T11:37:08",
+    "modified_gmt": "2022-06-28T11:37:08",
+    "slug": "using-django-sessions",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/using-django-sessions/",
+    "title": { "rendered": "Using Django sessions" },
+    "content": {
+      "rendered": "\n<p>Django provides a session framework that supports anonymous and user sessions. The session framework&nbsp;<a></a>allows you to store arbitrary data&nbsp;<a></a>for each visitor. Session data is stored on the server side, and cookies contain the session ID unless you use the cookie-based session engine. The session middleware manages the sending and receiving of cookies. The default session engine stores session data in the database, but you can choose other session engines.</p>\n\n\n\n<p>To use sessions, you have to make sure that the&nbsp;<code>MIDDLEWARE</code>&nbsp;setting of your project contains&nbsp;<code>'django.contrib.sessions.middleware.SessionMiddleware'</code>. This middleware manages sessions. It&#8217;s added by default to the&nbsp;<code>MIDDLEWARE</code>&nbsp;setting when&nbsp;you create a new project using the&nbsp;<code>startproject</code>&nbsp;command.</p>\n\n\n\n<p>The session middleware makes the current session available in the&nbsp;<code>request</code>&nbsp;object. You can access the current session using&nbsp;<code>request.session</code>, treating it like a Python dictionary to store and retrieve session data. The&nbsp;<code>session</code>&nbsp;dictionary accepts any Python object by default that can be serialized to JSON. You can set a variable in the&nbsp;session like this:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>request.session&#91;'foo'] = 'bar'\n</code></pre>\n\n\n\n<p>Retrieve a session key as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>request.session.get('foo')\n</code></pre>\n\n\n\n<p>Delete a key you previously stored in the session as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>del request.session&#91;'foo']\n</code></pre>\n\n\n\n<p>When users log in to the site, their anonymous session is lost and a&nbsp;new session is created for authenticated users. If you store items in an anonymous session that you need to keep after the user logs in, you will have to copy the old session data into the new session. You can do this by retrieving the session data before you log in the user using the&nbsp;<code>login()</code>&nbsp;function of the Django authentication system and storing it in the session after that.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Django provides a session framework that supports anonymous and user sessions. The session framework&nbsp;allows you to store arbitrary data&nbsp;for each visitor. Session data is stored on the server side, and cookies contain the session ID unless you use the cookie-based session engine. The session middleware manages the sending and receiving of cookies. The default session&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/using-django-sessions/\">Continue reading <span class=\"screen-reader-text\">Using Django sessions</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [131],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3822" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3822"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3822/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3823,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3822/revisions/3823"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3822"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3822"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3822"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3824,
+    "date": "2022-06-28T11:38:09",
+    "date_gmt": "2022-06-28T11:38:09",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3824" },
+    "modified": "2022-06-28T11:38:09",
+    "modified_gmt": "2022-06-28T11:38:09",
+    "slug": "session-settings",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/session-settings/",
+    "title": { "rendered": "Session settings" },
+    "content": {
+      "rendered": "\n<p>There are&nbsp;<a></a>several settings you can use to configure sessions for your project. The most important is&nbsp;<code>SESSION_ENGINE</code>. This setting allows you to&nbsp;<a></a>set the place where sessions are stored. By default, Django stores sessions in the database using the&nbsp;<code>Session</code>&nbsp;model of the&nbsp;<code>django.contrib.sessions</code>&nbsp;application.</p>\n\n\n\n<p>Django offers the following options for storing session data:</p>\n\n\n\n<ul><li><strong>Database sessions</strong>: Session&nbsp;<a></a>data is stored in the database. This is the default session engine.</li><li><strong>File-based sessions</strong>: Session&nbsp;<a></a>data is stored in the filesystem.</li><li><strong>Cached sessions</strong>: Session data is stored in a cache backend. You can specify cache&nbsp;<a></a>backends using the&nbsp;<code>CACHES</code>&nbsp;setting. Storing session data in a cache system provides the best performance.</li><li><strong>Cached database sessions</strong>: Session data is stored in a write-through cache and&nbsp;<a></a>database. Reads only use the database if the data is not already in the cache.</li><li><strong>Cookie-based sessions</strong>: Session&nbsp;<a></a>data is stored in the cookies that are sent to&nbsp;the browser.</li></ul>\n\n\n\n<p>For better performance use a cache-based session engine. Django supports Memcached out of the box and you can find third-party cache backends for Redis and other cache systems.</p>\n\n\n\n<p>You can customize sessions with specific settings. Here are some of the important session-related settings:</p>\n\n\n\n<ul><li><code>SESSION_COOKIE_AGE</code>: The duration of session cookies in seconds. The&nbsp;default value is&nbsp;<code>1209600</code>&nbsp;(two weeks).</li><li><code>SESSION_COOKIE_DOMAIN</code>: The domain used for session cookies. Set this to&nbsp;<code>mydomain.com</code>&nbsp;to enable cross-domain cookies or use&nbsp;<code>None</code>&nbsp;for a standard domain cookie.</li><li><code>SESSION_COOKIE_SECURE</code>: A Boolean indicating that the cookie should only be sent if the connection is an HTTPS connection.</li><li><code>SESSION_EXPIRE_AT_BROWSER_CLOSE</code>: A Boolean indicating that the session has to expire when the browser is closed.</li><li><code>SESSION_SAVE_EVERY_REQUEST</code>: A Boolean that, if&nbsp;<code>True</code>, will save the session to&nbsp;<a></a>the database on every request. The&nbsp;<a></a>session expiration is also updated each time it&#8217;s saved.</li></ul>\n\n\n\n<p>You can see all the session settings and their default values at https://docs.djangoproject.com/en/3.0/ref/settings/#sessions.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>There are&nbsp;several settings you can use to configure sessions for your project. The most important is&nbsp;SESSION_ENGINE. This setting allows you to&nbsp;set the place where sessions are stored. By default, Django stores sessions in the database using the&nbsp;Session&nbsp;model of the&nbsp;django.contrib.sessions&nbsp;application. Django offers the following options for storing session data: Database sessions: Session&nbsp;data is stored in the&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/session-settings/\">Continue reading <span class=\"screen-reader-text\">Session settings</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [131],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3824" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3824"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3824/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3825,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3824/revisions/3825"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3824"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3824"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3824"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3826,
+    "date": "2022-06-28T11:38:39",
+    "date_gmt": "2022-06-28T11:38:39",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3826" },
+    "modified": "2022-06-28T11:38:39",
+    "modified_gmt": "2022-06-28T11:38:39",
+    "slug": "session-expiration",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/session-expiration/",
+    "title": { "rendered": "Session expiration" },
+    "content": {
+      "rendered": "\n<p>You can choose&nbsp;<a></a>to use browser-length sessions or persistent&nbsp;<a></a>sessions using the&nbsp;<code>SESSION_EXPIRE_AT_BROWSER_CLOSE</code>&nbsp;setting. This is set to&nbsp;<code>False</code>&nbsp;by default, forcing the session duration to the value stored in the&nbsp;<code>SESSION_COOKIE_AGE</code>&nbsp;setting. If you set&nbsp;<code>SESSION_EXPIRE_AT_BROWSER_CLOSE</code>&nbsp;to&nbsp;<code>True</code>, the session will expire when&nbsp;the user closes the browser, and the&nbsp;<code>SESSION_COOKIE_AGE</code>&nbsp;setting will not have any effect.</p>\n\n\n\n<p>You can use the&nbsp;<code>set_expiry()</code>&nbsp;method of&nbsp;<code>request.session</code>&nbsp;to overwrite the duration of the current session.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>You can choose&nbsp;to use browser-length sessions or persistent&nbsp;sessions using the&nbsp;SESSION_EXPIRE_AT_BROWSER_CLOSE&nbsp;setting. This is set to&nbsp;False&nbsp;by default, forcing the session duration to the value stored in the&nbsp;SESSION_COOKIE_AGE&nbsp;setting. If you set&nbsp;SESSION_EXPIRE_AT_BROWSER_CLOSE&nbsp;to&nbsp;True, the session will expire when&nbsp;the user closes the browser, and the&nbsp;SESSION_COOKIE_AGE&nbsp;setting will not have any effect. You can use the&nbsp;set_expiry()&nbsp;method of&nbsp;request.session&nbsp;to overwrite the duration of the current&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/session-expiration/\">Continue reading <span class=\"screen-reader-text\">Session expiration</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [131],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3826" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3826"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3826/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3827,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3826/revisions/3827"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3826"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3826"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3826"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3829,
+    "date": "2022-06-28T11:39:36",
+    "date_gmt": "2022-06-28T11:39:36",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3829" },
+    "modified": "2022-06-28T11:39:36",
+    "modified_gmt": "2022-06-28T11:39:36",
+    "slug": "storing-shopping-carts-in-sessions",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/storing-shopping-carts-in-sessions/",
+    "title": { "rendered": "Storing shopping carts in sessions" },
+    "content": {
+      "rendered": "\n<p>You need&nbsp;<a></a>to create a simple structure that can&nbsp;<a></a>be serialized to JSON for storing cart items in a session. The cart has to include the following data for each item contained in it:</p>\n\n\n\n<ul><li>The ID of a&nbsp;<code>Product</code>&nbsp;instance</li><li>The quantity selected for the product</li><li>The unit price for the product</li></ul>\n\n\n\n<p>Since product prices may vary, let&#8217;s take the approach of storing the product&#8217;s price along with the product itself when it&#8217;s added to the cart. By doing so, you use the current price of the product when users add it to their cart, no matter whether the product&#8217;s price is changed afterwards. This means that the price that the item has when the client adds it to the cart is maintained for that client in the session until checkout is completed or the session finishes.</p>\n\n\n\n<p>Next, you have to build functionality to create shopping carts and associate them with sessions. This has to work as follows:</p>\n\n\n\n<ul><li>When a cart is needed, you check whether a custom session key is set. If no&nbsp;cart is set in the session, you create a new cart and save it in the cart session key.</li><li>For successive requests, you perform the same check and get the cart items from the cart session key. You retrieve the cart items from the session and their related&nbsp;<code>Product</code>&nbsp;objects from the database.</li></ul>\n\n\n\n<p>Edit the&nbsp;<code>settings.py</code>&nbsp;file of your project and add the following setting to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>CART_SESSION_ID = 'cart'\n</code></pre>\n\n\n\n<p>This is the key that you are going to use to store the cart in the user session. Since Django sessions are managed per visitor, you can use the same cart session key for all sessions.</p>\n\n\n\n<p>Let&#8217;s create&nbsp;<a></a>an application for managing shopping carts. Open the terminal and create a new application, running the following command&nbsp;<a></a>from the project directory:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>python manage.py startapp cart\n</code></pre>\n\n\n\n<p>Then, edit the&nbsp;<code>settings.py</code>&nbsp;file of your project and add the new application to the&nbsp;<code>INSTALLED_APPS</code>&nbsp;setting, as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>INSTALLED_APPS = &#91;\n    <em># ...</em>\n    'shop.apps.ShopConfig',\n    <strong>'cart.apps.CartConfig',</strong>\n]\n</code></pre>\n\n\n\n<p>Create a new file inside the&nbsp;<code>cart</code>&nbsp;application directory and name it&nbsp;<code>cart.py</code>. Add the following code to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>from decimal import Decimal\nfrom django.conf import settings\nfrom shop.models import Product\nclass Cart(object):\n    def __init__(self, request):\n        \"\"\"\n        Initialize the cart.\n        \"\"\"\n        self.session = request.session\n        cart = self.session.get(settings.CART_SESSION_ID)\n        if not cart:\n            <em># save an empty cart in the session</em>\n            cart = self.session&#91;settings.CART_SESSION_ID] = {}\n        self.cart = cart\n</code></pre>\n\n\n\n<p>This is the&nbsp;<code>Cart</code>&nbsp;class that will allow you to manage the shopping cart. You require the cart to be initialized with a&nbsp;<code>request</code>&nbsp;object. You store the current session using&nbsp;<code>self.session = request.session</code>&nbsp;to make it accessible to the other methods of the&nbsp;<code>Cart</code>&nbsp;class.</p>\n\n\n\n<p>First, you try to get the cart from the current session using&nbsp;<code>self.session.get(settings.CART_SESSION_ID)</code>. If no cart is present in the session, you create an&nbsp;empty cart by setting an empty dictionary in the session.</p>\n\n\n\n<p>You will build your&nbsp;<code>cart</code>&nbsp;dictionary with product IDs as keys, and for each product key, a&nbsp;dictionary&nbsp;<a></a>will be a value that includes quantity and price. By doing this, you can&nbsp;guarantee that a product will not be added more than&nbsp;<a></a>once to the cart. This&nbsp;way,&nbsp;you can also simplify retrieving cart items.</p>\n\n\n\n<p>Let&#8217;s create a method to add products to the cart or update their quantity. Add the following&nbsp;<code>add()</code>&nbsp;and&nbsp;<code>save()</code>&nbsp;methods to the&nbsp;<code>Cart</code>&nbsp;class:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>class Cart(object):\n    <em># ...</em>\n    <strong>def add(self, product, quantity=1, override_quantity=False):</strong>\n        <strong>\"\"\"</strong>\n        <strong>Add a product to the cart or update its quantity.</strong>\n        <strong>\"\"\"</strong>\n        <strong>product_id = str(product.id)</strong>\n        <strong>if product_id not in self.cart:</strong>\n            <strong>self.cart&#91;product_id] = {'quantity': 0,</strong>\n                                     <strong>'price': str(product.price)}</strong>\n        <strong>if override_quantity:</strong>\n            <strong>self.cart&#91;product_id]&#91;'quantity'] = quantity</strong>\n        <strong>else:</strong>\n            <strong>self.cart&#91;product_id]&#91;'quantity'] += quantity</strong>\n        <strong>self.save()</strong>\n    <strong>def save(self):</strong>\n        <strong><em># mark the session as \"modified\" to make sure it gets saved</em></strong>\n        <strong>self.session.modified = True</strong>\n</code></pre>\n\n\n\n<p>The&nbsp;<code>add()</code>&nbsp;method takes the following parameters as input:</p>\n\n\n\n<ul><li><code>product</code>: The&nbsp;<code>product</code>&nbsp;instance&nbsp;<a></a>to add or update in the cart.</li><li><code>quantity</code>: An optional&nbsp;<a></a>integer with the product quantity. This defaults to&nbsp;<code>1</code>.</li><li><code>override_quantity</code>: This is a Boolean that indicates whether the quantity needs to&nbsp;<a></a>be overridden with the given quantity (<code>True</code>), or whether the new quantity has to be added to the existing quantity (<code>False</code>).</li></ul>\n\n\n\n<p>You use the product ID as a key in the cart&#8217;s content dictionary. You convert the product ID into a&nbsp;<a></a>string because Django uses JSON to serialize session data, and JSON only allows string key names. The product ID is the key, and the value that you persist is a dictionary with quantity and price figures for the product. The product&#8217;s price is converted from decimal into a string in order to&nbsp;<a></a>serialize it.&nbsp;Finally,&nbsp;you call the&nbsp;<code>save()</code>&nbsp;method to save the cart in the session.</p>\n\n\n\n<p>The&nbsp;<code>save()</code>&nbsp;method marks the session as modified using&nbsp;<code>session.modified = True</code>. This tells Django that the session has changed and needs to be saved.</p>\n\n\n\n<p>You also need a method for removing products from the cart. Add the following method to the&nbsp;<code>Cart</code>&nbsp;class:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>class Cart(object):\n    <em># ...</em>\n    <strong>def remove(self, product):</strong>\n        <strong>\"\"\"</strong>\n        <strong>Remove a product from the cart.</strong>\n        <strong>\"\"\"</strong>\n        <strong>product_id = str(product.id)</strong>\n        <strong>if product_id in self.cart:</strong>\n            <strong>del self.cart&#91;product_id]</strong>\n            <strong>self.save()</strong>\n</code></pre>\n\n\n\n<p>The&nbsp;<code>remove()</code>&nbsp;method removes a given product from the&nbsp;<code>cart</code>&nbsp;dictionary and calls the&nbsp;<code>save()</code>&nbsp;method to update the cart in the session.</p>\n\n\n\n<p>You will have to iterate through the items contained in the cart and access the related&nbsp;<code>Product</code>&nbsp;instances. To do so, you can define an&nbsp;<code>__iter__()</code>&nbsp;method in your class. Add the following method to the&nbsp;<code>Cart</code>&nbsp;class:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>class Cart(object):\n    <em># ...</em>\n    <strong>def __iter__(self):</strong>\n        <strong>\"\"\"</strong>\n        <strong>Iterate over the items in the cart and get the products</strong>\n        <strong>from the database.</strong>\n        <strong>\"\"\"</strong>\n        <strong>product_ids = self.cart.keys()</strong>\n        <strong><em># get the product objects and add them to the cart</em></strong>\n        <strong>products = Product.objects.filter(id__in=product_ids)</strong>\n        <strong>cart = self.cart.copy()</strong>\n        <strong>for product in products:</strong>\n            <strong>cart&#91;str(product.id)]&#91;'product'] = product</strong>\n        <strong>for item in cart.values():</strong>\n            <strong>item&#91;'price'] = Decimal(item&#91;'price'])</strong>\n            <strong>item&#91;'total_price'] = item&#91;'price'] * item&#91;'quantity']</strong>\n            <strong>yield item</strong>\n</code></pre>\n\n\n\n<p>In the&nbsp;<code>__iter__()</code>&nbsp;method, you retrieve the&nbsp;<code>Product</code>&nbsp;instances that are present in the cart to&nbsp;<a></a>include them in the cart items. You copy the current cart in the&nbsp;<code>cart</code>&nbsp;variable and add the&nbsp;<code>Product</code>&nbsp;instances to it. Finally, you iterate over the cart items, converting each item&#8217;s price back into decimal, and adding a&nbsp;<code>total_price</code>&nbsp;attribute to each item. This&nbsp;<code>__iter__()</code>&nbsp;method&nbsp;<a></a>will allow you to easily iterate over&nbsp;the items in the cart in views and templates.</p>\n\n\n\n<p>You also need a way to return the number of total items in the cart. When the&nbsp;<code>len()</code>&nbsp;function is executed on an object, Python calls its&nbsp;<code>__len__()</code>&nbsp;method to retrieve its length. Next, you are going to define a custom&nbsp;<code>__len__()</code>&nbsp;method to return the total number of items stored in the cart.</p>\n\n\n\n<p>Add the following&nbsp;<code>__len__()</code>&nbsp;method to the&nbsp;<code>Cart</code>&nbsp;class:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>class Cart(object):\n    <em># ...</em>\n    <strong>def __len__(self):</strong>\n        <strong>\"\"\"</strong>\n        <strong>Count all items in the cart.</strong>\n        <strong>\"\"\"</strong>\n        <strong>return sum(item&#91;'quantity'] for item in self.cart.values())</strong>\n</code></pre>\n\n\n\n<p>You return the sum of the quantities of all the cart items.</p>\n\n\n\n<p>Add the following method to calculate the total cost of the items in the cart:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>class Cart(object):\n    <em># ...</em>\n    <strong>def get_total_price(self):</strong>\n       <strong> return sum(Decimal(item&#91;'price']) * item&#91;'quantity'] for item in self.cart.values())</strong>\n</code></pre>\n\n\n\n<p>Finally, add a method to clear the cart session:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>class Cart(object):\n    <em># ...</em>\n    <strong>def clear(self):</strong>\n        <strong><em># remove cart from session</em></strong>\n        <strong>del self.session&#91;settings.CART_SESSION_ID]</strong>\n        <strong>self.save()</strong>\n</code></pre>\n\n\n\n<p>Your&nbsp;<code>Cart</code>&nbsp;class&nbsp;<a></a>is now ready to manage&nbsp;<a></a>shopping carts.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>You need&nbsp;to create a simple structure that can&nbsp;be serialized to JSON for storing cart items in a session. The cart has to include the following data for each item contained in it: The ID of a&nbsp;Product&nbsp;instance The quantity selected for the product The unit price for the product Since product prices may vary, let&#8217;s take&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/storing-shopping-carts-in-sessions/\">Continue reading <span class=\"screen-reader-text\">Storing shopping carts in sessions</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [131],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3829" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3829"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3829/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3830,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3829/revisions/3830"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3829"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3829"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3829"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3831,
+    "date": "2022-06-28T11:40:31",
+    "date_gmt": "2022-06-28T11:40:31",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3831" },
+    "modified": "2022-06-28T11:40:31",
+    "modified_gmt": "2022-06-28T11:40:31",
+    "slug": "creating-shopping-cart-views",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/creating-shopping-cart-views/",
+    "title": { "rendered": "Creating shopping cart views" },
+    "content": {
+      "rendered": "\n<p>Now that&nbsp;<a></a>you have a&nbsp;<code>Cart</code>&nbsp;class to manage the cart, you need to create the views to&nbsp;add, update, or remove items from it. You need to create the following views:</p>\n\n\n\n<ul><li>A view to add or update items in the cart that can handle current and new quantities</li><li>A view to remove items from the cart</li><li>A view to display cart items and totals</li></ul>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Now that&nbsp;you have a&nbsp;Cart&nbsp;class to manage the cart, you need to create the views to&nbsp;add, update, or remove items from it. You need to create the following views: A view to add or update items in the cart that can handle current and new quantities A view to remove items from the cart A view&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/creating-shopping-cart-views/\">Continue reading <span class=\"screen-reader-text\">Creating shopping cart views</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [131],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3831" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3831"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3831/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3832,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3831/revisions/3832"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3831"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3831"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3831"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3833,
+    "date": "2022-06-29T05:42:17",
+    "date_gmt": "2022-06-29T05:42:17",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3833" },
+    "modified": "2022-06-29T05:42:17",
+    "modified_gmt": "2022-06-29T05:42:17",
+    "slug": "adding-items-to-the-cart",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/adding-items-to-the-cart/",
+    "title": { "rendered": "Adding items to the cart" },
+    "content": {
+      "rendered": "\n<p>In order to&nbsp;<a></a>add items to the cart, you need a form that allows the user to select a&nbsp;quantity. Create a&nbsp;<code>forms.py</code>&nbsp;file inside the&nbsp;<code>cart</code>&nbsp;application directory and add the&nbsp;following code to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>from django import forms\nPRODUCT_QUANTITY_CHOICES = &#91;(i, str(i)) for i in range(1, 21)]\nclass CartAddProductForm(forms.Form):\n    quantity = forms.TypedChoiceField(\n                                choices=PRODUCT_QUANTITY_CHOICES,\n                                coerce=int)\n    override = forms.BooleanField(required=False,\n                                  initial=False,\n                                  widget=forms.HiddenInput)\n</code></pre>\n\n\n\n<p>You will use this form to add products to the cart. Your&nbsp;<code>CartAddProductForm</code>&nbsp;class contains the following two fields:</p>\n\n\n\n<ul><li><code>quantity</code>: This allows&nbsp;<a></a>the user to select a quantity between one and 20. You use a&nbsp;<code>TypedChoiceField</code>&nbsp;field with&nbsp;<code>coerce=int</code>&nbsp;to convert the input into an&nbsp;integer.</li><li><code>override</code>: This allows you to indicate whether the quantity has to be added to any&nbsp;<a></a>existing quantity in the cart for this product (<code>False</code>), or whether the existing quantity has to be overridden with the given quantity (<code>True</code>). You use a&nbsp;<code>HiddenInput</code>&nbsp;widget for this field, since you don&#8217;t want to display it to the user.</li></ul>\n\n\n\n<p>Let&#8217;s create a view for adding items to the cart. Edit the&nbsp;<code>views.py</code>&nbsp;file of the&nbsp;<code>cart</code>&nbsp;application and add the following code to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>from django.shortcuts import render, redirect, get_object_or_404\nfrom django.views.decorators.http import require_POST\nfrom shop.models import Product\nfrom .cart import Cart\nfrom .forms import CartAddProductForm\n@require_POST\ndef cart_add(request, product_id):\n    cart = Cart(request)\n    product = get_object_or_404(Product, id=product_id)\n    form = CartAddProductForm(request.POST)\n    if form.is_valid():\n        cd = form.cleaned_data\n        cart.add(product=product,\n                 quantity=cd&#91;'quantity'],\n                 override_quantity=cd&#91;'override'])\n    return redirect('cart:cart_detail')\n</code></pre>\n\n\n\n<p>This is the&nbsp;<a></a>view for adding products to the cart or updating quantities for existing products. You use the&nbsp;<code>require_POST</code>&nbsp;decorator to allow only&nbsp;<code>POST</code>&nbsp;requests. The view receives the product ID as a parameter. You retrieve the&nbsp;<code>Product</code>&nbsp;instance with the given ID and validate&nbsp;<code>CartAddProductForm</code>. If the form is valid, you either add or update the product in the cart. The view redirects to the&nbsp;<code>cart_detail</code>&nbsp;URL, which will display the contents of the cart. You are going to create the&nbsp;<code>cart_detail</code>&nbsp;view shortly.</p>\n\n\n\n<p>You also need a view to remove items from the cart. Add the following code to the&nbsp;<code>views.py</code>&nbsp;file of the&nbsp;<code>cart</code>&nbsp;application:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>@require_POST\ndef cart_remove(request, product_id):\n    cart = Cart(request)\n    product = get_object_or_404(Product, id=product_id)\n    cart.remove(product)\n    return redirect('cart:cart_detail')\n</code></pre>\n\n\n\n<p>The&nbsp;<code>cart_remove</code>&nbsp;view receives the product ID as a parameter. You use the&nbsp;<code>require_POST</code>&nbsp;decorator to allow only&nbsp;<code>POST</code>&nbsp;requests. You retrieve the&nbsp;<code>Product</code>&nbsp;instance with the given ID and remove the product from the cart. Then, you redirect the user to the&nbsp;<code>cart_detail</code>&nbsp;URL.</p>\n\n\n\n<p>Finally, you need a view to display the cart and its items. Add the following view to&nbsp;the&nbsp;<code>views.py</code>&nbsp;file of the&nbsp;<code>cart</code>&nbsp;application:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>def cart_detail(request):\n    cart = Cart(request)\n    return render(request, 'cart/detail.html', {'cart': cart})\n</code></pre>\n\n\n\n<p>The&nbsp;<code>cart_detail</code>&nbsp;view gets the current cart to display it.</p>\n\n\n\n<p>You have&nbsp;<a></a>created views to add items to the cart, update quantities, remove items from the cart, and display the cart&#8217;s contents. Let&#8217;s add URL patterns for these views. Create a new file inside the&nbsp;<code>cart</code>&nbsp;application directory and name it&nbsp;<code>urls.py</code>. Add the&nbsp;following URLs to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>from django.urls import path\nfrom . import views\napp_name = 'cart'\nurlpatterns = &#91;\n    path('', views.cart_detail, name='cart_detail'),\n    path('add/&lt;int:product_id&gt;/', views.cart_add, name='cart_add'),\n    path('remove/&lt;int:product_id&gt;/', views.cart_remove, \n                                     name='cart_remove'),\n]\n</code></pre>\n\n\n\n<p>Edit the main&nbsp;<code>urls.py</code>&nbsp;file of the&nbsp;<code>myshop</code>&nbsp;project and add the following URL pattern to include the cart URLs:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>urlpatterns = &#91;\n    path('admin/', admin.site.urls),\n    <strong>path('cart/', include('cart.urls', namespace='cart')),</strong>\n    path('', include('shop.urls', namespace='shop')),\n]\n</code></pre>\n\n\n\n<p>Make sure that you include this URL pattern before the&nbsp;<code>shop.urls</code>&nbsp;pattern, since it&#8217;s more restrictive than the latter.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>In order to&nbsp;add items to the cart, you need a form that allows the user to select a&nbsp;quantity. Create a&nbsp;forms.py&nbsp;file inside the&nbsp;cart&nbsp;application directory and add the&nbsp;following code to it: You will use this form to add products to the cart. Your&nbsp;CartAddProductForm&nbsp;class contains the following two fields: quantity: This allows&nbsp;the user to select a quantity between&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/adding-items-to-the-cart/\">Continue reading <span class=\"screen-reader-text\">Adding items to the cart</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [131],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3833" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3833"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3833/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3834,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3833/revisions/3834"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3833"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3833"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3833"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3835,
+    "date": "2022-06-29T05:45:30",
+    "date_gmt": "2022-06-29T05:45:30",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3835" },
+    "modified": "2022-06-29T05:45:30",
+    "modified_gmt": "2022-06-29T05:45:30",
+    "slug": "building-a-template-to-display-the-cart",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/building-a-template-to-display-the-cart/",
+    "title": { "rendered": "Building a template to display the cart" },
+    "content": {
+      "rendered": "\n<p>The&nbsp;<code>cart_add</code>&nbsp;and&nbsp;<code>cart_remove</code>&nbsp;views don&#8217;t render any templates, but you need to&nbsp;create&nbsp;<a></a>a template for the&nbsp;<code>cart_detail</code>&nbsp;view to display cart items and totals.</p>\n\n\n\n<p>Create the following file structure inside the&nbsp;<code>cart</code>&nbsp;application directory:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>templates/\n    cart/\n        detail.html\n</code></pre>\n\n\n\n<p>Edit the&nbsp;<code>cart/detail.html</code>&nbsp;template and add the following code to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{% extends \"shop/base.html\" %}\n{% load static %}\n{% block title %}\n  Your shopping cart\n{% endblock %}\n{% block content %}\n  &lt;h1&gt;Your shopping cart&lt;/h1&gt;\n  &lt;table class=\"cart\"&gt;\n    &lt;thead&gt;\n      &lt;tr&gt;\n        &lt;th&gt;Image&lt;/th&gt;\n        &lt;th&gt;Product&lt;/th&gt;\n        &lt;th&gt;Quantity&lt;/th&gt;\n        &lt;th&gt;Remove&lt;/th&gt;\n        &lt;th&gt;Unit price&lt;/th&gt;\n        &lt;th&gt;Price&lt;/th&gt;\n      &lt;/tr&gt;\n    &lt;/thead&gt;\n    &lt;tbody&gt;\n      {% for item in cart %}\n        {% with product=item.product %}\n          &lt;tr&gt;\n            &lt;td&gt;\n              &lt;a href=\"{{ product.get_absolute_url }}\"&gt;\n                &lt;img src=\"{% if product.image %}{{ product.image.url }}\n                {% else %}{% static \"img/no_image.png\" %}{% endif %}\"&gt;\n              &lt;/a&gt;\n            &lt;/td&gt;\n            &lt;td&gt;{{ product.name }}&lt;/td&gt;\n            &lt;td&gt;{{ item.quantity }}&lt;/td&gt;\n            &lt;td&gt;\n              &lt;form action=\"{% url \"cart:cart_remove\" product.id %}\" method=\"post\"&gt;\n                &lt;input type=\"submit\" value=\"Remove\"&gt;\n                {% csrf_token %}\n              &lt;/form&gt;\n            &lt;/td&gt;\n            &lt;td class=\"num\"&gt;${{ item.price }}&lt;/td&gt;\n            &lt;td class=\"num\"&gt;${{ item.total_price }}&lt;/td&gt;\n          &lt;/tr&gt;\n        {% endwith %}\n      {% endfor %}\n      &lt;tr class=\"total\"&gt;\n        &lt;td&gt;Total&lt;/td&gt;\n        &lt;td colspan=\"4\"&gt;&lt;/td&gt;\n        &lt;td class=\"num\"&gt;${{ cart.get_total_price }}&lt;/td&gt;\n      &lt;/tr&gt;\n    &lt;/tbody&gt;\n  &lt;/table&gt;\n  &lt;p class=\"text-right\"&gt;\n    &lt;a href=\"{% url \"shop:product_list\" %}\" class=\"button\n    light\"&gt;Continue shopping&lt;/a&gt;\n    &lt;a href=\"#\" class=\"button\"&gt;Checkout&lt;/a&gt;\n  &lt;/p&gt;\n{% endblock %}\n</code></pre>\n\n\n\n<p>Make sure that no template tag is split into multiple lines.</p>\n\n\n\n<p>This is the&nbsp;<a></a>template that is used to display the cart&#8217;s contents. It contains a table with the items stored in the current cart. You allow users to change the quantity of the selected products using a form that is posted to the&nbsp;<code>cart_add</code>&nbsp;view. You also allow users to remove items from the cart by providing a&nbsp;<strong>Remove</strong>&nbsp;button for each of them. Finally, you use an HTML form with an&nbsp;<code>action</code>&nbsp;attribute that points to the&nbsp;<code>cart_remove</code>&nbsp;URL including the product ID.</p>\n\n\n\n<h3 id=\"_idParaDest-157\">Adding products to the cart</h3>\n\n\n\n<p>Now you&nbsp;<a></a>need to add an&nbsp;<strong>Add to cart</strong>&nbsp;button to the product detail page. Edit the&nbsp;<code>views.py</code>&nbsp;file of the&nbsp;<code>shop</code>&nbsp;application and add&nbsp;<code>CartAddProductForm</code>&nbsp;to the&nbsp;<code>product_detail</code>&nbsp;view, as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code><strong>from cart.forms import CartAddProductForm</strong>\ndef product_detail(request, id, slug):\n    product = get_object_or_404(Product, id=id,\n                                         slug=slug,\n                                         available=True)\n    <strong>cart_product_form = CartAddProductForm()</strong>\n    return render(request,\n                  'shop/product/detail.html',\n                  {'product': product,\n                   <strong>'cart_product_form': cart_product_form</strong>})\n</code></pre>\n\n\n\n<p>Edit the&nbsp;<code>shop/product/detail.html</code>&nbsp;template of the&nbsp;<code>shop</code>&nbsp;application, and add the following form to the product price as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;p class=\"price\"&gt;${{ product.price }}&lt;/p&gt;\n<strong>&lt;form action=\"{% url \"cart:cart_add\" product.id %}\" method=\"post\"&gt;</strong>\n  <strong>{{ cart_product_form }}</strong>\n  <strong>{% csrf_token %}</strong>\n  <strong>&lt;input type=\"submit\" value=\"Add to cart\"&gt;</strong>\n<strong>&lt;/form&gt;</strong>\n{{ product.description|linebreaks }}\n</code></pre>\n\n\n\n<p>Make sure&nbsp;<a></a>that the development server is running with the command&nbsp;<code>python manage.py runserver</code>. Now open&nbsp;<code>http://127.0.0.1:8000/</code>&nbsp;in your browser and navigate to a product&#8217;s detail page. It will contain a form to choose a quantity before adding the product to the cart. The page will look like this:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/B14981_07_05.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 7.5: The product detail page, including the add to cart form</p>\n\n\n\n<p>Choose a quantity and click on the&nbsp;<strong>Add to cart</strong>&nbsp;button. The form is submitted to the&nbsp;<code>cart_add</code>&nbsp;view via&nbsp;<code>POST</code>. The view adds the product to the cart in the session, including its current price and the selected quantity. Then, it redirects the user to the cart&nbsp;<a></a>detail page, which will look like the following screenshot:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/B14981_07_06.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 7.6: The cart detail page</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>The&nbsp;cart_add&nbsp;and&nbsp;cart_remove&nbsp;views don&#8217;t render any templates, but you need to&nbsp;create&nbsp;a template for the&nbsp;cart_detail&nbsp;view to display cart items and totals. Create the following file structure inside the&nbsp;cart&nbsp;application directory: Edit the&nbsp;cart/detail.html&nbsp;template and add the following code to it: Make sure that no template tag is split into multiple lines. This is the&nbsp;template that is used to display the&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/building-a-template-to-display-the-cart/\">Continue reading <span class=\"screen-reader-text\">Building a template to display the cart</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [131],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3835" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3835"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3835/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3836,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3835/revisions/3836"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3835"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3835"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3835"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3837,
+    "date": "2022-06-29T05:46:02",
+    "date_gmt": "2022-06-29T05:46:02",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3837" },
+    "modified": "2022-06-29T05:46:02",
+    "modified_gmt": "2022-06-29T05:46:02",
+    "slug": "updating-product-quantities-in-the-cart",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/updating-product-quantities-in-the-cart/",
+    "title": { "rendered": "Updating product quantities in the cart" },
+    "content": {
+      "rendered": "\n<p>When users&nbsp;<a></a>see the cart, they might want to change product quantities before placing an order. You are going to allow users to change quantities from the cart detail page.</p>\n\n\n\n<p>Edit the&nbsp;<code>views.py</code>&nbsp;file of the&nbsp;<code>cart</code>&nbsp;application and change the&nbsp;<code>cart_detail</code>&nbsp;view to&nbsp;this:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>def cart_detail(request):\n    cart = Cart(request)\n    <strong>for item in cart:</strong>\n        <strong>item&#91;'update_quantity_form'] = CartAddProductForm(initial={</strong>\n                            <strong>'quantity': item&#91;'quantity'],</strong>\n                            <strong>'override': True})</strong>\n    return render(request, 'cart/detail.html', {'cart': cart})\n</code></pre>\n\n\n\n<p>You create an instance of&nbsp;<code>CartAddProductForm</code>&nbsp;for each item in the cart to allow changing product quantities. You initialize the form with the current item quantity and set the&nbsp;<code>override</code>&nbsp;field to&nbsp;<code>True</code>&nbsp;so that when you submit the form to the&nbsp;<code>cart_add</code>&nbsp;view, the current quantity is replaced with the new one.</p>\n\n\n\n<p>Now edit the&nbsp;<code>cart/detail.html</code>&nbsp;template of the&nbsp;<code>cart</code>&nbsp;application and find the following line:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;td&gt;{{ item.quantity }}&lt;/td&gt;\n</code></pre>\n\n\n\n<p>Replace the previous line with the following code:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;td&gt;\n  <strong>&lt;form action=\"{% url \"cart:cart_add\" product.id %}\" method=\"post\"&gt;</strong>\n    <strong>{{ item.update_quantity_form.quantity }}</strong>\n    <strong>{{ item.update_quantity_form.override }}</strong>\n    <strong>&lt;input type=\"submit\" value=\"Update\"&gt;</strong>\n    <strong>{% csrf_token %}</strong>\n  <strong>&lt;/form&gt;</strong>\n&lt;/td&gt;\n</code></pre>\n\n\n\n<p>Make sure&nbsp;<a></a>that the development server is running with the command&nbsp;<code>python manage.py runserver</code>. Open&nbsp;<code>http://127.0.0.1:8000/cart/</code>&nbsp;in your browser.</p>\n\n\n\n<p>You will see a form to edit the quantity for each cart item, as follows:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/B14981_07_07.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 7.7: The cart detail page, including the form to update product quantities</p>\n\n\n\n<p>Change the quantity of an item and click on the&nbsp;<strong>Update</strong>&nbsp;button to test the new functionality. You can also remove an item from the cart by clicking the&nbsp;<strong>Remove</strong>&nbsp;button.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>When users&nbsp;see the cart, they might want to change product quantities before placing an order. You are going to allow users to change quantities from the cart detail page. Edit the&nbsp;views.py&nbsp;file of the&nbsp;cart&nbsp;application and change the&nbsp;cart_detail&nbsp;view to&nbsp;this: You create an instance of&nbsp;CartAddProductForm&nbsp;for each item in the cart to allow changing product quantities. You initialize the&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/updating-product-quantities-in-the-cart/\">Continue reading <span class=\"screen-reader-text\">Updating product quantities in the cart</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [131],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3837" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3837"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3837/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3838,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3837/revisions/3838"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3837"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3837"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3837"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3841,
+    "date": "2022-06-29T05:46:32",
+    "date_gmt": "2022-06-29T05:46:32",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3841" },
+    "modified": "2022-06-29T05:46:32",
+    "modified_gmt": "2022-06-29T05:46:32",
+    "slug": "creating-a-context-processor-for-the-current-cart",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/creating-a-context-processor-for-the-current-cart/",
+    "title": {
+      "rendered": "Creating a context processor for the current cart"
+    },
+    "content": {
+      "rendered": "\n<p>You might have noticed that the message&nbsp;<strong>Your cart is empty</strong>&nbsp;is displayed in the header of the site, even when the cart contains items. You should display the total number of items in&nbsp;<a></a>the cart and the total cost instead. Since&nbsp;<a></a>this has to be displayed on all pages, you need to build a context processor to include the current cart in the request context, regardless of the view that processes the request.</p>\n\n\n\n<h3 id=\"_idParaDest-160\">Context processors</h3>\n\n\n\n<p>A context processor&nbsp;<a></a>is a Python function that takes the&nbsp;<code>request</code>&nbsp;object as an argument and returns a dictionary that gets added to the request context. Context processors come in handy when you need to make something available globally to&nbsp;all templates.</p>\n\n\n\n<p>By default, when you create a new project using the&nbsp;<code>startproject</code>&nbsp;command, your project contains the following template context processors in the&nbsp;<code>context_processors</code>&nbsp;option inside the&nbsp;<code>TEMPLATES</code>&nbsp;setting:</p>\n\n\n\n<ul><li><code>django.template.context_processors.debug</code>: This sets the Boolean&nbsp;<code>debug</code>&nbsp;and&nbsp;<code>sql_queries</code>&nbsp;variables in the context, representing the list of SQL&nbsp;queries executed in the request</li><li><code>django.template.context_processors.request</code>: This sets the&nbsp;<code>request</code>&nbsp;variable in the context</li><li><code>django.contrib.auth.context_processors.auth</code>: This sets the&nbsp;<code>user</code>&nbsp;variable in the request</li><li><code>django.contrib.messages.context_processors.messages</code>: This sets a&nbsp;<code>messages</code>&nbsp;variable in the context containing all the messages that have been&nbsp;generated using the messages framework</li></ul>\n\n\n\n<p>Django also enables&nbsp;<code>django.template.context_processors.csrf</code>&nbsp;to avoid&nbsp;<strong>cross-site request forgery</strong>&nbsp;(<strong>CSRF</strong>) attacks. This context processor is not present in the&nbsp;settings,&nbsp;but&nbsp;it is always enabled and can&#8217;t be turned off for security reasons.</p>\n\n\n\n<p>You can see the list of all built-in context processors at https://docs.djangoproject.com/en/3.0/ref/templates/api/#built-in-template-context-processors.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>You might have noticed that the message&nbsp;Your cart is empty&nbsp;is displayed in the header of the site, even when the cart contains items. You should display the total number of items in&nbsp;the cart and the total cost instead. Since&nbsp;this has to be displayed on all pages, you need to build a context processor to include&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/creating-a-context-processor-for-the-current-cart/\">Continue reading <span class=\"screen-reader-text\">Creating a context processor for the current cart</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [131],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3841" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3841"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3841/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3842,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3841/revisions/3842"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3841"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3841"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3841"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3843,
+    "date": "2022-06-29T05:47:17",
+    "date_gmt": "2022-06-29T05:47:17",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3843" },
+    "modified": "2022-06-29T05:47:17",
+    "modified_gmt": "2022-06-29T05:47:17",
+    "slug": "setting-the-cart-into-the-request-context",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/setting-the-cart-into-the-request-context/",
+    "title": { "rendered": "Setting the cart into the request context" },
+    "content": {
+      "rendered": "\n<p>Let&#8217;s create&nbsp;<a></a>a context processor to set the current cart into the request context. With it, you will be able to access the cart in any template.</p>\n\n\n\n<p>Create a new file inside the&nbsp;<code>cart</code>&nbsp;application directory and name it&nbsp;<code>context_processors.py</code>. Context processors can reside anywhere in your code, but creating them here will keep your code well organized. Add the following code to the file:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>from .cart import Cart\ndef cart(request):\n    return {'cart': Cart(request)}\n</code></pre>\n\n\n\n<p>In your context processor, you instantiate the cart using the&nbsp;<code>request</code>&nbsp;object and&nbsp;make it available for the templates as a variable named&nbsp;<code>cart</code>.</p>\n\n\n\n<p>Edit the&nbsp;<code>settings.py</code>&nbsp;file of your project and add&nbsp;<code>cart.context_processors.cart</code>&nbsp;to the&nbsp;<code>context_processors</code>&nbsp;option inside the&nbsp;<code>TEMPLATES</code>&nbsp;setting, as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>TEMPLATES = &#91;\n    {\n        'BACKEND': 'django.template.backends.django.DjangoTemplates',\n        'DIRS': &#91;],\n        'APP_DIRS': True,\n        'OPTIONS': {\n            'context_processors': &#91;\n                <em># ...</em>\n                <strong>'cart.context_processors.cart',</strong>\n            ],\n        },\n    },\n]\n</code></pre>\n\n\n\n<p>The <code>cart</code> context processor will be executed every time a template is rendered using Django&#8217;s <code>RequestContext</code>. The <code>cart</code> variable will be set in the context of your templates. You can read more about <code>RequestContext</code> at https://docs.djangoproject.com/en/3.0/ref/templates/api/#django.template.RequestContext.</p>\n\n\n\n<p>Context processors are executed in all the requests that use&nbsp;<code>RequestContext</code>. You might want to create&nbsp;<a></a>a custom template tag instead of a context processor if your functionality is not needed&nbsp;in all templates, especially if it involves database queries.</p>\n\n\n\n<p>Next, edit the&nbsp;<code>shop/base.html</code>&nbsp;template of the&nbsp;<code>shop</code>&nbsp;application and find the following lines:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;div class=\"cart\"&gt;\n  Your cart is empty.\n&lt;/div&gt;\n</code></pre>\n\n\n\n<p>Replace the previous lines with the following code:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;div class=\"cart\"&gt;\n  <strong>{% with total_items=cart|length %}</strong>\n    <strong>{% if total_items &gt; 0 %}</strong>\n      <strong>Your cart:</strong>\n      <strong>&lt;a href=\"{% url \"cart:cart_detail\" %}\"&gt;</strong>\n        <strong>{{ total_items }} item{{ total_items|pluralize }},</strong>\n        <strong>${{ cart.get_total_price }}</strong>\n      <strong>&lt;/a&gt;</strong>\n    <strong>{% else %}</strong>\n      <strong>Your cart is empty.</strong>\n    <strong>{% endif %}</strong>\n  <strong>{% endwith %}</strong>\n&lt;/div&gt;\n</code></pre>\n\n\n\n<p>Reload&nbsp;<a></a>your server using the command&nbsp;<code>python manage.py runserver</code>. Open&nbsp;<code>http://127.0.0.1:8000/</code>&nbsp;in your browser and add some products to the cart.</p>\n\n\n\n<p>In the header of the website, you can now see the total number of items in the cart and the total cost, as follows:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/B14981_07_08.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 7.8: The site header displaying current items in the cart</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Let&#8217;s create&nbsp;a context processor to set the current cart into the request context. With it, you will be able to access the cart in any template. Create a new file inside the&nbsp;cart&nbsp;application directory and name it&nbsp;context_processors.py. Context processors can reside anywhere in your code, but creating them here will keep your code well organized. Add&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/setting-the-cart-into-the-request-context/\">Continue reading <span class=\"screen-reader-text\">Setting the cart into the request context</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [131],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3843" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3843"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3843/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3844,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3843/revisions/3844"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3843"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3843"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3843"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3846,
+    "date": "2022-06-29T05:47:43",
+    "date_gmt": "2022-06-29T05:47:43",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3846" },
+    "modified": "2022-06-29T05:47:43",
+    "modified_gmt": "2022-06-29T05:47:43",
+    "slug": "registering-customer-orders",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/registering-customer-orders/",
+    "title": { "rendered": "Registering customer orders" },
+    "content": {
+      "rendered": "\n<p>When a shopping cart is checked out, you need to save an order into the database. Orders will&nbsp;<a></a>contain information about customers and the products they are buying.</p>\n\n\n\n<p>Create a new application for managing customer orders using the following command:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>python manage.py startapp orders\n</code></pre>\n\n\n\n<p>Edit the&nbsp;<code>settings.py</code>&nbsp;file of your project and add the new application to the&nbsp;<code>INSTALLED_APPS</code>&nbsp;setting, as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>INSTALLED_APPS = &#91;\n    <em># ...</em>\n    <strong>'orders.apps.OrdersConfig',</strong>\n]\n</code></pre>\n\n\n\n<p>You have activated the&nbsp;<code>orders</code>&nbsp;application.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>When a shopping cart is checked out, you need to save an order into the database. Orders will&nbsp;contain information about customers and the products they are buying. Create a new application for managing customer orders using the following command: Edit the&nbsp;settings.py&nbsp;file of your project and add the new application to the&nbsp;INSTALLED_APPS&nbsp;setting, as follows: You have&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/registering-customer-orders/\">Continue reading <span class=\"screen-reader-text\">Registering customer orders</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [131],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3846" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3846"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3846/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3847,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3846/revisions/3847"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3846"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3846"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3846"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3848,
+    "date": "2022-06-29T05:48:10",
+    "date_gmt": "2022-06-29T05:48:10",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3848" },
+    "modified": "2022-06-29T05:48:10",
+    "modified_gmt": "2022-06-29T05:48:10",
+    "slug": "creating-order-models",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/creating-order-models/",
+    "title": { "rendered": "Creating order models" },
+    "content": {
+      "rendered": "\n<p>You will need&nbsp;<a></a>a model to store the order details and a second model to store items bought, including their price and quantity. Edit the&nbsp;<code>models.py</code>&nbsp;file of the&nbsp;<code>orders</code>&nbsp;application and add the following code to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>from django.db import models\nfrom shop.models import Product\nclass Order(models.Model):\n    first_name = models.CharField(max_length=50)\n    last_name = models.CharField(max_length=50)\n    email = models.EmailField()\n    address = models.CharField(max_length=250)\n    postal_code = models.CharField(max_length=20)\n    city = models.CharField(max_length=100)\n    created = models.DateTimeField(auto_now_add=True)\n    updated = models.DateTimeField(auto_now=True)\n    paid = models.BooleanField(default=False)\n    class Meta:\n        ordering = ('-created',)\n    def __str__(self):\n        return f'Order {self.id}'\n    def get_total_cost(self):\n        return sum(item.get_cost() for item in self.items.all())\nclass OrderItem(models.Model):\n    order = models.ForeignKey(Order,\n                              related_name='items',\n                              on_delete=models.CASCADE)\n    product = models.ForeignKey(Product,\n                                related_name='order_items',\n                                on_delete=models.CASCADE)\n    price = models.DecimalField(max_digits=10, decimal_places=2)\n    quantity = models.PositiveIntegerField(default=1)\n    def __str__(self):\n        return str(self.id)\n    def get_cost(self):\n        return self.price * self.quantity\n</code></pre>\n\n\n\n<p>The&nbsp;<code>Order</code>&nbsp;model contains several fields to store customer information and a&nbsp;<code>paid</code>&nbsp;Boolean field, which defaults to&nbsp;<code>False</code>. Later on, you are going to use this field to differentiate between paid and unpaid orders. You also define a&nbsp;<code>get_total_cost()</code>&nbsp;method to&nbsp;<a></a>obtain the total cost of the items bought in this order.</p>\n\n\n\n<p>The&nbsp;<code>OrderItem</code>&nbsp;model allows you to store the product, quantity, and price paid for each item. You include&nbsp;<code>get_cost()</code>&nbsp;to return the cost of the item.</p>\n\n\n\n<p>Run the next command to create initial migrations for the&nbsp;<code>orders</code>&nbsp;application:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>python manage.py makemigrations\n</code></pre>\n\n\n\n<p>You will see the following output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Migrations for 'orders':\n  orders/migrations/0001_initial.py\n    - Create model Order\n    - Create model OrderItem\n</code></pre>\n\n\n\n<p>Run the following command to apply the new migration:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>python manage.py migrate\n</code></pre>\n\n\n\n<p>Your order models are now synced to the database.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>You will need&nbsp;a model to store the order details and a second model to store items bought, including their price and quantity. Edit the&nbsp;models.py&nbsp;file of the&nbsp;orders&nbsp;application and add the following code to it: The&nbsp;Order&nbsp;model contains several fields to store customer information and a&nbsp;paid&nbsp;Boolean field, which defaults to&nbsp;False. Later on, you are going to use this&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/creating-order-models/\">Continue reading <span class=\"screen-reader-text\">Creating order models</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [131],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3848" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3848"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3848/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3849,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3848/revisions/3849"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3848"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3848"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3848"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3850,
+    "date": "2022-06-29T05:48:40",
+    "date_gmt": "2022-06-29T05:48:40",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3850" },
+    "modified": "2022-06-29T05:48:40",
+    "modified_gmt": "2022-06-29T05:48:40",
+    "slug": "including-order-models-in-the-administration-site",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/including-order-models-in-the-administration-site/",
+    "title": {
+      "rendered": "Including order models in the administration site"
+    },
+    "content": {
+      "rendered": "\n<p>Let&#8217;s add&nbsp;<a></a>the order models to the administration site. Edit the&nbsp;<code>admin.py</code>&nbsp;file of the&nbsp;<code>orders</code>&nbsp;application to make it look like this:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>from django.contrib import admin\nfrom .models import Order, OrderItem\nclass OrderItemInline(admin.TabularInline):\n    model = OrderItem\n    raw_id_fields = &#91;'product']\n@admin.register(Order)\nclass OrderAdmin(admin.ModelAdmin):\n    list_display = &#91;'id', 'first_name', 'last_name', 'email',\n                    'address', 'postal_code', 'city', 'paid',\n                    'created', 'updated']\n    list_filter = &#91;'paid', 'created', 'updated']\n    inlines = &#91;OrderItemInline]\n</code></pre>\n\n\n\n<p>You use a&nbsp;<code>ModelInline</code>&nbsp;class for the&nbsp;<code>OrderItem</code>&nbsp;model to include it as an&nbsp;<em>inline</em>&nbsp;in&nbsp;the&nbsp;<code>OrderAdmin</code>&nbsp;class. An inline allows you to include a model on the same edit page as its related model.</p>\n\n\n\n<p>Run the&nbsp;<a></a>development server with the command&nbsp;<code>python manage.py runserver</code>, and&nbsp;then open&nbsp;<code>http://127.0.0.1:8000/admin/orders/order/add/</code>&nbsp;in your browser. You will see the following page:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/B14981_07_09.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 7.9: The Add order form, including the OrderItemInline</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Let&#8217;s add&nbsp;the order models to the administration site. Edit the&nbsp;admin.py&nbsp;file of the&nbsp;orders&nbsp;application to make it look like this: You use a&nbsp;ModelInline&nbsp;class for the&nbsp;OrderItem&nbsp;model to include it as an&nbsp;inline&nbsp;in&nbsp;the&nbsp;OrderAdmin&nbsp;class. An inline allows you to include a model on the same edit page as its related model. Run the&nbsp;development server with the command&nbsp;python manage.py runserver, and&nbsp;then open&nbsp;http://127.0.0.1:8000/admin/orders/order/add/&nbsp;in&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/including-order-models-in-the-administration-site/\">Continue reading <span class=\"screen-reader-text\">Including order models in the administration site</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [131],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3850" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3850"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3850/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3851,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3850/revisions/3851"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3850"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3850"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3850"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3852,
+    "date": "2022-06-29T05:49:38",
+    "date_gmt": "2022-06-29T05:49:38",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3852" },
+    "modified": "2022-06-29T05:49:38",
+    "modified_gmt": "2022-06-29T05:49:38",
+    "slug": "creating-customer-orders",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/creating-customer-orders/",
+    "title": { "rendered": "Creating customer orders" },
+    "content": {
+      "rendered": "\n<p>You will&nbsp;<a></a>use the order models that you created to persist the items contained in the shopping cart when the user finally places an order. A new order will be created following these steps:</p>\n\n\n\n<ul><li>Present a user with an order form to fill in their data</li><li>Create a new&nbsp;<code>Order</code>&nbsp;instance with the data entered, and create an associated&nbsp;<code>OrderItem</code>&nbsp;instance for each item in the cart</li><li>Clear all the cart&#8217;s contents and redirect the user to a success page</li></ul>\n\n\n\n<p>First, you need a form to enter the order details. Create a new file inside the&nbsp;<code>orders</code>&nbsp;application directory and name it&nbsp;<code>forms.py</code>. Add the following code to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>from django import forms\nfrom .models import Order\nclass OrderCreateForm(forms.ModelForm):\n    class Meta:\n        model = Order\n        fields = &#91;'first_name', 'last_name', 'email', 'address',\n                  'postal_code', 'city']\n</code></pre>\n\n\n\n<p>This is the&nbsp;<a></a>form that you are going to use to create new&nbsp;<code>Order</code>&nbsp;objects. Now you need a view to handle the form and create a new order. Edit the&nbsp;<code>views.py</code>&nbsp;file of the&nbsp;<code>orders</code>&nbsp;application and add the following code to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>from django.shortcuts import render\nfrom .models import OrderItem\nfrom .forms import OrderCreateForm\nfrom cart.cart import Cart\ndef order_create(request):\n    cart = Cart(request)\n    if request.method == 'POST':\n        form = OrderCreateForm(request.POST)\n        if form.is_valid():\n            order = form.save()\n            for item in cart:\n                OrderItem.objects.create(order=order,\n                                        product=item&#91;'product'],\n                                        price=item&#91;'price'],\n                                        quantity=item&#91;'quantity'])\n            <em># clear the cart</em>\n            cart.clear()\n            return render(request,\n                          'orders/order/created.html',\n                          {'order': order})\n    else:\n        form = OrderCreateForm()\n    return render(request,\n                  'orders/order/create.html',\n                  {'cart': cart, 'form': form})\n</code></pre>\n\n\n\n<p>In the&nbsp;<code>order_create</code>&nbsp;view, you obtain the current cart from the session with&nbsp;<code>cart&nbsp;=&nbsp;Cart(request)</code>. Depending on the request method, you perform the&nbsp;following tasks:</p>\n\n\n\n<ul><li><strong>GET request</strong>: Instantiates&nbsp;<a></a>the&nbsp;<code>OrderCreateForm</code>&nbsp;form and renders the&nbsp;<code>orders/order/create.html</code>&nbsp;template.</li><li><strong>POST request</strong>: Validates&nbsp;<a></a>the data sent in the request. If the data is valid, you&nbsp;create a new order in the database using&nbsp;<code>order = form.save()</code>. You iterate over the cart items and create an&nbsp;<code>OrderItem</code>&nbsp;for each of them. Finally, you clear the cart&#8217;s contents and render the template&nbsp;<code>orders/order/created.html</code>.</li></ul>\n\n\n\n<p>Create a new file inside the&nbsp;<code>orders</code>&nbsp;application directory and name it&nbsp;<code>urls.py</code>. Add&nbsp;the following code to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>from django.urls import path\nfrom . import views\napp_name = 'orders'\nurlpatterns = &#91;\n    path('create/', views.order_create, name='order_create'),\n]\n</code></pre>\n\n\n\n<p>This is&nbsp;<a></a>the URL pattern for the&nbsp;<code>order_create</code>&nbsp;view. Edit the&nbsp;<code>urls.py</code>&nbsp;file of&nbsp;<code>myshop</code>&nbsp;and include the following pattern. Remember to place it before the&nbsp;<code>shop.urls</code>&nbsp;pattern:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>path('orders/', include('orders.urls', namespace='orders')),\n</code></pre>\n\n\n\n<p>Edit the&nbsp;<code>cart/detail.html</code>&nbsp;template of the&nbsp;<code>cart</code>&nbsp;application and locate this line:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;a href=\"#\" class=\"button\"&gt;Checkout&lt;/a&gt;\n</code></pre>\n\n\n\n<p>Add the&nbsp;<code>order_create</code>&nbsp;URL as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;a href=<strong>\"{% url \"orders:order_create\" %}\"</strong> class=\"button\"&gt;\n  Checkout\n&lt;/a&gt;\n</code></pre>\n\n\n\n<p>Users can now navigate from the cart detail page to the order form.</p>\n\n\n\n<p>You still need to define templates for placing orders. Create the following file structure inside the&nbsp;<code>orders</code>&nbsp;application directory:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>templates/\n    orders/\n        order/\n            create.html\n            created.html\n</code></pre>\n\n\n\n<p>Edit the&nbsp;<code>orders/order/create.html</code>&nbsp;template and include the following code:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{% extends \"shop/base.html\" %}\n{% block title %}\n  Checkout\n{% endblock %}\n{% block content %}\n  &lt;h1&gt;Checkout&lt;/h1&gt;\n  &lt;div class=\"order-info\"&gt;\n    &lt;h3&gt;Your order&lt;/h3&gt;\n    &lt;ul&gt;\n      {% for item in cart %}\n        &lt;li&gt;\n          {{ item.quantity }}x {{ item.product.name }}\n          &lt;span&gt;${{ item.total_price }}&lt;/span&gt;\n        &lt;/li&gt;\n      {% endfor %}\n    &lt;/ul&gt;\n    &lt;p&gt;Total: ${{ cart.get_total_price }}&lt;/p&gt;\n  &lt;/div&gt;\n  &lt;form method=\"post\" class=\"order-form\"&gt;\n    {{ form.as_p }}\n    &lt;p&gt;&lt;input type=\"submit\" value=\"Place order\"&gt;&lt;/p&gt;\n    {% csrf_token %}\n  &lt;/form&gt;\n{% endblock %}\n</code></pre>\n\n\n\n<p>This template&nbsp;<a></a>displays the cart items, including totals and the form to place an order.</p>\n\n\n\n<p>Edit the&nbsp;<code>orders/order/created.html</code>&nbsp;template and add the following code:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{% extends \"shop/base.html\" %}\n{% block title %}\n  Thank you\n{% endblock %}\n{% block content %}\n  &lt;h1&gt;Thank you&lt;/h1&gt;\n  &lt;p&gt;Your order has been successfully completed. Your order number is\n  &lt;strong&gt;{{ order.id }}&lt;/strong&gt;.&lt;/p&gt;\n{% endblock %}\n</code></pre>\n\n\n\n<p>This is the template that you render when the order is successfully created.</p>\n\n\n\n<p>Start the web development server to load new files. Open&nbsp;<code>http://127.0.0.1:8000/</code>&nbsp;in your browser, add a couple of products to the cart, and continue to the checkout page. You will&nbsp;<a></a>see a page like the one following:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/B14981_07_10.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 7.10: The order create page, including the chart checkout form and order details</p>\n\n\n\n<p>Fill in the form with valid data and click on the&nbsp;<strong>Place order</strong>&nbsp;button. The order will be&nbsp;created and you will see a success page like this:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/B14981_07_11.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 7.11: The order created template displaying the order number</p>\n\n\n\n<p>Now open&nbsp;<a></a>the administration site at&nbsp;<code>http://127.0.0.1:8000/admin/orders/order/</code>. You will see that the order has been successfully created.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>You will&nbsp;use the order models that you created to persist the items contained in the shopping cart when the user finally places an order. A new order will be created following these steps: Present a user with an order form to fill in their data Create a new&nbsp;Order&nbsp;instance with the data entered, and create an&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/creating-customer-orders/\">Continue reading <span class=\"screen-reader-text\">Creating customer orders</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [131],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3852" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3852"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3852/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3853,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3852/revisions/3853"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3852"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3852"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3852"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3854,
+    "date": "2022-06-29T05:50:08",
+    "date_gmt": "2022-06-29T05:50:08",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3854" },
+    "modified": "2022-06-29T05:50:08",
+    "modified_gmt": "2022-06-29T05:50:08",
+    "slug": "launching-asynchronous-tasks-with-celery",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/launching-asynchronous-tasks-with-celery/",
+    "title": { "rendered": "Launching asynchronous tasks with Celery" },
+    "content": {
+      "rendered": "\n<p>Everything you execute in a view affects response times. In many situations, you&nbsp;might want to return&nbsp;<a></a>a response to the user as quickly as possible and let the server execute some process asynchronously. This is especially&nbsp;<a></a>relevant for time-consuming processes or processes subject to failure, which might need a retry policy. For example, a video sharing platform allows users to upload videos but requires a long time to transcode uploaded videos. The site might return a response to users to inform them that the transcoding will start soon, and start transcoding the video asynchronously. Another example is sending emails to users. If your site sends email&nbsp;notifications from a view, the&nbsp;<strong>Simple Mail Transfer Protocol</strong>&nbsp;(<strong>SMTP</strong>) connection might fail or slow down the response. Launching asynchronous tasks is&nbsp;essential to avoid blocking the code execution.</p>\n\n\n\n<p>Celery is a distributed task queue that can process vast amounts of messages. Using Celery, not only can you create asynchronous tasks easily and let them be executed by workers as soon as possible, but you can also schedule them to run at a specific time.</p>\n\n\n\n<p>You can find the Celery documentation at http://docs.celeryproject.org/en/latest/index.html.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Everything you execute in a view affects response times. In many situations, you&nbsp;might want to return&nbsp;a response to the user as quickly as possible and let the server execute some process asynchronously. This is especially&nbsp;relevant for time-consuming processes or processes subject to failure, which might need a retry policy. For example, a video sharing platform&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/launching-asynchronous-tasks-with-celery/\">Continue reading <span class=\"screen-reader-text\">Launching asynchronous tasks with Celery</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [131],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3854" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3854"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3854/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3855,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3854/revisions/3855"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3854"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3854"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3854"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3857,
+    "date": "2022-06-29T05:50:46",
+    "date_gmt": "2022-06-29T05:50:46",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3857" },
+    "modified": "2022-06-29T05:50:46",
+    "modified_gmt": "2022-06-29T05:50:46",
+    "slug": "installing-celery",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/installing-celery/",
+    "title": { "rendered": "Installing Celery" },
+    "content": {
+      "rendered": "\n<p>Let&#8217;s install&nbsp;<a></a>Celery and integrate it into your project. Install Celery via&nbsp;<code>pip</code>&nbsp;using the following command:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>pip install celery==4.4.2\n</code></pre>\n\n\n\n<p>Celery requires a message broker in order to handle requests from an external source. A message broker is used to translate messages to a formal messaging protocol and manage&nbsp;<a></a>message queues for multiple receivers, providing reliable storage and guaranteed message delivery. You use a message broker to send messages to Celery workers, which process tasks as they receive them.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Let&#8217;s install&nbsp;Celery and integrate it into your project. Install Celery via&nbsp;pip&nbsp;using the following command: Celery requires a message broker in order to handle requests from an external source. A message broker is used to translate messages to a formal messaging protocol and manage&nbsp;message queues for multiple receivers, providing reliable storage and guaranteed message delivery. You&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/installing-celery/\">Continue reading <span class=\"screen-reader-text\">Installing Celery</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [131],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3857" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3857"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3857/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3858,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3857/revisions/3858"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3857"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3857"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3857"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3859,
+    "date": "2022-06-29T05:51:15",
+    "date_gmt": "2022-06-29T05:51:15",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3859" },
+    "modified": "2022-06-29T05:51:15",
+    "modified_gmt": "2022-06-29T05:51:15",
+    "slug": "installing-rabbitmq",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/installing-rabbitmq/",
+    "title": { "rendered": "Installing RabbitMQ" },
+    "content": {
+      "rendered": "\n<p>There are several options for a message broker for Celery, including key/value stores such as Redis, or an&nbsp;<a></a>actual message system such as RabbitMQ. Let&#8217;s configure Celery with RabbitMQ, since it&#8217;s the recommended message worker for Celery. RabbitMQ is lightweight, it supports multiple messaging protocols, and it can be used when scalability and high availability are required.</p>\n\n\n\n<p>If you are using Linux, you can install RabbitMQ from the shell using the following command:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>apt-get install rabbitmq\n</code></pre>\n\n\n\n<p>If you need to install RabbitMQ on macOS or Windows, you can find standalone versions at https://www.rabbitmq.com/download.html. On this site, you can also find detailed installation guides for different Linux distributions, other operating systems, and containers.</p>\n\n\n\n<p>After installing it, launch RabbitMQ using the following command from the shell:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>rabbitmq-server\n</code></pre>\n\n\n\n<p>You will see output that ends with the following line:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Starting broker... completed with 10 plugins.\n</code></pre>\n\n\n\n<p>RabbitMQ is running and ready to receive messages.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>There are several options for a message broker for Celery, including key/value stores such as Redis, or an&nbsp;actual message system such as RabbitMQ. Let&#8217;s configure Celery with RabbitMQ, since it&#8217;s the recommended message worker for Celery. RabbitMQ is lightweight, it supports multiple messaging protocols, and it can be used when scalability and high availability are&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/installing-rabbitmq/\">Continue reading <span class=\"screen-reader-text\">Installing RabbitMQ</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [131],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3859" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3859"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3859/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3860,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3859/revisions/3860"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3859"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3859"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3859"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3861,
+    "date": "2022-06-29T05:51:41",
+    "date_gmt": "2022-06-29T05:51:41",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3861" },
+    "modified": "2022-06-29T05:51:41",
+    "modified_gmt": "2022-06-29T05:51:41",
+    "slug": "adding-celery-to-your-project",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/adding-celery-to-your-project/",
+    "title": { "rendered": "Adding Celery to your project" },
+    "content": {
+      "rendered": "\n<p>You have to provide&nbsp;<a></a>a configuration for the Celery instance. Create a new file next to the&nbsp;<code>settings.py</code>&nbsp;file of&nbsp;<code>myshop</code>&nbsp;and name it&nbsp;<code>celery.py</code>. This file will contain the Celery configuration for your project. Add the following code to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>import os\nfrom celery import Celery\n# set the default Django settings module for the 'celery' program.\nos.environ.setdefault('DJANGO_SETTINGS_MODULE', 'myshop.settings')\napp = Celery('myshop')\napp.config_from_object('django.conf:settings', namespace='CELERY')\napp.autodiscover_tasks()\n</code></pre>\n\n\n\n<p>In this code, you do the following:</p>\n\n\n\n<ul><li>You set the&nbsp;<code>DJANGO_SETTINGS_MODULE</code>&nbsp;variable for the Celery command-line program.</li><li>You create an instance of the application with&nbsp;<code>app = Celery('myshop')</code>.</li><li>You load any custom configuration from your project settings using the&nbsp;<code>config_from_object()</code>&nbsp;method. The&nbsp;<code>namespace</code>&nbsp;attribute specifies the prefix that Celery-related settings will have in your&nbsp;<code>settings.py</code>&nbsp;file. By setting the&nbsp;<code>CELERY</code>&nbsp;namespace, all Celery settings need to include the&nbsp;<code>CELERY_</code>&nbsp;prefix in their name (for example,&nbsp;<code>CELERY_BROKER_URL</code>).</li><li>Finally, you tell Celery to auto-discover asynchronous tasks for your applications. Celery will look for a&nbsp;<code>tasks.py</code>&nbsp;file in each application directory of applications added to&nbsp;<code>INSTALLED_APPS</code>&nbsp;in order to load asynchronous tasks defined in it.</li></ul>\n\n\n\n<p>You need&nbsp;<a></a>to import the&nbsp;<code>celery</code>&nbsp;module in the&nbsp;<code>__init__.py</code>&nbsp;file of your project to make sure it is loaded when Django starts. Edit the&nbsp;<code>myshop/__init__.py</code>&nbsp;file and add the following code to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code># import celery\nfrom .celery import app as celery_app\n</code></pre>\n\n\n\n<p>Now you can start programming asynchronous tasks for your applications.</p>\n\n\n\n<p>The&nbsp;<code>CELERY_ALWAYS_EAGER</code>&nbsp;setting allows you to execute tasks locally in a synchronous way, instead of sending them to the queue. This is useful for running unit tests or executing the application in your local environment without running Celery.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>You have to provide&nbsp;a configuration for the Celery instance. Create a new file next to the&nbsp;settings.py&nbsp;file of&nbsp;myshop&nbsp;and name it&nbsp;celery.py. This file will contain the Celery configuration for your project. Add the following code to it: In this code, you do the following: You set the&nbsp;DJANGO_SETTINGS_MODULE&nbsp;variable for the Celery command-line program. You create an instance of&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/adding-celery-to-your-project/\">Continue reading <span class=\"screen-reader-text\">Adding Celery to your project</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [131],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3861" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3861"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3861/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3862,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3861/revisions/3862"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3861"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3861"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3861"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3863,
+    "date": "2022-06-29T05:52:23",
+    "date_gmt": "2022-06-29T05:52:23",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3863" },
+    "modified": "2022-06-29T05:52:23",
+    "modified_gmt": "2022-06-29T05:52:23",
+    "slug": "adding-asynchronous-tasks-to-your-application",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/adding-asynchronous-tasks-to-your-application/",
+    "title": { "rendered": "Adding asynchronous tasks to your application" },
+    "content": {
+      "rendered": "\n<p>Next, you are&nbsp;<a></a>going to create an asynchronous task to send an email notification to your users when they place an order. The convention is to include asynchronous tasks for your application in a&nbsp;<code>tasks</code>&nbsp;module within your application directory.</p>\n\n\n\n<p>Create a new file inside the&nbsp;<code>orders</code>&nbsp;application and name it&nbsp;<code>tasks.py</code>. This is the place where Celery will look for asynchronous tasks. Add the following code to it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>from celery import task\nfrom django.core.mail import send_mail\nfrom .models import Order\n@task\ndef order_created(order_id):\n    \"\"\"\n    Task to send an e-mail notification when an order is\n    successfully created.\n    \"\"\"\n    order = Order.objects.get(id=order_id)\n    subject = f'Order nr. {order.id}'\n    message = f'Dear {order.first_name},\\n\\n' \\\n              f'You have successfully placed an order.' \\\n              f'Your order ID is {order.id}.'\n    mail_sent = send_mail(subject,\n                          message,\n                          'admin@myshop.com',\n                          &#91;order.email])\n    return mail_sent\n</code></pre>\n\n\n\n<p>You define the&nbsp;<code>order_created</code>&nbsp;task by using the&nbsp;<code>task</code>&nbsp;decorator. As you can see, a Celery task is just a Python function decorated with&nbsp;<code>@task</code>. Your&nbsp;<code>task</code>&nbsp;function receives an&nbsp;<code>order_id</code>&nbsp;parameter. It&#8217;s always recommended to only pass IDs to task functions and lookup&nbsp;<a></a>objects when the task is executed. You use the&nbsp;<code>send_mail()</code>&nbsp;function provided by Django to send an email notification to the user who placed the&nbsp;order.</p>\n\n\n\n<p>You learned how to configure Django to use your SMTP server, <em>Enhancing Your Blog with Advanced Features</em>. If you don&#8217;t want to set up email settings, you can tell Django to write emails to the console by adding the following setting to the <code>settings.py</code> file:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'\n</code></pre>\n\n\n\n<p>Use asynchronous tasks not only for time-consuming processes, but also for other processes that do not take so much time to be executed but which are subject to connection failures or require a&nbsp;retry policy.</p>\n\n\n\n<p>Now you have to add the task to your&nbsp;<code>order_create</code>&nbsp;view. Edit the&nbsp;<code>views.py</code>&nbsp;file of&nbsp;the&nbsp;<code>orders</code>&nbsp;application, import the task, and call the&nbsp;<code>order_created</code>&nbsp;asynchronous task after clearing the cart, as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code><strong>from .tasks import order_created</strong>\ndef order_create(request):\n    # ...\n    if request.method == 'POST':\n        # ...\n        if form.is_valid():\n            # ...\n            cart.clear()\n            <strong># launch asynchronous task</strong>\n            <strong>order_created.delay(order.id)</strong>\n        # ...\n</code></pre>\n\n\n\n<p>You call the&nbsp;<code>delay()</code>&nbsp;method of the task to execute it asynchronously. The task will be added to the queue and will be executed by a worker as soon as possible.</p>\n\n\n\n<p>Open another shell and start the Celery worker from your project directory, using the following command:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>celery -A myshop worker -l info\n</code></pre>\n\n\n\n<p>The Celery worker is now running and ready to process tasks. Make sure that the Django development server is also running.</p>\n\n\n\n<p>Open&nbsp;<code>http://127.0.0.1:8000/</code>&nbsp;in your browser, add some&nbsp;<a></a>products to your shopping cart, and complete an order. In the shell, you started the Celery worker and&nbsp;you will see an output similar to this one:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&#91;2020-01-04 17:43:11,462: INFO/MainProcess] Received task: orders.tasks.order_created&#91;e990ddae-2e30-4e36-b0e4-78bbd4f2738e]\n...\n&#91;2020-01-04 17:43:11,685: INFO/ForkPoolWorker-4] Task orders.tasks.order_created&#91;e990ddae-2e30-4e36-b0e4-78bbd4f2738e] succeeded in 0.02019841300789267s: 1\n</code></pre>\n\n\n\n<p>The task has been executed and an email notification for your order has been sent or displayed in the Celery worker output if you are using the console email backend.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Next, you are&nbsp;going to create an asynchronous task to send an email notification to your users when they place an order. The convention is to include asynchronous tasks for your application in a&nbsp;tasks&nbsp;module within your application directory. Create a new file inside the&nbsp;orders&nbsp;application and name it&nbsp;tasks.py. This is the place where Celery will look for&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/adding-asynchronous-tasks-to-your-application/\">Continue reading <span class=\"screen-reader-text\">Adding asynchronous tasks to your application</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [131],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3863" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3863"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3863/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3864,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3863/revisions/3864"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3863"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3863"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3863"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 3865,
+    "date": "2022-06-29T05:52:52",
+    "date_gmt": "2022-06-29T05:52:52",
+    "guid": { "rendered": "https://java.foobrdigital.com/?p=3865" },
+    "modified": "2022-06-29T05:52:52",
+    "modified_gmt": "2022-06-29T05:52:52",
+    "slug": "monitoring-celery",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/monitoring-celery/",
+    "title": { "rendered": "Monitoring Celery" },
+    "content": {
+      "rendered": "\n<p>You might want to monitor the asynchronous tasks that are executed. Flower is a web-based tool&nbsp;<a></a>for monitoring Celery. You can install Flower using this command:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>pip install flower==0.9.3\n</code></pre>\n\n\n\n<p>Once installed, you can launch Flower by running the following command from your&nbsp;project directory:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>celery -A myshop flower\n</code></pre>\n\n\n\n<p>Open&nbsp;<code>http://localhost:5555/dashboard</code>&nbsp;in your browser. You will be able to see the active Celery workers and asynchronous task statistics:</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://learning.oreilly.com/api/v2/epubs/urn:orm:book:9781838981952/files/Images/B14981_07_12.png\" alt=\"\"/></figure>\n\n\n\n<p>Figure 7.12: The Flower dashboard</p>\n\n\n\n<p>You can find the documentation for Flower at https://flower.readthedocs.io/.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>You might want to monitor the asynchronous tasks that are executed. Flower is a web-based tool&nbsp;for monitoring Celery. You can install Flower using this command: Once installed, you can launch Flower by running the following command from your&nbsp;project directory: Open&nbsp;http://localhost:5555/dashboard&nbsp;in your browser. You will be able to see the active Celery workers and asynchronous task&hellip; <a class=\"more-link\" href=\"https://java.foobrdigital.com/monitoring-celery/\">Continue reading <span class=\"screen-reader-text\">Monitoring Celery</span></a></p>\n",
+      "protected": false
+    },
+    "author": 4,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [131],
+    "tags": [],
+    "_links": {
+      "self": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3865" }
+      ],
+      "collection": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts" }
+      ],
+      "about": [
+        { "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post" }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/4"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=3865"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3865/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3866,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/3865/revisions/3866"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=3865"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=3865"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=3865"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  }
+]

@@ -1,0 +1,302 @@
+[
+  {
+    "id": 4646,
+    "date": "2021-02-25T11:45:08",
+    "date_gmt": "2021-02-25T11:45:08",
+    "guid": {
+      "rendered": "http://angular.foobrdigital.com/?p=4646"
+    },
+    "modified": "2021-02-25T11:45:08",
+    "modified_gmt": "2021-02-25T11:45:08",
+    "slug": "intro-5",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/intro-5/",
+    "title": {
+      "rendered": "Intro"
+    },
+    "content": {
+      "rendered": "\n<p>You can test&nbsp;<a href=\"https://angular.io/guide/pipes\">pipes</a>&nbsp;without the Angular testing utilities.</p>\n\n\n\n<p>For the sample app that the testing guides describe, see the&nbsp;<a target=\"_blank\" href=\"https://angular.io/generated/live-examples/testing/stackblitz.html\" rel=\"noreferrer noopener\">sample app</a>.</p>\n\n\n\n<p>For the tests features in the testing guides, see&nbsp;<a target=\"_blank\" href=\"https://angular.io/generated/live-examples/testing/specs.stackblitz.html\" rel=\"noreferrer noopener\">tests</a>.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>You can test&nbsp;pipes&nbsp;without the Angular testing utilities. For the sample app that the testing guides describe, see the&nbsp;sample app. For the tests features in the testing guides, see&nbsp;tests.</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [246],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4646"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=4646"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4646/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4649,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4646/revisions/4649"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=4646"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=4646"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=4646"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 4648,
+    "date": "2021-02-25T11:45:33",
+    "date_gmt": "2021-02-25T11:45:33",
+    "guid": {
+      "rendered": "http://angular.foobrdigital.com/?p=4648"
+    },
+    "modified": "2021-02-25T11:45:33",
+    "modified_gmt": "2021-02-25T11:45:33",
+    "slug": "testing-the-titlecasepipe",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/testing-the-titlecasepipe/",
+    "title": {
+      "rendered": "Testing the TitleCasePipe"
+    },
+    "content": {
+      "rendered": "\n<p>A pipe class has one method,&nbsp;<code>transform</code>, that manipulates the input value into a transformed output value. The&nbsp;<code>transform</code>&nbsp;implementation rarely interacts with the DOM. Most pipes have no dependence on Angular other than the&nbsp;<code>@<a href=\"https://angular.io/api/core/Pipe\">Pipe</a></code>&nbsp;metadata and an interface.</p>\n\n\n\n<p>Consider a\u00a0<code>TitleCasePipe</code>\u00a0that capitalizes the first letter of each word. Here&#8217;s an implementation with a regular expression.app/shared/title-case.pipe.ts</p>\n\n\n\n<pre class=\"wp-block-code\"><code>content_copy<code>import { <a href=\"https://angular.io/api/core/Pipe\">Pipe</a>, <a href=\"https://angular.io/api/core/PipeTransform\">PipeTransform</a> } from '@angular/core';\n\n@<a href=\"https://angular.io/api/core/Pipe\">Pipe</a>({name: 'titlecase', pure: true})\n/** Transform to <a href=\"https://angular.io/api/platform-browser/Title\">Title</a> Case: uppercase the first letter of the words in a string. */\nexport class <a href=\"https://angular.io/api/common/TitleCasePipe\">TitleCasePipe</a> implements <a href=\"https://angular.io/api/core/PipeTransform\">PipeTransform</a> {\n  transform(input: string): string {\n    return input.length === 0 ? '' :\n      input.replace(/\\w\\S*/g, (txt =&gt; txt&#91;0].toUpperCase() + txt.substr(1).toLowerCase() ));\n  }\n}</code></code></pre>\n\n\n\n<p>Anything that uses a regular expression is worth testing thoroughly. Use simple Jasmine to explore the expected cases and the edge cases.app/shared/title-case.pipe.spec.ts</p>\n\n\n\n<pre class=\"wp-block-code\"><code>content_copy<code>describe('<a href=\"https://angular.io/api/common/TitleCasePipe\">TitleCasePipe</a>', () =&gt; {\n  // This pipe is a pure, stateless function so no need for BeforeEach\n  const pipe = new <a href=\"https://angular.io/api/common/TitleCasePipe\">TitleCasePipe</a>();\n\n  it('transforms \"abc\" to \"Abc\"', () =&gt; {\n    expect(pipe.transform('abc')).toBe('Abc');\n  });\n\n  it('transforms \"abc def\" to \"Abc Def\"', () =&gt; {\n    expect(pipe.transform('abc def')).toBe('Abc Def');\n  });\n\n  // ... more tests ...\n});</code></code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>A pipe class has one method,&nbsp;transform, that manipulates the input value into a transformed output value. The&nbsp;transform&nbsp;implementation rarely interacts with the DOM. Most pipes have no dependence on Angular other than the&nbsp;@Pipe&nbsp;metadata and an interface. Consider a\u00a0TitleCasePipe\u00a0that capitalizes the first letter of each word. Here&#8217;s an implementation with a regular expression.app/shared/title-case.pipe.ts Anything that uses a [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [246],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4648"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=4648"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4648/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4650,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4648/revisions/4650"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=4648"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=4648"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=4648"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 4647,
+    "date": "2021-02-25T11:45:52",
+    "date_gmt": "2021-02-25T11:45:52",
+    "guid": {
+      "rendered": "http://angular.foobrdigital.com/?p=4647"
+    },
+    "modified": "2021-02-25T11:45:52",
+    "modified_gmt": "2021-02-25T11:45:52",
+    "slug": "writing-dom-tests-to-support-a-pipe-test",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/writing-dom-tests-to-support-a-pipe-test/",
+    "title": {
+      "rendered": "Writing DOM tests to support a pipe test"
+    },
+    "content": {
+      "rendered": "\n<p>These are tests of the pipe&nbsp;<em>in isolation</em>. They can&#8217;t tell if the&nbsp;<code><a href=\"https://angular.io/api/common/TitleCasePipe\">TitleCasePipe</a></code>&nbsp;is working properly as applied in the application components.</p>\n\n\n\n<p>Consider adding component tests such as this one:app/hero/hero-detail.component.spec.ts (pipe test)</p>\n\n\n\n<pre class=\"wp-block-code\"><code>content_copy<code>it('should convert hero name to <a href=\"https://angular.io/api/platform-browser/Title\">Title</a> Case', () =&gt; {\n  // get the name's input and display elements from the DOM\n  const hostElement = fixture.nativeElement;\n  const nameInput: HTMLInputElement = hostElement.querySelector('input');\n  const nameDisplay: HTMLElement = hostElement.querySelector('span');\n\n  // simulate user entering a new name into the input box\n  nameInput.value = 'quick BROWN  fOx';\n\n  // Dispatch a DOM event so that Angular learns of input value change.\n  // In older browsers, such as IE, you might need a CustomEvent instead. See\n  // https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent/CustomEvent#Polyfill\n  nameInput.dispatchEvent(new <a href=\"https://angular.io/api/router/Event\">Event</a>('input'));\n\n  // Tell Angular to update the display binding through the title pipe\n  fixture.detectChanges();\n\n  expect(nameDisplay.textContent).toBe('Quick Brown  Fox');\n});</code></code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>These are tests of the pipe&nbsp;in isolation. They can&#8217;t tell if the&nbsp;TitleCasePipe&nbsp;is working properly as applied in the application components. Consider adding component tests such as this one:app/hero/hero-detail.component.spec.ts (pipe test)</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [246],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4647"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=4647"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4647/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4651,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4647/revisions/4651"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=4647"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=4647"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=4647"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  }
+]

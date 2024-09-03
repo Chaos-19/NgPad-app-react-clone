@@ -1,0 +1,302 @@
+[
+  {
+    "id": 4770,
+    "date": "2021-02-27T10:59:40",
+    "date_gmt": "2021-02-27T10:59:40",
+    "guid": {
+      "rendered": "http://angular.foobrdigital.com/?p=4770"
+    },
+    "modified": "2021-02-27T10:59:40",
+    "modified_gmt": "2021-02-27T10:59:40",
+    "slug": "intro-11",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/intro-11/",
+    "title": {
+      "rendered": "Intro"
+    },
+    "content": {
+      "rendered": "\n<p>A template expression should evaluate to the type of value that the target property expects. For example, return a string if the target property expects a string, a number if it expects a number, or an object if it expects an object.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>A template expression should evaluate to the type of value that the target property expects. For example, return a string if the target property expects a string, a number if it expects a number, or an object if it expects an object.</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [262],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4770"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=4770"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4770/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4773,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4770/revisions/4773"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=4770"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=4770"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=4770"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 4774,
+    "date": "2021-02-27T11:00:32",
+    "date_gmt": "2021-02-27T11:00:32",
+    "guid": {
+      "rendered": "http://angular.foobrdigital.com/?p=4774"
+    },
+    "modified": "2021-02-27T11:00:32",
+    "modified_gmt": "2021-02-27T11:00:32",
+    "slug": "passing-in-a-string",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/passing-in-a-string/",
+    "title": {
+      "rendered": "Passing in a string"
+    },
+    "content": {
+      "rendered": "\n<p>In the following example, the&nbsp;<code>childItem</code>&nbsp;property of the&nbsp;<code>ItemDetailComponent</code>&nbsp;expects a string.src/app/app.component.html</p>\n\n\n\n<pre class=\"wp-block-code\"><code>content_copy<code>&lt;app-item-detail &#91;childItem]=\"parentItem\"&gt;&lt;/app-item-detail&gt;</code></code></pre>\n\n\n\n<p>You can confirm this expectation by looking in the&nbsp;<code>ItemDetailComponent</code>&nbsp;where the&nbsp;<code>@<a href=\"https://angular.io/api/core/Input\">Input</a>()</code>&nbsp;type is&nbsp;<code>string</code>:src/app/item-detail/item-detail.component.ts (setting the @Input() type)</p>\n\n\n\n<pre class=\"wp-block-code\"><code>content_copy<code>@<a href=\"https://angular.io/api/core/Input\">Input</a>() childItem: string;</code></code></pre>\n\n\n\n<p>The&nbsp;<code>parentItem</code>&nbsp;in&nbsp;<code>AppComponent</code>&nbsp;is a string, which means that the expression,&nbsp;<code>parentItem</code>&nbsp;within&nbsp;<code>[childItem]=\"parentItem\"</code>, evaluates to a string.src/app/app.component.ts</p>\n\n\n\n<pre class=\"wp-block-code\"><code>content_copy<code>parentItem = 'lamp';</code></code></pre>\n\n\n\n<p>If&nbsp;<code>parentItem</code>&nbsp;were some other type, you would need to specify&nbsp;<code>childItem</code>&nbsp;<code>@<a href=\"https://angular.io/api/core/Input\">Input</a>()</code>&nbsp;as that type as well.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>In the following example, the&nbsp;childItem&nbsp;property of the&nbsp;ItemDetailComponent&nbsp;expects a string.src/app/app.component.html You can confirm this expectation by looking in the&nbsp;ItemDetailComponent&nbsp;where the&nbsp;@Input()&nbsp;type is&nbsp;string:src/app/item-detail/item-detail.component.ts (setting the @Input() type) The&nbsp;parentItem&nbsp;in&nbsp;AppComponent&nbsp;is a string, which means that the expression,&nbsp;parentItem&nbsp;within&nbsp;[childItem]=&#8221;parentItem&#8221;, evaluates to a string.src/app/app.component.ts If&nbsp;parentItem&nbsp;were some other type, you would need to specify&nbsp;childItem&nbsp;@Input()&nbsp;as that type as well.</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [262],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4774"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=4774"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4774/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4775,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4774/revisions/4775"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=4774"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=4774"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=4774"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 4769,
+    "date": "2021-02-27T11:00:59",
+    "date_gmt": "2021-02-27T11:00:59",
+    "guid": {
+      "rendered": "http://angular.foobrdigital.com/?p=4769"
+    },
+    "modified": "2021-02-27T11:00:59",
+    "modified_gmt": "2021-02-27T11:00:59",
+    "slug": "passing-in-an-object",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/passing-in-an-object/",
+    "title": {
+      "rendered": "Passing in an object"
+    },
+    "content": {
+      "rendered": "\n<p>In this example,&nbsp;<code>ItemListComponent</code>&nbsp;is a child component of&nbsp;<code>AppComponent</code>&nbsp;and the&nbsp;<code>items</code>&nbsp;property expects an array of objects.src/app/app.component.html</p>\n\n\n\n<pre class=\"wp-block-code\"><code>content_copy<code>&lt;app-item-list &#91;items]=\"currentItems\"&gt;&lt;/app-item-list&gt;</code></code></pre>\n\n\n\n<p>In the&nbsp;<code>ItemListComponent</code>&nbsp;the&nbsp;<code>@<a href=\"https://angular.io/api/core/Input\">Input</a>()</code>,&nbsp;<code>items</code>, has a type of&nbsp;<code>Item[]</code>.src/app/item-list.component.ts</p>\n\n\n\n<pre class=\"wp-block-code\"><code>content_copy<code>@<a href=\"https://angular.io/api/core/Input\">Input</a>() items: Item&#91;];</code></code></pre>\n\n\n\n<p>Notice that&nbsp;<code>Item</code>&nbsp;is an object that it has two properties; an&nbsp;<code>id</code>&nbsp;and a&nbsp;<code>name</code>.src/app/item.ts</p>\n\n\n\n<pre class=\"wp-block-code\"><code>content_copy<code>export interface Item {\n  id: number;\n  name: string;\n}</code></code></pre>\n\n\n\n<p>In&nbsp;<code>app.component.ts</code>,&nbsp;<code>currentItems</code>&nbsp;is an array of objects in the same shape as the&nbsp;<code>Item</code>&nbsp;object in&nbsp;<code>items.ts</code>, with an&nbsp;<code>id</code>&nbsp;and a&nbsp;<code>name</code>.src/app.component.ts</p>\n\n\n\n<pre class=\"wp-block-code\"><code>content_copy<code>currentItems = &#91;{\n  id: 21,\n  name: 'phone'\n}];</code></code></pre>\n\n\n\n<p>By supplying an object in the same shape, you satisfy the expectations of&nbsp;<code>items</code>&nbsp;when Angular evaluates the expression&nbsp;<code>currentItems</code>.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>In this example,&nbsp;ItemListComponent&nbsp;is a child component of&nbsp;AppComponent&nbsp;and the&nbsp;items&nbsp;property expects an array of objects.src/app/app.component.html In the&nbsp;ItemListComponent&nbsp;the&nbsp;@Input(),&nbsp;items, has a type of&nbsp;Item[].src/app/item-list.component.ts Notice that&nbsp;Item&nbsp;is an object that it has two properties; an&nbsp;id&nbsp;and a&nbsp;name.src/app/item.ts In&nbsp;app.component.ts,&nbsp;currentItems&nbsp;is an array of objects in the same shape as the&nbsp;Item&nbsp;object in&nbsp;items.ts, with an&nbsp;id&nbsp;and a&nbsp;name.src/app.component.ts By supplying an object in the same shape, you satisfy [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [262],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4769"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=4769"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4769/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4776,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4769/revisions/4776"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=4769"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=4769"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=4769"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  }
+]

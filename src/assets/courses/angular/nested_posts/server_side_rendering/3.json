@@ -1,0 +1,502 @@
+[
+  {
+    "id": 4698,
+    "date": "2021-02-27T08:53:22",
+    "date_gmt": "2021-02-27T08:53:22",
+    "guid": {
+      "rendered": "http://angular.foobrdigital.com/?p=4698"
+    },
+    "modified": "2021-02-27T08:53:22",
+    "modified_gmt": "2021-02-27T08:53:22",
+    "slug": "intro-7",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/intro-7/",
+    "title": {
+      "rendered": "Intro"
+    },
+    "content": {
+      "rendered": "\n<p>A Universal web server responds to application page requests with static HTML rendered by the&nbsp;<a href=\"https://angular.io/guide/universal#universal-engine\">Universal template engine</a>. The server receives and responds to HTTP requests from clients (usually browsers), and serves static assets such as scripts, CSS, and images. It may respond to data requests, either directly or as a proxy to a separate data server.</p>\n\n\n\n<p>The sample web server for this guide is based on the popular&nbsp;<a href=\"https://expressjs.com/\">Express</a>&nbsp;framework.</p>\n\n\n\n<p><strong>Note:</strong>&nbsp;<em>Any</em>&nbsp;web server technology can serve a Universal app as long as it can call Universal&#8217;s&nbsp;<code><a href=\"https://angular.io/api/platform-server/renderModule\">renderModule</a>()</code>&nbsp;function. The principles and decision points discussed here apply to any web server technology.</p>\n\n\n\n<p>Universal applications use the Angular&nbsp;<code>platform-server</code>&nbsp;package (as opposed to&nbsp;<code>platform-browser</code>), which provides server implementations of the DOM,&nbsp;<code>XMLHttpRequest</code>, and other low-level features that don&#8217;t rely on a browser.</p>\n\n\n\n<p>The server (<a href=\"https://expressjs.com/\">Node.js Express</a>&nbsp;in this guide&#8217;s example) passes client requests for application pages to the NgUniversal&nbsp;<code>ngExpressEngine</code>. Under the hood, this calls Universal&#8217;s&nbsp;<code><a href=\"https://angular.io/api/platform-server/renderModule\">renderModule</a>()</code>&nbsp;function, while providing caching and other helpful utilities.</p>\n\n\n\n<p>The&nbsp;<code><a href=\"https://angular.io/api/platform-server/renderModule\">renderModule</a>()</code>&nbsp;function takes as inputs a&nbsp;<em>template</em>&nbsp;HTML page (usually&nbsp;<code>index.html</code>), an Angular&nbsp;<em>module</em>&nbsp;containing components, and a&nbsp;<em>route</em>&nbsp;that determines which components to display. The route comes from the client&#8217;s request to the server.</p>\n\n\n\n<p>Each request results in the appropriate view for the requested route. The&nbsp;<code><a href=\"https://angular.io/api/platform-server/renderModule\">renderModule</a>()</code>&nbsp;function renders the view within the&nbsp;<code>&lt;app&gt;</code>&nbsp;tag of the template, creating a finished HTML page for the client.</p>\n\n\n\n<p>Finally, the server returns the rendered page to the client.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>A Universal web server responds to application page requests with static HTML rendered by the&nbsp;Universal template engine. The server receives and responds to HTTP requests from clients (usually browsers), and serves static assets such as scripts, CSS, and images. It may respond to data requests, either directly or as a proxy to a separate data [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [255],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4698"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=4698"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4698/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4699,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4698/revisions/4699"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=4698"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=4698"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=4698"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 4696,
+    "date": "2021-02-27T08:54:16",
+    "date_gmt": "2021-02-27T08:54:16",
+    "guid": {
+      "rendered": "http://angular.foobrdigital.com/?p=4696"
+    },
+    "modified": "2021-02-27T08:54:16",
+    "modified_gmt": "2021-02-27T08:54:16",
+    "slug": "universal-template-engine",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/universal-template-engine/",
+    "title": {
+      "rendered": "Universal template engine"
+    },
+    "content": {
+      "rendered": "\n<p>The important bit in the&nbsp;<code>server.ts</code>&nbsp;file is the&nbsp;<code>ngExpressEngine()</code>&nbsp;function.server.ts</p>\n\n\n\n<pre class=\"wp-block-code\"><code>content_copy<code>// Our Universal express-engine (found @ https://github.com/angular/universal/tree/master/modules/express-engine)\nserver.engine('html', ngExpressEngine({\n  bootstrap: AppServerModule,\n}));</code></code></pre>\n\n\n\n<p>The\u00a0<code>ngExpressEngine()</code>\u00a0function is a wrapper around Universal&#8217;s\u00a0<code>renderModule()</code>\u00a0function which turns a client&#8217;s requests into server-rendered HTML pages. It accepts an object with the following properties:</p>\n\n\n\n<ul><li><code>bootstrap</code>: The root\u00a0<code><a href=\"https://angular.io/api/core/NgModule\">NgModule</a></code>\u00a0or\u00a0<code>NgModule</code>\u00a0factory to use for bootstraping the app when rendering on the server. For the example app, it is\u00a0<code>AppServerModule</code>. It&#8217;s the bridge between the Universal server-side renderer and the Angular application.</li><li><code>extraProviders</code>: This is optional and lets you specify dependency providers that apply only when rendering the app on the server. You can do this when your app needs information that can only be determined by the currently running server instance.</li></ul>\n\n\n\n<p>The&nbsp;<code>ngExpressEngine()</code>&nbsp;function returns a&nbsp;<code>Promise</code>&nbsp;callback that resolves to the rendered page. It&#8217;s up to the engine to decide what to do with that page. This engine&#8217;s&nbsp;<code>Promise</code>&nbsp;callback returns the rendered page to the web server, which then forwards it to the client in the HTTP response.</p>\n\n\n\n<p><strong>Note:</strong>\u00a0These wrappers help hide the complexity of the\u00a0<code>renderModule()</code>\u00a0function. There are more wrappers for different backend technologies at the\u00a0Universal repository.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>The important bit in the&nbsp;server.ts&nbsp;file is the&nbsp;ngExpressEngine()&nbsp;function.server.ts The\u00a0ngExpressEngine()\u00a0function is a wrapper around Universal&#8217;s\u00a0renderModule()\u00a0function which turns a client&#8217;s requests into server-rendered HTML pages. It accepts an object with the following properties: bootstrap: The root\u00a0NgModule\u00a0or\u00a0NgModule\u00a0factory to use for bootstraping the app when rendering on the server. For the example app, it is\u00a0AppServerModule. It&#8217;s the bridge between the [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [255],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4696"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=4696"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4696/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4701,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4696/revisions/4701"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=4696"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=4696"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=4696"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 4690,
+    "date": "2021-02-27T08:54:43",
+    "date_gmt": "2021-02-27T08:54:43",
+    "guid": {
+      "rendered": "http://angular.foobrdigital.com/?p=4690"
+    },
+    "modified": "2021-02-27T08:54:43",
+    "modified_gmt": "2021-02-27T08:54:43",
+    "slug": "filtering-request-urls",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/filtering-request-urls/",
+    "title": {
+      "rendered": "Filtering request URLs"
+    },
+    "content": {
+      "rendered": "\n<p>NOTE: The basic behavior described below is handled automatically when using the NgUniversal Express schematic. This is helpful when trying to understand the underlying behavior or replicate it without using the schematic.</p>\n\n\n\n<p>The web server must distinguish&nbsp;<em>app page requests</em>&nbsp;from other kinds of requests.</p>\n\n\n\n<p>It&#8217;s not as simple as intercepting a request to the root address&nbsp;<code>/</code>. The browser could ask for one of the application routes such as&nbsp;<code>/dashboard</code>,&nbsp;<code>/heroes</code>, or&nbsp;<code>/detail:12</code>. In fact, if the app were only rendered by the server,&nbsp;<em>every</em>&nbsp;app link clicked would arrive at the server as a navigation URL intended for the router.</p>\n\n\n\n<p>Fortunately, application routes have something in common: their URLs lack file extensions. (Data requests also lack extensions but they&#8217;re easy to recognize because they always begin with&nbsp;<code>/api</code>.) All static asset requests have a file extension (such as&nbsp;<code>main.js</code>&nbsp;or&nbsp;<code>/node_modules/zone.js/bundles/zone.umd.js</code>).</p>\n\n\n\n<p>Because we use routing, we can easily recognize the three types of requests and handle them differently.</p>\n\n\n\n<ol><li><strong>Data request</strong>: request URL that begins&nbsp;<code>/api</code>.</li><li><strong>App navigation</strong>: request URL with no file extension.</li><li><strong>Static asset</strong>: all other requests.</li></ol>\n\n\n\n<p>A Node.js Express server is a pipeline of middleware that filters and processes requests one after the other. You configure the Node.js Express server pipeline with calls to&nbsp;<code>server.get()</code>&nbsp;like this one for data requests.server.ts (data URL)</p>\n\n\n\n<pre class=\"wp-block-code\"><code>content_copy<code>// TODO: implement data requests securely\nserver.get('/api/**', (req, res) =&gt; {\n  res.status(404).send('data requests are not yet supported');\n});</code></code></pre>\n\n\n\n<p><strong>Note:</strong>&nbsp;This sample server doesn&#8217;t handle data requests.</p>\n\n\n\n<p>The tutorial&#8217;s &#8220;in-memory web API&#8221; module, a demo and development tool, intercepts all HTTP calls and simulates the behavior of a remote data server. In practice, you would remove that module and register your web API middleware on the server here.</p>\n\n\n\n<p>The following code filters for request URLs with no extensions and treats them as navigation requests.server.ts (navigation)</p>\n\n\n\n<pre class=\"wp-block-code\"><code>content_copy<code>// All regular routes use the Universal engine\nserver.get('*', (req, res) =&gt; {\n  res.render(indexHtml, { req, providers: &#91;{ provide: <a href=\"https://angular.io/api/common/APP_BASE_HREF\">APP_BASE_HREF</a>, useValue: req.baseUrl }] });\n});</code></code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>NOTE: The basic behavior described below is handled automatically when using the NgUniversal Express schematic. This is helpful when trying to understand the underlying behavior or replicate it without using the schematic. The web server must distinguish&nbsp;app page requests&nbsp;from other kinds of requests. It&#8217;s not as simple as intercepting a request to the root address&nbsp;/. [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [255],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4690"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=4690"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4690/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4702,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4690/revisions/4702"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=4690"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=4690"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=4690"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 4689,
+    "date": "2021-02-27T08:55:10",
+    "date_gmt": "2021-02-27T08:55:10",
+    "guid": {
+      "rendered": "http://angular.foobrdigital.com/?p=4689"
+    },
+    "modified": "2021-02-27T08:55:10",
+    "modified_gmt": "2021-02-27T08:55:10",
+    "slug": "serving-static-files-safely",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/serving-static-files-safely/",
+    "title": {
+      "rendered": "Serving static files safely"
+    },
+    "content": {
+      "rendered": "\n<p>A single&nbsp;<code>server.use()</code>&nbsp;treats all other URLs as requests for static assets such as JavaScript, image, and style files.</p>\n\n\n\n<p>To ensure that clients can only download the files that they are permitted to see, put all client-facing asset files in the&nbsp;<code>/dist</code>&nbsp;folder and only honor requests for files from the&nbsp;<code>/dist</code>&nbsp;folder.</p>\n\n\n\n<p>The following Node.js Express code routes all remaining requests to&nbsp;<code>/dist</code>, and returns a&nbsp;<code>404 - NOT FOUND</code>&nbsp;error if the file isn&#8217;t found.server.ts (static files)</p>\n\n\n\n<pre class=\"wp-block-code\"><code>content_copy<code>// Serve <a href=\"https://angular.io/api/upgrade/static\">static</a> files from /<a href=\"https://angular.io/api/animations/browser\">browser</a>\nserver.get('*.*', express.static(distFolder, {\n  maxAge: '1y'\n}));</code></code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>A single&nbsp;server.use()&nbsp;treats all other URLs as requests for static assets such as JavaScript, image, and style files. To ensure that clients can only download the files that they are permitted to see, put all client-facing asset files in the&nbsp;/dist&nbsp;folder and only honor requests for files from the&nbsp;/dist&nbsp;folder. The following Node.js Express code routes all remaining [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [255],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4689"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=4689"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4689/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4703,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4689/revisions/4703"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=4689"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=4689"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=4689"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 4688,
+    "date": "2021-02-27T08:55:32",
+    "date_gmt": "2021-02-27T08:55:32",
+    "guid": {
+      "rendered": "http://angular.foobrdigital.com/?p=4688"
+    },
+    "modified": "2021-02-27T08:55:32",
+    "modified_gmt": "2021-02-27T08:55:32",
+    "slug": "using-absolute-urls-for-http-data-requests-on-the-server",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/using-absolute-urls-for-http-data-requests-on-the-server/",
+    "title": {
+      "rendered": "Using absolute URLs for HTTP (data) requests on the server"
+    },
+    "content": {
+      "rendered": "\n<p>The tutorial&#8217;s&nbsp;<code>HeroService</code>&nbsp;and&nbsp;<code>HeroSearchService</code>&nbsp;delegate to the Angular&nbsp;<code><a href=\"https://angular.io/api/common/http/HttpClient\">HttpClient</a></code>&nbsp;module to fetch application data. These services send requests to&nbsp;<em>relative</em>&nbsp;URLs such as&nbsp;<code>api/heroes</code>. In a server-side rendered app, HTTP URLs must be&nbsp;<em>absolute</em>&nbsp;(for example,&nbsp;<code>https://my-server.com/api/heroes</code>). This means that the URLs must be somehow converted to absolute when running on the server and be left relative when running in the browser.</p>\n\n\n\n<p>If you are using one of the&nbsp;<code>@nguniversal/*-engine</code>&nbsp;packages (such as&nbsp;<code>@nguniversal/express-engine</code>), this is taken care for you automatically. You don&#8217;t need to do anything to make relative URLs work on the server.</p>\n\n\n\n<p>If, for some reason, you are not using an&nbsp;<code>@nguniversal/*-engine</code>&nbsp;package, you may need to handle it yourself.</p>\n\n\n\n<p>The recommended solution is to pass the full request URL to the\u00a0<code>options</code>\u00a0argument of\u00a0renderModule()\u00a0or\u00a0renderModuleFactory()\u00a0(depending on what you use to render\u00a0<code>AppServerModule</code>\u00a0on the server). This option is the least intrusive as it does not require any changes to the app. Here, &#8220;request URL&#8221; refers to the URL of the request as a response to which the app is being rendered on the server. For example, if the client requested\u00a0<code>https://my-server.com/dashboard</code>\u00a0and you are rendering the app on the server to respond to that request,\u00a0<code>options.url</code>\u00a0should be set to\u00a0<code>https://my-server.com/dashboard</code>.</p>\n\n\n\n<p>Now, on every HTTP request made as part of rendering the app on the server, Angular can correctly resolve the request URL to an absolute URL, using the provided&nbsp;<code>options.url</code>.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>The tutorial&#8217;s&nbsp;HeroService&nbsp;and&nbsp;HeroSearchService&nbsp;delegate to the Angular&nbsp;HttpClient&nbsp;module to fetch application data. These services send requests to&nbsp;relative&nbsp;URLs such as&nbsp;api/heroes. In a server-side rendered app, HTTP URLs must be&nbsp;absolute&nbsp;(for example,&nbsp;https://my-server.com/api/heroes). This means that the URLs must be somehow converted to absolute when running on the server and be left relative when running in the browser. If you are using [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [255],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4688"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=4688"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4688/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4704,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4688/revisions/4704"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=4688"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=4688"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=4688"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  }
+]

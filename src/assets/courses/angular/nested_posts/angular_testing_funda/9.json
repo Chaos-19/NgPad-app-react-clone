@@ -1,0 +1,402 @@
+[
+  {
+    "id": 4656,
+    "date": "2021-02-25T11:48:46",
+    "date_gmt": "2021-02-25T11:48:46",
+    "guid": {
+      "rendered": "http://angular.foobrdigital.com/?p=4656"
+    },
+    "modified": "2021-02-25T11:48:46",
+    "modified_gmt": "2021-02-25T11:48:46",
+    "slug": "testing-utility-apis",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/testing-utility-apis/",
+    "title": {
+      "rendered": "Testing Utility APIs"
+    },
+    "content": {
+      "rendered": "\n<p>This page describes the most useful Angular testing features.</p>\n\n\n\n<p>The Angular testing utilities include the&nbsp;<code><a href=\"https://angular.io/api/core/testing/TestBed\">TestBed</a></code>, the&nbsp;<code><a href=\"https://angular.io/api/core/testing/ComponentFixture\">ComponentFixture</a></code>, and a handful of functions that control the test environment. The&nbsp;<a href=\"https://angular.io/guide/testing-utility-apis#testbed-api-summary\"><em>TestBed</em></a>&nbsp;and&nbsp;<a href=\"https://angular.io/guide/testing-utility-apis#component-fixture-api-summary\"><em>ComponentFixture</em></a>&nbsp;classes are covered separately.</p>\n\n\n\n<p>Here&#8217;s a summary of the stand-alone functions, in order of likely utility:</p>\n\n\n\n<figure class=\"wp-block-table\"><table><tbody><tr><th>Function</th><th>Description</th></tr><tr><td><code>waitForAsync</code></td><td>Runs the body of a test (<code>it</code>) or setup (<code>beforeEach</code>) function within a special\u00a0<em>async test zone</em>. See\u00a0discussion above.</td></tr><tr><td><code>fakeAsync</code></td><td>Runs the body of a test (<code>it</code>) within a special\u00a0<em>fakeAsync test zone</em>, enabling a linear control flow coding style. See\u00a0discussion above.</td></tr><tr><td><code>tick</code></td><td>Simulates the passage of time and the completion of pending asynchronous activities by flushing both\u00a0<em>timer</em>\u00a0and\u00a0<em>micro-task</em>\u00a0queues within the\u00a0<em>fakeAsync test zone</em>.The curious, dedicated reader might enjoy this lengthy blog post,\u00a0&#8220;<em>Tasks, microtasks, queues and schedules</em>&#8220;.Accepts an optional argument that moves the virtual clock forward by the specified number of milliseconds, clearing asynchronous activities scheduled within that timeframe. See\u00a0<a href=\"https://angular.io/guide/testing-components-scenarios#tick\">discussion above</a>.</td></tr><tr><td><code>inject</code></td><td>Injects one or more services from the current\u00a0<code>TestBed</code>\u00a0injector into a test function. It cannot inject a service provided by the component itself. See discussion of the\u00a0<a href=\"https://angular.io/guide/testing-components-scenarios#get-injected-services\">debugElement.injector</a>.</td></tr><tr><td><code>discardPeriodicTasks</code></td><td>When a&nbsp;<code><a href=\"https://angular.io/api/core/testing/fakeAsync\">fakeAsync</a>()</code>&nbsp;test ends with pending timer event&nbsp;<em>tasks</em>&nbsp;(queued&nbsp;<code>setTimeOut</code>&nbsp;and&nbsp;<code>setInterval</code>&nbsp;callbacks), the test fails with a clear error message.In general, a test should end with no queued tasks. When pending timer tasks are expected, call&nbsp;<code><a href=\"https://angular.io/api/core/testing/discardPeriodicTasks\">discardPeriodicTasks</a></code>&nbsp;to flush the&nbsp;<em>task</em>&nbsp;queue and avoid the error.</td></tr><tr><td><code>flushMicrotasks</code></td><td>When a&nbsp;<code><a href=\"https://angular.io/api/core/testing/fakeAsync\">fakeAsync</a>()</code>&nbsp;test ends with pending&nbsp;<em>micro-tasks</em>&nbsp;such as unresolved promises, the test fails with a clear error message.In general, a test should wait for micro-tasks to finish. When pending microtasks are expected, call&nbsp;<code><a href=\"https://angular.io/api/core/testing/flushMicrotasks\">flushMicrotasks</a></code>&nbsp;to flush the&nbsp;<em>micro-task</em>&nbsp;queue and avoid the error.</td></tr><tr><td><code>ComponentFixtureAutoDetect</code></td><td>A provider token for a service that turns on\u00a0automatic change detection.</td></tr><tr><td><code>getTestBed</code></td><td>Gets the current instance of the\u00a0<code>TestBed</code>. Usually unnecessary because the static class methods of the\u00a0<code>TestBed</code>\u00a0class are typically sufficient. The\u00a0<code>TestBed</code>\u00a0instance exposes a few rarely used members that are not available as static methods.</td></tr></tbody></table></figure>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>This page describes the most useful Angular testing features. The Angular testing utilities include the&nbsp;TestBed, the&nbsp;ComponentFixture, and a handful of functions that control the test environment. The&nbsp;TestBed&nbsp;and&nbsp;ComponentFixture&nbsp;classes are covered separately. Here&#8217;s a summary of the stand-alone functions, in order of likely utility: Function Description waitForAsync Runs the body of a test (it) or setup (beforeEach) [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [248],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4656"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=4656"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4656/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4657,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4656/revisions/4657"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=4656"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=4656"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=4656"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 4655,
+    "date": "2021-02-25T11:49:24",
+    "date_gmt": "2021-02-25T11:49:24",
+    "guid": {
+      "rendered": "http://angular.foobrdigital.com/?p=4655"
+    },
+    "modified": "2021-02-25T11:49:24",
+    "modified_gmt": "2021-02-25T11:49:24",
+    "slug": "testbed-class-summary",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/testbed-class-summary/",
+    "title": {
+      "rendered": "TestBed class summary"
+    },
+    "content": {
+      "rendered": "\n<p>The\u00a0<code>TestBed</code>\u00a0class is one of the principal Angular testing utilities. Its API is quite large and can be overwhelming until you&#8217;ve explored it, a little at a time. Read the early part of this guide first to get the basics before trying to absorb the full API.</p>\n\n\n\n<p>The module definition passed to&nbsp;<code>configureTestingModule</code>&nbsp;is a subset of the&nbsp;<code>@<a href=\"https://angular.io/api/core/NgModule\">NgModule</a></code>&nbsp;metadata properties.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>content_copy<code>type <a href=\"https://angular.io/api/core/testing/TestModuleMetadata\">TestModuleMetadata</a> = {\n  providers?: any&#91;];\n  declarations?: any&#91;];\n  imports?: any&#91;];\n  schemas?: Array&lt;<a href=\"https://angular.io/api/core/SchemaMetadata\">SchemaMetadata</a> | any&#91;]&gt;;\n};</code></code></pre>\n\n\n\n<p>Each override method takes a&nbsp;<code><a href=\"https://angular.io/api/core/testing/MetadataOverride\">MetadataOverride</a>&lt;T&gt;</code>&nbsp;where&nbsp;<code>T</code>&nbsp;is the kind of metadata appropriate to the method, that is, the parameter of an&nbsp;<code>@<a href=\"https://angular.io/api/core/NgModule\">NgModule</a></code>,&nbsp;<code>@<a href=\"https://angular.io/api/core/Component\">Component</a></code>,&nbsp;<code>@<a href=\"https://angular.io/api/core/Directive\">Directive</a></code>, or&nbsp;<code>@<a href=\"https://angular.io/api/core/Pipe\">Pipe</a></code>.</p>\n\n\n\n<div class=\"wp-block-columns\">\n<div class=\"wp-block-column\" style=\"flex-basis:100%\">\n<pre class=\"wp-block-code\"><code>content_copy<code>type <a href=\"https://angular.io/api/core/testing/MetadataOverride\">MetadataOverride</a>&lt;T&gt; = {\n  add?: Partial&lt;T&gt;;\n  remove?: Partial&lt;T&gt;;\n  set?: Partial&lt;T&gt;;\n};</code></code></pre>\n</div>\n</div>\n\n\n\n<p>The&nbsp;<code><a href=\"https://angular.io/api/core/testing/TestBed\">TestBed</a></code>&nbsp;API consists of static class methods that either update or reference a&nbsp;<em>global</em>&nbsp;instance of the&nbsp;<code><a href=\"https://angular.io/api/core/testing/TestBed\">TestBed</a></code>.</p>\n\n\n\n<p>Internally, all static methods cover methods of the current runtime&nbsp;<code><a href=\"https://angular.io/api/core/testing/TestBed\">TestBed</a></code>&nbsp;instance, which is also returned by the&nbsp;<code><a href=\"https://angular.io/api/core/testing/getTestBed\">getTestBed</a>()</code>&nbsp;function.</p>\n\n\n\n<p>Call&nbsp;<code><a href=\"https://angular.io/api/core/testing/TestBed\">TestBed</a></code>&nbsp;methods&nbsp;<em>within</em>&nbsp;a&nbsp;<code>beforeEach()</code>&nbsp;to ensure a fresh start before each individual test.</p>\n\n\n\n<p>Here are the most important static methods, in order of likely utility.</p>\n\n\n\n<figure class=\"wp-block-table\"><table><tbody><tr><th>Methods</th><th>Description</th></tr><tr><td><code>configureTestingModule</code></td><td>The testing shims (<code>karma-test-shim</code>,&nbsp;<code>browser-test-shim</code>) establish the&nbsp;<a href=\"https://angular.io/guide/testing\">initial test environment</a>&nbsp;and a default testing module. The default testing module is configured with basic declaratives and some Angular service substitutes that every tester needs.Call&nbsp;<code>configureTestingModule</code>&nbsp;to refine the testing module configuration for a particular set of tests by adding and removing imports, declarations (of components, directives, and pipes), and providers.</td></tr><tr><td><code>compileComponents</code></td><td>Compile the testing module asynchronously after you&#8217;ve finished configuring it. You&nbsp;<strong>must</strong>&nbsp;call this method if&nbsp;<em>any</em>&nbsp;of the testing module components have a&nbsp;<code>templateUrl</code>&nbsp;or&nbsp;<code>styleUrls</code>&nbsp;because fetching component template and style files is necessarily asynchronous. See&nbsp;<a href=\"https://angular.io/guide/testing-components-scenarios#compile-components\">above</a>.After calling&nbsp;<code>compileComponents</code>, the&nbsp;<code><a href=\"https://angular.io/api/core/testing/TestBed\">TestBed</a></code>&nbsp;configuration is frozen for the duration of the current spec.</td></tr><tr><td><code>createComponent</code></td><td>Create an instance of a component of type&nbsp;<code>T</code>&nbsp;based on the current&nbsp;<code><a href=\"https://angular.io/api/core/testing/TestBed\">TestBed</a></code>&nbsp;configuration. After calling&nbsp;<code>compileComponent</code>, the&nbsp;<code><a href=\"https://angular.io/api/core/testing/TestBed\">TestBed</a></code>&nbsp;configuration is frozen for the duration of the current spec.</td></tr><tr><td><code>overrideModule</code></td><td>Replace metadata for the given&nbsp;<code><a href=\"https://angular.io/api/core/NgModule\">NgModule</a></code>. Recall that modules can import other modules. The&nbsp;<code>overrideModule</code>&nbsp;method can reach deeply into the current testing module to modify one of these inner modules.</td></tr><tr><td><code>overrideComponent</code></td><td>Replace metadata for the given component class, which could be nested deeply within an inner module.</td></tr><tr><td><code>overrideDirective</code></td><td>Replace metadata for the given directive class, which could be nested deeply within an inner module.</td></tr><tr><td><code>overridePipe</code></td><td>Replace metadata for the given pipe class, which could be nested deeply within an inner module.</td></tr><tr><td><code>inject</code></td><td>Retrieve a service from the current&nbsp;<code><a href=\"https://angular.io/api/core/testing/TestBed\">TestBed</a></code>&nbsp;injector.The&nbsp;<code>inject</code>&nbsp;function is often adequate for this purpose. But&nbsp;<code>inject</code>&nbsp;throws an error if it can&#8217;t provide the service.What if the service is optional?The&nbsp;<code>TestBed.inject()</code>&nbsp;method takes an optional second parameter, the object to return if Angular can&#8217;t find the provider (<code>null</code>&nbsp;in this example):app/demo/demo.testbed.spec.tscontent_copy<code>service = TestBed.inject(NotProvided, null); // service is null</code>After calling&nbsp;<code>TestBed.inject</code>, the&nbsp;<code><a href=\"https://angular.io/api/core/testing/TestBed\">TestBed</a></code>&nbsp;configuration is frozen for the duration of the current spec.</td></tr><tr><td><code>initTestEnvironment</code></td><td>Initialize the testing environment for the entire test run.The testing shims (<code>karma-test-shim</code>,&nbsp;<code>browser-test-shim</code>) call it for you so there is rarely a reason for you to call it yourself.You may call this method&nbsp;<em>exactly once</em>. If you must change this default in the middle of your test run, call&nbsp;<code>resetTestEnvironment</code>&nbsp;first.Specify the Angular compiler factory, a&nbsp;<code><a href=\"https://angular.io/api/core/PlatformRef\">PlatformRef</a></code>, and a default Angular testing module. Alternatives for non-browser platforms are available in the general form&nbsp;<code>@angular/platform-&lt;platform_name&gt;/testing/&lt;platform_name&gt;</code>.</td></tr><tr><td><code>resetTestEnvironment</code></td><td>Reset the initial test environment, including the default testing module.</td></tr></tbody></table></figure>\n\n\n\n<p>A few of the&nbsp;<code><a href=\"https://angular.io/api/core/testing/TestBed\">TestBed</a></code>&nbsp;instance methods are not covered by static&nbsp;<code><a href=\"https://angular.io/api/core/testing/TestBed\">TestBed</a></code>&nbsp;<em>class</em>&nbsp;methods. These are rarely needed.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>The\u00a0TestBed\u00a0class is one of the principal Angular testing utilities. Its API is quite large and can be overwhelming until you&#8217;ve explored it, a little at a time. Read the early part of this guide first to get the basics before trying to absorb the full API. The module definition passed to&nbsp;configureTestingModule&nbsp;is a subset of the&nbsp;@NgModule&nbsp;metadata [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [248],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4655"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=4655"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4655/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4658,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4655/revisions/4658"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=4655"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=4655"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=4655"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 4654,
+    "date": "2021-02-25T11:49:44",
+    "date_gmt": "2021-02-25T11:49:44",
+    "guid": {
+      "rendered": "http://angular.foobrdigital.com/?p=4654"
+    },
+    "modified": "2021-02-25T11:49:44",
+    "modified_gmt": "2021-02-25T11:49:44",
+    "slug": "the-componentfixture",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/the-componentfixture/",
+    "title": {
+      "rendered": "The ComponentFixture"
+    },
+    "content": {
+      "rendered": "\n<p>The&nbsp;<code>TestBed.createComponent&lt;T&gt;</code>&nbsp;creates an instance of the component&nbsp;<code>T</code>&nbsp;and returns a strongly typed&nbsp;<code><a href=\"https://angular.io/api/core/testing/ComponentFixture\">ComponentFixture</a></code>&nbsp;for that component.</p>\n\n\n\n<p>The&nbsp;<code><a href=\"https://angular.io/api/core/testing/ComponentFixture\">ComponentFixture</a></code>&nbsp;properties and methods provide access to the component, its DOM representation, and aspects of its Angular environment.</p>\n\n\n\n<h3 id=\"componentfixture-properties\"><em>ComponentFixture</em>&nbsp;properties</h3>\n\n\n\n<p>Here are the most important properties for testers, in order of likely utility.</p>\n\n\n\n<figure class=\"wp-block-table\"><table><tbody><tr><th>Properties</th><th>Description</th></tr><tr><td><code>componentInstance</code></td><td>The instance of the component class created by&nbsp;<code>TestBed.createComponent</code>.</td></tr><tr><td><code>debugElement</code></td><td>The&nbsp;<code><a href=\"https://angular.io/api/core/DebugElement\">DebugElement</a></code>&nbsp;associated with the root element of the component.The&nbsp;<code>debugElement</code>&nbsp;provides insight into the component and its DOM element during test and debugging. It&#8217;s a critical property for testers. The most interesting members are covered&nbsp;<a href=\"https://angular.io/guide/testing-utility-apis#debug-element-details\">below</a>.</td></tr><tr><td><code>nativeElement</code></td><td>The native DOM element at the root of the component.</td></tr><tr><td><code>changeDetectorRef</code></td><td>The&nbsp;<code><a href=\"https://angular.io/api/core/ChangeDetectorRef\">ChangeDetectorRef</a></code>&nbsp;for the component.The&nbsp;<code><a href=\"https://angular.io/api/core/ChangeDetectorRef\">ChangeDetectorRef</a></code>&nbsp;is most valuable when testing a component that has the&nbsp;<code><a href=\"https://angular.io/api/core/ChangeDetectionStrategy#OnPush\">ChangeDetectionStrategy.OnPush</a></code>&nbsp;method or the component&#8217;s change detection is under your programmatic control.</td></tr></tbody></table></figure>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>The&nbsp;TestBed.createComponent&lt;T&gt;&nbsp;creates an instance of the component&nbsp;T&nbsp;and returns a strongly typed&nbsp;ComponentFixture&nbsp;for that component. The&nbsp;ComponentFixture&nbsp;properties and methods provide access to the component, its DOM representation, and aspects of its Angular environment. ComponentFixture&nbsp;properties Here are the most important properties for testers, in order of likely utility. Properties Description componentInstance The instance of the component class created by&nbsp;TestBed.createComponent. debugElement [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [248],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4654"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=4654"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4654/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4659,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4654/revisions/4659"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=4654"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=4654"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=4654"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 4653,
+    "date": "2021-02-25T11:50:11",
+    "date_gmt": "2021-02-25T11:50:11",
+    "guid": {
+      "rendered": "http://angular.foobrdigital.com/?p=4653"
+    },
+    "modified": "2021-02-25T11:50:11",
+    "modified_gmt": "2021-02-25T11:50:11",
+    "slug": "componentfixture-methods",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/componentfixture-methods/",
+    "title": {
+      "rendered": "ComponentFixture methods"
+    },
+    "content": {
+      "rendered": "\n<p>The&nbsp;<em>fixture</em>&nbsp;methods cause Angular to perform certain tasks on the component tree. Call these method to trigger Angular behavior in response to simulated user action.</p>\n\n\n\n<p>Here are the most useful methods for testers.</p>\n\n\n\n<figure class=\"wp-block-table\"><table><tbody><tr><th>Methods</th><th>Description</th></tr><tr><td><code>detectChanges</code></td><td>Trigger a change detection cycle for the component.Call it to initialize the component (it calls&nbsp;<code>ngOnInit</code>) and after your test code, change the component&#8217;s data bound property values. Angular can&#8217;t see that you&#8217;ve changed&nbsp;<code>personComponent.name</code>&nbsp;and won&#8217;t update the&nbsp;<code>name</code>&nbsp;binding until you call&nbsp;<code>detectChanges</code>.Runs&nbsp;<code>checkNoChanges</code>&nbsp;afterwards to confirm that there are no circular updates unless called as&nbsp;<code>detectChanges(false)</code>;</td></tr><tr><td><code>autoDetectChanges</code></td><td>Set this to&nbsp;<code>true</code>&nbsp;when you want the fixture to detect changes automatically.When autodetect is&nbsp;<code>true</code>, the test fixture calls&nbsp;<code>detectChanges</code>&nbsp;immediately after creating the component. Then it listens for pertinent zone events and calls&nbsp;<code>detectChanges</code>&nbsp;accordingly. When your test code modifies component property values directly, you probably still have to call&nbsp;<code>fixture.detectChanges</code>&nbsp;to trigger data binding updates.The default is&nbsp;<code>false</code>. Testers who prefer fine control over test behavior tend to keep it&nbsp;<code>false</code>.</td></tr><tr><td><code>checkNoChanges</code></td><td>Do a change detection run to make sure there are no pending changes. Throws an exceptions if there are.</td></tr><tr><td><code>isStable</code></td><td>If the fixture is currently&nbsp;<em>stable</em>, returns&nbsp;<code>true</code>. If there are async tasks that have not completed, returns&nbsp;<code>false</code>.</td></tr><tr><td><code>whenStable</code></td><td>Returns a promise that resolves when the fixture is stable.To resume testing after completion of asynchronous activity or asynchronous change detection, hook that promise. See&nbsp;<a href=\"https://angular.io/guide/testing-components-scenarios#when-stable\">above</a>.</td></tr><tr><td><code>destroy</code></td><td>Trigger component destruction.</td></tr></tbody></table></figure>\n\n\n\n<h4 id=\"debugelement\"><em>DebugElement</em></h4>\n\n\n\n<p>The&nbsp;<code><a href=\"https://angular.io/api/core/DebugElement\">DebugElement</a></code>&nbsp;provides crucial insights into the component&#8217;s DOM representation.</p>\n\n\n\n<p>From the test root component&#8217;s&nbsp;<code><a href=\"https://angular.io/api/core/DebugElement\">DebugElement</a></code>&nbsp;returned by&nbsp;<code>fixture.debugElement</code>, you can walk (and query) the fixture&#8217;s entire element and component subtrees.</p>\n\n\n\n<p>Here are the most useful&nbsp;<code><a href=\"https://angular.io/api/core/DebugElement\">DebugElement</a></code>&nbsp;members for testers, in approximate order of utility:</p>\n\n\n\n<figure class=\"wp-block-table\"><table><tbody><tr><th>Member</th><th>Description</th></tr><tr><td><code>nativeElement</code></td><td>The corresponding DOM element in the browser (null for WebWorkers).</td></tr><tr><td><code><a href=\"https://angular.io/api/animations/query\">query</a></code></td><td>Calling&nbsp;<code><a href=\"https://angular.io/api/animations/query\">query</a>(predicate:&nbsp;<a href=\"https://angular.io/api/core/Predicate\">Predicate</a>&lt;<a href=\"https://angular.io/api/core/DebugElement\">DebugElement</a>&gt;)</code>&nbsp;returns the first&nbsp;<code><a href=\"https://angular.io/api/core/DebugElement\">DebugElement</a></code>&nbsp;that matches the&nbsp;<a href=\"https://angular.io/guide/testing-utility-apis#query-predicate\">predicate</a>&nbsp;at any depth in the subtree.</td></tr><tr><td><code>queryAll</code></td><td>Calling&nbsp;<code>queryAll(predicate:&nbsp;<a href=\"https://angular.io/api/core/Predicate\">Predicate</a>&lt;<a href=\"https://angular.io/api/core/DebugElement\">DebugElement</a>&gt;)</code>&nbsp;returns all&nbsp;<code>DebugElements</code>&nbsp;that matches the&nbsp;<a href=\"https://angular.io/guide/testing-utility-apis#query-predicate\">predicate</a>&nbsp;at any depth in subtree.</td></tr><tr><td><code>injector</code></td><td>The host dependency injector. For example, the root element&#8217;s component instance injector.</td></tr><tr><td><code>componentInstance</code></td><td>The element&#8217;s own component instance, if it has one.</td></tr><tr><td><code>context</code></td><td>An object that provides parent context for this element. Often an ancestor component instance that governs this element.When an element is repeated within&nbsp;<code>*<a href=\"https://angular.io/api/common/NgForOf\">ngFor</a></code>, the context is an&nbsp;<code>NgForRow</code>&nbsp;whose&nbsp;<code>$implicit</code>&nbsp;property is the value of the row instance value. For example, the&nbsp;<code>hero</code>&nbsp;in&nbsp;<code>*<a href=\"https://angular.io/api/common/NgForOf\">ngFor</a>=\"let hero of heroes\"</code>.</td></tr><tr><td><code>children</code></td><td>The immediate&nbsp;<code><a href=\"https://angular.io/api/core/DebugElement\">DebugElement</a></code>&nbsp;children. Walk the tree by descending through&nbsp;<code>children</code>.<code><a href=\"https://angular.io/api/core/DebugElement\">DebugElement</a></code>&nbsp;also has&nbsp;<code>childNodes</code>, a list of&nbsp;<code><a href=\"https://angular.io/api/core/DebugNode\">DebugNode</a></code>&nbsp;objects.&nbsp;<code><a href=\"https://angular.io/api/core/DebugElement\">DebugElement</a></code>&nbsp;derives from&nbsp;<code><a href=\"https://angular.io/api/core/DebugNode\">DebugNode</a></code>&nbsp;objects and there are often more nodes than elements. Testers can usually ignore plain nodes.</td></tr><tr><td><code>parent</code></td><td>The&nbsp;<code><a href=\"https://angular.io/api/core/DebugElement\">DebugElement</a></code>&nbsp;parent. Null if this is the root element.</td></tr><tr><td><code>name</code></td><td>The element tag name, if it is an element.</td></tr><tr><td><code>triggerEventHandler</code></td><td>Triggers the event by its name if there is a corresponding listener in the element&#8217;s&nbsp;<code>listeners</code>&nbsp;collection. The second parameter is the&nbsp;<em>event object</em>&nbsp;expected by the handler. See&nbsp;<a href=\"https://angular.io/guide/testing-components-scenarios#trigger-event-handler\">above</a>.If the event lacks a listener or there&#8217;s some other problem, consider calling&nbsp;<code>nativeElement.dispatchEvent(eventObject)</code>.</td></tr><tr><td><code>listeners</code></td><td>The callbacks attached to the component&#8217;s&nbsp;<code>@<a href=\"https://angular.io/api/core/Output\">Output</a></code>&nbsp;properties and/or the element&#8217;s event properties.</td></tr><tr><td><code>providerTokens</code></td><td>This component&#8217;s injector lookup tokens. Includes the component itself plus the tokens that the component lists in its&nbsp;<code>providers</code>&nbsp;metadata.</td></tr><tr><td><code>source</code></td><td>Where to find this element in the source component template.</td></tr><tr><td><code>references</code></td><td>Dictionary of objects associated with template local variables (e.g.&nbsp;<code>#foo</code>), keyed by the local variable name.</td></tr></tbody></table></figure>\n\n\n\n<p>The&nbsp;<code>DebugElement.query(predicate)</code>&nbsp;and&nbsp;<code>DebugElement.queryAll(predicate)</code>&nbsp;methods take a predicate that filters the source element&#8217;s subtree for matching&nbsp;<code><a href=\"https://angular.io/api/core/DebugElement\">DebugElement</a></code>.</p>\n\n\n\n<p>The predicate is any method that takes a&nbsp;<code><a href=\"https://angular.io/api/core/DebugElement\">DebugElement</a></code>&nbsp;and returns a&nbsp;<em>truthy</em>&nbsp;value. The following example finds all&nbsp;<code>DebugElements</code>&nbsp;with a reference to a template local variable named &#8220;content&#8221;:app/demo/demo.testbed.spec.ts</p>\n\n\n\n<pre class=\"wp-block-code\"><code>content_copy<code>// Filter for DebugElements with a #content reference\nconst contentRefs = el.queryAll( de =&gt; de.references.content);</code></code></pre>\n\n\n\n<p>The Angular&nbsp;<code><a href=\"https://angular.io/api/platform-browser/By\">By</a></code>&nbsp;class has three static methods for common predicates:</p>\n\n\n\n<ul><li><code>By.all</code>&nbsp;&#8211; return all elements.</li><li><code>By.css(selector)</code>&nbsp;&#8211; return elements with matching CSS selectors.</li><li><code>By.directive(directive)</code>&nbsp;&#8211; return elements that Angular matched to an instance of the directive class.</li></ul>\n\n\n\n<p>app/hero/hero-list.component.spec.ts</p>\n\n\n\n<pre class=\"wp-block-preformatted\">content_copy<code>// Can find <a href=\"https://angular.io/api/core/DebugElement\">DebugElement</a> either by css selector or by directive\nconst h2 = fixture.debugElement.query(By.css('h2'));\nconst directive = fixture.debugElement.query(By.directive(HighlightDirective));</code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>The&nbsp;fixture&nbsp;methods cause Angular to perform certain tasks on the component tree. Call these method to trigger Angular behavior in response to simulated user action. Here are the most useful methods for testers. Methods Description detectChanges Trigger a change detection cycle for the component.Call it to initialize the component (it calls&nbsp;ngOnInit) and after your test code, [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [248],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4653"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=4653"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4653/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4660,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4653/revisions/4660"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=4653"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=4653"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=4653"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  }
+]

@@ -1,0 +1,472 @@
+[
+  {
+    "id": 3395,
+    "date": "2020-11-30T05:56:22",
+    "date_gmt": "2020-11-30T05:56:22",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3395"
+    },
+    "modified": "2020-11-30T05:56:22",
+    "modified_gmt": "2020-11-30T05:56:22",
+    "slug": "functions-3",
+    "status": "publish",
+    "type": "post",
+    "link": "https://computerprogramming.foobrdigital.com/functions-3/",
+    "title": {
+      "rendered": "Functions"
+    },
+    "content": {
+      "rendered": "\n<h2 id=\"declare\">Declaring functions</h2>\n\n\n\n<p>To declare a function, you use the&nbsp;<code>function</code>&nbsp;keyword, followed by the function name, a list of parameters, and the function body as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function functionName(parameters) {\n    // function body\n    // ...\n}</code></pre>\n\n\n\n<p>The function name must be a valid JavaScript identifier. By convention, the function name should start with a verb like <code>getData()</code>, <code>fetchContents()</code>, or <code>isValid()</code>.</p>\n\n\n\n<p>A function can accept zero, one, or multiple parameters. If there are multiple parameters, you need to separate them by commas (,).</p>\n\n\n\n<p>The following declares a function named&nbsp;<code>say()</code>&nbsp;that accepts no parameter:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function say() {\n   //...\n}</code></pre>\n\n\n\n<p>The following declares a function named&nbsp;<code>square()</code>&nbsp;that accepts one parameter:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function square(a) {\n    //...\n}</code></pre>\n\n\n\n<p>And the following declares a function named&nbsp;<code>add()</code>&nbsp;that accepts two parameters:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function add(a, b) {\n   // ...\n}</code></pre>\n\n\n\n<p>Inside the function body, you can implement the logic. For example, the following&nbsp;<code>say()</code>&nbsp;function simply shows a message to the console:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function say(message) {\n    console.log(message);\n}</code></pre>\n\n\n\n<p>In the body of the&nbsp;<code>say()</code>&nbsp;function, we call the&nbsp;<code>console.log()</code>&nbsp;function to output a message to the console.</p>\n\n\n\n<h2 id=\"call\">Calling functions</h2>\n\n\n\n<p>To call a function, you use its name followed by the function arguments enclosed in parentheses, like this:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>functionName(arguments);</code></pre>\n\n\n\n<p>When you call a function, the function executes the code inside its body. This process is also known as invocation. In other words, you call a function or invoke a function to execute it.</p>\n\n\n\n<p>For example, the following shows how to call the&nbsp;<code>say()</code>&nbsp;function:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>say('Hello');</code></pre>\n\n\n\n<p>The&nbsp;<code>'Hello'</code>&nbsp;string is an argument that we pass into the&nbsp;<code>say()</code>&nbsp;function.</p>\n\n\n\n<h3>Parameters vs. Arguments</h3>\n\n\n\n<p>The terms parameters and arguments are often used interchangeably. However, they are essentially different.</p>\n\n\n\n<p>The parameters are used when declaring the function. For example, in the&nbsp;<code>say()</code>&nbsp;function, the&nbsp;<code>message</code>&nbsp;is the parameter.</p>\n\n\n\n<p>On the other hand, the arguments are values the function receives from each parameter at the time the function is called. In the case of the&nbsp;<code>say()</code>&nbsp;function, the&nbsp;<code>'Hello'</code>&nbsp;string is the argument.</p>\n\n\n\n<h2 id=\"return\">Returning a value</h2>\n\n\n\n<p>Every function in JavaScript returns&nbsp;<code>undefined</code>, unless otherwise specified. See the following example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function say(message) {\n    console.log(message);\n}\n\nlet result = say('Hello');\nconsole.log('Result:', result);</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Hello\nResult: undefined</code></pre>\n\n\n\n<p>To specify a return value for a function, you use the the&nbsp;<code>return</code>&nbsp;statement followed by an expression or a value, like this:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>return expression;</code></pre>\n\n\n\n<p>For example, the following&nbsp;<code>add()</code>&nbsp;function returns the sum of the two arguments:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function add(a, b) {\n    return a + b;\n}</code></pre>\n\n\n\n<p>The following shows how to call the&nbsp;<code>add()</code>&nbsp;function:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let sum = add(10, 20);\nconsole.log('Sum:', sum);</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Sum: 30</code></pre>\n\n\n\n<p>The following example shows how to use multiple&nbsp;<code>return</code>&nbsp;statements in the function to return different values based on conditions:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function compare(a, b) {\n    if (a > b) {\n        return -1;\n    } else if (a &lt; b) {\n        return 1;\n    }\n    return 0;\n}</code></pre>\n\n\n\n<p>The&nbsp;<code>compare()</code>&nbsp;function compares two values. It returns:</p>\n\n\n\n<ul><li>-1 if the first argument is greater than the second one.</li><li>1 if the first argument is less than the second one.</li><li>0 if&nbsp; the first argument equals the second one.</li></ul>\n\n\n\n<p>The function immediately stops executing when the&nbsp;<code>return</code>&nbsp;statement is reached. Therefore, you can use the&nbsp;<code>return</code>&nbsp;statement without a value to exit the function prematurely, like this:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function say(message) {\n    // show nothing if the message is empty\n    if (! message ) {\n        return;\n    }\n    console.log(message);\n}</code></pre>\n\n\n\n<p>In this example, if the&nbsp;<code>message</code>&nbsp;is blank (or&nbsp;<code>undefined</code>), the&nbsp;<code>say()</code>&nbsp;function will show nothing.</p>\n\n\n\n<p>The function can return a single value. If you want to return multiple values from a function, you need to pack these values in an array or an object.</p>\n\n\n\n<h2 id=\"arguments\">The&nbsp;<code>arguments</code>&nbsp;object</h2>\n\n\n\n<p>Inside the body of a function, you can access an object called&nbsp;<code>arguments</code>&nbsp;that represents the named arguments of the function.</p>\n\n\n\n<p>The <code>arguments</code> object behaves like an array though it is not an instance of the Array type.</p>\n\n\n\n<p>For example, you can use the&nbsp;square bracket&nbsp;<code>[]</code>&nbsp;to access the arguments:&nbsp;<code>arguments[0]</code>&nbsp;returns the first argument,&nbsp;<code>arguments[1]</code>&nbsp;returns the second one, and so on.</p>\n\n\n\n<p>Furthermore, you can use the&nbsp;<code>length</code>&nbsp;property of the&nbsp;<code>arguments</code>&nbsp;object to determine the number of arguments.</p>\n\n\n\n<p>The following&nbsp;example implements a generic&nbsp;<code>add()</code>&nbsp;function that calculates the sum of any number of arguments.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function add() {\n    let sum = 0;\n    for (let i = 0; i &lt; arguments.length; i++) {\n        sum += arguments&#91;i];\n    }\n    return sum;\n}</code></pre>\n\n\n\n<p>Hence, you can pass any number of arguments to the&nbsp;<code>add()</code>&nbsp;function, like this:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>console.log(add(1, 2)); // 3\nconsole.log(add(1, 2, 3, 4, 5)); // 15</code></pre>\n\n\n\n<h2 id=\"hoisting\">Function hoisting</h2>\n\n\n\n<p>In JavaScript, it is possible to use a function before it is declared. See the following example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>showMe(); // a hoisting example\n\nfunction showMe(){\n    console.log('an hoisting example');\n}</code></pre>\n\n\n\n<p>This feature is called hoisting.</p>\n\n\n\n<p>The function hoisting is a mechanism that the JavaScript engine physically moves function declarations to the top of the code before executing them.</p>\n\n\n\n<p>The following shows the version of the code before the JavaScript engine executes it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function showMe(){\n    console.log('a hoisting example');\n}\n\nshowMe(); // a hoisting example</code></pre>\n\n\n\n<h2>Summary</h2>\n\n\n\n<ul><li>Use the&nbsp;<code>function</code>&nbsp;keyword to declare a function.</li><li>Use the&nbsp;<code>functionName()</code>&nbsp;to call or invoke a function to execute it.</li><li>A function implicitly returns&nbsp;<code>undefined</code>, use the&nbsp;<code>return</code>&nbsp;statement to explicitly specify the return value for the function.</li><li>The&nbsp;<code>arguments</code>&nbsp;is an object that is accessible only inside the function body. It represents the arguments of the function.</li><li>The function hoisting allows you to place the call to the function before the function declaration.</li></ul>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Declaring functions To declare a function, you use the&nbsp;function&nbsp;keyword, followed by the function name, a list of parameters, and the function body as follows: The function name must be a valid JavaScript identifier. By convention, the function name should start with a verb like getData(), fetchContents(), or isValid(). A function can accept zero, one, or multiple parameters. If there are [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [38],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3395"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/comments?post=3395"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3395/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/media?parent=3395"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/categories?post=3395"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/tags?post=3395"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 3397,
+    "date": "2020-11-30T05:57:17",
+    "date_gmt": "2020-11-30T05:57:17",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3397"
+    },
+    "modified": "2020-11-30T05:57:17",
+    "modified_gmt": "2020-11-30T05:57:17",
+    "slug": "functions-are-first-class-citizens",
+    "status": "publish",
+    "type": "post",
+    "link": "https://computerprogramming.foobrdigital.com/functions-are-first-class-citizens/",
+    "title": {
+      "rendered": "Functions are First-Class Citizens"
+    },
+    "content": {
+      "rendered": "\n<h2>Storing functions in variables</h2>\n\n\n\n<p>Functions are the first-class citizens in JavaScript. In other words, you can treat functions like values of other types.</p>\n\n\n\n<p>The following declares the&nbsp;<code>add()</code>&nbsp;function and assigns the function name to the variable&nbsp;<code>sum</code>:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function add(a, b) {\n    return a + b;\n}\n\nlet sum = add;</code></pre>\n\n\n\n<p>In the assignment statement, we didn’t include the opening and closing parentheses at the end of the&nbsp;<code>add</code>&nbsp;identifier. We also didn’t execute the function but referencing the function itself.</p>\n\n\n\n<p>It means that we have two ways to execute the same function. We can call it normally as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let result = add(10, 20);</code></pre>\n\n\n\n<p>Or execute it like this:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let result = sum(10,20);</code></pre>\n\n\n\n<h2>Passing a function to another function</h2>\n\n\n\n<p>Because functions are values, you can pass a function as an argument into another function.</p>\n\n\n\n<p>The following declares the&nbsp;<code>average()</code>&nbsp;function that takes three arguments. The third argument is a function:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function average(a, b, fn) {\n    return fn(a, b) / 2;\n}</code></pre>\n\n\n\n<p>Now, you can pass the&nbsp;<code>sum</code>&nbsp;function to the&nbsp;<code>average()</code>&nbsp;function as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let result = average(10, 20, sum);</code></pre>\n\n\n\n<p>Put it all together:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function add(a, b) {\n    return a + b;\n}\n\nlet sum = add;\n\nfunction average(a, b, fn) {\n    return fn(a, b) / 2;\n}\n\nlet result = average(10, 20, sum);\n\nconsole.log(result);</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>15</code></pre>\n\n\n\n<h2>Returning functions from functions</h2>\n\n\n\n<p>Since functions are values, you can return a function from another function.</p>\n\n\n\n<p>The following&nbsp;<code>compareBy()</code>&nbsp;function returns a function that compares two objects by a provided property:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function compareBy(propName) {\n    return function (a, b) {\n        let x = a&#91;propName],\n            y = b&#91;propName];\n\n        if (x > y) {\n            return 1;\n        } else if (x &lt; y) {\n            return -1\n        } else {\n            return 0;\n        }\n    }\n}</code></pre>\n\n\n\n<p>Suppose that you have an array of product objects where each product object has two properties:&nbsp;<code>name</code>&nbsp;and&nbsp;<code>price</code>.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let products = &#91;\n    {name: 'iPhone', price: 900},\n    {name: 'Samsung Galaxy', price: 850},\n    {name: 'Sony Xperia', price: 700}\n];</code></pre>\n\n\n\n<p>You can sort an array by calling the <code>sort()</code> method. The <code>sort()</code> method accepts a function that compares two elements of the array as an argument.</p>\n\n\n\n<p>For example, you can sort the product list based on the name by passing a function returned from the&nbsp;<code>compareBy()</code>&nbsp;function as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>console.log('Products sorted by name:');\nproducts.sort(compareBy('name'));\n\nconsole.table(products);</code></pre>\n\n\n\n<p>Similarly, you can sort the product list by price:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>// sort products by price\nconsole.log('Products sorted by price:');\nproducts.sort(compareBy('price'));\nconsole.table(products);</code></pre>\n\n\n\n<h2>More JavaScript Functions are First-Class Citizens example</h2>\n\n\n\n<p>The following example declares two functions that convert centimeters to inches and vice versa:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function cmToIn(length) {\n    return length / 2.54;\n}\n\nfunction IntoCm(length) {\n    return length * 2.54;\n}</code></pre>\n\n\n\n<p>The following&nbsp;<code>convert()</code>&nbsp;function has two parameters. The first parameter is a function and the second one is the length that will be converted based on the first argument:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function convert(fn, length) {\n    return fn(length);\n}</code></pre>\n\n\n\n<p>To convert&nbsp;<code>cm</code>&nbsp;to&nbsp;<code>in</code>, you can call the&nbsp;<code>convert()</code>&nbsp;function and pass the&nbsp;<code>cmToIn</code>&nbsp;function into the&nbsp;<code>convert()</code>&nbsp;function as the first argument:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let inches = convert(cmToIn, 10);\nconsole.log(inches);</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>3.937007874015748</code></pre>\n\n\n\n<p>Similarly, to convert inches to centimeters, you can pass the&nbsp;<code>inToCm</code>&nbsp;function into the&nbsp;<code>convert()</code>&nbsp;function, like this:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let cm = convert(IntoCm, 10);\nconsole.log(cm);</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>25.4</code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Storing functions in variables Functions are the first-class citizens in JavaScript. In other words, you can treat functions like values of other types. The following declares the&nbsp;add()&nbsp;function and assigns the function name to the variable&nbsp;sum: In the assignment statement, we didn’t include the opening and closing parentheses at the end of the&nbsp;add&nbsp;identifier. We also didn’t execute [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [38],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3397"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/comments?post=3397"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3397/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/media?parent=3397"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/categories?post=3397"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/tags?post=3397"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 3399,
+    "date": "2020-11-30T05:58:11",
+    "date_gmt": "2020-11-30T05:58:11",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3399"
+    },
+    "modified": "2020-11-30T05:58:11",
+    "modified_gmt": "2020-11-30T05:58:11",
+    "slug": "anonymous-functions",
+    "status": "publish",
+    "type": "post",
+    "link": "https://computerprogramming.foobrdigital.com/anonymous-functions/",
+    "title": {
+      "rendered": "Anonymous Functions"
+    },
+    "content": {
+      "rendered": "\n<h2>Introduction to JavaScript anonymous functions</h2>\n\n\n\n<p>An anonymous function is a function without a name. An anonymous function is often not accessible after its initial creation.</p>\n\n\n\n<p>The following shows an anonymous function that displays a message:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let show = function () {\n    console.log('Anonymous function');\n};\n\nshow();</code></pre>\n\n\n\n<p>In this example, the anonymous function has no name between the&nbsp;<code>function</code>&nbsp;keyword and parentheses&nbsp;<code>()</code>.</p>\n\n\n\n<p>Because we need to call the anonymous function later, we assign the function to the&nbsp;<code>show</code>&nbsp;variable.</p>\n\n\n\n<h2>Using anonymous functions as arguments of other functions</h2>\n\n\n\n<p>We often use anonymous functions as arguments of other functions. For example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>setTimeout(function () {\n    console.log('Execute later after 1 second')\n}, 1000);</code></pre>\n\n\n\n<p>In this example, we pass an anonymous function into the <code>setTimeout()</code> function. The <code>setTimeout()</code> function executes this anonymous function one second later.</p>\n\n\n\n<p>Note that functions are the first-class citizens in JavaScript, so you can pass a function to another as an argument.</p>\n\n\n\n<h2>Immediately invoked function execution</h2>\n\n\n\n<p>If you want to create a function and execute it immediately after declaration, you can use the anonymous function like this:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>(function() {\n    console.log('IIFE');\n})();</code></pre>\n\n\n\n<p>How it works.</p>\n\n\n\n<p>First, the following defines a function expression:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>(function () {\n    console.log('Immediately invoked function execution');\n})</code></pre>\n\n\n\n<p>Second, the trailing parentheses&nbsp;<code>()</code>&nbsp;allow you to call the function:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>(function () {\n    console.log('Immediately invoked function execution');\n})();</code></pre>\n\n\n\n<p>and sometimes, you may want to pass arguments into it, like this:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let person = {\n    firstName: 'John',\n    lastName: 'Doe'\n};\n\n(function () {\n    console.log(`${person.firstName} ${person.lastName}`);\n})(person);</code></pre>\n\n\n\n<h2>Arrow functions</h2>\n\n\n\n<p>ES6 introduced arrow function expression that provides a shorthand for declaring anonymous functions:</p>\n\n\n\n<p>For example, this function:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let show = function () {\n    console.log('Anonymous function');\n};</code></pre>\n\n\n\n<p>… can be shortened using the following arrow function:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let show = () => console.log('Anonymous function');</code></pre>\n\n\n\n<p>Similarly, the following anonymous function:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let add = function (a, b) {\n    return a + b;\n};\n</code></pre>\n\n\n\n<p>… is equivalent to the following arrow function:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let add = (a, b)  => a + b;   </code></pre>\n\n\n\n<h2>Summary</h2>\n\n\n\n<ul><li>Anonymous functions are functions without names.</li><li>Anonymous functions can be used as an argument to other functions or as an immediately invoked function execution.</li></ul>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Introduction to JavaScript anonymous functions An anonymous function is a function without a name. An anonymous function is often not accessible after its initial creation. The following shows an anonymous function that displays a message: In this example, the anonymous function has no name between the&nbsp;function&nbsp;keyword and parentheses&nbsp;(). Because we need to call the anonymous function later, [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [38],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3399"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/comments?post=3399"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3399/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/media?parent=3399"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/categories?post=3399"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/tags?post=3399"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 3401,
+    "date": "2020-11-30T05:59:03",
+    "date_gmt": "2020-11-30T05:59:03",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3401"
+    },
+    "modified": "2020-11-30T05:59:03",
+    "modified_gmt": "2020-11-30T05:59:03",
+    "slug": "immediately-invoked-function-expression",
+    "status": "publish",
+    "type": "post",
+    "link": "https://computerprogramming.foobrdigital.com/immediately-invoked-function-expression/",
+    "title": {
+      "rendered": "Immediately Invoked Function Expression"
+    },
+    "content": {
+      "rendered": "\n<h2>TL;DR</h2>\n\n\n\n<p>A JavaScript immediately invoked function expression is a function defined as an expression and executed immediately after creation. The following shows the syntax of defining an immediately invoked function expression:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>(function(){\n    //...\n})();\n</code></pre>\n\n\n\n<h2>Why IIFEs</h2>\n\n\n\n<p>When you define a function, the JavaScript engine adds the function to the global object. See the following example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function add(a,b) {\n    return a + b;\n}</code></pre>\n\n\n\n<p>On the Web Browsers, the&nbsp;<code>add()</code>&nbsp;function is added to the&nbsp;<code>window</code>&nbsp;object:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>console.log(window.add);</code></pre>\n\n\n\n<p>Similarly, if you declare a variable outside of a function, the JavaScript engine also adds the variable to the global object:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>var counter = 10;\nconsole.log(window.counter); // 10</code></pre>\n\n\n\n<p>If you have many global variables and functions, the JavaScript engine will only release the memory allocated for them until when the global object loses the scope.</p>\n\n\n\n<p>As a result, the script may use the memory inefficiently. On top of that, having global variables and functions will likely cause the name collisions.</p>\n\n\n\n<p>One way to prevent the functions and variables from polluting the global object is to use immediately invoked function expressions.</p>\n\n\n\n<p>In JavaScript, you can have the following expressions:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>'This is a string';\n(10+20);</code></pre>\n\n\n\n<p>This syntax is correct even though the expressions have no effect. A function can be also declared as an expression which is called a function expression:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let add = function(a, b) {\n    return a + b;\n}</code></pre>\n\n\n\n<p>In this syntax, the part on the right side of the assignment operator(<code>=</code>) is a function expression. Because a function is an expression, you can wrap it inside parentheses:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let add = (function(a, b) {\n    return a + b;\n});</code></pre>\n\n\n\n<p>In this example, the <code>add</code> variable is referenced as the anonymous function that adds two arguments.</p>\n\n\n\n<p>In addition, you can execute the function immediately after creating it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let add = (function(a,b){\n    return a + b;\n})(10, 20);\n\nconsole.log(add);</code></pre>\n\n\n\n<p>In this example, the&nbsp;<code>add</code>&nbsp;variable holds the result of the function call.</p>\n\n\n\n<p>The following expression is called an immediately invoked function expression (IIFE) because the function is created as an expression and executed immediately:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>(function(a,b){\n        return a + b;\n})(10,20);</code></pre>\n\n\n\n<p>This is the general syntax for defining an IIFE:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>(function(){\n    //...\n})();\n</code></pre>\n\n\n\n<p>Note that you can use an arrow function to define an IIFE:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>(() => {\n    //...\n})();</code></pre>\n\n\n\n<p>By placing functions and variables inside an immediately invoked function expression, you can avoid polluting them to the global object:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>(function() {\n    var counter = 0;\n\n    function add(a, b) {\n        return a + b;\n    }\n\n    console.log(add(10,20)); // 30\n}());\n</code></pre>\n\n\n\n<h2>Named IIFE</h2>\n\n\n\n<p>An IIFE can have a name. However, it cannot be invoked again after execution:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>(function namedIIFE() {\n    //...\n})();\n</code></pre>\n\n\n\n<h2>IIFE starting with a semicolon (;)</h2>\n\n\n\n<p>Sometimes, you may see an IIFE that start with a semicolon(;):</p>\n\n\n\n<pre class=\"wp-block-code\"><code>;(function() {\n/* */\n})();</code></pre>\n\n\n\n<p>In this syntax, the semicolon is used to terminate the statement in case two or more JavaScript files are blindly concatenated into a single file.</p>\n\n\n\n<p>For example, you may have two file&nbsp;<code>lib1.js</code>&nbsp;and&nbsp;<code>lib2.js</code>&nbsp;which use IIFEs:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>(function(){\n    // ...\n})()\n\n\n(function(){\n    // ...\n})()\n</code></pre>\n\n\n\n<p>If you use a code bundler tool to concatenate code from both files into a single file, without the semicolon (<code>;</code>) the concatenated JavaScript code will cause a syntax error.</p>\n\n\n\n<h2>IIFE in actions</h2>\n\n\n\n<p>Suppose that you have a library called calculator.js with the following functions:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function add(a, b) {\n    return a + b;\n}\n\nfunction mutiply(a, b) {\n    return a * b;\n}</code></pre>\n\n\n\n<p>And you load the&nbsp;<code>calculator.js</code>&nbsp;in an HTML document.</p>\n\n\n\n<p>Later on, you also want to load another JavaScript library called&nbsp;<code>app.js</code>&nbsp;to the same document:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;!DOCTYPE html>\n&lt;head>\n  &lt;meta charset=\"UTF-8\">\n  &lt;title>JavaScript IIFE&lt;/title>\n&lt;/head>\n&lt;body>\n  &lt;script src=\"calculator.js\">&lt;/script>\n  &lt;script src=\"app.js\">&lt;/script>\n&lt;/body>\n&lt;/html></code></pre>\n\n\n\n<p>The&nbsp;<code>app.js</code>&nbsp;also has the&nbsp;<code>add()</code>&nbsp;function:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function add() {\n    return 'add';\n}</code></pre>\n\n\n\n<p>When you use the&nbsp;<code>add()</code>&nbsp;function in the HTML document, it returns the&nbsp;<code>'add'</code>&nbsp;string instead of the sum of two numbers:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let result = add(10, 20);\nconsole.log(result); // 'add'</code></pre>\n\n\n\n<p>This is because the&nbsp;<code>add()</code>&nbsp;function in the&nbsp;<code>app.js</code>&nbsp;overrides the&nbsp;<code>add()</code>&nbsp;function in the&nbsp;<code>calculator.js</code>&nbsp;library.</p>\n\n\n\n<p>To fix this, you can apply IIFE in the calculator.js as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>const calculator = (function () {\n    function add(a, b) {\n        return a + b;\n    }\n\n    function multiply(a, b) {\n        return a * b;\n    }\n    return {\n        add: add,\n        multiply: multiply\n    }\n})();</code></pre>\n\n\n\n<p>The IIFE returns an object that contains the&nbsp;<code>add</code>&nbsp;and&nbsp;<code>multiply</code>&nbsp;methods that reference the&nbsp;<code>add()</code>&nbsp;and&nbsp;<code>multiply()</code>&nbsp;functions.</p>\n\n\n\n<p>In the HTML document, you can use the&nbsp;<code>calculator.js</code>&nbsp;library as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;!DOCTYPE html>\n&lt;head>\n  &lt;meta charset=\"UTF-8\">\n  &lt;title>JavaScript IIFE&lt;/title>\n&lt;/head>\n&lt;body>\n  &lt;script src=\"js/calculator.js\">&lt;/script>\n  &lt;script src=\"js/app.js\">&lt;/script>\n  &lt;script>\n    let result = calculator.add(10, 20); // add in app.js\n    console.log(result); // 30\n    console.log(add()); // add in the app.js\n  &lt;/script>\n&lt;/body>\n&lt;/html></code></pre>\n\n\n\n<p>The&nbsp;<code>calculator.add()</code>&nbsp;called the&nbsp;<code>add()</code>&nbsp;function exported by the&nbsp;<code>calculator.js</code>&nbsp;while the second call to the&nbsp;<code>add()</code>&nbsp;function references the&nbsp;<code>add()</code>&nbsp;function in the&nbsp;<code>app.js</code>.</p>\n\n\n\n<h2>jQuery &amp; IIFE</h2>\n\n\n\n<p>The following HTML document uses the jQuery library:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;!DOCTYPE html>\n&lt;head>\n  &lt;meta charset=\"UTF-8\">\n  &lt;title>JavaScript IIFE - jQuery&lt;/title>\n&lt;/head>\n&lt;body>\n  &lt;h1>jQuery Demo&lt;/h1>\n  &lt;script src=\"https://code.jquery.com/jquery-3.4.1.slim.js\"\n    integrity=\"sha256-BTlTdQO9/fascB1drekrDVkaKd9PkwBymMlHOiG+qLI=\" crossorigin=\"anonymous\">&lt;/script>\n  &lt;script>\n    let counter = 1;\n    $('h1').click(function () {\n      $(this).text('jQuery Demo' + ' Clicked ' + counter++);\n    });\n  &lt;/script>\n&lt;/body>\n&lt;/html></code></pre>\n\n\n\n<p>When you import the jQuery library, you can access many useful jQuery functions via the&nbsp;<code>$</code>&nbsp;or&nbsp;<code>jQuery</code>&nbsp;object. Under the hood, jQuery uses the IIFE to expose its functionality.</p>\n\n\n\n<p>By doing this, jQuery just needs to use one global variable (<code>$</code>) to expose ton of functions without polluting the global object.</p>\n\n\n\n<p>The following example illustrates how to change the jQuery $ object to _ inside the IIFE:</p>\n\n\n\n<pre class=\"wp-block-code\"><code> (function (_) {\n      let counter = 1;\n      _('h1').click(function () {\n        _(this).text('jQuery Demo' + ' Clicked ' + counter++);\n      });\n  })(jQuery);</code></pre>\n\n\n\n<p>In this example, we passed the jQuery object into the IIFE. In the function inside the IIFE used the&nbsp;<code>_</code>&nbsp;argument instead.</p>\n\n\n\n<p>In this tutorial, you will have learned about the JavaScript immediately invoked function expressions (IIFE) and their purposes.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>TL;DR A JavaScript immediately invoked function expression is a function defined as an expression and executed immediately after creation. The following shows the syntax of defining an immediately invoked function expression: Why IIFEs When you define a function, the JavaScript engine adds the function to the global object. See the following example: On the Web Browsers, the&nbsp;add()&nbsp;function is [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [38],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3401"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/comments?post=3401"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3401/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/media?parent=3401"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/categories?post=3401"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/tags?post=3401"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 3403,
+    "date": "2020-11-30T06:00:37",
+    "date_gmt": "2020-11-30T06:00:37",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3403"
+    },
+    "modified": "2020-11-30T06:00:37",
+    "modified_gmt": "2020-11-30T06:00:37",
+    "slug": "call-backs-function",
+    "status": "publish",
+    "type": "post",
+    "link": "https://computerprogramming.foobrdigital.com/call-backs-function/",
+    "title": {
+      "rendered": "Call backs Function"
+    },
+    "content": {
+      "rendered": "\n<h2>What are callbacks</h2>\n\n\n\n<p>In JavaScript, a callback is a function passed into another function as an argument to be executed later.</p>\n\n\n\n<p>Suppose that you the following&nbsp;<code>numbers</code>&nbsp;array:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let numbers = &#91;1, 2, 4, 7, 3, 5, 6];</code></pre>\n\n\n\n<p>To find all the odd numbers in the array, you can use the <code>filter()</code> method of the Array object.</p>\n\n\n\n<p>The&nbsp;<code>filter()</code>&nbsp;method creates a new array with the elements that pass the test implemented by a function.</p>\n\n\n\n<p>The following test function returns&nbsp;<code>true</code>&nbsp;if a number is an odd number:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function isOddNumber(number) {\n    return number % 2;\n}</code></pre>\n\n\n\n<p>Now, you can pass the&nbsp;<code>isOddNumber()</code>&nbsp;to the&nbsp;<code>filter()</code>&nbsp;method:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>const oddNumbers = numbers.filter(isOddNumber);\nconsole.log(oddNumbers); // &#91; 1, 7, 3, 5 ]</code></pre>\n\n\n\n<p>In this example, the&nbsp;<code>isOddNumber</code>&nbsp;is a callback function. When you pass a callback function into another function, you just pass the reference of the function i.e., the function name without the parentheses&nbsp;<code>()</code>.</p>\n\n\n\n<p>To make it shorter, you can use an anonymous function as a callback:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let oddNumbers = numbers.filter(function(number) {\n    return number % 2;\n});\nconsole.log(oddNumbers); // &#91; 1, 7, 3, 5 ]</code></pre>\n\n\n\n<p>In ES6, you can use the arrow functions:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let oddNumbers = numbers.filter(number => number % 2);</code></pre>\n\n\n\n<p>When you use the JavaScript on web browsers, you often listen to an event e.g., a button click and carry some actions if the event occurs.</p>\n\n\n\n<p>Suppose that you have a button with the id&nbsp;<code>btn</code>:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;button id=\"btn\">Save&lt;/button></code></pre>\n\n\n\n<p>To execute some code when the button is clicked, you use a callback and pass it to the&nbsp;<code>addEventListener()</code>&nbsp;method:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function btnClicked() { \n   // do something here\n}\nlet btn = document.querySelector('#btn');\nbtn.addEventListener('click',btnClicked);</code></pre>\n\n\n\n<p>The&nbsp;<code>btnClicked</code>&nbsp;in this example is a callback. When the button is clicked, the&nbsp;<code>btnClicked()</code>&nbsp;function is called to carry some actions.</p>\n\n\n\n<p>Now, you have the basic ideas of callbacks:&nbsp;<strong>passing a function into another function.</strong></p>\n\n\n\n<p>Callbacks are used in two ways: synchronous and asynchronous functions.</p>\n\n\n\n<h2>Synchronous callback functions</h2>\n\n\n\n<p>If your code executes sequentially from top to bottom, it is synchronous. The&nbsp;<code>isOddNumber()</code>&nbsp;function is an example of a synchronous callback function.</p>\n\n\n\n<p>In the following example, the arrow function is a callback used in a synchronous function.</p>\n\n\n\n<p>The&nbsp;<code>sort()</code>&nbsp;method completes first before the&nbsp;<code>console.log()</code>&nbsp;executes:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let numbers = &#91;1, 2, 4, 7, 3, 5, 6];\nnumbers.sort((a, b) => a - b);\nconsole.log(numbers); // &#91; 1, 2, 3, 4, 5, 6, 7 ]</code></pre>\n\n\n\n<h2>Asynchronous callback functions</h2>\n\n\n\n<p>Asynchronicity means that if JavaScript has to wait for an operation to complete, it will execute the rest of the code while waiting.</p>\n\n\n\n<p>Note that JavaScript is a single-threaded programming language. It carries asynchronous operations via the callback queue and event loop.</p>\n\n\n\n<p>Suppose that you need to develop a script that downloads a picture from a remote server and process it after the download completes:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function download(url) {\n    // ...\n}\n\nfunction process(picture) {\n    // ...\n}\n\ndownload(url);\nprocess(picture);\n</code></pre>\n\n\n\n<p>However, downloading a picture from a remote server takes time depending on the network speed and the size of the picture.</p>\n\n\n\n<p>The following code uses the&nbsp;<code>setTimeout()</code>&nbsp;function to simulate the&nbsp;<code>download()</code>&nbsp;function:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function download(url) {\n    setTimeout(() => {\n        // script to download the picture here\n        console.log(`Downloading ${url} ...`);\n    }, 3* 1000);\n}</code></pre>\n\n\n\n<p>And this code emulates the&nbsp;<code>process()</code>&nbsp;function:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function process(picture) {\n    console.log(`Processing ${picture}`);\n}</code></pre>\n\n\n\n<p>When you execute the following code:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let url = 'https://www.javascripttutorial.net/foo.jg';\n\ndownload(url);\nprocess(url);</code></pre>\n\n\n\n<p>you will get the following output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Processing https://javascripttutorial.net/foo.jg\nDownloading https://javascripttutorial.net/foo.jg ...</code></pre>\n\n\n\n<p>This is not what you expected because the&nbsp;<code>process()</code>&nbsp;function executes before the&nbsp;<code>download()</code>&nbsp;function. The correct sequence should be:</p>\n\n\n\n<ul><li>Download the picture, wait for it to complete.</li><li>Process the picture.</li></ul>\n\n\n\n<p>To fix the issue above, you can pass the&nbsp;<code>process()</code>&nbsp;function to the&nbsp;<code>download()</code>&nbsp;function and execute the&nbsp;<code>process()</code>&nbsp;function inside the&nbsp;<code>download()</code>&nbsp;function once the download completes, like this:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function download(url, callback) {\n    setTimeout(() => {\n        // script to download the picture here\n        console.log(`Downloading ${url} ...`);\n        \n        // process the picture once it is completed\n        callback(url);\n    }, 3000);\n}\n\nfunction process(picture) {\n    console.log(`Processing ${picture}`);\n}\n\nlet url = 'https://wwww.javascripttutorial.net/pic.jpg';\ndownload(url, process);</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Downloading https://www.javascripttutorial.net/pic.jpg ...\nProcessing https://www.javascripttutorial.net/pic.jpg</code></pre>\n\n\n\n<p>Now, it works as expected.</p>\n\n\n\n<p>In this example, the&nbsp;<code>process()</code>&nbsp;is a callback passed into an asynchronous function.</p>\n\n\n\n<p>When you use callbacks to continue code execution after asynchronous operations, these callbacks are called asynchronous callbacks.</p>\n\n\n\n<p>By using asynchronous callbacks, you can register an action in advance without blocking the entire operation.</p>\n\n\n\n<p>To make the code cleaner, you can define the&nbsp;<code>process()</code>&nbsp;function as an anonymous function:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function download(url, callback) {\n    setTimeout(() => {\n        // script to download the picture here\n        console.log(`Downloading ${url} ...`);\n        // process the picture once it is completed\n        callback(url);\n\n    }, 3000);\n}\n\nlet url = 'https://www.javascripttutorial.net/pic.jpg';\ndownload(url, function(picture) {\n    console.log(`Processing ${picture}`);\n}); </code></pre>\n\n\n\n<h3>Handling errors</h3>\n\n\n\n<p>The&nbsp;<code>download()</code>&nbsp;function assumes that everything works fine and does not consider any exceptions. The following code introduces two callbacks:&nbsp;<code>success</code>&nbsp;and&nbsp;<code>failure</code>&nbsp;to handle the success and failure cases respectively:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function download(url, success, failure) {\n    setTimeout(() => {\n        // script to download the picture here\n        console.log(`Downloading ${url} ...`);\n        // over simplification\n        let error = url.length === 0 || !url; \n        // call the failure or success callback\n        error ? failure(url) :  success(url);\n    }, 3000);\n}\n\ndownload('',\n    function(picture) {\n        console.log(`Processing the picture ${picture}`);\n    },\n    function(picture) {\n        console.log(`Handling error...`);\n    }\n);\n</code></pre>\n\n\n\n<h3>Nesting callbacks and the Pyramid of Doom</h3>\n\n\n\n<p>How do you download three pictures and process them sequentially? A typical approach is to call the&nbsp;<code>download()</code>&nbsp;function inside the callback function, like this:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function download(url, callback) {\n    setTimeout(() => {\n        // script to download the picture here\n        console.log(`Downloading ${url} ...`);\n        // process the picture once it is completed\n        callback(url);\n    }, 3000);\n}\n\nconst url1 = 'https://www.javascripttutorial.net/pic1.jpg';\nconst url2 = 'https://www.javascripttutorial.net/pic2.jpg';\nconst url3 = 'https://www.javascripttutorial.net/pic3.jpg';\n\ndownload(url1,function(picture){\n    console.log(`Processing ${picture}`);\n    // download the second picture\n    download(url2,function(picture){\n        console.log(`Processing ${picture}`);\n        // download the third picture\n        download(url3,function(picture){\n            console.log(`Processing ${picture}`);\n        });\n    });\n});\n</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Downloading https://www.javascripttutorial.net/pic1.jpg ...\nProcessing https://www.javascripttutorial.net/pic1.jpg\nDownloading https://www.javascripttutorial.net/pic2.jpg ...\nProcessing https://www.javascripttutorial.net/pic2.jpg\nDownloading https://www.javascripttutorial.net/pic3.jpg ...\nProcessing https://www.javascripttutorial.net/pic3.jpg</code></pre>\n\n\n\n<p>The script works perfectly fine.</p>\n\n\n\n<p>However, this callback strategy does not scale well when the complexity grows significantly.</p>\n\n\n\n<p>Nesting many asynchronous functions inside callbacks is known as the&nbsp;<strong>pyramid of doom</strong>&nbsp;or the&nbsp;<strong>callback hell</strong>:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>asyncFunction(function(){\n    asyncFunction(function(){\n        asyncFunction(function(){\n            asyncFunction(function(){\n                asyncFunction(function(){\n                    ....\n                });\n            });\n        });\n    });\n});\n</code></pre>\n\n\n\n<p>To avoid the pyramid of doom, you use promises or async/await functions.</p>\n\n\n\n<h2>Summary</h2>\n\n\n\n<ul><li>A callback is a function passed into another function as an argument to be executed later.</li><li>Callback functions can be synchronous or asynchronous.</li></ul>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>What are callbacks In JavaScript, a callback is a function passed into another function as an argument to be executed later. Suppose that you the following&nbsp;numbers&nbsp;array: To find all the odd numbers in the array, you can use the filter() method of the Array object. The&nbsp;filter()&nbsp;method creates a new array with the elements that pass the test implemented by a function. [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [38],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3403"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/comments?post=3403"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3403/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/media?parent=3403"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/categories?post=3403"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/tags?post=3403"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  }
+]

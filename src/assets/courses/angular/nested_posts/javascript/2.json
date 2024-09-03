@@ -1,0 +1,472 @@
+[
+  {
+    "id": 3280,
+    "date": "2020-11-27T10:53:26",
+    "date_gmt": "2020-11-27T10:53:26",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3039"
+    },
+    "modified": "2020-11-27T10:53:26",
+    "modified_gmt": "2020-11-27T10:53:26",
+    "slug": "javascript-syntax",
+    "status": "publish",
+    "type": "post",
+    "link": "https://computerprogramming.foobrdigital.com/javascript-syntax/",
+    "title": {
+      "rendered": "JavaScript Syntax"
+    },
+    "content": {
+      "rendered": "\n<p><strong>Summary</strong>: in this tutorial, you will learn about JavaScript syntax including case-sensitivity, identifiers, comments, statements, and expressions.</p>\n\n\n\n<h2 id=\"case-sensitivity\">JavaScript is case-sensitive</h2>\n\n\n\n<p>Everything in JavaScript including variables, function names, class names, and operators are case-sensitive. It means that <code>counter</code> and <code>Counter</code> variables are different.</p>\n\n\n\n<p>Likewise, you cannot use &nbsp;<code>instanceof</code>&nbsp;as the name of a function because it is a keyword. However,&nbsp;<code>instanceOf</code>&nbsp;is a valid function name.</p>\n\n\n\n<h2 id=\"identifiers\">Identifiers</h2>\n\n\n\n<p>An identifier is the name of a variable, function, parameter, or class. An identifier consists of one or more characters in the following format:</p>\n\n\n\n<ul><li>The first character must be a letter (a-z, or A-Z), an underscore(_), or a dollar sign ($).</li><li>The other characters can be letters (a-z, A-Z), numbers (0-9), underscores (_), and dollar signs ($).</li></ul>\n\n\n\n<p>Note that the letter in this context is not limited to the ASCII character but may include extended ASCII or Unicode though it is not recommended.</p>\n\n\n\n<p>It is a good practice to use camel case for the identifiers, meaning that the first letter is lowercase, and each additional word starts with a capital letter.</p>\n\n\n\n<p>For example, the following names are identifiers:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>counter\ninArray\nbeginWith\nredirectPage</code></pre>\n\n\n\n<h2 id=\"comments\">Comments</h2>\n\n\n\n<p>JavaScript supports both single-line and block comments.</p>\n\n\n\n<p>A single-line comment starts with two forward-slash characters (<code>//</code>), for example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>// this is a single-line comment</code></pre>\n\n\n\n<p>A block comment starts with a forward slash and asterisk (<code>/*</code>) and ends with the opposite (<code>*/</code>) as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>/*\n* This is a block comment that can\n* span multiple lines\n*/</code></pre>\n\n\n\n<p>It is a good practice to use an asterisk to begin the comment line for readability purposes.</p>\n\n\n\n<h2 id=\"statements\">Statements</h2>\n\n\n\n<p>Although JavaScript does not require to end a statement with a semicolon (<code>;</code>), it is recommended to always use the semicolon to end a statement.</p>\n\n\n\n<p>The reason is that the semicolon will make your code more readable and helps you avoid many issues that you may encounter.</p>\n\n\n\n<p>In addition, you may need to combine and compress the JavaScript code before deploying it to the production environment to remove extra white space to save the bandwidth; without the semicolons, you will have the syntax errors.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>var a = 10;\nvar b = 20;</code></pre>\n\n\n\n<p>You can use a code block that begins with a left curly brace (<code>{</code>) and ends with the right curly brace (<code>}</code>) to combine multiple statements as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>if( a > b) {\n   console.log('a is greater than b');\n   return 1;\n}</code></pre>\n\n\n\n<h2>Expressions</h2>\n\n\n\n<p>An expression is a piece of code that evaluates to a value. For example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>2 + 1</code></pre>\n\n\n\n<p>The above expression returns 3 so it is a valid expression.</p>\n\n\n\n<p>Suppose you have two variables&nbsp;<code>a</code>&nbsp;and&nbsp;<code>b</code>, the following illustrates an expression that involves&nbsp;<code>a</code>&nbsp;and&nbsp;<code>b</code>:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>a + b</code></pre>\n\n\n\n<h2 id=\"keywords\">Keywords &amp; Reserved words</h2>\n\n\n\n<p>JavaScript defines a list of keywords and reserved words that have special uses. You cannot use the keywords and reserved words as the identifiers. The list of JavaScript keywords and reserved words is as follows:</p>\n\n\n\n<figure class=\"wp-block-table\"><table><tbody><tr><td>abstract</td><td>arguments</td><td>await</td><td>boolean</td></tr><tr><td>break</td><td>byte</td><td>case</td><td>catch</td></tr><tr><td>char</td><td>class</td><td>const</td><td>continue</td></tr><tr><td>debugger</td><td>default</td><td>delete</td><td>do</td></tr><tr><td>double</td><td>else</td><td>enum</td><td>eval</td></tr><tr><td>export</td><td>extends</td><td>false</td><td>final</td></tr><tr><td>finally</td><td>float</td><td>for</td><td>function</td></tr><tr><td>goto</td><td>if</td><td>implements</td><td>import</td></tr><tr><td>in</td><td>instanceof</td><td>int</td><td>interface</td></tr><tr><td>let</td><td>long</td><td>native</td><td>new</td></tr><tr><td>null</td><td>package</td><td>private</td><td>protected</td></tr><tr><td>public</td><td>return</td><td>short</td><td>static</td></tr><tr><td>super</td><td>switch</td><td>synchronized</td><td>this</td></tr><tr><td>throw</td><td>throws</td><td>transient</td><td>true</td></tr><tr><td>try</td><td>typeof</td><td>var</td><td>void</td></tr><tr><td>volatile</td><td>while</td><td>with</td><td>yield</td></tr></tbody></table></figure>\n\n\n\n<p>Now you should have a good understanding of the JavaScript syntax&nbsp;including naming an identifier, constructing statements, and making comments in code.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Summary: in this tutorial, you will learn about JavaScript syntax including case-sensitivity, identifiers, comments, statements, and expressions. JavaScript is case-sensitive Everything in JavaScript including variables, function names, class names, and operators are case-sensitive. It means that counter and Counter variables are different. Likewise, you cannot use &nbsp;instanceof&nbsp;as the name of a function because it is a keyword. However,&nbsp;instanceOf&nbsp;is a valid function name. Identifiers An [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [33],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3280"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/comments?post=3280"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3280/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/media?parent=3280"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/categories?post=3280"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/tags?post=3280"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 3044,
+    "date": "2020-11-27T10:55:03",
+    "date_gmt": "2020-11-27T10:55:03",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3044"
+    },
+    "modified": "2020-11-27T10:55:03",
+    "modified_gmt": "2020-11-27T10:55:03",
+    "slug": "javascript-variables",
+    "status": "publish",
+    "type": "post",
+    "link": "https://computerprogramming.foobrdigital.com/javascript-variables/",
+    "title": {
+      "rendered": "JavaScript Variables"
+    },
+    "content": {
+      "rendered": "\n<p><strong>Summary</strong>: in this tutorial, you will learn about JavaScript variables and how to to declare the variables in JavaScript.</p>\n\n\n\n<p>JavaScript variables are loosely typed, that is to say, variables can hold values with any type of data. Variables are just named placeholders for values.</p>\n\n\n\n<h2 id=\"var\">Declare JavaScript variables using&nbsp;<code>var</code>&nbsp;keyword</h2>\n\n\n\n<p>To declare a variable, you use the&nbsp;<code>var</code>&nbsp;keyword followed by the variable name as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>var message;</code></pre>\n\n\n\n<p>A variable name can be any valid identifier. The <code>message</code> variable is declared and hold a special value <code>undefined</code>.</p>\n\n\n\n<p>After declaring a variable, you can assign the variable a string as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>message = \"Hello\";</code></pre>\n\n\n\n<p>To declare a variable and initialize it at the same time, you use the following syntax:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>var variableName = value;</code></pre>\n\n\n\n<p>For example, the following statement declares the&nbsp;<code>message</code>&nbsp;variable and assign it a value&nbsp;<code>\"Hello\"</code></p>\n\n\n\n<pre class=\"wp-block-code\"><code>var message = \"Hello\";</code></pre>\n\n\n\n<p>You can declare two or more variables using one statement, each variable declaration is separated by a comma (<code>,</code>) as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>var message = \"Hello\",\n    counter = 100;</code></pre>\n\n\n\n<p>As mentioned earlier, you can store a number in the&nbsp;<code>message</code>&nbsp;variable as the following example though it is not recommended.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>message = 100;</code></pre>\n\n\n\n<h2>Undefined vs. undeclared variables</h2>\n\n\n\n<p>It’s important to distinguish between undefined and undeclared variables.</p>\n\n\n\n<p>An undefined variable is a variable that has been declared. Because we have not assigned it a value, the variable used the&nbsp;<code>undefined</code>&nbsp;as its initial value.</p>\n\n\n\n<p>In contrast, an undeclared variable is the variable that has not been declared.</p>\n\n\n\n<p>See the following example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>var message;\n\nconsole.log(message); // undefined\nconsole.log(counter); // ReferenceError: counter is not defined</code></pre>\n\n\n\n<p>In this example, the&nbsp;<code>message</code>&nbsp;variable is declared but not initialized therefore its value is&nbsp;<code>undefined</code>&nbsp;whereas the&nbsp;<code>counter</code>&nbsp;variable has not been declared hence accessing it causes a&nbsp;<code>ReferenceError</code>.</p>\n\n\n\n<h2 id=\"variable-scope\">Global and local variables</h2>\n\n\n\n<p>In JavaScript, all variables exist within a scope that determines the lifetime of the variables and which part of the code can access them.</p>\n\n\n\n<p>JavaScript mainly has global and function scopes. ES6 introduced a new scope called block scope.</p>\n\n\n\n<p>If you declare a variable in a function, JavaScript adds the variable to the function scope. In case you declare a variable outside of a function, JavaScript adds it to the global scope.</p>\n\n\n\n<p>In JavaScript, you define a function as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function functionName() {\n  // logic\n}</code></pre>\n\n\n\n<p>and call the function using the following syntax:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>functionName();</code></pre>\n\n\n\n<p>You will learn about functions in more detail in function tutorial.</p>\n\n\n\n<p>The following example defines a function named&nbsp;<code>say</code>&nbsp;that has a local variable named&nbsp;<code>message</code>.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function say() {\n  var message = \"Hi\";\n  return message;\n}</code></pre>\n\n\n\n<p>The&nbsp;<code>message</code>&nbsp;variable is a local variable. In other words, it only exists inside the function.</p>\n\n\n\n<p>If you try to access the&nbsp;<code>message</code>&nbsp;outside the function as shown in the following example, you will get a&nbsp;<code>ReferenceError</code>&nbsp;because the&nbsp;<code>message</code>&nbsp;variable was not defined:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function say() {\n    var message = 'Hi';\n}\nconsole.log(message); // ReferenceError</code></pre>\n\n\n\n<h2>Variable shadowing</h2>\n\n\n\n<p>See the following example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>// global variable\nvar message = \"Hello\";\nfunction say() {\n    // local variable\n    var message = 'Hi';\n    console.log(message); // which message?\n}\nsay();// Hi\nconsole.log(message); // Hello</code></pre>\n\n\n\n<p>In this example, we have two variables that share the same name:&nbsp;<code>message</code>. The first&nbsp;<code>message</code>&nbsp;variable is a global variable whereas the second one is the local variable.</p>\n\n\n\n<p>Inside the&nbsp;<code>say()</code>&nbsp;function, the global message variable is shadowed. It cannot be accessible inside the&nbsp;<code>say()</code>&nbsp;function but outside of the function.&nbsp;This is called variable shadowing.</p>\n\n\n\n<h2>Accessing global variable inside the function</h2>\n\n\n\n<p>See the following example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>// global variable\nvar message = \"Hello\";\nfunction say() {\n    // local variable\n    message = 'Hi';\n    console.log(message); // which message?\n}\nsay();// Hi\nconsole.log(message); // Hi</code></pre>\n\n\n\n<p>In this example, we define a global variable named&nbsp;<code>message</code>. In the&nbsp;<code>say()</code>&nbsp;function, we reference the global&nbsp;<code>message</code>&nbsp;variable by omitting the&nbsp;<code>var</code>&nbsp;keyword and change its value to&nbsp;a string of&nbsp;<code>Hi</code>.</p>\n\n\n\n<p>Although it is possible to refer to a global variable inside a function, it is not recommended. This is because the global variables are very difficult to maintain and potentially cause much confusion.</p>\n\n\n\n<h2>Non-strict mode</h2>\n\n\n\n<p>The following example defines a function and declares a variable&nbsp;<code>message</code>. However, the&nbsp;<code>var</code>&nbsp;keyword is not used.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>function say() {\n    message = 'Hi'; // what?\n    console.log(message);\n}\nsay(); // Hi\nconsole.log(message); // Hi</code></pre>\n\n\n\n<p>When you execute the script, it outputs the &nbsp;<code>Hi</code>&nbsp;string twice in the output.</p>\n\n\n\n<p>Because when we call the&nbsp;<code>say()</code>&nbsp;function, the JavaScript engine looks for the variable named&nbsp;<code>message</code>&nbsp;inside the scope of the function.</p>\n\n\n\n<p>As a result, it could not find any variable declared with that name so it goes up to the next immediate scope which is the&nbsp;global scope in this case and asks whether or not the&nbsp;<code>message</code>&nbsp;variable has been declared.</p>\n\n\n\n<p>Because&nbsp;the JavaScript engine couldn’t find any of global variable named&nbsp;<code>message</code>&nbsp;so it creates a new variable with that name and adds it to the global scope.</p>\n\n\n\n<h2>strict mode</h2>\n\n\n\n<p>To avoid creating a global variable accidentally inside a function because of omitting the&nbsp;<code>var</code>&nbsp;keyword, you use the strict mode by adding the&nbsp;<code>\"use strict\";</code>&nbsp;at the beginning of the JavaScript file (or the function) as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>\"use strict\";\n\nfunction say() {\n    message = 'Hi'; // ReferenceError\n    console.log(message);\n}\nsay(); // Hi\nconsole.log(message); // Hi</code></pre>\n\n\n\n<p>From now on, you should always use the strict mode in your JavaScript code to&nbsp;eliminate&nbsp;some JavaScript silent errors and make your code run faster.</p>\n\n\n\n<h2>JavaScript variable hoisting</h2>\n\n\n\n<p>When executing JavaScript code, the JavaScript engine goes through two phases:</p>\n\n\n\n<ol><li>Parsing</li><li>Execution</li></ol>\n\n\n\n<p>In the parsing phase, The JavaScript engine moves all variable declarations to the top of the file if the variables are global, or to the top of a function if the variables are declared in the function.</p>\n\n\n\n<p>In the execution phase, the JavaScript engine assigns values to variables and execute the code.</p>\n\n\n\n<p>Hoisting is a mechanism that the JavaScript engine moves all the variable declarations to the top of their scopes, either function or global scopes.</p>\n\n\n\n<p>If you declare a variable with the&nbsp;<code>var</code>&nbsp;keyword, the variable is hoisted to the top of its enclosing scope, either global or function scope.</p>\n\n\n\n<p>As a result, if you access a variable before declaring it, the variable evaluates to&nbsp;<code>undefined</code>.</p>\n\n\n\n<p>See the following example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>console.log(message); // undefined\nvar message;</code></pre>\n\n\n\n<p>The JavaScript engine moves the declaration of the&nbsp;<code>message</code>&nbsp;variable to the top, so the above code is equivalent to the following:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>var message;\nconsole.log(message); // undefined</code></pre>\n\n\n\n<p>If there were no hoisting, you would get a&nbsp;<code>ReferenceError</code>&nbsp;because you referenced to a variable that was not defined.</p>\n\n\n\n<p>See another example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>console.log(counter);\nvar counter = 100;</code></pre>\n\n\n\n<p>The JavaScript engine moves only the declaration of the variables to the top. However, it keeps the initial assignment of the variable remains intact. As a result, the code above is equivalent to the following code:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>var counter;\nconsole.log(counter); // undefined\ncounter = 100;</code></pre>\n\n\n\n<p>The hoisting uses redundant&nbsp;<code>var</code>&nbsp;declarations without any penalty:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>var counter;\nvar counter;\ncounter = 1;\nconsole.log(counter); // 1</code></pre>\n\n\n\n<h2 id=\"let\">Using&nbsp;<code>let</code>&nbsp;and&nbsp;<code>const</code>&nbsp;keywords</h2>\n\n\n\n<p>From ES6, you can use the <code>let</code> keyword to declare one or more variables. The <code>let </code>keyword is similar to the <code>var</code> keyword. However, a variable is declared using the <code>let</code> keyword is block-scoped, not function or global-scoped like the <code>var</code> keyword. More information on <code>var</code> vs. let</p>\n\n\n\n<p>A block in JavaScript is denoted by curly braces ( <code>{}</code>). For instance, the <code>if...else</code>, <code>do...while</code>, or <code>for</code> loop statement creates a block.</p>\n\n\n\n<p>The following example declares the&nbsp;<code>tmp</code>&nbsp;variable within a block surrounding by curly braces&nbsp;<code>{}</code>.</p>\n\n\n\n<p>The&nbsp;&nbsp;<code>tmp</code>&nbsp;variable only exists inside the block. Therefore, if you reference it outside the block, you will get a&nbsp;<code>ReferenceError</code>.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>var a = 20, b = 10;\n{\n    let tmp = a;\n    a = b;\n    b = tmp;\n}\nconsole.log(tmp); // ReferenceError</code></pre>\n\n\n\n<p>The&nbsp;<code>const</code>&nbsp;keyword works like the&nbsp;<code>let</code>&nbsp;keyword, but the variable that you declare must be initialized immediately with a value, and that value can’t be changed afterward.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>const pi= 3.14;\npi = 3.141; // TypeError: `code` is read-only</code></pre>\n\n\n\n<p>Now, you should have a good understanding of how JavaScript variables work.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Summary: in this tutorial, you will learn about JavaScript variables and how to to declare the variables in JavaScript. JavaScript variables are loosely typed, that is to say, variables can hold values with any type of data. Variables are just named placeholders for values. Declare JavaScript variables using&nbsp;var&nbsp;keyword To declare a variable, you use the&nbsp;var&nbsp;keyword followed by [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [33],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3044"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/comments?post=3044"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3044/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/media?parent=3044"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/categories?post=3044"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/tags?post=3044"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 3048,
+    "date": "2020-11-27T10:57:11",
+    "date_gmt": "2020-11-27T10:57:11",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3048"
+    },
+    "modified": "2020-11-27T10:57:11",
+    "modified_gmt": "2020-11-27T10:57:11",
+    "slug": "javascript-data-types",
+    "status": "publish",
+    "type": "post",
+    "link": "https://computerprogramming.foobrdigital.com/javascript-data-types/",
+    "title": {
+      "rendered": "JavaScript Data Types"
+    },
+    "content": {
+      "rendered": "\n<p><strong>Summary</strong>: in this tutorial, you will learn about the JavaScript data types and their unique characteristics.</p>\n\n\n\n<p>JavaScript has six&nbsp;primitive data types:</p>\n\n\n\n<ol><li><code>null</code></li><li><code>undefined</code></li><li><code>boolean</code></li><li><code>number</code></li><li><code>string</code></li><li><code>symbol</code> – available only from ES6</li></ol>\n\n\n\n<p>and one complex data type called <code>object</code>.</p>\n\n\n\n<p>JavaScript is a dynamic language or loosely typed therefore a variable doesn’t associate with any type. However, its value does.</p>\n\n\n\n<p>In other words, the same variable can hold values of different types at any time. For example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let counter = 120; // counter is a number\ncounter = false;   // counter is now a boolean\ncounter = \"foo\";   // counter is now a string</code></pre>\n\n\n\n<p>To get the current type of the value of a variable, you use the &nbsp;<code>typeof</code>&nbsp;operator:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let counter = 120; // counter is a number\nconsole.log(typeof(counter)); // \"number\"\n\ncounter = false;   // counter is now a boolean\nconsole.log(typeof(counter)); // \"boolean\"\n\ncounter = \"Hi\";   // counter is now a string\nconsole.log(typeof(counter)); // \"string\"</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>\"number\"\n\"boolean\"\n\"string\"</code></pre>\n\n\n\n<h2 id=\"undefined\">The&nbsp;<code>undefined</code>&nbsp;type</h2>\n\n\n\n<p>The&nbsp;<code>undefined</code>&nbsp;type is a primitive type that has one value&nbsp;<code>undefined</code>.</p>\n\n\n\n<p>By default, when a variable is declared but not initialized, it is assigned the value&nbsp;<code>undefined</code>.</p>\n\n\n\n<p>Consider the following example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let counter;\nconsole.log(counter);        // undefined\nconsole.log(typeof counter); // undefined</code></pre>\n\n\n\n<p>In this example, the&nbsp;<code>counter</code>&nbsp;is a variable. Since&nbsp;<code>counter</code>&nbsp;hasn’t been initialized, it is assigned the value&nbsp;<code>undefined</code>. The type of&nbsp;<code>counter</code>&nbsp;is also&nbsp;<code>undefined</code>.</p>\n\n\n\n<p>It’s important to note that the &nbsp;<code>typeof</code>&nbsp;operator also returns&nbsp;<code>undefined</code>&nbsp;when you call it on a variable that hasn’t been declared:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>console.log(typeof undeclaredVar); // undefined</code></pre>\n\n\n\n<h2 id=\"null\">The&nbsp;<code>null</code>&nbsp;type</h2>\n\n\n\n<p>The&nbsp;<code>null</code>&nbsp;type is the second primitive data type that also has only one value:&nbsp;<code>null</code>.&nbsp;</p>\n\n\n\n<p>Javascript defines that&nbsp;<code>null</code>&nbsp;is an empty object pointer. See the following example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let obj = null;\nconsole.log(typeof obj); // object</code></pre>\n\n\n\n<p>It is a good practice to assign a variable that later holds an object to <code>null</code> so that you can check whether the object is <code>null</code> or not by using the if statement as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>if(obj != null) {\n   // call method of the object\n}</code></pre>\n\n\n\n<p>JavaScript defines that&nbsp;<code>null</code>&nbsp;is equal to&nbsp;<code>undefined</code>&nbsp;as shown in the following statement.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>console.log(null == undefined); // true</code></pre>\n\n\n\n<h2 id=\"number\">The&nbsp;<code>number</code>&nbsp;type</h2>\n\n\n\n<p>JavaScript uses the IEEE-754 format to represent both integer and floating-point numbers.</p>\n\n\n\n<h3>Integer numbers</h3>\n\n\n\n<p>The following statement declares a variable that holds an integer.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let num = 100;</code></pre>\n\n\n\n<p>If you want to represent the octal (base 8) literals, you put the first digit as zero (0) followed by octal digit numbers (0 to 7) as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let oct = 060; // octal for 48</code></pre>\n\n\n\n<p>If the literal of an octal number is out of the range, JavaScript treats it as a decimal as shown in the following example.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let d = 090; // intepreted as 90</code></pre>\n\n\n\n<p>To avoid the confusion, ES6 allows you to specify an octal literal by using the prefix <code>0o</code> followed by a sequence of octal digits from 0 through 7:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let v = 0o45;\nconsole.log(v); // 37</code></pre>\n\n\n\n<p>To create hexadecimal (base 16) literals, you use&nbsp;<code>0x</code>&nbsp;(in lowercase) as the first two characters followed by any number of hexadecimal digits (0 to 9, and A to F).</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let h = 0xf; // same as 0xF hexadecimal for 15\n</code></pre>\n\n\n\n<h3>Floating-point numbers</h3>\n\n\n\n<p>To represent a floating-point number, you include a decimal point followed by at least one number. For example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let f1 = 12.5; \nlet f2 = .3;   // same as 0.3, also valid but not recommended</code></pre>\n\n\n\n<p>JavaScript converts a floating-point number into an integer number if the number appears to be&nbsp;the whole number.</p>\n\n\n\n<p>The reason is that Javascript always wants to use less&nbsp;memory since&nbsp;a floating-point value uses twice as much memory as an integer value.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let f3 = 200.00; // interpreted as integer 200</code></pre>\n\n\n\n<p>JavaScript allows you to use the e-notation to represent very large or small numbers as in the following example.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let f4 = 2.17e6; // ~ 2170000</code></pre>\n\n\n\n<p>JavaScript provides the minimum and maximum values of a number that you can&nbsp;access using&nbsp;<code>Number.MIN_VALUE</code>&nbsp;and&nbsp;<code>Number.MAX_VALUE</code>.</p>\n\n\n\n<p>In addition, JavaScript uses&nbsp;<code>Infinity</code>&nbsp;and&nbsp;<code>-Infinity</code>&nbsp;to represent the finite numbers, both positive and negative.</p>\n\n\n\n<p>See the following example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>console.log(Number.MAX_VALUE); // 1.7976931348623157e+308\nconsole.log(Number.MIN_VALUE); // 5e-324\nconsole.log(Number.MAX_VALUE + Number.MAX_VALUE); // Infinity\nconsole.log(-Number.MAX_VALUE - Number.MAX_VALUE); // -Infinity</code></pre>\n\n\n\n<h3>NaN</h3>\n\n\n\n<p>JavaScript has a special numeric value called&nbsp;<code>NaN</code>, which stands for&nbsp;<strong>N</strong>ot&nbsp;<strong>a</strong>&nbsp;<strong>N</strong>umber. In fact, it means an invalid number.</p>\n\n\n\n<p>For example, the&nbsp;division of a string by a number returns&nbsp;<code>NaN</code>&nbsp;as in the following&nbsp;example.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>console.log('a'/2); // NaN;</code></pre>\n\n\n\n<p>The&nbsp;<code>NaN</code>&nbsp;has two special characteristics:</p>\n\n\n\n<ol><li>Any operation with&nbsp;<code>NaN</code>&nbsp;returns&nbsp;<code>NaN</code>.</li><li>The&nbsp;<code>NaN</code>&nbsp;does not equal any value, including itself.</li></ol>\n\n\n\n<p>Here are some examples:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>console.log(NaN/2); // NaN\nconsole.log(NaN == NaN); // false</code></pre>\n\n\n\n<h2 id=\"string\">The&nbsp;<code>string</code>&nbsp;type</h2>\n\n\n\n<p>In JavaScript, a string is a sequence of zero or more characters. A literal string begins and ends with either a single quote(‘) or double quote (“).</p>\n\n\n\n<p>A string that starts with a double quote must end with a double quote and a string that begins with a single quote must end with a single quote.</p>\n\n\n\n<p>Here are some examples:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let greeting = 'Hi';\nlet s = \"It's a valid string\";\nlet str = 'I\\'m also a string'; // use \\ to escape the single quote (')</code></pre>\n\n\n\n<p>JavaScript strings are immutable. It means that you cannot modify a string once it is created.</p>\n\n\n\n<p>However, you can create a new string based on an operation on the original string, like this:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let str = 'JavaScript';\nstr = str + ' String';</code></pre>\n\n\n\n<p>In this example:</p>\n\n\n\n<ul><li>First, declare the&nbsp;<code>str</code>&nbsp;variable and initialize it to a string of&nbsp;<code>'JavaScript'</code>.</li><li>Second, use the&nbsp;<code>+</code>&nbsp;operator to combine&nbsp;<code>'JavaScript'</code>&nbsp;with&nbsp;<code>' String'</code>&nbsp;to make its value as&nbsp;<code>'Javascript String'</code>.</li></ul>\n\n\n\n<p>Behind the scene, JavaScript engine creates a new string that holds the new string&nbsp;<code>'JavaScript String'</code>&nbsp;and destroys two other original strings&nbsp;<code>'JavaScript'</code>&nbsp;and&nbsp;<code>' String'</code>.</p>\n\n\n\n<h2 id=\"boolean\">The&nbsp;<code>boolean</code>&nbsp;type</h2>\n\n\n\n<p>The&nbsp;<code>boolean</code>&nbsp;type has two values:&nbsp;<code>true</code>&nbsp;and&nbsp;<code>false</code>, in lowercase.</p>\n\n\n\n<p>The following example declares two variables that hold boolean values.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let inProgress = true;\nlet completed = false;\nconsole.log(typeof done); // boolean</code></pre>\n\n\n\n<p>JavaScript allows values of other types to be converted into boolean values of&nbsp;<code>true</code>&nbsp;or&nbsp;<code>false</code>.</p>\n\n\n\n<p>To convert a value of another data type into a boolean value, you use the <code>Boolean</code> function. The following table shows the conversion rules:</p>\n\n\n\n<figure class=\"wp-block-table\"><table><thead><tr><th>Type</th><th>true</th><th>false</th></tr></thead><tbody><tr><td>string</td><td>non-empty string</td><td>empty string</td></tr><tr><td>number</td><td>non-zero number and Infinity</td><td>0, NaN</td></tr><tr><td>object</td><td>non-null object</td><td>null</td></tr><tr><td>undefined</td><td>&nbsp;</td><td>undefined</td></tr></tbody></table></figure>\n\n\n\n<p>See the following demonstration:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>console.log(Boolean('Hi'));// true\nconsole.log(Boolean(''));  // false\n\nconsole.log(Boolean(20));  // true\nconsole.log(Boolean(Infinity));  // true\nconsole.log(Boolean(0));  // false\n\nconsole.log(Boolean({foo: 100}));  // true on non-empty object\nconsole.log(Boolean(null));// false</code></pre>\n\n\n\n<h2 id=\"symbol\">The&nbsp;<code>symbol</code>&nbsp;type</h2>\n\n\n\n<p>JavaScript added a primitive type in ES6: the <code>symbol</code>. Different from other primitive types, the <code>symbol</code> type does not have a literal form.</p>\n\n\n\n<p>To create a symbol, you call the&nbsp;<code>Symbol</code>&nbsp;function as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let s1 = Symbol();</code></pre>\n\n\n\n<p>Note that&nbsp;<code>Symbol</code>&nbsp;is a function, not an object constructor, therefore, you cannot use the&nbsp;<code>new</code>&nbsp;operator. If you do so, you will get a&nbsp;<code>TypeError</code>.</p>\n\n\n\n<p>The&nbsp;<code>Symbol</code>&nbsp;function creates a new unique value every time you call it.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>console.log(Symbol() == Symbol()); // false</code></pre>\n\n\n\n<p>You can pass a descriptive string into the&nbsp;<code>Symbol</code>&nbsp;function for the logging and debugging purposes.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let s2 = Symbol('event.save');</code></pre>\n\n\n\n<p>When you call the&nbsp;<code>toString()</code>&nbsp;method on the symbol variable, it returns a more descriptive name as shown below:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>console.log(s2.toString()); // Symbol(event.save)</code></pre>\n\n\n\n<p>You can use symbols for many purposes.&nbsp;One of them is to create a string-like a constant that can’t clash with any other values.</p>\n\n\n\n<p>The following example creates a symbol that represents the&nbsp;<code>click</code>&nbsp;event.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>const click = Symbol('click');\n</code></pre>\n\n\n\n<p>The string&nbsp;<code>'click'</code>&nbsp;may be used for different purposes and not unique. However, the&nbsp;<code>click</code>&nbsp;symbol is absolutely unique.</p>\n\n\n\n<h2 id=\"object\">The&nbsp;<code>object</code>&nbsp;type</h2>\n\n\n\n<p>In JavaScript, an object is a collection of properties, where each property is defined as a key-value pair.</p>\n\n\n\n<p>The following example defines an empty object using the object literal form:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let emptyObject = {};</code></pre>\n\n\n\n<p>The following example defines the&nbsp;<code>person</code>&nbsp;object with two properties:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let person = {\n    firstName: 'John',\n    lastName: 'Doe'\n};</code></pre>\n\n\n\n<p>A property name of an object can by any string. You can use quotes around the property name if it isn’t a valid JavaScript identifier.</p>\n\n\n\n<p>For example, if you have a property&nbsp;<code>first-name</code>, you must use the quotes such as&nbsp;<code>\"first-name\"</code>&nbsp;but&nbsp;<code>firstName</code>&nbsp;is a valid JavaScript identifier so the quotes are optional.</p>\n\n\n\n<p>If you have more than one property, you use a comma (<code>,</code>) to separate the pairs.</p>\n\n\n\n<p>JavaScript allows you to nest object as shown in the following example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let contact = {\n    firstName: 'John',\n    lastName: 'Doe',\n    email: 'john.doe@example.com',\n    phone: '(408)-555-9999',\n    address: {\n        building: '4000',\n        street: 'North 1st street',\n        city: 'San Jose',\n        state: 'CA',\n        country: 'USA'\n    }\n}</code></pre>\n\n\n\n<p>The&nbsp;<code>contact</code>&nbsp;object consists of&nbsp;<code>firstName</code>,&nbsp;<code>lastName</code>,&nbsp;<code>email</code>,&nbsp;<code>phone</code>, and&nbsp;<code>address</code>&nbsp;properties.</p>\n\n\n\n<p>The&nbsp;<code>address</code>&nbsp;property itself is also an object that consists of&nbsp;<code>building</code>, &nbsp;<code>street</code>,&nbsp;<code>city</code>,&nbsp;<code>state</code>, and&nbsp;<code>country</code>&nbsp;properties.</p>\n\n\n\n<p>You can access the properties of an object by using two notations: the dot notation (.) and array-like notation (&nbsp;<code>[]</code>).</p>\n\n\n\n<p>The following example uses the dot notation (<code>.</code>) to access the&nbsp;<code>firstName</code>&nbsp;and&nbsp;<code>lastName</code>&nbsp;properties of the&nbsp;<code>contact</code>&nbsp;object.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>console.log(contact.firstName);\nconsole.log(contact.lastName);</code></pre>\n\n\n\n<p>To get property of a nested object, you use the following form:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>console.log(contact.address.country);</code></pre>\n\n\n\n<p>If you refer to a non-existent property, you’ll get an&nbsp;<code>undefined</code>&nbsp;value as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>console.log(contact.age); // undefined</code></pre>\n\n\n\n<p>The following example uses the array-like notation to access the&nbsp;<code>email</code>&nbsp;and&nbsp;<code>phone</code>&nbsp;properties of the&nbsp;<code>contact</code>&nbsp;object.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>console.log(contact&#91;'phone']); // '(408)-555-9999'\nconsole.log(contact&#91;'email']); // 'john.doe@example.com'</code></pre>\n\n\n\n<p>Besides the&nbsp;object literal form, you can use the&nbsp;<code>new</code>&nbsp;keyword to create a new object as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let customer = new Object();</code></pre>\n\n\n\n<p>And assign the property of the object a value:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>customer.name = 'ABC Inc.';</code></pre>\n\n\n\n<p>In JavaScript, all objects are derived from the&nbsp;<code>Object</code>&nbsp;type. We’ll discuss more the&nbsp;<code>Object</code>&nbsp;type in the next&nbsp;tutorial.</p>\n\n\n\n<h2>Summary</h2>\n\n\n\n<ul><li>JavaScript has six primitive types:&nbsp;<code>number</code>,&nbsp;<code>string</code>,&nbsp;<code>boolean</code>,&nbsp;<code>null</code>,&nbsp;<code>undefined</code>, and&nbsp;<code>symbol</code>.</li><li>It also has a complex type called&nbsp;<code>object</code>.</li></ul>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Summary: in this tutorial, you will learn about the JavaScript data types and their unique characteristics. JavaScript has six&nbsp;primitive data types: null undefined boolean number string symbol – available only from ES6 and one complex data type called object. JavaScript is a dynamic language or loosely typed therefore a variable doesn’t associate with any type. However, its value does. [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [33],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3048"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/comments?post=3048"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3048/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/media?parent=3048"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/categories?post=3048"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/tags?post=3048"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 3054,
+    "date": "2020-11-27T10:58:15",
+    "date_gmt": "2020-11-27T10:58:15",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3054"
+    },
+    "modified": "2020-11-27T10:58:15",
+    "modified_gmt": "2020-11-27T10:58:15",
+    "slug": "javascript-number",
+    "status": "publish",
+    "type": "post",
+    "link": "https://computerprogramming.foobrdigital.com/javascript-number/",
+    "title": {
+      "rendered": "JavaScript Number"
+    },
+    "content": {
+      "rendered": "\n<p><strong>Summary</strong>: in this tutorial, you will learn about the JavaScript&nbsp;<code>Number</code>&nbsp;type&nbsp;and its useful methods for&nbsp;working with numbers effectively.</p>\n\n\n\n<h2>Introduction to JavaScript Number type</h2>\n\n\n\n<p>Besides the primitive number type, JavaScript also provides the <code>Number</code> reference type for numeric values.</p>\n\n\n\n<p>To create a&nbsp;<code>Number</code>&nbsp;object, you use the&nbsp;<code>Number</code>&nbsp;constructor and pass in a number value as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>var numberObject = new Number(100);</code></pre>\n\n\n\n<p>This example defined a&nbsp;<code>numberObject</code>&nbsp;with a numeric value of&nbsp;<code>100</code>.</p>\n\n\n\n<p>To get the &nbsp;primitive value out of a&nbsp;<code>Number</code>&nbsp;object, you use the&nbsp;<code>valueOf()</code>&nbsp;method as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>console.log(numberObject.valueOf()); // 100</code></pre>\n\n\n\n<p>To get a number value as a string, you use the&nbsp;<code>toString()</code>&nbsp;or&nbsp;<code>toLocaleString()</code>&nbsp;methods.</p>\n\n\n\n<p>The&nbsp;<code>toString()</code>&nbsp;method accepts an optional argument that determines the radix in which to present the number. The radix (or base) is the number of unique digits that represent numbers in a positional numeral system.</p>\n\n\n\n<p>For example, the decimal system uses ten digits from 0 through 9, therefore, the radix is 10.</p>\n\n\n\n<p>See the following example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>var aNumber = new Number(10);\nconsole.log(aNumber.toStrring()); // \"10\"</code></pre>\n\n\n\n<p>In this example the&nbsp;<code>aNumber</code>&nbsp;has a primitive value 10, therefore, the&nbsp;<code>toString()</code>&nbsp;method returns 10 in the&nbsp;decimal system.</p>\n\n\n\n<p>However, the following example&nbsp;returns the binary form of the&nbsp;<code>aNumber</code>&nbsp;variable.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>console.log(aNumber.toString(2)); // \"1010\"</code></pre>\n\n\n\n<p>If you call a method on a primitive number value, JavaScript will convert it into a <code>Number</code> object temporarily. This feature is called primitive wrapper types in JavaScript. For example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let x = 10;\nconsole.log(x.toString(16)); // \"a\"</code></pre>\n\n\n\n<h2>Formatting&nbsp;numbers</h2>\n\n\n\n<p>To format a number with a specified number of decimal points, you use the&nbsp;<code>toFixed()</code>&nbsp;method.</p>\n\n\n\n<p>The&nbsp;<code>toFixed()</code>&nbsp;method accepts an argument that indicates how many decimal points should be used.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>numberObject.toFixed(decimalPlaces);</code></pre>\n\n\n\n<p>The&nbsp;<code>toFixed()</code>&nbsp;method returns the corresponding string of the number using fixed-point notation. Here is an example.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>var distance = 19.006\nconsole.log(distance.toFixed(2)); // 19.01\n\ndistance = 19.004;\nconsole.log(distance.toFixed(2)); // 19.00</code></pre>\n\n\n\n<p>It’s important to note that web browsers may use rounding methods differently. Therefore, you should be careful when using the&nbsp;<code>toFixed()</code>&nbsp;method especially for the applications that deal with monetary values.</p>\n\n\n\n<p>To format a number in e-notation, you use the&nbsp;<code>toExponential()</code>&nbsp;method as shown in the following example.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>var x = 10, y = 100, z = 1000;\n\nconsole.log(x.toExponential());\nconsole.log(y.toExponential());\nconsole.log(z.toExponential());\n\n// \"1e+1\"\n// \"1e+2\"\n// \"1e+3\"</code></pre>\n\n\n\n<p>To get a string representation of a number object to the specified precision, you use the&nbsp;<code>toPrecision()</code>&nbsp;method.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>numberObject.toPrecision(precision);</code></pre>\n\n\n\n<p>The&nbsp;<code>precision</code>&nbsp;argument determines the number of significant digits.</p>\n\n\n\n<p>The&nbsp;<code>toPrecision()</code>&nbsp;method returns the string representation of a&nbsp;<code>Number</code>&nbsp;object in exponential notation or fixed point rounded to precision significant digits.</p>\n\n\n\n<p>Notice that if you omit the precision argument, the&nbsp;<code>toPrecision()</code>&nbsp;method will behave like the&nbsp;<code>toString()</code>&nbsp;method. See the following examples:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let x = 9.12345;\n\nconsole.log(x.toPrecision());    // '9.12345'\nconsole.log(x.toPrecision(4));   // '9.123'\nconsole.log(x.toPrecision(3));   // '9.12'\nconsole.log(x.toPrecision(2));   // '9.1'\nconsole.log(x.toPrecision(1));   // '9'</code></pre>\n\n\n\n<p>The e-notation may be returned in some cases for example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>x = 123.5;\nconsole.log(x.toPrecision(2)); // \"1.2e+2\"</code></pre>\n\n\n\n<h2>JavaScript Number object&nbsp;vs. primitive number</h2>\n\n\n\n<p>The following table illustrates the differences between a&nbsp;<code>Number</code>&nbsp;object and a primitive number:</p>\n\n\n\n<figure class=\"wp-block-table\"><table><thead><tr><th>&nbsp;Operator</th><th>Number object</th><th>Number value</th></tr></thead><tbody><tr><td>&nbsp;<code>typeof</code></td><td>&nbsp;<code>\"object\"</code></td><td>&nbsp;<code>\"number\"</code></td></tr><tr><td>&nbsp;<code>instanceof</code>&nbsp;<code>Number</code></td><td>&nbsp;<code>true</code></td><td>&nbsp;<code>false</code></td></tr></tbody></table></figure>\n\n\n\n<p>And here are examples:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let numberObject = new Number(10);\nlet number = 10;\n\n// typeof\nconsole.log(typeof numberObject);\nconsole.log(typeof number);\n// instanceof\nconsole.log(numberObject instanceof Number); // true\nconsole.log(number instanceof Number); // false</code></pre>\n\n\n\n<p>In this tutorial, you have learned about the&nbsp;<code>Number</code>&nbsp;type and some useful methods for formatting numbers.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Summary: in this tutorial, you will learn about the JavaScript&nbsp;Number&nbsp;type&nbsp;and its useful methods for&nbsp;working with numbers effectively. Introduction to JavaScript Number type Besides the primitive number type, JavaScript also provides the Number reference type for numeric values. To create a&nbsp;Number&nbsp;object, you use the&nbsp;Number&nbsp;constructor and pass in a number value as follows: This example defined a&nbsp;numberObject&nbsp;with a numeric value [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [33],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3054"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/comments?post=3054"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3054/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/media?parent=3054"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/categories?post=3054"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/tags?post=3054"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 3056,
+    "date": "2020-11-27T10:59:15",
+    "date_gmt": "2020-11-27T10:59:15",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3056"
+    },
+    "modified": "2020-11-27T10:59:15",
+    "modified_gmt": "2020-11-27T10:59:15",
+    "slug": "javascript-boolean",
+    "status": "publish",
+    "type": "post",
+    "link": "https://computerprogramming.foobrdigital.com/javascript-boolean/",
+    "title": {
+      "rendered": "JavaScript Boolean"
+    },
+    "content": {
+      "rendered": "\n<p><strong>Summary</strong>: in this tutorial, you will learn about the JavaScript&nbsp;<code>Boolean</code>&nbsp;object and the differences between the&nbsp;<code>Boolean</code>&nbsp;object and the&nbsp;<code>boolean</code>&nbsp;primitive type.</p>\n\n\n\n<h2>JavaScript boolean primitive type</h2>\n\n\n\n<p>JavaScript provides a boolean primitive type that has two values of <code>true</code> and <code>false</code>. The following example declares two variables that hold boolean values of <code>false</code> and <code>true</code>:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let isPending = false;\nlet isDone = true;\n</code></pre>\n\n\n\n<p>When you&nbsp;apply the &nbsp;<code>typeof</code>&nbsp;operator to a variable that holds primitive boolean value, you get the&nbsp;<code>boolean</code>&nbsp;as&nbsp;the following example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>console.log(typeof(isPending)); //  boolean\nconsole.log(typeof(isDone)); // boolean</code></pre>\n\n\n\n<h2>JavaScript Boolean object</h2>\n\n\n\n<p>In addition to the&nbsp;<code>boolean</code>&nbsp;primitive type, JavaScript also provides you with the global&nbsp;<code>Boolean()</code>&nbsp;function, with the letter&nbsp;<code>B</code>&nbsp;in uppercase, to cast a value of another type to&nbsp;<code>boolean.</code></p>\n\n\n\n<p>The following example shows you how to use the&nbsp;<code>Boolean()</code>&nbsp;function to convert a string into a boolean value. Because the string is not empty, therefore it returns true.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let a = Boolean('Hi');\nconsole.log(a); // true\nconsole.log(typeof(a)); // boolean</code></pre>\n\n\n\n<p>The&nbsp;<code>Boolean</code>&nbsp;is also a wrapper object of the&nbsp;<code>boolean</code>&nbsp;primitive type. It means that when you use the Boolean constructor and pass in either&nbsp;<code>true</code>&nbsp;or&nbsp;<code>false</code>, you create a Boolean object.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let b = new Boolean(false);</code></pre>\n\n\n\n<p>To get the primitive value back, you call the&nbsp;<code>valueOf()</code>&nbsp;method of the Boolean object as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>console.log(b.valueOf()); // false</code></pre>\n\n\n\n<p>However, if you call the&nbsp;<code>toString()</code>&nbsp;method of a Boolean object, you get&nbsp;a string value&nbsp;<code>\"true\"</code>&nbsp;or&nbsp;<code>\"false\"</code>. See the following example.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>console.log(b.toString()); // \"false\"</code></pre>\n\n\n\n<h2>JavaScript boolean vs. Boolean</h2>\n\n\n\n<p>Consider this example.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let foo = true;\nlet bar  = new Boolean(false);</code></pre>\n\n\n\n<p>First,&nbsp;<code>bar</code>&nbsp;is an object so you can add a property to the&nbsp;<code>bar</code>&nbsp;object:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>bar.primitiveValue = bar.valueOf();\nconsole.log(b.primitiveValue); // false</code></pre>\n\n\n\n<p>However, you cannot do it with the primitive boolean variable like the&nbsp;<code>foo</code>&nbsp;variable:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>foo.name = 'primitive';\nconsole.log(foo.name); // undefined</code></pre>\n\n\n\n<p>Second, the &nbsp;<code>typeof</code>&nbsp;of&nbsp;Boolean object returns&nbsp;<code>object</code>, whereas the &nbsp;<code>typeof</code>&nbsp;of a primitive boolean value returns&nbsp;<code>boolean</code>.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>console.log(typeof foo); // boolean\nconsole.log(typeof bar); // object</code></pre>\n\n\n\n<p>Third, when applying the &nbsp;<code>instanceof</code>&nbsp;operator to a Boolean object, it returns&nbsp;<code>true</code>. However, it returns&nbsp;<code>false</code>&nbsp;if you apply the &nbsp;<code>instanceof</code>&nbsp;operator to a boolean value.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>console.log(foo instanceof Boolean); // false\nconsole.log(bar instanceof Boolean); // true</code></pre>\n\n\n\n<p>It is a good practice to&nbsp;<em>never</em>&nbsp;use the&nbsp;<code>Boolean</code>&nbsp;object because it will create many confusions especially when you use it in an expression. See the following example.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let falseObj = new Boolean(false);\nif (falseObj) {\n    console.log('weird part of the Boolean object');\n}</code></pre>\n\n\n\n<p>How the script works.</p>\n\n\n\n<ul><li>First, create <code>falseObj</code> as a <code>Boolean</code> object wrapper for the <code>false</code> value.</li><li>Second, use <code>falseObj</code> in the  <code>if</code> statement. Because <code>falseObj</code> is an object, and JavaScript engine <em>coerces</em> it to a boolean value of <code>true</code> . As a result, the statement inside the <code>if</code> block is executed.</li></ul>\n\n\n\n<p>The following table summarizes the differences between the JavaScript&nbsp;<code>Boolean</code>&nbsp;and&nbsp;<code>boolean</code>:</p>\n\n\n\n<figure class=\"wp-block-table\"><table><thead><tr><th>Operator</th><th>boolean</th><th>Boolean</th></tr></thead><tbody><tr><td>&nbsp;<code>typeof</code></td><td>boolean</td><td>object</td></tr><tr><td>&nbsp;<code>instanceof</code>&nbsp;Boolean</td><td>false</td><td>true</td></tr></tbody></table></figure>\n\n\n\n<p>It is recommended that you use the&nbsp;<code>Boolean()</code>&nbsp;function to convert a value of a different type to a Boolean type but you should never use the&nbsp;<code>Boolean</code>&nbsp;as a wrapper object of a primitive boolean value.</p>\n\n\n\n<p>In this tutorial, you have learned about the JavaScript&nbsp;<code>Boolean</code>&nbsp;object and the differences between the&nbsp;<code>Boolean</code>&nbsp;object and&nbsp;<code>boolean</code>&nbsp;primitive type.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Summary: in this tutorial, you will learn about the JavaScript&nbsp;Boolean&nbsp;object and the differences between the&nbsp;Boolean&nbsp;object and the&nbsp;boolean&nbsp;primitive type. JavaScript boolean primitive type JavaScript provides a boolean primitive type that has two values of true and false. The following example declares two variables that hold boolean values of false and true: When you&nbsp;apply the &nbsp;typeof&nbsp;operator to a variable that holds primitive boolean value, you get the&nbsp;boolean&nbsp;as&nbsp;the [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [33],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3056"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/comments?post=3056"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3056/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/media?parent=3056"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/categories?post=3056"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/tags?post=3056"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  }
+]

@@ -1,0 +1,1802 @@
+[
+  {
+    "id": 365,
+    "date": "2020-06-20T12:03:15",
+    "date_gmt": "2020-06-20T12:03:15",
+    "guid": {
+      "rendered": "http://java.foobrdigital.com/?p=365"
+    },
+    "modified": "2020-06-20T12:03:15",
+    "modified_gmt": "2020-06-20T12:03:15",
+    "slug": "localdate",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/localdate/",
+    "title": {
+      "rendered": "LocalDate"
+    },
+    "content": {
+      "rendered": "\n<p>Java LocalDate class is an immutable class that represents Date with a default format of yyyy-MM-dd. It inherits Object class and implements the ChronoLocalDate interface</p>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h2>Java LocalDate class declaration</h2>\n\n\n\n<p>Let&#8217;s see the declaration of java.time.LocalDate class.</p>\n\n\n\n<ol><li><strong>public</strong>&nbsp;<strong>final</strong>&nbsp;<strong>class</strong>&nbsp;LocalDate&nbsp;<strong>extends</strong>&nbsp;Object&nbsp;&nbsp;&nbsp;</li><li class=\"\"><strong>implements</strong>&nbsp;Temporal,&nbsp;TemporalAdjuster,&nbsp;ChronoLocalDate,&nbsp;Serializable&nbsp;&nbsp;</li></ol>\n\n\n\n<h3>Methods of Java LocalDate</h3>\n\n\n\n<figure class=\"wp-block-table\"><table><tbody><tr><th>Method</th><th>Description</th></tr><tr><td>LocalDateTime atTime(int hour, int minute)</td><td>It is used to combine this date with a time to create a LocalDateTime.</td></tr><tr><td>int compareTo(ChronoLocalDate other)</td><td>It is used to compares this date to another date.</td></tr><tr><td>boolean equals(Object obj)</td><td>It is used to check if this date is equal to another date.</td></tr><tr><td>String format(DateTimeFormatter formatter)</td><td>It is used to format this date using the specified formatter.</td></tr><tr><td>int get(TemporalField field)</td><td>It is used to get the value of the specified field from this date as an int.</td></tr><tr><td>boolean isLeapYear()</td><td>It is used to check if the year is a leap year, according to the ISO proleptic calendar system rules.</td></tr><tr><td>LocalDate minusDays(long daysToSubtract)</td><td>It is used to return a copy of this LocalDate with the specified number of days subtracted.</td></tr><tr><td>LocalDate minusMonths(long monthsToSubtract)</td><td>It is used to return a copy of this LocalDate with the specified number of months subtracted.</td></tr><tr><td>static LocalDate now()</td><td>It is used to obtain the current date from the system clock in the default time-zone.</td></tr><tr><td>LocalDate plusDays(long daysToAdd)</td><td>It is used to return a copy of this LocalDate with the specified number of days added.</td></tr><tr><td>LocalDate plusMonths(long monthsToAdd)</td><td>It is used to return a copy of this LocalDate with the specified number of months added.</td></tr></tbody></table></figure>\n\n\n\n<h2>Java LocalDate Example</h2>\n\n\n\n<pre class=\"wp-block-code\"><code>import java.time.LocalDate;  \npublic class LocalDateExample1 {  \n  public static void main(String&#91;] args) {  \n    LocalDate date = LocalDate.now();  \n    LocalDate yesterday = date.minusDays(1);  \n    LocalDate tomorrow = yesterday.plusDays(2);  \n    System.out.println(\"Today date: \"+date);  \n    System.out.println(\"Yesterday date: \"+yesterday);  \n    System.out.println(\"Tommorow date: \"+tomorrow);  \n  }  \n} </code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Today date: 2017-01-13\nYesterday date: 2017-01-12\nTommorow date: 2017-01-14</code></pre>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h2>Java LocalDate Example: isLeapYear()</h2>\n\n\n\n<pre class=\"wp-block-code\"><code>import java.time.LocalDate;  \npublic class LocalDateExample2 {  \n  public static void main(String&#91;] args) {  \n    LocalDate date1 = LocalDate.of(2017, 1, 13);  \n    System.out.println(date1.isLeapYear());  \n    LocalDate date2 = LocalDate.of(2016, 9, 23);  \n    System.out.println(date2.isLeapYear());  \n  }  \n}</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>false\ntrue</code></pre>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h2>Java LocalDate Example: atTime()</h2>\n\n\n\n<pre class=\"wp-block-code\"><code>import java.time.*;  \npublic class LocalDateExample3 {  \n  public static void main(String&#91;] args) {  \n    LocalDate date = LocalDate.of(2017, 1, 13);  \n    LocalDateTime datetime = date.atTime(1,50,9);      \n    System.out.println(datetime);   \n  }  \n}  </code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>2017-01-13T01:50:09</code></pre>\n\n\n\n<p></p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Java LocalDate class is an immutable class that represents Date with a default format of yyyy-MM-dd. It inherits Object class and implements the ChronoLocalDate interface Java LocalDate class declaration Let&#8217;s see the declaration of java.time.LocalDate class. public&nbsp;final&nbsp;class&nbsp;LocalDate&nbsp;extends&nbsp;Object&nbsp;&nbsp;&nbsp; implements&nbsp;Temporal,&nbsp;TemporalAdjuster,&nbsp;ChronoLocalDate,&nbsp;Serializable&nbsp;&nbsp; Methods of Java LocalDate Method Description LocalDateTime atTime(int hour, int minute) It is used to combine this [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [13],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/365"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=365"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/365/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 388,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/365/revisions/388"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=365"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=365"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=365"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 340,
+    "date": "2020-06-20T12:06:01",
+    "date_gmt": "2020-06-20T12:06:01",
+    "guid": {
+      "rendered": "http://java.foobrdigital.com/?p=340"
+    },
+    "modified": "2020-07-13T17:29:56",
+    "modified_gmt": "2020-07-13T17:29:56",
+    "slug": "localtime",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/localtime/",
+    "title": {
+      "rendered": "LocalTime"
+    },
+    "content": {
+      "rendered": "\n<p>Java LocalTime class is an immutable class that represents time with a default format of hour-minute-second. It inherits Object class and implements the Comparable interface.</p>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h2>Java LocalTime class declaration</h2>\n\n\n\n<p>Let&#8217;s see the declaration of java.time.LocalTime class.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>public final class LocalTime extends Object   \nimplements Temporal, TemporalAdjuster, Comparable&lt;LocalTime>, Serializable  </code></pre>\n\n\n\n<h3>Methods of Java LocalTime</h3>\n\n\n\n<figure class=\"wp-block-table\"><table><tbody><tr><th>Method</th><th>Description</th></tr><tr><td>LocalDateTime atDate(LocalDate date)</td><td>It is used to combine this time with a date to create a LocalDateTime.</td></tr><tr><td>int compareTo(LocalTime other)</td><td>It is used to compare this time to another time.</td></tr><tr><td>String format(DateTimeFormatter formatter)</td><td>It is used to format this time using the specified formatter.</td></tr><tr><td>int get(TemporalField field)</td><td>It is used to get the value of the specified field from this time as an int.</td></tr><tr><td>LocalTime minusHours(long hoursToSubtract)</td><td>It is used to return a copy of this LocalTime with the specified number of hours subtracted.</td></tr><tr><td>LocalTime minusMinutes(long minutesToSubtract)</td><td>It is used to return a copy of this LocalTime with the specified number of minutes subtracted.</td></tr><tr><td>static LocalTime now()</td><td>It is used to obtain the current time from the system clock in the default time-zone.</td></tr><tr><td>static LocalTime of(int hour, int minute, int second)</td><td>It is used to obtain an instance of LocalTime from an hour, minute and second.</td></tr><tr><td>LocalTime plusHours(long hoursToAdd)</td><td>It is used to return a copy of this LocalTime with the specified number of hours added.</td></tr><tr><td>LocalTime plusMinutes(long minutesToAdd)</td><td>It is used to return a copy of this LocalTime with the specified number of minutes added.</td></tr></tbody></table></figure>\n\n\n\n<h2>Java LocalTime Example: now()</h2>\n\n\n\n<pre class=\"wp-block-code\"><code>import java.time.LocalTime;  \npublic class LocalTimeExample1 {  \n  public static void main(String&#91;] args) {  \n    LocalTime time = LocalTime.now();  \n    System.out.println(time);  \n  }  \n}  </code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>15:19:47.459\n</code></pre>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h2>Java LocalTime Example: of()</h2>\n\n\n\n<pre class=\"wp-block-code\"><code>import java.time.LocalTime;  \npublic class LocalTimeExample2 {  \n  public static void main(String&#91;] args) {  \n    LocalTime time = LocalTime.of(10,43,12);  \n    System.out.println(time);  \n  }  \n}  </code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-preformatted\">10:43:12</pre>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h2>Java LocalTime Example: minusHours() and minusMinutes()</h2>\n\n\n\n<pre class=\"wp-block-code\"><code>import java.time.LocalTime;  \npublic class LocalTimeExample3 {  \n  public static void main(String&#91;] args) {  \n    LocalTime time1 = LocalTime.of(10,43,12);  \n    System.out.println(time1);  \n    LocalTime time2=time1.minusHours(2);  \n    LocalTime time3=time2.minusMinutes(34);  \n    System.out.println(time3);  \n  }  \n} </code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>10:43:12\n08:09:12</code></pre>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h2>Java LocalTime Example: plusHours() and plusMinutes()</h2>\n\n\n\n<pre class=\"wp-block-code\"><code>import java.time.LocalTime;  \npublic class LocalTimeExample4 {  \n  public static void main(String&#91;] args) {  \n    LocalTime time1 = LocalTime.of(10,43,12);  \n    System.out.println(time1);  \n    LocalTime time2=time1.plusHours(4);  \n    LocalTime time3=time2.plusMinutes(18);  \n    System.out.println(time3);  \n  }  \n}  </code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>10:43:12\n15:01:12</code></pre>\n\n\n\n<h2>Java LocalTime Example</h2>\n\n\n\n<pre class=\"wp-block-code\"><code>import java.time.*;  \nimport java.time.temporal.ChronoUnit;  \npublic class LocalTimeExample5 {  \n  public static void main(String... args) {  \n    ZoneId zone1 = ZoneId.of(\"Asia/Kolkata\");  \n    ZoneId zone2 = ZoneId.of(\"Asia/Tokyo\");  \n    LocalTime time1 = LocalTime.now(zone1);  \n    System.out.println(\"India Time Zone: \"+time1);  \n    LocalTime time2 = LocalTime.now(zone2);  \n    System.out.println(\"Japan Time Zone: \"+time2);  \n    long hours = ChronoUnit.HOURS.between(time1, time2);  \n    System.out.println(\"Hours between two Time Zone: \"+hours);  \n    long minutes = ChronoUnit.MINUTES.between(time1, time2);  \n    System.out.println(\"Minutes between two time zone: \"+minutes);  \n  }  \n}  </code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>India Time Zone: 14:56:43.087\nJapan Time Zone: 18:26:43.103\nHours between two Time Zone: 3\nMinutes between two time zone: 210</code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Java LocalTime class is an immutable class that represents time with a default format of hour-minute-second. It inherits Object class and implements the Comparable interface. Java LocalTime class declaration Let&#8217;s see the declaration of java.time.LocalTime class. Methods of Java LocalTime Method Description LocalDateTime atDate(LocalDate date) It is used to combine this time with a date [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [13],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/340"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=340"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 2,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/340/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 848,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/340/revisions/848"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=340"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=340"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=340"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 341,
+    "date": "2020-06-20T12:08:35",
+    "date_gmt": "2020-06-20T12:08:35",
+    "guid": {
+      "rendered": "http://java.foobrdigital.com/?p=341"
+    },
+    "modified": "2020-07-13T17:31:00",
+    "modified_gmt": "2020-07-13T17:31:00",
+    "slug": "localdatetime",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/localdatetime/",
+    "title": {
+      "rendered": "LocalDateTime"
+    },
+    "content": {
+      "rendered": "\n<p>Java LocalDateTime class is an immutable date-time object that represents a date-time, with the default format as yyyy-MM-dd-HH-mm-ss.zzz. It inherits object class and implements the ChronoLocalDateTime interface.</p>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h2>Java LocalDateTime class declaration</h2>\n\n\n\n<p>Let&#8217;s see the declaration of java.time.LocalDateTime class.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>public final class LocalDateTime extends Object   \nimplements Temporal, TemporalAdjuster, ChronoLocalDateTime&lt;LocalDate>, Serializable  </code></pre>\n\n\n\n<h3>Methods of Java LocalDateTime</h3>\n\n\n\n<figure class=\"wp-block-table\"><table><tbody><tr><th>Method</th><th>Description</th></tr><tr><td>String format(DateTimeFormatter formatter)</td><td>It is used to format this date-time using the specified formatter.</td></tr><tr><td>int get(TemporalField field)</td><td>It is used to get the value of the specified field from this date-time as an int.</td></tr><tr><td>LocalDateTime minusDays(long days)</td><td>It is used to return a copy of this LocalDateTime with the specified number of days subtracted.</td></tr><tr><td>static LocalDateTime now()</td><td>It is used to obtain the current date-time from the system clock in the default time-zone.</td></tr><tr><td>static LocalDateTime of(LocalDate date, LocalTime time)</td><td>It is used to obtain an instance of LocalDateTime from a date and time.</td></tr><tr><td>LocalDateTime plusDays(long days)</td><td>It is used to return a copy of this LocalDateTime with the specified number of days added.</td></tr><tr><td>boolean equals(Object obj)</td><td>It is used to check if this date-time is equal to another date-time.</td></tr></tbody></table></figure>\n\n\n\n<h2>Java LocalDateTime Example</h2>\n\n\n\n<pre class=\"wp-block-code\"><code>import java.time.LocalDateTime;  \nimport java.time.format.DateTimeFormatter;  \npublic class LocalDateTimeExample1 {  \n    public static void main(String&#91;] args) {  \n        LocalDateTime now = LocalDateTime.now();  \n        System.out.println(\"Before Formatting: \" + now);  \n        DateTimeFormatter format = DateTimeFormatter.ofPattern(\"dd-MM-yyyy HH:mm:ss\");  \n        String formatDateTime = now.format(format);  \n        System.out.println(\"After Formatting: \" + formatDateTime);  \n    }  \n}  </code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Before Formatting: 2017-01-13T17:09:42.411\nAfter Formatting: 13-01-2017 17:09:42</code></pre>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h2>Java LocalDateTime Example: now()</h2>\n\n\n\n<pre class=\"wp-block-code\"><code>import java.time.LocalDateTime;  \nimport java.time.format.DateTimeFormatter;  \npublic class LocalDateTimeExample2 {  \n  public static void main(String&#91;] args) {  \n    LocalDateTime datetime1 = LocalDateTime.now();  \n    DateTimeFormatter format = DateTimeFormatter.ofPattern(\"dd-MM-yyyy HH:mm:ss\");  \n    String formatDateTime = datetime1.format(format);   \n    System.out.println(formatDateTime);    \n  }  \n}  </code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>14-01-2017 11:42:32\n</code></pre>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h2>Java LocalDateTime Example: get()</h2>\n\n\n\n<pre class=\"wp-block-code\"><code>import java.time.LocalDateTime;  \nimport java.time.temporal.ChronoField;  \npublic class LocalDateTimeExample3 {  \n  public static void main(String&#91;] args) {  \n    LocalDateTime a = LocalDateTime.of(2017, 2, 13, 15, 56);    \n    System.out.println(a.get(ChronoField.DAY_OF_WEEK));  \n    System.out.println(a.get(ChronoField.DAY_OF_YEAR));  \n    System.out.println(a.get(ChronoField.DAY_OF_MONTH));  \n    System.out.println(a.get(ChronoField.HOUR_OF_DAY));  \n    System.out.println(a.get(ChronoField.MINUTE_OF_DAY));   \n  }  \n}  </code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>1\n44\n13\n15\n956</code></pre>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h2>Java LocalDateTime Example: minusDays()</h2>\n\n\n\n<pre class=\"wp-block-code\"><code>import java.time.LocalDateTime;  \nimport java.time.format.DateTimeFormatter;  \npublic class LocalDateTimeExample4 {  \npublic static void main(String&#91;] args) {  \n  LocalDateTime datetime1 = LocalDateTime.of(2017, 1, 14, 10, 34);  \n  LocalDateTime datetime2 = datetime1.minusDays(100);  \n  System.out.println(\"Before Formatting: \" + datetime2);  \n  DateTimeFormatter format = DateTimeFormatter.ofPattern(\"dd-MM-yyyy HH:mm\");  \n  String formatDateTime = datetime2.format(format);   \n  System.out.println(\"After Formatting: \" + formatDateTime );  \n}  \n}  </code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Before Formatting: 2016-10-06T10:34\nAfter Formatting: 06-10-2016 10:34</code></pre>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h2>Java LocalDateTime Example: plusDays()</h2>\n\n\n\n<pre class=\"wp-block-code\"><code>import java.time.LocalDateTime;  \nimport java.time.format.DateTimeFormatter;  \npublic class LocalDateTimeExample5 {  \npublic static void main(String&#91;] args) {  \n  LocalDateTime datetime1 = LocalDateTime.of(2017, 1, 14, 10, 34);  \n  LocalDateTime datetime2 = datetime1.plusDays(120);  \n  System.out.println(\"Before Formatting: \" + datetime2);  \n  DateTimeFormatter format = DateTimeFormatter.ofPattern(\"dd-MM-yyyy HH:mm\");  \n  String formatDateTime = datetime2.format(format);   \n  System.out.println(\"After Formatting: \" + formatDateTime );  \n}  \n}  </code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Before Formatting: 2017-05-14T10:34\nAfter Formatting: 14-05-2017 10:34</code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Java LocalDateTime class is an immutable date-time object that represents a date-time, with the default format as yyyy-MM-dd-HH-mm-ss.zzz. It inherits object class and implements the ChronoLocalDateTime interface. Java LocalDateTime class declaration Let&#8217;s see the declaration of java.time.LocalDateTime class. Methods of Java LocalDateTime Method Description String format(DateTimeFormatter formatter) It is used to format this date-time using [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [13],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/341"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=341"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 2,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/341/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 849,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/341/revisions/849"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=341"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=341"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=341"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 347,
+    "date": "2020-06-20T12:10:19",
+    "date_gmt": "2020-06-20T12:10:19",
+    "guid": {
+      "rendered": "http://java.foobrdigital.com/?p=347"
+    },
+    "modified": "2020-06-20T12:10:19",
+    "modified_gmt": "2020-06-20T12:10:19",
+    "slug": "monthday",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/monthday/",
+    "title": {
+      "rendered": "MonthDay"
+    },
+    "content": {
+      "rendered": "\n<p>Java MonthDay class is an immutable date-time object that represents the combination of a month and day-of-month. It inherits Object class and implements the Comparable interface.</p>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h2>Java MonthDay class declaration</h2>\n\n\n\n<p>Let&#8217;s see the declaration of java.time.MonthDay class.</p>\n\n\n\n<ol><li><strong>public</strong>&nbsp;<strong>final</strong>&nbsp;<strong>class</strong>&nbsp;MonthDay&nbsp;<strong>extends</strong>&nbsp;Object&nbsp;&nbsp;&nbsp;</li><li class=\"\"><strong>implements</strong>&nbsp;TemporalAccessor,&nbsp;TemporalAdjuster,&nbsp;Comparable&lt;MonthDay&gt;,&nbsp;Serializable&nbsp;&nbsp;</li></ol>\n\n\n\n<h3>Methods of Java MonthDay</h3>\n\n\n\n<figure class=\"wp-block-table\"><table><tbody><tr><th>Method</th><th>Description</th></tr><tr><td>LocalDate atYear(int year)</td><td>It is used to combine this month-day with a year to create a LocalDate.</td></tr><tr><td>String format(DateTimeFormatter formatter)</td><td>It is used to format this month-day using the specified formatter.</td></tr><tr><td>int get(TemporalField field)</td><td>It is used to get the value of the specified field from this month-day as an int.</td></tr><tr><td>boolean isValidYear(int year)</td><td>It is used to check if the year is valid for this month-day.</td></tr><tr><td>static MonthDay now()</td><td>It is used to obtain the current month-day from the system clock in the default time-zone.</td></tr><tr><td>static MonthDay of(int month, int dayOfMonth)</td><td>It is used to obtain an instance of MonthDay.</td></tr><tr><td>ValueRange range(TemporalField field)</td><td>It is used to get the range of valid values for the specified field.</td></tr></tbody></table></figure>\n\n\n\n<h2>Java MonthDay class Example</h2>\n\n\n\n<pre class=\"wp-block-code\"><code>import java.time.*;  \npublic class MonthDayExample1 {  \n  public static void main(String&#91;] args) {  \n    MonthDay month = MonthDay.now();  \n    LocalDate date = month.atYear(1994);  \n    System.out.println(date);  \n  }  \n}  </code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>1994-01-17\n</code></pre>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h2>Java MonthDay class Example: isValidYear()</h2>\n\n\n\n<pre class=\"wp-block-code\"><code>import java.time.*;  \npublic class MonthDayExample2 {  \n  public static void main(String&#91;] args) {  \n    MonthDay month = MonthDay.now();  \n    boolean b = month.isValidYear(2012);  \n    System.out.println(b);  \n  }  \n}  </code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>true\n</code></pre>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h2>Java MonthDay class Example: get()</h2>\n\n\n\n<pre class=\"wp-block-code\"><code>import java.time.*;  \nimport java.time.temporal.*;  \npublic class MonthDayExample3{  \n  public static void main(String&#91;] args) {  \n    MonthDay month = MonthDay.now();  \n    long n = month.get(ChronoField.MONTH_OF_YEAR);  \n    System.out.println(n);  \n  }  \n}  </code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-preformatted\">\n1</pre>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h2>Java MonthDay class Example: range()</h2>\n\n\n\n<pre class=\"wp-block-code\"><code>import java.time.*;  \nimport java.time.temporal.*;  \npublic class MonthDayExample4 {  \n  public static void main(String&#91;] args) {  \n    MonthDay month = MonthDay.now();  \n    ValueRange r1 = month.range(ChronoField.MONTH_OF_YEAR);  \n    System.out.println(r1);  \n    ValueRange r2 = month.range(ChronoField.DAY_OF_MONTH);  \n    System.out.println(r2);  \n  }  \n}</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>1 - 12\n1 - 31</code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Java MonthDay class is an immutable date-time object that represents the combination of a month and day-of-month. It inherits Object class and implements the Comparable interface. Java MonthDay class declaration Let&#8217;s see the declaration of java.time.MonthDay class. public&nbsp;final&nbsp;class&nbsp;MonthDay&nbsp;extends&nbsp;Object&nbsp;&nbsp;&nbsp; implements&nbsp;TemporalAccessor,&nbsp;TemporalAdjuster,&nbsp;Comparable&lt;MonthDay&gt;,&nbsp;Serializable&nbsp;&nbsp; Methods of Java MonthDay Method Description LocalDate atYear(int year) It is used to combine this month-day [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [13],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/347"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=347"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/347/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 391,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/347/revisions/391"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=347"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=347"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=347"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 343,
+    "date": "2020-06-20T12:12:07",
+    "date_gmt": "2020-06-20T12:12:07",
+    "guid": {
+      "rendered": "http://java.foobrdigital.com/?p=343"
+    },
+    "modified": "2020-06-20T12:12:07",
+    "modified_gmt": "2020-06-20T12:12:07",
+    "slug": "offsettime",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/offsettime/",
+    "title": {
+      "rendered": "OffsetTime"
+    },
+    "content": {
+      "rendered": "\n<p>Java OffsetTime class is an immutable date-time object that represents a time, often viewed as hour-minute-second offset. It inherits Object class and implements the Comparable interface.</p>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h2>Java OffsetTime class declaration</h2>\n\n\n\n<p>Let&#8217;s see the declaration of java.time.OffsetTime class.</p>\n\n\n\n<ol><li><strong>public</strong>&nbsp;<strong>final</strong>&nbsp;<strong>class</strong>&nbsp;OffsetTime&nbsp;<strong>extends</strong>&nbsp;Object&nbsp;&nbsp;&nbsp;</li><li class=\"\"><strong>implements</strong>&nbsp;Temporal,&nbsp;TemporalAdjuster,&nbsp;Comparable&lt;OffsetTime&gt;,&nbsp;Serializable&nbsp;&nbsp;</li></ol>\n\n\n\n<h3>Methods of Java OffsetTime</h3>\n\n\n\n<figure class=\"wp-block-table\"><table><tbody><tr><th>Method</th><th>Description</th></tr><tr><td>String format(DateTimeFormatter formatter)</td><td>It is used to format this time using the specified formatter.</td></tr><tr><td>int get(TemporalField field)</td><td>It is used to get the value of the specified field from this time as an int.</td></tr><tr><td>int getHour()</td><td>It is used to get the hour-of-day field.</td></tr><tr><td>int getMinute()</td><td>It is used to get the minute-of-hour field.</td></tr><tr><td>int getSecond()</td><td>It is used to get the second-of-minute field.</td></tr><tr><td>static OffsetTime now()</td><td>It is used to obtain the current time from the system clock in the default time-zone.</td></tr><tr><td>static OffsetTime of(LocalTime time, ZoneOffset offset)</td><td>It is used to obtain an instance of OffsetTime from a local time and an offset.</td></tr><tr><td>ValueRange range(TemporalField field)</td><td>It is used to get the range of valid values for the specified field.</td></tr><tr><td>VLocalTime toLocalTime()</td><td>It is used to get the LocalTime part of this date-time.</td></tr></tbody></table></figure>\n\n\n\n<h2>Java OffsetTime class Example</h2>\n\n\n\n<pre class=\"wp-block-code\"><code>import java.time.OffsetTime;  \nimport java.time.temporal.ChronoField;  \npublic class OffsetTimeExample1 {  \n  public static void main(String&#91;] args) {  \n    OffsetTime offset = OffsetTime.now();  \n    int h = offset.get(ChronoField.HOUR_OF_DAY);  \n    System.out.println(h);  \n    int m = offset.get(ChronoField.MINUTE_OF_DAY);  \n    System.out.println(m);  \n    int s = offset.get(ChronoField.SECOND_OF_DAY);  \n    System.out.println(s);  \n  }  \n}  </code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>16\n970\n58224</code></pre>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h2>Java OffsetTime class Example: getHour()</h2>\n\n\n\n<pre class=\"wp-block-code\"><code>import java.time.OffsetTime;  \npublic class OffsetTimeExample2 {  \n  public static void main(String&#91;] args) {  \n    OffsetTime offset = OffsetTime.now();  \n    int h = offset.getHour();  \n    System.out.println(h+ \" hour\");  \n  }  \n}  </code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>15 hour\n</code></pre>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h2>Java OffsetTime class Example: getMinute()</h2>\n\n\n\n<pre class=\"wp-block-code\"><code>import java.time.OffsetTime;  \npublic class OffsetTimeExample3 {  \n  public static void main(String&#91;] args) {  \n    OffsetTime offset = OffsetTime.now();  \n    int m = offset.getMinute();  \n    System.out.println(m+ \" minute\");  \n  }  \n}  </code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>24 minute\n</code></pre>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h2>Java OffsetTime class Example: getSecond()</h2>\n\n\n\n<pre class=\"wp-block-code\"><code>import java.time.OffsetTime;  \npublic class OffsetTimeExample4 {  \n  public static void main(String&#91;] args) {  \n    OffsetTime offset = OffsetTime.now();  \n    int s = offset.getSecond();  \n    System.out.println(s+ \" second\");  \n  }  \n}  </code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>8 second</code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Java OffsetTime class is an immutable date-time object that represents a time, often viewed as hour-minute-second offset. It inherits Object class and implements the Comparable interface. Java OffsetTime class declaration Let&#8217;s see the declaration of java.time.OffsetTime class. public&nbsp;final&nbsp;class&nbsp;OffsetTime&nbsp;extends&nbsp;Object&nbsp;&nbsp;&nbsp; implements&nbsp;Temporal,&nbsp;TemporalAdjuster,&nbsp;Comparable&lt;OffsetTime&gt;,&nbsp;Serializable&nbsp;&nbsp; Methods of Java OffsetTime Method Description String format(DateTimeFormatter formatter) It is used to format this time [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [13],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/343"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=343"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/343/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 392,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/343/revisions/392"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=343"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=343"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=343"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 344,
+    "date": "2020-06-20T12:14:31",
+    "date_gmt": "2020-06-20T12:14:31",
+    "guid": {
+      "rendered": "http://java.foobrdigital.com/?p=344"
+    },
+    "modified": "2020-07-13T17:32:03",
+    "modified_gmt": "2020-07-13T17:32:03",
+    "slug": "offsetdatetime",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/offsetdatetime/",
+    "title": {
+      "rendered": "OffsetDateTime"
+    },
+    "content": {
+      "rendered": "\n<p>Java OffsetDateTime class is an immutable representation of a date-time with an offset. It inherits Object class and implements the Comparable interface.</p>\n\n\n\n<p>OffsetDateTime class is used to store the date and time fields, to a precision of nanoseconds.</p>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h2>Java OffsetDateTime class declaration</h2>\n\n\n\n<p>Let&#8217;s see the declaration of java.time.OffsetDateTime class.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>public final class OffsetDateTime extends Object   \nimplements Temporal, TemporalAdjuster, Comparable&lt;OffsetDateTime>, Serializable </code></pre>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h3>Methods of Java OffsetDateTime</h3>\n\n\n\n<figure class=\"wp-block-table\"><table><tbody><tr><th>Method</th><th>Description</th></tr><tr><td>int get(TemporalField field)</td><td>It is used to get the value of the specified field from this date-time as an int.</td></tr><tr><td>int getDayOfMonth()</td><td>It is used to get the day-of-month field.</td></tr><tr><td>iint getDayOfYear()</td><td>It is used to get the day-of-year field.</td></tr><tr><td>DayOfWeek getDayOfWeek()</td><td>It is used to get the day-of-week field, which is an enum DayOfWeek.</td></tr><tr><td>OffsetDateTime minusDays(long days)</td><td>It is used to return a copy of this OffsetDateTime with the specified number of days subtracted.</td></tr><tr><td>static OffsetDateTime now()</td><td>It is used to obtain the current date-time from the system clock in the default time-zone.</td></tr><tr><td>OffsetDateTime plusDays(long days)</td><td>It is used to return a copy of this OffsetDateTime with the specified number of days added.</td></tr><tr><td>LocalDate toLocalDate()</td><td>It is used to get the LocalDate part of this date-time.</td></tr></tbody></table></figure>\n\n\n\n<h2>Java OffsetDateTime class Example: getDayOfMonth()</h2>\n\n\n\n<pre class=\"wp-block-code\"><code>import java.time.OffsetDateTime;  \npublic class OffsetDateTimeExample1 {  \n    public static void main(String&#91;] args) {  \n        OffsetDateTime offsetDT = OffsetDateTime.now();  \n        System.out.println(offsetDT.getDayOfMonth());  \n    }  \n}  </code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>18\n</code></pre>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h2>Java OffsetDateTime class Example: getDayOfYear()</h2>\n\n\n\n<pre class=\"wp-block-code\"><code>import java.time.OffsetDateTime;  \npublic class OffsetDateTimeExample2 {  \n    public static void main(String&#91;] args) {  \n        OffsetDateTime offsetDT = OffsetDateTime.now();  \n        System.out.println(offsetDT.getDayOfYear());  \n    }  \n}  </code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>18\n</code></pre>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h2>Java OffsetDateTime class Example: getDayOfWeek()</h2>\n\n\n\n<pre class=\"wp-block-code\"><code>import java.time.OffsetDateTime;  \npublic class OffsetDateTimeExample3 {  \n    public static void main(String&#91;] args) {  \n        OffsetDateTime offsetDT = OffsetDateTime.now();  \n        System.out.println(offsetDT.getDayOfWeek());  \n    }  \n}  </code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>WEDNESDAY\n</code></pre>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h2>Java OffsetDateTime class Example: toLocalDate()</h2>\n\n\n\n<pre class=\"wp-block-code\"><code>import java.time.OffsetDateTime;  \npublic class OffsetDateTimeExample4 {  \n    public static void main(String&#91;] args) {  \n        OffsetDateTime offsetDT = OffsetDateTime.now();  \n        System.out.println(offsetDT.toLocalDate());  \n    }  \n}  </code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>2017-01-18\n</code></pre>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h2>Java OffsetDateTime class Example: minusDays()</h2>\n\n\n\n<pre class=\"wp-block-code\"><code>import java.time.OffsetDateTime;  \npublic class OffsetDateTimeExample5 {  \n  public static void main(String&#91;] args) {  \n    OffsetDateTime offset = OffsetDateTime.now();  \n    OffsetDateTime value =  offset.minusDays(240);  \n    System.out.println(value);  \n  }   \n}  </code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>2016-05-23T12:12:31.642+05:30\t\n</code></pre>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h2>Java OffsetDateTime class Example: plusDays()</h2>\n\n\n\n<pre class=\"wp-block-code\"><code>import java.time.OffsetDateTime;  \npublic class OffsetDateTimeExample6 {  \n  public static void main(String&#91;] args) {  \n    OffsetDateTime offset = OffsetDateTime.now();  \n    OffsetDateTime value =  offset.plusDays(240);  \n    System.out.println(value);  \n  }  \n}  </code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-preformatted\"></pre>\n\n\n\n<pre class=\"wp-block-code\"><code>2017-09-15T13:50:30.526+05:30</code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Java OffsetDateTime class is an immutable representation of a date-time with an offset. It inherits Object class and implements the Comparable interface. OffsetDateTime class is used to store the date and time fields, to a precision of nanoseconds. Java OffsetDateTime class declaration Let&#8217;s see the declaration of java.time.OffsetDateTime class. Methods of Java OffsetDateTime Method Description [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [13],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/344"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=344"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 2,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/344/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 850,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/344/revisions/850"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=344"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=344"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=344"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 419,
+    "date": "2020-06-23T09:27:40",
+    "date_gmt": "2020-06-23T09:27:40",
+    "guid": {
+      "rendered": "http://java.foobrdigital.com/?p=419"
+    },
+    "modified": "2020-07-13T17:32:48",
+    "modified_gmt": "2020-07-13T17:32:48",
+    "slug": "java-offsetdatetime-class",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/java-offsetdatetime-class/",
+    "title": {
+      "rendered": "Java OffsetDateTime class"
+    },
+    "content": {
+      "rendered": "\n<p>Java OffsetDateTime class is an immutable representation of a date-time with an offset. It inherits Object class and implements the Comparable interface.</p>\n\n\n\n<p>OffsetDateTime class is used to store the date and time fields, to a precision of nanoseconds.</p>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h2>Java OffsetDateTime class declaration</h2>\n\n\n\n<p>Let&#8217;s see the declaration of java.time.OffsetDateTime class.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>public final class OffsetDateTime extends Object   \nimplements Temporal, TemporalAdjuster, Comparable&lt;OffsetDateTime>, Serializable  </code></pre>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h3>Methods of Java OffsetDateTime</h3>\n\n\n\n<figure class=\"wp-block-table\"><table><tbody><tr><th>Method</th><th>Description</th></tr><tr><td>int get(TemporalField field)</td><td>It is used to get the value of the specified field from this date-time as an int.</td></tr><tr><td>int getDayOfMonth()</td><td>It is used to get the day-of-month field.</td></tr><tr><td>iint getDayOfYear()</td><td>It is used to get the day-of-year field.</td></tr><tr><td>DayOfWeek getDayOfWeek()</td><td>It is used to get the day-of-week field, which is an enum DayOfWeek.</td></tr><tr><td>OffsetDateTime minusDays(long days)</td><td>It is used to return a copy of this OffsetDateTime with the specified number of days subtracted.</td></tr><tr><td>static OffsetDateTime now()</td><td>It is used to obtain the current date-time from the system clock in the default time-zone.</td></tr><tr><td>OffsetDateTime plusDays(long days)</td><td>It is used to return a copy of this OffsetDateTime with the specified number of days added.</td></tr><tr><td>LocalDate toLocalDate()</td><td>It is used to get the LocalDate part of this date-time.</td></tr></tbody></table></figure>\n\n\n\n<p><ins><ins></ins></ins></p>\n\n\n\n<h2>Java OffsetDateTime class Example: getDayOfMonth()</h2>\n\n\n\n<pre class=\"wp-block-code\"><code>import java.time.OffsetDateTime;  \npublic class OffsetDateTimeExample1 {  \n    public static void main(String&#91;] args) {  \n        OffsetDateTime offsetDT = OffsetDateTime.now();  \n        System.out.println(offsetDT.getDayOfMonth());  \n    }  \n}  </code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>18\n</code></pre>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h2>Java OffsetDateTime class Example: getDayOfYear()</h2>\n\n\n\n<pre class=\"wp-block-code\"><code>import java.time.OffsetDateTime;  \npublic class OffsetDateTimeExample2 {  \n    public static void main(String&#91;] args) {  \n        OffsetDateTime offsetDT = OffsetDateTime.now();  \n        System.out.println(offsetDT.getDayOfYear());  \n    }  \n} </code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-preformatted\">18\n</pre>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h2>Java OffsetDateTime class Example: getDayOfWeek()</h2>\n\n\n\n<pre class=\"wp-block-code\"><code>import java.time.OffsetDateTime;  \npublic class OffsetDateTimeExample3 {  \n    public static void main(String&#91;] args) {  \n        OffsetDateTime offsetDT = OffsetDateTime.now();  \n        System.out.println(offsetDT.getDayOfWeek());  \n    }  \n}  </code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-preformatted\">WEDNESDAY\n</pre>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h2>Java OffsetDateTime class Example: toLocalDate()</h2>\n\n\n\n<pre class=\"wp-block-code\"><code>import java.time.OffsetDateTime;  \npublic class OffsetDateTimeExample4 {  \n    public static void main(String&#91;] args) {  \n        OffsetDateTime offsetDT = OffsetDateTime.now();  \n        System.out.println(offsetDT.toLocalDate());  \n    }  \n}  </code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>2017-01-18\n</code></pre>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h2>Java OffsetDateTime class Example: minusDays()</h2>\n\n\n\n<pre class=\"wp-block-code\"><code>import java.time.OffsetDateTime;  \npublic class OffsetDateTimeExample5 {  \n  public static void main(String&#91;] args) {  \n    OffsetDateTime offset = OffsetDateTime.now();  \n    OffsetDateTime value =  offset.minusDays(240);  \n    System.out.println(value);  \n  }   \n}</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>2016-05-23T12:12:31.642+05:30\t\n</code></pre>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h2>Java OffsetDateTime class Example: plusDays()</h2>\n\n\n\n<pre class=\"wp-block-code\"><code>import java.time.OffsetDateTime;  \npublic class OffsetDateTimeExample6 {  \n  public static void main(String&#91;] args) {  \n    OffsetDateTime offset = OffsetDateTime.now();  \n    OffsetDateTime value =  offset.plusDays(240);  \n    System.out.println(value);  \n  }  \n}  </code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>2017-09-15T13:50:30.526+05:30</code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Java OffsetDateTime class is an immutable representation of a date-time with an offset. It inherits Object class and implements the Comparable interface. OffsetDateTime class is used to store the date and time fields, to a precision of nanoseconds. Java OffsetDateTime class declaration Let&#8217;s see the declaration of java.time.OffsetDateTime class. Methods of Java OffsetDateTime Method Description [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [13],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/419"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=419"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 2,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/419/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 851,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/419/revisions/851"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=419"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=419"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=419"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 421,
+    "date": "2020-06-23T09:32:51",
+    "date_gmt": "2020-06-23T09:32:51",
+    "guid": {
+      "rendered": "http://java.foobrdigital.com/?p=421"
+    },
+    "modified": "2020-06-23T09:32:51",
+    "modified_gmt": "2020-06-23T09:32:51",
+    "slug": "java-clock-class",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/java-clock-class/",
+    "title": {
+      "rendered": "Java Clock class"
+    },
+    "content": {
+      "rendered": "\n<p>Java Clock class is used to provide an access to the current instant, date and time using a time zone. It inherits the Object class.</p>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h2>Java Clock class declaration</h2>\n\n\n\n<p>Let&#8217;s see the declaration of java.time.Clock class.</p>\n\n\n\n<ol><li><strong>public</strong>&nbsp;<strong>abstract</strong>&nbsp;<strong>class</strong>&nbsp;Clock&nbsp;<strong>extends</strong>&nbsp;Object&nbsp;&nbsp;</li></ol>\n\n\n\n<h3>Methods of Java Clock</h3>\n\n\n\n<figure class=\"wp-block-table\"><table><tbody><tr><th>Method</th><th>Description</th></tr><tr><td>abstract ZoneId getZone()</td><td>It is used to get the time-zone being used to create dates and times.</td></tr><tr><td>abstract Instant instant()</td><td>It is used to get the current instant of the clock.</td></tr><tr><td>static Clock offset(Clock baseClock, Duration offsetDuration)</td><td>It is used to obtain a clock that returns instants from the specified clock with the specified duration added</td></tr><tr><td>static Clock systemDefaultZone()</td><td>It is used to obtain a clock that returns the current instant using the best available system clock, converting to date and time using the default time-zone.</td></tr><tr><td>static Clock systemUTC()</td><td>It is used to obtain a clock that returns the current instant using the best available system clock, converting to date and time using the UTC time zone.</td></tr></tbody></table></figure>\n\n\n\n<p><ins><ins></ins></ins></p>\n\n\n\n<h2>Java Clock class Example: getZone()</h2>\n\n\n\n<pre class=\"wp-block-code\"><code>import java.time.Clock;  \npublic class ClockExample1 {  \n  public static void main(String&#91;] args) {  \n    Clock c = Clock.systemDefaultZone();      \n    System.out.println(c.getZone());  \n  }  \n}</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Asia/Calcutta\n</code></pre>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h2>Java Clock class Example: instant()</h2>\n\n\n\n<pre class=\"wp-block-code\"><code>import java.time.Clock;  \npublic class ClockExample2 {  \n  public static void main(String&#91;] args) {  \n    Clock c = Clock.systemUTC();  \n    System.out.println(c.instant());  \n  }  \n}  </code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>2017-01-14T07:11:07.748Z\n</code></pre>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h2>Java Clock class Example: systemUTC()</h2>\n\n\n\n<pre class=\"wp-block-code\"><code>import java.time.Clock;  \npublic class ClockExample3 {  \n  public static void main(String&#91;] args) {  \n    Clock c = Clock.systemUTC();  \n    System.out.println(c.instant());  \n  }  \n}  </code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>2017-01-14T07:11:07.748Z\n</code></pre>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h2>Java Clock class Example: offset()</h2>\n\n\n\n<pre class=\"wp-block-code\"><code>import java.time.Clock;  \nimport java.time.Duration;  \npublic class ClockExample4 {  \n  public static void main(String&#91;] args) {  \n    Clock c = Clock.systemUTC();  \n    Duration d = Duration.ofHours(5);  \n    Clock clock = Clock.offset(c, d);    \n    System.out.println(clock.instant());  \n  }  \n} </code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>2017-01-14T14:15:25.389Z</code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Java Clock class is used to provide an access to the current instant, date and time using a time zone. It inherits the Object class. Java Clock class declaration Let&#8217;s see the declaration of java.time.Clock class. public&nbsp;abstract&nbsp;class&nbsp;Clock&nbsp;extends&nbsp;Object&nbsp;&nbsp; Methods of Java Clock Method Description abstract ZoneId getZone() It is used to get the time-zone being used [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [13],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/421"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=421"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/421/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 422,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/421/revisions/422"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=421"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=421"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=421"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 423,
+    "date": "2020-06-23T09:35:38",
+    "date_gmt": "2020-06-23T09:35:38",
+    "guid": {
+      "rendered": "http://java.foobrdigital.com/?p=423"
+    },
+    "modified": "2020-06-23T09:36:28",
+    "modified_gmt": "2020-06-23T09:36:28",
+    "slug": "zoneddatetime",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/zoneddatetime/",
+    "title": {
+      "rendered": "ZonedDateTime"
+    },
+    "content": {
+      "rendered": "\n<p>Java ZonedDateTime class is an immutable representation of a date-time with a time-zone. It inherits Object class and implements the ChronoZonedDateTime interface.</p>\n\n\n\n<p>ZonedDateTime class is used to store all date and time fields, to a precision of nanoseconds, and a time-zone with a zone offset used to handle ambiguous local date-times.</p>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h2>Java ZonedDateTime class declaration</h2>\n\n\n\n<p>Let&#8217;s see the declaration of java.time.ZonedDateTime class.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>public final class ZonedDateTime extends Object   \nimplements Temporal, ChronoZonedDateTime&lt;LocalDate>, Serializable  </code></pre>\n\n\n\n<h3>Methods of Java ZonedDateTime</h3>\n\n\n\n<figure class=\"wp-block-table\"><table><tbody><tr><th>Method</th><th>Description</th></tr><tr><td>String format(DateTimeFormatter formatter)</td><td>It is used to format this date-time using the specified formatter.</td></tr><tr><td>int get(TemporalField field)</td><td>It is used to get the value of the specified field from this date-time as an int.</td></tr><tr><td>ZoneId getZone()</td><td>It is used to get the time-zone, such as &#8216;Asia/Kolkata&#8217;.</td></tr><tr><td>ZonedDateTime withZoneSameInstant(ZoneId zone)</td><td>It is used to return a copy of this date-time with a different time-zone, retaining the instant.</td></tr><tr><td>static ZonedDateTime now()</td><td>It is used to obtain the current date-time from the system clock in the default time-zone.</td></tr><tr><td>static ZonedDateTime of(LocalDate date, LocalTime time, ZoneId zone)</td><td>It is used to obtain an instance of ZonedDateTime from a local date and time.</td></tr><tr><td>ZonedDateTime minus(long amountToSubtract, TemporalUnit unit)</td><td>It is used to return a copy of this date-time with the specified amount subtracted.</td></tr><tr><td>ZonedDateTime plus(long amountToAdd, TemporalUnit unit)</td><td>It is used to return a copy of this date-time with the specified amount added.</td></tr></tbody></table></figure>\n\n\n\n<p><ins><ins></ins></ins></p>\n\n\n\n<h2>Java ZonedDateTime class Example</h2>\n\n\n\n<pre class=\"wp-block-code\"><code>import java.time.ZonedDateTime;  \npublic class ZonedDateTimeExample1{  \n  public static void main(String&#91;] args) {  \n    ZonedDateTime zone = ZonedDateTime.parse(\"2016-10-05T08:20:10+05:30&#91;Asia/Kolkata]\");  \n    System.out.println(zone);  \n  }  \n}  </code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>2016-10-05T08:20:10+05:30&#91;Asia/Kolkata]\n</code></pre>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h2>Java ZonedDateTime class Example: of() and withZoneSameInstant()</h2>\n\n\n\n<pre class=\"wp-block-code\"><code>import java.time.*;  \npublic class ZonedDateTimeExample2{  \n  public static void main(String&#91;] args) {  \n    LocalDateTime  ldt = LocalDateTime.of(2017, Month.JANUARY,  19,   15,   26);  \n    ZoneId  india = ZoneId.of(\"Asia/Kolkata\");   \n    ZonedDateTime zone1  = ZonedDateTime.of(ldt, india);   \n    System.out.println(\"In India Central Time Zone: \" + zone1);  \n    ZoneId  tokyo = ZoneId.of(\"Asia/Tokyo\");   \n    ZonedDateTime zone2   = zone1.withZoneSameInstant(tokyo);   \n    System.out.println(\"In Tokyo Central Time Zone:\"  + zone2);  \n  }  \n}  </code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>In India Central Time Zone: 2017-01-19T15:26+05:30&#91;Asia/Kolkata]\nIn Tokyo Central Time Zone:2017-01-19T18:56+09:00&#91;Asia/Tokyo]</code></pre>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h2>Java ZonedDateTime class Example: getZone()</h2>\n\n\n\n<pre class=\"wp-block-code\"><code>import java.time.ZonedDateTime;  \npublic class ZonedDateTimeExample3{  \n  public static void main(String&#91;] args) {  \n    ZonedDateTime zone =ZonedDateTime.now();  \n    System.out.println(zone.getZone());  \n  }   \n}  </code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Asia/Kolkata\n</code></pre>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h2>Java ZonedDateTime class Example: minus()</h2>\n\n\n\n<pre class=\"wp-block-code\"><code>import java.time.Period;  \nimport java.time.ZonedDateTime;  \npublic class ZonedDateTimeExample4 {  \n  public static void main(String&#91;] args) {  \n    ZonedDateTime zone= ZonedDateTime.now();  \n    ZonedDateTime m = zone.minus(Period.ofDays(126));  \n    System.out.println(m);  \n  }   \n}  </code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>2016-09-15T12:54:01.354+05:30&#91;Asia/Kolkata]\n</code></pre>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h2>Java ZonedDateTime class Example: plus()</h2>\n\n\n\n<pre class=\"wp-block-code\"><code>import java.time.*;  \npublic class ZonedDateTimeExample5{  \n  public static void main(String&#91;] args) {  \n    ZonedDateTime zone= ZonedDateTime.now();  \n    ZonedDateTime p = zone.plus(Period.ofDays(126));  \n    System.out.println(p);  \n  }   \n} </code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>2017-05-25T12:56:12.417+05:30&#91;Asia/Kolkata]</code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Java ZonedDateTime class is an immutable representation of a date-time with a time-zone. It inherits Object class and implements the ChronoZonedDateTime interface. ZonedDateTime class is used to store all date and time fields, to a precision of nanoseconds, and a time-zone with a zone offset used to handle ambiguous local date-times. Java ZonedDateTime class declaration [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [13],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/423"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=423"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/423/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 424,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/423/revisions/424"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=423"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=423"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=423"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 425,
+    "date": "2020-06-23T09:39:33",
+    "date_gmt": "2020-06-23T09:39:33",
+    "guid": {
+      "rendered": "http://java.foobrdigital.com/?p=425"
+    },
+    "modified": "2020-07-13T17:34:19",
+    "modified_gmt": "2020-07-13T17:34:19",
+    "slug": "zoneid-class",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/zoneid-class/",
+    "title": {
+      "rendered": "ZoneId class"
+    },
+    "content": {
+      "rendered": "\n<p>Java ZoneId class specifies a time zone identifier and provides a rule for converting between an Instant and a LocalDateTime. It inherits Object class and implements the Serializable interface.</p>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h2>Java ZoneId class declaration</h2>\n\n\n\n<p>Let&#8217;s see the declaration of java.time.ZoneId class.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>public abstract class ZoneId extends Object implements Serializable  </code></pre>\n\n\n\n<h3>Methods of Java ZoneId</h3>\n\n\n\n<figure class=\"wp-block-table\"><table><tbody><tr><th>Method</th><th>Description</th></tr><tr><td>String getDisplayName(TextStyle style, Locale locale)</td><td>It is used to get the textual representation of the zone, such as &#8216;India Time&#8217; or &#8216;+05:30&#8217;.</td></tr><tr><td>abstract String getId()</td><td>It is used to get the unique time-zone ID.</td></tr><tr><td>static ZoneId of(String zoneId)</td><td>It is used to obtain an instance of ZoneId from an ID ensuring that the ID is valid and available for use.</td></tr><tr><td>static ZoneId systemDefault()</td><td>It is used to get the system default time-zone.</td></tr><tr><td>boolean equals(Object obj)</td><td>It is used to check if this time-zone ID is equal to another time-zone ID.</td></tr></tbody></table></figure>\n\n\n\n<p><ins><ins></ins></ins></p>\n\n\n\n<h2>Java ZoneId class Example</h2>\n\n\n\n<pre class=\"wp-block-code\"><code>import java.time.*;  \npublic class ZoneIdExample1 {  \n  public static void main(String... args) {  \n    ZoneId zoneid1 = ZoneId.of(\"Asia/Kolkata\");  \n    ZoneId zoneid2 = ZoneId.of(\"Asia/Tokyo\");  \n    LocalTime id1 = LocalTime.now(zoneid1);  \n    LocalTime id2 = LocalTime.now(zoneid2);  \n    System.out.println(id1);  \n    System.out.println(id2);  \n    System.out.println(id1.isBefore(id2));    \n  }  \n}  </code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>14:28:58.230\n17:58:58.230\ntrue</code></pre>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h2>Java ZoneId class Example: systemDefault()</h2>\n\n\n\n<pre class=\"wp-block-code\"><code>import java.time.ZoneId;  \npublic class ZoneIdExample2 {  \n  public static void main(String&#91;] args) {  \n    ZoneId zone = ZoneId.systemDefault();     \n    System.out.println(zone);  \n  }       \n}  </code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Asia/Kolkata\n</code></pre>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h2>Java ZoneId class Example: getId()</h2>\n\n\n\n<pre class=\"wp-block-code\"><code>import java.time.ZoneId;  \npublic class ZoneIdExample3 {  \n  public static void main(String&#91;] args) {  \n    ZoneId z = ZoneId.systemDefault();  \n    String s = z.getId();  \n    System.out.println(s);  \n  }   \n}  </code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Asia/Kolkata\n</code></pre>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h2>Java ZoneId class Example: getDisplayName()</h2>\n\n\n\n<pre class=\"wp-block-code\"><code>import java.util.Locale;  \nimport java.time.ZoneId;  \nimport java.time.format.TextStyle;  \npublic class ZoneIdExample4 {  \n  public static void main(String&#91;] args) {  \n    ZoneId z = ZoneId.systemDefault();  \n    System.out.println(z.getDisplayName(TextStyle.FULL, Locale.ROOT));  \n  }   \n}  </code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>India Time</code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Java ZoneId class specifies a time zone identifier and provides a rule for converting between an Instant and a LocalDateTime. It inherits Object class and implements the Serializable interface. Java ZoneId class declaration Let&#8217;s see the declaration of java.time.ZoneId class. Methods of Java ZoneId Method Description String getDisplayName(TextStyle style, Locale locale) It is used to [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [13],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/425"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=425"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 2,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/425/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 852,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/425/revisions/852"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=425"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=425"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=425"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 427,
+    "date": "2020-06-23T10:46:38",
+    "date_gmt": "2020-06-23T10:46:38",
+    "guid": {
+      "rendered": "http://java.foobrdigital.com/?p=427"
+    },
+    "modified": "2020-06-23T10:46:38",
+    "modified_gmt": "2020-06-23T10:46:38",
+    "slug": "zoneoffset",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/zoneoffset/",
+    "title": {
+      "rendered": "ZoneOffset"
+    },
+    "content": {
+      "rendered": "\n<p>Java ZoneOffset class is used to represent the fixed zone offset from UTC time zone. It inherits the ZoneId class and implements the Comparable interface.</p>\n\n\n\n<p>The ZoneOffset class declares three constants:</p>\n\n\n\n<ul><li><strong>MAX:</strong>&nbsp;It is the maximum supported zone offsets.</li><li><strong>MIN:</strong>&nbsp;It is the minimum supported zone offsets.</li><li><strong>UTC:</strong>&nbsp;It is the time zone offset constant for UTC.</li></ul>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h2>Java ZoneOffset class declaration</h2>\n\n\n\n<p>Let&#8217;s see the declaration of java.time.ZoneOffset class.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>public final class ZoneOffset extends ZoneId   \nimplements TemporalAccessor, TemporalAdjuster, Comparable&lt;ZoneOffset>, Serializable  </code></pre>\n\n\n\n<h3>Methods of Java ZoneOffset</h3>\n\n\n\n<figure class=\"wp-block-table\"><table><tbody><tr><th>Method</th><th>Description</th></tr><tr><td>Temporal adjustInto(Temporal temporal)</td><td>It is used to adjust the specified temporal object to have the same offset as this object.</td></tr><tr><td>int get(TemporalField field)</td><td>It is used to get the value of the specified field from this offset as an int.</td></tr><tr><td>boolean isSupported(TemporalField field)</td><td>It is used to check if the specified field is supported.</td></tr><tr><td>static ZoneOffset of(String offsetId)</td><td>It is used to obtain an instance of ZoneOffset using the ID.</td></tr><tr><td>static ZoneOffset ofHours(int hours)</td><td>It is used to obtain an instance of ZoneOffset using an offset in hours.</td></tr><tr><td>static ZoneOffset ofHoursMinutes(int hours, int minutes)</td><td>It is used to obtain an instance of ZoneOffset using an offset in hours and minutes.</td></tr><tr><td>ValueRange range(TemporalField field)</td><td>It is used to get the range of valid values</td></tr></tbody></table></figure>\n\n\n\n<p><ins><ins></ins></ins></p>\n\n\n\n<h2>Java ZoneOffset Example</h2>\n\n\n\n<pre class=\"wp-block-code\"><code>import java.time.*;  \nimport java.time.temporal.Temporal;  \npublic class ZoneOffsetExample1 {  \n  public static void main(String&#91;] args) {  \n    ZoneOffset zone = ZoneOffset.UTC;  \n    Temporal temp = zone.adjustInto(ZonedDateTime.now());  \n    System.out.println(temp);  \n  }  \n}  </code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>2017-01-29T12:43:00.702+05:30&#91;Asia/Calcutta]\n</code></pre>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h2>Java ZoneOffset Example: ofHours()</h2>\n\n\n\n<pre class=\"wp-block-code\"><code>import java.time.ZoneOffset;  \npublic class ZoneOffsetExample2 {  \n  public static void main(String&#91;] args) {  \n    ZoneOffset zone = ZoneOffset.ofHours(5);  \n    System.out.println(zone);  \n  }  \n}</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<p></p>\n\n\n\n<pre class=\"wp-block-code\"><code>+05:00\n</code></pre>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h2>Java ZoneOffset Example: ofHoursMinutes()</h2>\n\n\n\n<pre class=\"wp-block-code\"><code>import java.time.ZoneOffset;  \npublic class ZoneOffsetExample3 {  \n  public static void main(String&#91;] args) {  \n    ZoneOffset zone = ZoneOffset.ofHoursMinutes(5,30);  \n    System.out.println(zone);  \n  }  \n}  </code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>+05:30\n</code></pre>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h2>Java ZoneOffset Example: isSupported()</h2>\n\n\n\n<pre class=\"wp-block-code\"><code>import java.time.ZoneOffset;  \nimport java.time.temporal.ChronoField;  \npublic class ZoneOffsetExample4 {  \n  public static void main(String&#91;] args) {  \n    ZoneOffset zone = ZoneOffset.UTC;  \n    boolean b1 = zone.isSupported(ChronoField.OFFSET_SECONDS);  \n    System.out.println(b1);  \n    boolean b2 = zone.isSupported(ChronoField.SECOND_OF_MINUTE);  \n    System.out.println(b2);  \n  }  \n}  </code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>true\nfalse</code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Java ZoneOffset class is used to represent the fixed zone offset from UTC time zone. It inherits the ZoneId class and implements the Comparable interface. The ZoneOffset class declares three constants: MAX:&nbsp;It is the maximum supported zone offsets. MIN:&nbsp;It is the minimum supported zone offsets. UTC:&nbsp;It is the time zone offset constant for UTC. Java [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [13],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/427"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=427"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/427/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 428,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/427/revisions/428"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=427"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=427"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=427"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 429,
+    "date": "2020-06-23T10:50:16",
+    "date_gmt": "2020-06-23T10:50:16",
+    "guid": {
+      "rendered": "http://java.foobrdigital.com/?p=429"
+    },
+    "modified": "2020-06-23T10:50:16",
+    "modified_gmt": "2020-06-23T10:50:16",
+    "slug": "year-class",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/year-class/",
+    "title": {
+      "rendered": "Year class"
+    },
+    "content": {
+      "rendered": "\n<p>Java Year class is an immutable date-time object that represents a year. It inherits the Object class and implements the Comparable interface.</p>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h2>Java Year class declaration</h2>\n\n\n\n<p>Let&#8217;s see the declaration of java.time.Year class.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>public final class Year extends Object implements Temporal, TemporalAdjuster, Comparable&lt;Year>, Serializable  </code></pre>\n\n\n\n<h3>Methods of Java Year</h3>\n\n\n\n<figure class=\"wp-block-table\"><table><tbody><tr><th>Method</th><th>Description</th></tr><tr><td>LocalDate atDay(int dayOfYear)</td><td>It is used to combine this year with a day-of-year to create a LocalDate.</td></tr><tr><td>String format(DateTimeFormatter formatter)</td><td>It is used to format this year using the specified formatter.</td></tr><tr><td>int get(TemporalField field)</td><td>It is used to get the value of the specified field from this year as an int.</td></tr><tr><td>boolean isAfter(Year other)</td><td>It is used to check if this year is after the specified year.</td></tr><tr><td>boolean isBefore(Year other)</td><td>It is used to check if this year is before the specified year.</td></tr><tr><td>boolean isLeap()</td><td>It is used to check if the year is a leap year, according to the ISO proleptic calendar system rules.</td></tr><tr><td>int length()</td><td>It is used to get the length of this year in days.</td></tr><tr><td>static Year now()</td><td>It is used to obtain the current year from the system clock in the default time-zone.</td></tr></tbody></table></figure>\n\n\n\n<p><ins><ins></ins></ins></p>\n\n\n\n<h2>Java Year Example: now()</h2>\n\n\n\n<pre class=\"wp-block-code\"><code>import java.time.Year;  \npublic class YearExample1 {  \n  public static void main(String&#91;] args) {  \n    Year y = Year.now();  \n    System.out.println(y);  \n  }  \n}  </code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>2017\n</code></pre>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h2>Java Year Example: atDay()</h2>\n\n\n\n<pre class=\"wp-block-code\"><code>import java.time.LocalDate;  \nimport java.time.Year;  \npublic class YearExample2{  \n  public static void main(String&#91;] args) {  \n    Year y = Year.of(2017);  \n    LocalDate l = y.atDay(123);  \n    System.out.println(l);  \n  }  \n}  </code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>2017-05-03\n</code></pre>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h2>Java Year Example: length()</h2>\n\n\n\n<pre class=\"wp-block-code\"><code>import java.time.Year;  \npublic class YearExample3 {  \n  public static void main(String&#91;] args) {  \n    Year year = Year.of(2017);  \n    System.out.println(year.length());  \n  }  \n}  </code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>365\n</code></pre>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h2>Java Year Example: isLeap()</h2>\n\n\n\n<pre class=\"wp-block-code\"><code>import java.time.Year;  \npublic class YearExample4 {  \n  public static void main(String&#91;] args) {  \n    Year year = Year.of(2016);  \n    System.out.println(year.isLeap());  \n  }  \n}  </code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>true</code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Java Year class is an immutable date-time object that represents a year. It inherits the Object class and implements the Comparable interface. Java Year class declaration Let&#8217;s see the declaration of java.time.Year class. Methods of Java Year Method Description LocalDate atDay(int dayOfYear) It is used to combine this year with a day-of-year to create a [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [13],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/429"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=429"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/429/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 430,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/429/revisions/430"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=429"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=429"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=429"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 431,
+    "date": "2020-06-23T10:53:18",
+    "date_gmt": "2020-06-23T10:53:18",
+    "guid": {
+      "rendered": "http://java.foobrdigital.com/?p=431"
+    },
+    "modified": "2020-06-23T10:53:18",
+    "modified_gmt": "2020-06-23T10:53:18",
+    "slug": "yearmonth",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/yearmonth/",
+    "title": {
+      "rendered": "YearMonth"
+    },
+    "content": {
+      "rendered": "\n<p>Java YearMonth class is an immutable date-time object that represents the combination of a year and month. It inherits the Object class and implements the Comparable interface.</p>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h2>Java YearMonth class declaration</h2>\n\n\n\n<p>Let&#8217;s see the declaration of java.time.YearMonth class.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>public final class YearMonth extends Object   \nimplements Temporal, TemporalAdjuster, Comparable&lt;YearMonth>, Serializable  </code></pre>\n\n\n\n<h3>Methods of Java YearMonth</h3>\n\n\n\n<figure class=\"wp-block-table\"><table><tbody><tr><th>Method</th><th>Description</th></tr><tr><td>Temporal adjustInto(Temporal temporal)</td><td>It is used to adjust the specified temporal object to have this year-month.</td></tr><tr><td>String format(DateTimeFormatter formatter)</td><td>It is used to format this year-month using the specified formatter.</td></tr><tr><td>int get(TemporalField field)</td><td>It is used to get the value of the specified field from this year-month as an int.</td></tr><tr><td>boolean isLeapYear()</td><td>It is used to check if the year is a leap year, according to the ISO proleptic calendar system rules.</td></tr><tr><td>static YearMonth now()</td><td>It is used to obtain the current year-month from the system clock in the default time zone.</td></tr><tr><td>static YearMonth of(int year, int month)</td><td>It is used to obtain an instance of YearMonth from a year and month.</td></tr><tr><td>YearMonth plus(TemporalAmount amountToAdd)</td><td>It is used to return a copy of this year-month with the specified amount added.</td></tr><tr><td>YearMonth minus (TemporalAmount amountToSubtract)</td><td>It is used to return a copy of this year-month with the specified amount subtracted.</td></tr></tbody></table></figure>\n\n\n\n<p><ins><ins></ins></ins></p>\n\n\n\n<h3>Java YearMonth Example: now()</h3>\n\n\n\n<pre class=\"wp-block-code\"><code>import java.time.YearMonth;  \npublic class YearMonthExample1 {  \npublic static void main(String&#91;] args) {  \n  YearMonth ym = YearMonth.now();  \n  System.out.println(ym);  \n}  \n}  </code></pre>\n\n\n\n<pre class=\"wp-block-code\"><code>2017-01  \n</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>2017-01  \n</code></pre>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h3>Java YearMonth Example: format()</h3>\n\n\n\n<pre class=\"wp-block-code\"><code>import java.time.YearMonth;  \nimport java.time.format.DateTimeFormatter;  \npublic class YearMonthExample2 {  \n  public static void main(String&#91;] args) {  \n    YearMonth ym = YearMonth.now();  \n    String s = ym.format(DateTimeFormatter.ofPattern(\"MM yyyy\"));  \n    System.out.println(s);  \n  }  \n} </code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>01 2017\n</code></pre>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h3>Java YearMonth Example: get()</h3>\n\n\n\n<pre class=\"wp-block-code\"><code>import java.time.YearMonth;  \nimport java.time.temporal.ChronoField;  \npublic class YearMonthExample3 {  \n  public static void main(String&#91;] args) {  \n    YearMonth y = YearMonth.now();  \n    long l1 = y.get(ChronoField.YEAR);  \n    System.out.println(l1);  \n    long l2 = y.get(ChronoField.MONTH_OF_YEAR);  \n    System.out.println(l2);  \n  }  \n}</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>2017\n1</code></pre>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h3>Java YearMonth Example: plus()</h3>\n\n\n\n<pre class=\"wp-block-code\"><code>import java.time.*;  \npublic class YearMonthExample4 {  \n  public static void main(String&#91;] args) {  \n    YearMonth ym1 = YearMonth.now();  \n    YearMonth ym2 = ym1.plus(Period.ofYears(2));  \n    System.out.println(ym2);  \n  }  \n}  </code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>2019-01\n</code></pre>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h3>Java YearMonth Example: minus()</h3>\n\n\n\n<pre class=\"wp-block-code\"><code>import java.time.*;  \npublic class YearMonthExample5 {  \n  public static void main(String&#91;] args) {  \n    YearMonth ym1 = YearMonth.now();  \n    YearMonth ym2 = ym1.minus(Period.ofYears(2));  \n    System.out.println(ym2);  \n  }  \n}</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>2015-01</code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Java YearMonth class is an immutable date-time object that represents the combination of a year and month. It inherits the Object class and implements the Comparable interface. Java YearMonth class declaration Let&#8217;s see the declaration of java.time.YearMonth class. Methods of Java YearMonth Method Description Temporal adjustInto(Temporal temporal) It is used to adjust the specified temporal [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [13],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/431"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=431"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/431/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 432,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/431/revisions/432"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=431"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=431"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=431"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 433,
+    "date": "2020-06-23T10:55:55",
+    "date_gmt": "2020-06-23T10:55:55",
+    "guid": {
+      "rendered": "http://java.foobrdigital.com/?p=433"
+    },
+    "modified": "2020-06-23T10:55:55",
+    "modified_gmt": "2020-06-23T10:55:55",
+    "slug": "period-class",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/period-class/",
+    "title": {
+      "rendered": "Period class"
+    },
+    "content": {
+      "rendered": "\n<p>Java Period class is used to measures time in years, months and days. It inherits the Object class and implements the ChronoPeriod interface.</p>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h2>Java Period class declaration</h2>\n\n\n\n<p>Let&#8217;s see the declaration of java.time.Period class.</p>\n\n\n\n<ol><li><strong>public</strong>&nbsp;<strong>final</strong>&nbsp;<strong>class</strong>&nbsp;Period&nbsp;<strong>extends</strong>&nbsp;Object&nbsp;<strong>implements</strong>&nbsp;ChronoPeriod,&nbsp;Serializable&nbsp;&nbsp;</li></ol>\n\n\n\n<h3>Methods of Java Period</h3>\n\n\n\n<figure class=\"wp-block-table\"><table><tbody><tr><th>Method</th><th>Description</th></tr><tr><td>Temporal addTo(Temporal temporal)</td><td>It is used to add this period to the specified temporal object.</td></tr><tr><td>long get(TemporalUnit unit)</td><td>It is used to get the value of the requested unit.</td></tr><tr><td>int getYears()</td><td>It is used to get the amount of years of this period.</td></tr><tr><td>boolean isZero()</td><td>It is used to check if all three units of this period are zero.</td></tr><tr><td>Period minus(TemporalAmount amountToSubtract)</td><td>It is used to return a copy of this period with the specified period subtracted.</td></tr><tr><td>static Period of(int years, int months, int days)</td><td>It is used to obtain a Period representing a number of years, months and days.</td></tr><tr><td>Period plus(TemporalAmount amountToAdd)</td><td>It is used to return a copy of this period with the specified period added.</td></tr></tbody></table></figure>\n\n\n\n<p><ins><ins></ins></ins></p>\n\n\n\n<h3>Java Period Example: addTo()</h3>\n\n\n\n<pre class=\"wp-block-code\"><code>import java.time.*;  \nimport java.time.temporal.Temporal;  \npublic class PeriodExample1 {  \n  public static void main(String&#91;] args) {  \n    Period period = Period.ofDays(24);  \n    Temporal temp = period.addTo(LocalDate.now());  \n    System.out.println(temp);  \n  }  \n}  </code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>2017-02-24\n</code></pre>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h3>Java Period Example: of()</h3>\n\n\n\n<pre class=\"wp-block-code\"><code>import java.time.Period;  \npublic class PeriodExample2 {  \npublic static void main(String&#91;] args) {  \n  Period period = Period.of(2017,02,16);  \n  System.out.println(period.toString());  \n}  \n}  </code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>P2017Y2M16D\n</code></pre>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h3>Java Period Example: minus()</h3>\n\n\n\n<pre class=\"wp-block-code\"><code>import java.time.Period;  \npublic class PeriodExample3 {  \n  public static void main(String&#91;] args) {  \n    Period period1 = Period.ofMonths(4);   \n    Period period2 = period1.minus(Period.ofMonths(2));  \n    System.out.println(period2);  \n  }  \n}  </code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>P2M\n</code></pre>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h3>Java Period Example: plus()</h3>\n\n\n\n<pre class=\"wp-block-code\"><code>import java.time.Period;  \npublic class PeriodExample4 {  \n  public static void main(String&#91;] args) {  \n    Period period1 = Period.ofMonths(4);   \n    Period period2 = period1.plus(Period.ofMonths(2));  \n    System.out.println(period2);  \n  }  \n}</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>P6M</code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Java Period class is used to measures time in years, months and days. It inherits the Object class and implements the ChronoPeriod interface. Java Period class declaration Let&#8217;s see the declaration of java.time.Period class. public&nbsp;final&nbsp;class&nbsp;Period&nbsp;extends&nbsp;Object&nbsp;implements&nbsp;ChronoPeriod,&nbsp;Serializable&nbsp;&nbsp; Methods of Java Period Method Description Temporal addTo(Temporal temporal) It is used to add this period to the specified temporal [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [13],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/433"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=433"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/433/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 434,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/433/revisions/434"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=433"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=433"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=433"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 435,
+    "date": "2020-06-23T11:02:54",
+    "date_gmt": "2020-06-23T11:02:54",
+    "guid": {
+      "rendered": "http://java.foobrdigital.com/?p=435"
+    },
+    "modified": "2020-06-23T11:02:54",
+    "modified_gmt": "2020-06-23T11:02:54",
+    "slug": "duration",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/duration/",
+    "title": {
+      "rendered": "Duration"
+    },
+    "content": {
+      "rendered": "\n<p>Java Duration class is used to measures time in seconds and nanoseconds. It inherits the Object class and implements the Comparable interface.</p>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h2>Java Duration class declaration</h2>\n\n\n\n<p>Let&#8217;s see the declaration of java.time.Duration class.</p>\n\n\n\n<ol><li><strong>public</strong>&nbsp;<strong>final</strong>&nbsp;<strong>class</strong>&nbsp;Duration&nbsp;<strong>extends</strong>&nbsp;Object&nbsp;&nbsp;&nbsp;</li><li class=\"\"><strong>implements</strong>&nbsp;TemporalAmount,&nbsp;Comparable&lt;Duration&gt;,&nbsp;Serializable&nbsp;&nbsp;</li></ol>\n\n\n\n<h3>Methods of Java Duration</h3>\n\n\n\n<figure class=\"wp-block-table\"><table><tbody><tr><th>Method</th><th>Description</th></tr><tr><td>Temporal addTo(Temporal temporal)</td><td>It is used to add this duration to the specified temporal object.</td></tr><tr><td>static Duration between(Temporal startInclusive, Temporal endExclusive)</td><td>It is used to obtain a Duration representing the duration between two temporal objects.</td></tr><tr><td>long get(TemporalUnit unit)</td><td>It is used to get the value of the requested unit.</td></tr><tr><td>boolean isNegative()</td><td>It is used to check if this duration is negative, excluding zero.</td></tr><tr><td>boolean isZero()</td><td>It is used to check if this duration is zero length.</td></tr><tr><td>Duration minus(Duration duration)</td><td>It is used to return a copy of this duration with the specified duration subtracted.</td></tr><tr><td>Duration plus(Duration duration)</td><td>It is used to return a copy of this duration with the specified duration added.</td></tr></tbody></table></figure>\n\n\n\n<p><ins><ins></ins></ins></p>\n\n\n\n<h3>Java Duration Example: get()</h3>\n\n\n\n<pre class=\"wp-block-code\"><code>import java.time.*;  \nimport java.time.temporal.ChronoUnit;  \npublic class DurationExample1 {  \n  public static void main(String&#91;] args) {  \n    Duration d = Duration.between(LocalTime.NOON,LocalTime.MAX);  \n    System.out.println(d.get(ChronoUnit.SECONDS));    \n  }  \n} </code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>43199\n</code></pre>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h3>Java Duration Example: isNegative()</h3>\n\n\n\n<pre class=\"wp-block-code\"><code>import java.time.*;  \npublic class DurationExample2 {  \n  public static void main(String&#91;] args) {  \n      Duration d1 = Duration.between(LocalTime.MAX,LocalTime.NOON);  \n      System.out.println(d1.isNegative());  \n      Duration d2 = Duration.between(LocalTime.NOON,LocalTime.MAX);  \n              System.out.println(d2.isNegative());      \n  }  \n}  </code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>true\nfalse</code></pre>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h3>Java Duration Example: between()</h3>\n\n\n\n<pre class=\"wp-block-code\"><code>import java.time.*;  \nimport java.time.temporal.ChronoUnit;  \npublic class DurationExample3 {  \n  public static void main(String&#91;] args) {  \n    Duration d = Duration.between(LocalTime.NOON,LocalTime.MAX);  \n    System.out.println(d.get(ChronoUnit.SECONDS));    \n  }  \n}  </code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>43199\n</code></pre>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h3>Java Duration Example: minus()</h3>\n\n\n\n<pre class=\"wp-block-code\"><code>import java.time.*;  \npublic class DurationExample4 {  \n  public static void main(String&#91;] args) {  \n    Duration d1 = Duration.between(LocalTime.NOON,LocalTime.MAX);  \n    System.out.println(d1.getSeconds());  \n    Duration d2 = d1.minus(d1);  \n    System.out.println(d2.getSeconds());  \n  }  \n}  </code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>43199\n0</code></pre>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h3>Java Duration Example: plus()</h3>\n\n\n\n<pre class=\"wp-block-code\"><code>import java.time.*;  \npublic class DurationExample5 {  \n  public static void main(String&#91;] args) {  \n    Duration d1 = Duration.between(LocalTime.NOON,LocalTime.MAX);  \n    System.out.println(d1.getSeconds());  \n    Duration d2 = d1.plus(d1);  \n    System.out.println(d2.getSeconds());  \n  }  \n}  </code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>43199\n86399</code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Java Duration class is used to measures time in seconds and nanoseconds. It inherits the Object class and implements the Comparable interface. Java Duration class declaration Let&#8217;s see the declaration of java.time.Duration class. public&nbsp;final&nbsp;class&nbsp;Duration&nbsp;extends&nbsp;Object&nbsp;&nbsp;&nbsp; implements&nbsp;TemporalAmount,&nbsp;Comparable&lt;Duration&gt;,&nbsp;Serializable&nbsp;&nbsp; Methods of Java Duration Method Description Temporal addTo(Temporal temporal) It is used to add this duration to the specified temporal [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [13],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/435"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=435"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/435/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 436,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/435/revisions/436"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=435"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=435"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=435"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 437,
+    "date": "2020-06-23T11:45:43",
+    "date_gmt": "2020-06-23T11:45:43",
+    "guid": {
+      "rendered": "http://java.foobrdigital.com/?p=437"
+    },
+    "modified": "2020-06-23T11:45:43",
+    "modified_gmt": "2020-06-23T11:45:43",
+    "slug": "instant",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/instant/",
+    "title": {
+      "rendered": "Instant"
+    },
+    "content": {
+      "rendered": "\n<p>Java Instant class is used to represent the specific moment on the time line. It inherits the Object class and implements the Comparable interface.</p>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h2>Java Instant class declaration</h2>\n\n\n\n<p>Let&#8217;s see the declaration of java.time.Instant class.</p>\n\n\n\n<ol><li><strong>public</strong>&nbsp;<strong>final</strong>&nbsp;<strong>class</strong>&nbsp;Instant&nbsp;<strong>extends</strong>&nbsp;Object&nbsp;&nbsp;&nbsp;</li><li class=\"\"><strong>implements</strong>&nbsp;Temporal,&nbsp;TemporalAdjuster,&nbsp;Comparable&lt;Instant&gt;,&nbsp;Serializable&nbsp;&nbsp;</li></ol>\n\n\n\n<h3>Methods of Java Instant</h3>\n\n\n\n<figure class=\"wp-block-table\"><table><tbody><tr><th>Method</th><th>Description</th></tr><tr><td>Temporal adjustInto(Temporal temporal).</td><td>It is used to adjust the specified temporal object to have this instant.</td></tr><tr><td>int get(TemporalField field)</td><td>It is used to get the value of the specified field from this instant as an int.</td></tr><tr><td>boolean isSupported(TemporalField field)</td><td>It is used to check if the specified field is supported.</td></tr><tr><td>Instant minus(TemporalAmount amountToSubtract)</td><td>It is used to return a copy of this instant with the specified amount subtracted.</td></tr><tr><td>static Instant now()</td><td>It is used to obtain the current instant from the system clock.</td></tr><tr><td>static Instant parse(CharSequence text)</td><td>It is used to obtain an instance of Instant from a text string such as 2007-12-03T10:15:30.00Z.</td></tr><tr><td>Instant plus(TemporalAmount amountToAdd)</td><td>It is used to return a copy of this instant with the specified amount added.</td></tr><tr><td>Instant with(TemporalAdjuster adjuster)</td><td>It is used to return an adjusted copy of this instant.</td></tr></tbody></table></figure>\n\n\n\n<p><ins><ins></ins></ins></p>\n\n\n\n<h3>Java Instant Example: parse()</h3>\n\n\n\n<pre class=\"wp-block-code\"><code>import java.time.Instant;  \npublic class InstantExample1 {  \n  public static void main(String&#91;] args) {  \n    Instant inst = Instant.parse(\"2017-02-03T10:37:30.00Z\");  \n    System.out.println(inst);  \n  }  \n}  </code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>2017-02-03T10:37:30Z\n</code></pre>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h3>Java Instant Example: now()</h3>\n\n\n\n<pre class=\"wp-block-code\"><code>import java.time.Instant;  \npublic class InstantExample2 {  \n  public static void main(String&#91;] args) {  \n    Instant instant = Instant.now();  \n    System.out.println(instant);    \n  }  \n}  </code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>2017-02-03T06:11:01.194Z\n</code></pre>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h3>Java Instant Example: minus()</h3>\n\n\n\n<pre class=\"wp-block-code\"><code>import java.time.*;  \npublic class InstantExample3 {  \n  public static void main(String&#91;] args) {  \n    Instant instant = Instant.parse(\"2017-02-03T11:25:30.00Z\");  \n    instant = instant.minus(Duration.ofDays(125));  \n    System.out.println(instant);   \n  }  \n}  </code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>2016-10-01T11:25:30Z\n</code></pre>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h3>Java Instant Example: plus()</h3>\n\n\n\n<pre class=\"wp-block-code\"><code>import java.time.*;  \npublic class InstantExample4 {  \n  public static void main(String&#91;] args) {  \n    Instant inst1 = Instant.parse(\"2017-02-03T11:25:30.00Z\");  \n    Instant inst2 = inst1.plus(Duration.ofDays(125));  \n    System.out.println(inst2);   \n  }  \n} </code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>2017-06-08T11:25:30Z\n</code></pre>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h3>Java Instant Example: isSupported()</h3>\n\n\n\n<pre class=\"wp-block-code\"><code>import java.time.Instant;  \nimport java.time.temporal.ChronoUnit;  \npublic class InstantExample5 {  \n  public static void main(String&#91;] args) {  \n    Instant inst = Instant.parse(\"2017-02-03T11:35:30.00Z\");  \n    System.out.println(inst.isSupported(ChronoUnit.DAYS));  \n    System.out.println(inst.isSupported(ChronoUnit.YEARS));      \n  }  \n}  </code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>true\nfalse</code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Java Instant class is used to represent the specific moment on the time line. It inherits the Object class and implements the Comparable interface. Java Instant class declaration Let&#8217;s see the declaration of java.time.Instant class. public&nbsp;final&nbsp;class&nbsp;Instant&nbsp;extends&nbsp;Object&nbsp;&nbsp;&nbsp; implements&nbsp;Temporal,&nbsp;TemporalAdjuster,&nbsp;Comparable&lt;Instant&gt;,&nbsp;Serializable&nbsp;&nbsp; Methods of Java Instant Method Description Temporal adjustInto(Temporal temporal). It is used to adjust the specified temporal object [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [13],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/437"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=437"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/437/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 438,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/437/revisions/438"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=437"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=437"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=437"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 439,
+    "date": "2020-06-23T11:48:56",
+    "date_gmt": "2020-06-23T11:48:56",
+    "guid": {
+      "rendered": "http://java.foobrdigital.com/?p=439"
+    },
+    "modified": "2020-07-13T17:29:19",
+    "modified_gmt": "2020-07-13T17:29:19",
+    "slug": "dayofweek-enum",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/dayofweek-enum/",
+    "title": {
+      "rendered": "DayOfWeek enum"
+    },
+    "content": {
+      "rendered": "\n<p>In Java the DayOfWeek is an enum representing the 7 days of the week. In addition with the textual enum name, every day-of-week has an int value.</p>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h2>Java DayOfWeek enum declaration</h2>\n\n\n\n<p>Let&#8217;s see the declaration of java.time.DayOfWeek.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>public enum DayOfWeek extends Enum&lt;DayOfWeek> implements TemporalAccessor, TemporalAdjuster  </code></pre>\n\n\n\n<h3>Methods of Java DayOfWeek</h3>\n\n\n\n<figure class=\"wp-block-table\"><table><tbody><tr><th>Method</th><th>Description</th></tr><tr><td>int get(TemporalField field)</td><td>It is used to get the value of the specified field from this day-of-week as an int.</td></tr><tr><td>boolean isSupported(TemporalField field)</td><td>It is used to check if the specified field is supported.</td></tr><tr><td>DayOfWeek minus(long days)</td><td>It is used to return the day-of-week that is the specified number of days before this one.</td></tr><tr><td>DayOfWeek plus(long days)</td><td>It is used to return the day-of-week that is the specified number of days after this one.</td></tr><tr><td>static DayOfWeek of(int dayOfWeek)</td><td>It is used to obtain an instance of DayOfWeek from an int value.</td></tr><tr><td>static DayOfWeek[] values()</td><td>It is used to return an array containing the constants of this enum type, in the order they are declared.</td></tr></tbody></table></figure>\n\n\n\n<p><ins><ins></ins></ins></p>\n\n\n\n<h3>Java DayOfWeek Example: get()</h3>\n\n\n\n<pre class=\"wp-block-code\"><code>import java.time.*;  \nimport java.time.temporal.ChronoField;  \npublic class DayOfWeekExample1 {  \n  public static void main(String&#91;] args) {  \n    LocalDate localDate = LocalDate.of(2017, Month.JANUARY, 25);  \n    DayOfWeek dayOfWeek = DayOfWeek.from(localDate);  \n    System.out.println(dayOfWeek.get(ChronoField.DAY_OF_WEEK));  \n  }  \n}</code></pre>\n\n\n\n<pre class=\"wp-block-code\"><code>3\n</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>3\n</code></pre>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h3>Java DayOfWeek Example: of()</h3>\n\n\n\n<pre class=\"wp-block-code\"><code>import java.time.DayOfWeek;  \npublic class DayOfWeekExample2 {  \n  public static void main(String&#91;] args) {  \n    DayOfWeek day = DayOfWeek.of(5);  \n    System.out.println(day.name());  \n    System.out.println(day.ordinal());  \n    System.out.println(day.getValue());  \n  }  \n}  </code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>FRIDAY\n4\n5\n\ufeff</code></pre>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h3>Java DayOfWeek Example: plus()</h3>\n\n\n\n<pre class=\"wp-block-code\"><code>import java.time.*;  \npublic class DayOfWeekExample3 {  \n  public static void main(String&#91;] args) {  \n    LocalDate date = LocalDate.of(2017, Month.JANUARY, 31);  \n    DayOfWeek day = DayOfWeek.from(date);  \n    System.out.println(day.getValue());  \n    day = day.plus(3);  \n    System.out.println(day.getValue());  \n  }  \n}  </code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>2\n5</code></pre>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h3>Java DayOfWeek Example: minus()</h3>\n\n\n\n<pre class=\"wp-block-code\"><code>import java.time.*;  \npublic class DayOfWeekExample4 {  \n  public static void main(String&#91;] args) {  \n    LocalDate date = LocalDate.of(2017, Month.JANUARY, 31);  \n    DayOfWeek day = DayOfWeek.from(date);  \n    System.out.println(day.getValue());  \n    day = day.minus(3);  \n    System.out.println(day.getValue());  \n  }  \n}  </code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>2\n6</code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>In Java the DayOfWeek is an enum representing the 7 days of the week. In addition with the textual enum name, every day-of-week has an int value. Java DayOfWeek enum declaration Let&#8217;s see the declaration of java.time.DayOfWeek. Methods of Java DayOfWeek Method Description int get(TemporalField field) It is used to get the value of the [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [13],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/439"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=439"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 2,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/439/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 847,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/439/revisions/847"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=439"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=439"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=439"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 441,
+    "date": "2020-06-23T11:57:02",
+    "date_gmt": "2020-06-23T11:57:02",
+    "guid": {
+      "rendered": "http://java.foobrdigital.com/?p=441"
+    },
+    "modified": "2020-06-23T11:57:02",
+    "modified_gmt": "2020-06-23T11:57:02",
+    "slug": "month-enum",
+    "status": "publish",
+    "type": "post",
+    "link": "https://java.foobrdigital.com/month-enum/",
+    "title": {
+      "rendered": "Month enum"
+    },
+    "content": {
+      "rendered": "\n<p>In Java the Month is an enum representing the 12 months of the year. In addition with the textual enum name, every month-of-year has an int value.</p>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h2>Java Month enum declaration</h2>\n\n\n\n<p>Let&#8217;s see the declaration of java.time.Month.</p>\n\n\n\n<ol><li><strong>public</strong>&nbsp;<strong>enum</strong>&nbsp;Month&nbsp;<strong>extends</strong>&nbsp;Enum&lt;Month&gt;&nbsp;<strong>implements</strong>&nbsp;TemporalAccessor,&nbsp;TemporalAdjuster&nbsp;&nbsp;</li></ol>\n\n\n\n<h3>Methods of Java Month</h3>\n\n\n\n<figure class=\"wp-block-table\"><table><tbody><tr><th>Method</th><th>Description</th></tr><tr><td>int getValue()</td><td>It is used to get the month-of-year int value</td></tr><tr><td>int get(TemporalField field)</td><td>It is used to get the value of the specified field from this month-of-year as an int.</td></tr><tr><td>int length(boolean leapYear)</td><td>It is used to get the length of this month in days.</td></tr><tr><td>int maxLength()</td><td>It is used to get the maximum length of this month in days.</td></tr><tr><td>int minLength()</td><td>It is used to get the minimum length of this month in days.</td></tr><tr><td>Month minus(long months)</td><td>It is used to return the month-of-year that is the specified number of months before this one.</td></tr><tr><td>Month plus(long months)</td><td>It is used to return the month-of-year that is the specified number of quarters after this one.</td></tr><tr><td>static Month of(int month)</td><td>It is used to obtain an instance of Month from an int value.</td></tr></tbody></table></figure>\n\n\n\n<p><ins><ins></ins></ins></p>\n\n\n\n<h2>Java Month enum Example</h2>\n\n\n\n<pre class=\"wp-block-code\"><code>import java.time.*;  \nimport java.time.temporal.*;  \npublic class MonthEnumExample1 {  \n    public static void main(String&#91;] args) {  \n        Month month = Month.valueOf(\"January\".toUpperCase());  \n        System.out.printf(\"For the month of %s all Sunday are:%n\", month);  \n        LocalDate localdate = Year.now().atMonth(month).atDay(1).  \n        with(TemporalAdjusters.firstInMonth(DayOfWeek.SUNDAY));  \n        Month mi = localdate.getMonth();  \n        while (mi == month) {  \n            System.out.printf(\"%s%n\", localdate);  \n            localdate = localdate.with(TemporalAdjusters.next(DayOfWeek.SUNDAY));  \n            mi = localdate.getMonth();  \n        }  \n    }  \n}  </code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>For the month of JANUARY all Sunday are:\n2017-01-01\n2017-01-08\n2017-01-15\n2017-01-22\n2017-01-29</code></pre>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h2>Java Month enum Example: getValue()</h2>\n\n\n\n<pre class=\"wp-block-code\"><code>import java.time.*;  \npublic class MonthEnumExample2 {  \n  public static void main(String&#91;] args) {  \n    Month month = Month.from(LocalDate.now());  \n    System.out.println(month.getValue());  \n    System.out.println(month.name());  \n  }  \n}  </code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>1\nJANUARY</code></pre>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h2>Java Month enum Example: minus()</h2>\n\n\n\n<pre class=\"wp-block-code\"><code>import java.time.*;  \npublic class MonthEnumExample3 {  \n  public static void main(String&#91;] args) {  \n    Month month = Month.from(LocalDate.now());    \n    System.out.println(month.minus(2));  \n  }  \n} </code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>NOVEMBER\n</code></pre>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h2>Java Month enum Example: plus()</h2>\n\n\n\n<pre class=\"wp-block-code\"><code>import java.time.*;  \npublic class MonthEnumExample4 {  \n  public static void main(String&#91;] args) {  \n    Month month = Month.from(LocalDate.now());    \n    System.out.println(month.plus(2));  \n  }  \n}  </code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>MARCH\n</code></pre>\n\n\n\n<hr class=\"wp-block-separator\"/>\n\n\n\n<h2>Java Month enum Example: length()</h2>\n\n\n\n<ol><li></li></ol>\n\n\n\n<pre class=\"wp-block-code\"><code>import java.time.*;  \npublic class MonthEnumExample5 {  \n  public static void main(String&#91;] args) {  \n    Month month = Month.from(LocalDate.now());    \n    System.out.println(\"Total Number of days: \"+month.length(true));  \n  }  \n}  </code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-preformatted\">Total Number of days: 31</pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>In Java the Month is an enum representing the 12 months of the year. In addition with the textual enum name, every month-of-year has an int value. Java Month enum declaration Let&#8217;s see the declaration of java.time.Month. public&nbsp;enum&nbsp;Month&nbsp;extends&nbsp;Enum&lt;Month&gt;&nbsp;implements&nbsp;TemporalAccessor,&nbsp;TemporalAdjuster&nbsp;&nbsp; Methods of Java Month Method Description int getValue() It is used to get the month-of-year int value [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [13],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/441"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/comments?post=441"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/441/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 442,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/posts/441/revisions/442"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/media?parent=441"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/categories?post=441"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://java.foobrdigital.com/wp-json/wp/v2/tags?post=441"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  }
+]

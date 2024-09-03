@@ -87,8 +87,6 @@ export const RegularContentCard = ({
   index,
   lang,
 }: RegularContentCardProps) => {
-  console.log(courseDetail);
-
   return (
     <Link
       to={`detail-content/${courseDetail.slug}`}

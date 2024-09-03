@@ -1,0 +1,96 @@
+[
+  {
+    "id": 3463,
+    "date": "2020-11-30T06:43:26",
+    "date_gmt": "2020-11-30T06:43:26",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3463"
+    },
+    "modified": "2020-11-30T06:43:26",
+    "modified_gmt": "2020-11-30T06:43:26",
+    "slug": "fetch-api",
+    "status": "publish",
+    "type": "post",
+    "link": "https://computerprogramming.foobrdigital.com/fetch-api/",
+    "title": {
+      "rendered": "Fetch API"
+    },
+    "content": {
+      "rendered": "\n<h2>Sending a Request</h2>\n\n\n\n<p>The&nbsp;<code>fetch()</code>&nbsp;requires only one parameter which is the URL of the resource that you want to fetch:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let response = fetch(url);</code></pre>\n\n\n\n<p>The&nbsp;<code>fetch()</code>&nbsp;method returns a&nbsp;<code>Promise</code>&nbsp;so you can use the&nbsp;<code>then()</code>&nbsp;and&nbsp;<code>catch()</code>&nbsp;methods to handle it:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>fetch(url)\n    .then(response => {\n        // handle the response\n    })\n    .catch(error => {\n        // handle the error\n    });\n</code></pre>\n\n\n\n<p>When the request completes, the resource is available. At this time, the promise will resolve into a&nbsp;<code>Response</code>&nbsp;object.</p>\n\n\n\n<p>The&nbsp;<code>Response</code>&nbsp;object is the API wrapper for the fetched resource. The&nbsp;<code>Response</code>&nbsp;object has a number of useful properties and methods to inspect the response.</p>\n\n\n\n<h2>Reading the Response</h2>\n\n\n\n<p>If the contents of the response are in the raw text format, you can use the&nbsp;<code>text()</code>&nbsp;method. The&nbsp;<code>text()</code>&nbsp;method returns a Promise that resolves with the complete contents of the fetched resource:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>fetch('/readme.txt')\n    .then(response => response.text())\n    .then(data => console.log(data));</code></pre>\n\n\n\n<p>In practice, you often use the <code>async</code>/<code>await</code> with the <code>fetch()</code> method like this:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>async function fetchText() {\n    let response = await fetch('/readme.txt');\n    let data = await response.text();\n    console.log(data);\n}</code></pre>\n\n\n\n<p>Besides the&nbsp;<code>text()</code>&nbsp;method, the&nbsp;<code>Response</code>&nbsp;object has other methods such as&nbsp;<code>json()</code>,&nbsp;<code>blob()</code>,&nbsp;<code>formData()</code>&nbsp;and&nbsp;<code>arrayBuffer()</code>&nbsp;to handle the respective type of data.</p>\n\n\n\n<h2>Handling the status codes of the Response</h2>\n\n\n\n<p>The&nbsp;<code>Response</code>&nbsp;object provides the status code and status text via the&nbsp;<code>status</code>&nbsp;and&nbsp;<code>statusText</code>&nbsp;properties. When a request is successful, the status code is&nbsp;<code>200</code>&nbsp;and status text is&nbsp;<code>OK</code>:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>async function fetchText() {\n    let response = await fetch('/readme.txt');\n\n    console.log(response.status); // 200\n    console.log(response.statusText); // OK\n\n    if (response.status === 200) {\n        let data = await response.text();\n        // handle data\n    }\n}\n\nfetchText();</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>200\nOK</code></pre>\n\n\n\n<p>If the requested resource doesn’t exist, the response code is&nbsp;<code>404</code>:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let response = await fetch('/non-existence.txt');\n\nconsole.log(response.status); // 400\nconsole.log(response.statusText); // OK\n</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>400\nNot Found</code></pre>\n\n\n\n<p>If the requested URL throws a server error, the response code will be&nbsp;<code>500</code>.</p>\n\n\n\n<p>If the requested URL is redirected to the new one with the response&nbsp;<code>300-309</code>, the&nbsp;<code>status</code>&nbsp;of the&nbsp;<code>Response</code>&nbsp;object is set to&nbsp;<code>200</code>. In addition the&nbsp;<code>redirected</code>&nbsp;property is set to&nbsp;<code>true</code>.</p>\n\n\n\n<p>The&nbsp;<code>fetch()</code>&nbsp;returns a promise that rejects when a real failure occurs such as a web browser timeout, a loss of network connection, and a CORS violation.</p>\n\n\n\n<h2>JavaScript Fetch API example</h2>\n\n\n\n<p>Suppose that you have a json file that locates on the webserver with the following contents:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&#91;{\n        \"username\": \"john\",\n        \"firstName\": \"John\",\n        \"lastName\": \"Doe\",\n        \"gender\": \"Male\",\n        \"profileURL\": \"img/male.png\",\n        \"email\": \"john.doe@example.com\"\n    },\n    {\n        \"username\": \"jane\",\n        \"firstName\": \"Jane\",\n        \"lastName\": \"Doe\",\n        \"gender\": \"Female\",\n        \"profileURL\": \"img/female.png\",\n        \"email\": \"jane.doe@example.com\"\n    }\n]</code></pre>\n\n\n\n<p>The following shows the HTML page:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;!DOCTYPE html>\n&lt;html lang=\"en\">\n&lt;head>\n    &lt;meta charset=\"UTF-8\">\n    &lt;meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    &lt;title>Fetch API Demo&lt;/title>\n    &lt;link rel=\"stylesheet\" href=\"css/style.css\">\n&lt;/head>\n&lt;body>\n    &lt;div class=\"container\">&lt;/div>\n    &lt;script src=\"js/app.js\">&lt;/script>\n&lt;/body>\n&lt;/html></code></pre>\n\n\n\n<p>In the&nbsp;<code>app.js</code>, we’ll use the&nbsp;<code>fetch()</code>&nbsp;method to get the user data and render the data inside the&nbsp;<code>&lt;div&gt;</code>&nbsp;element with the class&nbsp;<code>container</code>.</p>\n\n\n\n<p>First, declare the&nbsp;<code>getUsers()</code>&nbsp;function that fetches&nbsp;<code>users.json</code>&nbsp;from the server.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>async function getUsers() {\n    let url = 'users.json';\n    try {\n        let res = await fetch(url);\n        return await res.json();\n    } catch (error) {\n        console.log(error);\n    }\n}\n</code></pre>\n\n\n\n<p>Then, develop the&nbsp;<code>renderUsers()</code>&nbsp;function that renders user data:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>async function renderUsers() {\n    let users = await getUsers();\n    let html = '';\n    users.forEach(user => {\n        let htmlSegment = `&lt;div class=\"user\">\n                            &lt;img src=\"${user.profileURL}\" >\n                            &lt;h2>${user.firstName} ${user.lastName}&lt;/h2>\n                            &lt;div class=\"email\">&lt;a href=\"email:${user.email}\">${user.email}&lt;/a>&lt;/div>\n                        &lt;/div>`;\n\n        html += htmlSegment;\n    });\n\n    let container = document.querySelector('.container');\n    container.innerHTML = html;\n}\n\nrenderUsers();</code></pre>\n\n\n\n<p>Check it out the Fetch API demo.</p>\n\n\n\n<h2>Summary</h2>\n\n\n\n<ul><li>The Fetch API allows you to asynchronously request for a resource.</li><li>Use the&nbsp;<code>fetch()</code>&nbsp;method to return a promise that resolves into a&nbsp;<code>Response</code>&nbsp;object. To get the actual data, you call one of the methods of the Response object e.g.,&nbsp;<code>text()</code>&nbsp;or&nbsp;<code>json()</code>. These methods resolve into the actual data.</li><li>Use the&nbsp;<code>status</code>&nbsp;and&nbsp;<code>statusText</code>&nbsp;properties of the&nbsp;<code>Response</code>&nbsp;object to get the status and status text of the response.</li><li>use the&nbsp;<code>catch()</code>&nbsp;method or&nbsp;<code>try...catch</code>&nbsp;statement to handle a failure request.</li></ul>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Sending a Request The&nbsp;fetch()&nbsp;requires only one parameter which is the URL of the resource that you want to fetch: The&nbsp;fetch()&nbsp;method returns a&nbsp;Promise&nbsp;so you can use the&nbsp;then()&nbsp;and&nbsp;catch()&nbsp;methods to handle it: When the request completes, the resource is available. At this time, the promise will resolve into a&nbsp;Response&nbsp;object. The&nbsp;Response&nbsp;object is the API wrapper for the fetched resource. [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [43],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3463"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/comments?post=3463"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3463/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/media?parent=3463"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/categories?post=3463"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/tags?post=3463"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  }
+]

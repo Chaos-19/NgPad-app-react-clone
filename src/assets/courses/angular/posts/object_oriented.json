@@ -1,0 +1,1033 @@
+[
+ 
+  {
+    "id": 368,
+    "date": "2020-07-04T10:26:35",
+    "date_gmt": "2020-07-04T10:26:35",
+    "guid": {
+      "rendered": "http://learnpython.foobrdigital.com/?p=368"
+    },
+    "modified": "2020-12-15T11:30:54",
+    "modified_gmt": "2020-12-15T11:30:54",
+    "slug": "data-structures",
+    "status": "publish",
+    "type": "post",
+    "link": "https://python3.foobrdigital.com/data-structures/",
+    "title": {
+      "rendered": "Data Structures"
+    },
+    "content": {
+      "rendered": "\n<p>Python data structures are very intuitive from a syntax point of view and they offer a large choice of operations. You need to choose Python data structure depending on what the data involves, if it needs to be modified, or if it is a fixed data and what access type is required, such as at the beginning/end/random etc.</p>\n\n\n\n<h2>Lists</h2>\n\n\n\n<p>A List represents the most versatile type of data structure in Python. A list is a container which holds comma-separated values (items or elements) between square brackets. Lists are helpful when we want to work with multiple related values. As lists keep data together, we can perform the same methods and operations on multiple values at once. Lists indices start from zero and unlike strings, lists are mutable.</p>\n\n\n\n<h3>Data Structure &#8211; List</h3>\n\n\n\n<pre class=\"wp-block-code\"><code>>>>\n>>> # Any Empty List\n>>> empty_list = &#91;]\n>>>\n>>> # A list of String\n>>> str_list = &#91;'Life', 'Is', 'Beautiful']\n>>> # A list of Integers\n>>> int_list = &#91;1, 4, 5, 9, 18]\n>>>\n>>> #Mixed items list\n>>> mixed_list = &#91;'This', 9, 'is', 18, 45.9, 'a', 54, 'mixed', 99, 'list']\n>>> # To print the list\n>>>\n>>> print(empty_list)\n&#91;]\n>>> print(str_list)\n&#91;'Life', 'Is', 'Beautiful']\n>>> print(type(str_list))\n&lt;class 'list'>\n>>> print(int_list)\n&#91;1, 4, 5, 9, 18]\n>>> print(mixed_list)\n&#91;'This', 9, 'is', 18, 45.9, 'a', 54, 'mixed', 99, 'list']</code></pre>\n\n\n\n<h2>Accessing Items in Python List</h2>\n\n\n\n<p>Each item of a list is assigned a number – that is the index or position of that number.Indexing always start from zero, the second index is one and so forth. To access items in a list, we can use these index numbers within a square bracket. Observe the following code for example −</p>\n\n\n\n<pre class=\"wp-block-code\"><code>>>> mixed_list = &#91;'This', 9, 'is', 18, 45.9, 'a', 54, 'mixed', 99, 'list']\n>>>\n>>> # To access the First Item of the list\n>>> mixed_list&#91;0]\n'This'\n>>> # To access the 4th item\n>>> mixed_list&#91;3]\n18\n>>> # To access the last item of the list\n>>> mixed_list&#91;-1]\n'list'</code></pre>\n\n\n\n<h2>Empty Objects</h2>\n\n\n\n<p>Empty Objects are the simplest and most basic Python built-in types. We have used them multiple times without noticing and have extended it to every class we have created. The main purpose to write an empty class is to block something for time being and later extend and add a behavior to it.</p>\n\n\n\n<p>To add a behavior to a class means to replace a data structure with an object and change all references to it. So it is important to check the data, whether it is an object in disguise, before you create anything. Observe the following code for better understanding:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>>>> #Empty objects\n>>>\n>>> obj = object()\n>>> obj.x = 9\nTraceback (most recent call last):\nFile \"&lt;pyshell#3>\", line 1, in &lt;module>\nobj.x = 9\nAttributeError: 'object' object has no attribute 'x'</code></pre>\n\n\n\n<p>So from above, we can see it’s not possible to set any attributes on an object that was instantiated directly. When Python allows an object to have arbitrary attributes, it takes a certain amount of system memory to keep track of what attributes each object has, for storing both the attribute name and its value. Even if no attributes are stored, a certain amount of memory is allocated for potential new attributes.</p>\n\n\n\n<p>So Python disables arbitrary properties on object and several other built-ins, by default.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>>>> # Empty Objects\n>>>\n>>> class EmpObject:\n    pass\n>>> obj = EmpObject()\n>>> obj.x = 'Hello, World!'\n>>> obj.x\n'Hello, World!'</code></pre>\n\n\n\n<p>Hence, if we want to group properties together, we could store them in an empty object as shown in the code above. However, this method is not always suggested. Remember that classes and objects should only be used when you want to specify both data and behaviors.</p>\n\n\n\n<h2>Tuples</h2>\n\n\n\n<p>Tuples are similar to lists and can store elements. However, they are immutable, so we cannot add, remove or replace objects. The primary benefits tuple provides because of its immutability is that we can use them as keys in dictionaries, or in other locations where an object requires a hash value.</p>\n\n\n\n<p>Tuples are used to store data, and not behavior. In case you require behavior to manipulate a tuple, you need to pass the tuple into a function(or method on another object) that performs the action.</p>\n\n\n\n<p>As tuple can act as a dictionary key, the stored values are different from each other. We can create a tuple by separating the values with a comma. Tuples are wrapped in parentheses but not mandatory. The following code shows two identical assignments .</p>\n\n\n\n<pre class=\"wp-block-code\"><code>>>> stock1 = 'MSFT', 95.00, 97.45, 92.45\n>>> stock2 = ('MSFT', 95.00, 97.45, 92.45)\n>>> type (stock1)\n&lt;class 'tuple'>\n>>> type(stock2)\n&lt;class 'tuple'>\n>>> stock1 == stock2\nTrue\n>>></code></pre>\n\n\n\n<h3>Defining a Tuple</h3>\n\n\n\n<p>Tuples are very similar to list except that the whole set of elements are enclosed in parentheses instead of square brackets.</p>\n\n\n\n<p>Just like when you slice a list, you get a new list and when you slice a tuple, you get a new tuple.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>>>> tupl = ('Tuple','is', 'an','IMMUTABLE', 'list')\n>>> tupl\n('Tuple', 'is', 'an', 'IMMUTABLE', 'list')\n>>> tupl&#91;0]\n'Tuple'\n>>> tupl&#91;-1]\n'list'\n>>> tupl&#91;1:3]\n('is', 'an')</code></pre>\n\n\n\n<h3>Python Tuple Methods</h3>\n\n\n\n<p>The following code shows the methods in Python tuples −</p>\n\n\n\n<pre class=\"wp-block-code\"><code>>>> tupl\n('Tuple', 'is', 'an', 'IMMUTABLE', 'list')\n>>> tupl.append('new')\nTraceback (most recent call last):\n   File \"&lt;pyshell#148>\", line 1, in &lt;module>\n      tupl.append('new')\nAttributeError: 'tuple' object has no attribute 'append'\n>>> tupl.remove('is')\nTraceback (most recent call last):\n   File \"&lt;pyshell#149>\", line 1, in &lt;module>\n      tupl.remove('is')\nAttributeError: 'tuple' object has no attribute 'remove'\n>>> tupl.index('list')\n4\n>>> tupl.index('new')\nTraceback (most recent call last):\n   File \"&lt;pyshell#151>\", line 1, in &lt;module>\n      tupl.index('new')\nValueError: tuple.index(x): x not in tuple\n>>> \"is\" in tupl\nTrue\n>>> tupl.count('is')\n1</code></pre>\n\n\n\n<p>From the code shown above, we can understand that tuples are immutable and hence −</p>\n\n\n\n<ul><li>You&nbsp;<strong>cannot</strong>&nbsp;add elements to a tuple.</li><li>You&nbsp;<strong>cannot</strong>&nbsp;append or extend a method.</li><li>You&nbsp;<strong>cannot</strong>&nbsp;remove elements from a tuple.</li><li>Tuples have&nbsp;<strong>no</strong>&nbsp;remove or pop method.</li><li>Count and index are the methods available in a tuple.</li></ul>\n\n\n\n<h2>Dictionary</h2>\n\n\n\n<p>Dictionary is one of the Python’s built-in data types and it defines one-to-one relationships between keys and values.</p>\n\n\n\n<h3>Defining Dictionaries</h3>\n\n\n\n<p>Observe the following code to understand about defining a dictionary −</p>\n\n\n\n<pre class=\"wp-block-code\"><code>>>> # empty dictionary\n>>> my_dict = {}\n>>>\n>>> # dictionary with integer keys\n>>> my_dict = { 1:'msft', 2: 'IT'}\n>>>\n>>> # dictionary with mixed keys\n>>> my_dict = {'name': 'Aarav', 1: &#91; 2, 4, 10]}\n>>>\n>>> # using built-in function dict()\n>>> my_dict = dict({1:'msft', 2:'IT'})\n>>>\n>>> # From sequence having each item as a pair\n>>> my_dict = dict(&#91;(1,'msft'), (2,'IT')])\n>>>\n>>> # Accessing elements of a dictionary\n>>> my_dict&#91;1]\n'msft'\n>>> my_dict&#91;2]\n'IT'\n>>> my_dict&#91;'IT']\nTraceback (most recent call last):\n   File \"&lt;pyshell#177>\", line 1, in &lt;module>\n   my_dict&#91;'IT']\nKeyError: 'IT'\n>>></code></pre>\n\n\n\n<p>From the above code we can observe that:</p>\n\n\n\n<ul><li>First we create a dictionary with two elements and assign it to the variable&nbsp;<strong>my_dict</strong>. Each element is a key-value pair, and the whole set of elements is enclosed in curly braces.</li><li>The number&nbsp;<strong>1</strong>&nbsp;is the key and&nbsp;<strong>msft</strong>&nbsp;is its value. Similarly,&nbsp;<strong>2</strong>&nbsp;is the key and&nbsp;<strong>IT</strong>&nbsp;is its value.</li><li>You can get values by key, but not vice-versa. Thus when we try&nbsp;<strong>my_dict[‘IT’]</strong>&nbsp;, it raises an exception, because&nbsp;<strong>IT</strong>&nbsp;is not a key.</li></ul>\n\n\n\n<h3>Modifying Dictionaries</h3>\n\n\n\n<p>Observe the following code to understand about modifying a dictionary −</p>\n\n\n\n<pre class=\"wp-block-code\"><code>>>> # Modifying a Dictionary\n>>>\n>>> my_dict\n{1: 'msft', 2: 'IT'}\n>>> my_dict&#91;2] = 'Software'\n>>> my_dict\n{1: 'msft', 2: 'Software'}\n>>>\n>>> my_dict&#91;3] = 'Microsoft Technologies'\n>>> my_dict\n{1: 'msft', 2: 'Software', 3: 'Microsoft Technologies'}</code></pre>\n\n\n\n<p>From the above code we can observe that −</p>\n\n\n\n<ul><li>You cannot have duplicate keys in a dictionary. Altering the value of an existing key will delete the old value.</li><li>You can add new key-value pairs at any time.</li><li>Dictionaries have no concept of order among elements. They are simple unordered collections.</li></ul>\n\n\n\n<h3>Mixing Data types in a Dictionary</h3>\n\n\n\n<p>Observe the following code to understand about mixing data types in a dictionary −</p>\n\n\n\n<pre class=\"wp-block-code\"><code>>>> # Mixing Data Types in a Dictionary\n>>>\n>>> my_dict\n{1: 'msft', 2: 'Software', 3: 'Microsoft Technologies'}\n>>> my_dict&#91;4] = 'Operating System'\n>>> my_dict\n{1: 'msft', 2: 'Software', 3: 'Microsoft Technologies', 4: 'Operating System'}\n>>> my_dict&#91;'Bill Gates'] = 'Owner'\n>>> my_dict\n{1: 'msft', 2: 'Software', 3: 'Microsoft Technologies', 4: 'Operating System',\n'Bill Gates': 'Owner'}</code></pre>\n\n\n\n<p>From the above code we can observe that −</p>\n\n\n\n<ul><li>Not just strings but dictionary value can be of any data type including strings, integers, including the dictionary itself.</li><li>Unlike dictionary values, dictionary keys are more restricted, but can be of any type like strings, integers or any other.</li></ul>\n\n\n\n<h3>Deleting Items from Dictionaries</h3>\n\n\n\n<p>Observe the following code to understand about deleting items from a dictionary −</p>\n\n\n\n<pre class=\"wp-block-code\"><code>>>> # Deleting Items from a Dictionary\n>>>\n>>> my_dict\n{1: 'msft', 2: 'Software', 3: 'Microsoft Technologies', 4: 'Operating System',\n'Bill Gates': 'Owner'}\n>>>\n>>> del my_dict&#91;'Bill Gates']\n>>> my_dict\n{1: 'msft', 2: 'Software', 3: 'Microsoft Technologies', 4: 'Operating System'}\n>>>\n>>> my_dict.clear()\n>>> my_dict\n{}</code></pre>\n\n\n\n<p>From the above code we can observe that −</p>\n\n\n\n<ul><li><strong>del</strong>&nbsp;− lets you delete individual items from a dictionary by key.</li><li><strong>clear</strong>&nbsp;− deletes all items from a dictionary.</li></ul>\n\n\n\n<h2>Sets</h2>\n\n\n\n<p>Set() is an unordered collection with no duplicate elements. Though individual items are immutable, set itself is mutable, that is we can add or remove elements/items from the set. We can perform mathematical operations like union, intersection etc. with set.</p>\n\n\n\n<p>Though sets in general can be implemented using trees, set in Python can be implemented using a hash table. This allows it a highly optimized method for checking whether a specific element is contained in the set</p>\n\n\n\n<h3>Creating a set</h3>\n\n\n\n<p>A set is created by placing all the items (elements) inside curly braces <strong>{}</strong>, separated by comma or by using the built-in function <strong>set()</strong>. Observe the following lines of code −</p>\n\n\n\n<pre class=\"wp-block-code\"><code>>>> #set of integers\n>>> my_set = {1,2,4,8}\n>>> print(my_set)\n{8, 1, 2, 4}\n>>>\n>>> #set of mixed datatypes\n>>> my_set = {1.0, \"Hello World!\", (2, 4, 6)}\n>>> print(my_set)\n{1.0, (2, 4, 6), 'Hello World!'}\n>>></code></pre>\n\n\n\n<h3>Methods for Sets</h3>\n\n\n\n<p>Observe the following code to understand about methods for sets −</p>\n\n\n\n<pre class=\"wp-block-code\"><code>>>> >>> #METHODS FOR SETS\n>>>\n>>> #add(x) Method\n>>> topics = {'Python', 'Java', 'C#'}\n>>> topics.add('C++')\n>>> topics\n{'C#', 'C++', 'Java', 'Python'}\n>>>\n>>> #union(s) Method, returns a union of two set.\n>>> topics\n{'C#', 'C++', 'Java', 'Python'}\n>>> team = {'Developer', 'Content Writer', 'Editor','Tester'}\n>>> group = topics.union(team)\n>>> group\n{'Tester', 'C#', 'Python', 'Editor', 'Developer', 'C++', 'Java', 'Content\nWriter'}\n>>> # intersets(s) method, returns an intersection of two sets\n>>> inters = topics.intersection(team)\n>>> inters\nset()\n>>>\n>>> # difference(s) Method, returns a set containing all the elements of\ninvoking set but not of the second set.\n>>>\n>>> safe = topics.difference(team)\n>>> safe\n{'Python', 'C++', 'Java', 'C#'}\n>>>\n>>> diff = topics.difference(group)\n>>> diff\nset()\n>>> #clear() Method, Empties the whole set.\n>>> group.clear()\n>>> group\nset()\n>>></code></pre>\n\n\n\n<h3>Operators for Sets</h3>\n\n\n\n<p>Observe the following code to understand about operators for sets −</p>\n\n\n\n<pre class=\"wp-block-code\"><code>>>> # PYTHON SET OPERATIONS\n>>>\n>>> #Creating two sets\n>>> set1 = set()\n>>> set2 = set()\n>>>\n>>> # Adding elements to set\n>>> for i in range(1,5):\n   set1.add(i)\n>>> for j in range(4,9):\n   set2.add(j)\n>>> set1\n{1, 2, 3, 4}\n>>> set2\n{4, 5, 6, 7, 8}\n>>>\n>>> #Union of set1 and set2\n>>> set3 = set1 | set2 # same as set1.union(set2)\n>>> print('Union of set1 &amp; set2: set3 = ', set3)\nUnion of set1 &amp; set2: set3 = {1, 2, 3, 4, 5, 6, 7, 8}\n>>>\n>>> #Intersection of set1 &amp; set2\n>>> set4 = set1 &amp; set2 # same as set1.intersection(set2)\n>>> print('Intersection of set1 and set2: set4 = ', set4)\nIntersection of set1 and set2: set4 = {4}\n>>>\n>>> # Checking relation between set3 and set4\n>>> if set3 > set4: # set3.issuperset(set4)\n   print('Set3 is superset of set4')\nelif set3 &lt; set4: #set3.issubset(set4)\n   print('Set3 is subset of set4')\nelse: #set3 == set4\n   print('Set 3 is same as set4')\nSet3 is superset of set4\n>>>\n>>> # Difference between set3 and set4\n>>> set5 = set3 - set4\n>>> print('Elements in set3 and not in set4: set5 = ', set5)\nElements in set3 and not in set4: set5 = {1, 2, 3, 5, 6, 7, 8}\n>>>\n>>> # Check if set4 and set5 are disjoint sets\n>>> if set4.isdisjoint(set5):\n   print('Set4 and set5 have nothing in common\\n')\nSet4 and set5 have nothing in common\n>>> # Removing all the values of set5\n>>> set5.clear()\n>>> set5 set()</code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Python data structures are very intuitive from a syntax point of view and they offer a large choice of operations. You need to choose Python data structure depending on what the data involves, if it needs to be modified, or if it is a fixed data and what access type is required, such as at [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [
+      61,
+      128
+    ],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/posts/368"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/comments?post=368"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/posts/368/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4186,
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/posts/368/revisions/4186"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/media?parent=368"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/categories?post=368"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/tags?post=368"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 378,
+    "date": "2020-07-04T10:34:19",
+    "date_gmt": "2020-07-04T10:34:19",
+    "guid": {
+      "rendered": "http://learnpython.foobrdigital.com/?p=378"
+    },
+    "modified": "2020-12-15T11:30:54",
+    "modified_gmt": "2020-12-15T11:30:54",
+    "slug": "building-blocks",
+    "status": "publish",
+    "type": "post",
+    "link": "https://python3.foobrdigital.com/building-blocks/",
+    "title": {
+      "rendered": "Building Blocks"
+    },
+    "content": {
+      "rendered": "\n<p>In this chapter, we will discuss object oriented terms and programming concepts in detail.Class is a just a factory for an instance. This factory contains the blueprint which describes how to make the instances. An instances or object are constructed from the class. In most cases, we can have more than one instances of a class. Every instance has a set of attribute and these attributes are defined in a class, so every instance of a particular class is expected to have the same attributes.</p>\n\n\n\n<h2>Class Bundles : Behavior and State</h2>\n\n\n\n<p>A class will let you bundle together the behavior and state of an object. Observe the following diagram for better understanding −</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://www.tutorialspoint.com/object_oriented_python/images/bundles.jpg\" alt=\"Bundles\"/></figure>\n\n\n\n<p>The following points are worth notable when discussing class bundles −</p>\n\n\n\n<ul><li>The word&nbsp;<strong>behavior</strong>&nbsp;is identical to&nbsp;<strong>function</strong>&nbsp;– it is a piece of code that does something (or implements a behavior)</li><li>The word&nbsp;<strong>state</strong>&nbsp;is identical to&nbsp;<strong>variables</strong>&nbsp;– it is a place to store values within a class.</li><li>When we assert a class behavior and state together, it means that a class packages functions and variables.</li></ul>\n\n\n\n<h3>Classes have methods and attributes</h3>\n\n\n\n<p>In Python, creating a method defines a class behavior. The word method is the OOP name given to a function that is defined within a class. To sum up −</p>\n\n\n\n<ul><li><strong>Class functions</strong>&nbsp;− is synonym for&nbsp;<strong>methods</strong></li><li><strong>Class variables</strong>&nbsp;− is synonym for&nbsp;<strong>name attributes.</strong></li><li><strong>Class</strong>&nbsp;− a blueprint for an instance with exact behavior.</li><li><strong>Object</strong>&nbsp;− one of the instances of the class, perform functionality defined in the class.</li><li><strong>Type</strong>&nbsp;− indicates the class the instance belongs to</li><li><strong>Attribute</strong>&nbsp;− Any object value: object.attribute</li><li><strong>Method</strong>&nbsp;− a “callable attribute” defined in the class</li></ul>\n\n\n\n<p>Observe the following piece of code for example −</p>\n\n\n\n<pre class=\"wp-block-code\"><code>var = “Hello, John”\nprint( type (var)) # ‘str’> or &lt;class 'str'>\nprint(var.upper()) # upper() method is called, HELLO, JOHN</code></pre>\n\n\n\n<h2>Creation and Instantiation</h2>\n\n\n\n<p>The following code shows how to create our first class and then its instance.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>class MyClass(object):\n   pass\n# Create first instance of MyClass\nthis_obj = MyClass()\nprint(this_obj)\n# Another instance of MyClass\nthat_obj = MyClass()\nprint (that_obj)</code></pre>\n\n\n\n<p>Here we have created a class called&nbsp;<strong>MyClass</strong>&nbsp;and which does not do any task. The argument&nbsp;<strong>object</strong>&nbsp;in&nbsp;<strong>MyClass</strong>&nbsp;class involves class inheritance and will be discussed in later chapters.&nbsp;<strong>pass</strong>&nbsp;in the above code indicates that this block is empty, that is it is an empty class definition.</p>\n\n\n\n<p>Let us create an instance <strong>this_obj</strong> of <strong>MyClass()</strong> class and print it as shown −</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;__main__.MyClass object at 0x03B08E10>\n&lt;__main__.MyClass object at 0x0369D390></code></pre>\n\n\n\n<p>Here, we have created an instance of&nbsp;<strong>MyClass.</strong>&nbsp;The hex code refers to the address where the object is being stored. Another instance is pointing to another address.</p>\n\n\n\n<p>Now let us define one variable inside the class <strong>MyClass()</strong> and get the variable from the instance of that class as shown in the following code −</p>\n\n\n\n<pre class=\"wp-block-code\"><code>class MyClass(object):\n   var = 9\n\n# Create first instance of MyClass\nthis_obj = MyClass()\nprint(this_obj.var)\n\n# Another instance of MyClass\n\nthat_obj = MyClass()\nprint (that_obj.var)</code></pre>\n\n\n\n<h3>Output</h3>\n\n\n\n<p>You can observe the following output when you execute the code given above −</p>\n\n\n\n<pre class=\"wp-block-code\"><code>9\n9</code></pre>\n\n\n\n<p>As instance knows from which class it is instantiated, so when requested for an attribute from an instance, the instance looks for the attribute and the class. This is called the&nbsp;<strong>attribute lookup.</strong></p>\n\n\n\n<h2>Instance Methods</h2>\n\n\n\n<p>A function defined in a class is called a <strong>method.</strong> An instance method requires an instance in order to call it and requires no decorator. When creating an instance method, the first parameter is always <strong>self.</strong> Though we can call it (self) by any other name, it is recommended to use self, as it is a naming convention.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>class MyClass(object):\n   var = 9\n   def firstM(self):\n      print(\"hello, World\")\nobj = MyClass()\nprint(obj.var)\nobj.firstM()</code></pre>\n\n\n\n<h3>Output</h3>\n\n\n\n<p>You can observe the following output when you execute the code given above −</p>\n\n\n\n<pre class=\"wp-block-code\"><code>9\nhello, World</code></pre>\n\n\n\n<p>Note that in the above program, we defined a method with self as argument. But we cannot call the method as we have not declared any argument to it.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>class MyClass(object):\n   def firstM(self):\n      print(\"hello, World\")\n      print(self)\nobj = MyClass()\nobj.firstM()\nprint(obj)</code></pre>\n\n\n\n<h3>Output</h3>\n\n\n\n<p>You can observe the following output when you execute the code given above −</p>\n\n\n\n<pre class=\"wp-block-code\"><code>hello, World\n&lt;__main__.MyClass object at 0x036A8E10>\n&lt;__main__.MyClass object at 0x036A8E10></code></pre>\n\n\n\n<h2>Encapsulation</h2>\n\n\n\n<p>Encapsulation is one of the fundamentals of OOP. OOP enables us to hide the complexity of the internal working of the object which is advantageous to the developer in the following ways −</p>\n\n\n\n<ul><li>Simplifies and makes it easy to understand to use an object without knowing the internals.</li><li>Any change can be easily manageable.</li></ul>\n\n\n\n<p>Object-oriented programming relies heavily on encapsulation. The terms encapsulation and abstraction (also called data hiding) are often used as synonyms. They are nearly synonymous, as abstraction is achieved through encapsulation.</p>\n\n\n\n<p>Encapsulation provides us the mechanism of restricting the access to some of the object’s components, this means that the internal representation of an object can’t be seen from outside of the object definition. Access to this data is typically achieved through special methods −&nbsp;<strong>Getters</strong>&nbsp;and&nbsp;<strong>Setters.</strong></p>\n\n\n\n<p>This data is stored in instance attributes and can be manipulated from anywhere outside the class. To secure it, that data should only be accessed using instance methods. Direct access should not be permitted.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>class MyClass(object):\n   def setAge(self, num):\n      self.age = num\n\n   def getAge(self):\n      return self.age\n\nzack = MyClass()\nzack.setAge(45)\nprint(zack.getAge())\n\nzack.setAge(\"Fourty Five\")\nprint(zack.getAge())</code></pre>\n\n\n\n<h3>Output</h3>\n\n\n\n<p>You can observe the following output when you execute the code given above −</p>\n\n\n\n<pre class=\"wp-block-code\"><code>45\nFourty Five</code></pre>\n\n\n\n<p>The data should be stored only if it is correct and valid, using Exception handling constructs. As we can see above, there is no restriction on the user input to setAge() method. It could be a string, a number, or a list. So we need to check onto above code to ensure correctness of being stored.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>class MyClass(object):\n   def setAge(self, num):\n      self.age = num\n\n   def getAge(self):\n      return self.age</code></pre>\n\n\n\n<pre class=\"wp-block-code\"><code>zack = MyClass()\nzack.setAge(45)\nprint(zack.getAge())\nzack.setAge(\"Fourty Five\")\nprint(zack.getAge())</code></pre>\n\n\n\n<h2>Init Constructor</h2>\n\n\n\n<p>The __<strong>init</strong>__ method is implicitly called as soon as an object of a class is instantiated.This will initialize the object.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>x = MyClass()</code></pre>\n\n\n\n<p>The line of code shown above will create a new instance and assigns this object to the local variable x.</p>\n\n\n\n<p>The instantiation operation, that is <strong>calling a class object</strong>, creates an empty object. Many classes like to create objects with instances customized to a specific initial state. Therefore, a class may define a special method named ‘ __init__() ‘ as shown −</p>\n\n\n\n<pre class=\"wp-block-code\"><code>def __init__(self):\n   self.data = &#91;]</code></pre>\n\n\n\n<p>Python calls __init__ during the instantiation to define an additional attribute that should occur when a class is instantiated that may be setting up some beginning values for that object or running a routine required on instantiation. So in this example, a new, initialized instance can be obtained by −</p>\n\n\n\n<pre class=\"wp-block-code\"><code>x = MyClass()</code></pre>\n\n\n\n<p>The __init__() method can have single or multiple arguments for a greater flexibility. The init stands for initialization, as it initializes attributes of the instance. It is called the constructor of a class.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>class myclass(object):\n   def __init__(self,aaa, bbb):\n      self.a = aaa\n      self.b = bbb\n\nx = myclass(4.5, 3)\nprint(x.a, x.b)</code></pre>\n\n\n\n<h3>Output</h3>\n\n\n\n<pre class=\"wp-block-code\"><code>4.5 3\n</code></pre>\n\n\n\n<h2>Class Attributes</h2>\n\n\n\n<p>The attribute defined in the class is called “class attributes’ and the attributes defined in the function is called ‘instance attributes’. While defining, these attributes are not prefixed by self, as these are the property of the class and not of a particular instance.</p>\n\n\n\n<p>The class attributes can be accessed by the class itself ( className.attributeName) as well as by the instances of the class (inst.attributeName). So, the instances have access to both the instance attribute as well as class attributes.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>>>> class myclass():\n   age = 21\n>>> myclass.age\n21\n>>> x = myclass()\n>>> x.age\n21\n>>></code></pre>\n\n\n\n<p>A class attribute can be overridden in an instance, even though it is not a good method to break encapsulation.</p>\n\n\n\n<p>There is a lookup path for attributes in Python. The first being the method defined within the class, and then the class above it.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>>>> class myclass(object):\n   classy = 'class value'\n>>> dd = myclass()\n>>> print (dd.classy) # This should return the string 'class value'\nclass value\n>>>\n>>> dd.classy = \"Instance Value\"\n>>> print(dd.classy) # Return the string \"Instance Value\"\nInstance Value\n>>>\n>>> # This will delete the value set for 'dd.classy' in the instance.\n>>> del dd.classy\n>>> >>> # Since the overriding attribute was deleted, this will print 'class\nvalue'.\n\n>>> print(dd.classy)\nclass value\n>>></code></pre>\n\n\n\n<p>We are overriding the ‘classy’ class attribute in the instance dd. When it’s overridden, the Python interpreter reads the overridden value. But once the new value is deleted with ‘del’, the overridden value is no longer present in the instance, and hence the lookup goes a level above and gets it from the class.</p>\n\n\n\n<h2>Working with Class and Instance Data</h2>\n\n\n\n<p>In this section, let us understand how the class data relates to the instance data. We can store data either in a class or in an instance. When we design a class, we decide which data belongs to the instance and which data should be stored into the overall class.</p>\n\n\n\n<p>An instance can access the class data. If we create multiple instances, then these instances can access their individual attribute values as well the overall class data.</p>\n\n\n\n<p>Thus, a class data is the data that is shared among all the instances. Observe the code given below for better undersanding −</p>\n\n\n\n<pre class=\"wp-block-code\"><code>class InstanceCounter(object):\n   count = 0 # class attribute, will be accessible to all instances\n   def __init__(self, val):\n      self.val = val\n      InstanceCounter.count +=1 # Increment the value of class attribute, accessible through class name\n# In above line, class ('InstanceCounter') act as an object\n   def set_val(self, newval):\n      self.val = newval\n\n   def get_val(self):\n      return self.val\n\n   def get_count(self):\n      return InstanceCounter.count\na = InstanceCounter(9)\nb = InstanceCounter(18)\nc = InstanceCounter(27)\n\nfor obj in (a, b, c):\n   print ('val of obj: %s' %(obj.get_val())) # Initialized value ( 9, 18, 27)\n   print ('count: %s' %(obj.get_count())) # always 3</code></pre>\n\n\n\n<h3>Output</h3>\n\n\n\n<pre class=\"wp-block-code\"><code>val of obj: 9\ncount: 3\nval of obj: 18\ncount: 3\nval of obj: 27\ncount: 3</code></pre>\n\n\n\n<p>In short, class attributes are same for all instances of class whereas instance attributes is particular for each instance. For two different instances, we will have two different instance attributes.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>class myClass:\n   class_attribute = 99\n\n   def class_method(self):\n      self.instance_attribute = 'I am instance attribute'\n\nprint (myClass.__dict__)</code></pre>\n\n\n\n<h3>Output</h3>\n\n\n\n<p>You can observe the following output when you execute the code given above −</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{'__module__': '__main__', 'class_attribute': 99, 'class_method': , '__dict__': , '__weakref__': , '__doc__': None}</code></pre>\n\n\n\n<p>The instance attribute <strong>myClass.__dict__</strong> as shown −</p>\n\n\n\n<pre class=\"wp-block-code\"><code>>>> a = myClass()\n>>> a.class_method()\n>>> print(a.__dict__)\n{'instance_attribute': 'I am instance attribute'}</code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>In this chapter, we will discuss object oriented terms and programming concepts in detail.Class is a just a factory for an instance. This factory contains the blueprint which describes how to make the instances. An instances or object are constructed from the class. In most cases, we can have more than one instances of a [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [
+      61,
+      128
+    ],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/posts/378"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/comments?post=378"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/posts/378/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4185,
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/posts/378/revisions/4185"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/media?parent=378"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/categories?post=378"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/tags?post=378"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 379,
+    "date": "2020-07-04T10:38:22",
+    "date_gmt": "2020-07-04T10:38:22",
+    "guid": {
+      "rendered": "http://learnpython.foobrdigital.com/?p=379"
+    },
+    "modified": "2020-12-15T11:30:54",
+    "modified_gmt": "2020-12-15T11:30:54",
+    "slug": "shortcuts",
+    "status": "publish",
+    "type": "post",
+    "link": "https://python3.foobrdigital.com/shortcuts/",
+    "title": {
+      "rendered": "Shortcuts"
+    },
+    "content": {
+      "rendered": "\n<p>This chapter talks in detail about various built-in functions in Python, file I/O operations and overloading concepts.</p>\n\n\n\n<h2>Python Built-in Functions</h2>\n\n\n\n<p>The Python interpreter has a number of functions called built-in functions that are readily available for use. In its latest version, Python contains 68 built-in functions as listed in the table given below −</p>\n\n\n\n<figure class=\"wp-block-table\"><table><tbody><tr><th>BUILT-IN FUNCTIONS</th></tr><tr><td>abs()</td><td>dict()</td><td>help()</td><td>min()</td><td>setattr()</td></tr><tr><td>all()</td><td>dir()</td><td>hex()</td><td>next()</td><td>slice()</td></tr><tr><td>any()</td><td>divmod()</td><td>id()</td><td>object()</td><td>sorted()</td></tr><tr><td>ascii()</td><td>enumerate()</td><td>input()</td><td>oct()</td><td>staticmethod()</td></tr><tr><td>bin()</td><td>eval()</td><td>int()</td><td>open()</td><td>str()</td></tr><tr><td>bool()</td><td>exec()</td><td>isinstance()</td><td>ord()</td><td>sum()</td></tr><tr><td>bytearray()</td><td>filter()</td><td>issubclass()</td><td>pow()</td><td>super()</td></tr><tr><td>bytes()</td><td>float()</td><td>iter()</td><td>print()</td><td>tuple()</td></tr><tr><td>callable()</td><td>format()</td><td>len()</td><td>property()</td><td>type()</td></tr><tr><td>chr()</td><td>frozenset()</td><td>list()</td><td>range()</td><td>vars()</td></tr><tr><td>classmethod()</td><td>getattr()</td><td>locals()</td><td>repr()</td><td>zip()</td></tr><tr><td>compile()</td><td>globals()</td><td>map()</td><td>reversed()</td><td>__import__()</td></tr><tr><td>complex()</td><td>hasattr()</td><td>max()</td><td>round()</td><td></td></tr><tr><td>delattr()</td><td>hash()</td><td>memoryview()</td><td>set()</td><td></td></tr></tbody></table></figure>\n\n\n\n<p>This section discusses some of the important functions in brief −</p>\n\n\n\n<h3>len() function</h3>\n\n\n\n<p>The len() function gets the length of strings, list or collections. It returns the length or number of items of an object, where object can be a string, list or a collection.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>>>> len(&#91;'hello', 9 , 45.0, 24])\n4</code></pre>\n\n\n\n<p>len() function internally works like <strong>list.__len__()</strong> or <strong>tuple.__len__()</strong>. Thus, note that len() works only on objects that has a __<strong>len__()</strong> method.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>>>> set1\n{1, 2, 3, 4}\n>>> set1.__len__()\n4</code></pre>\n\n\n\n<p>However, in practice, we prefer&nbsp;<strong>len()</strong>&nbsp;instead of the&nbsp;<strong>__len__()</strong>&nbsp;function because of the following reasons −</p>\n\n\n\n<ul><li>It is more efficient. And it is not necessary that a particular method is written to refuse access to special methods such as __len__.</li><li>It is easy to maintain.</li><li>It supports backward compatibility.</li></ul>\n\n\n\n<h3>Reversed(seq)</h3>\n\n\n\n<p>It returns the reverse iterator. seq must be an object which has __reversed__() method or supports the sequence protocol (the __len__() method and the __getitem__() method). It is generally used in <strong>for</strong> loops when we want to loop over items from back to front.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>>>> normal_list = &#91;2, 4, 5, 7, 9]\n>>>\n>>> class CustomSequence():\n   def __len__(self):\n      return 5\n   def __getitem__(self,index):\n      return \"x{0}\".format(index)\n>>> class funkyback():\n   def __reversed__(self):\n      return 'backwards!'\n>>> for seq in normal_list, CustomSequence(), funkyback():\n      print('\\n{}: '.format(seq.__class__.__name__), end=\"\")\n      for item in reversed(seq):\n         print(item, end=\", \")</code></pre>\n\n\n\n<p>The for loop at the end prints the reversed list of a normal list, and instances of the two custom sequences. The output shows that&nbsp;<strong>reversed()</strong>&nbsp;works on all the three of them, but has a very different results when we define&nbsp;<strong>__reversed__</strong>.</p>\n\n\n\n<h3>Output</h3>\n\n\n\n<p>You can observe the following output when you execute the code given above −</p>\n\n\n\n<pre class=\"wp-block-code\"><code>list: 9, 7, 5, 4, 2,\nCustomSequence: x4, x3, x2, x1, x0,\nfunkyback: b, a, c, k, w, a, r, d, s, !,</code></pre>\n\n\n\n<h3>Enumerate</h3>\n\n\n\n<p>The&nbsp;<strong>enumerate ()</strong>&nbsp;method adds a counter to an iterable and returns the enumerate object.</p>\n\n\n\n<p>The syntax of enumerate () is −</p>\n\n\n\n<pre class=\"wp-block-code\"><code>enumerate(iterable, start = 0)\n</code></pre>\n\n\n\n<p>Here the second argument <strong>start</strong> is optional, and by default index starts with zero (0).</p>\n\n\n\n<pre class=\"wp-block-code\"><code>>>> # Enumerate\n>>> names = &#91;'Rajesh', 'Rahul', 'Aarav', 'Sahil', 'Trevor']\n>>> enumerate(names)\n&lt;enumerate object at 0x031D9F80>\n>>> list(enumerate(names))\n&#91;(0, 'Rajesh'), (1, 'Rahul'), (2, 'Aarav'), (3, 'Sahil'), (4, 'Trevor')]\n>>></code></pre>\n\n\n\n<p>So <strong>enumerate()</strong> returns an iterator which yields a tuple that keeps count of the elements in the sequence passed. Since the return value is an iterator, directly accessing it is not much useful. A better approach for enumerate() is keeping count within a for loop.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>>>> for i, n in enumerate(names):\n   print('Names number: ' + str(i))\n   print(n)\nNames number: 0\nRajesh\nNames number: 1\nRahul\nNames number: 2\nAarav\nNames number: 3\nSahil\nNames number: 4\nTrevor</code></pre>\n\n\n\n<p>There are many other functions in the standard library, and here is another list of some more widely used functions −</p>\n\n\n\n<ul><li><strong>hasattr, getattr, setattr</strong>&nbsp;and&nbsp;<strong>delattr,</strong>&nbsp;which allows attributes of an object to be manipulated by their string names.</li><li><strong>all</strong>&nbsp;and&nbsp;<strong>any,</strong>&nbsp;which accept an iterable object and return&nbsp;<strong>True</strong>&nbsp;if all, or any, of the items evaluate to be true.</li><li><strong>nzip,</strong>&nbsp;which takes two or more sequences and returns a new sequence of tuples, where each tuple contains a single value from each sequence.</li></ul>\n\n\n\n<h2>File I/O</h2>\n\n\n\n<p>The concept of files is associated with the term object-oriented programming. Python has wrapped the interface that operating systems provided in abstraction that allows us to work with file objects.</p>\n\n\n\n<p>The <strong>open()</strong> built-in function is used to open a file and return a file object. It is the most commonly used function with two arguments −</p>\n\n\n\n<pre class=\"wp-block-code\"><code>open(filename, mode)</code></pre>\n\n\n\n<p>The open() function calls two argument, first is the filename and second is the mode. Here mode can be ‘r’ for read only mode, ‘w’ for only writing (an existing file with the same name will be erased), and ‘a’ opens the file for appending, any data written to the file is automatically added to the end. ‘r+’ opens the file for both reading and writing. The default mode is read only.</p>\n\n\n\n<p>On windows, ‘b’ appended to the mode opens the file in binary mode, so there are also modes like ‘rb’, ‘wb’ and ‘r+b’.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>>>> text = 'This is the first line'\n>>> file = open('datawork','w')\n>>> file.write(text)\n22\n>>> file.close()</code></pre>\n\n\n\n<p>In some cases, we just want to append to the existing file rather then over-writing it, for that we could supply the value ‘a’ as a mode argument, to append to the end of the file, rather than completely overwriting existing file contents.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>>>> f = open('datawork','a')\n>>> text1 = ' This is second line'\n>>> f.write(text1)\n20\n>>> f.close()</code></pre>\n\n\n\n<p>Once a file is opened for reading, we can call the read, readline, or readlines method to get the contents of the file. The read method returns the entire contents of the file as a str or bytes object, depending on whether the second argument is ‘b’.</p>\n\n\n\n<p>For readability, and to avoid reading a large file in one go, it is often better to use a for loop directly on a file object. For text files, it will read each line, one at a time, and we can process it inside the loop body. For binary files however it’s better to read fixed-sized chunks of data using the read() method, passing a parameter for the maximum number of bytes to read.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>>>> f = open('fileone','r+')\n>>> f.readline()\n'This is the first line. \\n'\n>>> f.readline()\n'This is the second line. \\n'</code></pre>\n\n\n\n<p>Writing to a file, through write method on file objects will writes a string (bytes for binary data) object to the file. The writelines method accepts a sequence of strings and write each of the iterated values to the file. The writelines method does not append a new line after each item in the sequence.</p>\n\n\n\n<p>Finally the close() method should be called when we are finished reading or writing the file, to ensure any buffered writes are written to the disk, that the file has been properly cleaned up and that all resources tied with the file are released back to the operating system. It’s a better approach to call the close() method but technically this will happen automatically when the script exists.</p>\n\n\n\n<h3>An alternative to method overloading</h3>\n\n\n\n<p>Method overloading refers to having multiple methods with the same name that accept different sets of arguments.</p>\n\n\n\n<p>Given a single method or function, we can specify the number of parameters ourself. Depending on the function definition, it can be called with zero, one, two or more parameters.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>class Human:\n   def sayHello(self, name = None):\n      if name is not None:\n         print('Hello ' + name)\n      else:\n         print('Hello ')\n\n#Create Instance\nobj = Human()\n\n#Call the method, else part will be executed\nobj.sayHello()\n\n#Call the method with a parameter, if part will be executed\nobj.sayHello('Rahul')</code></pre>\n\n\n\n<h3>Output</h3>\n\n\n\n<pre class=\"wp-block-code\"><code>Hello\nHello Rahul</code></pre>\n\n\n\n<h2>Default Arguments</h2>\n\n\n\n<h3>Functions Are Objects Too</h3>\n\n\n\n<p>A callable object is an object can accept some arguments and possibly will return an object. A function is the simplest callable object in Python, but there are others too like classes or certain class instances.</p>\n\n\n\n<p>Every function in a Python is an object. Objects can contain methods or functions but object is not necessary a function.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>def my_func():\n   print('My function was called')\nmy_func.description = 'A silly function'\ndef second_func():\n\n   print('Second function was called')\n\n   second_func.description = 'One more sillier function'\n\ndef another_func(func):\n   print(\"The description:\", end=\" \")\n   print(func.description)\n   print('The name: ', end=' ')\n   print(func.__name__)\n   print('The class:', end=' ')\n   print(func.__class__)\n   print(\"Now I'll call the function passed in\")\n   func()\n\nanother_func(my_func)\nanother_func(second_func)</code></pre>\n\n\n\n<p>In the above code, we are able to pass two different functions as argument into our third function, and get different Output for each one −</p>\n\n\n\n<pre class=\"wp-block-code\"><code>The description: A silly function\nThe name: my_func\nThe class: \nNow I'll call the function passed in\nMy function was called\nThe description: One more sillier function\nThe name: second_func\nThe class: \nNow I'll call the function passed in\nSecond function was called</code></pre>\n\n\n\n<h3>callable objects</h3>\n\n\n\n<p>Just as functions are objects that can have attributes set on them, it is possible to create an object that can be called as though it were a function.</p>\n\n\n\n<p>In Python any object with a __call__() method can be called using function-call syntax.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>This chapter talks in detail about various built-in functions in Python, file I/O operations and overloading concepts. Python Built-in Functions The Python interpreter has a number of functions called built-in functions that are readily available for use. In its latest version, Python contains 68 built-in functions as listed in the table given below − BUILT-IN [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [
+      61,
+      128
+    ],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/posts/379"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/comments?post=379"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/posts/379/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4184,
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/posts/379/revisions/4184"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/media?parent=379"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/categories?post=379"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/tags?post=379"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 377,
+    "date": "2020-07-04T10:57:49",
+    "date_gmt": "2020-07-04T10:57:49",
+    "guid": {
+      "rendered": "http://learnpython.foobrdigital.com/?p=377"
+    },
+    "modified": "2020-12-15T11:30:54",
+    "modified_gmt": "2020-12-15T11:30:54",
+    "slug": "inheritance-and-polymorphism",
+    "status": "publish",
+    "type": "post",
+    "link": "https://python3.foobrdigital.com/inheritance-and-polymorphism/",
+    "title": {
+      "rendered": "Inheritance and Polymorphism"
+    },
+    "content": {
+      "rendered": "\n<p>Inheritance and polymorphism – this is a very important concept in Python. You must understand it better if you want to learn.</p>\n\n\n\n<h2>Inheritance</h2>\n\n\n\n<p>One of the major advantages of Object Oriented Programming is re-use. Inheritance is one of the mechanisms to achieve the same. Inheritance allows programmer to create a general or a base class first and then later extend it to more specialized class. It allows programmer to write better code.</p>\n\n\n\n<p>Using inheritance you can use or inherit all the data fields and methods available in your base class. Later you can add you own methods and data fields, thus inheritance provides a way to organize code, rather than rewriting it from scratch.</p>\n\n\n\n<p>In object-oriented terminology when class X extend class Y, then Y is called super/parent/base class and X is called subclass/child/derived class. One point to note here is that only data fields and method which are not private are accessible by child classes. Private data fields and methods are accessible only inside the class.</p>\n\n\n\n<p>syntax to create a derived class is −</p>\n\n\n\n<pre class=\"wp-block-code\"><code>class BaseClass:\n   Body of base class\nclass DerivedClass(BaseClass):\n   Body of derived class</code></pre>\n\n\n\n<h2>Inheriting Attributes</h2>\n\n\n\n<p>Now look at the below example −</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://www.tutorialspoint.com/object_oriented_python/images/inheriting_attributes.jpg\" alt=\"Inheriting Attributes\"/></figure>\n\n\n\n<h3>Output</h3>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://www.tutorialspoint.com/object_oriented_python/images/inheriting_attributes_output.jpg\" alt=\"Inheriting Attributes Output\"/></figure>\n\n\n\n<p>We first created a class called Date and pass the object as an argument, here-object is built-in class provided by Python. Later we created another class called time and called the Date class as an argument. Through this call we get access to all the data and attributes of Date class into the Time class. Because of that when we try to get the get_date method from the Time class object tm we created earlier possible.</p>\n\n\n\n<p>Object.Attribute Lookup Hierarchy</p>\n\n\n\n<ul><li>The instance</li><li>The class</li><li>Any class from which this class inherits</li></ul>\n\n\n\n<h2>Inheritance Examples</h2>\n\n\n\n<p>Let’s take a closure look into the inheritance example −</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://www.tutorialspoint.com/object_oriented_python/images/inheritance_example.jpg\" alt=\"Inheritance Example\"/></figure>\n\n\n\n<p>Let’s create couple of classes to participate in examples −</p>\n\n\n\n<ul><li>Animal − Class simulate an animal</li><li>Cat − Subclass of Animal</li><li>Dog − Subclass of Animal</li></ul>\n\n\n\n<p>In Python, constructor of class used to create an object (instance), and assign the value for the attributes.</p>\n\n\n\n<p>Constructor of subclasses always called to a constructor of parent class to initialize value for the attributes in the parent class, then it start assign value for its attributes.</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://www.tutorialspoint.com/object_oriented_python/images/python_constructor.jpg\" alt=\"Python Constructor\"/></figure>\n\n\n\n<h3>Output</h3>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://www.tutorialspoint.com/object_oriented_python/images/python_constructor_output.jpg\" alt=\"Python Constructor Output\"/></figure>\n\n\n\n<p>In the above example, we see the command attributes or methods we put in the parent class so that all subclasses or child classes will inherits that property from the parent class.</p>\n\n\n\n<p>If a subclass try to inherits methods or data from another subclass then it will through an error as we see when Dog class try to call swatstring() methods from that cat class, it throws an error(like AttributeError in our case).</p>\n\n\n\n<h2>Polymorphism (“MANY SHAPES”)</h2>\n\n\n\n<p>Polymorphism is an important feature of class definition in Python that is utilized when you have commonly named methods across classes or subclasses. This permits functions to use entities of different types at different times. So, it provides flexibility and loose coupling so that code can be extended and easily maintained over time.</p>\n\n\n\n<p>This allows functions to use objects of any of these polymorphic classes without needing to be aware of distinctions across the classes.</p>\n\n\n\n<p>Polymorphism can be carried out through inheritance, with subclasses making use of base class methods or overriding them.</p>\n\n\n\n<p>Let understand the concept of polymorphism with our previous inheritance example and add one common method called show_affection in both subclasses −</p>\n\n\n\n<p>From the example we can see, it refers to a design in which object of dissimilar type can be treated in the same manner or more specifically two or more classes with method of the same name or common interface because same method(show_affection in below example) is called with either type of objects.</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://www.tutorialspoint.com/object_oriented_python/images/polymorphism.jpg\" alt=\"Polymorphism\"/></figure>\n\n\n\n<h3>Output</h3>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://www.tutorialspoint.com/object_oriented_python/images/polymorphism_output.jpg\" alt=\"Polymorphism Output\"/></figure>\n\n\n\n<p>So, all animals show affections (show_affection), but they do differently. The “show_affection” behaviors is thus polymorphic in the sense that it acted differently depending on the animal. So, the abstract “animal” concept does not actually “show_affection”, but specific animals(like dogs and cats) have a concrete implementation of the action “show_affection”.</p>\n\n\n\n<p>Python itself have classes that are polymorphic. Example, the len() function can be used with multiple objects and all return the correct output based on the input parameter.</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://www.tutorialspoint.com/object_oriented_python/images/polymorphic.jpg\" alt=\"Polymorphic\"/></figure>\n\n\n\n<h2>Overriding</h2>\n\n\n\n<p>In Python, when a subclass contains a method that overrides a method of the superclass, you can also call the superclass method by calling</p>\n\n\n\n<p>Super(Subclass, self).method instead of self.method.</p>\n\n\n\n<h3>Example</h3>\n\n\n\n<pre class=\"wp-block-code\"><code>class Thought(object):\n   def __init__(self):\n      pass\n   def message(self):\n      print(\"Thought, always come and go\")\n\nclass Advice(Thought):\n   def __init__(self):\n      super(Advice, self).__init__()\n   def message(self):\n      print('Warning: Risk is always involved when you are dealing with market!')</code></pre>\n\n\n\n<h2>Inheriting the Constructor</h2>\n\n\n\n<p>If we see from our previous inheritance example, __init__ was located in the parent class in the up ‘cause the child class dog or cat didn’t‘ve __init__ method in it. Python used the inheritance attribute lookup to find __init__ in animal class. When we created the child class, first it will look the __init__ method in the dog class, then it didn’t find it then looked into parent class Animal and found there and called that there. So as our class design became complex we may wish to initialize a instance firstly processing it through parent class constructor and then through child class constructor.</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://www.tutorialspoint.com/object_oriented_python/images/constructor.jpg\" alt=\"Constructor\"/></figure>\n\n\n\n<h3>Output</h3>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://www.tutorialspoint.com/object_oriented_python/images/constructor_output.jpg\" alt=\"Constructor Output\"/></figure>\n\n\n\n<p>In above example- all animals have a name and all dogs a particular breed. We called parent class constructor with super. So dog has its own __init__ but the first thing that happen is we call super. Super is built in function and it is designed to relate a class to its super class or its parent class.</p>\n\n\n\n<p>In this case we saying that get the super class of dog and pass the dog instance to whatever method we say here the constructor __init__. So in another words we are calling parent class Animal __init__ with the dog object. You may ask why we won’t just say Animal __init__ with the dog instance, we could do this but if the name of animal class were to change, sometime in the future. What if we wanna rearrange the class hierarchy,so the dog inherited from another class. Using super in this case allows us to keep things modular and easy to change and maintain.</p>\n\n\n\n<p>So in this example we are able to combine general __init__ functionality with more specific functionality. This gives us opportunity to separate common functionality from the specific functionality which can eliminate code duplication and relate class to one another in a way that reflects the system overall design.</p>\n\n\n\n<h3>Conclusion</h3>\n\n\n\n<ul><li>__init__ is like any other method; it can be inherited</li><li>If a class does not have a __init__ constructor, Python will check its parent class to see if it can find one.</li><li>As soon as it finds one, Python calls it and stops looking</li><li>We can use the super () function to call methods in the parent class.</li><li>We may want to initialize in the parent as well as our own class.</li></ul>\n\n\n\n<h2>Multiple Inheritance and the Lookup Tree</h2>\n\n\n\n<p>As its name indicates, multiple inheritance is Python is when a class inherits from multiple classes.</p>\n\n\n\n<p>For example, a child inherits personality traits from both parents (Mother and Father).</p>\n\n\n\n<h3>Python Multiple Inheritance Syntax</h3>\n\n\n\n<p>To make a class inherits from multiple parents classes, we write the the names of these classes inside the parentheses to the derived class while defining it. We separate these names with comma.</p>\n\n\n\n<p>Below is an example of that −</p>\n\n\n\n<pre class=\"wp-block-code\"><code>>>> class Mother:\n   pass\n\n>>> class Father:\n   pass\n\n>>> class Child(Mother, Father):\n   pass\n\n>>> issubclass(Child, Mother) and issubclass(Child, Father)\nTrue</code></pre>\n\n\n\n<p>Multiple inheritance refers to the ability of inheriting from two or more than two class. The complexity arises as child inherits from parent and parents inherits from the grandparent class. Python climbs an inheriting tree looking for attributes that is being requested to be read from an object. It will check the in the instance, within class then parent class and lastly from the grandparent class. Now the question arises in what order the classes will be searched &#8211; breath-first or depth-first. By default, Python goes with the depth-first.</p>\n\n\n\n<p>That’s is why in the below diagram the Python searches the dothis() method first in class A. So the method resolution order in the below example will be</p>\n\n\n\n<p><strong>Mro- D→B→A→C</strong></p>\n\n\n\n<p>Look at the below multiple inheritance diagram −</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://www.tutorialspoint.com/object_oriented_python/images/multiple_inheritance.jpg\" alt=\"Multiple Inheritance\"/></figure>\n\n\n\n<p>Let’s go through an example to understand the “mro” feature of an Python.</p>\n\n\n\n<h3>Output</h3>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://www.tutorialspoint.com/object_oriented_python/images/python_mro_feature_output.jpg\" alt=\"Python mro Feature Output\"/></figure>\n\n\n\n<h3>Example 3</h3>\n\n\n\n<p>Let’s take another example of “diamond shape” multiple inheritance.</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://www.tutorialspoint.com/object_oriented_python/images/diamond_shape_multiple_inheritance.jpg\" alt=\"Diamond Shape Multiple Inheritance\"/></figure>\n\n\n\n<p>Above diagram will be considered ambiguous. From our previous example understanding “method resolution order” .i.e. mro will be D→B→A→C→A but it’s not. On getting the second A from the C, Python will ignore the previous A. so the mro will be in this case will be D→B→C→A.</p>\n\n\n\n<p>Let’s create an example based on above diagram −</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://www.tutorialspoint.com/object_oriented_python/images/method_resolution_order.jpg\" alt=\"Method Resolution Order\"/></figure>\n\n\n\n<h3>Output</h3>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://www.tutorialspoint.com/object_oriented_python/images/method_resolution_order_output.jpg\" alt=\"Method Resolution Order Output\"/></figure>\n\n\n\n<p>Simple rule to understand the above output is- if the same class appear in the method resolution order, the earlier appearances of this class will be remove from the method resolution order.</p>\n\n\n\n<p>In conclusion −</p>\n\n\n\n<ul><li>Any class can inherit from multiple classes</li><li>Python normally uses a “depth-first” order when searching inheriting classes.</li><li>But when two classes inherit from the same class, Python eliminates the first appearances of that class from the mro.</li></ul>\n\n\n\n<h2>Decorators, Static and Class Methods</h2>\n\n\n\n<p>Functions(or methods) are created by def statement.</p>\n\n\n\n<p>Though methods works in exactly the same way as a function except one point where method first argument is instance object.</p>\n\n\n\n<p>We can classify methods based on how they behave, like</p>\n\n\n\n<ul><li><strong>Simple method</strong> − defined outside of a class. This function can access class attributes by feeding instance argument:</li></ul>\n\n\n\n<pre class=\"wp-block-code\"><code>def outside_func(():\n</code></pre>\n\n\n\n<ul><li><strong>Instance method</strong> −</li></ul>\n\n\n\n<pre class=\"wp-block-code\"><code>def func(self,)\n</code></pre>\n\n\n\n<ul><li><strong>Class method</strong> − if we need to use class attributes</li></ul>\n\n\n\n<pre class=\"wp-block-code\"><code>@classmethod\ndef cfunc(cls,)</code></pre>\n\n\n\n<ul><li><strong>Static method</strong> − do not have any info about the class</li></ul>\n\n\n\n<pre class=\"wp-block-code\"><code>  @staticmethod\ndef sfoo()</code></pre>\n\n\n\n<p>Till now we have seen the instance method, now is the time to get some insight into the other two methods,</p>\n\n\n\n<h3>Class Method</h3>\n\n\n\n<p>The @classmethod decorator, is a builtin function decorator that gets passed the class it was called on or the class of the instance it was called on as first argument. The result of that evaluation shadows your function definition.</p>\n\n\n\n<h3>syntax</h3>\n\n\n\n<pre class=\"wp-block-code\"><code>class C(object):\n   @classmethod\n   def fun(cls, arg1, arg2, ...):\n      ....\nfun: function that needs to be converted into a class method\nreturns: a class method for function</code></pre>\n\n\n\n<p>They have the access to this cls argument, it can’t modify object instance state. That would require access to self.</p>\n\n\n\n<ul><li>It is bound to the class and not the object of the class.</li><li>Class methods can still modify class state that applies across all instances of the class.</li></ul>\n\n\n\n<h3>Static Method</h3>\n\n\n\n<p>A static method takes neither a self nor a cls(class) parameter but it’s free to accept an arbitrary number of other parameters.</p>\n\n\n\n<p><strong>syntax</strong></p>\n\n\n\n<pre class=\"wp-block-code\"><code>class C(object):\n   @staticmethod\n   def fun(arg1, arg2, ...):\n   ...\nreturns: a static method for function funself.</code></pre>\n\n\n\n<ul><li>A static method can neither modify object state nor class state.</li><li>They are restricted in what data they can access.</li></ul>\n\n\n\n<h3>When to use what</h3>\n\n\n\n<ul><li>We generally use class method to create factory methods. Factory methods return class object (similar to a constructor) for different use cases.</li><li>We generally use static methods to create utility functions.</li></ul>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Inheritance and polymorphism – this is a very important concept in Python. You must understand it better if you want to learn. Inheritance One of the major advantages of Object Oriented Programming is re-use. Inheritance is one of the mechanisms to achieve the same. Inheritance allows programmer to create a general or a base class [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [
+      61,
+      128
+    ],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/posts/377"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/comments?post=377"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/posts/377/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4183,
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/posts/377/revisions/4183"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/media?parent=377"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/categories?post=377"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/tags?post=377"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 376,
+    "date": "2020-07-04T10:59:59",
+    "date_gmt": "2020-07-04T10:59:59",
+    "guid": {
+      "rendered": "http://learnpython.foobrdigital.com/?p=376"
+    },
+    "modified": "2020-12-15T11:30:54",
+    "modified_gmt": "2020-12-15T11:30:54",
+    "slug": "design-pattern",
+    "status": "publish",
+    "type": "post",
+    "link": "https://python3.foobrdigital.com/design-pattern/",
+    "title": {
+      "rendered": "Design Pattern"
+    },
+    "content": {
+      "rendered": "\n<h2>Overview</h2>\n\n\n\n<p>Modern software development needs to address complex business requirements. It also needs to take into account factors such as future extensibility and maintainability. A good design of a software system is vital to accomplish these goals. Design patterns play an important role in such systems.</p>\n\n\n\n<p>To understand design pattern, let’s consider below example −</p>\n\n\n\n<ul><li>Every car’s design follows a basic design pattern, four wheels, steering wheel, the core drive system like accelerator-break-clutch, etc.</li></ul>\n\n\n\n<p>So, all things repeatedly built/ produced, shall inevitably follow a pattern in its design.. it cars, bicycle, pizza, atm machines, whatever…even your sofa bed.</p>\n\n\n\n<p>Designs that have almost become standard way of coding some logic/mechanism/technique in software, hence come to be known as or studied as, Software Design Patterns.</p>\n\n\n\n<h2>Why is Design Pattern Important?</h2>\n\n\n\n<p>Benefits of using Design Patterns are −</p>\n\n\n\n<ul><li>Helps you to solve common design problems through a proven approach.</li><li>No ambiguity in the understanding as they are well documented.</li><li>Reduce the overall development time.</li><li>Helps you deal with future extensions and modifications with more ease than otherwise.</li><li>May reduce errors in the system since they are proven solutions to common problems.</li></ul>\n\n\n\n<h2>Classification of Design Patterns</h2>\n\n\n\n<p>The GoF (Gang of Four) design patterns are classified into three categories namely creational, structural and behavioral.</p>\n\n\n\n<h3>Creational Patterns</h3>\n\n\n\n<p>Creational design patterns separate the object creation logic from the rest of the system. Instead of you creating objects, creational patterns creates them for you. The creational patterns include Abstract Factory, Builder, Factory Method, Prototype and Singleton.</p>\n\n\n\n<p>Creational Patterns are not commonly used in Python because of the dynamic nature of the language. Also language itself provide us with all the flexibility we need to create in a sufficient elegant fashion, we rarely need to implement anything on top, like singleton or Factory.</p>\n\n\n\n<p>Also these patterns provide a way to create objects while hiding the creation logic, rather than instantiating objects directly using a new operator.</p>\n\n\n\n<h3>Structural Patterns</h3>\n\n\n\n<p>Sometimes instead of starting from scratch, you need to build larger structures by using an existing set of classes. That’s where structural class patterns use inheritance to build a new structure. Structural object patterns use composition/ aggregation to obtain a new functionality. Adapter, Bridge, Composite, Decorator, Façade, Flyweight and Proxy are Structural Patterns. They offers best ways to organize class hierarchy.</p>\n\n\n\n<h3>Behavioral Patterns</h3>\n\n\n\n<p>Behavioral patterns offers best ways of handling communication between objects. Patterns comes under this categories are: Visitor, Chain of responsibility, Command, Interpreter, Iterator, Mediator, Memento, Observer, State, Strategy and Template method are Behavioral Patterns.</p>\n\n\n\n<p>Because they represent the behavior of a system, they are used generally to describe the functionality of software systems.</p>\n\n\n\n<h2>Commonly used Design Patterns</h2>\n\n\n\n<h3>Singleton</h3>\n\n\n\n<p>It is one of the most controversial and famous of all design patterns. It is used in overly object-oriented languages, and is a vital part of traditional object-oriented programming.</p>\n\n\n\n<p>The Singleton pattern is used for,</p>\n\n\n\n<ul><li>When logging needs to be implemented. The logger instance is shared by all the components of the system.</li><li>The configuration files is using this because cache of information needs to be maintained and shared by all the various components in the system.</li><li>Managing a connection to a database.</li></ul>\n\n\n\n<p>Here is the UML diagram,</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://www.tutorialspoint.com/object_oriented_python/images/uml_diagram.jpg\" alt=\"UML Diagram\"/><figcaption><br><br></figcaption></figure>\n\n\n\n<pre class=\"wp-block-code\"><code>class Logger(object):\n   def __new__(cls, *args, **kwargs):\n      if not hasattr(cls, '_logger'):\n      cls._logger = super(Logger, cls).__new__(cls, *args, **kwargs)\nreturn cls._logger</code></pre>\n\n\n\n<p>In this example, Logger is a Singleton.</p>\n\n\n\n<p>When __new__ is called, it normally constructs a new instance of that class. When we override it, we first check if our singleton instance has been created or not. If not, we create it using a super call. Thus, whenever we call the constructor on Logger, we always get the exact same instance.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>>>>\n>>> obj1 = Logger()\n>>> obj2 = Logger()\n>>> obj1 == obj2\nTrue\n>>>\n>>> obj1\n&lt;__main__.Logger object at 0x03224090>\n>>> obj2\n&lt;__main__.Logger object at 0x03224090></code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Overview Modern software development needs to address complex business requirements. It also needs to take into account factors such as future extensibility and maintainability. A good design of a software system is vital to accomplish these goals. Design patterns play an important role in such systems. To understand design pattern, let’s consider below example − [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [
+      61,
+      128
+    ],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/posts/376"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/comments?post=376"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/posts/376/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4182,
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/posts/376/revisions/4182"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/media?parent=376"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/categories?post=376"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/tags?post=376"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 375,
+    "date": "2020-07-04T11:19:11",
+    "date_gmt": "2020-07-04T11:19:11",
+    "guid": {
+      "rendered": "http://learnpython.foobrdigital.com/?p=375"
+    },
+    "modified": "2020-12-15T11:30:54",
+    "modified_gmt": "2020-12-15T11:30:54",
+    "slug": "advanced-features",
+    "status": "publish",
+    "type": "post",
+    "link": "https://python3.foobrdigital.com/advanced-features/",
+    "title": {
+      "rendered": "Advanced Features"
+    },
+    "content": {
+      "rendered": "\n<p>In this we will look into some of the advanced features which Python provide</p>\n\n\n\n<h2>Core Syntax in our Class design</h2>\n\n\n\n<p>In this we will look onto, how Python allows us to take advantage of operators in our classes. Python is largely objects and methods call on objects and this even goes on even when its hidden by some convenient syntax.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>>>> var1 = 'Hello'\n>>> var2 = ' World!'\n>>> var1 + var2\n'Hello World!'\n>>>\n>>> var1.__add__(var2)\n'Hello World!'\n>>> num1 = 45\n>>> num2 = 60\n>>> num1.__add__(num2)\n105\n>>> var3 = &#91;'a', 'b']\n>>> var4 = &#91;'hello', ' John']\n>>> var3.__add__(var4)\n&#91;'a', 'b', 'hello', ' John']\n﻿</code></pre>\n\n\n\n<p>So if we have to add magic method __add__ to our own classes, could we do that too. Let’s try to do that.</p>\n\n\n\n<p>We have a class called Sumlist which has a contructor __init__ which takes list as an argument called my_list.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>class SumList(object):\n   def __init__(self, my_list):\n      self.mylist = my_list\n   def __add__(self, other):\n     new_list = &#91; x + y for x, y in zip(self.mylist, other.mylist)]\n\n     return SumList(new_list)\n   \n   def __repr__(self):\n      return str(self.mylist)\n\naa = SumList(&#91;3,6, 9, 12, 15])\n\nbb = SumList(&#91;100, 200, 300, 400, 500])\ncc = aa + bb # aa.__add__(bb)\nprint(cc) # should gives us a list (&#91;103, 206, 309, 412, 515])</code></pre>\n\n\n\n<h3>Output</h3>\n\n\n\n<pre class=\"wp-block-code\"><code>&#91;103, 206, 309, 412, 515]\n</code></pre>\n\n\n\n<p>But there are many methods which are internally managed by others magic methods. Below are some of them,</p>\n\n\n\n<pre class=\"wp-block-code\"><code>'abc' in var # var.__contains__('abc')\nvar == 'abc' # var.__eq__('abc')\nvar&#91;1] # var.__getitem__(1)\nvar&#91;1:3] # var.__getslice__(1, 3)\nlen(var) # var.__len__()\nprint(var) # var.__repr__()</code></pre>\n\n\n\n<h2>Inheriting From built-in types</h2>\n\n\n\n<p>Classes can also inherit from built-in types this means inherits from any built-in and take advantage of all the functionality found there.</p>\n\n\n\n<p>In below example we are inheriting from dictionary but then we are implementing one of its method __setitem__. This (setitem) is invoked when we set key and value in the dictionary. As this is a magic method, this will be called implicitly.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>class MyDict(dict):\n\n   def __setitem__(self, key, val):\n      print('setting a key and value!')\n      dict.__setitem__(self, key, val)\n\ndd = MyDict()\ndd&#91;'a'] = 10\ndd&#91;'b'] = 20\n\nfor key in dd.keys():\n   print('{0} = {1}'.format(key, dd&#91;key]))</code></pre>\n\n\n\n<h3>Output</h3>\n\n\n\n<pre class=\"wp-block-code\"><code>setting a key and value!\nsetting a key and value!\na = 10\nb = 20</code></pre>\n\n\n\n<p>Let’s extend our previous example, below we have called two magic methods called __getitem__ and __setitem__ better invoked when we deal with list index.</p>\n\n\n\n<pre class=\"wp-block-code\"><code># Mylist inherits from 'list' object but indexes from 1 instead for 0!\nclass Mylist(list): # inherits from list\n   def __getitem__(self, index):\n      if index == 0:\n         raise IndexError\n      if index > 0:\n         index = index - 1\n         return list.__getitem__(self, index) # this method is called when\n\n# we access a value with subscript like x&#91;1]\n   def __setitem__(self, index, value):\n      if index == 0:\n         raise IndexError\n      if index > 0:\n      index = index - 1\n      list.__setitem__(self, index, value)\n\nx = Mylist(&#91;'a', 'b', 'c']) # __init__() inherited from builtin list\n\nprint(x) # __repr__() inherited from builtin list\n\nx.append('HELLO'); # append() inherited from builtin list\n\nprint(x&#91;1]) # 'a' (Mylist.__getitem__ cutomizes list superclass\n               # method. index is 1, but reflects 0!\n\nprint (x&#91;4]) # 'HELLO' (index is 4 but reflects 3!</code></pre>\n\n\n\n<h3>Output</h3>\n\n\n\n<pre class=\"wp-block-preformatted\">\n</pre>\n\n\n\n<p>In above example, we set a three item list in Mylist and implicitly __init__ method is called and when we print the element x, we get the three item list ([‘a’,’b’,’c’]). Then we append another element to this list. Later we ask for index 1 and index 4. But if you see the output, we are getting element from the (index-1) what we have asked for. As we know list indexing start from 0 but here the indexing start from 1 (that’s why we are getting the first item of the list).</p>\n\n\n\n<h2>Naming Conventions</h2>\n\n\n\n<p>In this we will look into names we’ll used for variables especially private variables and conventions used by Python programmers worldwide. Although variables are designated as private but there is not privacy in Python and this by design. Like any other well documented languages, Python has naming and style conventions that it promote although it doesn’t enforce them. There is a style guide written by “<strong>Guido van Rossum” the originator of Python, that describe the best practices and use of name and is called PEP8. Here is the link for this,</strong> https://www.python.org/dev/peps/pep-0008/</p>\n\n\n\n<p>PEP stands for Python enhancement proposal and is a series of documentation that distributed among the Python community to discuss proposed changes. For example it is recommended all,</p>\n\n\n\n<ul><li>Module names − all_lower_case</li><li>Class names and exception names − CamelCase</li><li>Global and local names − all_lower_case</li><li>Functions and method names − all_lower_case</li><li>Constants − ALL_UPPER_CASE</li></ul>\n\n\n\n<p>These are just the recommendation, you can vary if you like. But as most of the developers follows these recommendation so might me your code is less readable.</p>\n\n\n\n<h3>Why conform to convention?</h3>\n\n\n\n<p>We can follow the PEP recommendation we it allows us to get,</p>\n\n\n\n<ul><li>More familiar to the vast majority of developers</li><li>Clearer to most readers of your code.</li><li>Will match style of other contributers who work on same code base.</li><li>Mark of a professional software developers</li><li>Everyone will accept you.</li></ul>\n\n\n\n<h3>Variable Naming − ‘Public’ and ‘Private’</h3>\n\n\n\n<p>In Python, when we are dealing with modules and classes, we designate some variables or attribute as private. In Python, there is no existence of “Private” instance variable which cannot be accessed except inside an object. Private simply means they are simply not intended to be used by the users of the code instead they are intended to be used internally. In general, a convention is being followed by most Python developers i.e. a name prefixed with an underscore for example. _attrval (example below) should be treated as a non-public part of the API or any Python code, whether it is a function, a method or a data member. Below is the naming convention we follow,</p>\n\n\n\n<ul><li>Public attributes or variables (intended to be used by the importer of this module or user of this class) −<strong>regular_lower_case</strong></li><li>Private attributes or variables (internal use by the module or class) −<strong>_single_leading_underscore</strong></li><li>Private attributes that shouldn’t be subclassed −<strong>__double_leading_underscore</strong></li><li>Magic attributes −<strong>__double_underscores__</strong>(use them, don’t create them)</li></ul>\n\n\n\n<pre class=\"wp-block-code\"><code>class GetSet(object):\n\n   instance_count = 0 # public\n   \n   __mangled_name = 'no privacy!' # special variable\n\n   def __init__(self, value):\n      self._attrval = value # _attrval is for internal use only\n      GetSet.instance_count += 1\n\n   @property\n   def var(self):\n      print('Getting the \"var\" attribute')\n      return self._attrval\n\n   @var.setter\n   def var(self, value):\n      print('setting the \"var\" attribute')\n      self._attrval = value\n\n   @var.deleter\n   def var(self):\n      print('deleting the \"var\" attribute')\n      self._attrval = None\n\ncc = GetSet(5)\ncc.var = 10 # public name\nprint(cc._attrval)\nprint(cc._GetSet__mangled_name)</code></pre>\n\n\n\n<h3>Output</h3>\n\n\n\n<pre class=\"wp-block-code\"><code>setting the \"var\" attribute\n10\nno privacy!</code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>In this we will look into some of the advanced features which Python provide Core Syntax in our Class design In this we will look onto, how Python allows us to take advantage of operators in our classes. Python is largely objects and methods call on objects and this even goes on even when its [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [
+      61,
+      128
+    ],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/posts/375"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/comments?post=375"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/posts/375/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4181,
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/posts/375/revisions/4181"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/media?parent=375"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/categories?post=375"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/tags?post=375"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 373,
+    "date": "2020-07-04T11:28:57",
+    "date_gmt": "2020-07-04T11:28:57",
+    "guid": {
+      "rendered": "http://learnpython.foobrdigital.com/?p=373"
+    },
+    "modified": "2020-12-15T11:30:54",
+    "modified_gmt": "2020-12-15T11:30:54",
+    "slug": "exception-classes",
+    "status": "publish",
+    "type": "post",
+    "link": "https://python3.foobrdigital.com/exception-classes/",
+    "title": {
+      "rendered": "Exception Classes"
+    },
+    "content": {
+      "rendered": "\n<p>In general, an exception is any unusual condition. Exception usually indicates errors but sometimes they intentionally puts in the program, in cases like terminating a procedure early or recovering from a resource shortage. There are number of built-in exceptions, which indicate conditions like reading past the end of a file, or dividing by zero. We can define our own exceptions called custom exception.</p>\n\n\n\n<p>Exception handling enables you handle errors gracefully and do something meaningful about it. Exception handling has two components: “throwing” and ‘catching’.</p>\n\n\n\n<h2>Identifying Exception (Errors)</h2>\n\n\n\n<p>Every error occurs in Python result an exception which will an error condition identified by its error type.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>>>> #Exception\n>>> 1/0\nTraceback (most recent call last):\n   File \"&lt;pyshell#2>\", line 1, in &lt;module>\n      1/0\nZeroDivisionError: division by zero\n>>>\n>>> var = 20\n>>> print(ver)\nTraceback (most recent call last):\n   File \"&lt;pyshell#5>\", line 1, in &lt;module>\n      print(ver)\nNameError: name 'ver' is not defined\n>>> #Above as we have misspelled a variable name so we get an NameError.\n>>>\n>>> print('hello)\n\nSyntaxError: EOL while scanning string literal\n>>> #Above we have not closed the quote in a string, so we get SyntaxError.\n>>>\n>>> #Below we are asking for a key, that doen't exists.\n>>> mydict = {}\n>>> mydict&#91;'x']\nTraceback (most recent call last):\n   File \"&lt;pyshell#15>\", line 1, in &lt;module>\n      mydict&#91;'x']\nKeyError: 'x'\n>>> #Above keyError\n>>>\n>>> #Below asking for a index that didn't exist in a list.\n>>> mylist = &#91;1,2,3,4]\n>>> mylist&#91;5]\nTraceback (most recent call last):\n   File \"&lt;pyshell#20>\", line 1, in &lt;module>\n      mylist&#91;5]\nIndexError: list index out of range\n>>> #Above, index out of range, raised IndexError.</code></pre>\n\n\n\n<h2>Catching/Trapping Exception</h2>\n\n\n\n<p>When something unusual occurs in your program and you wish to handle it using the exception mechanism, you ‘throw an exception’. The keywords try and except are used to catch exceptions. Whenever an error occurs within a try block, Python looks for a matching except block to handle it. If there is one, execution jumps there.</p>\n\n\n\n<h3>syntax</h3>\n\n\n\n<pre class=\"wp-block-code\"><code>try:\n   #write some code\n   #that might throw some exception\nexcept &lt;ExceptionType>:\n   # Exception handler, alert the user</code></pre>\n\n\n\n<p>The code within the try clause will be executed statement by statement.</p>\n\n\n\n<p>If an exception occurs, the rest of the try block will be skipped and the except clause will be executed.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>try:\n   some statement here\nexcept:\n   exception handling</code></pre>\n\n\n\n<p>Let’s write some code to see what happens when you not use any error handling mechanism in your program.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>number = int(input('Please enter the number between 1 &amp; 10: '))\nprint('You have entered number',number)</code></pre>\n\n\n\n<p>Above programme will work correctly as long as the user enters a number, but what happens if the users try to puts some other data type(like a string or a list).</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Please enter the number between 1 > 10: 'Hi'\nTraceback (most recent call last):\n   File \"C:/Python/Python361/exception2.py\", line 1, in &lt;module>\n      number = int(input('Please enter the number between 1 &amp; 10: '))\nValueError: invalid literal for int() with base 10: \"'Hi'\"</code></pre>\n\n\n\n<p>Now ValueError is an exception type. Let’s try to rewrite the above code with exception handling.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>import sys\n\nprint('Previous code with exception handling')\n\ntry:\n   number = int(input('Enter number between 1 > 10: '))\n\nexcept(ValueError):\n   print('Error..numbers only')\n   sys.exit()\n\nprint('You have entered number: ',number)</code></pre>\n\n\n\n<p>If we run the program, and enter a string (instead of a number), we can see that we get a different result.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Previous code with exception handling\nEnter number between 1 > 10: 'Hi'\nError..numbers only</code></pre>\n\n\n\n<h2>Raising Exceptions</h2>\n\n\n\n<p>To raise your exceptions from your own methods you need to use raise keyword like this</p>\n\n\n\n<pre class=\"wp-block-code\"><code>raise ExceptionClass(‘Some Text Here’)</code></pre>\n\n\n\n<p>Let’s take an example</p>\n\n\n\n<pre class=\"wp-block-code\"><code>def enterAge(age):\n   if age&lt;0:\n      raise ValueError('Only positive integers are allowed')\n   if age % 2 ==0:\n      print('Entered Age is even')\n   else:\n      print('Entered Age is odd')\n\ntry:\n   num = int(input('Enter your age: '))\n   enterAge(num)\nexcept ValueError:\n   print('Only positive integers are allowed')</code></pre>\n\n\n\n<p>Run the program and enter positive integer.</p>\n\n\n\n<h3>Expected Output</h3>\n\n\n\n<pre class=\"wp-block-code\"><code>Enter your age: 12\nEntered Age is even</code></pre>\n\n\n\n<p>But when we try to enter a negative number we get,</p>\n\n\n\n<h3>Expected Output</h3>\n\n\n\n<pre class=\"wp-block-code\"><code>Enter your age: -2\nOnly positive integers are allowed</code></pre>\n\n\n\n<h2>Creating Custom exception class</h2>\n\n\n\n<p>You can create a custom exception class by Extending BaseException class or subclass of BaseException.</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://www.tutorialspoint.com/object_oriented_python/images/custom_exception_class.jpg\" alt=\"Custom Exception Class\"/></figure>\n\n\n\n<p>From above diagram we can see most of the exception classes in Python extends from the BaseException class. You can derive your own exception class from BaseException class or from its subclass.</p>\n\n\n\n<p>Create a new file called NegativeNumberException.py and write the following code.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>class NegativeNumberException(RuntimeError):\n   def __init__(self, age):\n      super().__init__()\n      self.age = age</code></pre>\n\n\n\n<p>Above code creates a new exception class named NegativeNumberException, which consists of only constructor which call parent class constructor using super()__init__() and sets the age.</p>\n\n\n\n<p>Now to create your own custom exception class, will write some code and import the new exception class.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>from NegativeNumberException import NegativeNumberException\ndef enterage(age):\n   if age &lt; 0:\n      raise NegativeNumberException('Only positive integers are allowed')\n\n   if age % 2 == 0:\n      print('Age is Even')\n\n   else:\n      print('Age is Odd')\n\ntry:\n   num = int(input('Enter your age: '))\n   enterage(num)\nexcept NegativeNumberException:\n   print('Only positive integers are allowed')\nexcept:\n   print('Something is wrong')</code></pre>\n\n\n\n<h3>Output</h3>\n\n\n\n<pre class=\"wp-block-code\"><code>Enter your age: -2\nOnly positive integers are allowed\n﻿</code></pre>\n\n\n\n<p>Another way to create a custom Exception class.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>class customException(Exception):\n   def __init__(self, value):\n      self.parameter = value\n\n   def __str__(self):\n      return repr(self.parameter)\ntry:\n   raise customException('My Useful Error Message!')\nexcept customException as instance:\n   print('Caught: ' + instance.parameter)</code></pre>\n\n\n\n<h3>Output</h3>\n\n\n\n<pre class=\"wp-block-code\"><code>Caught: My Useful Error Message!\n</code></pre>\n\n\n\n<h3>Exception hierarchy</h3>\n\n\n\n<p>The class hierarchy for built-in exceptions is −</p>\n\n\n\n<pre class=\"wp-block-code\"><code>+-- SystemExit \n+-- KeyboardInterrupt \n+-- GeneratorExit \n+-- Exception \n+-- StopIteration \n+-- StopAsyncIteration \n+-- ArithmeticError \n| +-- FloatingPointError \n| +-- OverflowError \n| +-- ZeroDivisionError \n+-- AssertionError \n+-- AttributeError \n+-- BufferError \n+-- EOFError \n+-- ImportError \n+-- LookupError \n| +-- IndexError \n| +-- KeyError \n+-- MemoryError \n+-- NameError \n| +-- UnboundLocalError \n+-- OSError \n| +-- BlockingIOError \n| +-- ChildProcessError \n| +-- ConnectionError \n| | +-- BrokenPipeError \n| | +-- ConnectionAbortedError \n| | +-- ConnectionRefusedError \n| | +-- ConnectionResetError \n| +-- FileExistsError \n| +-- FileNotFoundError \n| +-- InterruptedError \n| +-- IsADirectoryError \n| +-- NotADirectoryError \n| +-- PermissionError \n| +-- ProcessLookupError \n| +-- TimeoutError \n+-- ReferenceError \n+-- RuntimeError \n| +-- NotImplementedError \n| +-- RecursionError \n+-- SyntaxError \n| +-- IndentationError\n| +-- TabError \n+-- SystemError \n+-- TypeError \n+-- ValueError \n| +-- UnicodeError \n| +-- UnicodeDecodeError \n| +-- UnicodeEncodeError \n| +-- UnicodeTranslateError \n+-- Warning \n+-- DeprecationWarning \n+-- PendingDeprecationWarning \n+-- RuntimeWarning \n+-- SyntaxWarning \n+-- UserWarning \n+-- FutureWarning \n+-- ImportWarning \n+-- UnicodeWarning \n+-- BytesWarning \n+-- ResourceWarning</code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>In general, an exception is any unusual condition. Exception usually indicates errors but sometimes they intentionally puts in the program, in cases like terminating a procedure early or recovering from a resource shortage. There are number of built-in exceptions, which indicate conditions like reading past the end of a file, or dividing by zero. We [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [
+      61,
+      128
+    ],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/posts/373"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/comments?post=373"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/posts/373/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4180,
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/posts/373/revisions/4180"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/media?parent=373"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/categories?post=373"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/tags?post=373"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 374,
+    "date": "2020-07-04T11:29:24",
+    "date_gmt": "2020-07-04T11:29:24",
+    "guid": {
+      "rendered": "http://learnpython.foobrdigital.com/?p=374"
+    },
+    "modified": "2020-12-15T11:30:54",
+    "modified_gmt": "2020-12-15T11:30:54",
+    "slug": "files-and-strings",
+    "status": "publish",
+    "type": "post",
+    "link": "https://python3.foobrdigital.com/files-and-strings/",
+    "title": {
+      "rendered": "Files and Strings"
+    },
+    "content": {
+      "rendered": "\n<h2>Strings</h2>\n\n\n\n<p>Strings are the most popular data types used in every programming language. Why? Because we, understand text better than numbers, so in writing and talking we use text and words, similarly in programming too we use strings. In string we parse text, analyse text semantics, and do data mining – and all this data is human consumed text.The string in Python is immutable.</p>\n\n\n\n<h3>String Manipulation</h3>\n\n\n\n<p>In Python, string can be marked in multiple ways, using single quote ( ‘ ), double quote( “ ) or even triple quote ( ‘’’ ) in case of multiline strings.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>>>> # String Examples\n>>> a = \"hello\"\n>>> b = ''' A Multi line string,\nSimple!'''\n>>> e = ('Multiple' 'strings' 'togethers')</code></pre>\n\n\n\n<p>String manipulation is very useful and very widely used in every language. Often, programmers are required to break down strings and examine them closely.</p>\n\n\n\n<p>Strings can be iterated over (character by character), sliced, or concatenated. The syntax is the same as for lists.</p>\n\n\n\n<p>The str class has numerous methods on it to make manipulating strings easier. The dir and help commands provides guidance in the Python interpreter how to use them.</p>\n\n\n\n<p>Below are some of the commonly used string methods we use.</p>\n\n\n\n<figure class=\"wp-block-table\"><table><tbody><tr><th>Sr.No.</th><th>Method &amp; Description</th></tr><tr><td>1</td><td><strong>isalpha()</strong>Checks if all characters are Alphabets</td></tr><tr><td>2</td><td><strong>isdigit()</strong>Checks Digit Characters</td></tr><tr><td>3</td><td><strong>isdecimal()</strong>Checks decimal Characters</td></tr><tr><td>4</td><td><strong>isnumeric()</strong>checks Numeric Characters</td></tr><tr><td>5</td><td><strong>find()</strong>Returns the Highest Index of substrings</td></tr><tr><td>6</td><td><strong>istitle()</strong>Checks for Titlecased strings</td></tr><tr><td>7</td><td><strong>join()</strong>Returns a concatenated string</td></tr><tr><td>8</td><td><strong>lower()</strong>returns lower cased string</td></tr><tr><td>9</td><td><strong>upper()</strong>returns upper cased string</td></tr><tr><td>10</td><td><strong>partion()</strong>Returns a tuple</td></tr><tr><td>11</td><td><strong>bytearray()</strong>Returns array of given byte size</td></tr><tr><td>12</td><td><strong>enumerate()</strong>Returns an enumerate object</td></tr><tr><td>13</td><td><strong>isprintable()</strong>Checks printable character</td></tr></tbody></table></figure>\n\n\n\n<p>Let’s try to run couple of string methods,</p>\n\n\n\n<pre class=\"wp-block-code\"><code>>>> str1 = 'Hello World!'\n>>> str1.startswith('h')\nFalse\n>>> str1.startswith('H')\nTrue\n>>> str1.endswith('d')\nFalse\n>>> str1.endswith('d!')\nTrue\n>>> str1.find('o')\n4\n>>> #Above returns the index of the first occurence of the character/substring.\n>>> str1.find('lo')\n3\n>>> str1.upper()\n'HELLO WORLD!'\n>>> str1.lower()\n'hello world!'\n>>> str1.index('b')\nTraceback (most recent call last):\n   File \"&lt;pyshell#19>\", line 1, in &lt;module>\n      str1.index('b')\nValueError: substring not found\n>>> s = ('hello How Are You')\n>>> s.split(' ')\n&#91;'hello', 'How', 'Are', 'You']\n>>> s1 = s.split(' ')\n>>> '*'.join(s1)\n'hello*How*Are*You'\n>>> s.partition(' ')\n('hello', ' ', 'How Are You')\n>>></code></pre>\n\n\n\n<h3>String Formatting</h3>\n\n\n\n<p>In Python 3.x formatting of strings has changed, now it more logical and is more flexible. Formatting can be done using the format() method or the % sign(old style) in format string.</p>\n\n\n\n<p>The string can contain literal text or replacement fields delimited by braces {} and each replacement field may contains either the numeric index of a positional argument or the name of a keyword argument.</p>\n\n\n\n<h3>syntax</h3>\n\n\n\n<pre class=\"wp-block-code\"><code>str.format(*args, **kwargs)\n</code></pre>\n\n\n\n<h3>Basic Formatting</h3>\n\n\n\n<pre class=\"wp-block-code\"><code>>>> '{} {}'.format('Example', 'One')\n'Example One'\n>>> '{} {}'.format('pie', '3.1415926')\n'pie 3.1415926'</code></pre>\n\n\n\n<p>Below example allows re-arrange the order of display without changing the arguments.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>>>> '{1} {0}'.format('pie', '3.1415926')\n'3.1415926 pie'</code></pre>\n\n\n\n<p>Padding and aligning strings</p>\n\n\n\n<p>A value can be padded to a specific length.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>>>> #Padding Character, can be space or special character\n>>> '{:12}'.format('PYTHON')\n'PYTHON '\n>>> '{:>12}'.format('PYTHON')\n' PYTHON'\n>>> '{:&lt;{}s}'.format('PYTHON',12)\n'PYTHON '\n>>> '{:*&lt;12}'.format('PYTHON')\n'PYTHON******'\n>>> '{:*^12}'.format('PYTHON')\n'***PYTHON***'\n>>> '{:.15}'.format('PYTHON OBJECT ORIENTED PROGRAMMING')\n'PYTHON OBJECT O'\n>>> #Above, truncated 15 characters from the left side of a specified string\n>>> '{:.{}}'.format('PYTHON OBJECT ORIENTED',15)\n'PYTHON OBJECT O'\n>>> #Named Placeholders\n>>> data = {'Name':'Raghu', 'Place':'Bangalore'}\n>>> '{Name} {Place}'.format(**data)\n'Raghu Bangalore'\n>>> #Datetime\n>>> from datetime import datetime\n>>> '{:%Y/%m/%d.%H:%M}'.format(datetime(2018,3,26,9,57))\n'2018/03/26.09:57'</code></pre>\n\n\n\n<h3>Strings are Unicode</h3>\n\n\n\n<p>Strings as collections of immutable Unicode characters. Unicode strings provide an opportunity to create software or programs that works everywhere because the Unicode strings can represent any possible character not just the ASCII characters.</p>\n\n\n\n<p>Many IO operations only know how to deal with bytes, even if the bytes object refers to textual data. It is therefore very important to know how to interchange between bytes and Unicode.</p>\n\n\n\n<p>Converting text to bytes</p>\n\n\n\n<p>Converting a strings to byte object is termed as encoding. There are numerous forms of encoding, most common ones are: PNG; JPEG, MP3, WAV, ASCII, UTF-8 etc. Also this(encoding) is a format to represent audio, images, text, etc. in bytes.</p>\n\n\n\n<p>This conversion is possible through encode(). It take encoding technique as argument. By default, we use ‘UTF-8’ technique.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>>>> # Python Code to demonstrate string encoding \n>>> \n>>> # Initialising a String \n>>> x = 'TutorialsPoint' \n>>> \n>>> #Initialising a byte object \n>>> y = b'TutorialsPoint'\n>>> \n>>> # Using encode() to encode the String >>> # encoded version of x is stored in z using ASCII mapping \n>>> z = x.encode('ASCII') \n>>> \n>>> # Check if x is converted to bytes or not \n>>> \n>>> if(z==y): \n   print('Encoding Successful!') \nelse: \n   print('Encoding Unsuccessful!') \nEncoding Successful!</code></pre>\n\n\n\n<p><strong>Converting bytes to text</strong></p>\n\n\n\n<p>Converting bytes to text is called the decoding. This is implemented through decode(). We can convert a byte string to a character string if we know which encoding is used to encode it.</p>\n\n\n\n<p>So Encoding and decoding are inverse processes.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>>>> \n>>> # Python code to demonstrate Byte Decoding \n>>> \n>>> #Initialise a String \n>>> x = 'TutorialsPoint' \n>>> \n>>> #Initialising a byte object \n>>> y = b'TutorialsPoint' \n>>> \n>>> #using decode() to decode the Byte object \n>>> # decoded version of y is stored in z using ASCII mapping \n>>> z = y.decode('ASCII')\n>>> #Check if y is converted to String or not \n>>> if (z == x): \n   print('Decoding Successful!') \nelse: \n   print('Decoding Unsuccessful!') Decoding Successful! \n>>></code></pre>\n\n\n\n<h2>File I/O</h2>\n\n\n\n<p>Operating systems represents files as a sequence of bytes, not text.</p>\n\n\n\n<p>A file is a named location on disk to store related information. It is used to permanently store data in your disk.</p>\n\n\n\n<p>In Python, a file operation takes place in the following order.</p>\n\n\n\n<ul><li>Open a file</li><li>Read or write onto a file (operation).Open a file</li><li>Close the file.</li></ul>\n\n\n\n<p>Python wraps the incoming (or outgoing) stream of bytes with appropriate decode (or encode) calls so we can deal directly with str objects.</p>\n\n\n\n<h3>Opening a file</h3>\n\n\n\n<p>Python has a built-in function open() to open a file. This will generate a file object, also called a handle as it is used to read or modify the file accordingly.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>>>> f = open(r'c:\\users\\rajesh\\Desktop\\index.webm','rb')\n>>> f\n&lt;_io.BufferedReader name='c:\\\\users\\\\rajesh\\\\Desktop\\\\index.webm'>\n>>> f.mode\n'rb'\n>>> f.name\n'c:\\\\users\\\\rajesh\\\\Desktop\\\\index.webm'</code></pre>\n\n\n\n<p>For reading text from a file, we only need to pass the filename into the function. The file will be opened for reading, and the bytes will be converted to text using the platform default encoding.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Strings Strings are the most popular data types used in every programming language. Why? Because we, understand text better than numbers, so in writing and talking we use text and words, similarly in programming too we use strings. In string we parse text, analyse text semantics, and do data mining – and all this data [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [
+      61,
+      128
+    ],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/posts/374"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/comments?post=374"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/posts/374/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4179,
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/posts/374/revisions/4179"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/media?parent=374"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/categories?post=374"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/tags?post=374"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 372,
+    "date": "2020-07-04T11:42:17",
+    "date_gmt": "2020-07-04T11:42:17",
+    "guid": {
+      "rendered": "http://learnpython.foobrdigital.com/?p=372"
+    },
+    "modified": "2020-12-15T11:30:54",
+    "modified_gmt": "2020-12-15T11:30:54",
+    "slug": "object-serialization",
+    "status": "publish",
+    "type": "post",
+    "link": "https://python3.foobrdigital.com/object-serialization/",
+    "title": {
+      "rendered": "Object Serialization"
+    },
+    "content": {
+      "rendered": "\n<p>In the context of data storage, serialization is the process of translating data structures or object state into a format that can be stored (for example, in a file or memory buffer) or transmitted and reconstructed later.</p>\n\n\n\n<p>In serialization, an object is transformed into a format that can be stored, so as to be able to deserialize it later and recreate the original object from the serialized format.</p>\n\n\n\n<h2>Pickle</h2>\n\n\n\n<p>Pickling is the process whereby a Python object hierarchy is converted into a byte stream (usually not human readable) to be written to a file, this is also known as Serialization. Unpickling is the reverse operation, whereby a byte stream is converted back into a working Python object hierarchy.</p>\n\n\n\n<p>Pickle is operationally simplest way to store the object. The Python Pickle module is an object-oriented way to store objects directly in a special storage format.</p>\n\n\n\n<h3>What can it do?</h3>\n\n\n\n<ul><li>Pickle can store and reproduce dictionaries and lists very easily.</li><li>Stores object attributes and restores them back to the same State.</li></ul>\n\n\n\n<h3>What pickle can’t do?</h3>\n\n\n\n<ul><li>It does not save an objects code. Only it’s attributes values.</li><li>It cannot store file handles or connection sockets.</li></ul>\n\n\n\n<p>In short we can say, pickling is a way to store and retrieve data variables into and out from files where variables can be lists, classes, etc.</p>\n\n\n\n<p>To Pickle something you must −</p>\n\n\n\n<ul><li>import pickle</li><li>Write a variable to file, something like</li></ul>\n\n\n\n<pre class=\"wp-block-code\"><code>pickle.dump(mystring, outfile, protocol),\n</code></pre>\n\n\n\n<p>where 3rd argument protocol is optional To unpickling something you must −</p>\n\n\n\n<p>Import pickle</p>\n\n\n\n<p>Write a variable to a file, something like</p>\n\n\n\n<pre class=\"wp-block-code\"><code>myString = pickle.load(inputfile)\n</code></pre>\n\n\n\n<h2>Methods</h2>\n\n\n\n<p>The pickle interface provides four different methods.</p>\n\n\n\n<ul><li><strong>dump()</strong>&nbsp;− The dump() method serializes to an open file (file-like object).</li><li><strong>dumps()</strong>&nbsp;− Serializes to a string</li><li><strong>load()</strong>&nbsp;− Deserializes from an open-like object.</li><li><strong>loads()</strong>&nbsp;− Deserializes from a string.</li></ul>\n\n\n\n<p>Based on above procedure, below is an example of “pickling”.</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://www.tutorialspoint.com/object_oriented_python/images/pickling.jpg\" alt=\"Pickling\"/></figure>\n\n\n\n<h3>Output</h3>\n\n\n\n<pre class=\"wp-block-code\"><code>My Cat pussy is White and has 4 legs\nWould you like to see her pickled? Here she is!\nb'\\x80\\x03c__main__\\nCat\\nq\\x00)\\x81q\\x01}q\\x02(X\\x0e\\x00\\x00\\x00number_of_legsq\\x03K\\x04X\\x05\\x00\\x00\\x00colorq\\x04X\\x05\\x00\\x00\\x00Whiteq\\x05ub.'</code></pre>\n\n\n\n<p>So, in the example above, we have created an instance of a Cat class and then we’ve pickled it, transforming our “Cat” instance into a simple array of bytes.</p>\n\n\n\n<p>This way we can easily store the bytes array on a binary file or in a database field and restore it back to its original form from our storage support in a later time.</p>\n\n\n\n<p>Also if you want to create a file with a pickled object, you can use the dump() method ( instead of the dumps*()* one) passing also an opened binary file and the pickling result will be stored in the file automatically.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&#91;….]\nbinary_file = open(my_pickled_Pussy.bin', mode='wb')\nmy_pickled_Pussy = pickle.dump(Pussy, binary_file)\nbinary_file.close()</code></pre>\n\n\n\n<h2>Unpickling</h2>\n\n\n\n<p>The process that takes a binary array and converts it to an object hierarchy is called unpickling.</p>\n\n\n\n<p>The unpickling process is done by using the load() function of the pickle module and returns a complete object hierarchy from a simple bytes array.</p>\n\n\n\n<p>Let’s use the load function in our previous example.</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://www.tutorialspoint.com/object_oriented_python/images/unpicking.jpg\" alt=\"Unpicking\"/></figure>\n\n\n\n<h3>Output</h3>\n\n\n\n<pre class=\"wp-block-code\"><code>MeOw is black\nPussy is white</code></pre>\n\n\n\n<h2>JSON</h2>\n\n\n\n<p>JSON(JavaScript Object Notation) has been part of the Python standard library is a lightweight data-interchange format. It is easy for humans to read and write. It is easy to parse and generate.</p>\n\n\n\n<p>Because of its simplicity, JSON is a way by which we store and exchange data, which is accomplished through its JSON syntax, and is used in many web applications. As it is in human readable format, and this may be one of the reasons for using it in data transmission, in addition to its effectiveness when working with APIs.</p>\n\n\n\n<p>An example of JSON-formatted data is as follow −</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{\"EmployID\": 40203, \"Name\": \"Zack\", \"Age\":54, \"isEmployed\": True}</code></pre>\n\n\n\n<p>Python makes it simple to work with Json files. The module sused for this purpose is the JSON module. This module should be included (built-in) within your Python installation.</p>\n\n\n\n<p>So let’s see how can we convert Python dictionary to JSON and write it to a text file.</p>\n\n\n\n<h3>JSON to Python</h3>\n\n\n\n<p>Reading JSON means converting JSON into a Python value (object). The json library parses JSON into a dictionary or list in Python. In order to do that, we use the loads() function (load from a string), as follow −</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://www.tutorialspoint.com/object_oriented_python/images/json_to_python.jpg\" alt=\"Json to Python\"/></figure>\n\n\n\n<h3>Output</h3>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://www.tutorialspoint.com/object_oriented_python/images/json_to_python_output.jpg\" alt=\"Json to Python Output\"/></figure>\n\n\n\n<p>Below is one sample json file,</p>\n\n\n\n<pre class=\"wp-block-code\"><code>data1.json\n{\"menu\": {\n   \"id\": \"file\",\n   \"value\": \"File\",\n   \"popup\": {\n      \"menuitem\": &#91;\n         {\"value\": \"New\", \"onclick\": \"CreateNewDoc()\"},\n         {\"value\": \"Open\", \"onclick\": \"OpenDoc()\"},\n         {\"value\": \"Close\", \"onclick\": \"CloseDoc()\"}\n      ]\n   }\n}}</code></pre>\n\n\n\n<p>Above content (Data1.json) looks like a conventional dictionary. We can use pickle to store this file but the output of it is not human readable form.</p>\n\n\n\n<p>JSON(Java Script Object Notification) is a very simple format and that’s one of the reason for its popularity. Now let’s look into json output through below program.</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://www.tutorialspoint.com/object_oriented_python/images/java_script_object_notification.jpg\" alt=\"Java Script Object Notification\"/></figure>\n\n\n\n<h3>Output</h3>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://www.tutorialspoint.com/object_oriented_python/images/java_script_object_notification_output.jpg\" alt=\"Java Script Object Notification Output\"/></figure>\n\n\n\n<p>Above we open the json file (data1.json) for reading, obtain the file handler and pass on to json.load and getting back the object. When we try to print the output of the object, its same as the json file. Although the type of the object is dictionary, it comes out as a Python object. Writing to the json is simple as we saw this pickle. Above we load the json file, add another key value pair and writing it back to the same json file. Now if we see out data1.json, it looks different .i.e. not in the same format as we see previously.</p>\n\n\n\n<p>To make our Output looks same (human readable format), add the couple of arguments into our last line of the program,</p>\n\n\n\n<pre class=\"wp-block-code\"><code>json.dump(conf, fh, indent = 4, separators = (‘,’, ‘: ‘))\n</code></pre>\n\n\n\n<p>Similarly like pickle, we can print the string with dumps and load with loads. Below is an example of that,</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://www.tutorialspoint.com/object_oriented_python/images/string_with_dumps.jpg\" alt=\"String with Dumps\"/></figure>\n\n\n\n<h2>YAML</h2>\n\n\n\n<p>YAML may be the most human friendly data serialization standard for all programming languages.</p>\n\n\n\n<p>Python yaml module is called pyaml</p>\n\n\n\n<p>YAML is an alternative to JSON −</p>\n\n\n\n<ul><li><strong>Human readable code</strong>&nbsp;− YAML is the most human readable format so much so that even its front-page content is displayed in YAML to make this point.</li><li><strong>Compact code</strong>&nbsp;− In YAML we use whitespace indentation to denote structure not brackets.</li><li><strong>Syntax for relational data</strong>&nbsp;− For internal references we use anchors (&amp;) and aliases (*).</li><li><strong>One of the area where it is used widely is for viewing/editing of data structures</strong>&nbsp;− for example configuration files, dumping during debugging and document headers.</li></ul>\n\n\n\n<h2>Installing YAML</h2>\n\n\n\n<p>As yaml is not a built-in module, we need to install it manually. Best way to install yaml on windows machine is through pip. Run below command on your windows terminal to install yaml,</p>\n\n\n\n<pre class=\"wp-block-code\"><code>pip install pyaml (Windows machine)\nsudo pip install pyaml (*nix and Mac)</code></pre>\n\n\n\n<p>On running above command, screen will display something like below based on what’s the current latest version.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Collecting pyaml\nUsing cached pyaml-17.12.1-py2.py3-none-any.whl\nCollecting PyYAML (from pyaml)\nUsing cached PyYAML-3.12.tar.gz\nInstalling collected packages: PyYAML, pyaml\nRunning setup.py install for PyYAML ... done\nSuccessfully installed PyYAML-3.12 pyaml-17.12.1</code></pre>\n\n\n\n<p>To test it, go to the Python shell and import the yaml module, import yaml, if no error is found, then we can say installation is successful.</p>\n\n\n\n<p>After installing pyaml, let’s look at below code,</p>\n\n\n\n<pre class=\"wp-block-code\"><code>script_yaml1.py</code></pre>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://www.tutorialspoint.com/object_oriented_python/images/yaml.jpg\" alt=\"Yaml\"/></figure>\n\n\n\n<p>Above we created three different data structure, dictionary, list and tuple. On each of the structure, we do yaml.dump. Important point is how the output is displayed on the screen.</p>\n\n\n\n<h3>Output</h3>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://www.tutorialspoint.com/object_oriented_python/images/yaml_output.jpg\" alt=\"Yaml Output\"/></figure>\n\n\n\n<p>Dictionary output looks clean .ie. key: value.</p>\n\n\n\n<p>White space to separate different objects.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>List is notated with dash (-)</code></pre>\n\n\n\n<p>Tuple is indicated first with !!Python/tuple and then in the same format as lists.</p>\n\n\n\n<p>Loading a yaml file</p>\n\n\n\n<p>So let’s say I have one yaml file, which contains,</p>\n\n\n\n<pre class=\"wp-block-code\"><code>---\n# An employee record\nname: Raagvendra Joshi\njob: Developer\nskill: Oracle\nemployed: True\nfoods:\n   - Apple\n   - Orange\n   - Strawberry\n   - Mango\nlanguages:\n   Oracle: Elite\n   power_builder: Elite\n   Full Stack Developer: Lame\neducation:\n   4 GCSEs\n   3 A-Levels\n   MCA in something called com</code></pre>\n\n\n\n<p>Now let’s write a code to load this yaml file through yaml.load function. Below is code for the same.</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://www.tutorialspoint.com/object_oriented_python/images/yaml_load_function.jpg\" alt=\"Yaml Load Function\"/></figure>\n\n\n\n<p>As the output doesn’t looks that much readable, I prettify it by using json in the end. Compare the output we got and the actual yaml file we have.</p>\n\n\n\n<h3>Output</h3>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://www.tutorialspoint.com/object_oriented_python/images/yaml_load_function_output.jpg\" alt=\"Yaml3\"/></figure>\n\n\n\n<p>One of the most important aspect of software development is debugging. In this section we’ll see different ways of Python debugging either with built-in debugger or third party debuggers.</p>\n\n\n\n<h2>PDB – The Python Debugger</h2>\n\n\n\n<p>The module PDB supports setting breakpoints. A breakpoint is an intentional pause of the program, where you can get more information about the programs state.</p>\n\n\n\n<p>To set a breakpoint, insert the line</p>\n\n\n\n<pre class=\"wp-block-code\"><code>pdb.set_trace()</code></pre>\n\n\n\n<h3>Example</h3>\n\n\n\n<pre class=\"wp-block-code\"><code>pdb_example1.py\nimport pdb\nx = 9\ny = 7\npdb.set_trace()\ntotal = x + y\npdb.set_trace()</code></pre>\n\n\n\n<p>We have inserted a few breakpoints in this program. The program will pause at each breakpoint (pdb.set_trace()). To view a variables contents simply type the variable name.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>c:\\Python\\Python361>Python pdb_example1.py\n> c:\\Python\\Python361\\pdb_example1.py(8)&lt;module>()\n-> total = x + y\n(Pdb) x\n9\n(Pdb) y\n7\n(Pdb) total\n*** NameError: name 'total' is not defined\n(Pdb)</code></pre>\n\n\n\n<p>Press c or continue to go on with the programs execution until the next breakpoint.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>(Pdb) c\n--Return--\n> c:\\Python\\Python361\\pdb_example1.py(8)&lt;module>()->None\n-> total = x + y\n(Pdb) total\n16</code></pre>\n\n\n\n<p>Eventually, you will need to debug much bigger programs – programs that use subroutines. And sometimes, the problem that you’re trying to find will lie inside a subroutine. Consider the following program.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>import pdb\ndef squar(x, y):\n   out_squared = x^2 + y^2\n   return out_squared\nif __name__ == \"__main__\":\n   #pdb.set_trace()\n   print (squar(4, 5))</code></pre>\n\n\n\n<p>Now on running the above program,</p>\n\n\n\n<pre class=\"wp-block-code\"><code>c:\\Python\\Python361>Python pdb_example2.py\n> c:\\Python\\Python361\\pdb_example2.py(10)&lt;module>()\n-> print (squar(4, 5))\n(Pdb)</code></pre>\n\n\n\n<p>We can use <strong>?</strong> to get help, but the arrow indicates the line that’s about to be executed. At this point it’s helpful to hit s to <strong>s</strong> to step into that line.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>(Pdb) s\n--Call--\n>c:\\Python\\Python361\\pdb_example2.py(3)squar()\n-> def squar(x, y):</code></pre>\n\n\n\n<p>This is a call to a function. If you want an overview of where you are in your code, try l −</p>\n\n\n\n<pre class=\"wp-block-code\"><code>(Pdb) l\n1 import pdb\n2\n3 def squar(x, y):\n4 -> out_squared = x^2 + y^2\n5\n6 return out_squared\n7\n8 if __name__ == \"__main__\":\n9 pdb.set_trace()\n10 print (squar(4, 5))\n&#91;EOF]\n(Pdb)</code></pre>\n\n\n\n<p>You can hit n to advance to the next line. At this point you are inside the out_squared method and you have access to the variable declared inside the function .i.e. x and y.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>(Pdb) x\n4\n(Pdb) y\n5\n(Pdb) x^2\n6\n(Pdb) y^2\n7\n(Pdb) x**2\n16\n(Pdb) y**2\n25\n(Pdb)</code></pre>\n\n\n\n<p>So we can see the ^ operator is not what we wanted instead we need to use ** operator to do squares.</p>\n\n\n\n<p>This way we can debug our program inside the functions/methods.</p>\n\n\n\n<h2>Logging</h2>\n\n\n\n<p>The logging module has been a part of Python’s Standard Library since Python version 2.3. As it’s a built-in module all Python module can participate in logging, so that our application log can include your own message integrated with messages from third party module. It provides a lot of flexibility and functionality.</p>\n\n\n\n<h3>Benefits of Logging</h3>\n\n\n\n<ul><li><strong>Diagnostic logging</strong>&nbsp;− It records events related to the application’s operation.</li><li><strong>Audit logging</strong>&nbsp;− It records events for business analysis.</li></ul>\n\n\n\n<p>Messages are written and logged at levels of “severity” &amp;minu</p>\n\n\n\n<ul><li><strong>DEBUG (debug())</strong>&nbsp;− diagnostic messages for development.</li><li><strong>INFO (info())</strong>&nbsp;− standard “progress” messages.</li><li><strong>WARNING (warning())</strong>&nbsp;− detected a non-serious issue.</li><li><strong>ERROR (error())</strong>&nbsp;− encountered an error, possibly serious.</li><li><strong>CRITICAL (critical())</strong>&nbsp;− usually a fatal error (program stops).</li></ul>\n\n\n\n<p>Let’s looks into below simple program,</p>\n\n\n\n<pre class=\"wp-block-code\"><code>import logging\n\nlogging.basicConfig(level=logging.INFO)\n\nlogging.debug('this message will be ignored') # This will not print\nlogging.info('This should be logged') # it'll print\nlogging.warning('And this, too') # It'll print</code></pre>\n\n\n\n<p>Above we are logging messages on severity level. First we import the module, call basicConfig and set the logging level. Level we set above is INFO. Then we have three different statement: debug statement, info statement and a warning statement.</p>\n\n\n\n<h3>Output of logging1.py</h3>\n\n\n\n<pre class=\"wp-block-code\"><code>INFO:root:This should be logged\nWARNING:root:And this, too</code></pre>\n\n\n\n<p>As the info statement is below debug statement, we are not able to see the debug message. To get the debug statement too in the Output terminal, all we need to change is the basicConfig level.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>logging.basicConfig(level = logging.DEBUG)\n</code></pre>\n\n\n\n<p>And in the Output we can see,</p>\n\n\n\n<pre class=\"wp-block-code\"><code>DEBUG:root:this message will be ignored\nINFO:root:This should be logged\nWARNING:root:And this, too</code></pre>\n\n\n\n<p>Also the default behavior means if we don’t set any logging level is warning. Just comment out the second line from the above program and run the code.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>#logging.basicConfig(level = logging.DEBUG)</code></pre>\n\n\n\n<h3>Output</h3>\n\n\n\n<pre class=\"wp-block-code\"><code>WARNING:root:And this, too\n</code></pre>\n\n\n\n<p>Python built in logging level are actually integers.</p>\n\n\n\n<pre class=\"wp-block-preformatted\">&gt;&gt;&gt; import logging<br>&gt;&gt;&gt;<br>&gt;&gt;&gt; logging.DEBUG<br>10<br>&gt;&gt;&gt; logging.CRITICAL<br>50<br>&gt;&gt;&gt; logging.WARNING<br>30<br>&gt;&gt;&gt; logging.INFO<br>20<br>&gt;&gt;&gt; logging.ERROR<br>40<br>&gt;&gt;&gt;</pre>\n\n\n\n<p>We can also save the log messages into the file.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>logging.basicConfig(level = logging.DEBUG, filename = 'logging.log')</code></pre>\n\n\n\n<p>Now all log messages will go the file (logging.log) in your current working directory instead of the screen. This is a much better approach as it lets us to do post analysis of the messages we got.</p>\n\n\n\n<p>We can also set the date stamp with our log message.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>logging.basicConfig(level=logging.DEBUG, format = '%(asctime)s %(levelname)s:%(message)s')</code></pre>\n\n\n\n<p>Output will get something like,</p>\n\n\n\n<pre class=\"wp-block-code\"><code>2018-03-08 19:30:00,066 DEBUG:this message will be ignored\n2018-03-08 19:30:00,176 INFO:This should be logged\n2018-03-08 19:30:00,201 WARNING:And this, too</code></pre>\n\n\n\n<h2>Benchmarking</h2>\n\n\n\n<p>Benchmarking or profiling is basically to test how fast is your code executes and where the bottlenecks are? The main reason to do this is for optimization.</p>\n\n\n\n<h3>timeit</h3>\n\n\n\n<p>Python comes with a in-built module called timeit. You can use it to time small code snippets. The timeit module uses platform-specific time functions so that you will get the most accurate timings possible.</p>\n\n\n\n<p>So, it allows us to compare two shipment of code taken by each and then optimize the scripts to given better performance.</p>\n\n\n\n<p>The timeit module has a command line interface, but it can also be imported.</p>\n\n\n\n<p>There are two ways to call a script. Let’s use the script first, for that run the below code and see the Output.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>import timeit\nprint ( 'by index: ', timeit.timeit(stmt = \"mydict&#91;'c']\", setup = \"mydict = {'a':5, 'b':10, 'c':15}\", number = 1000000))\nprint ( 'by get: ', timeit.timeit(stmt = 'mydict.get(\"c\")', setup = 'mydict = {\"a\":5, \"b\":10, \"c\":15}', number = 1000000))</code></pre>\n\n\n\n<h3>Output</h3>\n\n\n\n<pre class=\"wp-block-code\"><code>by index: 0.1809192126703489\nby get: 0.6088525265034692</code></pre>\n\n\n\n<p>Above we use two different method .i.e. by subscript and get to access the dictionary key value. We execute statement 1 million times as it executes too fast for a very small data. Now we can see the index access much faster as compared to the get. We can run the code multiply times and there will be slight variation in the time execution to get the better understanding.</p>\n\n\n\n<p>Another way is to run the above test in the command line. Let’s do it,</p>\n\n\n\n<pre class=\"wp-block-code\"><code>c:\\Python\\Python361>Python -m timeit -n 1000000 -s \"mydict = {'a': 5, 'b':10, 'c':15}\" \"mydict&#91;'c']\"\n1000000 loops, best of 3: 0.187 usec per loop\n\nc:\\Python\\Python361>Python -m timeit -n 1000000 -s \"mydict = {'a': 5, 'b':10, 'c':15}\" \"mydict.get('c')\"\n1000000 loops, best of 3: 0.659 usec per loop</code></pre>\n\n\n\n<p>Above output may vary based on your system hardware and what all applications are running currently in your system.</p>\n\n\n\n<p>Below we can use the timeit module, if we want to call to a function. As we can add multiple statement inside the function to test.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>import timeit\n\ndef testme(this_dict, key):\n   return this_dict&#91;key]\n\nprint (timeit.timeit(\"testme(mydict, key)\", setup = \"from __main__ import testme; mydict = {'a':9, 'b':18, 'c':27}; key = 'c'\", number = 1000000))</code></pre>\n\n\n\n<h3>Output</h3>\n\n\n\n<pre class=\"wp-block-code\"><code>0.7713474590139164</code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>In the context of data storage, serialization is the process of translating data structures or object state into a format that can be stored (for example, in a file or memory buffer) or transmitted and reconstructed later. In serialization, an object is transformed into a format that can be stored, so as to be able [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [
+      61,
+      128
+    ],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/posts/372"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/comments?post=372"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/posts/372/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4178,
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/posts/372/revisions/4178"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/media?parent=372"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/categories?post=372"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/tags?post=372"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 388,
+    "date": "2020-07-04T11:52:08",
+    "date_gmt": "2020-07-04T11:52:08",
+    "guid": {
+      "rendered": "http://learnpython.foobrdigital.com/?p=388"
+    },
+    "modified": "2020-12-15T11:30:54",
+    "modified_gmt": "2020-12-15T11:30:54",
+    "slug": "libraries",
+    "status": "publish",
+    "type": "post",
+    "link": "https://python3.foobrdigital.com/libraries/",
+    "title": {
+      "rendered": "Libraries"
+    },
+    "content": {
+      "rendered": "\n<h2>Requests − Python Requests Module</h2>\n\n\n\n<p>Requests is a Python module which is an elegant and simple HTTP library for Python. With this you can send all kinds of HTTP requests. With this library we can add headers, form data, multipart files and parameters and access the response data.</p>\n\n\n\n<p>As Requests is not a built-in module, so we need to install it first.</p>\n\n\n\n<p>You can install it by running the following command in the terminal −</p>\n\n\n\n<pre class=\"wp-block-code\"><code>pip install requests</code></pre>\n\n\n\n<p>Once you have installed the module, you can verify if the installation is successful by typing below command in the Python shell.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>import requests</code></pre>\n\n\n\n<p>If the installation has been successful, you won’t see any error message.</p>\n\n\n\n<h2>Making a GET Request</h2>\n\n\n\n<p>As a means of example we’ll be using the “pokeapi”</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://www.tutorialspoint.com/object_oriented_python/images/pokeapi.jpg\" alt=\"Pokeapi\"/></figure>\n\n\n\n<h3>Output −</h3>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://www.tutorialspoint.com/object_oriented_python/images/pokeapi_output.jpg\" alt=\"Pokeapi Output\"/></figure>\n\n\n\n<h2>Making POST Requests</h2>\n\n\n\n<p>The requests library methods for all of the HTTP verbs currently in use. If you wanted to make a simple POST request to an API endpoint then you can do that like so −</p>\n\n\n\n<pre class=\"wp-block-code\"><code>req = requests.post(‘http://api/user’, data = None, json = None)</code></pre>\n\n\n\n<p>This would work in exactly the same fashion as our previous GET request, however it features two additional keyword parameters −</p>\n\n\n\n<ul><li>data which can be populated with say a dictionary, a file or bytes that will be passed in the HTTP body of our POST request.</li><li>json which can be populated with a json object that will be passed in the body of our HTTP request also.</li></ul>\n\n\n\n<h2>Pandas: Python Library Pandas</h2>\n\n\n\n<p>Pandas is an open-source Python Library providing high-performance data manipulation and analysis tool using its powerful data structures. Pandas is one of the most widely used Python libraries in data science. It is mainly used for data munging, and with good reason: Powerful and flexible group of functionality.</p>\n\n\n\n<p>Built on Numpy package and the key data structure is called the DataFrame. These dataframes allows us to store and manipulate tabular data in rows of observations and columns of variables.</p>\n\n\n\n<p>There are several ways to create a DataFrame. One way is to use a dictionary. For example −</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://www.tutorialspoint.com/object_oriented_python/images/dataframe.jpg\" alt=\"DataFrame\"/></figure>\n\n\n\n<h3>Output</h3>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://www.tutorialspoint.com/object_oriented_python/images/dataframe_output.jpg\" alt=\"DataFrame Output\"/></figure>\n\n\n\n<p>From the output we can see new brics DataFrame, Pandas has assigned a key for each country as the numerical values 0 through 4.</p>\n\n\n\n<p>If instead of giving indexing values from 0 to 4, we would like to have different index values, say the two letter country code, you can do that easily as well −</p>\n\n\n\n<p>Adding below one lines in the above code, gives</p>\n\n\n\n<pre class=\"wp-block-code\"><code>brics.index = &#91;'BR', 'RU', 'IN', 'CH', 'SA']</code></pre>\n\n\n\n<h3>Output</h3>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://www.tutorialspoint.com/object_oriented_python/images/dataframe_brics_index.jpg\" alt=\"Dataframe brics.index\"/></figure>\n\n\n\n<h2>Indexing DataFrames</h2>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://www.tutorialspoint.com/object_oriented_python/images/indexing_dataframes.jpg\" alt=\"Indexing DataFrames\"/></figure>\n\n\n\n<h3>Output</h3>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://www.tutorialspoint.com/object_oriented_python/images/indexing_dataframes_output.jpg\" alt=\"Indexing DataFrames Output\"/></figure>\n\n\n\n<h2>Pygame</h2>\n\n\n\n<p>Pygame is the open source and cross-platform library that is for making multimedia applications including games. It includes computer graphics and sound libraries designed to be used with the Python programming language. You can develop many cool games with Pygame.’</p>\n\n\n\n<h3>Overview</h3>\n\n\n\n<p>Pygame is composed of various modules, each dealing with a specific set of tasks. For example, the display module deals with the display window and screen, the draw module provides functions to draw shapes and the key module works with the keyboard. These are just some of the modules of the library.</p>\n\n\n\n<p>The home of the Pygame library is at https://www.pygame.org/news</p>\n\n\n\n<p>To make a Pygame application, you follow these steps −</p>\n\n\n\n<p>Import the Pygame library</p>\n\n\n\n<pre class=\"wp-block-code\"><code>import pygame</code></pre>\n\n\n\n<p>Initialize the Pygame library</p>\n\n\n\n<pre class=\"wp-block-code\"><code>pygame.init()</code></pre>\n\n\n\n<p>Create a window.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>screen = Pygame.display.set_mode((560,480))\nPygame.display.set_caption(‘First Pygame Game’)</code></pre>\n\n\n\n<p><strong>Initialize game objects</strong></p>\n\n\n\n<p>In this step we load images, load sounds, do object positioning, set up some state variables, etc.</p>\n\n\n\n<p><strong>Start the game loop.</strong></p>\n\n\n\n<p>It is just a loop where we continuously handle events, checks for input, move objects, and draw them. Each iteration of the loop is called a frame.</p>\n\n\n\n<p>Let’s put all the above logic into one below program,</p>\n\n\n\n<p><strong>Pygame_script.py</strong></p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://www.tutorialspoint.com/object_oriented_python/images/pygame_script.jpg\" alt=\"Pygame Script\"/></figure>\n\n\n\n<h3>Output</h3>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://www.tutorialspoint.com/object_oriented_python/images/pygame_script_output.jpg\" alt=\"Pygame Script Output\"/></figure>\n\n\n\n<h2>Beautiful Soup: Web Scraping with Beautiful Soup</h2>\n\n\n\n<p>The general idea behind web scraping is to get the data that exists on a website, and convert it into some format that is usable for analysis.</p>\n\n\n\n<p>It’s a Python library for pulling data out of HTML or XML files. With your favourite parser it provide idiomatic ways of navigating, searching and modifying the parse tree.</p>\n\n\n\n<p>As BeautifulSoup is not a built-in library, we need to install it before we try to use it. To install BeautifulSoup, run the below command</p>\n\n\n\n<pre class=\"wp-block-code\"><code>$ apt-get install Python-bs4 # For Linux and Python2 \n$ apt-get install Python3-bs4 # for Linux based system and Python3.\n\n$ easy_install beautifulsoup4 # For windows machine, \nOr \n$ pip instal beatifulsoup4 # For window machine</code></pre>\n\n\n\n<p>Once the installation is done, we are ready to run few examples and explores Beautifulsoup in details,</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://www.tutorialspoint.com/object_oriented_python/images/beautifulsoup_in_details.jpg\" alt=\"Beautifulsoup in Details\"/></figure>\n\n\n\n<h3>Output</h3>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://www.tutorialspoint.com/object_oriented_python/images/beautifulsoup_in_details_output.jpg\" alt=\"Beautifulsoup in Details Output\"/></figure>\n\n\n\n<p>Below are some simple ways to navigate that data structure −</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://www.tutorialspoint.com/object_oriented_python/images/data_structure.jpg\" alt=\"Data Structure\"/></figure>\n\n\n\n<p>One common task is extracting all the URLs found within a page’s &lt;a&gt; tags −</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://www.tutorialspoint.com/object_oriented_python/images/urls.jpg\" alt=\"URLs\"/></figure>\n\n\n\n<p>Another common task is extracting all the text from a page −</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://www.tutorialspoint.com/object_oriented_python/images/text_from_page.jpg\" alt=\"Text from Page\"/></figure>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Requests − Python Requests Module Requests is a Python module which is an elegant and simple HTTP library for Python. With this you can send all kinds of HTTP requests. With this library we can add headers, form data, multipart files and parameters and access the response data. As Requests is not a built-in module, [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [
+      61,
+      128
+    ],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/posts/388"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/comments?post=388"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/posts/388/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 4177,
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/posts/388/revisions/4177"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/media?parent=388"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/categories?post=388"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://python3.foobrdigital.com/wp-json/wp/v2/tags?post=388"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  }
+]

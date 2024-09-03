@@ -1,0 +1,602 @@
+[
+  {
+    "id": 3919,
+    "date": "2020-12-11T06:38:50",
+    "date_gmt": "2020-12-11T06:38:50",
+    "guid": {
+      "rendered": "http://angular.foobrdigital.com/?p=3919"
+    },
+    "modified": "2020-12-11T06:38:50",
+    "modified_gmt": "2020-12-11T06:38:50",
+    "slug": "set-page-title-using-title-service-angular-example",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/set-page-title-using-title-service-angular-example/",
+    "title": {
+      "rendered": "Set Page Title Using Title Service Angular Example"
+    },
+    "content": {
+      "rendered": "\n<h2>Why change page title</h2>\n\n\n\n<p>Changing the page title is very important as it helps the search engines to know the purpose of the page and index it properly. It also helps users to know, which page they are in.</p>\n\n\n\n<p>Being a single page app, the angular does not reload the entire page. The page is loads only once at the startup. Only part of the page gets loaded when you navigate from one&nbsp;<a href=\"https://www.tektutorialshub.com/angular/angular-routing-navigation/\">route</a>&nbsp;to another.</p>\n\n\n\n<p>The title of the page is set in the <code>index.html</code> as shown below. We use the HTML <code>title</code> tag to set the title of the app. Since it is loaded only at the start, all other pages or routes get the same title.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>\n&lt;!doctype html>\r\n&lt;html lang=\"en\">\r\n&lt;head>\r\n  &lt;meta charset=\"utf-8\">\r\n  &lt;title>Title Service Example&lt;/title>\r\n  &lt;base href=\"/\">\r\n  &lt;meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\r\n  &lt;link rel=\"icon\" type=\"image/x-icon\" href=\"favicon.ico\">\r\n&lt;/head>\r\n&lt;body>\r\n  &lt;app-root>&lt;/app-root>\r\n&lt;/body>\r\n&lt;/html></code></pre>\n\n\n\n<h2>Title Service in Angular</h2>\n\n\n\n<p>We can make use of the title service in angular to make changes to the document title</p>\n\n\n\n<h2>How to Use Title Service</h2>\n\n\n\n<h3>Import it in Angular Module</h3>\n\n\n\n<pre class=\"wp-block-code\"><code>import { BrowserModule, Title } from '@angular/platform-browser';</code></pre>\n\n\n\n<p>Note that the title service is part of the&nbsp;<code>platform-browser</code>&nbsp;package. i.e because the title meta tag is applicable to the HTML page in the browser.</p>\n\n\n\n<p>If you are using any other platform like NativeScript for mobile apps, you need a different service. The service, which understands the platform.</p>\n\n\n\n<h3>Register the service with DI Providers</h3>\n\n\n\n<p>Like all other Angular services, we need to register the title service with the Angular Providers in the root Angular module.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>\r\n@NgModule({\r\n  declarations: &#91;\r\n  ],\r\n  imports: &#91;\r\n    BrowserModule,\r\n  ],\r\n  providers: &#91;\r\n    Title                   //Register the Service\r\n  ],\r\n  bootstrap: &#91;AppComponent]\r\n})\r\nexport class AppModule { }</code></pre>\n\n\n\n<h3>Inject Title service in the component</h3>\n\n\n\n<p>Inject the title service, like all other Angular Service in the component using <a href=\"https://www.tektutorialshub.com/angular/angular-dependency-injection/\">Dependency Injection</a></p>\n\n\n\n<pre class=\"wp-block-code\"><code> \r\nexport class TitleComponent implements OnInit {\r\n  constructor(private title:Title) { }\r\n}</code></pre>\n\n\n\n<p>The title service provides only two methods. <code>SetTitle</code> &amp; <code>GetTitle</code>. We use <code>SetTitle</code> to set the title of the page and <code>GetTitle</code> to find out the current title of the page.</p>\n\n\n\n<h3>Use the setTitle method to set the title</h3>\n\n\n\n<pre class=\"wp-block-code\"><code>\r\nngOnInit() {\r\n   this.title.setTitle(\"How to use title service in Angular\")\r\n}</code></pre>\n\n\n\n<p>That’s it.</p>\n\n\n\n<h2>Title service example</h2>\n\n\n\n<p>The following is the example app, which has three components. Each component uses the&nbsp;<code>setTitle</code>&nbsp;method of the Title service to set the title of each component.</p>\n\n\n\n<h2>app.module.ts</h2>\n\n\n\n<pre class=\"wp-block-code\"><code>\r\nimport { BrowserModule, Title } from '@angular/platform-browser';\r\nimport { NgModule } from '@angular/core';\r\n \r\nimport { AppRoutingModule } from './app-routing.module';\r\nimport { AppComponent } from './app.component';\r\nimport { OneComponent } from './one.component';\r\nimport { TwoComponent } from './two-component';\r\nimport { ThreeComponent } from './three.component';\r\n \r\n@NgModule({\r\n  declarations: &#91;\r\n    AppComponent,OneComponent,TwoComponent,ThreeComponent\r\n  ],\r\n  imports: &#91;\r\n    BrowserModule,\r\n    AppRoutingModule\r\n  ],\r\n  providers: &#91;Title],\r\n  bootstrap: &#91;AppComponent]\r\n})\r\nexport class AppModule { }</code></pre>\n\n\n\n<h2>app-routing.module.ts</h2>\n\n\n\n<pre class=\"wp-block-code\"><code>import { NgModule } from '@angular/core';\r\nimport { Routes, RouterModule } from '@angular/router';\r\nimport { OneComponent } from './one.component';\r\nimport { TwoComponent } from './two-component';\r\nimport { ThreeComponent } from './three.component';\r\n \r\n \r\nconst routes: Routes = &#91;\r\n  {path: 'one', component:OneComponent},\r\n  {path: 'two', component:TwoComponent},\r\n  {path: 'three', component:ThreeComponent},\r\n];\r\n \r\n@NgModule({\r\n  imports: &#91;RouterModule.forRoot(routes)],\r\n  exports: &#91;RouterModule]\r\n})\r\nexport class AppRoutingModule { }\r\n \r\n </code></pre>\n\n\n\n<h2>app.component.ts</h2>\n\n\n\n<pre class=\"wp-block-code\"><code>import { Component } from '@angular/core';\r\nimport { Title } from '@angular/platform-browser';\r\n \r\n@Component({\r\n  selector: 'app-root',\r\n  templateUrl: './app.component.html',\r\n  styleUrls: &#91;'./app.component.css']\r\n})\r\nexport class AppComponent {\r\n  title = 'title Service Example';\r\n \r\n  constructor(private titleService:Title) {\r\n  }\r\n \r\n  ngOnInit() {\r\n    this.titleService.setTitle(this.title);\r\n  }\r\n}</code></pre>\n\n\n\n<h2>app.component.html</h2>\n\n\n\n<pre class=\"wp-block-code\"><code>\r\n&lt;h1>Angular Title Service Example&lt;/h1>\r\n \r\n&lt;ul>\r\n  &lt;li>&lt;a &#91;routerLink]=\"&#91;'/one']\">One&lt;/a> &lt;/li>\r\n  &lt;li>&lt;a &#91;routerLink]=\"&#91;'/two']\">two&lt;/a> &lt;/li>\r\n  &lt;li>&lt;a &#91;routerLink]=\"&#91;'/three']\">three&lt;/a> &lt;/li>\r\n&lt;/ul>\r\n \r\n&lt;router-outlet>&lt;/router-outlet></code></pre>\n\n\n\n<h2>one.component.ts</h2>\n\n\n\n<pre class=\"wp-block-code\"><code>\r\n@Component({\r\n  template: `&lt;h1>One Component&lt;/h1>`\r\n})\r\nexport class OneComponent implements OnInit {\r\n  title = 'One Component Title';\r\n \r\n  constructor(private titleService:Title){\r\n  }\r\n \r\n  ngOnInit() {\r\n    this.titleService.setTitle(this.title);\r\n  }\r\n \r\n}</code></pre>\n\n\n\n<h2>two.component.ts</h2>\n\n\n\n<pre class=\"wp-block-code\"><code> \r\nimport { Component, OnInit } from '@angular/core';\r\nimport { Title } from '@angular/platform-browser';\r\n \r\n@Component({\r\n  template: `&lt;h1>Two Component&lt;/h1>`\r\n})\r\nexport class TwoComponent implements OnInit {\r\n  title = 'Two Component Title';\r\n \r\n  constructor(private titleService:Title) {\r\n  }\r\n \r\n  ngOnInit() {\r\n    this.titleService.setTitle(this.title);\r\n  }\r\n \r\n}</code></pre>\n\n\n\n<h2>three.component.ts</h2>\n\n\n\n<pre class=\"wp-block-code\"><code>import { Component, OnInit } from '@angular/core';\r\nimport { Title } from '@angular/platform-browser';\r\n \r\n@Component({\r\n  template: `&lt;h1>Three Component&lt;/h1>`\r\n})\r\nexport class ThreeComponent implements OnInit {\r\n  title = 'Three Component Title';\r\n \r\n  constructor(private titleService:Title){}\r\n \r\n  ngOnInit() {\r\n    this.titleService.setTitle(this.title);\r\n  }\r\n}\r\n </code></pre>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://www.tektutorialshub.com/wp-content/uploads/2020/01/Angular-Title-Service-Example.gif\" alt=\"Angular Title Service Example\" class=\"wp-image-16178\"/></figure>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Why change page title Changing the page title is very important as it helps the search engines to know the purpose of the page and index it properly. It also helps users to know, which page they are in. Being a single page app, the angular does not reload the entire page. The page is [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [143],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3919"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=3919"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3919/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3920,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3919/revisions/3920"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=3919"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=3919"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=3919"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 3921,
+    "date": "2020-12-11T06:46:59",
+    "date_gmt": "2020-12-11T06:46:59",
+    "guid": {
+      "rendered": "http://angular.foobrdigital.com/?p=3921"
+    },
+    "modified": "2020-12-11T06:46:59",
+    "modified_gmt": "2020-12-11T06:46:59",
+    "slug": "dynamic-page-title-based-on-route-in-angular",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/dynamic-page-title-based-on-route-in-angular/",
+    "title": {
+      "rendered": "Dynamic Page Title based on Route in Angular"
+    },
+    "content": {
+      "rendered": "\n<h2>Example App</h2>\n\n\n\n<p>Create a new angular app.</p>\n\n\n\n<p>Add five Angular Components. <code>HomeComponent</code>, <code>OneComponent</code>, <code>TwoComponent</code>, <code>ThreeComponent</code> &amp; <code>TwoAComponent</code></p>\n\n\n\n<h2>home.component.ts</h2>\n\n\n\n<pre class=\"wp-block-code\"><code>import { Component} from '@angular/core';\r\n \r\n \r\n@Component({\r\n  template: `&lt;h1>Home Component&lt;/h1>\r\n              `\r\n})\r\nexport class HomeComponent   {\r\n}</code></pre>\n\n\n\n<h2>one.component.ts</h2>\n\n\n\n<pre class=\"wp-block-code\"><code>import { Component } from '@angular/core';\r\n \r\n@Component({\r\n  template: `&lt;h1>One Component&lt;/h1>`\r\n})\r\nexport class OneComponent{\r\n}</code></pre>\n\n\n\n<h2>two.component.ts</h2>\n\n\n\n<pre class=\"wp-block-code\"><code>import { Component} from '@angular/core';\r\n \r\n \r\n@Component({\r\n  template: `&lt;h1>Two Component&lt;/h1> \r\n            &lt;router-outlet>&lt;/router-outlet>\r\n              `\r\n})\r\nexport class TwoComponent  {\r\n \r\n \r\n}\r\n </code></pre>\n\n\n\n<h2>three.component.ts</h2>\n\n\n\n<pre class=\"wp-block-code\"><code>import { Component} from '@angular/core';\r\n \r\n \r\n@Component({\r\n  template: `&lt;h1>Three Component&lt;/h1>`\r\n})\r\nexport class ThreeComponent {\r\n}</code></pre>\n\n\n\n<h2>two-a.component.ts</h2>\n\n\n\n<pre class=\"wp-block-code\"><code> \r\nimport { Component  } from '@angular/core';\r\n \r\n \r\n \r\n@Component({\r\n  template: `&lt;h1>Two A Component&lt;/h1>`\r\n})\r\nexport class TwoAComponent   {\r\n \r\n \r\n}</code></pre>\n\n\n\n<h3>Import Title Service</h3>\n\n\n\n<p>Open the <code>app.module.ts</code> and import the Title Service form the <code>@angular/platform-browser</code> as shown below. Also, use the <a href=\"https://www.tektutorialshub.com/angular/angular-providers/\">Angular Providers</a> metadata to register the Title service</p>\n\n\n\n<pre class=\"wp-block-code\"><code>\r\nimport { BrowserModule, Title } from '@angular/platform-browser';\r\nimport { NgModule } from '@angular/core';\r\n \r\nimport { AppRoutingModule } from './app-routing.module';\r\nimport { AppComponent } from './app.component';\r\nimport { OneComponent } from './one.component';\r\nimport { TwoComponent } from './two-component';\r\nimport { ThreeComponent } from './three.component';\r\nimport { TwoAComponent } from './two-a.component';\r\nimport { HomeComponent } from './home.component';\r\n \r\n@NgModule({\r\n  declarations: &#91;\r\n    AppComponent,OneComponent,TwoComponent,ThreeComponent,TwoAComponent, HomeComponent\r\n  ],\r\n  imports: &#91;\r\n    BrowserModule,\r\n    AppRoutingModule\r\n  ],\r\n  providers: &#91;Title],\r\n  bootstrap: &#91;AppComponent]\r\n})\r\nexport class AppModule { }</code></pre>\n\n\n\n<h3>Define the title in Routes</h3>\n\n\n\n<p>Open the <code>app-routing.module.ts</code> and the routes as shown below. Add the title property in route data. Route data can be used to pass the static data or dynamic data to routed components.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> \r\nimport { NgModule } from '@angular/core';\r\nimport { Routes, RouterModule } from '@angular/router';\r\nimport { OneComponent } from './one.component';\r\nimport { TwoComponent } from './two-component';\r\nimport { ThreeComponent } from './three.component';\r\nimport { TwoAComponent } from './two-a.component';\r\nimport { HomeComponent } from './home.component';\r\n \r\n \r\nconst routes: Routes = &#91;\r\n  {path:'',component:HomeComponent, data : {title:'Title for Home Component'}},\r\n  {path: 'one', component:OneComponent, data :{ title:'Title for One Component'}},\r\n  {path: 'two', component:TwoComponent, \r\n      data :{ title:'Title for Two Component'},\r\n      children: &#91;\r\n          {path:'a',component:TwoAComponent, data : {title:'title for two a component'}}\r\n      ]\r\n    },\r\n  {path: 'three', component:ThreeComponent, data :{ title:'Title for three Component'}},\r\n];\r\n \r\n@NgModule({\r\n  imports: &#91;RouterModule.forRoot(routes)],\r\n  exports: &#91;RouterModule]\r\n})\r\nexport class AppRoutingModule { }</code></pre>\n\n\n\n<h3>Listen to Navigation Changes</h3>\n\n\n\n<p>The trick to change the title is to know when the<strong><em>&nbsp;route changes</em></strong>. This we can do by listening to the&nbsp;<code>NavigationEnd</code>&nbsp;event.</p>\n\n\n\n<p>We also need to<em><strong> listen to every route change event</strong></em> in the app. The <code>app.component.ts</code> is the topmost component in our app. It loads when the app starts. It lives as long as the app lives. Hence the best place to listen to the route changes is in the <code>app.component.ts</code></p>\n\n\n\n<pre class=\"wp-block-code\"><code>import { Component } from '@angular/core';\r\nimport { Title } from '@angular/platform-browser';\r\nimport { Router, NavigationEnd, ActivatedRoute } from '@angular/router';\r\nimport { filter, map } from 'rxjs/operators';\r\n \r\n@Component({\r\n  selector: 'app-root',\r\n  templateUrl: './app.component.html',\r\n  styleUrls: &#91;'./app.component.css']\r\n})\r\nexport class AppComponent {\r\n \r\n  constructor(private router: Router,\r\n              private activatedRoute: ActivatedRoute,\r\n              private titleService: Title) {\r\n  }\r\n \r\n  ngOnInit() {\r\n \r\n    this.router.events.pipe(\r\n        filter(event => event instanceof NavigationEnd),\r\n      )\r\n      .subscribe(() => {\r\n \r\n        var rt = this.getChild(this.activatedRoute)\r\n \r\n        rt.data.subscribe(data => {\r\n          console.log(data);\r\n          this.titleService.setTitle(data.title)})\r\n      })\r\n \r\n  }\r\n \r\n  getChild(activatedRoute: ActivatedRoute) {\r\n    if (activatedRoute.firstChild) {\r\n      return this.getChild(activatedRoute.firstChild);\r\n    } else {\r\n      return activatedRoute;\r\n    }\r\n \r\n  }\r\n \r\n}</code></pre>\n\n\n\n<p>First, we inject&nbsp;<code>Router</code>,&nbsp;<code>ActivatedRoute</code>&nbsp;&amp;&nbsp;<code>Title</code>&nbsp;services in our constructor</p>\n\n\n\n<p>In&nbsp;<a href=\"https://www.tektutorialshub.com/angular/angular-ngoninit-and-ngondestroy/\">ngOnInit</a>, we listen to the router events. We use the&nbsp;<code>filter</code>&nbsp;operator to listen to only to the&nbsp;<code>NavigationEnd</code>&nbsp;event.</p>\n\n\n\n<p>We need to find the&nbsp;<code>ActivateRoute</code>&nbsp;of the last loaded component. Hence, we use the&nbsp;<code>firstChild</code>&nbsp;property of the&nbsp;<code>ActivatedRoute</code>&nbsp;to recursively traverse through the Router Tree to get the bottom-most Activate Route. We use the&nbsp;<code>getChild</code>&nbsp;method to do that.</p>\n\n\n\n<p>Once, we get the <code>ActivateRoute</code> of the last loaded component, all we need to do is <code>subscribe</code> to the Route data to get the title stored in the route data.</p>\n\n\n\n<p>Finally, use the&nbsp;<code>setTitle</code>&nbsp;of the Title service to set the Title tag</p>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://www.tektutorialshub.com/wp-content/uploads/2020/01/Dynamic-Page-Title-based-on-Route-in-Angular.gif\" alt=\"\" class=\"wp-image-16221\"/></figure>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Example App Create a new angular app. Add five Angular Components. HomeComponent, OneComponent, TwoComponent, ThreeComponent &amp; TwoAComponent home.component.ts one.component.ts two.component.ts three.component.ts two-a.component.ts Import Title Service Open the app.module.ts and import the Title Service form the @angular/platform-browser as shown below. Also, use the Angular Providers metadata to register the Title service Define the title in Routes Open the app-routing.module.ts and the routes as shown below. Add the title property in route data. Route [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [143],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3921"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=3921"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3921/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3922,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3921/revisions/3922"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=3921"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=3921"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=3921"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 3923,
+    "date": "2020-12-11T06:59:39",
+    "date_gmt": "2020-12-11T06:59:39",
+    "guid": {
+      "rendered": "http://angular.foobrdigital.com/?p=3923"
+    },
+    "modified": "2020-12-11T06:59:39",
+    "modified_gmt": "2020-12-11T06:59:39",
+    "slug": "meta-service-in-angular-add-update-meta-tags-example",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/meta-service-in-angular-add-update-meta-tags-example/",
+    "title": {
+      "rendered": "Meta service in Angular. Add/Update Meta Tags Example"
+    },
+    "content": {
+      "rendered": "\n<h2>Why Set Meta Tags</h2>\n\n\n\n<p>Meta tags describe details about your page content to search engines. Hence setting the right Meta tags is very important for SEO. These tags appear only in the <code>&lt;head></code> section of the HTML and not visible to the user. But search engines / social media sites use them to find more about your page. Meta tags in a typical <code>&lt;head></code> section might look like this</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;head>\r\n  &lt;title>Setting HTML Meta Tags Angular Meta service Example&lt;/title>\r\n  &lt;meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\r\n  &lt;meta name=”description” content=”Angular Meta service Example” />\r\n  &lt;meta name=”robots” content=”Index,follow” />\r\n  &lt;meta property=\"og:title\" content=\"Content Title for social media\">\r\n  &lt;meta charset=\"UTF-8\">\r\n&lt;/head></code></pre>\n\n\n\n<h2>Meta service</h2>\n\n\n\n<p>The Meta service in Angular provides the following methods to manipulate the HTML Meta tags.</p>\n\n\n\n<h2>How to Use Meta Service</h2>\n\n\n\n<h3>Importing Meta Service</h3>\n\n\n\n<p>To use meta service, we first need to import it in the Root module. The Meta service is part of the <code>@angular/platform-browser</code> library as it is applicable only apps running on the browser.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>import { BrowserModule, Meta } from '@angular/platform-browser';</code></pre>\n\n\n\n<p>Next, we need to register it in the Angular Providers metadata as shown below</p>\n\n\n\n<pre class=\"wp-block-code\"><code>@NgModule({\r\n  declarations: &#91;\r\n    AppComponent\r\n  ],\r\n  imports: &#91;\r\n    BrowserModule,\r\n    AppRoutingModule\r\n  ],\r\n  providers: &#91;Meta],\r\n  bootstrap: &#91;AppComponent]\r\n})\r\nexport class AppModule { }</code></pre>\n\n\n\n<p>To make use of the service in components, all you need to do is to inject it using Dependency Injection.</p>\n\n\n\n<p>Then call any of the methods of the Meta Service to manipulate the Tags. You can either use <code><a href=\"https://www.tektutorialshub.com/angular/angular-ngoninit-and-ngondestroy/\">ngOnInit</a></code> or <code>constructor</code>.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>import { Component, OnInit } from '@angular/core';\r\nimport { Meta, MetaDefinition } from '@angular/platform-browser';\r\n \r\n@Component({\r\n  template: `&lt;h1>Home Component&lt;/h1>`\r\n})\r\nexport class HomeComponent implements OnInit {\r\n  title = 'Home Component Title';\r\n \r\n  constructor(private metaService:Meta){\r\n  }\r\n \r\n  ngOnInit() {\r\n    this.metaService.addTag( { name:'description',content:\"Article Description\"});\r\n  }\r\n \r\n}\r\n </code></pre>\n\n\n\n<h3>Meta Definition Class</h3>\n\n\n\n<p>Meta definition class represents a meta element.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>\r\ntype MetaDefinition = {\r\n    charset?: string;\r\n    content?: string;\r\n    httpEquiv?: string;\r\n    id?: string;\r\n    itemprop?: string;\r\n    name?: string;\r\n    property?: string;\r\n    scheme?: string;\r\n    url?: string;\r\n} &amp; {\r\n    &#91;prop: string]: string;\r\n};</code></pre>\n\n\n\n<p>We create objects of type <code>MetaDefinition</code> and add them using the Meta Service. For Example</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{name: 'description', content: 'Title and Meta tags examples'}</code></pre>\n\n\n\n<p>and it results in the following HTML</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;meta name=”description” content=”Setting HTML Meta Tags Angular Meta service Example” />\r\n \r\n</code></pre>\n\n\n\n<p>Similarly,</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{charset: 'UTF-8'}                              \r\n=>  &lt;meta charset=\"UTF-8\">\r\n \r\n{meta name=\"robots\" content=\"Index,follow\"}     \r\n====>  &lt;meta name=”robots” content=”Index,follow” />\r\n \r\n{meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"}     \r\n====>  &lt;meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"></code></pre>\n\n\n\n<h2>Adding Tags with addTag() &amp; addTags()</h2>\n\n\n\n<p>To add a new tag or Tags, we make use of methods&nbsp;<code>addTag()</code>&nbsp;or&nbsp;<code>addTags()</code>.</p>\n\n\n\n<p><code>addTag()</code>&nbsp;allows us to add a single tag</p>\n\n\n\n<p><strong>Syntax</strong></p>\n\n\n\n<pre class=\"wp-block-code\"><code>addTag(tag: MetaDefinition, forceCreation: boolean = false): HTMLMetaElement | null\r\n </code></pre>\n\n\n\n<p><strong>Example</strong></p>\n\n\n\n<pre class=\"wp-block-code\"><code>constructor(private metaService: Meta) {\r\n    this.addTag();\r\n}\r\n \r\naddTag() {\r\n   this.metaService.addTag({ name: 'description', content: 'Article Description' });\r\n   this.metaService.addTag({ name: 'robots', content: 'index,follow' });\r\n   this.metaService.addTag({ property: 'og:title', content: 'Content Title for social media' });\r\n}</code></pre>\n\n\n\n<p>This results in the following HTML.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;meta name=\"description\" content=\"Article Description\">\r\n&lt;meta name=\"robots\" content=\"index,follow\">\r\n&lt;meta property=\"og:title\" content=\"Content Title for social media\"></code></pre>\n\n\n\n<p>while&nbsp;<code>addTags()</code>&nbsp;allows us to add more than one tag</p>\n\n\n\n<p><strong>Syntax</strong></p>\n\n\n\n<pre class=\"wp-block-code\"><code>addTags(tags: MetaDefinition&#91;], forceCreation: boolean = false): HTMLMetaElement&#91;]\r\n </code></pre>\n\n\n\n<pre class=\"wp-block-code\"><code>constructor(private metaService: Meta) {\r\n    this.addTags();\r\n}\r\n  \r\naddTags() {\r\n   this.metaService.addTags(&#91;\r\n     { name: 'description', content: 'Article Description' },\r\n     { name: 'robots', content: 'index,follow' },\r\n     { property: 'og:title', content: 'Content Title for social media' }\r\n  ]);\r\n}</code></pre>\n\n\n\n<h3>Duplication of Meta tags</h3>\n\n\n\n<p>The angular does check if the meta tag already exists. If already exists, then it won’t allow you to add the meta tag. You can force it to add the tag by making the&nbsp;<code>forceCreation=true</code></p>\n\n\n\n<p>Although the angular checks for the duplicate meta tag,&nbsp;<strong>You should not rely on it.</strong></p>\n\n\n\n<h4><strong>The Meta tags are equal only if values of all the attributes are equal</strong></h4>\n\n\n\n<p>The following code results in only one HTML meta tag in the rendered HTML</p>\n\n\n\n<pre class=\"wp-block-code\"><code>constructor(private metaService: Meta) {\r\n    this.duplicateTags();\r\n}\r\n \r\nduplicateTags() {\r\n  this.metaService.addTag( { name: 'description', content: 'Article Description' })\r\n  this.metaService.addTag( { name: 'description', content: 'Article Description' })\r\n}\r\n \r\n \r\n//output\r\n&lt;meta name=\"description\" content=\"Article Description\"></code></pre>\n\n\n\n<p>While the following code results in both meta tags in the rendered HTML.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>constructor(private metaService: Meta) {\r\n    this.duplicateTags();\r\n}\r\n \r\nduplicateTags1() {\r\n    this.metaService.addTag( { name: 'description', content: 'Article Description' })\r\n    this.metaService.addTag( { name: 'description', content: 'A different Article Description' })\r\n}\r\n \r\n//output\r\n&lt;meta name=\"description\" content=\"Article Description\">\r\n&lt;meta name=\"description\" content=\"A different Article Description\"></code></pre>\n\n\n\n<h4>Only the first instance is checked</h4>\n\n\n\n<p>While checking for duplicates, angular checks only the first instance of the meta tag. It uses either <code><strong>name</strong></code> or <code><strong>property</strong></code> to look for the <strong>first instance</strong> of the meta tag and check for duplication.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>  duplicateTags2() {\r\n    this.metaService.addTag( { name: 'description', content: 'Article Description' })\r\n    this.metaService.addTag( { name: 'description', content: 'A different Article Description' })\r\n    this.metaService.addTag( { name: 'description', content: 'Description of the Article' })   //Not Inserted\r\n    this.metaService.addTag( { name: 'description', content: 'A different Article Description' })    //Inserted\r\n  }\r\n \r\n \r\n****output\r\n&lt;meta name=\"description\" content=\"Article Description\">   //Appears only once\r\n&lt;meta name=\"description\" content=\"A different Article Description\">  \r\n&lt;meta name=\"description\" content=\"A different Article Description\">  //Not checked for duplication\r\n </code></pre>\n\n\n\n<p>will result in the following HTML. Note that Angular does not duplicate the&nbsp;<code>Description of the component</code>, but generates the duplication of&nbsp;<code>A different Description of the component</code></p>\n\n\n\n<h2>Reading the Tags</h2>\n\n\n\n<p>You can read the meta tags using the&nbsp;<code>getTag()</code>&nbsp;&amp;&nbsp;<code>getTags()</code>&nbsp;method.&nbsp;<code>getTag()</code>&nbsp;reads the first instance, while&nbsp;<code>getTags()</code>&nbsp;reads all instances of the meta tag.</p>\n\n\n\n<p><strong>Syntax</strong></p>\n\n\n\n<pre class=\"wp-block-code\"><code>getTag(attrSelector: string): HTMLMetaElement | null\r\ngetTags(attrSelector: string): HTMLMetaElement&#91;]\r\n </code></pre>\n\n\n\n<p><strong>Examples</strong></p>\n\n\n\n<p>Add the following Meta Tags.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>  getTag() {\r\n    this.metaService.addTag({ name: 'description', content: 'Article Description' });\r\n    this.metaService.addTag({ name: 'robots', content: 'index,follow' });\r\n    this.metaService.addTag({ property: 'og:title', content: 'Content Title for social media' });\r\n    this.metaService.addTag({ name: 'description', content: 'Another Article Description' });\r\n  }</code></pre>\n\n\n\n<p>The <code>getTag()</code> method returns the first instance of the matching meta tag. You need to pass the name of the attribute and value in the format <code>attributeName='value'</code>. You can search for only one attribute. Searching for Multiple attributes are not supported.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>this.metaService.getTag(\"name='description'\")\r\n \r\n***output in console window\r\n&lt;meta name=\"description\" content=\"Article Description\"></code></pre>\n\n\n\n<p>Use it to compare any of the attributes. The following example uses the <code>content</code> attribute to read the data.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>console.log(this.metaService.getTag(\"content='Article Description'\"));\r\n \r\n***output in console window\r\n&lt;meta name=\"description\" content=\"Article Description\"></code></pre>\n\n\n\n<p>The getTags() method returns all instances of the meta in an array</p>\n\n\n\n<pre class=\"wp-block-code\"><code>console.log(this.metaService.getTags(\"name='description'\"));\r\n \r\n \r\n***output\r\n&lt;meta name=\"description\" content=\"Article Description\">\r\n&lt;meta name=\"description\" content=\"Another Article Description\"></code></pre>\n\n\n\n<p>The following will return all the meta tags with the <code>name</code> attribute</p>\n\n\n\n<pre class=\"wp-block-code\"><code>console.log(this.metaService.getTags(\"name\"));\r\n \r\n***output. Returns an array of the following meta tags\r\n&lt;meta name=\"viewport\" content=\"Article Description\">\r\n&lt;meta name=\"description\" content=\"width=device-width, initial-scale=1\">\r\n&lt;meta name=\"robots\" content=\"index,follow\">\r\n&lt;meta name=\"description\" content=\"Another Article Description\"></code></pre>\n\n\n\n<p>You can also check out the following.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>\r\nconsole.log(this.metaService.getTags(\"property\"));\r\nconsole.log(this.metaService.getTags(\"content\"));</code></pre>\n\n\n\n<h2>Update the Tag</h2>\n\n\n\n<p><code>updateTag()</code>&nbsp;method updates the existing meta tags with the new one (first argument) based on search criteria. Specify the search criteria as the second argument in the form&nbsp;<code>attributeName='value'</code>&nbsp;similar to&nbsp;<code>getTag</code>&nbsp;method</p>\n\n\n\n<p><strong>Syntax</strong></p>\n\n\n\n<pre class=\"wp-block-code\"><code>updateTag(tag: MetaDefinition, selector?: string): HTMLMetaElement | null\r\n </code></pre>\n\n\n\n<pre class=\"wp-block-code\"><code>\r\n//Add the Tag\r\nthis.metaService.addTag({ name: 'robots', content: 'index,follow' });\r\n \r\n//output\r\n&lt;meta name=\"robots\" content=\"index, follow\">\r\n \r\n//Now update the Tag\r\nthis.metaService.updateTag( { name:'robots', content:'index, nofoloow'},\"name='robots'\");\r\n \r\n//Output\r\n&lt;meta name=\"robots\" content=\"index, nofoloow\"></code></pre>\n\n\n\n<p><code>updateTag</code> inserts the tag if matching meta element is not found</p>\n\n\n\n<pre class=\"wp-block-code\"><code>this.metaService.updateTag( { name:'description', content:'Article Description'},\"name='description'\");\r\n \r\n//Will insert the Meta if it is not found\r\n&lt;meta name=\"description\" content=\"Article Description\"></code></pre>\n\n\n\n<p><code>updateTag</code> replaces only the first instance of the search criteria.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>this.metaService.addTag({ property: 'og:title', content: 'Social Media descripton'});\r\nthis.metaService.addTag({ property: 'og:title', content: 'Duplicate Social Media descripton'});\r\n \r\n \r\n//output\r\n&lt;meta property=\"og:title\" content=\"Social Media descripton\">\r\n&lt;meta property=\"og:title\" content=\"Duplicate Social Media descripton\">\r\n \r\n//Now run this\r\nthis.metaService.updateTag( { property:'og:title', content:Social Media 'Description of the component'},\"property='og:title'\");\r\n \r\n//output\r\n&lt;meta property=\"og:title\" content=\"Description of the componen\">     //Updated\r\n&lt;meta property=\"og:title\" content=\"Duplicate Social Media descripton\">  //Not touched</code></pre>\n\n\n\n<h2>Removing the Tag</h2>\n\n\n\n<p>Use&nbsp;<code>removeTag()</code>&nbsp;or&nbsp;<code>removeTagElement()</code>&nbsp;element to remove the meta tag.</p>\n\n\n\n<p><strong>Syntax</strong></p>\n\n\n\n<pre class=\"wp-block-code\"><code>removeTag(attrSelector: string): void\r\nremoveTagElement(meta: HTMLMetaElement): void</code></pre>\n\n\n\n<p>The following example adds the robots metatag and then uses the&nbsp;<code>removeTag</code>&nbsp;to remove it.&nbsp;<code>removeTag</code>&nbsp;removes the first instance of the matching meta tag. You need to pass the name of the attribute and value in the format&nbsp;<code>attributeName='value'</code>. You can search using only one attribute.</p>\n\n\n\n<p><strong>Example</strong></p>\n\n\n\n<pre class=\"wp-block-code\"><code>//Adding the Meta Tag\r\nthis.metaService.addTag({ name: 'robots', content: 'index,follow' });\r\n \r\n//Output\r\n&lt;meta name=\"robots\" content=\"index,follow\">\r\n \r\n//Remove it \r\nthis.metaService.removeTag(\"name='robots'\");\r\n </code></pre>\n\n\n\n<p>Removes the first matching tag.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>//Adds tow meta tags\r\nthis.metaService.addTag({ property: 'og:title', content: 'Social Media descripton'});\r\nthis.metaService.addTag({ property: 'og:title', content: 'Duplicate Social Media descripton'});\r\n \r\n//This will remove the first one\r\nthis.metaService.removeTag(\"property='og:title'\");</code></pre>\n\n\n\n<p>You can use any attribute of the meta. The following example uses the <code>content</code> attribute to remove it.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> \r\n//Adds the meta tag\r\nthis.metaService.addTag({ property: 'og:title', content: 'Duplicate Social Media descripton'});\r\n \r\n//Output\r\n&lt;meta property=\"og:title\" content=\"Duplicate Social Media descripton\">\r\n \r\n//This will remove it\r\nthis.metaService.removeTag(\"content='Duplicate Social Media descripton'\");</code></pre>\n\n\n\n<p>You can also use <code>removeTagElement()</code> to remove the meta. You need to pass the <code>HTMLMetaElement</code> , which you want to remove. For example,</p>\n\n\n\n<pre class=\"wp-block-code\"><code>//Ads two meta property\r\nthis.metaService.addTag({ property: 'og:title', content: 'Social Media descripton'});\r\nthis.metaService.addTag({ property: 'og:title', content: 'Duplicate Social Media descripton'});\r\n \r\n//Removes the first instance of the 'og:title'\r\nthis.metaService.removeTagElement(this.metaService.getTag('property'));\r\n </code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Why Set Meta Tags Meta tags describe details about your page content to search engines. Hence setting the right Meta tags is very important for SEO. These tags appear only in the &lt;head> section of the HTML and not visible to the user. But search engines / social media sites use them to find more about your [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [143],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3923"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=3923"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3923/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3924,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3923/revisions/3924"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=3923"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=3923"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=3923"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 3925,
+    "date": "2020-12-11T07:11:51",
+    "date_gmt": "2020-12-11T07:11:51",
+    "guid": {
+      "rendered": "http://angular.foobrdigital.com/?p=3925"
+    },
+    "modified": "2020-12-11T07:11:51",
+    "modified_gmt": "2020-12-11T07:11:51",
+    "slug": "dynamic-meta-tags-in-angular",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/dynamic-meta-tags-in-angular/",
+    "title": {
+      "rendered": "Dynamic Meta Tags in Angular"
+    },
+    "content": {
+      "rendered": "\n<h2>Meta Tags</h2>\n\n\n\n<p>We use the Meta Service in Angular to add/remove meta tags. It provides the following methods</p>\n\n\n\n<ol><li>addTag()</li><li>addTags()</li><li>getTag()</li><li>getTags()</li><li>updateTag</li><li>removeTag</li><li>removeTagElement</li></ol>\n\n\n\n<p>To use Meta Service, we first need to import it root module and inject it in Angular Providers as shown below</p>\n\n\n\n<pre class=\"wp-block-code\"><code>import { BrowserModule, Meta } from '@angular/platform-browser';\r\nimport { NgModule } from '@angular/core';\r\n \r\nimport { AppRoutingModule } from './app-routing.module';\r\nimport { AppComponent } from './app.component';\r\n \r\n@NgModule({\r\n  declarations: &#91;\r\n    AppComponent\r\n  ],\r\n  imports: &#91;\r\n    BrowserModule,\r\n    AppRoutingModule\r\n  ],\r\n  providers: &#91;Meta],\r\n  bootstrap: &#91;AppComponent]\r\n})\r\nexport class AppModule { }</code></pre>\n\n\n\n<p>And in the component class, first, inject the Meta Service using Angular Dependency Injection. Use any of the methods of the Meta Service to manipulate the Tags.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>import { Component, OnInit } from '@angular/core';\r\nimport { Meta, MetaDefinition } from '@angular/platform-browser';\r\n \r\n@Component({\r\n  template: `&lt;h1>First Component&lt;/h1>`\r\n})\r\nexport class FirstComponent {\r\n \r\n  constructor(private metaService: Meta) {\r\n    this.addTag();\r\n  }\r\n \r\n  addTag() {\r\n    this.metaService.addTag({ name: 'description', content: 'Article Description' });\r\n    this.metaService.addTag({ name: 'robots', content: 'index,follow' });\r\n    this.metaService.addTag({ property: 'og:title', content: 'Content Title for social media' });\r\n  }\r\n \r\n}</code></pre>\n\n\n\n<h2>Dynamic Meta Tags</h2>\n\n\n\n<p>Adding Meta tags in component class is little inconvenient. The better way is to define all the meta tags at a central place preferably when we define the routes. Whenever the route changes, we can read the Tags from the router and update Mega tags.</p>\n\n\n\n<h3>Example App</h3>\n\n\n\n<p>Create a new Angular Application. Add HomeComponent, FirstComponent, SecondComponent, SecondAComponent &amp; ThirdComponent as shown below.</p>\n\n\n\n<h2>home.component.ts</h2>\n\n\n\n<pre class=\"wp-block-code\"><code>import { Component, OnInit } from '@angular/core';\r\nimport { Meta, MetaDefinition } from '@angular/platform-browser';\r\n \r\n@Component({\r\n  template: `&lt;h1>Home Component&lt;/h1>`\r\n})\r\nexport class HomeComponent {\r\n}</code></pre>\n\n\n\n<h2>first.component.ts</h2>\n\n\n\n<pre class=\"wp-block-code\"><code>import { Component, OnInit } from '@angular/core';\r\nimport { Meta, MetaDefinition } from '@angular/platform-browser';\r\n \r\n@Component({\r\n  template: `&lt;h1>First Component&lt;/h1>`\r\n})\r\nexport class FirstComponent {\r\n}\r\n</code></pre>\n\n\n\n<h2>second.component.ts</h2>\n\n\n\n<pre class=\"wp-block-code\"><code>import { Component, OnInit } from '@angular/core';\r\nimport { Meta, MetaDefinition } from '@angular/platform-browser';\r\n \r\n@Component({\r\n  template: `&lt;h1>Second Component&lt;/h1>`\r\n})\r\nexport class SecondComponent {\r\n}</code></pre>\n\n\n\n<h2>secondA.component.ts</h2>\n\n\n\n<pre class=\"wp-block-code\"><code>import { Component, OnInit } from '@angular/core';\r\nimport { Meta, MetaDefinition } from '@angular/platform-browser';\r\n \r\n@Component({\r\n  template: `&lt;h1>Second A Component&lt;/h1>`\r\n})\r\nexport class SecondAComponent {\r\n}</code></pre>\n\n\n\n<h2>third.component.ts</h2>\n\n\n\n<pre class=\"wp-block-code\"><code>import { Component, OnInit } from '@angular/core';\r\nimport { Meta, MetaDefinition } from '@angular/platform-browser';\r\n \r\n@Component({\r\n  template: `&lt;h1>Third Component&lt;/h1>`\r\n})\r\nexport class ThirdComponent {\r\n}\r\n </code></pre>\n\n\n\n<h3>Meta Tags in Route</h3>\n\n\n\n<p>The next step is to add the Meta tags in the route</p>\n\n\n\n<p>Open the <code>app-routing.module.ts</code> and the routes as shown below. Add the Meta Tags property in route data. We can use the Route data to pass the static data or dynamic data to routed components. The title is also added to the Route Data.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>import { NgModule } from '@angular/core';\r\nimport { Routes, RouterModule } from '@angular/router';\r\nimport { FirstComponent } from './first.component';\r\nimport { SecondComponent } from './second.component';\r\nimport { SecondAComponent } from './secondA.component';\r\nimport { ThirdComponent } from './third.component';\r\nimport { HomeComponent } from './home.component';\r\n \r\n \r\nconst routes: Routes = &#91;\r\n  {\r\n    path: '', component: HomeComponent, pathMatch: 'full',\r\n    data: {\r\n      title: 'Title for Home Component',\r\n      descrption: 'Description of Home Component',\r\n      ogTitle: 'Description of Home Component for social media',\r\n    }\r\n  },\r\n  {\r\n    path: 'first', component: FirstComponent,\r\n    data: {\r\n      title: 'Title for First Component',\r\n      descrption: 'Description of First Component',\r\n      robots: 'noindex, nofollow',\r\n      ogTitle: 'Description of First Component for social media',\r\n    }\r\n  },\r\n  {\r\n    path: 'second', children:\r\n      &#91;\r\n        {\r\n          path: '', component: SecondComponent, pathMatch: 'full',\r\n          data: {\r\n            title: 'Title for Second Component',\r\n            descrption: 'Description of Second Component',\r\n          }\r\n        },\r\n        {\r\n          path: 'a', component: SecondAComponent,\r\n          data: {\r\n            title: 'Title for Second A Component',\r\n            descrption: 'Description of Second A Component',\r\n            ogTitle: 'Title of Second A Component for social media',\r\n            ogDescription: 'Description of Second A Component for social media',\r\n            ogImage: 'ImagePathForSocialMedia'\r\n          }\r\n        },\r\n      ]\r\n  },\r\n  {\r\n    path: 'third', component: ThirdComponent,\r\n    data: {\r\n      title: 'Title for third Component',\r\n      descrption: 'Description of third Component',\r\n      ogDescription: 'Description of third Component for social media',\r\n      ogUrl: '/home'\r\n    }\r\n  },\r\n];\r\n \r\n@NgModule({\r\n  imports: &#91;RouterModule.forRoot(routes)],\r\n  exports: &#91;RouterModule]\r\n})\r\nexport class AppRoutingModule { }</code></pre>\n\n\n\n<h2>Listen to Navigation Changes</h2>\n\n\n\n<p>Whenever a user navigates to a new route (or page), the router fires the navigation events. The Router raises the&nbsp;<code>NavigationEnd</code>&nbsp;event, when it successfully completes the navigation.</p>\n\n\n\n<p>We must listen to every <code>NavigationEnd</code> event and the best place to listen is in our root component. i.e. <code>app.component.ts</code>. The code is as shown below.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>import { Component, OnInit } from '@angular/core';\r\nimport { Title, Meta } from '@angular/platform-browser';\r\nimport { Router, NavigationEnd, ActivatedRoute } from '@angular/router';\r\nimport { filter, map } from 'rxjs/operators';\r\n \r\n@Component({\r\n  selector: 'app-root',\r\n  templateUrl: './app.component.html',\r\n  styleUrls: &#91;'./app.component.css']\r\n})\r\nexport class AppComponent implements OnInit {\r\n \r\n  constructor(private router: Router,\r\n    private activatedRoute: ActivatedRoute,\r\n    private titleService: Title,\r\n    private metaService: Meta) {\r\n  }\r\n \r\n  ngOnInit() {\r\n \r\n    this.router.events.pipe(\r\n      filter(event => event instanceof NavigationEnd),\r\n    )\r\n      .subscribe(() => {\r\n \r\n        var rt = this.getChild(this.activatedRoute)\r\n \r\n        rt.data.subscribe(data => {\r\n          console.log(data);\r\n          this.titleService.setTitle(data.title)\r\n \r\n          if (data.descrption) {\r\n            this.metaService.updateTag({ name: 'description', content: data.descrption })\r\n          } else {\r\n            this.metaService.removeTag(\"name='description'\")\r\n          }\r\n \r\n          if (data.robots) {\r\n            this.metaService.updateTag({ name: 'robots', content: data.robots })\r\n          } else {\r\n            this.metaService.updateTag({ name: 'robots', content: \"follow,index\" })\r\n          }\r\n \r\n          if (data.ogUrl) {\r\n            this.metaService.updateTag({ property: 'og:url', content: data.ogUrl })\r\n          } else {\r\n            this.metaService.updateTag({ property: 'og:url', content: this.router.url })\r\n          }\r\n \r\n          if (data.ogTitle) {\r\n            this.metaService.updateTag({ property: 'og:title', content: data.ogTitle })\r\n          } else {\r\n            this.metaService.removeTag(\"property='og:title'\")\r\n          }\r\n \r\n          if (data.ogDescription) {\r\n            this.metaService.updateTag({ property: 'og:description', content: data.ogDescription })\r\n          } else {\r\n            this.metaService.removeTag(\"property='og:description'\")\r\n          }\r\n \r\n          if (data.ogImage) {\r\n            this.metaService.updateTag({ property: 'og:image', content: data.ogImage })\r\n          } else {\r\n            this.metaService.removeTag(\"property='og:image'\")\r\n          }\r\n \r\n \r\n        })\r\n \r\n      })\r\n \r\n  }\r\n \r\n  getChild(activatedRoute: ActivatedRoute) {\r\n    if (activatedRoute.firstChild) {\r\n      return this.getChild(activatedRoute.firstChild);\r\n    } else {\r\n      return activatedRoute;\r\n    }\r\n \r\n  }\r\n}</code></pre>\n\n\n\n<p>The following code subscribes to the router change event. The <code>filter</code> RxJS Operator filters out <code>NavigationEnd</code> event. We subscribe to it.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>this.router.events.pipe(\r\n      filter(event => event instanceof NavigationEnd),\r\n    )\r\n      .subscribe(() => {</code></pre>\n\n\n\n<p>In the next line, we recursively traverse through the <code>ActivatedRoute</code> tree to get to the current route.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>var rt = this.getChild(this.activatedRoute)\r\n</code></pre>\n\n\n\n<p>Once we have the ActivateRoute of the currently loaded component, we subscribe to the data property to read the Route Data.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>\r\n      rt.data.subscribe(data => {\r\n          console.log(data);</code></pre>\n\n\n\n<p>Now, we can set the title using title service</p>\n\n\n\n<pre class=\"wp-block-code\"><code>this.titleService.setTitle(data.title)</code></pre>\n\n\n\n<p>Update the Meta Description if one is defined on the route. Else we can remove the description set for the previous component.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> if (data.descrption) {\r\n            this.metaService.updateTag({ name: 'description', content: data.descrption })\r\n          } else {\r\n            this.metaService.removeTag(\"name='description'\")\r\n          }\r\n </code></pre>\n\n\n\n<p>In cases like robots tag, it is better to set it to <code>follow,index</code> as a default, if not tags were not defined.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>if (data.robots) {\r\n            this.metaService.updateTag({ name: 'robots', content: data.robots })\r\n          } else {\r\n            this.metaService.updateTag({ name: 'robots', content: \"follow,index\" })\r\n          }\r\n </code></pre>\n\n\n\n<h2>app.component.html</h2>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;h1>Angular Dynamic Meta Tags Example&lt;/h1>\r\n \r\n&lt;ul>\r\n  &lt;li>&lt;a &#91;routerLink]=\"&#91;'/']\">Home&lt;/a> &lt;/li>\r\n  &lt;li>&lt;a &#91;routerLink]=\"&#91;'/first']\">First&lt;/a> &lt;/li>\r\n  &lt;li>&lt;a &#91;routerLink]=\"&#91;'/second']\">Second&lt;/a> &lt;/li>\r\n  &lt;ul>\r\n    &lt;li>&lt;a &#91;routerLink]=\"&#91;'/second/a']\">Second A&lt;/a> &lt;/li>\r\n  &lt;/ul>\r\n  &lt;li>&lt;a &#91;routerLink]=\"&#91;'/third']\">third&lt;/a> &lt;/li>\r\n&lt;/ul>\r\n \r\n&lt;router-outlet>&lt;/router-outlet></code></pre>\n\n\n\n<h2>app.module.ts</h2>\n\n\n\n<pre class=\"wp-block-code\"><code>import { BrowserModule, Meta } from '@angular/platform-browser';\r\nimport { NgModule } from '@angular/core';\r\n \r\nimport { AppRoutingModule } from './app-routing.module';\r\nimport { AppComponent } from './app.component';\r\nimport { FirstComponent } from './first.component';\r\nimport { SecondAComponent } from './secondA.component';\r\nimport { ThirdComponent } from './third.component';\r\nimport { SecondComponent } from './second.component';\r\nimport { HomeComponent } from './home.component';\r\n \r\n@NgModule({\r\n  declarations: &#91;\r\n    AppComponent, FirstComponent,SecondAComponent, ThirdComponent, SecondComponent, HomeComponent\r\n  ],\r\n  imports: &#91;\r\n    BrowserModule,\r\n    AppRoutingModule\r\n  ],\r\n  providers: &#91;Meta],\r\n  bootstrap: &#91;AppComponent]\r\n})\r\nexport class AppModule { }\r\n \r\n </code></pre>\n\n\n\n<figure class=\"wp-block-image\"><img src=\"https://www.tektutorialshub.com/wp-content/uploads/2020/02/Angular-Dynamic-Meta-Service.gif\" alt=\"Angular Dynamic Meta Service\" class=\"wp-image-16616\"/><figcaption>Angular Dynamic Meta Service</figcaption></figure>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Meta Tags We use the Meta Service in Angular to add/remove meta tags. It provides the following methods addTag() addTags() getTag() getTags() updateTag removeTag removeTagElement To use Meta Service, we first need to import it root module and inject it in Angular Providers as shown below And in the component class, first, inject the Meta Service using Angular Dependency Injection. [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [143],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3925"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=3925"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3925/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3926,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3925/revisions/3926"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=3925"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=3925"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=3925"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 3937,
+    "date": "2020-12-12T05:49:34",
+    "date_gmt": "2020-12-12T05:49:34",
+    "guid": {
+      "rendered": "http://angular.foobrdigital.com/?p=3937"
+    },
+    "modified": "2020-12-12T05:49:34",
+    "modified_gmt": "2020-12-12T05:49:34",
+    "slug": "angular-canonical-url",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/angular-canonical-url/",
+    "title": {
+      "rendered": "Angular Canonical URL"
+    },
+    "content": {
+      "rendered": "\n<h2>Canonical URL</h2>\n\n\n\n<p>A canonical URL is a way to inform search engines about duplicate content on our site. There could be various reasons, where we may end up with duplicate content.</p>\n\n\n\n<p>For Example, the mobile Samsung Galaxy A51 is available in three colors black, white &amp; blue. We usually use the query strings in Angular to achieve this.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>\r\nhttps://example.com/samsung-galaxy-a51?color=\"black\"\r\nhttps://example.com/samsung-galaxy-a51?color=\"white\"\r\nhttps://example.com/samsung-galaxy-a51?color=\"blue\"</code></pre>\n\n\n\n<p>The search engines see all of them as three different pages and index them. It will also mark them as a duplicate content. Although Google does not penalize you for this, your page may lose ranking.</p>\n\n\n\n<p>The best way to handle this is to let Google know that you have duplicate content. Also, let it know which one of the above three is to be considered as original content.</p>\n\n\n\n<p>We create a canonical tag by inserting the following tag in the <code>head</code> section of the HTML</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;link href=\"https://example.com/samsung-galaxy-a51\" rel=\"canonical\"></code></pre>\n\n\n\n<p>To insert a <code>link</code> tag, we need to access the DOM element. The Angular provides a helper object Document for this</p>\n\n\n\n<h3>Document DI Token</h3>\n\n\n\n<p>A DOCUMENT is DI Token representing the main rendering context. In a browser, this is the DOM Document.</p>\n\n\n\n<p>When you inject the DOCUMENT, the Angular injects the instance of the DOM Document when you are running on the browser. If you are using the Server-Side Rendering, then you can use the libraries like the domino, which will provide DOM in the Node Server.</p>\n\n\n\n<p>We learned how to manage the title &amp; meta tags using the Meta Service &amp; Title Service. Both these services use the Document to manipulate the title &amp; meta tags.</p>\n\n\n\n<p>To make use of the <code>DOCUMENT</code>, you need to import it from the <code>@angular/common</code> library</p>\n\n\n\n<pre class=\"wp-block-code\"><code>import { DOCUMENT } from '@angular/common';\r\n </code></pre>\n\n\n\n<p>And then inject it into the component using the <code>DOCUMENT</code> DI token as shown below.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>constructor(@Inject(DOCUMENT) private dom) {\r\n  }</code></pre>\n\n\n\n<h2>How to Set canonical URL in Angular</h2>\n\n\n\n<p>The following code shows how you can add the <code>rel=\"canonical\"</code> tag using the DOM Document.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> updateCanonicalUrl(url:string){\r\n    const head = this.dom.getElementsByTagName('head')&#91;0];\r\n    var element: HTMLLinkElement= this.dom.querySelector(`link&#91;rel='canonical']`) || null\r\n    if (element==null) {\r\n      element= this.dom.createElement('link') as HTMLLinkElement;\r\n      head.appendChild(element);\r\n    }\r\n    element.setAttribute('rel','canonical')\r\n    element.setAttribute('href',url)\r\n  </code></pre>\n\n\n\n<p>First, we get the reference to the <code>head</code> section of the HTML</p>\n\n\n\n<pre class=\"wp-block-code\"><code>const head = this.dom.getElementsByTagName('head')&#91;0];\r\n </code></pre>\n\n\n\n<p>Next, we look for the <code>canonical</code> tag under the <code>link</code> tag.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>var element: HTMLLinkElement= this.dom.querySelector(`link&#91;rel='canonical']`) || null\r\n \r</code></pre>\n\n\n\n<p>If the tag does not exist, we add the tag under the <code>head</code> section</p>\n\n\n\n<pre class=\"wp-block-code\"><code>if (element==null) {\r\n      element= this.dom.createElement('link') as HTMLLinkElement;\r\n      head.appendChild(element);\r\n    }\r\n </code></pre>\n\n\n\n<p>Finally, we update the canonical tag, with the <code>url</code></p>\n\n\n\n<pre class=\"wp-block-code\"><code>\r\n    element.setAttribute('rel','canonical')\r\n    element.setAttribute('href',url)</code></pre>\n\n\n\n<h2>Dynamically Updating Canonical URL</h2>\n\n\n\n<p>We can make use of the Route to dynamically update the canonical URL. We showed how to set the Title dynamically using the Title Service. You can also refer to Dynamic Meta Tags in Angular, which employs a similar technique. We use the same technique to update the canonical URL.</p>\n\n\n\n<p>First, update the routes and add the canonical tag in the Route Data for each route.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>const routes: Routes = &#91;\r\n  {\r\n    path: '', component: FirstComponent, pathMatch: 'full',\r\n    data: {\r\n      title: 'Title for First Component',\r\n      descrption: 'Description of First Component',\r\n      ogTitle: 'Description of First Component for social media',\r\n      canonical:'/first'\r\n    }\r\n  },\r\n </code></pre>\n\n\n\n<p>In the <code>app.component</code> subscribe to the <code>NavigationEnd</code> router event. Find the current activated route by recursively navigating through route tree (<code>getChild</code> method). Read the canonical URL Route data from the <code>ActivatedRoute</code>.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>import { Component, OnInit, Inject } from '@angular/core';\r\nimport { Title, Meta, ɵDomAdapter } from '@angular/platform-browser';\r\nimport { Router, NavigationEnd, ActivatedRoute } from '@angular/router';\r\nimport { filter, map } from 'rxjs/operators';\r\nimport { DOCUMENT } from '@angular/common';\r\n \r\n \r\n@Component({\r\n  selector: 'app-root',\r\n  templateUrl: './app.component.html',\r\n  styleUrls: &#91;'./app.component.css']\r\n})\r\nexport class AppComponent implements OnInit {\r\n \r\n constructor(@Inject(DOCUMENT) private dom,\r\n   private router: Router,\r\n   private activatedRoute: ActivatedRoute) {\r\n }\r\n \r\n ngOnInit() {\r\n \r\n    const hostName=\"https://www.example.com\"\r\n    this.router.events.pipe(\r\n      filter(event => event instanceof NavigationEnd),\r\n    )\r\n      .subscribe(() => {\r\n \r\n        var rt = this.getChild(this.activatedRoute)\r\n \r\n        rt.data.subscribe(data => {\r\n          //Set Canonical URL\r\n          if (data.canonical) {\r\n            this.updateCanonicalUrl(hostName+data.canonical);\r\n          } else {\r\n            this.updateCanonicalUrl(hostName+this.router.url);\r\n          }\r\n          //You can set the Meta &amp; Title here\r\n        })\r\n \r\n      })\r\n \r\n  }\r\n}</code></pre>\n\n\n\n<p>The <code>hostName</code> is hardcoded in the example. You can also create a config file in angular and add the <code>hostname</code> property and read it using the APP_INITIALIZER</p>\n\n\n\n<h2>Canonical as Service</h2>\n\n\n\n<p>The other option is to create the <code>SEOService</code> and invoke it from the ngOnInit of each component.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>import { Injectable, Inject } from '@angular/core';\r\nimport { DOCUMENT } from '@angular/common';\r\n \r\n@Injectable({\r\n   providedIn: 'root'\r\n})\r\nexport class SEOService { \r\n \r\n  constructor(@Inject(DOCUMENT) private dom) { \r\n  }\r\n    \r\n  updateCanonicalUrl(url:string){\r\n    const head = this.dom.getElementsByTagName('head')&#91;0];\r\n    var element: HTMLLinkElement= this.dom.querySelector(`link&#91;rel='canonical']`) || null\r\n    if (element==null) {\r\n      element= this.dom.createElement('link') as HTMLLinkElement;\r\n      head.appendChild(element);\r\n    }\r\n    element.setAttribute('rel','canonical')\r\n    element.setAttribute('href',url)\r\n  }\r\n}  </code></pre>\n\n\n\n<p>And call it any component, where you wish to set the canonical URL</p>\n\n\n\n<pre class=\"wp-block-code\"><code>import { Component } from '@angular/core';\r\nimport { SEOService } from './seo.service';\r\n \r\n@Component({\r\n  templateUrl: './first.component.html',\r\n  styleUrls: &#91;'./first.component.css']\r\n})\r\n \r\nexport class FirstComponent{\r\n  const hostName=\"https://www.example.com\"\r\n  constructor(private seoService: SEOService) { }\r\n \r\n  ngOnInit() {\r\n    this.seoService.updateCanonicalUrl(hostName+'/first');\r\n  }\r\n}\r\n </code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Canonical URL A canonical URL is a way to inform search engines about duplicate content on our site. There could be various reasons, where we may end up with duplicate content. For Example, the mobile Samsung Galaxy A51 is available in three colors black, white &amp; blue. We usually use the query strings in Angular to achieve [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [143],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3937"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=3937"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3937/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3938,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3937/revisions/3938"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=3937"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=3937"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=3937"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 3939,
+    "date": "2020-12-12T05:52:13",
+    "date_gmt": "2020-12-12T05:52:13",
+    "guid": {
+      "rendered": "http://angular.foobrdigital.com/?p=3939"
+    },
+    "modified": "2020-12-12T05:52:13",
+    "modified_gmt": "2020-12-12T05:52:13",
+    "slug": "lazy-load-images-in-angular",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/lazy-load-images-in-angular/",
+    "title": {
+      "rendered": "Lazy Load Images in Angular"
+    },
+    "content": {
+      "rendered": "\n<h2>Why Lazy Load Images?</h2>\n\n\n\n<p>With the images comes the issue of Page Load speed. More images you have slower it takes to download them and display them to users. Page load speed is a very important factor determining the user experience&nbsp;and also one of the factors in Ranking.</p>\n\n\n\n<p>You can optimize the image size using services like ShortPixel, which vastly reduces the size of images. But it won’t be enough if you have many images on the page. This is where the lazy loading of the images comes into picture</p>\n\n\n\n<h2>What is Lazy Loading?</h2>\n\n\n\n<p>Lazy Loading Images is a technique, where we delay the loading of images until we need them. For Example, load only those images which are above the fold. The images below the fold are loaded only when the user scrolls to that location. This helps to load the page the quickly.</p>\n\n\n\n<h2>Lazy Load Images in Angular</h2>\n\n\n\n<p>There are many third-party libraries available. One of the popular package is <code>ng-lazyload-image</code>.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>npm install ng-lazyload-image --save</code></pre>\n\n\n\n<p>Import <code>LazyLoadImageModule</code> in Root Module or Shared Module</p>\n\n\n\n<pre class=\"wp-block-code\"><code>import { BrowserModule } from '@angular/platform-browser';\r\nimport { NgModule } from '@angular/core';\r\nimport { LazyLoadImageModule } from 'ng-lazyload-image'; \r\n \r\nimport { AppComponent } from './app.component';\r\n \r\n@NgModule({\r\n  declarations: &#91;\r\n    AppComponent\r\n  ],\r\n  imports: &#91;\r\n    BrowserModule,\r\n    LazyLoadImageModule\r\n  ],\r\n  providers: &#91;],\r\n  bootstrap: &#91;AppComponent]\r\n})\r\nexport class AppModule { }</code></pre>\n\n\n\n<p>Open the <code>app.component.ts</code>. In a <code>img</code> element assign the image to <code>lazyLoad</code> directive using the property binding.</p>\n\n\n\n<pre class=\"wp-block-code\"><code> &lt;img height=\"700\" width=\"700\" &#91;lazyLoad]=\"imageSrc1\"> </code></pre>\n\n\n\n<p>The complete <code>app.component.ts</code> is as below</p>\n\n\n\n<pre class=\"wp-block-code\"><code>import { Component } from '@angular/core';\r\n \r\n@Component({\r\n  selector: 'app-root',\r\n  template: `\r\n  &lt;h1>Lazy Load Images&lt;/h1>\r\n \r\n \r\n  &lt;img height=\"700\" width=\"700\" &#91;lazyLoad]=\"imageSrc1\">\r\n  &lt;img height=\"700\" width=\"700\" &#91;lazyLoad]=\"imageSrc2\">\r\n  &lt;img height=\"700\" width=\"700\" &#91;lazyLoad]=\"imageSrc3\">\r\n  &lt;img height=\"700\" width=\"700\" &#91;lazyLoad]=\"imageSrc4\">\r\n  \r\n  `,\r\n  styleUrls: &#91;'./app.component.css']\r\n})\r\nexport class AppComponent {\r\n  title = 'lazyLoadImages';\r\n \r\n  imageSrc1=\"https://images.dog.ceo/breeds/poodle-toy/n02113624_5584.jpg\"\r\n  imageSrc2=\"https://images.dog.ceo/breeds/terrier-border/n02093754_175.jpg\"\r\n  imageSrc3=\"https://images.dog.ceo/breeds/terrier-lakeland/n02095570_4188.jpg\"\r\n  imageSrc4=\"https://images.dog.ceo/breeds/keeshond/n02112350_9431.jpg\"\r\n \r\n}</code></pre>\n\n\n\n<p>Run the app. As you scroll down you will see that images are lazily loaded.</p>\n\n\n\n<h2>Default Image</h2>\n\n\n\n<p>You can specify an optional default image as shown below</p>\n\n\n\n<pre class=\"wp-block-code\"><code> &lt;img &#91;defaultImage]=\"defaultImage\" &#91;lazyLoad]=\"imageSrc1\"></code></pre>\n\n\n\n<h2>Background Image</h2>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;img &#91;backgroundImage]=\"defaultImage\" &#91;lazyLoad]=\"imageSrc1\"></code></pre>\n\n\n\n<h2>Responsive Images</h2>\n\n\n\n<p>You can also use the <code>useSrcSet</code> property to display the Responsive images</p>\n\n\n\n<pre class=\"wp-block-code\"><code>@Component({\r\n  selector: 'image',\r\n  template: ` &lt;img &#91;defaultImage]=\"defaultImage\" &#91;lazyLoad]=\"images\" &#91;useSrcset]=\"true\" /> `,\r\n})\r\nclass ImageComponent {\r\n  defaultImage = 'https://www.placecage.com/1000/1000';\r\n  images = `https://images.unsplash.com/photo-1434725039720-aaad6dd32dfe?fm=jpg 700w,\r\n            https://images.unsplash.com/photo-1437818628339-19ded67ade8e?fm=jpg 1100w`;\r\n}</code></pre>\n\n\n\n<h2>Debug</h2>\n\n\n\n<p>Another important feature of the library is the debugging feature. Use the  <code>[debug]=\"true\"</code> and see the debug information in the web console.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;img &#91;debug]=\"true\" &#91;defaultImage]=\"defaultImage\" &#91;lazyLoad]=\"imageSrc1\"></code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Why Lazy Load Images? With the images comes the issue of Page Load speed. More images you have slower it takes to download them and display them to users. Page load speed is a very important factor determining the user experience&nbsp;and also one of the factors in Ranking. You can optimize the image size using [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 2,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [143],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3939"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/2"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=3939"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3939/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 3940,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/3939/revisions/3940"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=3939"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=3939"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=3939"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  }
+]

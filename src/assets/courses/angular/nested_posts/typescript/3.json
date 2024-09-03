@@ -1,0 +1,660 @@
+[
+  {
+    "id": 4120,
+    "date": "2020-11-28T10:57:27",
+    "date_gmt": "2020-11-28T10:57:27",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3283"
+    },
+    "modified": "2020-11-28T10:57:27",
+    "modified_gmt": "2020-11-28T10:57:27",
+    "slug": "if-else-2",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/if-else-2/",
+    "title": {
+      "rendered": "If else"
+    },
+    "content": {
+      "rendered": "\n<h2>TypeScript if statement</h2>\n\n\n\n<p>An&nbsp;<code>if</code>&nbsp;statement executes a statement based on a condition. If the condition is truthy, the&nbsp;<code>if</code>&nbsp;statement will execute the statements inside its body:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>if(condition) {\n   // if-statement\n}</code></pre>\n\n\n\n<p>For example, the following statement illustrates how to use the&nbsp;<code>if</code>&nbsp;statement to increase the&nbsp;<code>counter</code>&nbsp;variable if its value is less than the value of the&nbsp;<code>max</code>&nbsp;constant:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>const max = 100;\nlet counter = 0;\n\nif (counter &lt; max) {\n    counter++;\n}\n\nconsole.log(counter); // 1</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>1</code></pre>\n\n\n\n<p>In this example, because the&nbsp;<code>counter</code>&nbsp;variable starts at zero, it is less than the&nbsp;<code>max</code>&nbsp;constant. The expression&nbsp;<code>counter &lt; max</code>&nbsp;evaluates to&nbsp;<code>true</code>&nbsp;therefore the&nbsp;<code>if</code>&nbsp;statement executes the statement&nbsp;<code>counter++</code>.</p>\n\n\n\n<p>Let\u2019s initialize the&nbsp;<code>counter</code>&nbsp;variable to&nbsp;<code>100</code>:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>const max = 100;\nlet counter = 100;\n\nif (counter &lt; max) {\n    counter++;\n}\n\nconsole.log(counter); // 100</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>100</code></pre>\n\n\n\n<p>In this example, the expression&nbsp;<code>counter &lt; max</code>&nbsp;evaluates to&nbsp;<code>false</code>. The&nbsp;<code>if</code>&nbsp;statement doesn\u2019t execute the statement&nbsp;<code>counter++</code>. Therefore, the output is 100.</p>\n\n\n\n<h2>TypeScript if\u2026else statement</h2>\n\n\n\n<p>If you want to execute other statements when the condition in the if statement evaluates to&nbsp;<code>false</code>, you can use the&nbsp;<code>if...else</code>&nbsp;statement:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>if(condition) {\n   // if-statements\n} else {\n  // else statements;\n}</code></pre>\n\n\n\n<p>The following illustrates an example of using the&nbsp;<code>if..else</code>&nbsp;statement:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>const max = 100;\nlet counter = 100;\n\nif (counter &lt; max) {\n    counter++;\n} else {\n    counter = 1;\n}\n\nconsole.log(counter);</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>1</code></pre>\n\n\n\n<p>In this example, the expression&nbsp;<code>counter &lt; max</code>&nbsp;evaluates to&nbsp;<code>false</code>&nbsp;therefore the statement in the&nbsp;<code>else</code>&nbsp;branch executes that resets the&nbsp;<code>counter</code>&nbsp;variable to&nbsp;<code>1</code>.</p>\n\n\n\n<h3>Ternary operator ?:</h3>\n\n\n\n<p>In practice, if you have a simple condition, you can use the ternary operator&nbsp;<code>?:</code>&nbsp;rather than the&nbsp;<code>if...else</code>&nbsp;statement to make code shorter like this:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>const max = 100;\nlet counter = 100;\n\ncounter &lt; max ? counter++ : counter = 1;\n\nconsole.log(counter);</code></pre>\n\n\n\n<h2>TypeScript if\u2026else if\u2026else statement</h2>\n\n\n\n<p>When you want to execute code based on multiple conditions, you can use the&nbsp;<code>if...else if...else</code>&nbsp;statement.</p>\n\n\n\n<p>The if\u2026else if\u2026else statement can have one or more&nbsp;<code>else if</code>&nbsp;branches but only one&nbsp;<code>else</code>&nbsp;branch.</p>\n\n\n\n<p>For example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let discount: number;\nlet itemCount = 11;\n\nif (itemCount > 0 &amp;&amp; itemCount &lt;= 5) {\n    discount = 5;  // 5% discount\n} else if (itemCount > 5 &amp;&amp; itemCount &lt;= 10) {\n    discount = 10; // 10% discount \n} else {\n    discount = 15; // 15%\n}\n\nconsole.log(`You got ${discount}% discount. `)</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>0</code></pre>\n\n\n\n<p>This example used the&nbsp;<code>if...elseif...else</code>&nbsp;statement to determine the discount based on the number of items.</p>\n\n\n\n<p>If the number of items from less than or equal 5, the discount is 5%. The statement in the&nbsp;<code>if</code>&nbsp;branch executes,</p>\n\n\n\n<p>If the number of items is less than or equal to 10, the discount is 10%. The statement in the&nbsp;<code>else if</code>&nbsp;branch executes.</p>\n\n\n\n<p>When the number of items is greater than 10, the discount is 15%. The statement in the&nbsp;<code>else</code>&nbsp;branch executes.</p>\n\n\n\n<p>In this example, the assumption is that the number of items is always greater than zero. However, if the number of items is less than zero or greater than 10, the discount is 15%.</p>\n\n\n\n<p>To make the code more robust, you can use another&nbsp;<code>else if</code>&nbsp;instead of the&nbsp;<code>else</code>&nbsp;branch like this:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let discount: number;\nlet itemCount = 11;\n\nif (itemCount > 0 &amp;&amp; itemCount &lt;= 5) {\n    discount = 5;  // 5% discount\n} else if (itemCount > 5 &amp;&amp; itemCount &lt;= 10) {\n    discount = 10; // 10% discount \n} else if (discount > 10) {\n    discount = 15; // 15%\n} else {\n    throw new Error('The number of items cannot be negative!');\n}\n\nconsole.log(`You got ${discount}% discount. `)</code></pre>\n\n\n\n<p>In this example, only when the number of items is greater than 10, the discount is 15%. The statement in the second else if branch executes.</p>\n\n\n\n<p>If the number of items is less than zero, the statement in the&nbsp;<code>else</code>&nbsp;branch executes.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>TypeScript if statement An&nbsp;if&nbsp;statement executes a statement based on a condition. If the condition is truthy, the&nbsp;if&nbsp;statement will execute the statements inside its body: For example, the following statement illustrates how to use the&nbsp;if&nbsp;statement to increase the&nbsp;counter&nbsp;variable if its value is less than the value of the&nbsp;max&nbsp;constant: Output: In this example, because the&nbsp;counter&nbsp;variable starts at [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [209],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4120"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=4120"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4120/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=4120"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=4120"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=4120"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 4121,
+    "date": "2020-11-28T10:58:39",
+    "date_gmt": "2020-11-28T10:58:39",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3285"
+    },
+    "modified": "2020-11-28T10:58:39",
+    "modified_gmt": "2020-11-28T10:58:39",
+    "slug": "switch-case",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/switch-case/",
+    "title": {
+      "rendered": "Switch case"
+    },
+    "content": {
+      "rendered": "\n<h2>Introduction to TypeScript switch case statement</h2>\n\n\n\n<p>The following shows the syntax of the&nbsp;<code>switch...case</code>&nbsp;statement:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>switch ( expression ) {\n   case value1:\n       // statement 1\n       break;\n   case value2:\n       // statement 2\n       break;\n   case valueN:\n       // statement N\n       break;\n   default: \n       // \n       break;\n}</code></pre>\n\n\n\n<p>How it works:</p>\n\n\n\n<p>First, the&nbsp;<code>switch...case</code>&nbsp;statement evaluates the&nbsp;<code>expression</code>.</p>\n\n\n\n<p>Then, it searches for the first&nbsp;<code>case</code>&nbsp;clause whose expression evaluates to the same value as the value (<code>value1</code>,&nbsp;<code>value2</code>, \u2026<code>valueN</code>).</p>\n\n\n\n<p>The&nbsp;<code>switch...case</code>&nbsp;statement will execute the statement in the first&nbsp;<code>case</code>&nbsp;clause whose value matches.</p>\n\n\n\n<p>If no matching&nbsp;<code>case</code>&nbsp;clause is found, the&nbsp;<code>switch...case</code>&nbsp;statement looks for the optional&nbsp;<code>default</code>&nbsp;clause. If the&nbsp;<code>default</code>&nbsp;clause is available, it executes the statement in the&nbsp;<code>default</code>&nbsp;clause.</p>\n\n\n\n<p>The&nbsp;<code>break</code>&nbsp;statement that associates with each&nbsp;<code>case</code>&nbsp;clause ensures that the control breaks out of the&nbsp;<code>switch...case</code>&nbsp;statement once the statements in the&nbsp;<code>case</code>&nbsp;clause complete.</p>\n\n\n\n<p>If the matching case clause doesn\u2019t have the&nbsp;<code>break</code>&nbsp;statement, the program execution continues at the next statement in the&nbsp;<code>switch...case</code>&nbsp;statement.</p>\n\n\n\n<p>By convention, the&nbsp;<code>default</code>&nbsp;clause is the last clause in the&nbsp;<code>switch...case</code>&nbsp;statement. However, it doesn\u2019t need to be so.</p>\n\n\n\n<h2>TypeScript switch case statement examples</h2>\n\n\n\n<p>Let\u2019s take some examples of using the switch\u2026case statement.</p>\n\n\n\n<h3>1) A simple TypeScript switch case example</h3>\n\n\n\n<p>The following example shows a simple&nbsp;<code>switch...case</code>&nbsp;example that shows a message based on the target Id:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let targetId = 'btnDelete';\n\nswitch (targetId) {\n    case 'btnUpdate':\n        console.log('Update');\n        break;\n    case 'btnDelete':\n        console.log('Delete');\n        break;\n    case 'btnNew':\n        console.log('New');\n        break;\n}</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Delete</code></pre>\n\n\n\n<p>In this example, the&nbsp;<code>targetId</code>&nbsp;is set to&nbsp;<code>btnDelete</code>.</p>\n\n\n\n<p>The&nbsp;<code>switch...case</code>&nbsp;statement compares the&nbsp;<code>targetId</code>&nbsp;with a list of values. Because the&nbsp;<code>targetId</code>&nbsp;matches the&nbsp;<code>'btnDelete'</code>&nbsp;the statement in the corresponding&nbsp;<code>case</code>&nbsp;clause executes.</p>\n\n\n\n<h3>2) Grouping case example</h3>\n\n\n\n<p>If you have a code that is shared by multiple cases, you can group them. For example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>\n// change the month and year\nlet month = 2,\n    year = 2020;\n\nlet day = 0;\nswitch (month) {\n    case 1:\n    case 3:\n    case 5:\n    case 7:\n    case 8:\n    case 10:\n    case 12:\n        day = 31;\n        break;\n    case 4:\n    case 6:\n    case 9:\n    case 11:\n        day = 30;\n        break;\n    case 2:\n        // leap year\n        if (((year % 4 == 0) &amp;&amp;\n            !(year % 100 == 0))\n            || (year % 400 == 0))\n            day = 29;\n        else\n            day = 28;\n        break;\n    default:\n        throw Error('Invalid month');\n}\n\nconsole.log(`The month ${month} in ${year} has ${day} days`);</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>The month 2 in 2020 has 29 days</code></pre>\n\n\n\n<p>This example returns the days of a specific month and year.</p>\n\n\n\n<p>If the month is 1,3, 5, 7, 8, 12, the number of days is 31. If the month is 4, 6, 9, or 11, the number of days is 30.</p>\n\n\n\n<p>If the month is 2 and the year is a leap year, it returns 29 days, otherwise, it returns 28 days</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Introduction to TypeScript switch case statement The following shows the syntax of the&nbsp;switch&#8230;case&nbsp;statement: How it works: First, the&nbsp;switch&#8230;case&nbsp;statement evaluates the&nbsp;expression. Then, it searches for the first&nbsp;case&nbsp;clause whose expression evaluates to the same value as the value (value1,&nbsp;value2, \u2026valueN). The&nbsp;switch&#8230;case&nbsp;statement will execute the statement in the first&nbsp;case&nbsp;clause whose value matches. If no matching&nbsp;case&nbsp;clause is found, the&nbsp;switch&#8230;case&nbsp;statement [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [209],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4121"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=4121"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4121/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=4121"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=4121"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=4121"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 4122,
+    "date": "2020-11-28T10:59:22",
+    "date_gmt": "2020-11-28T10:59:22",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3287"
+    },
+    "modified": "2020-11-28T10:59:22",
+    "modified_gmt": "2020-11-28T10:59:22",
+    "slug": "for",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/for/",
+    "title": {
+      "rendered": "For"
+    },
+    "content": {
+      "rendered": "\n<h2>Introduction to the TypeScript for statement</h2>\n\n\n\n<p>The following shows the syntax of the TypeScript&nbsp;<code>for</code>&nbsp;loop statement:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>for(initialization; condition; expression) {\n    // statement\n}</code></pre>\n\n\n\n<p>The&nbsp;<code>for</code>&nbsp;loop statement creates a loop. It consists of three optional expressions separated by semicolons (<code>;</code>) and enclosed in parentheses:</p>\n\n\n\n<ul><li><code>initialization</code>: is an expression evaluated once before the loop begins. Typically, you use the&nbsp;<code>initialization</code>&nbsp;to initialize a loop counter.</li><li><code>condition</code>&nbsp;\u2013 is an expression that is evaluated at the end of each loop iteration. If the&nbsp;<code>condition</code>&nbsp;is&nbsp;<code>true</code>, the statements in the loop body execute.</li><li><code>expression</code>&nbsp;\u2013 is an expression that is evaluated before the&nbsp;<code>condition</code>&nbsp;is evaluated at the end of each loop iteration. Generally, you use the&nbsp;<code>expression</code>&nbsp;to update the loop counter.</li></ul>\n\n\n\n<p>All three expressions in the&nbsp;<code>for</code>&nbsp;loop statement are optional. It means that you can use the&nbsp;<code>for</code>&nbsp;loop statement like this:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>for(;;) {\n    // do something\n}</code></pre>\n\n\n\n<p>In practice, you should use a&nbsp;<code>for</code>&nbsp;loop if you know how many times the&nbsp;<code>loop</code>&nbsp;should run. If you want to stop the loop based on a condition other than the number of times the loop executes, you should use a&nbsp;<code>while</code>&nbsp;loop.</p>\n\n\n\n<p>TypeScript allows you to omit the loop body completely as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>for(initialization; condition; expression);</code></pre>\n\n\n\n<p>However, it is rarely used in practice because it makes the code more difficult to read and maintain.</p>\n\n\n\n<h2>TypeScript for examples</h2>\n\n\n\n<p>Let\u2019s take some examples of using the TypeScript&nbsp;<code>for</code>&nbsp;loop statement.</p>\n\n\n\n<h3>1) Simple TypeScript for example</h3>\n\n\n\n<p>The following example uses the&nbsp;<code>for</code>&nbsp;loop statement to output 10 numbers from 0 to 9 to the console:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>for (let i = 0; i &lt; 10; i++) {\n    console.log(i);\n}</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>0\n1\n2\n3\n4\n5\n6\n7\n8\n9</code></pre>\n\n\n\n<p>How it works:</p>\n\n\n\n<ul><li>First, declare a variable&nbsp;<code>i</code>&nbsp;and initialize it to 0.</li><li>Then check if&nbsp;<code>i</code>&nbsp;is less than&nbsp;<code>10</code>. If it is, output&nbsp;<code>i</code>&nbsp;to the console and increment i by one.</li><li>Finally, repeat the second step until&nbsp;<code>i</code>&nbsp;equals&nbsp;<code>10</code>.</li></ul>\n\n\n\n<h3>2) TypeScript for example: optional block</h3>\n\n\n\n<p>The following example shows the same output as the above example. However, the for doesn\u2019t have the&nbsp;<code>initialization</code>&nbsp;block:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let i = 0;\nfor (; i &lt; 10; i++) {\n    console.log(i);\n}</code></pre>\n\n\n\n<p>Like the&nbsp;<code>initialization</code>&nbsp;block, you can omit the&nbsp;<code>condition</code>&nbsp;block.</p>\n\n\n\n<p>However, you must escape the loop when a condition is met by using the&nbsp;<code>if</code>&nbsp;and&nbsp;<code>break</code>&nbsp;statements. Otherwise, you will create an infinite loop that causes the program to executes repeatedly until it is crashed.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>for (let i = 0; ; i++) {\n    console.log(i);\n    if (i > 9) break;\n}</code></pre>\n\n\n\n<p>The following example illustrates a&nbsp;<code>for</code>&nbsp;loop that omits all three blocks:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let i = 0;\nfor (; ;) {\n    console.log(i);\n    i++;\n    if (i > 9) break;\n}</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>0\n1\n2\n3\n4\n5\n6\n7\n8\n9</code></pre>\n\n\n\n<p>How it works:</p>\n\n\n\n<ul><li>First, declare a loop counter&nbsp;<code>i</code>&nbsp;and initialize it to&nbsp;<code>0</code>&nbsp;before entering the for.</li><li>Then, in each loop iteration, output&nbsp;<code>i</code>&nbsp;to the console, increment it by one, and break out of the loop if&nbsp;<code>i</code>&nbsp;is greater than 9.</li></ul>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Introduction to the TypeScript for statement The following shows the syntax of the TypeScript&nbsp;for&nbsp;loop statement: The&nbsp;for&nbsp;loop statement creates a loop. It consists of three optional expressions separated by semicolons (;) and enclosed in parentheses: initialization: is an expression evaluated once before the loop begins. Typically, you use the&nbsp;initialization&nbsp;to initialize a loop counter. condition&nbsp;\u2013 is an [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [209],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4122"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=4122"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4122/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=4122"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=4122"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=4122"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 4123,
+    "date": "2020-11-28T11:00:01",
+    "date_gmt": "2020-11-28T11:00:01",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3289"
+    },
+    "modified": "2020-11-28T11:00:01",
+    "modified_gmt": "2020-11-28T11:00:01",
+    "slug": "while",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/while/",
+    "title": {
+      "rendered": "While"
+    },
+    "content": {
+      "rendered": "\n<h2>Introduction to the TypeScript while statement</h2>\n\n\n\n<p>The&nbsp;<code>while</code>&nbsp;statement allows you to create a loop that executes a block of code as long as a condition is&nbsp;<code>true</code>.</p>\n\n\n\n<p>The following shows the syntax of the TypeScript&nbsp;<code>while</code>&nbsp;statement:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>while(condition) {\n    // do something\n}</code></pre>\n\n\n\n<p>The&nbsp;<code>while</code>&nbsp;statement evaluates the condition&nbsp;<strong>before</strong>&nbsp;each loop iteration.</p>\n\n\n\n<p>If the&nbsp;<code>condition</code>&nbsp;evaluates to&nbsp;<code>true</code>, the&nbsp;<code>while</code>&nbsp;statement executes the code its in body surrounded by the curly braces (<code>{}</code>).</p>\n\n\n\n<p>When the&nbsp;<code>condition</code>&nbsp;evaluates to&nbsp;<code>false</code>, the execution continues with the statement after the&nbsp;<code>while</code>&nbsp;statement.</p>\n\n\n\n<p>Since the&nbsp;<code>while</code>&nbsp;statement evaluates the&nbsp;<code>condition</code>&nbsp;before its body is executed, a&nbsp;<code>while</code>&nbsp;loop is also called a pretest loop.</p>\n\n\n\n<p>To break the loop immaturely based on another condition, you use the&nbsp;<code>if</code>&nbsp;and&nbsp;<code>break</code>&nbsp;statements:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>while(condition) {\n    // do something\n    // ...\n\n    if(anotherCondition) \n        break;\n}</code></pre>\n\n\n\n<p>If you want to run a loop a number of times, you should use the TypeScript&nbsp;<code>for</code>&nbsp;statement.</p>\n\n\n\n<h2>TypeScript while statement examples</h2>\n\n\n\n<p>Let\u2019s take some examples of using the TypeScript&nbsp;<code>while</code>&nbsp;statement.</p>\n\n\n\n<h3>TypeScript while: a simple example</h3>\n\n\n\n<p>The following example uses the&nbsp;<code>while</code>&nbsp;statement to output a number to the console as long as it is less than 5:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let counter = 0;\n\nwhile (counter &lt; 5) {\n    console.log(counter);\n    counter++;\n}\n</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>0\n1\n2\n3\n4\n</code></pre>\n\n\n\n<p>How it works:</p>\n\n\n\n<ul><li>First, declare a&nbsp;<code>counter</code>&nbsp;variable and initialize it to zero.</li><li>Then, check if the&nbsp;<code>counter</code>&nbsp;is less than&nbsp;<code>5</code>&nbsp;before entering the loop. If it is, output the&nbsp;<code>counter</code>&nbsp;to the console and increments it by one.</li><li>Finally, repeat the above step as long as&nbsp;<code>counter</code>&nbsp;is less than 5.</li></ul>\n\n\n\n<h3>TypeScript while practical example</h3>\n\n\n\n<p>Let\u2019s say you have the following list element on an HTML document:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&lt;ul id=\"list\">\n    &lt;li>Item 1&lt;/li>\n    &lt;li>Item 2&lt;/li>\n    &lt;li>Item 3&lt;/li>\n    &lt;li>Item 4&lt;/li>\n&lt;/ul>\n</code></pre>\n\n\n\n<p>The following example shows how to use the&nbsp;<code>while</code>&nbsp;statement to remove all&nbsp;<code>&lt;li&gt;</code>&nbsp;element of the&nbsp;<code>&lt;ul&gt;</code>&nbsp;element:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let list = document.querySelector('#list');\n\nwhile (list.firstChild) {\n    list.removeChild(list.firstChild);\n}\n</code></pre>\n\n\n\n<p>How it works:</p>\n\n\n\n<ul><li>First, select the&nbsp;<code>&lt;ul&gt;</code>&nbsp;element by its id using the&nbsp;<code>querySelector()</code>&nbsp;method.</li><li>Then, check if&nbsp;<code>firstChild</code>&nbsp;of the&nbsp;<code>list</code>&nbsp;is available and remove it. Once the first child node is removed, the next child node is automatically promoted as the first child node. Therefore, the&nbsp;<code>while</code>&nbsp;statement removes all child nodes of the&nbsp;<code>list</code>&nbsp;element.</li></ul>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Introduction to the TypeScript while statement The&nbsp;while&nbsp;statement allows you to create a loop that executes a block of code as long as a condition is&nbsp;true. The following shows the syntax of the TypeScript&nbsp;while&nbsp;statement: The&nbsp;while&nbsp;statement evaluates the condition&nbsp;before&nbsp;each loop iteration. If the&nbsp;condition&nbsp;evaluates to&nbsp;true, the&nbsp;while&nbsp;statement executes the code its in body surrounded by the curly braces ({}). [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [209],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4123"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=4123"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4123/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=4123"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=4123"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=4123"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 4124,
+    "date": "2020-11-28T11:02:52",
+    "date_gmt": "2020-11-28T11:02:52",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3291"
+    },
+    "modified": "2020-11-28T11:02:52",
+    "modified_gmt": "2020-11-28T11:02:52",
+    "slug": "do-while",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/do-while/",
+    "title": {
+      "rendered": "Do While"
+    },
+    "content": {
+      "rendered": "\n<h2>Introduction to TypeScript do\u2026while statement</h2>\n\n\n\n<p>The following shows the syntax of the&nbsp;<code>do...while</code>&nbsp;statement:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>do {\n    // do something\n} while(condition);\n</code></pre>\n\n\n\n<p>The&nbsp;<code>do...while</code>&nbsp;statement executes statements in its body surrounded by the curly braces (<code>{}</code>) until the&nbsp;<code>condition</code>&nbsp;is&nbsp;<code>false</code>.</p>\n\n\n\n<p>The&nbsp;<code>do...while</code>&nbsp;statement always executes its loop body at least one.</p>\n\n\n\n<p>Unlike the&nbsp;<code>while</code>&nbsp;statement, the&nbsp;<code>do...while</code>&nbsp;statement evaluates the&nbsp;<code>condition</code>&nbsp;after each loop iteration, therefore, it is called a post-test loop.</p>\n\n\n\n<h2>TypeScript do\u2026while statement example</h2>\n\n\n\n<p>The following example uses the&nbsp;<code>do...while</code>&nbsp;statement to output numbers from 0 to 9 to the console:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let i = 0;\n\ndo {\n    console.log(i);\n    i++\n} while (i &lt; 10);\n</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>0\n1\n2\n3\n4\n5\n6\n7\n8\n9\n</code></pre>\n\n\n\n<p>How it works:</p>\n\n\n\n<ul><li>First, declare a variable&nbsp;<code>i</code>&nbsp;and initialize it to zero before entering the loop.</li><li>Then, output&nbsp;<code>i</code>&nbsp;to the console, increment it by one, and check if it is less than&nbsp;<code>10</code>. If it is, repeat the loop until&nbsp;<code>i</code>&nbsp;greater than or equal&nbsp;<code>10</code>.</li></ul>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Introduction to TypeScript do\u2026while statement The following shows the syntax of the&nbsp;do&#8230;while&nbsp;statement: The&nbsp;do&#8230;while&nbsp;statement executes statements in its body surrounded by the curly braces ({}) until the&nbsp;condition&nbsp;is&nbsp;false. The&nbsp;do&#8230;while&nbsp;statement always executes its loop body at least one. Unlike the&nbsp;while&nbsp;statement, the&nbsp;do&#8230;while&nbsp;statement evaluates the&nbsp;condition&nbsp;after each loop iteration, therefore, it is called a post-test loop. TypeScript do\u2026while statement example The [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [209],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4124"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=4124"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4124/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=4124"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=4124"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=4124"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 4125,
+    "date": "2020-11-28T11:11:06",
+    "date_gmt": "2020-11-28T11:11:06",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3293"
+    },
+    "modified": "2020-11-28T11:11:06",
+    "modified_gmt": "2020-11-28T11:11:06",
+    "slug": "break",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/break/",
+    "title": {
+      "rendered": "Break"
+    },
+    "content": {
+      "rendered": "\n<h2>Using TypeScript break to terminate a loop</h2>\n\n\n\n<p>The&nbsp;<code>break</code>&nbsp;statement allows you to terminate a loop and pass the program control over the next statement after the loop.</p>\n\n\n\n<p>You can use the\u00a0<code>break</code>\u00a0statement inside the\u00a0<code>for</code>,\u00a0<code>while</code>, and\u00a0<code>do...while</code>\u00a0statement.</p>\n\n\n\n<p>The following example shows how to use the&nbsp;<code>break</code>&nbsp;statement inside a&nbsp;<code>for</code>&nbsp;loop:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let products = &#91;\n    { name: 'phone', price: 700 },\n    { name: 'tablet', price: 900 },\n    { name: 'laptop', price: 1200 }\n];\n\nfor (var i = 0; i &lt; products.length; i++) {\n    if (products&#91;i].price == 900)\n        break;\n}\n\n// show the products\nconsole.log(products&#91;i]);\n</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{ name: 'tablet', price: 900 }\n</code></pre>\n\n\n\n<p>How it works:</p>\n\n\n\n<ul><li>First, initialize a list of products with name and price properties.</li><li>Then, search for the product whose price is&nbsp;<code>900</code>&nbsp;and terminate the loop once the product is found by using the&nbsp;<code>break</code>&nbsp;statement.</li><li>Finally, show the matching product to the console.</li></ul>\n\n\n\n<h2>Using the break statement to break a switch</h2>\n\n\n\n<p>The following example returns the discount of a specified product. It uses the\u00a0<code>break</code>\u00a0statement to break out of a\u00a0<code>switch</code>:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let products = &#91;\n    { name: 'phone', price: 700 },\n    { name: 'tablet', price: 900 },\n    { name: 'laptop', price: 1200 }\n];\n\nlet discount = 0;\nlet product = products&#91;1];\n\nswitch (product.name) {\n    case 'phone':\n        discount = 5;\n        break;\n    case 'tablet':\n        discount = 10;\n        break;\n    case 'laptop':\n        discount = 15;\n        break;\n}\n\nconsole.log(`There is a ${discount}% on ${product.name}.`);</code></pre>\n\n\n\n<p>Note that besides a loop or a switch, the break statement can be used to break out of a labeled statement. However, it is rarely used in practice so that we don\u2019t cover in this tutorial.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Using TypeScript break to terminate a loop The&nbsp;break&nbsp;statement allows you to terminate a loop and pass the program control over the next statement after the loop. You can use the\u00a0break\u00a0statement inside the\u00a0for,\u00a0while, and\u00a0do&#8230;while\u00a0statement. The following example shows how to use the&nbsp;break&nbsp;statement inside a&nbsp;for&nbsp;loop: Output: How it works: First, initialize a list of products with name [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [209],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4125"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=4125"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4125/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=4125"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=4125"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=4125"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 4126,
+    "date": "2020-11-28T11:12:08",
+    "date_gmt": "2020-11-28T11:12:08",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3295"
+    },
+    "modified": "2020-11-28T11:12:08",
+    "modified_gmt": "2020-11-28T11:12:08",
+    "slug": "continue",
+    "status": "publish",
+    "type": "post",
+    "link": "https://angular.foobrdigital.com/continue/",
+    "title": {
+      "rendered": "Continue"
+    },
+    "content": {
+      "rendered": "\n<p>The\u00a0<code>continue</code>\u00a0statement is used to control a loop such as a\u00a0<code>for</code>\u00a0loop, a\u00a0<code>while</code>\u00a0loop, or a\u00a0<code>do...while</code>\u00a0loop.</p>\n\n\n\n<p>The&nbsp;<code>continue</code>&nbsp;statement skips to the end of the loop and continues the next iteration.</p>\n\n\n\n<h2>Using the TypeScript continue statement inside a for loop</h2>\n\n\n\n<p>The following example illustrates how to use the&nbsp;<code>continue</code>&nbsp;statement inside a&nbsp;<code>for</code>&nbsp;loop:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>for (let index = 0; index &lt; 9; index++) {\n    \n    // if index is odd, skip it\n    if (index % 2)\n        continue;\n\n    // the following code will be skipped for odd numbers\n    console.log(index);\n}\n</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>0\n2\n4\n6\n8</code></pre>\n\n\n\n<p>In this example:</p>\n\n\n\n<ul><li>First, loop over the numbers from 0 to 9.</li><li>Then, if the current number is an odd number, skip outputting the number to the console by using the&nbsp;<code>continue</code>&nbsp;statement. In case the current number is an even number, output it to the console.</li></ul>\n\n\n\n<h2>Using the TypeScript continue statement inside a while loop</h2>\n\n\n\n<p>The following example shows how to use the&nbsp;<code>continue</code>&nbsp;statement in a&nbsp;<code>while</code>&nbsp;loop. It returns the same result as the above example.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let index = -1;\n\nwhile (index &lt; 9) {\n\n    index = index + 1;\n\n    if (index % 2)\n        continue;\n\n    console.log(index);\n}</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>0\n2\n4\n6\n8   </code></pre>\n\n\n\n<h2>Using the TypeScript continue statement inside a do while loop</h2>\n\n\n\n<p>The following example demonstrates how to use the&nbsp;<code>continue</code>&nbsp;statement in a&nbsp;<code>do...while</code>&nbsp;loop. It returns the number of even numbers from&nbsp;<code>9</code>&nbsp;to&nbsp;<code>99</code>:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let index = 9;\nlet count = 0;\n\ndo {\n    index += 1;\n\n    if (index % 2)\n        continue;\n    count += 1;\n} while (index &lt; 99);\n\n\nconsole.log(count); // 45</code></pre>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>The\u00a0continue\u00a0statement is used to control a loop such as a\u00a0for\u00a0loop, a\u00a0while\u00a0loop, or a\u00a0do&#8230;while\u00a0loop. The&nbsp;continue&nbsp;statement skips to the end of the loop and continues the next iteration. Using the TypeScript continue statement inside a for loop The following example illustrates how to use the&nbsp;continue&nbsp;statement inside a&nbsp;for&nbsp;loop: Output: In this example: First, loop over the numbers from [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [209],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4126"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/comments?post=4126"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/posts/4126/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/media?parent=4126"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/categories?post=4126"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://angular.foobrdigital.com/wp-json/wp/v2/tags?post=4126"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  }
+]

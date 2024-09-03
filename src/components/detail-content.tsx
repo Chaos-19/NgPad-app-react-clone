@@ -12,11 +12,21 @@ interface Props {
 }
 
 const DetailContent = ({ content, lang }: Props) => {
+  console.log("---------content..........");
+  console.log(content);
+
   return (
     <div className="pb-28 w-full">
       <ReactMarkdown
         rehypePlugins={[rehypeRaw]}
-        children={content}
+        children={content.replace(
+          /(?<!<pre[^>]*?>[^<]*?)(<code\b[^>]*?>.*?<\/code>)(?![^<]*?<\/pre>)/gs,
+          (match) => {
+            const content = match.match(/<code\b[^>]*?>(.*?)<\/code>/);
+
+            return `<b>${content && content[1]}</b>`;
+          }
+        )}
         className="prose dark:prose-invert prose-pre:not-prose prose-pre:p-0 prose-table:break-all prose-table:table-fixed max-w-[92vw]"
         components={{
           code(props) {
@@ -27,17 +37,16 @@ const DetailContent = ({ content, lang }: Props) => {
                 : `language-js` || ""
             );
 
-            console.log("......... node codeBlock ......");
-            console.log(node);
-            console.log(className);
-
             const content = String(
               Array.isArray(children)
-                ? children[1].props.children
+                ? children[1] && typeof children[1]?.props.children == "object"
+                  ? children[1] && children[1]?.props.children.props.children
+                  : children[1]?.props.children
                 : typeof children == "object"
-                ? children.props.children
+                ? children?.props.children
                 : children
             ).replace(/\n$/, "");
+
 
             return (
               children && (

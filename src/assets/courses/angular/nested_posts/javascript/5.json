@@ -1,0 +1,1412 @@
+[
+  {
+    "id": 3097,
+    "date": "2020-11-27T11:13:50",
+    "date_gmt": "2020-11-27T11:13:50",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3097"
+    },
+    "modified": "2020-11-27T11:13:50",
+    "modified_gmt": "2020-11-27T11:13:50",
+    "slug": "javascript-string",
+    "status": "publish",
+    "type": "post",
+    "link": "https://computerprogramming.foobrdigital.com/javascript-string/",
+    "title": {
+      "rendered": "JavaScript String"
+    },
+    "content": {
+      "rendered": "\n<p><strong>Summary</strong>: in this tutorial, you’ll learn about the JavaScript string primitive type.</p>\n\n\n\n<h2>Introduction to the JavaScript strings</h2>\n\n\n\n<p>JavaScript strings are primitive values. JavaScript strings are also immutable. It means that if you process a string, you will always get a new string. The original string doesn’t change.</p>\n\n\n\n<p>To create literal strings in JavaScript, you use single quotes or double quotes:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let str = 'Hi';\nlet greeting = \"Hello\";\n</code></pre>\n\n\n\n<p>ES6 introduced template literals that allow you to define a string backtick (`) characters:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let name = 'John';\nlet message = `Hello ${name}`;\n\nconsole.log(greeting);</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Hello John</code></pre>\n\n\n\n<p>The string&nbsp;<code>message</code>&nbsp;evaluates the&nbsp;<code>name</code>&nbsp;variable and returns the result string.</p>\n\n\n\n<h2>Escaping special characters</h2>\n\n\n\n<p>To escape special characters, you use the backslash&nbsp;<code>\\</code>&nbsp;character. For example:</p>\n\n\n\n<ul><li>Windows line break:&nbsp;<code>'\\r\\n'</code></li><li>Unix line break:&nbsp;<code>'\\n'</code></li><li>Tab:&nbsp;<code>'\\t'</code></li><li>Backslash&nbsp;<code>'\\'</code></li></ul>\n\n\n\n<p>The following example uses the backslash character to escape the single quote character in a string:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let str = 'I\\'m a string!';</code></pre>\n\n\n\n<h2>Getting the length of the string</h2>\n\n\n\n<p>The length property returns the length of a string:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let str = \"Good Morning!\";\nconsole.log(str.length);  // 13</code></pre>\n\n\n\n<h2>Accessing characters</h2>\n\n\n\n<p>To access the characters in a string, you use the array-like&nbsp;<code>[]</code>&nbsp;notation with the zero-based index.</p>\n\n\n\n<p>The following example returns the first character of a string with the index zero:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let str = \"Hello\";\nconsole.log(str&#91;0]); // \"H\"</code></pre>\n\n\n\n<p>To access the last character of the string, you use the&nbsp;<code>length - 1</code>&nbsp;index:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let str = \"Hello\";\nconsole.log(str&#91;str.length -1]); // \"o\"</code></pre>\n\n\n\n<h2>Concatenating strings via + operator</h2>\n\n\n\n<p>To concatenate two or more strings, you use the <code>+</code> operator:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let name = 'John';\nlet str = 'Hello ' + name;\n\nconsole.log(str); // \"Hello John\"</code></pre>\n\n\n\n<p>If you want to assemble a string piece by piece, you can use the&nbsp;<code>+=</code>&nbsp;operator:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let className = 'btn';\nclassName += ' btn-primary'\nclassName += ' none';\n\nconsole.log(className);</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>btn btn-primary none</code></pre>\n\n\n\n<h2>Converting values to string</h2>\n\n\n\n<p>To convert a non-string value to a string, you use one of the following:</p>\n\n\n\n<ul><li>String(n);</li><li>” + n</li><li>n.toString()</li></ul>\n\n\n\n<p>Note that the&nbsp;<code>toString()</code>&nbsp;method doesn’t work for&nbsp;<code>undefined</code>&nbsp;and&nbsp;<code>null</code>.</p>\n\n\n\n<p>When you convert a string to a boolean, you cannot convert it back via the&nbsp;<code>Boolean()</code>:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let status = false;\nlet str = status.toString(); // \"false\"\nlet back = Boolean(str); // true</code></pre>\n\n\n\n<p>In this example:</p>\n\n\n\n<ul><li>First, the&nbsp;<code>status</code>&nbsp;is a boolean variable.</li><li>Then, the&nbsp;<code>toString()</code>&nbsp;returns the string version of the&nbsp;<code>status</code>&nbsp;variable, which is&nbsp;<code>false</code>.</li><li>Finally, the&nbsp;<code>Boolean()</code>&nbsp;converts the&nbsp;<code>\"false\"</code>&nbsp;string back to the Boolean that results in true because&nbsp;<code>\"false\"</code>&nbsp;is a non-empty string.</li></ul>\n\n\n\n<p>Note that only string for which the&nbsp;<code>Boolean()</code>&nbsp;returns false, is the empty string (”);</p>\n\n\n\n<h2>Comparing strings</h2>\n\n\n\n<p>To compare two strings, you use the operator&nbsp;<code>&gt;</code>,&nbsp;<code>&gt;=</code>,&nbsp;<code>&lt;</code>,&nbsp;<code>&lt;=</code>, and&nbsp;<code>==</code>&nbsp;operators.</p>\n\n\n\n<p>These operators compare strings based on the numeric values of JavaScript characters. In other words, it may return the string order that is different from the one used in dictionaries.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let result = 'a' &lt; 'b';\nconsole.log(result); // true</code></pre>\n\n\n\n<p>However:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let result = 'a' &lt; 'B';\nconsole.log(result); // false\n</code></pre>\n\n\n\n<h2>Summary</h2>\n\n\n\n<ul><li>JavaScript strings are primitive values and immutable.</li><li>Literal strings are delimited by single quotes (<code>'</code>), double quotes (<code>\"</code>), or backticks (`)</li><li>The&nbsp;<code>length</code>&nbsp;property returns the length of the string.</li><li>Use the &gt;, &gt;=, &lt;, &lt;=, == operators to compare two strings.</li></ul>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Summary: in this tutorial, you’ll learn about the JavaScript string primitive type. Introduction to the JavaScript strings JavaScript strings are primitive values. JavaScript strings are also immutable. It means that if you process a string, you will always get a new string. The original string doesn’t change. To create literal strings in JavaScript, you use [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [36],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3097"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/comments?post=3097"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3097/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/media?parent=3097"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/categories?post=3097"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/tags?post=3097"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 3100,
+    "date": "2020-11-27T11:21:19",
+    "date_gmt": "2020-11-27T11:21:19",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3100"
+    },
+    "modified": "2020-11-27T11:21:19",
+    "modified_gmt": "2020-11-27T11:21:19",
+    "slug": "javascript-string-type",
+    "status": "publish",
+    "type": "post",
+    "link": "https://computerprogramming.foobrdigital.com/javascript-string-type/",
+    "title": {
+      "rendered": "JavaScript String Type"
+    },
+    "content": {
+      "rendered": "\n<p><strong>Summary</strong>: in this tutorial, you will learn about the JavaScript&nbsp;<code>String</code>&nbsp;type and how to manipulate strings effectively.</p>\n\n\n\n<h2>Introduction to JavaScript String type</h2>\n\n\n\n<p>The <code>String</code> type is object wrapper of the string primitive type and can be created by using the <code>String</code> constructor as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let str = new String('JavaScript String Type');</code></pre>\n\n\n\n<p>The&nbsp;<code>String</code>&nbsp;type has a property named&nbsp;<code>length</code>&nbsp;that specifies the number of characters in the string.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>console.log(str.length); // 22</code></pre>\n\n\n\n<p>In this example, the value of the&nbsp;<code>length</code>&nbsp;property is 22 that also is the number of characters in the string&nbsp;<code>'JavaScript String Type'</code>.</p>\n\n\n\n<p>To get the primitive string value, you use one of the following methods of the string object:&nbsp;<code>valueOf(),</code>&nbsp;<code>toString(),</code>&nbsp;and&nbsp;<code>toLocaleString().</code></p>\n\n\n\n<pre class=\"wp-block-code\"><code>console.log(str.valueOf());\nconsole.log(str.toString());\nconsole.log(str.toLocaleString());</code></pre>\n\n\n\n<p>To access an individual character in a string, you use square bracket notation&nbsp;<code>[]</code>&nbsp;with a numeric index. The index of the first character is zero as shown in this example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>console.log(str&#91;0]); // J</code></pre>\n\n\n\n<p>The square bracket notation was introduced since ES5. Prior to ES5, you use the&nbsp;<code>charAt()</code>&nbsp;method, which is more verbose:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>console.log(str.charAt(0)); // J</code></pre>\n\n\n\n<p>When you call a method on a primitive string variable or a literal string, it is converted to an instance of the&nbsp;<code>String</code>&nbsp;type. For example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>'literal string'.toUpperCase();</code></pre>\n\n\n\n<p>This feature is known as primitive wrapper types in JavaScript.</p>\n\n\n\n<h2>String manipulation</h2>\n\n\n\n<p>The&nbsp;<code>String</code>&nbsp;type provides many useful methods for manipulating strings effectively. We will examine each of them in the following section.</p>\n\n\n\n<h3>1) Concatenating strings</h3>\n\n\n\n<p>To concatenate two or more strings you use the&nbsp;<code>concat()</code>&nbsp;method as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let firstName = 'John';\nlet fullName = firstName.concat(' ','Doe');\nconsole.log(fullName); // \"John Doe\"\nconsole.log(firstName); // \"John\"</code></pre>\n\n\n\n<p>The&nbsp;<code>concat()</code>&nbsp;method concatenates one or more strings to another and returns the result string. Note that the&nbsp;<code>concat()</code>&nbsp;method does not modify the original string.</p>\n\n\n\n<p>Besides the <code>concat()</code> method, JavaScript also uses the addition operator (<code>+</code>) for concatenating strings. In practice, the addition operator is used more often than the <code>concat()</code> method.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let firstName = 'John';\nlet fullName = firstName + ' ' + 'Doe';\nconsole.log(fullName); // \"John Doe\"</code></pre>\n\n\n\n<h3>2) Extracting substrings</h3>\n\n\n\n<p>To extract a substring from a string, you use the&nbsp;<code>substr()</code>&nbsp;method:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>substr(startIndex,&#91;length]);</code></pre>\n\n\n\n<p>The&nbsp;<code>substr()</code>&nbsp;method accepts two arguments.</p>\n\n\n\n<p>The first argument&nbsp;<code>startIndex</code>&nbsp;is the location at which the characters are being extracted, while the second argument&nbsp;<code>length</code>&nbsp;specifies the number of characters to extract.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let str = \"JavaScript String\";\n\nconsole.log(str.substr(0, 10)); // \"JavaScript\"\nconsole.log(str.substr(11,6)); // \"String\"</code></pre>\n\n\n\n<p>If you omit the&nbsp;<code>length</code>&nbsp;argument, the&nbsp;<code>substr()</code>&nbsp;method extracts the characters to the end of the string.</p>\n\n\n\n<p>Sometimes, you want to extract a substring from a string using starting and ending indexes. In this case, you use the <code>substring()</code> method:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>substring(startIndex,endIndex)</code></pre>\n\n\n\n<p>See the following example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let str = \"JavaScript String\";\nconsole.log(str.substring(4, 10)); // \"Script\"</code></pre>\n\n\n\n<h3>3) Locating substrings</h3>\n\n\n\n<p>To locate a substring in a string, you use the <code>indexOf()</code> method:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>string.indexOf(substring,&#91;fromIndex]);</code></pre>\n\n\n\n<p>The&nbsp;<code>indexOf()</code>&nbsp;method accepts two arguments: a substring to locate and the&nbsp;<code>fromIndex</code>&nbsp;at which the method starts searching forward in the string.</p>\n\n\n\n<p>The&nbsp;<code>indexOf()</code>&nbsp;returns the index of the first occurrence&nbsp;of the substring in the string. If the substring is not found, the&nbsp;<code>indexOf()</code>&nbsp;method returns -1.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let str = \"This is a string\";\nconsole.log(str.indexOf(\"is\")); // 2</code></pre>\n\n\n\n<p>The following example uses the&nbsp;<code>fromIndex</code>&nbsp;argument:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>console.log(str.indexOf('is', 3)); //5</code></pre>\n\n\n\n<p>To find the location of the last occurrence of a substring in a string, you use the <code>lastIndexOf()</code> method.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>string.lastIndexOf(substring,&#91;fromIndex])</code></pre>\n\n\n\n<p>Unlike the&nbsp;<code>indexOf()</code>&nbsp;method, the&nbsp;<code>lastindexOf()</code>&nbsp;method searches backward from the&nbsp;<code>fromIndex</code>&nbsp;argument.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>console.log(str.lastIndexOf('is')); // 5</code></pre>\n\n\n\n<p>The&nbsp;<code>lastIndexOf()</code>&nbsp;method also returns&nbsp;<code>-1</code>&nbsp;if the substring not found in the string as shown in this example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>console.log(str.lastIndexOf('are')); // -1</code></pre>\n\n\n\n<h3>4) Removing whitespace characters</h3>\n\n\n\n<p>To remove all leading and trailing whitespace characters of a string, you use the <code>trim()</code> method.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let rawString = ' Hi  ';\nlet strippedString = rawString.trim();\nconsole.log(strippedString); // \"Hi\"</code></pre>\n\n\n\n<p>Note that the&nbsp;<code>trim()</code>&nbsp;method creates&nbsp;a copy of the original string with whitespace characters stripped, it doesn’t change the original string.</p>\n\n\n\n<p>Notice that the&nbsp;<code>trim()</code>&nbsp;method is only available since ES5.</p>\n\n\n\n<p>ES6 introduced two new methods for removing whitespace characters from a string:</p>\n\n\n\n<ul><li><code>trimStart()</code> returns a string with whitespace characters stripped from the beginning of a string.</li><li><code>trimEnd()</code> returns a string with the whitespace characters stripped from the end of a string.</li></ul>\n\n\n\n<h3>5) Changing cases</h3>\n\n\n\n<p>To change cases of a string, you use&nbsp;<code>toLowerCase()</code>&nbsp;and&nbsp;<code>toUpperCase()</code>&nbsp;methods:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let greeting = 'Hello';\nconsole.log(greeting.toLowerCase()); // 'hello'\nconsole.log(greeting.toUpperCase()); // 'HELLO';</code></pre>\n\n\n\n<p>In some languages, the rules for converting a string to lowercase and uppercase are very specific. Therefore, it is safer to use the&nbsp;<code>toLocaleLowerCase()</code>&nbsp;and&nbsp;<code>toLocaleUpperCase()</code>&nbsp;methods, especially when you don’t know which language the code will deal with.</p>\n\n\n\n<h3>6) Comparing strings</h3>\n\n\n\n<p>To compare two strings, you use the&nbsp;<code>localeCompare()</code>&nbsp;method:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>first.localeCompare(second);</code></pre>\n\n\n\n<p>The&nbsp;<code>localeCompare()</code>&nbsp;returns one of three values: -1, 0, and 1.</p>\n\n\n\n<ul><li>If the first string comes before the second string alphabetically, the method returns -1.</li><li>If the first string comes after the second string&nbsp;alphabetically, the method returns 1.</li><li>If two strings are equal, the method returns 0.</li></ul>\n\n\n\n<p>For example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>console.log('A'.localeCompare('B')); // -1\nconsole.log('B'.localeCompare('B')); // 0\nconsole.log('C'.localeCompare('B')); // 1</code></pre>\n\n\n\n<h3>7) Matching patterns</h3>\n\n\n\n<p>The <code>match()</code> method allows you to match a string with a specified regular expression and get an array of results.</p>\n\n\n\n<p>The <code>match()</code> method returns null if it does not find any match. Otherwise, it returns an array containing the entire match and any parentheses-capture matched results.</p>\n\n\n\n<p>If the global flag (<code>g</code>) is not set, the element zero of the array contains the&nbsp;entire match. Here is an example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let expr = \"1 + 2 = 3\";\nlet matches = expr.match(/\\d+/);\nconsole.log(matches&#91;0]); // \"1\"</code></pre>\n\n\n\n<p>In this example, the pattern matches any number in the&nbsp;<code>expr</code>&nbsp;string.</p>\n\n\n\n<p>In case the global flag (&nbsp;<code>g</code>) is set, the elements of the result array contain all matches as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>matches = expr.match(/\\d+/g);\nmatches.forEach(function(m) {\n    console.log(m);\n});\n// \"1\"\n// \"2\"\n// \"3\"</code></pre>\n\n\n\n<p>In this example, the matches array contains all matches including 1, 2 and 3 in the &nbsp;<code>expr</code>&nbsp;string.</p>\n\n\n\n<p>In case you only need to find out if a string matches a regular expression, you use the <code>search()</code> method instead.</p>\n\n\n\n<p>Similar to the&nbsp;<code>match()</code>&nbsp;method, the&nbsp;<code>search()</code>&nbsp;method accepts a regular expression and returns the position of the string where the first match found. In case no match is found, it returns -1.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let str = \"This is a test of search()\";\nlet pos = str.search(/is/);\nconsole.log(pos); // 2</code></pre>\n\n\n\n<h3>8) Replacing substrings</h3>\n\n\n\n<p>To replace a substring in a string, you use the <code>replace()</code> method.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>string.replace(regularExpression, replaceText)</code></pre>\n\n\n\n<p>The first argument of the&nbsp;<code>replace()</code>&nbsp;method could be a regular expression or a string.&nbsp;If it is a regular expression, the&nbsp;<code>replace()</code>&nbsp;method will find the matches and replace them with the second argument (&nbsp;<code>replaceText</code>). In case it is a string, the&nbsp;<code>replace()</code>&nbsp;method will perform an exact search and carry the replacement.</p>\n\n\n\n<p>The&nbsp;<code>replace()</code>&nbsp;method returns a copy of the original string after making the replacements.</p>\n\n\n\n<p>The following example illustrates how to use a regular expression to replace <code>the</code> with <code>a</code>:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let str = \"the baby kicks the ball\";\n// replace \"the\" with \"a\"\nlet newStr = str.replace(/the/g, \"a\");\nconsole.log(newStr); // \"a baby kicks a ball\"\nconsole.log(str); // \"the baby kicks the ball\"</code></pre>\n\n\n\n<p>And&nbsp;the following example shows how to replace&nbsp;<code>kicks</code>&nbsp;with&nbsp;<code>holds</code>&nbsp;by using the first argument as a literal string.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>newStr = str.replace('kicks', 'holds');\nconsole.log(newStr); // \"the baby holds the ball\"</code></pre>\n\n\n\n<p>In this tutorial, you have learned about the JavaScript String type and how to manipulate strings effectively.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Summary: in this tutorial, you will learn about the JavaScript&nbsp;String&nbsp;type and how to manipulate strings effectively. Introduction to JavaScript String type The String type is object wrapper of the string primitive type and can be created by using the String constructor as follows: The&nbsp;String&nbsp;type has a property named&nbsp;length&nbsp;that specifies the number of characters in the string. In this example, the value of the&nbsp;length&nbsp;property [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [36],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3100"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/comments?post=3100"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3100/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/media?parent=3100"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/categories?post=3100"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/tags?post=3100"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 3102,
+    "date": "2020-11-27T11:23:47",
+    "date_gmt": "2020-11-27T11:23:47",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3102"
+    },
+    "modified": "2020-11-27T11:23:47",
+    "modified_gmt": "2020-11-27T11:23:47",
+    "slug": "javascript-string-type-2",
+    "status": "publish",
+    "type": "post",
+    "link": "https://computerprogramming.foobrdigital.com/javascript-string-type-2/",
+    "title": {
+      "rendered": "JavaScript String Type"
+    },
+    "content": {
+      "rendered": "\n<p><strong>Summary</strong>: in this tutorial, you will learn about the JavaScript&nbsp;<code>String</code>&nbsp;type and how to manipulate strings effectively.</p>\n\n\n\n<h2>Introduction to JavaScript String type</h2>\n\n\n\n<p>The <code>String</code> type is object wrapper of the string primitive type and can be created by using the <code>String</code> constructor as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let str = new String('JavaScript String Type');</code></pre>\n\n\n\n<p>The&nbsp;<code>String</code>&nbsp;type has a property named&nbsp;<code>length</code>&nbsp;that specifies the number of characters in the string.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>console.log(str.length); // 22</code></pre>\n\n\n\n<p>In this example, the value of the&nbsp;<code>length</code>&nbsp;property is 22 that also is the number of characters in the string&nbsp;<code>'JavaScript String Type'</code>.</p>\n\n\n\n<p>To get the primitive string value, you use one of the following methods of the string object:&nbsp;<code>valueOf(),</code>&nbsp;<code>toString(),</code>&nbsp;and&nbsp;<code>toLocaleString().</code></p>\n\n\n\n<pre class=\"wp-block-code\"><code>console.log(str.valueOf());\nconsole.log(str.toString());\nconsole.log(str.toLocaleString());</code></pre>\n\n\n\n<p>To access an individual character in a string, you use square bracket notation&nbsp;<code>[]</code>&nbsp;with a numeric index. The index of the first character is zero as shown in this example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>console.log(str&#91;0]); // J</code></pre>\n\n\n\n<p>The square bracket notation was introduced since ES5. Prior to ES5, you use the&nbsp;<code>charAt()</code>&nbsp;method, which is more verbose:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>console.log(str.charAt(0)); // J</code></pre>\n\n\n\n<p>When you call a method on a primitive string variable or a literal string, it is converted to an instance of the&nbsp;<code>String</code>&nbsp;type. For example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>'literal string'.toUpperCase();</code></pre>\n\n\n\n<p>This feature is known as primitive wrapper types in JavaScript.</p>\n\n\n\n<h2>String manipulation</h2>\n\n\n\n<p>The&nbsp;<code>String</code>&nbsp;type provides many useful methods for manipulating strings effectively. We will examine each of them in the following section.</p>\n\n\n\n<h3>1) Concatenating strings</h3>\n\n\n\n<p>To concatenate two or more strings you use the&nbsp;<code>concat()</code>&nbsp;method as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let firstName = 'John';\nlet fullName = firstName.concat(' ','Doe');\nconsole.log(fullName); // \"John Doe\"\nconsole.log(firstName); // \"John\"</code></pre>\n\n\n\n<p>The&nbsp;<code>concat()</code>&nbsp;method concatenates one or more strings to another and returns the result string. Note that the&nbsp;<code>concat()</code>&nbsp;method does not modify the original string.</p>\n\n\n\n<p>Besides the <code>concat()</code> method, JavaScript also uses the addition operator (<code>+</code>) for concatenating strings. In practice, the addition operator is used more often than the <code>concat()</code> method.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let firstName = 'John';\nlet fullName = firstName + ' ' + 'Doe';\nconsole.log(fullName); // \"John Doe\"</code></pre>\n\n\n\n<h3>2) Extracting substrings</h3>\n\n\n\n<p>To extract a substring from a string, you use the&nbsp;<code>substr()</code>&nbsp;method:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>substr(startIndex,&#91;length]);</code></pre>\n\n\n\n<p>The&nbsp;<code>substr()</code>&nbsp;method accepts two arguments.</p>\n\n\n\n<p>The first argument&nbsp;<code>startIndex</code>&nbsp;is the location at which the characters are being extracted, while the second argument&nbsp;<code>length</code>&nbsp;specifies the number of characters to extract.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let str = \"JavaScript String\";\n\nconsole.log(str.substr(0, 10)); // \"JavaScript\"\nconsole.log(str.substr(11,6)); // \"String\"</code></pre>\n\n\n\n<p>If you omit the&nbsp;<code>length</code>&nbsp;argument, the&nbsp;<code>substr()</code>&nbsp;method extracts the characters to the end of the string.</p>\n\n\n\n<p>Sometimes, you want to extract a substring from a string using starting and ending indexes. In this case, you use the <code>substring()</code> method:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>substring(startIndex,endIndex)</code></pre>\n\n\n\n<p>See the following example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let str = \"JavaScript String\";\nconsole.log(str.substring(4, 10)); // \"Script\"</code></pre>\n\n\n\n<h3>3) Locating substrings</h3>\n\n\n\n<p>To locate a substring in a string, you use the <code>indexOf()</code> method:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>string.indexOf(substring,&#91;fromIndex]);</code></pre>\n\n\n\n<p>The&nbsp;<code>indexOf()</code>&nbsp;method accepts two arguments: a substring to locate and the&nbsp;<code>fromIndex</code>&nbsp;at which the method starts searching forward in the string.</p>\n\n\n\n<p>The&nbsp;<code>indexOf()</code>&nbsp;returns the index of the first occurrence&nbsp;of the substring in the string. If the substring is not found, the&nbsp;<code>indexOf()</code>&nbsp;method returns -1.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let str = \"This is a string\";\nconsole.log(str.indexOf(\"is\")); // 2</code></pre>\n\n\n\n<p>The following example uses the&nbsp;<code>fromIndex</code>&nbsp;argument:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>console.log(str.indexOf('is', 3)); //5</code></pre>\n\n\n\n<p>To find the location of the last occurrence of a substring in a string, you use the <code>lastIndexOf()</code> method.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>string.lastIndexOf(substring,&#91;fromIndex])</code></pre>\n\n\n\n<p>Unlike the&nbsp;<code>indexOf()</code>&nbsp;method, the&nbsp;<code>lastindexOf()</code>&nbsp;method searches backward from the&nbsp;<code>fromIndex</code>&nbsp;argument.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>console.log(str.lastIndexOf('is')); // 5</code></pre>\n\n\n\n<p>The&nbsp;<code>lastIndexOf()</code>&nbsp;method also returns&nbsp;<code>-1</code>&nbsp;if the substring not found in the string as shown in this example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>console.log(str.lastIndexOf('are')); // -1</code></pre>\n\n\n\n<h3>4) Removing whitespace characters</h3>\n\n\n\n<p>To remove all leading and trailing whitespace characters of a string, you use the <code>trim()</code> method.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let rawString = ' Hi  ';\nlet strippedString = rawString.trim();\nconsole.log(strippedString); // \"Hi\"</code></pre>\n\n\n\n<p>Note that the&nbsp;<code>trim()</code>&nbsp;method creates&nbsp;a copy of the original string with whitespace characters stripped, it doesn’t change the original string.</p>\n\n\n\n<p>Notice that the&nbsp;<code>trim()</code>&nbsp;method is only available since ES5.</p>\n\n\n\n<p>ES6 introduced two new methods for removing whitespace characters from a string:</p>\n\n\n\n<ul><li><code>trimStart()</code> returns a string with whitespace characters stripped from the beginning of a string.</li><li><code>trimEnd()</code> returns a string with the whitespace characters stripped from the end of a string.</li></ul>\n\n\n\n<h3>5) Changing cases</h3>\n\n\n\n<p>To change cases of a string, you use&nbsp;<code>toLowerCase()</code>&nbsp;and&nbsp;<code>toUpperCase()</code>&nbsp;methods:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let greeting = 'Hello';\nconsole.log(greeting.toLowerCase()); // 'hello'\nconsole.log(greeting.toUpperCase()); // 'HELLO';</code></pre>\n\n\n\n<p>In some languages, the rules for converting a string to lowercase and uppercase are very specific. Therefore, it is safer to use the&nbsp;<code>toLocaleLowerCase()</code>&nbsp;and&nbsp;<code>toLocaleUpperCase()</code>&nbsp;methods, especially when you don’t know which language the code will deal with.</p>\n\n\n\n<h3>6) Comparing strings</h3>\n\n\n\n<p>To compare two strings, you use the&nbsp;<code>localeCompare()</code>&nbsp;method:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>first.localeCompare(second);</code></pre>\n\n\n\n<p>The&nbsp;<code>localeCompare()</code>&nbsp;returns one of three values: -1, 0, and 1.</p>\n\n\n\n<ul><li>If the first string comes before the second string alphabetically, the method returns -1.</li><li>If the first string comes after the second string&nbsp;alphabetically, the method returns 1.</li><li>If two strings are equal, the method returns 0.</li></ul>\n\n\n\n<p>For example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>console.log('A'.localeCompare('B')); // -1\nconsole.log('B'.localeCompare('B')); // 0\nconsole.log('C'.localeCompare('B')); // 1</code></pre>\n\n\n\n<h3>7) Matching patterns</h3>\n\n\n\n<p>The <code>match()</code> method allows you to match a string with a specified regular expression and get an array of results.</p>\n\n\n\n<p>The <code>match()</code> method returns null if it does not find any match. Otherwise, it returns an array containing the entire match and any parentheses-capture matched results.</p>\n\n\n\n<p>If the global flag (<code>g</code>) is not set, the element zero of the array contains the&nbsp;entire match. Here is an example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let expr = \"1 + 2 = 3\";\nlet matches = expr.match(/\\d+/);\nconsole.log(matches&#91;0]); // \"1\"</code></pre>\n\n\n\n<p>In this example, the pattern matches any number in the&nbsp;<code>expr</code>&nbsp;string.</p>\n\n\n\n<p>In case the global flag (&nbsp;<code>g</code>) is set, the elements of the result array contain all matches as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>matches = expr.match(/\\d+/g);\nmatches.forEach(function(m) {\n    console.log(m);\n});\n// \"1\"\n// \"2\"\n// \"3\"</code></pre>\n\n\n\n<p>In this example, the matches array contains all matches including 1, 2 and 3 in the &nbsp;<code>expr</code>&nbsp;string.</p>\n\n\n\n<p>In case you only need to find out if a string matches a regular expression, you use the <code>search()</code> method instead.</p>\n\n\n\n<p>Similar to the&nbsp;<code>match()</code>&nbsp;method, the&nbsp;<code>search()</code>&nbsp;method accepts a regular expression and returns the position of the string where the first match found. In case no match is found, it returns -1.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let str = \"This is a test of search()\";\nlet pos = str.search(/is/);\nconsole.log(pos); // 2</code></pre>\n\n\n\n<h3>8) Replacing substrings</h3>\n\n\n\n<p>To replace a substring in a string, you use the <code>replace()</code> method.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>string.replace(regularExpression, replaceText)</code></pre>\n\n\n\n<p>The first argument of the&nbsp;<code>replace()</code>&nbsp;method could be a regular expression or a string.&nbsp;If it is a regular expression, the&nbsp;<code>replace()</code>&nbsp;method will find the matches and replace them with the second argument (&nbsp;<code>replaceText</code>). In case it is a string, the&nbsp;<code>replace()</code>&nbsp;method will perform an exact search and carry the replacement.</p>\n\n\n\n<p>The&nbsp;<code>replace()</code>&nbsp;method returns a copy of the original string after making the replacements.</p>\n\n\n\n<p>The following example illustrates how to use a regular expression to replace <code>the</code> with <code>a</code>:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let str = \"the baby kicks the ball\";\n// replace \"the\" with \"a\"\nlet newStr = str.replace(/the/g, \"a\");\nconsole.log(newStr); // \"a baby kicks a ball\"\nconsole.log(str); // \"the baby kicks the ball\"</code></pre>\n\n\n\n<p>And&nbsp;the following example shows how to replace&nbsp;<code>kicks</code>&nbsp;with&nbsp;<code>holds</code>&nbsp;by using the first argument as a literal string.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>newStr = str.replace('kicks', 'holds');\nconsole.log(newStr); // \"the baby holds the ball\"</code></pre>\n\n\n\n<p>In this tutorial, you have learned about the JavaScript String type and how to manipulate strings effectively.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Summary: in this tutorial, you will learn about the JavaScript&nbsp;String&nbsp;type and how to manipulate strings effectively. Introduction to JavaScript String type The String type is object wrapper of the string primitive type and can be created by using the String constructor as follows: The&nbsp;String&nbsp;type has a property named&nbsp;length&nbsp;that specifies the number of characters in the string. In this example, the value of the&nbsp;length&nbsp;property [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [36],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3102"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/comments?post=3102"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3102/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/media?parent=3102"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/categories?post=3102"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/tags?post=3102"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 3109,
+    "date": "2020-11-27T11:26:37",
+    "date_gmt": "2020-11-27T11:26:37",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3109"
+    },
+    "modified": "2020-11-27T11:26:37",
+    "modified_gmt": "2020-11-27T11:26:37",
+    "slug": "javascript-string-trim",
+    "status": "publish",
+    "type": "post",
+    "link": "https://computerprogramming.foobrdigital.com/javascript-string-trim/",
+    "title": {
+      "rendered": "JavaScript String trim()"
+    },
+    "content": {
+      "rendered": "\n<p><strong>Summary</strong>: in this tutorial, you’ll learn how to use the JavaScript&nbsp;<code>trim()</code>&nbsp;method to remove whitespace characters from both ends of a string.</p>\n\n\n\n<h2>Introduction to the JavaScript trim() method</h2>\n\n\n\n<p>The&nbsp;<code>String.prototype.trim()</code>returns a new string stripped of whitespace characters from beginning and end of a string:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let resultString = str.trim();</code></pre>\n\n\n\n<p>The whitespace characters are space, tab, no-break space, etc.</p>\n\n\n\n<p>Note that the&nbsp;<code>trim()</code>&nbsp;method doesn’t change the original string.</p>\n\n\n\n<p>To remove whitespace characters from the beginning or from the end of a string only, you use the <code>trimStart()</code> or <code>trimEnd()</code> method.</p>\n\n\n\n<h2>JavaScript trim() example</h2>\n\n\n\n<p>The following example shows how to use the&nbsp;<code>trim()</code>&nbsp;to remove whitespace from both sides of a string:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let str = '  JS trim  ';\nlet result = str.trim();\n\nconsole.log(result);</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>\"JS trim\"</code></pre>\n\n\n\n<h2>Summary</h2>\n\n\n\n<ul><li>Use the&nbsp;<code>trim()</code>&nbsp;to remove whitespace characters from both ends of a string.</li></ul>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Summary: in this tutorial, you’ll learn how to use the JavaScript&nbsp;trim()&nbsp;method to remove whitespace characters from both ends of a string. Introduction to the JavaScript trim() method The&nbsp;String.prototype.trim()returns a new string stripped of whitespace characters from beginning and end of a string: The whitespace characters are space, tab, no-break space, etc. Note that the&nbsp;trim()&nbsp;method doesn’t [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [36],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3109"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/comments?post=3109"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3109/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/media?parent=3109"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/categories?post=3109"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/tags?post=3109"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 3112,
+    "date": "2020-11-27T11:27:05",
+    "date_gmt": "2020-11-27T11:27:05",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3112"
+    },
+    "modified": "2020-11-27T11:27:05",
+    "modified_gmt": "2020-11-27T11:27:05",
+    "slug": "javascript-string-trimstart",
+    "status": "publish",
+    "type": "post",
+    "link": "https://computerprogramming.foobrdigital.com/javascript-string-trimstart/",
+    "title": {
+      "rendered": "JavaScript String trimStart"
+    },
+    "content": {
+      "rendered": "\n<p><strong>Summary</strong>: in this tutorial, you’ll learn how to use the JavaScript String&nbsp;<code>trimStart()</code>&nbsp;method to remove whitespace from the beginning of a string.</p>\n\n\n\n<p>To remove the whitespace characters from the beginning of a string, you use the&nbsp;<code>trimStart()</code>&nbsp;method:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let newString = originalString.trimStart();\n</code></pre>\n\n\n\n<p>The&nbsp;<code>trimStart()</code>&nbsp;method returns a new string from the original string with the leading whitespace characters removed. The&nbsp;<code>trimStart()</code>&nbsp;method doesn’t change the original string.</p>\n\n\n\n<p>The following characters are the whitespace characters in JavaScript:</p>\n\n\n\n<ul><li>A space character</li><li>A tab character</li><li>A carriage return character</li><li>A new line character</li><li>A vertical tab character</li><li>A form feed character</li></ul>\n\n\n\n<p>The following example shows how to use the&nbsp;<code>trimStart()</code>&nbsp;to remove whitespace characters from the beginning of a string:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>const str = '   JavaScript   ';\nconst result = str.trimStart();\n\nconsole.log({ str });\nconsole.log({ result });\n</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{ str: '   JavaScript   ' }\n{ result: 'JavaScript   ' }\n</code></pre>\n\n\n\n<p>The&nbsp;<code>trimLeft()</code>&nbsp;method is an alias of the&nbsp;<code>trimStart()</code>&nbsp;method. The&nbsp;<code>trimLeft()</code>&nbsp;has the same functionality as the&nbsp;<code>trimLeft()</code>&nbsp;method. It’s recommended that you use the&nbsp;<code>trimStart()</code>&nbsp;method.</p>\n\n\n\n<h2>Summary</h2>\n\n\n\n<ul><li>The&nbsp;<code>trimStart()</code>&nbsp;returns a new string from the original string with the leading whitespace characters removed.</li><li>The&nbsp;<code>trimLeft()</code>&nbsp;method is an alias of the&nbsp;<code>trimStart()</code>&nbsp;method.</li></ul>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Summary: in this tutorial, you’ll learn how to use the JavaScript String&nbsp;trimStart()&nbsp;method to remove whitespace from the beginning of a string. To remove the whitespace characters from the beginning of a string, you use the&nbsp;trimStart()&nbsp;method: The&nbsp;trimStart()&nbsp;method returns a new string from the original string with the leading whitespace characters removed. The&nbsp;trimStart()&nbsp;method doesn’t change the original [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [36],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3112"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/comments?post=3112"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3112/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/media?parent=3112"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/categories?post=3112"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/tags?post=3112"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 3114,
+    "date": "2020-11-27T11:27:30",
+    "date_gmt": "2020-11-27T11:27:30",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3114"
+    },
+    "modified": "2020-11-27T11:27:30",
+    "modified_gmt": "2020-11-27T11:27:30",
+    "slug": "javascript-string-trimend",
+    "status": "publish",
+    "type": "post",
+    "link": "https://computerprogramming.foobrdigital.com/javascript-string-trimend/",
+    "title": {
+      "rendered": "JavaScript String trimEnd"
+    },
+    "content": {
+      "rendered": "\n<p><strong>Summary</strong>: in this tutorial, you’ll learn how to use the JavaScript String&nbsp;<code>trimEnd()</code>&nbsp;method to remove whitespace characters from the end of a string.</p>\n\n\n\n<p>To remove the whitespace characters from the end of a string, you use the&nbsp;<code>trimEnd()</code>&nbsp;method:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let newString = originalString.trimEnd();\n</code></pre>\n\n\n\n<p>The&nbsp;<code>trimEnd()</code>&nbsp;method returns a new string from the original string with the ending whitespace characters stripped. The&nbsp;<code>trimEnd()</code>&nbsp;method doesn’t change the original string. The following characters are the whitespace characters in JavaScript:</p>\n\n\n\n<ul><li>A space character</li><li>A tab character</li><li>A carriage return character</li><li>A new line character</li><li>A vertical tab character</li><li>A form feed character</li></ul>\n\n\n\n<p>The following example shows how to use the&nbsp;<code>trimEnd()</code>&nbsp;to remove the whitespace characters from the end of a string:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>const str = '   JavaScript   ';\nconst result = str.trimEnd();\n\nconsole.log({ str });\nconsole.log({ result });\n</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>{ str: '   JavaScript   ' }\n{ result: '   JavaScript' }\n</code></pre>\n\n\n\n<p>The&nbsp;<code>trimRight()</code>&nbsp;method is an alias of the&nbsp;<code>trimEnd()</code>&nbsp;method. The&nbsp;<code>trimRight()</code>&nbsp;provides the same functionality as the&nbsp;<code>trimRight()</code>&nbsp;method. However, it’s recommended that you use the&nbsp;<code>trimEnd()</code>&nbsp;method.</p>\n\n\n\n<h2>Summary</h2>\n\n\n\n<ul><li>The&nbsp;<code>trimEnd()</code>&nbsp;method returns a new string from an original string with the ending whitespace characters stripped. The&nbsp;<code>trimEnd()</code>&nbsp;method doesn’t change the original string.</li><li>The&nbsp;<code>trimRight()</code>&nbsp;method is an alias of the&nbsp;<code>trimEnd()</code>&nbsp;method.</li></ul>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Summary: in this tutorial, you’ll learn how to use the JavaScript String&nbsp;trimEnd()&nbsp;method to remove whitespace characters from the end of a string. To remove the whitespace characters from the end of a string, you use the&nbsp;trimEnd()&nbsp;method: The&nbsp;trimEnd()&nbsp;method returns a new string from the original string with the ending whitespace characters stripped. The&nbsp;trimEnd()&nbsp;method doesn’t change the [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [36],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3114"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/comments?post=3114"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3114/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/media?parent=3114"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/categories?post=3114"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/tags?post=3114"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 3116,
+    "date": "2020-11-27T11:28:09",
+    "date_gmt": "2020-11-27T11:28:09",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3116"
+    },
+    "modified": "2020-11-27T11:28:09",
+    "modified_gmt": "2020-11-27T11:28:09",
+    "slug": "padding-a-string-to-a-certain-length-with-another-string",
+    "status": "publish",
+    "type": "post",
+    "link": "https://computerprogramming.foobrdigital.com/padding-a-string-to-a-certain-length-with-another-string/",
+    "title": {
+      "rendered": "Padding a String to a Certain Length with Another String"
+    },
+    "content": {
+      "rendered": "\n<p><strong>Summary</strong>: in this tutorial, you will learn how to pad a string with another string to a certain length.</p>\n\n\n\n<h2>String.prototype.padStart()</h2>\n\n\n\n<p>The <code>padStart()</code> method pads a string with another string to a certain length from the start of the string and returns a resulting string that reaches a certain length. The following illustrates the <code>padStart()</code> method:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>String.prototype.padStart(padLength &#91;,padString]);\n</code></pre>\n\n\n\n<p>The&nbsp;<code>padStart()</code>&nbsp;method takes two parameters:</p>\n\n\n\n<ul><li>The&nbsp;<code>padLength</code>&nbsp;is the length of the resulting string once it is padded. If the&nbsp;<code>padLength</code>&nbsp;is less than the string’s length, the string is returned as-is without padding.</li><li>The&nbsp;<code>padString</code>&nbsp;is an optional argument which is used to pad the string. The default value for this parameter is ‘ ‘. If the&nbsp;<code>padString</code>&nbsp;is greater than&nbsp;<code>padLength</code>,&nbsp;the&nbsp;<code>padString</code>&nbsp;will be truncated and only the left-most part will be padded.</li></ul>\n\n\n\n<h2>String.prototype.padStart() examples</h2>\n\n\n\n<p>Suppose, you want a numeric string with 8 characters. For the string whose length is less than 8, it will be padded with zeros (0).</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let str = '1234'.padStart(8,'0');\nconsole.log(str); // \"00001234\"\n</code></pre>\n\n\n\n<p>The following example pads a string by spaces because we don’t pass the pad string.</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let str = 'abc'.padStart(5);\nconsole.log(str); // \"  abc\" \n</code></pre>\n\n\n\n<h2>String.prototype.padEnd()</h2>\n\n\n\n<p>Similar to the&nbsp;<code>padStart()</code>&nbsp;method, the&nbsp;<code>padEnd()</code>&nbsp;method pads a string to a certain length with another string. However, the&nbsp;<code>padEnd()</code>&nbsp;method pads from the end of the string. The following shows the syntax of the&nbsp;<code>padEnd()</code>&nbsp;method:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>String.prototype.padEnd(padLength &#91;,padString]);\n</code></pre>\n\n\n\n<h2>String.prototype.padEnd() examples</h2>\n\n\n\n<p>See the following example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let str = 'abc'.padEnd(5);\nconsole.log(str); // \"abc  \"\n</code></pre>\n\n\n\n<p>In this example, because we did not provide the second argument, the&nbsp;<code>padEnd()</code>&nbsp;method uses the&nbsp;space&nbsp;<code>' '</code>&nbsp;to pad the&nbsp;<code>'abc'</code>&nbsp;string. Here is another example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>str = 'abc'.padEnd(5,'*');\nconsole.log(str); // \"abc**\"\n</code></pre>\n\n\n\n<p>In this example, we use the&nbsp;<code>*</code>&nbsp;string as the second argument, the resulting string was padded by&nbsp;two&nbsp;<code>*</code>&nbsp;strings to make its length 5. And another example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>str = 'abc'.padEnd(5,'def');\nconsole.log(str); // \"abcde\"\n</code></pre>\n\n\n\n<p>In this example, the length of the resulting string must be 5, therefore, the pad string was truncated (<code>\"f\"</code>) and only its left-most part (<code>\"de\"</code>) was padded.</p>\n\n\n\n<p>In this tutorial, you have learned how to pad a string to a certain length with another string using&nbsp;<code>padStart()</code>&nbsp;and&nbsp;<code>padEnd()</code>&nbsp;methods.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Summary: in this tutorial, you will learn how to pad a string with another string to a certain length. String.prototype.padStart() The padStart() method pads a string with another string to a certain length from the start of the string and returns a resulting string that reaches a certain length. The following illustrates the padStart() method: The&nbsp;padStart()&nbsp;method takes two parameters: The&nbsp;padLength&nbsp;is the [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [36],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3116"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/comments?post=3116"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3116/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/media?parent=3116"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/categories?post=3116"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/tags?post=3116"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 3121,
+    "date": "2020-11-27T11:31:50",
+    "date_gmt": "2020-11-27T11:31:50",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3121"
+    },
+    "modified": "2020-11-27T11:31:50",
+    "modified_gmt": "2020-11-27T11:31:50",
+    "slug": "javascript-string-concat",
+    "status": "publish",
+    "type": "post",
+    "link": "https://computerprogramming.foobrdigital.com/javascript-string-concat/",
+    "title": {
+      "rendered": "JavaScript String concat()"
+    },
+    "content": {
+      "rendered": "\n<p><strong>Summary</strong>: in this tutorial, you’ll learn how to use the JavaScript&nbsp;<code>concat()</code>&nbsp;method to concatenate strings.</p>\n\n\n\n<h2>Introduction to the JavaScript String concat() method</h2>\n\n\n\n<p>The <code>String.prototype.concat()</code> method accepts a list of strings and returns a new string that contains the combined strings:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>string.concat(str1, &#91;...strN]);</code></pre>\n\n\n\n<p>If the arguments are not strings, the&nbsp;<code>concat()</code>&nbsp;converts them to strings before carrying the concatenation.</p>\n\n\n\n<p>It’s recommended that you use the&nbsp;<code>+</code>&nbsp;or&nbsp;<code>+=</code>&nbsp;operator for string concatenation to get better performance.</p>\n\n\n\n<h2>JavaScript String concat() examples</h2>\n\n\n\n<p>Let’s take some examples of using the&nbsp;<code>concat()</code>&nbsp;method.</p>\n\n\n\n<h3>1) Concatenating strings</h3>\n\n\n\n<p>The following example uses the&nbsp;<code>concat()</code>&nbsp;method to concatenate strings:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let greeting = 'Hi';\nlet message = greeting.concat(' ', 'John');\n\nconsole.log(message);</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Hi John</code></pre>\n\n\n\n<h3>2) Concatenating an array of strings</h3>\n\n\n\n<p>The following example uses the&nbsp;<code>concat()</code>&nbsp;method to concatenate strings in an array:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let colors = &#91;'Blue',' ','Green',' ','Teal'];\nlet result = ''.concat(...colors);\n\nconsole.log(result);</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Blue Green Teal</code></pre>\n\n\n\n<p>Note that the <code>...</code> before the <code>colors</code> array argument is the spread operator that unpacks elements of an array.</p>\n\n\n\n<h2>3) Concatenating non-string arguments</h2>\n\n\n\n<p>This example concatenates numbers into a string:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let str = ''.concat(1,2,3);\n\nconsole.log(str);</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>123</code></pre>\n\n\n\n<p>In this example, the&nbsp;<code>concat()</code>&nbsp;method converts the numbers 1, 2, and 3 to the strings before concatenating.</p>\n\n\n\n<h1>Summary</h1>\n\n\n\n<ul><li>The&nbsp;<code>concat()</code>&nbsp;method concatenates a string list and returns a new string that contains the combined strings.</li><li>Use&nbsp;<code>+</code>&nbsp;or&nbsp;<code>+=</code>&nbsp;operator to concatenate strings for better performance.</li></ul>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Summary: in this tutorial, you’ll learn how to use the JavaScript&nbsp;concat()&nbsp;method to concatenate strings. Introduction to the JavaScript String concat() method The String.prototype.concat() method accepts a list of strings and returns a new string that contains the combined strings: If the arguments are not strings, the&nbsp;concat()&nbsp;converts them to strings before carrying the concatenation. It’s recommended that you use the&nbsp;+&nbsp;or&nbsp;+=&nbsp;operator [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [36],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3121"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/comments?post=3121"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3121/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/media?parent=3121"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/categories?post=3121"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/tags?post=3121"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 3123,
+    "date": "2020-11-27T11:32:39",
+    "date_gmt": "2020-11-27T11:32:39",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3123"
+    },
+    "modified": "2020-11-27T11:32:39",
+    "modified_gmt": "2020-11-27T11:32:39",
+    "slug": "javascript-string-split",
+    "status": "publish",
+    "type": "post",
+    "link": "https://computerprogramming.foobrdigital.com/javascript-string-split/",
+    "title": {
+      "rendered": "JavaScript String split()"
+    },
+    "content": {
+      "rendered": "\n<p><strong>Summary</strong>: in this tutorial, you’ll learn how to use the JavaScript&nbsp;<code>split()</code>&nbsp;method to split a string into an array of substrings.</p>\n\n\n\n<h2>Introduction to the JavaScript String&nbsp;<code>split()</code>&nbsp;method</h2>\n\n\n\n<p>The&nbsp;<code>String.prototype.split()</code>&nbsp;divides a&nbsp;<a href=\"https://www.javascripttutorial.net/javascript-string/\">string</a>&nbsp;into an&nbsp;<a href=\"https://www.javascripttutorial.net/javascript-array/\">array</a>&nbsp;of substrings:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>split(&#91;separator, &#91;,limit]]);</code></pre>\n\n\n\n<p>The&nbsp;<code>split()</code>&nbsp;accepts two optional parameters:&nbsp;<code>separator</code>&nbsp;and&nbsp;<code>limit</code>.</p>\n\n\n\n<h2>1) separator</h2>\n\n\n\n<p>The <code>separator</code> determines where each split should occur in the original string. The separator can be a string. Or it can be a regular expression.</p>\n\n\n\n<p>If you omit the&nbsp;<code>separator</code>&nbsp;or the&nbsp;<code>split()</code>&nbsp;cannot find the separator in the string, the&nbsp;<code>split()</code>&nbsp;returns the entire string.</p>\n\n\n\n<h2>2) limit</h2>\n\n\n\n<p>The&nbsp;<code>limit</code>&nbsp;is zero or positive integer that specifies the number of substrings. The&nbsp;<code>split()</code>&nbsp;method will stop when the number of substrings equals to the&nbsp;<code>limit</code>.</p>\n\n\n\n<p>If the&nbsp;<code>limit</code>&nbsp;is zero, the&nbsp;<code>split()</code>&nbsp;returns an empty array. If the&nbsp;<code>limit</code>&nbsp;is 1, the&nbsp;<code>split()</code>&nbsp;returns an array that contains the string.</p>\n\n\n\n<p>Note that the result array may have fewer entries than the limit in case the&nbsp;<code>split()</code>&nbsp;reaches the end of the string before the limit.</p>\n\n\n\n<h2>JavaScript&nbsp;<code>split()</code>&nbsp;examples</h2>\n\n\n\n<p>Let’s take some examples of using the&nbsp;<code>split()</code>&nbsp;method.</p>\n\n\n\n<h3>1) Splitting the strings into words example</h3>\n\n\n\n<p>The following example uses the&nbsp;<code>split()</code>&nbsp;method to split the string into words:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let str = 'JavaScript String split()';\nlet substrings = str.split(' ');\n\nconsole.log(substrings);</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&#91;\"JavaScript\", \"String\", \"split()\"]\n</code></pre>\n\n\n\n<p>Note that space (‘ ‘) has been removed in the substrings.</p>\n\n\n\n<h3>2) Returning a limited number of substrings example</h3>\n\n\n\n<p>The following example uses the&nbsp;<code>split()</code>&nbsp;method to divide a string into substrings using the space separator. It also uses the second parameter to limit the number of substrings to two:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let str = 'JavaScript String split()';\nlet substrings = str.split(' ',2);\n\nconsole.log(substrings);</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&#91;\"JavaScript\", \"String\"]</code></pre>\n\n\n\n<h3>3) Splitting a string using a regular expression example</h3>\n\n\n\n<p>The following example uses the&nbsp;<code>split()</code>&nbsp;method to split sentences in a paragraph into sentences:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let paragraph = 'Good Morning! How are you? This is John. John is my friend.';\nlet sentences = paragraph.split(/&#91;!,?,.]/);\nconsole.log(sentences);</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&#91;\"Good Morning\", \" How are you\", \" This is John\", \" John is my friend\", \"\"]</code></pre>\n\n\n\n<p>If the regular expression contains capturing parentheses <code>()</code>, the <code>split()</code> method also includes the matched results in the array:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let paragraph = 'Good Morning! How are you? This is John. John is my friend.';\nlet sentences = paragraph.split(/(&#91;!,?,.])/);\nconsole.log(sentences);</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>&#91;\"Good Morning\", \"!\", \" How are you\", \"?\", \" This is John\", \".\", \" John is my friend\", \".\", \"\"]</code></pre>\n\n\n\n<p>Notice that the&nbsp;<code>!</code>,&nbsp;<code>?</code>,&nbsp;<code>.</code>&nbsp;characters are included in the returned array.</p>\n\n\n\n<h2>Summary</h2>\n\n\n\n<ul><li>Use the JavaScript String&nbsp;<code>split()</code>&nbsp;to divide a string into an array of substrings by a separator.</li><li>Use the second parameter (<code>limit</code>) to return a limited number of splits.</li></ul>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Summary: in this tutorial, you’ll learn how to use the JavaScript&nbsp;split()&nbsp;method to split a string into an array of substrings. Introduction to the JavaScript String&nbsp;split()&nbsp;method The&nbsp;String.prototype.split()&nbsp;divides a&nbsp;string&nbsp;into an&nbsp;array&nbsp;of substrings: The&nbsp;split()&nbsp;accepts two optional parameters:&nbsp;separator&nbsp;and&nbsp;limit. 1) separator The separator determines where each split should occur in the original string. The separator can be a string. Or it can be [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [36],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3123"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/comments?post=3123"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3123/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/media?parent=3123"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/categories?post=3123"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/tags?post=3123"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 3125,
+    "date": "2020-11-27T11:33:33",
+    "date_gmt": "2020-11-27T11:33:33",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3125"
+    },
+    "modified": "2020-11-27T11:33:33",
+    "modified_gmt": "2020-11-27T11:33:33",
+    "slug": "javascript-string-indexof",
+    "status": "publish",
+    "type": "post",
+    "link": "https://computerprogramming.foobrdigital.com/javascript-string-indexof/",
+    "title": {
+      "rendered": "JavaScript String indexOf()"
+    },
+    "content": {
+      "rendered": "\n<p><strong>Summary</strong>: in this tutorial, you’ll learn how to use the JavaScript String&nbsp;<code>indexOf()</code>&nbsp;method to find the index of a substring within a string.</p>\n\n\n\n<p>The&nbsp;<code>String.prototype.indexOf()</code>&nbsp;returns the index of the first occurrence of substring (<code>substr</code>) in a string (<code>str</code>):</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let index = str.indexOf(substr, &#91;, fromIndex]);</code></pre>\n\n\n\n<p>It returns -1 if the&nbsp;<code>str</code>&nbsp;does not contain the&nbsp;<code>substr</code>.</p>\n\n\n\n<p>The&nbsp;<code>fromIndex</code>&nbsp;is an optional parameter that specifies the index at which the search starts. It defaults to zero (0), meaning that if you omit the&nbsp;<code>fromIndex</code>, the search will start from the beginning of the string.</p>\n\n\n\n<p>The&nbsp;<code>indexOf()</code>&nbsp;always perform a case-sensitive search.</p>\n\n\n\n<p>To find the index of the last occurrence of a substring in a string, you use the <code>lastIndexOf()</code> method.</p>\n\n\n\n<h2>JavaScript String indexOf() examples</h2>\n\n\n\n<p>Let’s take some examples of using the&nbsp;<code>indexOf()</code>&nbsp;method.</p>\n\n\n\n<h3>1) Using&nbsp;<code>indexOf()</code>&nbsp;method example</h3>\n\n\n\n<p>The following example uses the&nbsp;<code>indexOf()</code>&nbsp;to get the index of the first occurrence of the substring&nbsp;<code>'str'</code>&nbsp;in the string&nbsp;<code>'finding substring in string'</code>:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let str = 'finding substring in string';\nlet index = str.indexOf('str');\n\nconsole.log(index); // 11</code></pre>\n\n\n\n<h3>2) Using&nbsp;<code>indexOf()</code>&nbsp;to count occurrences of a substring in a string</h3>\n\n\n\n<p>The following example uses the&nbsp;<code>indexOf()</code>&nbsp;method to count the number of occurrences of the substring&nbsp;<code>'know'</code>&nbsp;in the string&nbsp;<code>'You do not know what you do not know until you know.'</code>:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let str = 'You do not know what you do not know until you know.';\nlet substr = 'know';\n\nlet count = 0;\n\nlet index = str.indexOf(substr);\nwhile(index !== -1) {\n    count++;\n    index = str.indexOf(substr, index + 1);\n}\n\nconsole.log(count);</code></pre>\n\n\n\n<p>How it works:</p>\n\n\n\n<ul><li>First, use the <code>indexOf()</code> method to find the first occurrence of the <code>substr</code> in the <code>str</code>.</li><li>Then, use the <code>while</code> loop to repeatedly find the next position of the <code>substr</code> in the <code>str</code> starting from the last found position + 1.</li></ul>\n\n\n\n<h3>3) The indexOf() and case-sensitivity</h3>\n\n\n\n<p>The&nbsp;<code>indexOf()</code>&nbsp;is case-sensitive. See the following example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let str = 'JS indexOf';\nlet substr = 'js';\n\nlet index = str.indexOf(substr);\n\nconsole.log(index); // -1</code></pre>\n\n\n\n<p>In this example, the&nbsp;<code>indexOf()</code>&nbsp;returns -1 because the string&nbsp;<code>JS IndexOf</code>&nbsp;does not contain the substring&nbsp;<code>js</code>&nbsp;but&nbsp;<code>JS</code>.</p>\n\n\n\n<p>To perform a case-insensitive search for the index of a substring within a string, you can convert both substring and string to lowercase before using the&nbsp;<code>indexOf()</code>&nbsp;method as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let str = 'JS indexOf';\nlet substr = 'js';\n\nlet index = str.toLocaleLowerCase().indexOf(substr.toLocaleLowerCase());\n\nconsole.log(index); // 0</code></pre>\n\n\n\n<h2>Summary</h2>\n\n\n\n<ul><li>The&nbsp;<code>indexOf()</code>&nbsp;returns the index of the first occurrence of a substring in a string, or -1 if the string does not contain the substring.</li><li>The&nbsp;<code>indexOf()</code>&nbsp;is case-sensitive.</li></ul>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Summary: in this tutorial, you’ll learn how to use the JavaScript String&nbsp;indexOf()&nbsp;method to find the index of a substring within a string. The&nbsp;String.prototype.indexOf()&nbsp;returns the index of the first occurrence of substring (substr) in a string (str): It returns -1 if the&nbsp;str&nbsp;does not contain the&nbsp;substr. The&nbsp;fromIndex&nbsp;is an optional parameter that specifies the index at which the [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [36],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3125"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/comments?post=3125"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3125/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/media?parent=3125"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/categories?post=3125"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/tags?post=3125"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 3127,
+    "date": "2020-11-27T11:34:16",
+    "date_gmt": "2020-11-27T11:34:16",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3127"
+    },
+    "modified": "2020-11-27T11:34:16",
+    "modified_gmt": "2020-11-27T11:34:16",
+    "slug": "avascript-string-indexof",
+    "status": "publish",
+    "type": "post",
+    "link": "https://computerprogramming.foobrdigital.com/avascript-string-indexof/",
+    "title": {
+      "rendered": "avaScript String indexOf()"
+    },
+    "content": {
+      "rendered": "\n<p><strong>Summary</strong>: in this tutorial, you’ll learn how to use the JavaScript String&nbsp;<code>indexOf()</code>&nbsp;method to find the index of a substring within a string.</p>\n\n\n\n<p>The&nbsp;<code>String.prototype.indexOf()</code>&nbsp;returns the index of the first occurrence of substring (<code>substr</code>) in a string (<code>str</code>):</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let index = str.indexOf(substr, &#91;, fromIndex]);</code></pre>\n\n\n\n<p>It returns -1 if the&nbsp;<code>str</code>&nbsp;does not contain the&nbsp;<code>substr</code>.</p>\n\n\n\n<p>The&nbsp;<code>fromIndex</code>&nbsp;is an optional parameter that specifies the index at which the search starts. It defaults to zero (0), meaning that if you omit the&nbsp;<code>fromIndex</code>, the search will start from the beginning of the string.</p>\n\n\n\n<p>The&nbsp;<code>indexOf()</code>&nbsp;always perform a case-sensitive search.</p>\n\n\n\n<p>To find the index of the last occurrence of a substring in a string, you use the <code>lastIndexOf()</code> method.</p>\n\n\n\n<h2>JavaScript String indexOf() examples</h2>\n\n\n\n<p>Let’s take some examples of using the&nbsp;<code>indexOf()</code>&nbsp;method.</p>\n\n\n\n<h3>1) Using&nbsp;<code>indexOf()</code>&nbsp;method example</h3>\n\n\n\n<p>The following example uses the&nbsp;<code>indexOf()</code>&nbsp;to get the index of the first occurrence of the substring&nbsp;<code>'str'</code>&nbsp;in the string&nbsp;<code>'finding substring in string'</code>:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let str = 'finding substring in string';\nlet index = str.indexOf('str');\n\nconsole.log(index); // 11</code></pre>\n\n\n\n<h3>2) Using&nbsp;<code>indexOf()</code>&nbsp;to count occurrences of a substring in a string</h3>\n\n\n\n<p>The following example uses the&nbsp;<code>indexOf()</code>&nbsp;method to count the number of occurrences of the substring&nbsp;<code>'know'</code>&nbsp;in the string&nbsp;<code>'You do not know what you do not know until you know.'</code>:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let str = 'You do not know what you do not know until you know.';\nlet substr = 'know';\n\nlet count = 0;\n\nlet index = str.indexOf(substr);\nwhile(index !== -1) {\n    count++;\n    index = str.indexOf(substr, index + 1);\n}\n\nconsole.log(count);</code></pre>\n\n\n\n<p>How it works:</p>\n\n\n\n<ul><li>First, use the <code>indexOf()</code> method to find the first occurrence of the <code>substr</code> in the <code>str</code>.</li><li>Then, use the <code>while</code> loop to repeatedly find the next position of the <code>substr</code> in the <code>str</code> starting from the last found position + 1.</li></ul>\n\n\n\n<h3>3) The indexOf() and case-sensitivity</h3>\n\n\n\n<p>The&nbsp;<code>indexOf()</code>&nbsp;is case-sensitive. See the following example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let str = 'JS indexOf';\nlet substr = 'js';\n\nlet index = str.indexOf(substr);\n\nconsole.log(index); // -1</code></pre>\n\n\n\n<p>In this example, the&nbsp;<code>indexOf()</code>&nbsp;returns -1 because the string&nbsp;<code>JS IndexOf</code>&nbsp;does not contain the substring&nbsp;<code>js</code>&nbsp;but&nbsp;<code>JS</code>.</p>\n\n\n\n<p>To perform a case-insensitive search for the index of a substring within a string, you can convert both substring and string to lowercase before using the&nbsp;<code>indexOf()</code>&nbsp;method as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let str = 'JS indexOf';\nlet substr = 'js';\n\nlet index = str.toLocaleLowerCase().indexOf(substr.toLocaleLowerCase());\n\nconsole.log(index); // 0</code></pre>\n\n\n\n<h2>Summary</h2>\n\n\n\n<ul><li>The&nbsp;<code>indexOf()</code>&nbsp;returns the index of the first occurrence of a substring in a string, or -1 if the string does not contain the substring.</li><li>The&nbsp;<code>indexOf()</code>&nbsp;is case-sensitive.</li></ul>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Summary: in this tutorial, you’ll learn how to use the JavaScript String&nbsp;indexOf()&nbsp;method to find the index of a substring within a string. The&nbsp;String.prototype.indexOf()&nbsp;returns the index of the first occurrence of substring (substr) in a string (str): It returns -1 if the&nbsp;str&nbsp;does not contain the&nbsp;substr. The&nbsp;fromIndex&nbsp;is an optional parameter that specifies the index at which the [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [36],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3127"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/comments?post=3127"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3127/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/media?parent=3127"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/categories?post=3127"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/tags?post=3127"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 3129,
+    "date": "2020-11-27T11:34:55",
+    "date_gmt": "2020-11-27T11:34:55",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3129"
+    },
+    "modified": "2020-11-27T11:34:55",
+    "modified_gmt": "2020-11-27T11:34:55",
+    "slug": "avascript-string-lastindexof",
+    "status": "publish",
+    "type": "post",
+    "link": "https://computerprogramming.foobrdigital.com/avascript-string-lastindexof/",
+    "title": {
+      "rendered": "avaScript String lastIndexOf()"
+    },
+    "content": {
+      "rendered": "\n<p><strong>Summary</strong>: in this tutorial, you’ll learn how to use the JavaScript String&nbsp;<code>lastIndexOf()</code>&nbsp;method to locate the last occurrence of a substring in a string.</p>\n\n\n\n<h2>Introduction to the JavaScript String lastIndexOf() Method</h2>\n\n\n\n<p>The <code>String.prototype.lastIndexOf()</code> returns the last occurrence of a substring (<code>substr</code>) in a string (<code>str</code>).</p>\n\n\n\n<pre class=\"wp-block-code\"><code>str.lastIndexOf(substr, &#91;, fromIndex]);</code></pre>\n\n\n\n<p>It returns -1 if the&nbsp;<code>str</code>&nbsp;does not contain the&nbsp;<code>substr</code>.</p>\n\n\n\n<p>The&nbsp;<code>lastIndexOf()</code>&nbsp;method searches for the substring backward from the&nbsp;<code>fromIndex</code>. The&nbsp;<code>fromIndex</code>&nbsp;is optional and defaults to&nbsp;<code>+Infinity</code>. It means that if you omit the&nbsp;<code>fromIndex</code>, the search starts from the end of the string.</p>\n\n\n\n<p>If the&nbsp;<code>fromIndex</code>&nbsp;is greater or equal to&nbsp;<code>str.length</code>, the&nbsp;<code>lastIndexOf()</code>&nbsp;will search for the&nbsp;<code>substr</code>&nbsp;in the whole string.</p>\n\n\n\n<p>If the&nbsp;<code>fromIndex</code>&nbsp;is less than zero, the search behavior is the same as if the&nbsp;<code>fromIndex</code>&nbsp;were zero.</p>\n\n\n\n<p>The&nbsp;<code>lastIndexOf()</code>&nbsp;always perform a case-sensitive search.</p>\n\n\n\n<p>To find the index of the first occurrence of a substring within a string, you use the last<code>indexOf()</code> method.</p>\n\n\n\n<h2>JavaScript String lastIndexOf() examples</h2>\n\n\n\n<p>Let’s take some examples of using the&nbsp;<code>lastIndexOf()</code>&nbsp;method.</p>\n\n\n\n<h3>1) Using&nbsp;<code>lastIndexOf()</code>&nbsp;method</h3>\n\n\n\n<p>This example uses the&nbsp;<code>lastIndexOf()</code>&nbsp;method to locate the last occurrence of the substring&nbsp;<code>'a'</code>&nbsp;in the string&nbsp;<code>'JavaScript'</code>:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let str = 'JavaScript';\nlet index = str.lastIndexOf('a');\n\nconsole.log(index);</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>3</code></pre>\n\n\n\n<p>If you pass the&nbsp;<code>fromIndex</code>&nbsp;argument to the string, the&nbsp;<code>lastIndexOf()</code>&nbsp;method will start searching backward from the&nbsp;<code>fromIndex</code>&nbsp;as shown in the following example:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let str = 'JavaScript';\nlet index = str.lastIndexOf('a',2);\n\nconsole.log(index);</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>1</code></pre>\n\n\n\n<h3>2) The lastIndexOf() and case-sensitivity</h3>\n\n\n\n<p>The&nbsp;<code>lastIndexOf()</code>&nbsp;is case-sensitive. The following example returns -1:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let str = 'Hello, World!';\nlet substr = 'L';\n\nlet index = str.lastIndexOf(substr);\n\nconsole.log(index); // -1</code></pre>\n\n\n\n<p>To perform a case-insensitive search for the index of the last occurrence of a substring within a string, you can convert both substring and string to lowercase before applying the&nbsp;<code>lastIndexOf()</code>&nbsp;method as follows:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let str = 'Hello, World!';\nlet substr = 'L';\n\nlet index = str.toLocaleLowerCase().lastIndexOf(substr.toLocaleLowerCase());\n\nconsole.log(index); // -1\n</code></pre>\n\n\n\n<h1>Summary</h1>\n\n\n\n<ul><li>The&nbsp;<code>lastIndexOf()</code>&nbsp;returns the index of the last occurrence of a substring in a string, or -1 if the string does not contain the substring. It searches for the substring backward from the end of the string or from the&nbsp;<code>fromIndex</code>&nbsp;if this argument is available.</li><li>The&nbsp;<code>lastIndexOf()</code>&nbsp;carries a case-sensitive search.</li></ul>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Summary: in this tutorial, you’ll learn how to use the JavaScript String&nbsp;lastIndexOf()&nbsp;method to locate the last occurrence of a substring in a string. Introduction to the JavaScript String lastIndexOf() Method The String.prototype.lastIndexOf() returns the last occurrence of a substring (substr) in a string (str). It returns -1 if the&nbsp;str&nbsp;does not contain the&nbsp;substr. The&nbsp;lastIndexOf()&nbsp;method searches for the substring backward from [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [36],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3129"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/comments?post=3129"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3129/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/media?parent=3129"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/categories?post=3129"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/tags?post=3129"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 3131,
+    "date": "2020-11-27T11:35:35",
+    "date_gmt": "2020-11-27T11:35:35",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3131"
+    },
+    "modified": "2020-11-27T11:35:35",
+    "modified_gmt": "2020-11-27T11:35:35",
+    "slug": "javascript-substring",
+    "status": "publish",
+    "type": "post",
+    "link": "https://computerprogramming.foobrdigital.com/javascript-substring/",
+    "title": {
+      "rendered": "JavaScript substring()"
+    },
+    "content": {
+      "rendered": "\n<p><strong>Summary</strong>: in this tutorial, you’ll learn how to use the JavaScript&nbsp;<code>substring()</code>&nbsp;method to extract a substring from a string.</p>\n\n\n\n<h2>Introduction to the JavaScript substring() method</h2>\n\n\n\n<p>The JavaScript <code>String.prototype.substring()</code> returns the part of the string between the start and end indexes:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>str.substring(startIndex &#91;, endIndex])\n</code></pre>\n\n\n\n<p>The&nbsp;<code>substring()</code>&nbsp;method accepts two parameters:&nbsp;<code>startIndex</code>and&nbsp;<code>endIndex</code>:</p>\n\n\n\n<ul><li>The&nbsp;<code>startIndex</code>&nbsp;specifies the index of the first character to include in the returned substring.</li><li>The&nbsp;<code>endIndex</code>&nbsp;determines the first character to exclude from the returned substring. In other words, the returned substring doesn’t include the character at the endIndex.</li></ul>\n\n\n\n<p>If you omit the&nbsp;<code>endIndex</code>, the&nbsp;<code>substring()</code>&nbsp;returns the substring to the end of the string.</p>\n\n\n\n<p>If&nbsp;<code>startIndex</code>&nbsp;equals&nbsp;<code>endIndex</code>, the&nbsp;<code>substring()</code>&nbsp;method returns an empty string.</p>\n\n\n\n<p>If&nbsp;<code>startIndex</code>&nbsp;is greater than the&nbsp;<code>endIndex</code>, the&nbsp;<code>substring()</code>&nbsp;swaps their roles: the startIndex becomes the endIndex and vice versa.</p>\n\n\n\n<p>If either&nbsp;<code>startIndex</code>&nbsp;or&nbsp;<code>endIndex</code>&nbsp;is less than zero or greater than the&nbsp;<code>string.length</code>, the&nbsp;<code>substring()</code>&nbsp;considers it as zero (0) or&nbsp;<code>string.length</code>&nbsp;respectively.</p>\n\n\n\n<p>If any parameter is&nbsp;<code>NaN</code>, the&nbsp;<code>substring()</code>&nbsp;treats it as if it were zero (0).</p>\n\n\n\n<h2>JavaScript substring() examples</h2>\n\n\n\n<p>Let’s take some examples of using the JavaScript&nbsp;<code>substring()</code>&nbsp;method.</p>\n\n\n\n<h3>1) Extracting a substring from the beginning of the string example</h3>\n\n\n\n<p>The following example uses the substring method to extract a substring starting from the beginning of the string:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let str = 'JavaScript Substring';\nlet substring = str.substring(0,10);\n\nconsole.log(substring);</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>JavaScript</code></pre>\n\n\n\n<h3>2) Extracting a substring to the end of the string example</h3>\n\n\n\n<p>The following example uses the substring() to extract a substring from the index 11 to the end of the string:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let str = 'JavaScript Substring';\nlet substring = str.substring(11);\n\nconsole.log(substring);</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>Substring\n</code></pre>\n\n\n\n<h3>3) Extracting domain from the email example</h3>\n\n\n\n<p>The following example uses the <code>substring()</code> with the <code>indexOf()</code> to extract the domain from the email:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let email = 'john.doe@gmail.com';\nlet domain = email.substring(email.indexOf('@') + 1);\n\nconsole.log(domain); // gmail.com</code></pre>\n\n\n\n<p>How it works:</p>\n\n\n\n<ul><li>First, the&nbsp;<code>indexOf()</code>&nbsp;returns the position of the @ character.</li><li>Then the substring returns the domain that starts from the index of&nbsp;<code>@</code>&nbsp;plus 1 to the end of the string.</li></ul>\n\n\n\n<h2>Summary</h2>\n\n\n\n<ul><li>The JavaScript&nbsp;<code>substring()</code>&nbsp;returns the substring from a string between the start and end indexes.</li></ul>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Summary: in this tutorial, you’ll learn how to use the JavaScript&nbsp;substring()&nbsp;method to extract a substring from a string. Introduction to the JavaScript substring() method The JavaScript String.prototype.substring() returns the part of the string between the start and end indexes: The&nbsp;substring()&nbsp;method accepts two parameters:&nbsp;startIndexand&nbsp;endIndex: The&nbsp;startIndex&nbsp;specifies the index of the first character to include in the returned substring. The&nbsp;endIndex&nbsp;determines the first [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [36],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3131"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/comments?post=3131"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3131/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/media?parent=3131"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/categories?post=3131"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/tags?post=3131"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 3133,
+    "date": "2020-11-27T11:36:17",
+    "date_gmt": "2020-11-27T11:36:17",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3133"
+    },
+    "modified": "2020-11-27T11:36:17",
+    "modified_gmt": "2020-11-27T11:36:17",
+    "slug": "javascript-string-slice",
+    "status": "publish",
+    "type": "post",
+    "link": "https://computerprogramming.foobrdigital.com/javascript-string-slice/",
+    "title": {
+      "rendered": "JavaScript String slice()"
+    },
+    "content": {
+      "rendered": "\n<p><strong>Summary</strong>: in this tutorial, you will learn how to use the JavaScript String&nbsp;<code>slice()</code>&nbsp;method to extract a substring from a string.</p>\n\n\n\n<h2>Introduction to the JavaScript String slice() method</h2>\n\n\n\n<p>The&nbsp;<code>slice()</code>&nbsp;method returns a&nbsp;<code>substr</code>&nbsp;from the&nbsp;<code>startIndex</code>&nbsp;to the&nbsp;<code>endIndex</code>&nbsp;in the&nbsp;<code>str</code>:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let substr = str.slice(startIndex &#91;, endIndex ]);</code></pre>\n\n\n\n<p>The&nbsp;<code>startIndex</code>&nbsp;is a zero-based index at which the&nbsp;<code>slice()</code>&nbsp;start extraction.</p>\n\n\n\n<p>The&nbsp;<code>endIndex</code>&nbsp;is also zero-based index before which the&nbsp;<code>slice()</code>&nbsp;ends the extraction. The&nbsp;<code>substr</code>&nbsp;will not include the character the&nbsp;<code>endIndex</code>&nbsp;index.</p>\n\n\n\n<p>If you omit the&nbsp;<code>endIndex</code>, the&nbsp;<code>slice()</code>&nbsp;extracts to the end of the string.</p>\n\n\n\n<p>If the&nbsp;<code>startIndex</code>&nbsp;or&nbsp;<code>endIndex</code>&nbsp;is negative, the&nbsp;<code>slice()</code>&nbsp;treats it as&nbsp;<code>str.length + startIndex</code>&nbsp;or&nbsp;<code>str.length+ endIndex</code>&nbsp;e.g., if&nbsp;<code>startIndex</code>&nbsp;or&nbsp;<code>endIndex</code>&nbsp;is&nbsp;<code>-1</code>, the&nbsp;<code>slice()</code>&nbsp;will treat it as&nbsp;<code>str.length - 1</code>.</p>\n\n\n\n<p>The&nbsp;<code>slice()</code>&nbsp;returns a new string that contains the substring extracted from the string.</p>\n\n\n\n<h2>JavaScript String slice() method example</h2>\n\n\n\n<p>Let’s take an example of using the&nbsp;<code>slice()</code>&nbsp;method.</p>\n\n\n\n<p>The following example uses the&nbsp;<code>slice()</code>&nbsp;method to get the local part of an email address:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let email = 'john@example.com'\nlet localPart = email.slice(0,email.indexOf('@'));\n\nconsole.log(localPart);</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>john</code></pre>\n\n\n\n<p>How it works:</p>\n\n\n\n<ul><li>First, use the <code>indexOf()</code> method to locate the <code>@</code> sign. The returned value of the <code>indexOf()</code> is used as the second argument of the <code>slice()</code> method.</li><li>Then, use the <code>slice()</code> method to extract the local part of the email starting from the beginning of string up to the character before the <code>@</code> sign.</li></ul>\n\n\n\n<h2>Summary</h2>\n\n\n\n<ul><li>Use the JavaScript String&nbsp;<code>slice()</code>&nbsp;method to extract a substring from a string.</li></ul>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Summary: in this tutorial, you will learn how to use the JavaScript String&nbsp;slice()&nbsp;method to extract a substring from a string. Introduction to the JavaScript String slice() method The&nbsp;slice()&nbsp;method returns a&nbsp;substr&nbsp;from the&nbsp;startIndex&nbsp;to the&nbsp;endIndex&nbsp;in the&nbsp;str: The&nbsp;startIndex&nbsp;is a zero-based index at which the&nbsp;slice()&nbsp;start extraction. The&nbsp;endIndex&nbsp;is also zero-based index before which the&nbsp;slice()&nbsp;ends the extraction. The&nbsp;substr&nbsp;will not include the character [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [36],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3133"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/comments?post=3133"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3133/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/media?parent=3133"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/categories?post=3133"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/tags?post=3133"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 3135,
+    "date": "2020-11-27T11:36:52",
+    "date_gmt": "2020-11-27T11:36:52",
+    "guid": {
+      "rendered": "http://javascript.foobrdigital.com/?p=3135"
+    },
+    "modified": "2020-11-27T11:36:52",
+    "modified_gmt": "2020-11-27T11:36:52",
+    "slug": "javascript-string-includes-method",
+    "status": "publish",
+    "type": "post",
+    "link": "https://computerprogramming.foobrdigital.com/javascript-string-includes-method/",
+    "title": {
+      "rendered": "JavaScript String includes() Method"
+    },
+    "content": {
+      "rendered": "\n<p><strong>Summary</strong>: in this tutorial, you will learn how to use the JavaScript String&nbsp;<code>includes()</code>&nbsp;method to check if a string contains another string.</p>\n\n\n\n<h2>Introduction to JavaScript String&nbsp;<code>includes()</code>&nbsp;method</h2>\n\n\n\n<p>The&nbsp;<code>includes()</code>&nbsp;method determines whether a string contains another string:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>string.includes(searchString &#91;,position])\n</code></pre>\n\n\n\n<p>The includes() method returns&nbsp;<code>true</code>&nbsp;if the&nbsp;<code>searchString</code>&nbsp;found in the&nbsp;<code>string</code>; otherwise&nbsp;<code>false</code>.</p>\n\n\n\n<p>The optional&nbsp;<code>position</code>&nbsp;parameter specifies the position within the&nbsp;<code>string</code>&nbsp;at which to begin searching for the&nbsp;<code>searchString</code>. The&nbsp;<code>position</code>&nbsp;defaults to 0.</p>\n\n\n\n<p>The&nbsp;<code>includes()</code>&nbsp;matches string case-sensitively.</p>\n\n\n\n<h2>JavaScript String&nbsp;<code>includes()</code>&nbsp;examples</h2>\n\n\n\n<p>This example uses the&nbsp;<code>includes()</code>&nbsp;method to check if the string&nbsp;<code>@</code>&nbsp;is in the string&nbsp;<code>'admin@example.com'</code>:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let email = 'admin@example.com';\nconsole.log(email.includes('@'));\n</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>true\n</code></pre>\n\n\n\n<p>The following example checks if the&nbsp;<code>str</code>&nbsp;contains the&nbsp;<code>Script</code>:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let str = 'JavaScript String';\nconsole.log(str.includes('Script'));\n</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>true\n</code></pre>\n\n\n\n<p>As mentioned earlier, the&nbsp;<code>includes()</code>&nbsp;matches the string case-sensitively, therefore, the following example returns&nbsp;<code>false</code>:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let str = 'JavaScript String';\nconsole.log(str.includes('script'));\n</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>false\n</code></pre>\n\n\n\n<p>The following example uses the&nbsp;<code>includes()</code>&nbsp;method with the second parameter:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>let str = 'JavaScript String';\nconsole.log(str.includes('Script', 5));\n</code></pre>\n\n\n\n<p>Output:</p>\n\n\n\n<pre class=\"wp-block-code\"><code>false\n</code></pre>\n\n\n\n<p>In this tutorial, you have learned how to use the JavaScript String&nbsp;<code>includes()</code>&nbsp;method to determine whether a string contains another string.</p>\n",
+      "protected": false
+    },
+    "excerpt": {
+      "rendered": "<p>Summary: in this tutorial, you will learn how to use the JavaScript String&nbsp;includes()&nbsp;method to check if a string contains another string. Introduction to JavaScript String&nbsp;includes()&nbsp;method The&nbsp;includes()&nbsp;method determines whether a string contains another string: The includes() method returns&nbsp;true&nbsp;if the&nbsp;searchString&nbsp;found in the&nbsp;string; otherwise&nbsp;false. The optional&nbsp;position&nbsp;parameter specifies the position within the&nbsp;string&nbsp;at which to begin searching for the&nbsp;searchString. The&nbsp;position&nbsp;defaults [&hellip;]</p>\n",
+      "protected": false
+    },
+    "author": 1,
+    "featured_media": 0,
+    "comment_status": "open",
+    "ping_status": "open",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [36],
+    "tags": [],
+    "_links": {
+      "self": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3135"
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/types/post"
+        }
+      ],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/users/1"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/comments?post=3135"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 0,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/posts/3135/revisions"
+        }
+      ],
+      "wp:attachment": [
+        {
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/media?parent=3135"
+        }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/categories?post=3135"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://computerprogramming.foobrdigital.com/wp-json/wp/v2/tags?post=3135"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  }
+]

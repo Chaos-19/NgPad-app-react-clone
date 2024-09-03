@@ -1,17 +1,17 @@
-import React from 'react';
+import React from "react";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from '@/components/ui/accordion';
-import { Link } from 'react-router-dom';
-import { Card } from '@/components/ui/card';
-import { CatagoryColListCard } from './category-list-cards';
+} from "@/components/ui/accordion";
+import { Link } from "react-router-dom";
+import { Card } from "@/components/ui/card";
+import { CatagoryColListCard } from "./category-list-cards";
 
-import useFetchJsonData from '../hooks/fetchJsonData';
-import type { CategoryColListProps } from '../types';
-import { getImgUrl } from '../lib/utils';
+import useFetchJsonData from "../hooks/fetchJsonData";
+import type { CategoryColListProps } from "../types";
+import { getImgUrl } from "../lib/utils";
 
 const CategoryColList = ({
   title,
