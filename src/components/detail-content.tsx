@@ -12,20 +12,21 @@ interface Props {
 }
 
 const DetailContent = ({ content, lang }: Props) => {
-  
-
   return (
     <div className="pb-28 w-full">
       <ReactMarkdown
         rehypePlugins={[rehypeRaw]}
-        children={content.replace(
-          /(?<!<pre[^>]*?>[^<]*?)(<code\b[^>]*?>.*?<\/code>)(?![^<]*?<\/pre>)/gs,
-          (match) => {
-            const content = match.match(/<code\b[^>]*?>(.*?)<\/code>/);
+        children={content
+          .replace(/<code\b[^>]*?>content_copy<code\b[^>]*?>/gs, "<code>")
+          .replace(/<\/code><\/code><\/pre>/gs, "</code></pre>")
+          .replace(
+            /(?<!<pre[^>]*?>[^<]*?)(<code\b[^>]*?>.*?<\/code>)(?![^<]*?<\/pre>)/gs,
+            (match) => {
+              const content = match.match(/<code\b[^>]*?>(.*?)<\/code>/);
 
-            return `<b>${content && content[1]}</b>`;
-          }
-        )}
+              return `<b>${content && content[1]}</b>`;
+            }
+          )}
         className="prose dark:prose-invert prose-pre:not-prose prose-pre:p-0 prose-table:break-all prose-table:table-fixed max-w-[92vw]"
         components={{
           code(props) {
@@ -36,7 +37,15 @@ const DetailContent = ({ content, lang }: Props) => {
                 : `language-js` || ""
             );
 
-            const content = String(
+            console.log("children");
+            console.log(children);
+
+            const content = Array.isArray(children)
+              ? children
+              :typeof children == "object"? children?.props.children:children; /*
+            
+            Array.isArray(children)?children:children?.props.children
+            String(
               Array.isArray(children)
                 ? children[1] && typeof children[1]?.props.children == "object"
                   ? children[1] && children[1]?.props.children.props.children
@@ -44,8 +53,7 @@ const DetailContent = ({ content, lang }: Props) => {
                 : typeof children == "object"
                 ? children?.props.children
                 : children
-            ).replace(/\n$/, "");
-
+            ).replace(/\n$/, "")*/
 
             return (
               children && (
