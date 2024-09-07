@@ -12,6 +12,7 @@ interface Props {
 }
 
 const DetailContent = ({ content, lang }: Props) => {
+  console.log(content);
   return (
     <div className="pb-28 w-full">
       <ReactMarkdown
@@ -42,7 +43,9 @@ const DetailContent = ({ content, lang }: Props) => {
 
             const content = Array.isArray(children)
               ? children
-              :typeof children == "object"? children?.props.children:children; /*
+              : typeof children == "object"
+              ? children?.props.children
+              : children; /*
             
             Array.isArray(children)?children:children?.props.children
             String(
