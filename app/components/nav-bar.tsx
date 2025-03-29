@@ -1,3 +1,5 @@
+import React from 'react'
+
 function Navbar({ children }: { childrenren: React.ReactNode }) {
   return (
     <div className="flex items-center gap-5 py-4 bg-[#092032] px-4">

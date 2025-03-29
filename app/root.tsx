@@ -14,7 +14,6 @@ import { ThemeProvider } from "~/components/theme-provider";
 import CourseContextProvider from "~/context/course";
 import { Toaster } from "~/components/ui/toaster";
 
-
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
   {
@@ -26,7 +25,7 @@ export const links: Route.LinksFunction = () => [
     rel: "stylesheet",
     href: "https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap",
   },
-    { rel: "stylesheet", href: stylesheet },
+  { rel: "stylesheet", href: stylesheet },
 ];
 
 export function Layout({ children }: { children: React.ReactNode }) {

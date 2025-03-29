@@ -4,7 +4,7 @@ import { Card,} from "~/components/ui/card";
 
 export const LessonCard= ({
   title,
-  index,
+  index,content
 }: {
  title:string;
  content:string;
@@ -14,7 +14,10 @@ export const LessonCard= ({
  content_type_name: string;
 }) => {
   return (
-    <Link to={`detail-content/${title}`}>
+    <Link to={`/${title}`}  state={{
+    lesson:content, 
+    title
+    }}>
       <Card className="shadow border drop-shadow backdrop-brightness-100 p-5 py-7">
         <div className="flex items-center gap-8  py-1">
           <h2 className="text-lg font-black text-muted-foreground">

@@ -4,10 +4,10 @@ import CategoryColList from './category/col-list';
 import CategoryRowList from './category/row-list';
 import TobBar from './top-bar';
 import { LessonCard, SectionCard} from './course-cards';
+import LessonContent from './lesson-content';
 /*
 import CourseContent from './course-content';
 import NestedCourseContent from './nested-course-content';
-import DetailContent from './detail-content';
 import Quiz from './quiz';
 */
 
@@ -18,8 +18,9 @@ export {
   CategoryRowList,
   TobBar,
   LessonCard,
-  SectionCard
+  SectionCard,
   /*
+  LessonContent
   CourseContent,
   NestedCourseContent,
   DetailContent,

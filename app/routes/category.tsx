@@ -1,4 +1,5 @@
 import type { Route } from "./+types/root";
+import LessonContent from '~/components/lesson-content';
 
 
 export async function clientLoader({}: Route.ClientLoaderArgs) {

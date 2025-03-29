@@ -3,9 +3,7 @@ import { useEffect } from "react";
 import { CategoryColList, CategoryRowList } from "~/components";
 import BannerImage from "~/assets/main-icons/ads-free.png";
 
-interface Props {
-    // Define your props here
-}
+
 
 export async function clientLoader({}: Route.ClientLoaderArgs) {
     let categories = null;

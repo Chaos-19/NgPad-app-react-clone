@@ -11,9 +11,9 @@ import { Link } from "react-router";
 import { Menu } from "lucide-react";
 import ModeToggle from "./mode-toggle";
 
-import { navDraweLinks } from "../constants/tabs";
+import { navDraweLinks } from "~/constants/tabs";
 
-import topImg from "../assets/drawer_header.jpg";
+import topImg from "~/assets/drawer_header.jpg";
 
 const NavigationDrawer = () => {
   return (

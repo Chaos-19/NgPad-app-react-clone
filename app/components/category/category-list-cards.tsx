@@ -4,10 +4,10 @@ import type {
     CategoryColListCardProps,
     CategoryRowListCardProps,
     CourseColListCardProps
-} from "../types";
+} from "./types";
 import { Link } from "react-router";
 
-import { CourseContext } from "~/context/course";
+//import { CourseContext } from "~/context/course";
 
 export const CatagoryColListCard = ({
     id,
@@ -17,12 +17,13 @@ export const CatagoryColListCard = ({
     is_nested
 }: //folder
 Partial<CourseColListCardProps>) => {
+    const route = is_nested ? "sections" : "content";
 
-  const route = is_nested?"sections":"content";
+    //const { setCourseContent } = useContext(CourseContext);
 
     return (
         <Link
-            preventScrollReset={true} 
+            preventScrollReset={true}
             to={`${title}/course/${route}/${id}`}
             state={{
                 id,
@@ -57,12 +58,11 @@ export const CategoryRowListCard = ({
     description,
     is_nested
 }: CategoryRowListCardProps) => {
+    const route = is_nested ? "sections" : "content"
 
-    const route = is_nested?"sections":"content";
-    
     return (
         <Link
-            preventScrollReset={true} 
+            preventScrollReset={true}
             to={`${title}/course/${route}/${id}`}
             state={{
                 id,
