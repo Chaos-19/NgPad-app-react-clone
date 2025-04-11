@@ -1,13 +1,13 @@
 import ReactMarkdown from "react-markdown";
 import rehypeRaw from "rehype-raw";
-//import rehypePrism from "rehype-prism-plus";
+import rehypePrism from "rehype-prism-plus";
 import {
   CopyBlock,
   dracula /*, railscast, monokai,atomOneDark */,
 } from "react-code-blocks";
 
 import { useContext } from "react"
-
+import { CourseContext } from "~/context/course"
 
 
 interface Props {
@@ -22,6 +22,7 @@ export default function LessonContent({ content, lang }: Props){
   
   return (
     <div className="pb-28 w-full">
+     <div className="prose dark:prose-invert prose-pre:not-prose prose-pre:p-0 prose-table:break-all prose-table:table-fixed max-w-[92vw]">
       <ReactMarkdown
         rehypePlugins={[rehypeRaw]}
         children={content
@@ -35,13 +36,13 @@ export default function LessonContent({ content, lang }: Props){
               return `<b>${content && content[1]}</b>`;
             }
           )}
-        className="prose dark:prose-invert prose-pre:not-prose prose-pre:p-0 prose-table:break-all prose-table:table-fixed max-w-[92vw]"
+        
         components={{
           code(props) {
             const { children, className, node, ...rest } = props;
             const match = /language-(\w+)/.exec(
               className + lang
-                ? `language-${lang.toLowerCase()}`
+                ? `language-${"html"}`
                 : `language-js` || ""
             );
 
@@ -59,9 +60,8 @@ export default function LessonContent({ content, lang }: Props){
                 <CopyBlock
                   text={content}
                   language={
-                    ["html", "css"].some(v=> courseContent?.title.toLowerCase().includes(v))
-                      ? "html"
-                      : "typescript"
+               "html"
+                    
                   }
                   codeBlock
                   theme={dracula}
@@ -71,6 +71,7 @@ export default function LessonContent({ content, lang }: Props){
           },
         }}
       />
+     </div>
     </div>
   );
 };

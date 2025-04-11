@@ -10,29 +10,29 @@ export default [
     //index("routes/category.tsx"),
 
     //route("category", "routes/category.tsx"),
+    
      layout("layouts/main-layout.tsx", [
-     index("routes/category.tsx"),
+        index("routes/category.tsx"),
       /*
         index("routes/home.tsx"),
-        
         route("tutorials", "routes/tutorial.tsx"),
         route("quiz", "routes/quiz.tsx"),
         route("news", "routes/news.tsx"),
         route("learn-more", "routes/learn-more.tsx"),
         route("interview", "routes/interview.tsx"),
-        route("help-center", "routes/help-center.tsx")
-        */
+        route("help-center", "routes/help-center.tsx")*/
+        
     ]),
       
-      /*
+     /*
     layout("layouts/course-detail-layout.tsx", [
       route(":courseTitle/course/content/:id", "routes/course-detail.tsx"),
       route(":courseTitle/course/sections/:id", "routes/course-section-detail.tsx"),
     ]),
     
-    /*
+    
     layout("layouts/lesson-section.tsx", [
-      //route(":lessonTitle", "routes/lesson.tsx"),
+        route(":lessonTitle", "routes/lesson.tsx"),
       //route(":courseTitle/course/sections/:id", "routes/course-section-detail.tsx"),
     ])
     /*

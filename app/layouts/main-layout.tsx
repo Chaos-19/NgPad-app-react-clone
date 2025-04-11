@@ -3,7 +3,7 @@ import { Outlet, Link } from "react-router";
 import Lottie from "lottie-react";
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "~/components/ui/tabs";
-import { ScrollArea } from "~/components/ui/scroll-area";
+//import { ScrollArea } from "~/components/ui/scroll-area";
 
 //import { Navbar, NavigationDrawer } from "~/components";
 
@@ -15,14 +15,6 @@ import ReactMarkdown from "react-markdown";
 import rehypeRaw from "rehype-raw";
 //import rehypePrism from "rehype-prism-plus";
 
-import {
-  Sheet,
-  SheetContent,
-  SheetDescription,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "~/components/ui/sheet";
 /*
 */
 
@@ -30,8 +22,8 @@ import {
 function AppLayout() {
 
     return (
-    <Outlet/ >
-     /*
+    <div> Loading the screen
+   {/*
       <section className="w-full flex h-full">
       <div className="w-full flex flex-col flex-1">
         <Navbar>
@@ -65,7 +57,8 @@ function AppLayout() {
         </div>
       </div>
     </section>
-    */
+    */}
+    </div>
     );
 }
 export default AppLayout;

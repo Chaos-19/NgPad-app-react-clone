@@ -47,7 +47,7 @@ export const SectionCard = ({
   
   return (
     <Link
-      to={`nested_content/${slug}/content`}
+      to={`/${title}`}
       >
       <Card className="shadow border drop-shadow backdrop-brightness-100 p-5 py-7">
         <div className="flex items-center gap-5 py-1">
